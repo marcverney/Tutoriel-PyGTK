@@ -1,0 +1,958 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>14.4. Les CellRenderer</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,treeview" />
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-TreeViewWidget.html" title="Chapitre 14. Le widget TreeView">
+<link rel="prev" href="sec-TreeViews.html" title="14.3. Les TreeView">
+<link rel="next" href="sec-TreeViewColumns.html" title="14.5. TreeViewColumn">
+</head>
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici : 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">14.4. Les CellRenderer</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-TreeViews.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 14. Le widget TreeView</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-TreeViewColumns.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-CellRenderers"></a>14.4. Les CellRenderer</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-CellRendererOverview"></a>14.4.1. Vue d'ensemble</h3></div></div></div>
+<p>Les <code class="classname">TreeViewColumn</code> et les
+<code class="classname">CellRenderer</code> travaillent ensemble pour afficher une 
+colonne de données dans un <code class="classname">TreeView</code>. Le
+<code class="classname">TreeViewColumn</code> fournit un en-tête de colonne ainsi 
+qu'un espace vertical que les <code class="classname">CellRenderer</code> utiliseront 
+pour afficher une partie des données stockées dans le modèle du 
+<code class="classname">TreeView</code>. Un <code class="classname">CellRenderer</code> prend 
+en charge l'affichage des données de chaque ligne et colonne dans l'espace 
+offert par le <code class="classname">TreeViewColumn</code>. Un 
+<code class="classname">TreeViewColumn</code> peut contenir plusieurs 
+<code class="classname">CellRenderer</code> pour afficher les lignes comme des 
+<code class="classname">HBox</code>. On combine par exemple assez fréquemment un 
+<code class="classname">CellRendererPixbuf</code> et un 
+<code class="classname">CellRendererText</code> dans la même colonne.</p>
+<p>La <a href="sec-CellRenderers.html#treeviewcolumnfig" title="Figure 14.2. TreeViewColumn avec CellRenderer">Figure 14.2, « TreeViewColumn avec CellRenderer »</a> montre un exemple de 
+disposition pour deux <code class="classname">TreeViewColumn</code> : l'un contenant 
+deux <code class="classname"> CellRenderer</code> et l'autre un seul.</p>
+<div class="figure">
+<a name="treeviewcolumnfig"></a><p class="title"><b>Figure 14.2. TreeViewColumn avec CellRenderer</b></p>
+<div class="mediaobject" align="center"><img src="figures/treeviewcolumnfig.png" align="middle" alt="TreeViewColumn avec CellRenderer"></div>
+</div>
+<p>L'application de chaque <code class="classname">CellRenderer</code> est
+indiquée avec une couleur d'arrière-plan : jaune pour le 
+<code class="classname">CellRendererPixbuf</code>, cyan pour le 
+<code class="classname">CellRendererText</code>, et rose pour l'autre 
+<code class="classname">CellRendererText</code>. Notez que le 
+<code class="classname">CellRendererPixbuf</code> et le premier 
+<code class="classname">CellRendererText</code> sont dans la même colonne, dont l'en-tête 
+est "Pixbuf and Text". La couleur d'arrière-plan du 
+<code class="classname">CellRendererText</code> qui affiche "Imprime un fichier" est la 
+couleur par défaut afin de montrer la zone d'application sur une seule ligne.</p>
+<p>La <a href="sec-CellRenderers.html#treeviewcolumnfig" title="Figure 14.2. TreeViewColumn avec CellRenderer">Figure 14.2, « TreeViewColumn avec CellRenderer »</a>  a été générée par le programme 
+<a href="exemples/treeviewcolumn.py" target="_top"><span><strong class="command">treeviewcolumn.py</strong></span></a>
+.</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-CellRendererTypes"></a>14.4.2. Les différents types de CellRenderer</h3></div></div></div>
+<p>Le type de <code class="classname">CellRenderer</code>  dont on a besoin dépend du type 
+d'affichage attendu pour les données du modèle ; PyGTK dispose de trois 
+<code class="classname">CellRenderer</code> prédéfinis :</p>
+<table border="0" width="100%" bgcolor="#FFECCE">
+<col align="left" valign="top" width="0*">
+<tbody>
+<tr>
+<td>
+<span class="term"><code class="classname">CellRendererPixbuf</code></span></td>
+<td>affiche des images pixbuf créées par le programme ou disponibles dans 
+le stock de PyGTK.</td>
+</tr>
+<tr>
+<td>
+<span class="term"><code class="classname">CellRendererText</code></span></td>
+<td>affiche des chaines de caractères, ainsi que des nombres pouvant être 
+convertis en chaines de caractères (incluant les entiers, les réels, les booléens).
+          </td>
+</tr>
+<tr>
+<td>
+<span class="term"><code class="classname">CellRendererToggle</code></span></td>
+<td>affiche une valeur booléenne sous la forme d'un bouton à bascule ou 
+d'un bouton radio.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-CellRendererProperties"></a>14.4.3. Les propriétés des CellRenderer</h3></div></div></div>
+<p>Les propriétés d'un <code class="classname">CellRenderer</code> déterminent la 
+manière dont les données doivent être affichées :</p>
+<div class="informaltable"><table cellpadding="5" width="100%" border="0">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr valign="top">
+<td valign="top">"mode"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">La possibilité ou non d'éditer le 
+<code class="classname">CellRenderer</code>. Peut être :
+<code class="literal">gtk.CELL_RENDERER_MODE_INERT</code>,
+<code class="literal">gtk.CELL_RENDERER_MODE_ACTIVATABLE</code> ou
+<code class="literal">gtk.CELL_RENDERER_MODE_EDITABLE</code> </td>
+</tr>
+<tr valign="top">
+<td valign="top">"visible"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, la cellule est affichée.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"xalign"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">La fraction (entre 0.0 et 1.0) d'espace <span class="emphasis"><em>vide</em></span> devant 
+se situer dans la partie gauche de la cellule.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"yalign"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">La fraction (entre 0.0 et 1.0) d'espace <span class="emphasis"><em>vide</em></span> devant 
+se situer dans la partie supérieure de la cellule.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"xpad"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">La quantité d'espacement à gauche et à droite de la cellule.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"ypad"</td>
+<td valign="top">Read-Write</td>
+<td valign="top">La quantité d'espacement au-dessus et au-dessous de la cellule.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"width"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">La largeur fixe de la cellule.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"height"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">La hauteur fixe de la cellule.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"is-expander"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, la ligne a des lignes 
+filles.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"is-expanded"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, la ligne a des lignes 
+filles et est développée afin de montrer celles-ci.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"cell-background"</td>
+<td valign="top">Écriture</td>
+<td valign="top">La couleur d'arrière-plan de la cellule sous la forme d'une 
+chaine de caractères.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"cell-background-gdk"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">La couleur d'arrière-plan de la cellule sous la forme d'une <code class="classname">
+gtk.gdk.Color</code>.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"cell-background-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, la couleur d'arrière-plan 
+de la cellule est définie par ce CellRenderer.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Les propriétés ci-dessus sont disponibles pour toutes les sous-classes de 
+<code class="classname">CellRenderer</code>.  Chaque type de 
+<code class="classname">CellRenderer</code> dispose en plus de ses propres propriétés.</p>
+<p>Le <code class="classname">CellRendererPixbuf</code> a les propriétés suivantes :</p>
+<div class="informaltable"><table cellpadding="5" width="100%" border="0">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr valign="top">
+<td valign="top">"pixbuf"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">La pixbuf à afficher - invalidée par "stock-id".</td>
+</tr>
+<tr valign="top">
+<td valign="top">"pixbuf-expander-open"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Pixbuf pour le symbole de développement ouvert.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"pixbuf-expander-closed"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Pixbuf pour le symbole de développement fermé.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"stock-id"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">L'icône du stock de PyGTK à afficher.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"stock-size"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">La taille de l'icône à afficher.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"stock-detail"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Détail d'affichage à transmettre au moteur de thèmes.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Le <code class="classname">CellRendererText</code> possède un grand nombre de 
+propriétés donnant pour la plupart des indications stylistiques :</p>
+<div class="informaltable"><table cellpadding="3" width="100%" border="0">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr valign="top">
+<td valign="top">"text"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Texte à afficher.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"markup"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Texte balisé à afficher.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"attributes"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Une liste d'attributs de style à appliquer au texte 
+du CellRenderer.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"background"</td>
+<td valign="top">Écriture</td>
+<td valign="top">Couleur d'arrière-plan, sous la forme d'une chaine de caractères.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"foreground"</td>
+<td valign="top">Écriture</td>
+<td valign="top">Couleur d'avant-plan, sous la forme d'une chaine de caractères.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"background-gdk"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Couleur d'arrière-plan, sous la forme d'une 
+<code class="classname">gtk.gdk.Color</code>.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"foreground-gdk"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Couleur d'avant-plan, sous la forme d'une 
+<code class="classname">gtk.gdk.Color</code>.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"font"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Description de police, sous la forme d'une chaine de caractères.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"font-desc"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Description de police, sous la forme d'une 
+<code class="classname">pango.FontDescription</code>.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"family"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Nom de la famille de police (Sans, Helvetica, Times, Monospace, etc.).</td>
+</tr>
+<tr valign="top">
+<td valign="top">"style"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Style de police.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"variant"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Variante de police.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"weight"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Graisse de la police.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"stretch"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Chasse de la police.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"size"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Taille de la police.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"size-points"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Taille de la police en points.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"scale"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Facteur de taille de la police.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"editable"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le texte peut être 
+édité par l'utilisateur.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"strikethrough"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le texte est barré.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"underline"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Style de soulignement du texte.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"rise"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Position du texte par rapport à la ligne de base 
+(au-dessus si positif, au-dessous si négatif).</td>
+</tr>
+<tr valign="top">
+<td valign="top">"language"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">La langue dans laquelle est rédigé le texte, sous la forme 
+d'un code ISO. Peut servir à Pango lors de l'affichage du texte. Si vous ne 
+comprenez pas ce paramètre, il est fort probable que vous n'en ayez pas besoin. 
+GTK+ 2.4 et supérieur.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"single-paragraph-mode"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, tout le texte sera maintenu 
+dans un seul paragraphe. GTK+ 2.4 et supérieur.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"background-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la couleur d'arrière-plan.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"foreground-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la couleur d'avant-plan.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"family-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la famille de police.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"style-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le style de police.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"variant-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la variante de police.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"weight-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la graisse de police.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"stretch-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la chasse de police.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"size-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la taille de police.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"scale-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le facteur de taille 
+de police.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"editable-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la possibilité ou non 
+d'éditer le texte.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"strikethrough-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le trait barrant 
+le texte.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"underline-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le soulignement 
+du texte.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"rise-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le positionnement 
+du texte par rapport à la ligne de base.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"language-set"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la langue utilisée 
+pour afficher le texte. GTK+ 2.4 et supérieur.</td>
+</tr>
+</tbody>
+</table></div>
+<p>La quasi totalité des propriétés du <code class="classname">CellRendererText</code> 
+possède un équivalent booléen (avec le suffixe "-set") qui indique si la propriété 
+doit être appliquée. Cela permet de définir une propriété globalement et d'activer 
+ou non son application de manière sélective.</p>
+<p>Le <code class="classname">CellRendererToggle</code> possède les propriétés 
+suivantes :</p>
+<div class="informaltable"><table cellpadding="5" width="100%" border="0">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr valign="top">
+<td valign="top">"activatable"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le bouton à bascule peut 
+être activé.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"active"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le bouton est actif.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"radio"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le bouton à bascule sera 
+dessiné comme un bouton radio.</td>
+</tr>
+<tr valign="top">
+<td valign="top">"inconsistent"</td>
+<td valign="top">Lecture-écriture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le bouton sera dans un 
+état inconsistant. GTK+ 2.2 et supérieur.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Les propriétés peuvent être définies pour l'ensemble des lignes en 
+utilisant la méthode <code class="methodname">gobject.set_property</code>(), comme 
+dans le programme <a href="exemples/treeviewcolumn.py" target="_top"><span><strong class="command">
+treeviewcolumn.py</strong></span></a>, par exemple.</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-CellRendererAttributes"></a>14.4.4. Les attributs du CellRenderer</h3></div></div></div>
+<p>Les attributs associent une colonne de TreeModel à une propriété de 
+<code class="classname">CellRenderer</code> ; le <code class="classname">CellRenderer</code> 
+définit la propriété à partir de la valeur de colonne de la ligne avant d'afficher 
+la cellule. Cela permet de personnaliser l'affichage des cellules en utilisant 
+les données du modèle. On peut ajouter un attribut à l'ensemble courant de la 
+manière suivante :</p>
+<pre class="programlisting">
+  treeviewcolumn.add_attribute(<strong class="parameter"><code>cell_renderer</code></strong>, <strong class="parameter"><code>attribute</code></strong>, <strong class="parameter"><code>column</code></strong>)
+</pre>
+<p>... où la propriété spécifiée par <em class="parameter"><code>attribute</code></em>
+ est définie pour le <em class="parameter"><code>cell_renderer</code></em> à partir de la colonne 
+<em class="parameter"><code>column</code></em>. Par exemple :</p>
+<pre class="programlisting">
+  treeviewcolumn.add_attribute(cell, "cell-background", 1)
+</pre>
+<p>... fixe la couleur d'arrière-plan du <code class="classname">CellRenderer</code> 
+à la couleur spécifiée par la chaine de caractères située dans la deuxième colonne 
+du modèle.</p>
+<p>Afin de supprimer tous les attributs et d'en fixer de nouveaux immédiatement, 
+on utilisera :</p>
+<pre class="programlisting">
+  treeviewcolumn.set_attributes(<em class="parameter"><code>cell_renderer</code></em>, ...)
+</pre>
+<p>... où les attributs de <em class="parameter"><code>cell_renderer</code></em> sont définis 
+par des couples clé-valeur : propriété=colonne. Par exemple, pour un 
+<code class="classname">CellRendererText</code>, la méthode :</p>
+<pre class="programlisting">
+  treeviewcolumn.set_attributes(cell, text=0, cell_background=1, xpad=3)
+</pre>
+<p>... fixe, pour chaque ligne, le texte à partir de la première colonne, 
+la couleur d'arrière-plan à partir de la deuxième et l'espacement à gauche et 
+à droite de la cellule à partir de la quatrième. Le programme <a href="exemples/treeviewcolumn.py" target="_top"><span><strong class="command">treeviewcolumn.py</strong></span></a> 
+donne des exemples d'utilisation de ces méthodes.</p>
+<p>Les attributs d'un <code class="classname">CellRenderer</code> peuvent être 
+supprimés comme suit :</p>
+<pre class="programlisting">
+  treeviewcolumn.clear_attributes(<strong class="parameter"><code>cell_renderer</code></strong>)
+</pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-CellDataFunction"></a>14.4.5. Fonction d'affichage des données cellulaires</h3></div></div></div>
+<p>Si définir des attributs ne suffit pas, il est possible de définir une 
+fonction à appeler à chaque ligne pour fixer les propriétés du 
+<code class="classname">CellRenderer</code> :</p>
+<pre class="programlisting">
+  treeviewcolumn.set_cell_data_func(<em class="parameter"><code>cell_renderer</code></em>, <em class="parameter"><code>fonction_rendu</code></em>, <em class="parameter"><code>donnees</code></em>=None)
+</pre>
+<p>... où <em class="parameter"><code>fonction_rendu</code></em> est de la forme :</p>
+<pre class="programlisting">
+  def fonction_rendu(colonne, cell_renderer, tree_model, iter, donnees_utilisateur)
+</pre>
+<p>... où <em class="parameter"><code>colonne</code></em> est le 
+<code class="classname">TreeViewColumn</code> contenant le 
+<em class="parameter"><code>cell_renderer</code></em>, <em class="parameter"><code>tree_model</code></em> est  
+le modèle et <em class="parameter"><code>iter</code></em> est un 
+<code class="classname">TreeIter</code> pointant vers une ligne du 
+<em class="parameter"><code>tree_model</code></em>. <em class="parameter"><code>donnees_utilisateur</code></em> contient la
+valeur des <em class="parameter"><code>donnees</code></em> transmises par la méthode 
+<code class="methodname">set_cell_data_func</code>().</p>
+<p>Dans <em class="parameter"><code>fonction_rendu</code></em> on peut définir toutes les propriétés 
+voulues du <em class="parameter"><code>cell_renderer</code></em>. La portion de code suivante 
+définit la propriété "text" pour afficher les objets PyGTK sous la forme d'une chaine 
+les identifiant.
+</p>
+<pre class="programlisting">
+  ...
+  def chaine_objet(treeviewcolumn, cellrenderer, modele, iter):
+     objetpygtk = modele.get_value(iter, 0)
+     cell.set_property('text', str(objetpygtk))
+     return
+  ...
+  treestore = gtk.TreeStore(object)
+  fenetre = gtk.Window()
+  treeview = gtk.TreeView(treestore)
+  fenetre.add(treeview)
+  cell = gtk.CellRendererText()
+  tvcolumn = gtk.TreeViewColumn('Objet', cell)
+  treeview.append_column(tvcolumn)
+  iter = treestore.append(None, [fenetre])
+  iter = treestore.append(iter, [treeview])
+  iter = treestore.append(iter, [tvcolumn])
+  iter = treestore.append(iter, [cell])
+  iter = treestore.append(None, [treestore])
+  ...
+</pre>
+<p>La <a href="sec-CellRenderers.html#celldatafuncfig" title="Figure 14.3. Fonction d'affichage des données cellulaires">Figure 14.3, « Fonction d'affichage des données cellulaires »</a> montre le 
+résultat :</p>
+<div class="figure">
+<a name="celldatafuncfig"></a><p class="title"><b>Figure 14.3. Fonction d'affichage des données cellulaires</b></p>
+<div class="mediaobject" align="center"><img src="figures/celldatafuncfig.png" align="middle" alt="Exemple de fonction d'affichage des données cellulaires"></div>
+</div>
+<p>Cette fonction permet aussi de contrôler l'affichage des données 
+numériques en format texte (par exemple d'un nombre réel). Un 
+<code class="classname">CellRendererText</code> affiche et convertit 
+automatiquement un réel en chaine avec le format par défaut 
+"%f".</p>
+<p>Les fonctions d'affichage de données cellulaires permettent même de créer 
+les données des colonnes à partir de données externes. Le programme <a href="exemples/listefichiers.py" target="_top"><span><strong class="command">listefichiers.py</strong></span></a> 
+utilise un <code class="classname">ListStore</code> avec une seule colonne contenant 
+une liste de fichiers. Le <code class="classname">TreeView</code> affiche des colonnes 
+qui comprennent un pixbuf, le nom du fichier, sa taille, son mode et la date 
+de dernière modification. Les données sont créées par la fonction suivante :</p>
+<pre class="programlisting">
+    def fichier_pixbuf(self, colonne, cell, modele, iter):
+        nomfichier = os.path.join(self.nomrep, modele.get_value(iter, 0))
+        statsfichier = os.stat(nomfichier)
+        if stat.S_ISDIR(statsfichier.st_mode):
+            pb = dossierpb
+        else:
+            pb = fichierpb
+        cell.set_property('pixbuf', pb)
+        return
+
+    def nom_fichier(self, colonne, cell, modele, iter):
+        cell.set_property('text', modele.get_value(iter, 0))
+        return
+
+    def taille_fichier(self, colonne, cell, modele, iter):
+        nomfichier = os.path.join(self.nomrep, modele.get_value(iter, 0))
+        statsfichier = os.stat(nomfichier)
+        cell.set_property('text', statsfichier.st_size)
+        return
+
+    def mode_fichier(self, colonne, cell, modele, iter):
+        nomfichier = os.path.join(self.nomrep, modele.get_value(iter, 0))
+        statsfichier = os.stat(nomfichier)
+        cell.set_property('text', oct(stat.S_IMODE(statsfichier.st_mode)))
+        return
+
+
+    def modif_fichier(self, colonne, cell, modele, iter):
+        nomfichier = os.path.join(self.nomrep, modele.get_value(iter, 0))
+        statsfichier = os.stat(nomfichier)
+        cell.set_property('text', time.ctime(statsfichier.st_mtime))
+        return
+</pre>
+<p>Ces fonctions d'affichage de données cellulaires récupérent l'information 
+sur chaque fichier par son nom, extraient les données nécessaires et fixent la propriété 
+'text' ou 'pixbuf' des cellules selon les données. La 
+<a href="sec-CellRenderers.html#listefichiersfig" title="Figure 14.4. Exemple de liste de fichiers utilisant les fonctions d'affichage de données cellulaires">Figure 14.4, « Exemple de liste de fichiers utilisant les fonctions d'affichage de données cellulaires »</a> illustre le résultat du programme.</p>
+<div class="figure">
+<a name="listefichiersfig"></a><p class="title"><b>Figure 14.4. Exemple de liste de fichiers utilisant les fonctions d'affichage de données cellulaires</b></p>
+<div class="mediaobject" align="center"><img src="figures/listefichiersfig.png" align="middle" alt="Exemple de liste de fichiers utilisant les fonctions d'affichage de données cellulaires"></div>
+</div>
+
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-CellRendererTextMarkup"></a>14.4.6. CellRendererText Markup</h3></div></div></div>
+<p>Un <code class="classname">CellRendererText</code> peut présenter un texte enrichi 
+avec des polices et des styles différents plutôt qu'une simple chaine de caractères 
+bruts grâce à l'utilisation du balisage Pango (en définissant la propriété "markup"). 
+On trouvera davantage de renseignements sur le balisage Pango dans la section 
+<a href="http://www.pygtk.org/pygtk2reference/pango-markup-language.html" target="_top">Pango 
+Markup</a> du <a href="http://www.pygtk.org/pygtk2reference" target="_top">
+PyGTK Reference Manual</a>.</p>
+<p>L'extrait de code ci-dessous montre l'utilisation de la propriété 
+"markup" :</p>
+<pre class="programlisting">
+  ...
+  liststore = gtk.ListStore(str)
+  cell = gtk.CellRendererText()
+  tvcolumn = gtk.TreeViewColumn('Pango Markup', cell, markup=0)
+  ...
+  liststore.append(['&lt;span foreground="blue"&gt;&lt;b&gt;Pango&lt;/b&gt;&lt;/span&gt; markup peut'
+' modifier\n&lt;i&gt;le style&lt;/i&gt; &lt;big&gt;la taille&lt;/big&gt;, &lt;u&gt;souligner,'
+ &lt;s&gt;barrer&lt;/s&gt;&lt;/u&gt;,\n'
+'et &lt;span font_family="URW Chancery L"&gt;&lt;big&gt;changer la police '
+'ex : URW Chancery L&lt;/big&gt;&lt;/span&gt;\n&lt;span foreground="red"&gt;avant-plan'
+' rouge et &lt;span background="cyan"&gt;arrière-plan cyan&lt;/span&gt;&lt;/span&gt;'])
+  ...
+</pre>
+<p>... et donne un résultat semblable à la <a href="sec-CellRenderers.html#celltextmarkupfig" title="Figure 14.5. CellRendererText et balisage">Figure 14.5, « CellRendererText et balisage »</a>:</p>
+<div class="figure">
+<a name="celltextmarkupfig"></a><p class="title"><b>Figure 14.5. CellRendererText et balisage</b></p>
+<div class="mediaobject" align="center"><img src="figures/celltextmarkupfig.png" align="middle" alt="Exemple de Pango markup"></div>
+</div>
+<p>Lorsque l'on crée un balisage Pango à la volée, il faut faire attention 
+à remplacer les caractères spécifiques au langage balisé : "&lt;", "&gt;", 
+"&amp;". La fonction <code class="function">cgi.escape</code>() de la bibliothèque 
+Python peut réaliser ces conversions élémentaires.</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="EditableTextCells"></a>14.4.7. Cellules de texte éditables</h3></div></div></div>
+<p>Les cellules <code class="classname">CellRendererText</code> peuvent 
+devenir éditables pour permettre à un utilisateur de changer le contenu de la 
+cellule sélectionnée en la cliquant ou en pressant une des touches <span><strong class="keycap">Retour</strong></span>,
+<span><strong class="keycap">Entrée</strong></span>, <span><strong class="keycap">Espace</strong></span> ou <span><strong class="keycap">Maj</strong></span>+<span><strong class="keycap">Espace</strong></span>.  
+On rend un <code class="classname">CellRendererText</code> éditable pour toutes 
+les lignes en fixant sa propriété "editable" à <code class="literal">TRUE</code> 
+de cette façon :</p>
+<pre class="programlisting">
+  cellrenderertext.set_property('editable', True)
+</pre>
+<p>Pour rendre éditable une seule cellule, il faut ajouter un attribut au 
+<code class="classname">TreeViewColumn</code> et utiliser le 
+<code class="classname">CellRendererText</code> ainsi :</p>
+<pre class="programlisting">
+  treeviewcolumn.add_attribute(cellrenderertext, "editable", 2)
+</pre>
+<p>... qui fixe la propriété "editable" pour la valeur contenue dans 
+la troisième colonne du treemodel.</p>
+<p>Les modifications de la cellule terminées, l'application doit gérer le signal 
+"edited" pour récupérer le nouveau texte et modifier la valeur du treemodel associé. 
+Sinon, la cellule reprend sa valeur précédente. Le gestionnaire 
+du signal "edited" a la signature suivante :</p>
+<pre class="programlisting">
+  def rappel_edited(<em class="parameter"><code>celltext</code></em>, <em class="parameter"><code>chemin</code></em>, <em class="parameter"><code>nouveau_texte</code></em>, <em class="parameter"><code>donnees_utilisateur</code></em>)
+</pre>
+<p>... où <em class="parameter"><code>celltext</code></em> est le <code class="classname">CellRendererText</code>, 
+<em class="parameter"><code>chemin</code></em> est le chemin d'accès (une chaine) à la ligne 
+contenant la cellule éditée, <em class="parameter"><code>nouveau_texte</code></em> est le texte modifié 
+et <em class="parameter"><code>donnees_utilisateur</code></em> les données contextuelles. 
+Le <code class="classname">TreeModel</code> étant indispensable pour définir le 
+<em class="parameter"><code>nouveau_texte</code></em> dans le stock de données, il faudra peut-être 
+transmettre le <code class="classname">TreeModel</code> comme 
+<em class="parameter"><code>donnees_utilisateur</code></em> dans la méthode 
+<code class="methodname">connect</code>() :</p>
+<pre class="programlisting">
+  cellrenderertext.connect('edited', rappel_edited, modele)
+</pre>
+<p>S'il y a deux ou plusieurs cellules éditables dans une ligne, on peut  
+passer le numéro de la colonne dans <em class="parameter"><code>donnees_utilisateur</code></em>, 
+en même temps que le <code class="classname">TreeModel</code> :</p>
+<pre class="programlisting">
+  cellrenderertext.connect('edited', rappel_edited, (modele, num_col))
+</pre>
+<p>Ensuite, on peut définir le nouveau texte dens le gestionnaire "edited" 
+comme le montre cet exemple avec un <code class="classname">ListStore</code> :</p>
+<pre class="programlisting">
+  def rappel_edited(celltext, chemin, nouveau_texte, donnees_utilisateur):
+      liststore, colonne = donnees_utilisateur
+      liststore[chemin][colonne] = nouveau_texte
+      return
+</pre>
+
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-ActivatableToggleCells"></a>14.4.8. Cellules à bascule activables</h3></div></div></div>
+<p>Les boutons <code class="classname">CellRendererToggle</code> peuvent être rendus 
+activables en fixant leur propriété "activatable" à <code class="literal">TRUE</code>. 
+De la même manière que pour les  cellules éditables 
+<code class="classname">CellRendererText</code>, 
+la propriété "activable" peut être fixée pour l'ensemble des cellules 
+<code class="classname">CellRendererToggle</code> en utilisant la méthode 
+<code class="methodname">set_property</code>() ou pour des cellules individuelles 
+en ajoutant un attribut au <code class="classname">TreeViewColumn</code> contenant 
+le <code class="classname">CellRendererToggle</code>.
+</p>
+<pre class="programlisting">
+  cellrenderertoggle.set_property('activatable', True)
+
+  treeviewcolumn.add_attribute(cellrenderertoggle, "activatable", 1)
+</pre>
+<p>La déclaration individuelle des boutons à bascule peut être obtenue à partir 
+des valeurs d'une colonne du <code class="classname">TreeModel</code> en ajoutant un attribut, 
+comme ceci :
+</p>
+<pre class="programlisting">
+  treeviewcolumn.add_attribute(cellrenderertoggle, "active", 2)
+</pre>
+<p>Une connexion au signal "toggled" est nécessaire si l'on veut savoir quand l'utilisateur 
+a cliqué sur le bouton et pouvoir modifier la valeur dans le treemodel. Par exemple :
+</p>
+<pre class="programlisting">
+  cellrenderertoggle.connect("toggled", rappel_toggled, (modele, colonne))
+</pre>
+<p>La fonction de rappel aura la signature suivante :</p>
+<pre class="programlisting">
+  def rappel_toggled(<em class="parameter"><code>cellrenderertoggle</code></em>, <em class="parameter"><code>chemin</code></em>, <em class="parameter"><code>donnees_utilisateur</code></em>)
+</pre>
+<p>... où <em class="parameter"><code>chemin</code></em> est le chemin d'accès (une chaine), 
+pointant sur la ligne contenant le bouton à bascule qui a été cliqué. On 
+doit passer le <code class="classname">TreeModel</code> et éventuellement l'index 
+de colonne dans le paramètre <em class="parameter"><code>donnees_utilisateur</code></em> pour fournir 
+les éléments nécessaires à l'établissement des valeurs du treemodel. 
+Par exemple, l'application peut modifier la valeur du treemodel 
+de la façon suivante :
+</p>
+<pre class="programlisting">
+  def rappel_toggled(cellule, chemin, donnees_utilisateur):
+      modele, colonne = donnees_utilisateur
+      modele[chemin][colonne] = not modele[chemin][colonne]
+      return
+</pre>
+<p>Si l'on veut afficher les boutons à bascule comme des boutons 
+radio dont un seul serait sélectionné, l'application doit parcourir le treemodel 
+pour désactiver le bouton radio actif et ensuite déclarer le bouton à
+activer. Par exemple, la fonction de rappel suivante :
+</p>
+<pre class="programlisting">
+  def rappel_toggled(cellule, chemin, donnees_utilisateur):
+      modele, colonne = donnees_utilisateur
+      for ligne in modele:
+          ligne[colonne] = False
+      modele[chemin][colonne] = True
+      return
+</pre>
+<p>... utilise la solution de facilité qui consiste à mettre toutes les valeurs 
+du treemodel à <code class="literal">FALSE</code> avant de remettre à <code class="literal">TRUE</code> 
+la valeur pour la ligne indiquée par le <em class="parameter"><code>chemin</code></em>.
+</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-EditableActivatableProgram"></a>14.4.9. Programme d'exemple avec cellules éditables et activables</h3></div></div></div>
+<p>Le programme <a href="exemples/cellrenderer.py" target="_top">cellrenderer.py</a> 
+illustre l'utilisation de <code class="classname">CellRendererText</code> éditables et de  
+<code class="classname">CellRendererToggle</code> activables dans un <code class="classname">TreeStore</code>.
+</p>
+<pre class="programlisting">
+    1   #!/usr/bin/env python
+    2   # vim: ts=4:sw=4:tw=78:nowrap
+    3   """ Exemple avec Cellrenderer éditables et activables """
+    4   import pygtk
+    5   pygtk.require("2.0")
+    6   import gtk, gobject
+    7   
+    8   taches =  {
+    9       "Faire les courses": "Acheter une baguette",
+   10       "Programmer": "Mettre a jour le programme",
+   11       "Cuisiner": "Allumer le four",
+   12       "Regarder la TV": "Enregistrer \"Urgences\""
+   13       } 
+   14   
+   15   class GUI_Controleur:
+   16       """ La classe GUI est le controleur de l'application """
+   17       def __init__(self):
+   18           # Creation de la fenetre principale
+   19           self.fenetre = gtk.Window(type=gtk.WINDOW_TOPLEVEL)
+   20           self.fenetre.set_title("Exemple de CellRenderer")
+   21           self.fenetre.connect("destroy", self.evnmt_destroy)
+   22           # On recupere le modele et on le relie a la vue
+   23           self.modele = Ranger.recup_modele()
+   24           self.vue = Afficher.cree_vue( self.modele )
+   25           # Ajouter la vue a la fenetre principale
+   26           self.fenetre.add(self.vue)
+   27           self.fenetre.show_all()
+   28           return
+   29       def evnmt_destroy(self, *kw):
+   30           """ Fonction de rappel pour fermer l'application """
+   31           gtk.main_quit()
+   32           return
+   33       def lance(self):
+   34           """ La fonction est appelee pour lancer la boucle principale GTK """
+   35           gtk.main()
+   36           return  
+   37   
+   38   class InfoModele:
+   39       """ La classe du modele contient l'information que nous voulons afficher """
+   40       def __init__(self):
+   41           """ Creation et remplissage du gtk.TreeStore """
+   42           self.tree_store = gtk.TreeStore( gobject.TYPE_STRING,
+   43                                            gobject.TYPE_BOOLEAN )
+   44           # on place les donnees utilisateur globales dans une liste
+   45           # on cree une arborescence simple.
+   46           for item in taches.keys():
+   47               lignemere = self.tree_store.append( None, (item, None) )
+   48               self.tree_store.append( lignemere, (taches[item],None) )
+   49           return
+   50       def recup_modele(self):
+   51           """ Renvoie le modele """
+   52           if self.tree_store:
+   53               return self.tree_store 
+   54           else:
+   55               return None
+   56   
+   57   class AfficheModele:
+   58       """ Affiche le modele InfoModele dans un treeview """
+   59       def cree_vue( self, modele ):
+   60           """ Cree une vue pour le Tree Model """
+   61           self.vue = gtk.TreeView( modele )
+   62           # Cree le CellRendererText et permet aux cellules
+   63           # d'etre editees.
+   64           self.renderer = gtk.CellRendererText()
+   65           self.renderer.set_property( 'editable', True )
+   66           self.renderer.connect( 'edited', self.rappel_edited_col0, modele )
+   67   
+   68           # Cree le CellRendererToggle et permet sa 
+   69           # modification (toggled) par l'utilisateur.
+   70           self.renderer1 = gtk.CellRendererToggle()
+   71           self.renderer1.set_property('activatable', True)
+   72           self.renderer1.connect( 'toggled', self.rappel_toggled_col1, modele )
+   73   
+   74           # On connecte la colonne 0 de l'affichage a la colonne 0 du modele
+   75           # Le cellrenderer va alors afficher tout ce qui est en colonne 0 de
+   76           # notre modele .
+   77           self.colonne0 = gtk.TreeViewColumn("Nom", self.renderer, text=0)
+   78   
+   79           # L'etat actif des colonnes est relie a la seconde colonne
+   80           # du modele. Ainsi, quand le modele indique True, le bouton
+   81           # apparaitra comme actif.
+   82           self.colonne1 = gtk.TreeViewColumn("Fait", self.renderer1 )
+   83           self.colonne1.add_attribute( self.renderer1, "active", 1)
+   84           self.vue.append_column( self.colonne0 )
+   85           self.vue.append_column( self.colonne1 )
+   86           return self.vue
+   87       def rappel_edited_col0( self, cellrenderer, chemin, nouveau_texte, modele ):
+   88           """
+   89           Appele quand un texte est modifie. Il inscrit le nouveau texte
+   90           dans le modele pour qu'il puisse etre affiche correctement.
+   91           """
+   92           print "Change '%s' en '%s'" % (modele[chemin][0], nouveau_texte)
+   93           modele[chemin][0] = nouveau_texte
+   94           return
+   95       def rappel_toggled_col1( self, cellrenderer, chemin, modele ):
+   96           """
+   97           Fixe l'etat du bouton a bascule sur true ou false.
+   98           """
+   99           modele[chemin][1] = not modele[chemin][1]
+  100           print "Valeur de '%s'  : %s" % (modele[chemin][0], modele[chemin][1],)
+  101           return
+  102   
+  103   if __name__ == '__main__':
+  104       Ranger = InfoModele()	
+  105       Afficher = AfficheModele()
+  106       monGUI = GUI_Controleur()
+  107       monGUI.lance()
+
+</pre>
+<p>Le programme propose des cellules éditables dans la première colonne 
+et des cellules activables dans la deuxième. Les lignes 64-66 créent un 
+<code class="classname">CellRendererText</code> éditable et connectent le signal 
+"edited" à la fonction de rappel <code class="methodname">rappel_edited_col0</code>() 
+(lignes 87-94) qui modifie la valeur de colonne de la ligne adéquate dans 
+le <code class="classname">TreeStore</code>. De même, les lignes 70-72 créent un 
+<code class="classname">CellRendererToggle</code> activable et connectent le 
+signal "toggled" à la fonction de rappel <code class="methodname">rappel_toggled_col0()</code>() 
+(lignes 95-101) qui modifie la valeur de la ligne adéquate. Lorsqu'une cellule 
+éditable ou activable est modifiée, un message s'affiche, indiquant de quelle 
+modification il s'agissait.
+</p>
+<p>La <a href="sec-CellRenderers.html#cellrendererfig" title="Figure 14.6. Cellules éditables et activables">Figure 14.6, « Cellules éditables et activables »</a> montre le programme <a href="exemples/cellrenderer.py" target="_top">cellrenderer.py</a> en action.
+</p>
+<div class="figure">
+<a name="cellrendererfig"></a><p class="title"><b>Figure 14.6. Cellules éditables et activables</b></p>
+<div class="mediaobject" align="center"><img src="figures/cellrendererfig.png" align="middle" alt="Exemple de cellules éditables et activables"></div>
+</div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-TreeViews.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-TreeViewWidget.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-TreeViewColumns.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">14.3. Les TreeView </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> 14.5. TreeViewColumn</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

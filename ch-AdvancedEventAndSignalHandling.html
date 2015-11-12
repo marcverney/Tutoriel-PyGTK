@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Chapitre 20. Gestion avancée des évènements et signaux</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="prev" href="sec-IdleFunctions.html" title="19.3. Les fonctions d'inactivité">
+<link rel="next" href="sec-SignalEmissionAndPropagation.html" title="20.2. Émission et propagation du signal">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapitre 20. Gestion avancée des évènements et signaux</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-IdleFunctions.html">Préc.</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-SignalEmissionAndPropagation.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter" lang="fr">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="ch-AdvancedEventAndSignalHandling"></a>Chapitre 20. Gestion avancée des évènements et signaux</h2></div></div></div>
+<div class="toc">
+<p><b>Table des matières</b></p>
+<dl>
+<dt><span class="sect1"><a href="ch-AdvancedEventAndSignalHandling.html#sec-SignalMethods">20.1. Méthodes des signaux</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch-AdvancedEventAndSignalHandling.html#id2574560">20.1.1. Connecter et déconnecter les gestionnaires de signaux</a></span></dt>
+<dt><span class="sect2"><a href="ch-AdvancedEventAndSignalHandling.html#id2586483">20.1.2. Bloquer et libérer les gestionnaires de signaux</a></span></dt>
+<dt><span class="sect2"><a href="ch-AdvancedEventAndSignalHandling.html#id2641409">20.1.3. Émettre et stopper les signaux</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="sec-SignalEmissionAndPropagation.html">20.2. Émission et propagation du signal</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-SignalMethods"></a>20.1. Méthodes des signaux</h2></div></div></div>
+<p>Les méthodes des signaux sont des méthodes de 
+<code class="classname">gobject.GObject</code> qui sont héritées par le 
+<code class="classname">gtk.Object</code> inclus dans tous les widgets GTK+.
+</p>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id2574560"></a>20.1.1. Connecter et déconnecter les gestionnaires de signaux</h3></div></div></div>
+<pre class="programlisting">
+  id_gestionnaire = objet.connect(<em class="parameter"><code>nom</code></em>, <em class="parameter"><code>rappel</code></em>, <em class="parameter"><code>args_rappel</code></em>)
+  
+  id_gestionnaire = objet.connect_after(<em class="parameter"><code>nom</code></em>, <em class="parameter"><code>rappel</code></em>, <em class="parameter"><code>args_rappel</code></em>)
+  
+  id_gestionnaire = objet.connect_object(<em class="parameter"><code>nom</code></em>, <em class="parameter"><code>rappel</code></em>, <em class="parameter"><code>slot_object</code></em>, <em class="parameter"><code>args_rappel</code></em>)
+  
+  id_gestionnaire = objet.connect_object_after(<em class="parameter"><code>nom</code></em>, <em class="parameter"><code>rappel</code></em>, <em class="parameter"><code>connecteur_objet</code></em>, <em class="parameter"><code>args_rappel</code></em>)
+  
+  objet.disconnect(<em class="parameter"><code>id_gestionnaire</code></em>)
+</pre>
+<p>Les quatre premières méthodes connectent un gestionnaire de signal 
+(<em class="parameter"><code>rappel</code></em>) à un <code class="classname">gtk.Object</code> 
+(<em class="parameter"><code>objet</code></em>) pour le signal spécifié par 
+<em class="parameter"><code>nom</code></em> et retournent une valeur <em class="parameter"><code>id_gestionnaire</code></em> 
+qui identifie la connexion. Le paramètre <em class="parameter"><code>args_rappel</code></em> consiste en 
+zéro ou plusieurs arguments qui sont transmis dans l'ordre à 
+<em class="parameter"><code>rappel</code></em>. Les méthodes <code class="methodname">connect_after</code>() 
+et <code class="methodname">connect_object_after</code>() voient leurs gestionnaires de signal 
+appelés après les autres gestionnaires (y compris les gestionnaires implicites) 
+connectés au même objet et même signal. Chaque gestionnaire de signal d'objet 
+possède son propre ensemble d'arguments auquel il s'attend. Il faut se référer à la 
+documentation GTK+ pour trouver quels arguments sont nécessaires pour un gestionnaire 
+de signal, bien que l'information pour les widgets courants soit disponible 
+dans l'<a href="app-GtkSignals.html" title="Annexe A. Les signaux GTK">Annexe A, <i>Les signaux GTK</i></a>. Le gestionnaire de signal classique 
+ressemble à :</p>
+<pre class="programlisting">
+  def gest_signal(<em class="parameter"><code>objet</code></em>, ...., <em class="parameter"><code>args_rappel</code></em>):
+</pre>
+<p>Les gestionnaires de signaux qui appartiennent à une classe Python 
+(indiqués dans les méthodes <code class="methodname">connect</code>() comme 
+<em class="parameter"><code>self.rappel</code></em>) possèdent un argument supplémentaire 
+en première position - l'instance d'objet <em class="parameter"><code>self</code></em> :</p>
+<pre class="programlisting">
+  gest_signal(self, <em class="parameter"><code>objet</code></em>, ...., <em class="parameter"><code>args_rappel</code></em>)
+</pre>
+<p>Les méthodes <code class="methodname">connect_object</code>() et 
+<code class="methodname">connect_object_after</code>() appellent le gestionnaire 
+de signal avec, en premier argument, le paramètre <em class="parameter"><code>connecteur_objet</code></em> 
+au lieu de <em class="parameter"><code>objet</code></em> :</p>
+<pre class="programlisting">
+  def gest_signal(<em class="parameter"><code>connecteur_objet</code></em>, ...., <strong class="parameter"><code>args_fonc</code></strong>):
+
+  def gest_signal(self, <em class="parameter"><code>connecteur_objet</code></em>, ...., <em class="parameter"><code>args_fonc</code></em>):
+</pre>
+<p>La méthode <code class="methodname">disconnect</code>() supprime la 
+connexion entre un gestionnaire de signal et un signal d'objet. Le 
+paramètre <em class="parameter"><code>id_gestionnaire</code></em> indique quelle connexion 
+supprimer.</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id2586483"></a>20.1.2. Bloquer et libérer les gestionnaires de signaux</h3></div></div></div>
+<p>Les méthodes suivantes :</p>
+<pre class="programlisting">
+  objet.handler_block(<em class="parameter"><code>id_gestionnaire</code></em>)
+
+  objet.handler_unblock(<em class="parameter"><code>id_gestionnaire</code></em>)
+</pre>
+<p>... bloquent et débloquent le gestionnaire de signal indiqué par 
+<em class="parameter"><code>id_gestionnaire</code></em>. Lorsqu'un gestionnaire de signal est 
+bloqué, il ne peut être appelé lorsque le signal se produit.</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id2641409"></a>20.1.3. Émettre et stopper les signaux</h3></div></div></div>
+<p>Les méthodes suivantes :</p>
+<pre class="programlisting">
+  objet.emit(<em class="parameter"><code>nom</code></em>, ...)
+
+  objet.emit_stop_by_name(<em class="parameter"><code>nom</code></em>)
+</pre>
+<p>... émettent et stoppent le signal <em class="parameter"><code>nom</code></em>. 
+      Émettre le signal provoque l'exécution du gestionnaire implicite et 
+      des gestionnaires définis par l'utilisateur. La méthode 
+      <code class="methodname">emit_stop_by_name</code>() avorte l'émission actuelle 
+      du signal de ce nom.</p>
+</div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-IdleFunctions.html">Préc.</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-SignalEmissionAndPropagation.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">19.3. Les fonctions d'inactivité </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> 20.2. Émission et propagation du signal</td>
+</tr>
+</table>
+</div>
+<!-- phpmyvisites -->
+<a href="http://st.free.fr/" title="phpMyVisites | Open source web analytics"
+onclick="window.open(this.href);return(false);"><script type="text/javascript">
+<!--
+var a_vars = Array();
+var pagename=document.title;
+
+var phpmyvisitesSite = 17647;
+var phpmyvisitesURL = "http://st.free.fr/phpmyvisites.php";
+//-->
+</script>
+<script language="javascript" src="http://st.free.fr/phpmyvisites.js" type="text/javascript"></script>
+<object><noscript><p>phpMyVisites | Open source web analytics
+<img src="http://st.free.fr/phpmyvisites.php" alt="Statistics" style="border:0" />
+</p></noscript></object></a>
+<!-- /phpmyvisites --> 
+</body>
+</html>

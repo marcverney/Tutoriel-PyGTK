@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>24.2. Gestion des évènements</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-Scribble.html" title="Chapitre 24. Scribble, Un programme simple de dessin">
+<link rel="prev" href="ch-Scribble.html" title="Chapitre 24. Scribble, Un programme simple de dessin">
+<link rel="next" href="sec-DrawingAreaWidgetAndDrawing.html" title="24.3. Le widget zone de dessin (DrawingArea) et le dessin">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">24.2. Gestion des évènements</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch-Scribble.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 24. Scribble, Un programme simple de dessin</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-DrawingAreaWidgetAndDrawing.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-EventHandling"></a>24.2. Gestion des évènements</h2></div></div></div>
+<p>Les signaux GTK+ que nous avons déjà vus concernent les actions de 
+haut niveau, comme la sélection d'un choix d'un menu. Cependant, il est 
+utile quelquefois de connaître des possibilités de plus bas niveau, comme le 
+déplacement de la souris, ou l'appui sur une touche. Il existe aussi des signaux GTK+ 
+correspondants à ces événements de bas niveau. Les gestionnaires de ces signaux possèdent 
+un paramètre supplémentaire : un objet <code class="classname">gtk.gdk.Event</code> 
+contenant des informations sur l'événement. Par exemple, les gestionnaires des événements 
+de déplacement recoivent un paramètre <code class="classname">gtk.gdk.Event</code> contenant une 
+information GdkEventMotion qui contient (en partie) ces attributs :</p>
+<pre class="programlisting">
+  type    # type
+  window  # fenêtre
+  time    # temps
+  x
+  y
+    ...
+  state   # état
+    ...
+</pre>
+<p><em class="parameter"><code>window</code></em> est la fenêtre dans laquelle l'événement est survenu.</p>
+<p><em class="parameter"><code>x</code></em> et <em class="parameter"><code>y</code></em> fournissent les coordonnées de l'événement.</p>
+<p><em class="parameter"><code>type</code></em> sera initialisé avec le type de l'événement, 
+ici <code class="literal">MOTION_NOTIFY</code>. Ces types (du module gtk.gdk) sont :</p>
+<pre class="programlisting">
+NOTHING                un code spécial pour indiquer un événement nul.
+
+DELETE                 le gestionnaire de fenêtre a demandé que la fenêtre de plus haut niveau soit
+                       cachée ou détruite, d'habitude quand l'utilisateur clique sur
+                       une icône spéciale dans la barre de titre.
+
+DESTROY                la fenêtre a été détruite.
+
+EXPOSE                 tout ou partie de la fenêtre est devenu visible et doit être
+                       redessiné.
+
+MOTION_NOTIFY          le pointeur (d'habitude une souris) a bougé.
+
+BUTTON_PRESS           on a effectué un clic sur un bouton de la souris.
+
+_2BUTTON_PRESS         on a effectué un double-clic sur un bouton de la souris 
+                       (deux clics en un bref temps) sur un bouton de la souris.
+                       Note : chaque clic génère aussi un événement BUTTON_PRESS.
+
+_3BUTTON_PRESS         on a effectué un triple-clic sur un bouton de la souris sur 
+                       un temps bref. Note : chaque clic génère aussi un 
+                       événement BUTTON_PRESS.
+
+BUTTON_RELEASE         le bouton de la souris a été relaché.
+
+KEY_PRESS              on a appuyé sur une touche.
+
+KEY_RELEASE            la touche a été relachée.
+
+ENTER_NOTIFY           le pointeur est entré dans la fenêtre.
+
+LEAVE_NOTIFY           le pointeur est sorti de la fenêtre.
+
+FOCUS_CHANGE           le focus de clavier est dans ou a quitté la fenêtre.
+
+CONFIGURE              la taille, position ou ordre d'empilage a changé. Noter que GTK+ 
+                       n'utilisa pas ces événements pour les fenêtres enfants GDK_WINDOW_CHILD.
+
+MAP                    la fenêtre a été mappée.
+
+UNMAP                  la fenêtre n'est plus mappée.
+
+PROPERTY_NOTIFY        une propriété de la fenêtre a été modifiée ou supprimée.
+
+SELECTION_CLEAR        l'application a perdu la propriété d'une sélection.
+
+SELECTION_REQUEST      une autre application a réclamé la sélection.
+
+SELECTION_NOTIFY       une sélection a été reçue.
+
+PROXIMITY_IN           un dispositif d'entrée a bougé en contact avec une surface sensible
+                       (par ex. un écran tactile ou tablette graphique).
+
+PROXIMITY_OUT          un dispositif d'entrée a bougé en coupant le contact avec une surface sensible
+
+DRAG_ENTER             la souris est entrée dans la fenêtre pendant une opération glisser.
+
+DRAG_LEAVE             la souris est sortie de la fenêtre pendant une opération glisser.
+
+DRAG_MOTION            la souris a bougé dans la fenêtre pendant une opération glisser.
+
+DRAG_STATUS            l'état de l'opération glisser démarrée par la fenêtre a changé.
+
+DROP_START             une opération déposer sur la fenêtre a démarrée.
+
+DROP_FINISHED          une opération déposer initiée par la fenêtre est accomplie.
+
+CLIENT_EVENT           un message d'une autre application a été reçu.
+
+VISIBILITY_NOTIFY      l'état de visibilité de la fenêtre a changé.
+
+NO_EXPOSE              indique que la région source est totalement disponible lorsque des extraits du 
+                       dessinable sont copiés. Ceci ne présente pas d'intérêt.
+
+SCROLL                 ?
+
+WINDOW_STATE           ?
+
+SETTING                ?
+</pre>
+<p>Le paramètre <em class="parameter"><code>state</code></em> indique l'état du modificateur 
+lorsque l'<em class="parameter"><code>événement</code></em> s'est produit (c'est-à-dire quelles 
+sont les touches de modification et les boutons de souris qui ont été pressés). 
+Il s'agit d'une opération de bit <code class="literal">OR</code> de certaines des valeurs  
+(du module gtk.gdk) suivantes :</p>
+<pre class="programlisting">
+  SHIFT_MASK    # masque de majuscules
+  LOCK_MASK     # masque de majuscules bloquées
+  CONTROL_MASK  # masque de contrôle
+  MOD1_MASK     # masque du modificateur 1   
+  MOD2_MASK     # masque du modificateur 2    
+  MOD3_MASK     # masque du modificateur 3    
+  MOD4_MASK     # masque du modificateur 4    
+  MOD5_MASK     # masque du modificateur 5    
+  BUTTON1_MASK  # masque du bouton 1  
+  BUTTON2_MASK  # masque du bouton 2  
+  BUTTON3_MASK  # masque du bouton 3  
+  BUTTON4_MASK  # masque du bouton 4  
+  BUTTON5_MASK  # masque du bouton 5  
+</pre>
+<p>Comme pour les autres signaux, on appelle la méthode 
+<code class="methodname">connect</code>() pour déterminer ce qui se passe lorsqu'un 
+événement survient. Mais on doit aussi faire en sorte que GTK+ sache de quels 
+événements nous voulons être avertis. Pour ce faire, on appelle la méthode :</p>
+<pre class="programlisting">
+  widget.set_events(<em class="parameter"><code>events</code></em>)
+</pre>
+<p>... où <em class="parameter"><code>events</code></em> définit les événements qui nous 
+intéressent. Il s'agit d'une opération de bit <code class="literal">OR</code> de constantes 
+qui indiquent différent types d'événements. Pour référence ultérieure, 
+les types d'événements (du module gtk.gdk) sont :
+
+</p>
+<pre class="programlisting">
+  EXPOSURE_MASK
+  POINTER_MOTION_MASK
+  POINTER_MOTION_HINT_MASK
+  BUTTON_MOTION_MASK     
+  BUTTON1_MOTION_MASK    
+  BUTTON2_MOTION_MASK    
+  BUTTON3_MOTION_MASK    
+  BUTTON_PRESS_MASK      
+  BUTTON_RELEASE_MASK    
+  KEY_PRESS_MASK         
+  KEY_RELEASE_MASK       
+  ENTER_NOTIFY_MASK      
+  LEAVE_NOTIFY_MASK      
+  FOCUS_CHANGE_MASK      
+  STRUCTURE_MASK         
+  PROPERTY_CHANGE_MASK
+  VISIBILITY_NOTIFY_MASK
+  PROXIMITY_IN_MASK      
+  PROXIMITY_OUT_MASK
+  SUBSTRUCTURE_MASK
+</pre>
+<p>Il y a quelques points subtils qui doivent être observés lorsqu'on 
+appelle la méthode <code class="methodname">set_events</code>(). D'abord, elle doit être 
+appelée avant que la fenêtre X d'un widget GTK soit créée. En pratique, cela signifie 
+que l'on doit l'appeler immédiatement après avoir créé le widget. Ensuite, le widget doit 
+faire partie de ceux réalisés avec une fenêtre X associée. Pour des raisons d'efficacité, 
+de nombreux types de widgets n'ont pas de fenêtre propre, mais se dessinent dans la fenêtre 
+de leur parent. Ces widgets sont :</p>
+<pre class="programlisting">
+  gtk.Alignment
+  gtk.Arrow
+  gtk.Bin
+  gtk.Box
+  gtk.Image
+  gtk.Item
+  gtk.Label
+  gtk.Layout
+  gtk.Pixmap
+  gtk.ScrolledWindow
+  gtk.Separator
+  gtk.Table
+  gtk.AspectFrame
+  gtk.Frame
+  gtk.VBox
+  gtk.HBox
+  gtk.VSeparator
+  gtk.HSeparator
+</pre>
+<p>Pour capturer les événements pour ces widgets, on doit utiliser un 
+widget <code class="classname">EventBox</code>. Voir la <a href="ch-ContainerWidgets.html#sec-EventBox" title="10.1. La boîte à évènement (EventBox)">Section 10.1, « La boîte à évènement (EventBox) »</a> 
+pour plus de détails.</p>
+<p>Voici les attributs d'événement qui sont définis par PyGTK pour chaque type d'événement :</p>
+<pre class="programlisting">
+événement               type              # type
+                        window            # fenêtre
+                        send_event        # événement transmis
+
+NOTHING
+DELETE
+DESTROY                                   # pas d'attribut supplémentaire
+
+EXPOSE                 area               # zone
+                       count              # nombre
+
+MOTION_NOTIFY          time               # temps
+                       x
+                       y
+                       pressure           # pression
+                       xtilt              # inclinaison en x
+                       ytilt              # inclinaison en y
+                       state              # état
+                       is_hint            # est indice
+                       source             # source
+                       deviceid           # identifiant de dispositif
+                       x_root             # racine x
+                       y_root             # racine y
+
+BUTTON_PRESS
+_2BUTTON_PRESS
+_3BUTTON_PRESS
+BUTTON_RELEASE         time               # temps
+                       x
+                       y
+                       pressure           # pression
+                       xtilt              # inclinaison en x
+                       ytilt              # inclinaison en y
+                       state              # état
+                       button             # bouton
+                       source             # source
+                       deviceid           # identifiant de dispositif
+                       x_root             # racine x
+                       y_root             # racine y
+
+KEY_PRESS
+KEY_RELEASE            time               # temps
+                       state              # état
+                       keyval             # valeur de clé
+                       string             # chaîne de caractères
+
+ENTER_NOTIFY
+LEAVE_NOTIFY           subwindow          # sous-fenêtre
+                       time               # temps
+                       x
+                       y
+                       x_root             # racine x
+                       y_root             # racine y
+                       mode               # mode
+                       detail             # détail
+                       focus              # focus
+                       state              # état
+
+FOCUS_CHANGE           _in                # dans
+
+CONFIGURE              x
+                       y
+                       width              # largeur
+                       height             # hauteur
+
+MAP
+UNMAP                                     # pas d'attribut supplémentaire
+
+PROPERTY_NOTIFY        atom               # atome
+                       time               # temps
+                       state              # état
+
+SELECTION_CLEAR
+SELECTION_REQUEST
+SELECTION_NOTIFY       selection          # sélection
+                       target             # cible
+                       property           # propriété
+                       requestor          # demandeur
+                       time               # temps
+
+PROXIMITY_IN
+PROXIMITY_OUT          time               # temps
+                       source             # source
+                       deviceid           # identifiant de dispositif
+
+DRAG_ENTER
+DRAG_LEAVE
+DRAG_MOTION
+DRAG_STATUS
+DROP_START
+DROP_FINISHED          context            # contexte
+                       time               # temps
+                       x_root             # racine x
+                       y_root             # racine x
+
+CLIENT_EVENT           message_type       # type de message
+                       data_format        # format de données
+                       data               # données
+
+VISIBILTY_NOTIFY       state              # état
+
+NO_EXPOSE                                 # pas d'attribut supplémentaire
+</pre>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id2643367"></a>24.2.1. Gestion des évènements dans Scribble</h3></div></div></div>
+<p>Pour notre programme de dessin, on veut savoir quand le bouton de 
+la souris est pressé et quand la souris est déplacée, nous indiquons donc 
+<code class="literal">POINTER_MOTION_MASK</code> et <code class="literal">BUTTON_PRESS_MASK</code>. 
+On veut aussi savoir quand il est nécessaire de redessiner notre fenêtre, 
+on indique donc <code class="literal">EXPOSURE_MASK</code>. Bien que nous voulions être 
+avertis via un événement Configure, d'un redimensionnement de la fenêtre, on n'a 
+pas besoin de préciser le drapeau <code class="literal">STRUCTURE_MASK</code> correspondant 
+car il est automatiquement signalé pour chaque fenêtre.</p>
+<p>Il peut cependant y avoir un problème en indiquant seulement 
+<code class="literal">POINTER_MOTION_MASK</code>. Cela fera que le serveur ajoutera un nouvel 
+événement de déplacement à la file des événements à chaque fois que l'utilisateur 
+déplace la souris. Imaginons que cela prenne 0,1 seconde pour gérer un événement de 
+déplacement, mais si le serveur X ajoute un nouvel événement de déplacement dans la 
+queue toutes les 0,05 secondes, nous serons vite à la traîne de l'utilisateur. 
+Si l'utilisateur dessine pendant 5 secondes, cela nous prendra 5 secondes de plus 
+pour le traiter après qu'il ait relâché le bouton de la souris ! Ce que l'on voudrait, 
+c'est ne récupérer qu'un événement de déplacement pour chaque événement que l'on traite. 
+Pour cela, il faut préciser <code class="literal">POINTER_MOTION_HINT_MASK</code>.</p>
+<p>Quand nous indiquons <code class="literal">POINTER_MOTION_HINT_MASK</code>, 
+le serveur nous envoit un événement de déplacement la première fois que le 
+pointeur se déplace après son entrée dans la fenêtre, ou après un événement d'appui 
+ou de relâchement d'un bouton. Les événements de déplacement suivants seront 
+supprimés jusqu'à ce que l'on demande explicitement la position du pointeur en 
+utilisant la méthode <code class="classname">gtk.gdk.Window</code> :
+</p>
+<pre class="programlisting">
+  x, y, mask = window.get_pointer()
+</pre>
+<p>... où <em class="parameter"><code>window</code></em> est un objet <code class="classname">gtk.gdk.Window</code>, 
+les paramètres <em class="parameter"><code>x</code></em> et <em class="parameter"><code>y</code></em> sont les coordonnées 
+du pointeur et <em class="parameter"><code>mask</code></em> est le masque modificateur pour détecter les 
+touches pressées. (Il existe une méthode <code class="methodname">get_pointer</code>() pour 
+<code class="classname">gtk.Widget</code> qui fournit la même information que la méthode 
+<code class="methodname">gtk.gdk.Window get_pointer</code>() mais ne retourne pas l'indication 
+de masque des touches</p>
+<p>Le programme exemple <a href="exemples/scribblesimple.py" target="_top">
+      <span><strong class="command">scribblesimple.py</strong></span></a> montre l'utilisation de base 
+      des événements et des gestionnaires d'événements. La 
+<a href="sec-EventHandling.html#simplescribblefig" title="Figure 24.2. Exemple de Scribble simple">Figure 24.2, « Exemple de Scribble simple »</a> illustre le programme :</p>
+<div class="figure">
+<a name="simplescribblefig"></a><p class="title"><b>Figure 24.2. Exemple de Scribble simple</b></p>
+<div class="mediaobject" align="center"><img src="figures/scribblesimple.png" align="middle" alt="Exemple de Scribble simple"></div>
+</div>
+<p>Les gestionnaires d'événements sont connectés à la zone de dessin 
+      grâce aux ligne suivantes :</p>
+<pre class="programlisting">
+    92       # Signaux utilisés pour gérer le pixmap hors écran
+    93       zone_dessin.connect("expose_event", expose_event)
+    94       zone_dessin.connect("configure_event", configure_event)
+    95   
+    96       # Signaux d'événements
+    97       zone_dessin.connect("motion_notify_event", motion_notify_event)
+    98       zone_dessin.connect("button_press_event", bouton_press_event)
+    99   
+   100       zone_dessin.set_events(gtk.gdk.EXPOSURE_MASK
+   101                               | gtk.gdk.LEAVE_NOTIFY_MASK
+   102                               | gtk.gdk.BUTTON_PRESS_MASK
+   103                               | gtk.gdk.POINTER_MOTION_MASK
+   104                               | gtk.gdk.POINTER_MOTION_HINT_MASK)
+ </pre>
+<p>Les gestionnaires d'événement <code class="function">button_press_event</code>() et 
+<code class="function">motion_notify_event</code>()dans 
+<a href="exemples/scribblesimple.py" target="_top"><span><strong class="command">scribblesimple.py</strong></span>
+</a> sont ainsi :</p>
+<pre class="programlisting">
+    57   def bouton_press_event(widget, event):
+    58       if event.button == 1 and pixmap != None:
+    59           brosse_dessin(widget, event.x, event.y)
+    60       return True
+    61   
+    62   def motion_notify_event(widget, event):
+    63       if event.is_hint:
+    64           x, y, etat = event.window.get_pointer()
+    65       else:
+    66           x = event.x
+    67           y = event.y
+    68           etat = event.state
+    69       
+    70       if etat &amp; gtk.gdk.BUTTON1_MASK and pixmap != None:
+    71           brosse_dessin(widget, x, y)
+    72     
+    73       return True
+</pre>
+<p>Les gestionnaires <code class="function">expose_event</code>() et 
+<code class="function">configure_event</code>() seront décrits plus tard.</p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch-Scribble.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-Scribble.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-DrawingAreaWidgetAndDrawing.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapitre 24. Scribble, Un programme simple de dessin </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 24.3. Le widget zone de dessin (DrawingArea) et le dessin</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

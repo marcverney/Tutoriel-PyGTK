@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>14.5. TreeViewColumn</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,treeview" />
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-TreeViewWidget.html" title="Chapitre 14. Le widget TreeView">
+<link rel="prev" href="sec-CellRenderers.html" title="14.4. Les CellRenderer">
+<link rel="next" href="sec-ManipulatingTreeViews.html" title="14.6. Manipuler les TreeView">
+</head>
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici : 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">14.5. TreeViewColumn</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-CellRenderers.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 14. Le widget TreeView</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-ManipulatingTreeViews.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-TreeViewColumns"></a>14.5. TreeViewColumn</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-CreatingTreeViewColumns"></a>14.5.1. Créer des TreeViewColumn</h3></div></div></div>
+<p>La fonction de création du <code class="classname">TreeViewColumn</code> est la suivante :</p>
+<pre class="programlisting">
+  treeviewcolumn = gtk.TreeViewColumn(<em class="parameter"><code>titre</code></em>=None, <em class="parameter"><code>cell_renderer=None</code></em>, <em class="parameter"><code>...</code></em>)
+</pre>
+<p>... où <em class="parameter"><code>titre</code></em> est la chaîne utilisée comme en-tête de colonne 
+et <em class="parameter"><code>cell_renderer</code></em> est le premier <code class="classname">CellRenderer</code> 
+placé dans la colonne. Les autres arguments pouvant être passés au constructeur sont des 
+mots-clés (sous la forme attribute=colonne) qui donnent des attributs au 
+<em class="parameter"><code>cell_renderer</code></em>. Par exemple :
+</p>
+<pre class="programlisting">
+  treeviewcolumn = gtk.TreeViewColumn('États', cellule, text=0, foreground=1)
+</pre>
+<p>... crée un <code class="classname">TreeViewColumn</code> dont le 
+<code class="classname">CellRendererText</code> récupére son texte 
+dans la première colonne du TreeModel et la couleur du texte dans 
+la seconde. 
+</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-ManagingCellRenderers"></a>14.5.2. Gérer les CellRenderer</h3></div></div></div>
+<p>On peut ajouter un <code class="classname">CellRenderer</code> à un 
+<code class="classname">TreeViewColumn</code> par l'une de ces méthodes :
+</p>
+<pre class="programlisting">
+  treeviewcolumn.pack_start(<strong class="parameter"><code>cell</code></strong>, <strong class="parameter"><code>expand</code></strong>)
+  treeviewcolumn.pack_end(<strong class="parameter"><code>cell</code></strong>, <strong class="parameter"><code>expand</code></strong>)
+</pre>
+<p>Les méthodes <code class="methodname">pack_start</code>() et 
+<code class="methodname">pack_end</code>() ajoutent une cellule respectivement au 
+début ou à la fin du <code class="classname">TreeViewColumn</code>. Si le paramètre 
+<em class="parameter"><code>expand</code></em> est réglé sur <code class="literal">TRUE</code>, la cellule 
+s'étirera pour remplir tout l'espace donné par le <code class="classname">TreeViewColumn</code>.
+</p>
+<p>La méthode <code class="methodname">get_cell_renderers</code>() :</p>
+<pre class="programlisting">
+  liste_cell = treeviewcolumn.get_cell_renderers()
+</pre>
+<p>renvoie une liste de tous les <code class="classname">CellRenderer</code> de la 
+colonne.</p>
+<p>La méthode <code class="methodname">clear</code>() enlève tous les attributs 
+de <code class="classname">CellRenderer</code> du 
+<code class="classname">TreeViewColumn</code> :
+</p>
+<pre class="programlisting">
+  treeviewcolumn.clear()
+</pre>
+<p>Il y a un grand nombre d'autres méthodes disponibles pour le 
+<code class="classname">TreeViewColumn</code> 
+- principalement pour fixer ou retouver des propriétés. On trouvera davantage de  
+renseignements sur les propriétés du <code class="classname">TreeViewColumn</code> dans le 
+<a href="http://www.pygtk.org/pygtk2reference/index.html" target="_top">PyGTK Reference 
+Manual</a>. La possibilité de faire appel ou non à la fonction de tri intégré 
+s'installe 
+ainsi ;
+</p>
+<pre class="programlisting">
+  treeviewcolumn.set_sort_column_id(<strong class="parameter"><code>sort_column_id</code></strong>)
+</pre>
+<p>... définit <em class="parameter"><code>sort_column_id</code></em> comme étant l'identifiant de classement de 
+colonne du treemodel à utiliser lors du tri de l'affichage du <code class="classname">TreeView</code>. 
+Cette méthode active aussi la propriété "clickable" de la colonne et permet ainsi à 
+l'utilisateur de cliquer sur l'en-tête de colonne pour réaliser le classement.
+Quand l'utilisateur clique sur cet en-tête, l'identifiant de classement de colonne 
+du <code class="classname">TreeViewColumn</code> est défini comme étant l'identifiant de 
+classement de colonne du <code class="classname">TreeModel</code> et les lignes sont réordonnées 
+selon la fonction associée de comparaison de classement. 
+La fonction de classement automatique inverse également  l'ordre de classement de la colonne  
+et contrôle l'affichage de l'indicateur de classement. 
+On trouvera plus de renseignements au sujet des identifiants de 
+classement de colonne et des fonctions de comparaison de tri dans 
+<a href="sec-TreeModelInterface.html#sec-SortingTreeModelRows" title="14.2.9. Ordonner les lignes d'un TreeModel">Section 14.2.9, « Ordonner les lignes d'un TreeModel »</a>. 
+En règle générale, lorsqu'on utilise un <code class="classname">ListStore</code> ou un 
+<code class="classname">TreeStore</code>, l'identifiant de classement de colonne par défaut 
+(c'est-à-dire l'index de la colonne) de la colonne du <code class="classname">TreeModel</code> 
+associée au <code class="classname">TreeViewColumn</code> est défini comme étant l'identifiant 
+de classement de colonne du <code class="classname">TreeViewColumn</code>.
+</p>
+<p>Si on se sert des en-têtes de colonne du 
+<code class="classname">TreeViewColumn</code> pour le classement avec la méthode 
+<code class="methodname">set_sort_column_id</code>(), il n'est pas nécessaire d'utiliser 
+la méthode de <code class="classname">TreeSortable</code> <code class="methodname">set_sort_column_id</code>().
+</p>
+<p>Il est possible de tracer les opérations de tri ou d'utiliser le clic 
+sur l'en-tête à d'autres fins en le connectant au signal "clicked" de la colonne 
+du <code class="classname">TreeView</code>. La fonction de rappel doit être de la 
+forme :
+</p>
+<pre class="programlisting">
+  def callback(treeviewcolumn, donnees_utilisateur, ...)
+</pre>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-CellRenderers.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-TreeViewWidget.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-ManipulatingTreeViews.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">14.4. Les CellRenderer </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> 14.6. Manipuler les TreeView</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

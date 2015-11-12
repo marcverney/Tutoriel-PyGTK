@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>2.4. Le "Hello World" pas à pas</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-GettingStarted.html" title="Chapitre 2. Premiers pas">
+<link rel="prev" href="sec-Events.html" title="2.3. Évènements">
+<link rel="next" href="ch-MovingOn.html" title="Chapitre 3. Avançons">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.4. Le "Hello World" pas à pas</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-Events.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 2. Premiers pas</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch-MovingOn.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-SteppingThroughHelloWorld"></a>2.4. Le "Hello World" pas à pas</h2></div></div></div>
+<p>Après ces explications plutôt théoriques, revenons à présent 
+à notre programme <a href="exemples/helloworld.py" target="_top"><span><strong class="command">
+helloworld.py</strong></span></a> pour un examen plus détaillé.</p>
+<p>Les lignes 9 à 76 définissent la classe <code class="classname">HelloWorld</code>. 
+Celle-ci contient toutes les fonctions de rappel en tant que méthodes d'objet, 
+ainsi qu'un constructeur (méthode d'initialisation d'instance). 
+Attardons-nous sur les fonctions de rappel.
+</p>
+<p>Aux lignes 13 et 14, on trouve la définition de la méthode de rappel 
+<code class="methodname">salut()</code>, qui sera invoquée par un clic sur le bouton 
+et affichera "Salut tout le monde !" dans la console. Nous ignorons les paramètres 
+(l'instance, le widget émetteur, et les données transmises) dans cet exemple, 
+mais la plupart des fonctions de rappel les utilisent. Le paramètre 
+<em class="parameter"><code>donnees</code></em> est défini avec une valeur par défaut valant 
+<code class="varname">None</code>, car Pygtk ne transmettrait pas de valeur de données si elle 
+n'est pas incluse dans l'appel à <code class="methodname">connect</code>(). 
+Dans un tel cas, une erreur se produirait car la fonction de rappel, qui attend 
+obligatoirement trois paramètres, n'en recevrait que deux. Définir None comme valeur 
+par défaut permet à la fonction de rappel d'être invoquée avec deux ou trois 
+paramètres sans déclencher d'erreur. Dans le cas de notre exemple, on aurait pu 
+se passer du paramètre <em class="parameter"><code>donnees</code></em> puisque la méthode 
+<code class="methodname">salut()</code> sera toujours appelée avec seulement deux paramètres 
+(jamais elle ne recevra de données utilisateur). Notre prochain programme utilisera 
+cet <em class="parameter"><code>argument donnees</code></em> pour nous dire quel bouton a été cliqué.
+</p>
+<pre class="programlisting">
+  def salut(self, widget, donnees=None):
+      print "Salut tout le monde !"
+</pre>
+<p>La fonction de rappel suivante (lignes 16 à 26) est un peu spéciale. 
+L'évènement "delete_event" se produit lorsque le gestionnaire de 
+fenêtres envoie cet évènement à l'application. On a le choix quant à ce que 
+l'on souhaite faire de ces évènements : les ignorer, faire quelque chose en réponse, 
+ou simplement quitter l'application.</p>
+<p>La valeur que l'on fait renvoyer par cette fonction de rappel fait connaitre 
+notre décision à GTK+. Renvoyer TRUE lui indique que l'on ne veut pas que le 
+signal "destroy" soit émis ; laissant l'application se poursuivre. 
+En renvoyant FALSE, en revanche, nous demandons à ce que le signal "destroy" 
+soit émis, lequel appellera le gestionnaire de signal "destroy". 
+Les commentaires ont été retirés pour plus de clarté :</p>
+<pre class="programlisting">
+  def evnmt_delete(widget, evenement, donnees=None):
+      print "Évènement delete survenu."
+      return False
+</pre>
+<p>La fonction de rappel <code class="methodname">destroy</code>() des lignes 28-30, 
+entraine la sortie du programme par un appel à <code class="function">gtk.main_quit</code>(). 
+Cette fonction ordonne à GTK+ de sortir de gtk.main() lorsque le contrôle lui est rendu.
+</p>
+<pre class="programlisting">
+  def destroy(self, widget, donnees=None):
+      print "Évènement destroy survenu."
+      gtk.main_quit()
+</pre>
+<p>Les lignes 32 à 71 définissent la méthode d'initialisation d'instance 
+<code class="methodname">__init__</code>() de <code class="classname">HelloWorld</code>, 
+qui crée la fenêtre et les widgets utilisés par le programme.</p>
+<p>À la ligne 34, on crée une nouvelle fenêtre. Cependant, celle-ci ne 
+s'affichera que lorsque GTK+ en recevra l'ordre, vers la fin du programme. 
+On enregistre une référence à cette fenêtre dans un attribut d'instance (self.fenetre) 
+pour pouvoir y accéder plus tard.</p>
+<pre class="programlisting">
+    self.fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+</pre>
+<p>Les lignes 41 et 46 illustrent deux exemples de connexion d'un 
+gestionnaire de signal à un objet, en l'occurrence à la <code class="varname">fenetre</code>. 
+Ici, on capte les signaux "delete_event" et "destroy". Le premier est émis 
+lorsque l'on utilise le gestionnaire de fenêtres pour fermer la fenêtre, ou par 
+un appel à la méthode <code class="methodname">destroy</code>() de <code class="classname">GtkWidget</code>. 
+Le second est émis lorsque dans le gestionnaire du "delete_event", on renvoie 
+<code class="varname">FALSE</code>.</p>
+<pre class="programlisting">
+    self.fenetre.connect("delete_event", self.evnmt_delete)
+    self.fenetre.connect("destroy", self.destroy)    
+</pre>
+<p>La ligne 49 précise un attribut d'un objet conteneur, ici la 
+<code class="varname">fenetre</code>, pour lui donner un espace vide de 10 pixels de 
+large le long de son périmètre intérieur, où aucun widget ne pourra être placé. 
+D'autres fonctions similaires existent, nous nous y intéresserons dans le  
+
+ <a href="ch-SettingWidgetAttributes.html" title="Chapitre 18. Définir 
+les attributs des widgets">Chapitre 18, <i>Définir 
+les attributs des widgets</i></a>.
+</p>
+<pre class="programlisting">
+    self.fenetre.set_border_width(10)
+</pre>
+<p>À la ligne 52, on crée un bouton et on en enregistre une référence 
+dans <code class="varname">self.bouton</code>. Le bouton portera l'étiquette "Salut tout 
+le monde !" lors de son affichage.</p>
+<pre class="programlisting">
+    self.bouton = gtk.Button("Salut tout le monde !")
+</pre>
+<p>À la ligne 57, on attache un gestionnaire de signal au bouton 
+de sorte que la méthode de rappel <code class="methodname">salut</code>() 
+soit invoquée lorsqu'il émettra le signal "clicked". Nous n'avons aucune donnée 
+à transmettre à <code class="methodname">salut</code>(), aussi nous passons la valeur 
+<code class="varname">None</code> (rien) en lieu de paramètre <em class="parameter"><code>donnees</code></em>. 
+Comme l'on pourrait s'y attendre, le signal "clicked" est émis lorsque 
+l'on clique sur le bouton de la souris. Indiquer la valeur du paramètre de données 
+utilisateur <code class="varname">None</code> n'est pas exigé et pourrait être omis. 
+On appellerait alors la fonction de rappel avec un paramètre de moins.</p>
+<pre class="programlisting">
+    self.bouton.connect("clicked", self.salut, None)
+</pre>
+<p>Nous voulons aussi utiliser ce bouton pour quitter notre programme. 
+Comme nous l'avons déjà vu, le signal "destroy" peut être émis par le gestionnaire 
+de fenêtres, mais également par le programme lui-même, ce qu'illustre la ligne 62. 
+Lorsque l'on clique sur le bouton, celui-ci appelle tout d'abord la méthode de 
+rappel <code class="methodname">salut</code>(), puis la suivante,dans le même ordre où 
+elles ont été définies. On peut attacher autant de fonctions de rappel que l'on 
+souhaite à un objet, elles seront toutes exécutées dans l'ordre dans lequel 
+on les a connectées.</p>
+<p>Puisque nous voulons utiliser la méthode <code class="methodname">destroy</code>() 
+de <code class="classname">GtkWidget</code> et que celle-ci n'accepte qu'un argument 
+(le widget à détruire &#8212; <code class="varname">la fenetre</code> dans notre cas), nous 
+employons la méthode <code class="methodname">connect_object</code> et lui 
+transmettons une référence à notre fenêtre. La méthode <code class="methodname">connect_object</code> 
+transmettra le paramétre <em class="parameter"><code>fenetre</code></em> comme premier argument 
+au lieu du bouton.</p>
+<p>L'appel de la méthode <code class="methodname">destroy</code>() de 
+<code class="classname">gtk.Widget</code> déclenchera l'émission du signal "destroy" 
+par la fenêtre. Ceci entrainera à son tour l'appel de la méthode 
+<code class="methodname">destroy</code>() de notre classe <code class="classname">HelloWorld</code> 
+pour terminer le programme.</p>
+<pre class="programlisting">
+    self.bouton.connect_object("clicked", gtk.Widget.destroy, self.fenetre)
+</pre>
+<p>La ligne 65 est un appel de placement, ce que nous verrons en détail un 
+peu plus tard dans le <a href="ch-PackingWidgets.html" title="Chapitre 4. Le placement des widgets">Chapitre 4, <i>Le placement des widgets</i></a> . 
+Quoi qu'il en soit, cet appel est assez facile à 
+comprendre : il indique juste à GTK+ que le bouton doit être placé dans la 
+fenêtre, où il s'affichera. À noter qu'un conteneur GTK+ ne peut contenir qu'un 
+seul widget. D'autres widgets, destinés à en recevoir plusieurs, de différentes manières, 
+seront décrits plus loin.</p>
+<pre class="programlisting">
+    self.fenetre.add(self.bouton)
+</pre>
+<p>Maintenant que tout est mis en place comme nous le voulions 
+(les gestionnaires de signaux, le bouton placé dans sa fenêtre...), nous demandons 
+à GTK+ d'afficher les widgets à l'écran (lignes 68 et 71). Le widget fenetre 
+est affiché en dernier de sorte qu'il apparaisse avec son bouton déjà placé, 
+et non que la fenêtre s'affiche vide puis que le bouton apparaisse à l'intérieur, 
+(même si l'on ne s'en apercevrait pas avec un si petit exemple).</p>
+<pre class="programlisting">
+    self.bouton.show()
+
+    self.fenetre.show()    
+</pre>
+<p>Les lignes 73 à 76 définissent la méthode <code class="methodname">boucle</code>() 
+qui appelle la fonction <code class="function">gtk.main</code>().</p>
+<pre class="programlisting">
+    def boucle(self):
+        gtk.main()
+</pre>
+<p>Les lignes 80 à 82 permettent au programme de se lancer automatiquement 
+s'il est appelé directement ou en tant qu'argument de l'interpréteur Python. 
+La ligne 81 crée une instance de la classe <code class="classname">HelloWorld</code> et 
+en enregistre une référence dans la variable <code class="varname">salut</code>. Enfin, 
+la ligne 82 appelle la méthode <code class="methodname">boucle</code>() de 
+<code class="classname">HelloWorld</code> afin d'initialiser la boucle de traitement  
+d'évènements de GTK+.</p>
+<pre class="programlisting">
+    if __name__ == "__main__":
+        salut = HelloWorld()
+        salut.boucle()
+</pre>
+<p>Quand on clique sur un bouton GTK+, le widget émet un signal "clicked". Afin 
+d'utiliser cette information, notre programme prévoit un gestionnaire de signal 
+qui devra la capter et passer le contrôle à une fonction de notre choix. 
+Dans notre exemple, quand on clique sur le bouton créé, 
+la méthode <code class="methodname">salut</code>()est appelée avec <code class="literal">None</code> 
+comme argument. Ensuite, le gestionnaire suivant du signal "clicked" prend la main : 
+il appelle la fonction <code class="methodname">destroy</code>() du widget avec la fenêtre 
+comme argument, entrainant par là l'émission du signal "destroy" par cette dernière. 
+Ce signal est intercepté et appelle la méthode <code class="methodname">destroy</code>() 
+de notre classe <code class="classname">HelloWorld</code>.</p>
+<p>On peut aussi choisir de fermer la fenêtre par le gestionnaire de fenêtres. 
+Le signal "delete_event" sera alors émis et son gestionnaire invoquera la fonction 
+de rappel <code class="function">evnmt_delete</code>().  
+Si cette dernière renvoie <code class="varname">TRUE</code>, la fenêtre sera laissée telle 
+quelle et rien ne se passera. Si, au contraire, elle renvoie <code class="varname">FALSE</code>, 
+GTK+ émettra le signal "destroy" qui, évidemment, appellera la fonction de rappel du même nom. 
+Et l'on quittera GTK.</p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-Events.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-GettingStarted.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch-MovingOn.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">2.3. Évènements </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> Chapitre 3. Avançons</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

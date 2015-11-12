@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>14.10. TreeModelSort et TreeModelFilter</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,treeview" />
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-TreeViewWidget.html" title="Chapitre 14. Le widget TreeView">
+<link rel="prev" href="sec-TreeViewDragAndDrop.html" title="14.9. Glisser-déposer dans un TreeView">
+<link rel="next" href="sec-GenericTreeModel.html" title="14.11. Le TreeModel générique">
+</head>
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici : 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">14.10. TreeModelSort et TreeModelFilter</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-TreeViewDragAndDrop.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 14. Le widget TreeView</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-GenericTreeModel.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-TreeModelSortAndTreeModelFilter"></a>14.10. TreeModelSort et TreeModelFilter</h2></div></div></div>
+<p>Les <code class="classname">TreeModelSort</code> et <code class="classname">TreeModelFilter</code> 
+sont des modèles d'arbre qui s'intercalent entre le <code class="classname">TreeModel</code> 
+de base (un <code class="classname">TreeStore</code> ou un <code class="classname">ListStore</code>) 
+et le <code class="classname">TreeView</code> pour fournir un modèle modifié en conservant 
+la structure d'origine du modèle de base. Ces modèles interposables implémentent 
+les interfaces <code class="classname">TreeModel</code> et <code class="classname">TreeSortable</code> 
+mais ne fournissent aucune méthode pour insérer ou retirer des lignes dans le 
+modèle, il faut insérer ou retirer ces lignes dans le magasin de données sous-jacent. 
+Le <code class="classname">TreeModelSort</code> fournit un modèle dans lequel les lignes 
+sont toujours classées, le <code class="classname">TreeModelFilter</code> fournit un modèle 
+contenant un sous-ensemble des lignes du modèle de base.
+</p>
+<p>Ces modèles peuvent être reliés sur une longueur arbitraire, si désiré. Par 
+exemple, un <code class="classname">TreeModelFilter</code> peut avoir un enfant 
+<code class="classname">TreeModelSort</code> qui peut peut avoir un enfant 
+<code class="classname">TreeModelFilter</code> et ainsi de suite. Tant qu'il existe 
+un <code class="classname">TreeStore</code> ou un <code class="classname">ListStore</code> 
+comme point de départ de la chaine, cela devrait fonctionner. Sous 
+PyGTK :2.0 et 2.2 les objets <code class="classname">TreeModelSort</code> et 
+<code class="classname">TreeModelFilter</code> ne fonctionnent pas avec le protocole 
+de mappage (mise en correspondance) de Python.
+</p>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-TreeModelSort"></a>14.10.1. Le TreeModelSort</h3></div></div></div>
+<p>Le <code class="classname">TreeModelSort</code> maintient un modèle trié du modèle 
+enfant indiqué dans son constructeur. L'usage principal du 
+<code class="classname">TreeModelSort</code> est de fournir, pour un modele, 
+des vues multiples qui peuvent être classées diversement. Lorsque l'on a plusieurs 
+vues d'un même modèle, toute opération de tri se répercute dans toutes les vues. 
+Utiliser le <code class="classname">TreeModelSort</code> permet de laisser le modèle 
+de départ dans son état originel pendant que les modèles de tri absorbent 
+toutes les opérations de tri. Pour créer un <code class="classname">TreeModelSort</code>, 
+il faut utiliser le constructeur :
+</p>
+<pre class="programlisting">
+  treemodelsort = gtk.TreeModelSort(<strong class="parameter"><code>child_model</code></strong>)
+</pre>
+<p>... où <em class="parameter"><code>child_model</code></em> est un 
+<code class="classname">TreeModel</code>. La plupart des méthodes du 
+<code class="classname">TreeModelSort</code> portent sur la conversion des chemins de 
+l'arborescence et des <code class="classname">TreeIter</code> du modèle enfant 
+vers le modèle trié, et réciproquement :
+
+</p>
+<pre class="programlisting">
+  sorted_path = treemodelsort.convert_child_path_to_path(<strong class="parameter"><code>child_path</code></strong>)
+  child_path = treemodelsort.convert_path_to_child_path(<strong class="parameter"><code>sorted_path</code></strong>)
+</pre>
+<p>Ces méthodes de conversion de chemin renvoient <code class="literal">None</code> si 
+le chemin donné ne peut être converti en chemin dans le modèle trié 
+ou dans le modèle enfant. Les méthodes de conversion du 
+<code class="classname">TreeIter</code> sont :
+</p>
+<pre class="programlisting">
+  sorted_iter = treemodelsort.convert_child_iter_to_iter(<strong class="parameter"><code>sorted_iter</code></strong>, <strong class="parameter"><code>child_iter</code></strong>)
+ child_iter = treemodelsort.convert_iter_to_child_iter(<strong class="parameter"><code>child_iter</code></strong>, <strong class="parameter"><code>sorted_iter</code></strong>)
+</pre>
+<p>Les méthodes de conversion du <code class="classname">TreeIter</code> dupliquent 
+l'argument converti (la valeur de retour comme le premier argument) pour 
+une présever une compatibilité antérieure. Il faut donner la valeur 
+<code class="literal">None</code> au premier argument et n'utiliser que la valeur 
+de retour. Par exemple :
+</p>
+<pre class="programlisting">
+  sorted_iter = treemodelsort.convert_child_iter_to_iter(None, child_iter)
+  child_iter = treemodelsort.convert_iter_to_child_iter(None, sorted_iter)
+</pre>
+<p>Comme les méthodes de conversion du chemin, ces méthodes renvoient 
+<code class="literal">None</code> si le <code class="classname">TreeIter</code> indiqué ne 
+peut être converti.
+</p>
+<p>On peut retrouver le <code class="classname">TreeModel</code> enfant gràce à la 
+méthode <code class="methodname">get_model</code>().
+</p>
+<p><a href="exemples/treemodelsort.py" target="_top">treemodelsort.py</a> est un exemple 
+simple utilisant les objets du <code class="classname">TreeModelSort</code>. Les 
+résultats obtenus avec 6 lignes sont illustrés par 
+<a href="sec-TreeModelSortAndTreeModelFilter.html#treemodelsortfig" title="Figure 14.9. Exemple de TreeModelSort">Figure 14.9, « Exemple de TreeModelSort »</a> 
+</p>
+<div class="figure">
+<a name="treemodelsortfig"></a><p class="title"><b>Figure 14.9. Exemple de TreeModelSort</b></p>
+<div class="mediaobject" align="center"><img src="figures/treemodelsort.png" align="middle" alt="Exemple de TreeModelSort."></div>
+</div>
+<p>Chacune des colonnes d'une fenêtre peut être réordonnée avec un click sur 
+son titre indépendamment des autres fenêtres. Lorsque le bouton 
+"<span class="guibutton">Add a Row</span>" est pressé, une nouvelle ligne est 
+ajoutée dans le <code class="classname">ListStore</code> de base et cette 
+nouvelle ligne est affichée dans chaque fenêtre comme étant la ligne 
+sélectionnée.
+</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-TreeModelFilter"></a>14.10.2. Le TreeModelFilter</h3></div></div></div>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>Le <code class="classname">TreeModelFilter</code> est disponible 
+avec PyGTK 2.4 et supérieur.</p>
+</div>
+<p>Un objet <code class="classname">TreeModelFilter</code> fournit plusieurs façons 
+de modifier la vue du <code class="classname">TreeModel</code> de base, y compris :
+
+</p>
+<div class="itemizedlist"><ul type="disc">
+<li>afficher un sous-ensemble de lignes dans le modèle fils basé soit sur la 
+valeur booléenne d'une "colonne visible" soit sur la valeur booléenne de retour 
+ d'une "fonction visible" ayant comme arguments un modèle fils, un <code class="classname">TreeIter</code> 
+pointant sur une ligne du modèle fils et des données utilisateurs. Dans les deux cas, 
+si la valeur booléenne vaut <code class="literal">TRUE</code>, la ligne est affichée sinon elle 
+est cachée.
+</li>
+<li>utiliser une racine virtuelle qui fournit une vue d'un sous-arbre des 
+enfants d'une ligne dans un modele fils. Ceci n'est réalisable que si les 
+données sont dans un <code class="classname">TreeStore</code>.
+</li>
+<li>combiner les colonnes et données d'un modèle relativement aux données du 
+modèle fils. Par exemple, on peut afficher une colonne dans laquelle les 
+données sont calculées à partir de données dans plusieurs colonnes du 
+modèle fils.
+</li>
+</ul></div>
+<p>Un objet <code class="classname">TreeModelFilter</code> est crée par la méthode 
+<code class="classname">TreeModel</code> :
+</p>
+<pre class="programlisting">
+  treemodelfilter = treemodel.filter_new(<strong class="parameter"><code>root</code></strong>=None)
+</pre>
+<p>... où <em class="parameter"><code>root</code></em> est un chemin dans l'arbre du 
+<em class="parameter"><code>treemodel</code></em> précisant une racine virtuelle du modèle 
+ou <code class="literal">None</code> si la racine du <em class="parameter"><code>treemodel</code></em> doit  
+être utilisée.
+</p>
+<p>Indiquer une "racine virtuelle" quand on crée le 
+<code class="classname">TreeModelFilter</code> permet de limiter la vue aux 
+enfants de cette ligne "racine" dans la hiérarchie du modèle fils. Ceci, bien 
+sûr, n'est utile que si le modèle fils est basé sur un <code class="classname">TreeStore</code>. 
+Par exemple, on peut vouloir fournir une vue de la liste des pièces qui 
+composent un lecteur de CDROM distincte de la liste complète des pièces 
+de l'ordinateur.
+</p>
+<p>Les modes de visibilité sont mutuellement exclusifs et ne peuvent être 
+fixés qu'une seule fois ; Une fois la visibilité de la colonne ou de la 
+fonction établie, on ne peut plus la modifier et l'autre mode ne peut plus 
+être utilisé. Le mode de visibilité le plus simple extrait une valeur 
+booléenne d'une colonne du modèle fils pour déterminer si la ligne 
+doit être affichée. La visibilité colonne est fixée par :
+</p>
+<pre class="programlisting">
+  treemodelfilter.set_visible_column(<strong class="parameter"><code>column</code></strong>)
+</pre>
+<p>... où <em class="parameter"><code>column</code></em> est le numéro de la colonne dans le 
+<code class="classname">TreeModel</code> fils, de laquelle extraire les 
+valeurs booléennes. Par exemple, le code suivant utilise les valeurs de la 
+troisième colonne pour fixer la visibilité des lignes :
+</p>
+<pre class="programlisting">
+  ...
+  treestore = gtk.TreeStore(str, str, "gboolean")
+  ...
+  modelfilter = treestore.filter_new()
+  modelfilter.set_visible_column(2)
+  ...
+</pre>
+<p>Ainsi, toutes les lignes du <em class="parameter"><code>treestore</code></em> qui possèdent 
+la valeur <code class="literal">TRUE</code> dans la troisième colonne seront affichées.
+</p>
+<p>Si on veut utiliser des critères de visibilité plus complexes, une fonction 
+visibilité devrait fournir des capacités suffisantes :
+</p>
+<pre class="programlisting">
+  treemodelfilter.set_visible_func(<strong class="parameter"><code>func</code></strong>, <strong class="parameter"><code>data</code></strong>=None)
+</pre>
+<p>... où <em class="parameter"><code>func</code></em> est la fonction appelée pour chaque 
+ligne du modèle fils afin de décider si elle doit être affichée et 
+<em class="parameter"><code>data</code></em> représente les données utilisateur transmises 
+à la fonction <em class="parameter"><code>func</code></em>. La fonction <em class="parameter"><code>func</code></em> 
+renvoie <code class="literal">TRUE</code> si la ligne doit être affichée. Cette fonction 
+a pour signature :
+</p>
+<pre class="programlisting">
+  def func(<em class="parameter"><code>modele</code></em>, <em class="parameter"><code>iter</code></em>, <em class="parameter"><code>donnees_utilisateur</code></em>)
+</pre>
+<p>... où <em class="parameter"><code>modele</code></em> est le <code class="classname">TreeModel</code> 
+fils, <em class="parameter"><code>iter</code></em> est un <code class="classname">TreeIter</code> 
+pointant sur une ligne du <em class="parameter"><code>modele</code></em> et 
+<em class="parameter"><code>donnees_utilisateur</code></em> sont les <em class="parameter"><code>data</code></em> 
+passées dans la fonction.
+</p>
+<p>Si on modifie le critère de visibilité, il faut utiliser :
+</p>
+<pre class="programlisting">
+  treemodelfilter.refilter()
+</pre>
+<p>pour imposer un nouveau filtrage des lignes du modèle fils.
+</p>
+<p>Par exemple, l'extrait de code ci-dessous illustre un 
+<code class="classname">TreeModelFilter</code> qui affiche des lignes selon une 
+comparaison entre la valeur de la troisième colonne et le contenu des 
+données utilisateurs :
+</p>
+<pre class="programlisting">
+  ...
+  def match_type(modele, iter, donnees_utilisateur):
+      valeur = model.get_value(iter, 2)
+      return valeur in donnees_utilisateur
+  ...
+  show_vals = ['OPEN', 'NEW', 'RESO']
+  liststore = gtk.ListStore(str, str, str)
+  ...
+  modelfilter = liststore.filter_new()
+  modelfilter.set_visible_func(match_type, show_vals)
+  ...
+</pre>
+<p>Le programme <a href="exemples/treemodelfilter.py" target="_top">treemodelfilter.py</a> illustre 
+l'utilisation de la méthode <code class="methodname">set_visible_func</code>(). 
+<a href="sec-TreeModelSortAndTreeModelFilter.html#treemodelfilterfig" title="Figure 14.10. Exemple de visibilité d'un TreeModelFilter">Figure 14.10, « Exemple de visibilité d'un TreeModelFilter »</a> montre le résultat obtenu.
+</p>
+<div class="figure">
+<a name="treemodelfilterfig"></a><p class="title"><b>Figure 14.10. Exemple de visibilité d'un TreeModelFilter</b></p>
+<div class="mediaobject" align="center"><img src="figures/treemodelfilter.png" align="middle" alt="Exemple de TreeModelFilter."></div>
+</div>
+<p>En agissant sur les boutons du bas, on modifie le contenu du 
+<code class="classname">TreeView</code> pour afficher seulement les lignes 
+qui correspondent à l'étiquette du bouton.
+</p>
+<p>Une fonction modify permet un autre niveau de contrôle sur l'affichage du 
+<code class="classname">TreeView</code> sur la manière dont on peut combiner 
+une ou plusieurs (ou toutes) colonnes présentées par le 
+<code class="classname">TreeModelFilter</code>. Il faut utiliser un modèle fils de 
+base, un <code class="classname">TreeStore</code> ou un <code class="classname">ListStore</code> 
+pour déterminer le nombre de lignes et la hiérarchie, mais les colonnes peuvent 
+être tout ce qui est indiqué dans la méthode :
+
+</p>
+<pre class="programlisting">
+  treemodelfilter.set_modify_func(<strong class="parameter"><code>types</code></strong>, <strong class="parameter"><code>func</code></strong>, <strong class="parameter"><code>data</code></strong>=None)
+</pre>
+<p>... où <em class="parameter"><code>types</code></em> est une suite (liste ou tuple) précisant 
+le type de colonne présentes, <em class="parameter"><code>func</code></em> est une fonction 
+appelée pour renvoyer la valeur pour une rangée et une colonne et 
+<em class="parameter"><code>data</code></em> est un argument passé à la fonction 
+<em class="parameter"><code>func</code></em>. La fonction <em class="parameter"><code>func</code></em> 
+a pour signature :
+</p>
+<pre class="programlisting">
+  def func(<em class="parameter"><code>modele</code></em>, <em class="parameter"><code>iter</code></em>, <em class="parameter"><code>colonne</code></em>, <em class="parameter"><code>donnees_utilisateur</code></em>)
+</pre>
+<p>...où <em class="parameter"><code>modele</code></em> est le <code class="classname">TreeModelFilter</code>, 
+<em class="parameter"><code>iter</code></em> le <code class="classname">TreeIter</code> qui pointe sur 
+une ligne du modele, <em class="parameter"><code>colonne</code></em> est le numéro de la colonne 
+pour laquelle une valeur est nécessaire et <em class="parameter"><code>donnees_utilisateur</code></em> 
+est le paramètre <em class="parameter"><code>data</code></em>. La fonction 
+<em class="parameter"><code>func</code></em> doit renvoyer une valeur correspondant au type de 
+<em class="parameter"><code>colonne</code></em>.
+</p>
+<p>Une fonction de modification est utile quand on souhaite fournir une colonne 
+de données qui doivent être générées à partir de données de colonnes du modèle 
+fils. Par exemple, on dispose d'une colonne contenant des dates de naissance 
+et on veut fournir une colonne affichant les âges ; une fonction de modification 
+peut générer l'information sur l'âge à partir de la date de naissance et de la date 
+actuelle. Un autre exemple serait de choisir l'image à afficher selon l'analyse 
+des données (un nom de fichier) dans une colonne. Cette action peut aussi être 
+réalisée par la methode <code class="methodname">set_cell_data_func</code>() du 
+<code class="classname">TreeViewColumn</code>.
+</p>
+<p>Généralement, avec la fonction modify, il faut convertir le 
+<code class="classname">TreeIter</code> du <code class="classname">TreeModelFilter</code> en 
+un <code class="classname">TreeIter</code> dans le modèle fils par :
+</p>
+<pre class="programlisting">
+  child_iter = treemodelfilter.convert_iter_to_child_iter(<strong class="parameter"><code>filter_iter</code></strong>)
+</pre>
+<p>Bien sûr, il faut aussi retrouver le modèle fils par :</p>
+<pre class="programlisting">
+  child_model = treemodelfilter.get_model()
+</pre>
+<p>Ceci donne accès à la ligne du modèle fils et à son contenu pour fournir la 
+valeur de la ligne et colonne indiquées du <code class="classname">TreeModelFilter</code>. 
+Il existe aussi une méthode pour convertir les chemins du modèle filtre de et vers 
+les chemins de l'arborescence fille.
+</p>
+<pre class="programlisting">
+  filter_iter = treemodelfilter.convert_child_iter_to_iter(<strong class="parameter"><code>child_iter</code></strong>)
+
+  child_path = treemodelfilter.convert_path_to_child_path(<strong class="parameter"><code>filter_path</code></strong>)
+  filter_path = treemodelfilter.convert_child_path_to_path(<strong class="parameter"><code>child_path</code></strong>)
+</pre>
+<p>Bien sûr, il est possible de combiner les modes de visibilité et la fonction 
+modify pour, à la fois, filtrer les lignes et produire les colonnes. Pour 
+obtenir encore plus de contrôle sur la vue, il faudrait utiliser un 
+<code class="classname">TreeModel</code> personnalisé.
+</p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-TreeViewDragAndDrop.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-TreeViewWidget.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-GenericTreeModel.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">14.9. Glisser-déposer dans un TreeView </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> 14.11. Le TreeModel générique</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

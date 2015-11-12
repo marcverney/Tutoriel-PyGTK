@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>16.3. Bouton de couleur (ColorButton) et de police (FontButton)</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-NewInPyGTK2.4.html" title="Chapitre 16. Nouveaux Widgets dans PyGTK 2.4">
+<link rel="prev" href="sec-ComboBoxAndComboboxEntry.html" title="16.2. Les listes déroulantes (ComboBox) et listes déroulantes avec saisie (ComboBoxEntry)">
+<link rel="next" href="sec-EntryCompletion.html" title="16.4. Zone de saisie avec complètement (EntryCompletion)">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">16.3. Bouton de couleur (ColorButton) et de police (FontButton)</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-ComboBoxAndComboboxEntry.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 16. Nouveaux Widgets dans PyGTK 2.4</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-EntryCompletion.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-ColorButtonAndFontButton"></a>16.3. Bouton de couleur (ColorButton) et de police (FontButton)</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-ColorButton"></a>16.3.1. Bouton de couleur (ColorButton)</h3></div></div></div>
+<p>Un widget <code class="classname">ColorButton</code> fournit une manière commode d'afficher 
+une couleur dans un bouton que l'on peut cliquer pour ouvrir une fenêtre 
+<code class="classname">ColorSelectionDialog</code> de choix de couleur. C'est utile pour 
+afficher et sélectionner des couleurs dans un dialogue de préférence d'utilisateur. Un 
+<code class="classname">ColorButton</code> se charge d'établir, d'afficher et récupérer le 
+résultat de la fenêtre de sélection de couleur <code class="classname">ColorSelectionDialog</code>. 
+On crée un <code class="classname">ColorButton</code> par le constructeur :
+</p>
+<pre class="programlisting">
+  colorbutton = gtk.ColorButton(<strong class="parameter"><code>color</code></strong>=gtk.gdk.Color(0,0,0))
+</pre>
+<p>La couleur de départ peut être précisée par le paramètre 
+<em class="parameter"><code>color</code></em> ou établie par la suite avec la méthode :
+</p>
+<pre class="programlisting">
+  colorbutton.set_color(<strong class="parameter"><code>color</code></strong>)
+</pre>
+<p>Le titre de la fenêtre <code class="classname">ColorSelectionDialog</code> qui 
+s'affiche quand on clique sur le bouton peut être fixé et récupéré par 
+la méthode :
+</p>
+<pre class="programlisting">
+  colorbutton.set_title(<strong class="parameter"><code>title</code></strong>)
+
+  title = colorbutton.get_title()
+</pre>
+<p>L'opacité de la couleur est fixée en utilisant le canal alpha. 
+    Les méthodes suivantes récupèrent et fixent l'opacité de la couleur 
+    dans une gamme de 0 (transparent) à 65535 (opaque) :
+</p>
+<pre class="programlisting">
+  alpha = colorbutton.get_alpha()
+
+  colorbutton.set_alpha(<strong class="parameter"><code>alpha</code></strong>)
+</pre>
+<p>Par défaut, la valeur alpha est ignorée car la propriété "use_alpha" est 
+fixée à <code class="literal">FALSE</code>. La valeur de cette propriété "use_alpha" 
+peut être fixée et récupérée par la méthode :
+</p>
+<pre class="programlisting">
+  colorbutton.set_use_alpha(<strong class="parameter"><code>use_alpha</code></strong>)
+
+  use_alpha = colorbutton.get_use_alpha()
+</pre>
+<p>Si "use_alpha" vaut <code class="literal">TRUE</code>, la fenêtre 
+<code class="classname">ColorSelectionDialog</code> affiche un curseur pour régler 
+l'opacité et montre la couleur sur un fond à damier.
+</p>
+<p>On peut surveiller les changements de la couleur choisie en se reliant au 
+signal "color-set" qui est émis quand l'utilisateur choisit une couleur. 
+La fonction de rappel du signal est :
+
+</p>
+<pre class="programlisting">
+  def color_set_cb(colorbutton, user_data):
+</pre>
+<p>Le programme <a href="exemples/colorbutton.py" target="_top">colorbutton.py</a> illustre 
+l'utilisation du bouton de couleur <code class="classname">ColorButton</code>. La  
+<a href="sec-ColorButtonAndFontButton.html#colorbuttonfig" title="Figure 16.8. Exemple de bouton de couleur">Figure 16.8, « Exemple de bouton de couleur »</a> montre le programme en cours d'exécution.
+</p>
+<div class="figure">
+<a name="colorbuttonfig"></a><p class="title"><b>Figure 16.8. Exemple de bouton de couleur</b></p>
+<div class="mediaobject" align="center"><img src="figures/colorbutton.png" align="middle" alt="Exemple de bouton de couleur."></div>
+</div>
+<p></p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-FontButton"></a>16.3.2. Bouton de police (FontButton)</h3></div></div></div>
+<p>Comme le <code class="classname">ColorButton</code>, le bouton de police 
+<code class="classname">FontButton</code> est un widget pratique qui fournit un aperçu 
+de la police actuellement choisie et qui ouvre une fenêtre 
+<code class="classname">FontSelectionDialog</code>quand on le clique. Un bouton 
+<code class="classname">FontButton</code> se charge d'établir, d'afficher et récupérer le 
+résultat de la fenêtre de sélection de police <code class="classname">FontSelectionDialog</code>. 
+On le crée par le constructeur :
+</p>
+<pre class="programlisting">
+  boutonpolice = gtk.FontButton(<strong class="parameter"><code>nompolice</code></strong>=None)
+</pre>
+<p>... où <em class="parameter"><code>nompolice</code></em> est une chaîne indiquant la police courante 
+de la fenêtre <code class="classname">FontSelectionDialog</code>. Par exemple, 
+le nom de la police peut être écrit comme 'Sans 12', 'Sans Bold 14', ou 
+'Monospace Italic 14'. Il est nécessaire d'indiquer au minimum la famille 
+et la taille de la police.
+</p>
+<p>La police en cours peut aussi être fixée et récupérée par les méthodes 
+suivantes :
+</p>
+<pre class="programlisting">
+  resultat = boutonpolice.set_font_name(<strong class="parameter"><code>nompolice</code></strong>)
+
+  nompolice = boutonpolice.get_font_name()
+</pre>
+<p>... où <em class="parameter"><code>resultat</code></em> renvoie <code class="literal">TRUE</code> ou 
+<code class="literal">FALSE</code> pour indiquer si la prise en compte de la police a été 
+réalisée avec succès. 
+Le <code class="classname">FontButton</code> possède un certain nombre de propriétés et 
+méthodes associées qui agissent sur l'affichage de la police en cours dans le 
+bouton <code class="classname">FontButton</code>. Les propriétés "show-size" et 
+"show-style" contiennent des valeurs booléennes qui contrôlent si la taille et 
+le style seront affichés dans l'étiquette du bouton. Les méthodes suivantes 
+fixent et récupèrent les valeurs de ces propriétés :
+</p>
+<pre class="programlisting">
+  boutonpolice.set_show_style(<strong class="parameter"><code>show_style</code></strong>)
+  show_style = boutonpolice.get_show_style()
+
+  boutonpolice.set_show_size(<strong class="parameter"><code>show_size</code></strong>)
+  show_size = boutonpolice.get_show_size()
+</pre>
+<p>Autre manière, vous pouvez utiliser la taille et le style actuellement affichés par 
+l'étiquette pour illustrer directement le choix de police. Voici les méthodes 
+associées aux propriétés "use-size" et "use-font" :
+</p>
+<pre class="programlisting">
+  boutonpolice.set_use_font(<strong class="parameter"><code>use_font</code></strong>)
+  use_font = boutonpolice.get_use_font()
+
+  boutonpolice.set_use_size(<strong class="parameter"><code>use_size</code></strong>)
+  use_size = boutonpolice.get_use_size()
+</pre>
+<p>Employer la police courante sur l'étiquette semble une technique utile  
+malgré les inévitables changements de taille du bouton mais utiliser la taille 
+choisie n'apparait pas aussi utile, surtout avec de trés grandes ou trés petites 
+tailles de police. Il faut noter que si on fixe "use-font" ou "use-size" à 
+<code class="literal">TRUE</code> pour ensuite les mettre à <code class="literal">FALSE</code>, 
+les dernières polices et tailles utilisées seront conservées. Par exemple, 
+si "use-font" et "use-size" ont la valeur <code class="literal">TRUE</code> et que 
+la police actuelle est <code class="literal">Monospace Italic 20</code>, l'étiquette 
+du bouton <code class="classname">FontButton</code> s'affiche en 
+<code class="literal">Monospace Italic 20</code> ; puis si "use-font" et "use-size" 
+passent à <code class="literal">FALSE</code> et que la police en cours est modifiée 
+en <code class="literal">Sans 12</code>, l'étiquette s'affichera encore en 
+<code class="literal">Monospace Italic 20</code>. Employez le programme d'exemple
+<a href="exemples/fontbutton.py" target="_top">fontbutton.py</a> pour voir 
+comment ceci fonctionne.
+</p>
+<p>Enfin, le titre de la fenêtre <code class="classname">FontSelectionDialog</code> 
+peut être fixé et récupéré grâce aux méthodes :
+</p>
+<pre class="programlisting">
+  boutonpolice.set_title(<strong class="parameter"><code>titre</code></strong>)
+
+  titre = boutonpolice.get_title()
+</pre>
+<p>Comme pour le bouton <code class="classname">ColorButton</code>, on peut surveiller 
+les changements dans la police en cours en se connectant au signal émis 
+lorsque l'utilisateur choisit une police. La fonction de rappel du signal 
+a la forme :
+</p>
+<pre class="programlisting">
+  def fct_rappel_choixpolice(boutonpolice, données utilisateur):
+</pre>
+<p>Le programme d'exemple <a href="exemples/fontbutton.py" target="_top">fontbutton.py</a> 
+illustre l'utilisation du <code class="classname">FontButton</code>. On peut fixer les 
+propriétés "use-font", "use-size", "show-size" et "show-style" avec les boutons 
+interrupteurs. La  <a href="sec-ColorButtonAndFontButton.html#fontbuttonfig" title="Figure 16.9. Exemple de bouton de police">Figure 16.9, « Exemple de bouton de police »</a> montre le programme 
+en cours d'exécution.
+</p>
+<div class="figure">
+<a name="fontbuttonfig"></a><p class="title"><b>Figure 16.9. Exemple de bouton de police</b></p>
+<div class="mediaobject" align="center"><img src="figures/fontbutton.png" align="middle" alt="Exemple de bouton de police."></div>
+</div>
+<p></p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-ComboBoxAndComboboxEntry.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-NewInPyGTK2.4.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-EntryCompletion.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">16.2. Les listes déroulantes (ComboBox) et listes déroulantes avec saisie (ComboBoxEntry) </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> 16.4. Zone de saisie avec complètement (EntryCompletion)</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

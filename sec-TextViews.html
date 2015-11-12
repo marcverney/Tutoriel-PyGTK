@@ -1,0 +1,354 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+<title>13.2. TextView&nbsp;: la zone de texte</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,textview">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-TextViewWidget.html" title="Chapitre 13. Le widget TextView">
+<link rel="previous" href="ch-TextViewWidget.html" title="Chapitre 13. Le widget TextView">
+<link rel="next" href="sec-TextBuffers.html" title="13.3. TextBuffer&nbsp;: le buffer de texte">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici&nbsp;: 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">13.2. TextView&nbsp;: la zone de texte</th></tr>
+<tr>
+<td width="20%" align="left"><a accesskey="p" href="ch-TextViewWidget.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 13. Le widget TextView</th>
+<td width="20%" align="right"><a accesskey="n" href="sec-TextBuffers.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+
+<div class=sect1 lang="fr">
+<div class=titlepage>
+<div>
+<h2 class=title style="clear: both"><a name=sec-TextViews></a>13.2. TextView&nbsp;: la zone de texte</h2>
+</div></div>
+
+<p>Il n'y a qu'une fonction pour cr&eacute;er un nouveau widget <tt>TextView</tt>.</p>
+
+<pre class=programlisting>
+  textview = gtk.TextView(<b><tt>buffer</tt></b>=None)
+</pre>
+
+<p>Le fait de cr&eacute;er une <tt>TextView</tt> entra&icirc;ne aussi la cr&eacute;ation d'un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> et d'une <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a> par d&eacute;faut qui lui seront associ&eacute;s. Si vous souhaitez utiliser un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> existant pour votre <tt>TextView</tt>, sp&eacute;cifiez-le dans la m&eacute;thode ci-dessus. Pour changer le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> utilis&eacute; par une <tt>TextView</tt>, utilisez la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class=programlisting>
+  textview.set_buffer(<b><tt>buffer</tt></b>)
+</pre>
+
+<p>Utilisez la m&eacute;thode suivante pour obtenir une r&eacute;f&eacute;rence au <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> d'une <tt>TextView</tt>&nbsp;:</p>
+
+<pre class=programlisting>
+  buffer = textview.get_buffer()
+</pre>
+
+<p>Le widget <tt>TextView</tt> n'a pas de barres de d&eacute;filement pour ajuster la 
+vue quand le texte d&eacute;passe de la fen&ecirc;tre. Pour lui en donner, vous devez 
+placer votre <tt>TextView</tt> dans une 
+<!--<a title="10.9 La fen&ecirc;tre d&eacute;roulante" href="sec-ScrolledWindows.html">-->
+<tt>ScrolledWindow</tt> (pas encore traduit) <!--</a>-->.</p>
+<p>Vous pouvez utiliser une <tt>TextView</tt> pour permettre &agrave; l'utilisateur d'&eacute;diter un texte ou bien pour afficher plusieurs lignes d'un texte en lecture seule. Pour passer d'un mode &agrave; l'autre, faites appel &agrave; la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class=programlisting>
+  textview.set_editable(<b><tt>choix</tt></b>)
+</pre>
+
+<p>L'argument <i><tt>choix</tt></i> prend la valeur TRUE ou FALSE pour pr&eacute;ciser si l'utilisateur est autoris&eacute; &agrave; &eacute;diter le contenu du widget <tt>TextView</tt> ou non. Le mode d'&eacute;dition de la <tt>TextView</tt> peut &ecirc;tre modifi&eacute; pour des portions de texte du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> par l'interm&eacute;diaire des <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a>.</p>
+<p>On retrouve le mode d'&eacute;dition courant avec la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class=programlisting>
+  edition = textview.get_editable()
+</pre>
+
+<p>Lorsque la <tt>TextView</tt> n'est pas &eacute;ditable, vous devriez probablement masquer le curseur en utilisant cette m&eacute;thode&nbsp;:</p>
+
+<pre class=programlisting>
+  textview.set_cursor_visible(<b><tt>choix</tt></b>)
+</pre>
+
+<p>L'argument <i><tt>choix</tt></i> prend la valeur TRUE ou FALSE pour pr&eacute;ciser si le curseur doit &ecirc;tre visible.</p>
+<p>Le widget <tt>TextView</tt> peut ajuster la largeur du texte &agrave; la fen&ecirc;tre d'affichage gr&acirc;ce au retour &agrave; la ligne automatique. Cette option n'est pas activ&eacute;e par d&eacute;faut mais peut l'&ecirc;tre &agrave; tout moment gr&acirc;ce &agrave; la m&eacute;thode qui suit&nbsp;:</p>
+
+<pre class=programlisting>
+  textview.set_wrap_mode(<b><tt>choix</tt></b>)
+</pre>
+
+<p>Cette m&eacute;thode vous permet d'indiquer si la coupure du retour &agrave; la ligne automatique doit s'effectuer apr&egrave;s le dernier caract&egrave;re de la ligne, ou bien si ce dernier doit pr&eacute;server l'int&eacute;grit&eacute; des mots. L'argument <i><tt>choix</tt></i> est &agrave; choisir parmi&nbsp;:</p>
+
+<pre class=programlisting>
+  gtk.WRAP_NONE    # pas de retour &agrave; la ligne automatique
+  gtk.WRAP_CHAR    # couper apr&egrave;s le dernier caract&egrave;re de la ligne
+  gtk.WRAP_WORD    # couper apr&egrave;s le dernier mot de la ligne
+</pre>
+
+<p>L'alignement par d&eacute;faut du texte peut &ecirc;tre d&eacute;fini et r&eacute;cup&eacute;r&eacute; avec les m&eacute;thodes&nbsp;:</p>
+
+<pre class=programlisting>
+  textview.set_justification(<b><tt>alignement</tt></b>)
+  alignement = textview.get_justification()
+</pre>
+
+<p>o&ugrave; <i><tt>alignement</tt></i> peut &ecirc;tre&nbsp;:</p>
+
+<pre class=programlisting>
+  gtk.JUSTIFY_LEFT      # align&eacute; &agrave; gauche
+  gtk.JUSTIFY_RIGHT     # align&eacute; &agrave; droite
+  gtk.JUSTIFY_CENTER    # centr&eacute;
+</pre>
+
+<div class=note style="MARGIN-LEFT: 0.5in; MARGIN-RIGHT: 0.5in">
+<h3 class=title>Remarque</h3>
+<p>Le texte sera align&eacute; &agrave; gauche (JUSTIFY_LEFT) si le retour &agrave; la ligne automatique est d&eacute;sactiv&eacute; (WRAP_NONE). L'alignement par d&eacute;faut peut  toutefois &ecirc;tre modifi&eacute; avec des <a title="13.6.1 Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> dans le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> correspondant.</p>
+</div>
+<p>Parmi les autres attributs de texte, la marge gauche, la marge droite, les tabulations et l'indentation des paragraphes peuvent &ecirc;tre d&eacute;finis et r&eacute;cup&eacute;r&eacute;s avec les m&eacute;thodes suivantes&nbsp;:</p>
+
+<pre class=programlisting>
+  textview.set_left_margin(<b><tt>marge_gauche</tt></b>)
+  marge_gauche = textview.get_left_margin()
+  
+  textview.set_right_margin(<b><tt>marge_droite</tt></b>)
+  marge_droite = textview.get_right_margin()
+  
+  textview.set_indent(<b><tt>indentation</tt></b>)
+  indentation = textview.get_indent()
+  
+  textview.set_pixels_above_lines(<b><tt>pixels_au_dessus_de_la_ligne</tt></b>)
+  pixels_au_dessus_de_la_ligne = textview.get_pixels_above_lines()
+  
+  textview.set_pixels_below_lines(<b><tt>pixels_au_dessous_de_la_ligne</tt></b>)
+  pixels_au_dessous_de_la_ligne = textview.get_pixels_below_lines()
+  
+  textview.set_pixels_inside_wrap(<b><tt>pixels_retour_a_la_ligne</tt></b>)
+  pixels_retour_a_la_ligne = textview.get_pixels_inside_wrap()
+  
+  textview.set_tabs(<b><tt>tabulations</tt></b>)
+  tabulations = textview.get_tabs()
+</pre>
+
+<p><i><tt>marge_gauche</tt></i>, <i><tt>marge_droite</tt></i>, <i><tt>indentation</tt></i>, <i><tt>pixels_au_dessus_de_la_ligne</tt></i>, <i><tt>pixels_au_dessous_de_la_ligne</tt></i> et <i><tt>pixels_retour_a_la_ligne</tt></i> doivent &ecirc;tre indiqu&eacute;s en pixels. Ces valeurs par d&eacute;faut peuvent &ecirc;tre modifi&eacute;es en employant des <a title="Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> dans le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> correspondant. <i><tt>tabs</tt></i> doit &ecirc;tre un <tt>pango.TabArray</tt>.</p>
+<p>Le programme d'exemple <a href="exemples/textview-basic.py" target=_top><b>textview-basic.py</b></a> illustre l'utilisation basique du widget <tt>TextView</tt>&nbsp;:</p>
+
+<div class="figure"><a name="textviewbasiquefig"></a>
+<P class="title"><b>Figure 13.1. Exemple basique de TextView</b></p>
+<div class="mediaobject" align="center">
+<IMG src="figures/textview-basique.png" align="middle" alt="exemple textview simple">
+</div></div>
+
+<p>Le code source du programme est le suivant&nbsp;:</p>
+
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2   
+     3   # exemple textview-basic.py
+     4     
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8   
+     9   class ExempleTextView:
+    10       def change_editable(self, case, textview):
+    11           textview.set_editable(case.get_active())
+    12   
+    13       def change_curseur_visible(self, case, textview):
+    14           textview.set_cursor_visible(case.get_active())
+    15   
+    16       def change_marge_gauche(self, case, textview):
+    17           if case.get_active():
+    18               textview.set_left_margin(50)
+    19           else:
+    20               textview.set_left_margin(0)
+    21   
+    22       def change_marge_droite(self, case, textview):
+    23           if case.get_active():
+    24               textview.set_right_margin(50)
+    25           else:
+    26                textview.set_right_margin(0)
+    27   
+    28       def change_retour_ligne(self, boutonradio, textview, val):
+    29           if boutonradio.get_active():
+    30               textview.set_wrap_mode(val)
+    31   
+    32       def change_alignement(self, boutonradio, textview, val):
+    33           if boutonradio.get_active():
+    34               textview.set_justification(val)
+    35   
+    36       def fermer_application(self, widget):
+    37           gtk.main_quit()
+    38   
+    39       def __init__(self):
+    40           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    41           fenetre.set_resizable(True)
+    42           fenetre.connect("destroy", self.fermer_application)
+    43           fenetre.set_title("Exemple de widget TextView simple")
+    44           fenetre.set_border_width(0)
+    45   
+    46           boite1 = gtk.VBox(False, 0)
+    47           fenetre.add(boite1)
+    48           boite1.show()
+    49   
+    50           boite2 = gtk.VBox(False, 10)
+    51           boite2.set_border_width(10)
+    52           boite1.pack_start(boite2, True, True, 0)
+    53           boite2.show()
+    54   
+    55           fd = gtk.ScrolledWindow()
+    56           fd.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+    57           textview = gtk.TextView()
+    58           buffertexte = textview.get_buffer()
+    59           fd.add(textview)
+    60           fd.show()
+    61           textview.show()
+    62   
+    63           boite2.pack_start(fd)
+    64           # Chargement du fichier textview-basic.py dans la fenetre
+    65           fichier = open("textview-basic.py", "r")
+    66   
+    67           if fichier:
+    68               chaine = fichier.read()
+    69               fichier.close()
+    70               buffertexte.set_text(chaine)
+    71   
+    72           boiteH = gtk.HButtonBox()
+    73           boite2.pack_start(boiteH, False, False, 0)
+    74           boiteH.show()
+    75   
+    76           boiteV = gtk.VBox()
+    77           boiteV.show()
+    78           boiteH.pack_start(boiteV, False, False, 0)
+    79           # case a cocher pour autoriser l'edition du texte
+    80           case = gtk.CheckButton("Editable")
+    81           boiteV.pack_start(case, False, False, 0)
+    82           case.connect("toggled", self.change_editable, textview)
+    83           case.set_active(True)
+    84           case.show()
+    85           # case a cocher pour afficher le curseur
+    86           case = gtk.CheckButton("Curseur visible")
+    87           boiteV.pack_start(case, False, False, 0)
+    88           case.connect("toggled", self.change_curseur_visible, textview)
+    89           case.set_active(True)
+    90           case.show()
+    91           # case a cocher pour afficher une marge gauche
+    92           case = gtk.CheckButton("Marge gauche")
+    93           boiteV.pack_start(case, False, False, 0)
+    94           case.connect("toggled", self.change_marge_gauche, textview)
+    95           case.set_active(False)
+    96           case.show()
+    97           # case a cocher pour afficher une marge droite
+    98           case = gtk.CheckButton("Marge droite")
+    99           boiteV.pack_start(case, False, False, 0)
+   100           case.connect("toggled", self.change_marge_droite, textview)
+   101           case.set_active(False)
+   102           case.show()
+   103           # boutons radio pour definir le type de retour a la ligne automatique
+   104           boiteV = gtk.VBox()
+   105           boiteV.show()
+   106           boiteH.pack_start(boiteV, False, False, 0)
+   107           radio = gtk.RadioButton(None, "WRAP__NONE")
+   108           boiteV.pack_start(radio, False, True, 0)
+   109           radio.connect("toggled", self.change_retour_ligne, textview, gtk.WRAP_NONE)
+   110           radio.set_active(True)
+   111           radio.show()
+   112           radio = gtk.RadioButton(radio, "WRAP__CHAR")
+   113           boiteV.pack_start(radio, False, True, 0)
+   114           radio.connect("toggled", self.change_retour_ligne, textview, gtk.WRAP_CHAR)
+   115           radio.show()
+   116           radio = gtk.RadioButton(radio, "WRAP__WORD")
+   117           boiteV.pack_start(radio, False, True, 0)
+   118           radio.connect("toggled", self.change_retour_ligne, textview, gtk.WRAP_WORD)
+   119           radio.show()
+   120   
+   121           # boutons radio pour definir l'alignement
+   122           boiteV = gtk.VBox()
+   123           boiteV.show()
+   124           boiteH.pack_start(boiteV, False, False, 0)
+   125           radio = gtk.RadioButton(None, "JUSTIFY__LEFT")
+   126           boiteV.pack_start(radio, False, True, 0)
+   127           radio.connect("toggled", self.change_alignement, textview,
+   128                         gtk.JUSTIFY_LEFT)
+   129           radio.set_active(True)
+   130           radio.show()
+   131           radio = gtk.RadioButton(radio, "JUSTIFY__RIGHT")
+   132           boiteV.pack_start(radio, False, True, 0)
+   133           radio.connect("toggled", self.change_alignement, textview,
+   134                         gtk.JUSTIFY_RIGHT)
+   135           radio.show()
+   136           radio = gtk.RadioButton(radio, "JUSTIFY__CENTER")
+   137           boiteV.pack_start(radio, False, True, 0)
+   138           radio.connect("toggled", self.change_alignement, textview,
+   139                         gtk.JUSTIFY_CENTER)
+   140           radio.show()
+   141   
+   142           separateur = gtk.HSeparator()
+   143           boite1.pack_start(separateur, False, True, 0)
+   144           separateur.show()
+   145   
+   146           boite2 = gtk.VBox(False, 10)
+   147           boite2.set_border_width(10)
+   148           boite1.pack_start(boite2, False, True, 0)
+   149           boite2.show()
+   150   
+   151           bouton = gtk.Button("Fermer")
+   152           bouton.connect("clicked", self.fermer_application)
+   153           boite2.pack_start(bouton, True, True, 0)
+   154           bouton.set_flags(gtk.CAN_DEFAULT)
+   155           bouton.grab_default()
+   156           bouton.show()
+   157           fenetre.show()
+   158   
+   159   def main():
+   160       gtk.main()
+   161       return 0
+   162   
+   163   if __name__ == "__main__":
+   164       ExempleTextView()
+   165       main()
+</pre>
+
+<p>Aux lignes 10 &agrave; 34, on d&eacute;finit les fonctions de rappel des cases &agrave; 
+cocher et des boutons radio, que l'on utlisera pour changer les attributs par d&eacute;faut 
+de la <tt>TextView</tt>. Aux lignes 55 &agrave; 63, on cr&eacute;e une 
+<!--<a title="10.9. La fen&ecirc;tre d&eacute;roulante" href="sec-ScrolledWindows.html">-->
+<tt>ScrolledWindow</tt><!--</a> -->pour contenir la <tt>TextView</tt>. La 
+<!--<a title="10.9. La fen&ecirc;tre d&eacute;roulante" href="sec-ScrolledWindows.html">-->
+<tt>ScrolledWindow</tt><!--</a>--> est plac&eacute;e dans une <tt>VBox</tt> avec les cases &agrave; 
+cocher et les boutons radio cr&eacute;&eacute;s aux lignes 72 &agrave; 140. Le 
+<a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html">
+<tt>TextBuffer</tt></a> associ&eacute; &agrave; la <tt>TextView</tt> est charg&eacute; 
+avec le contenu du fichier source aux lignes 64 &agrave; 70.</p>
+</div>
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Navigation footer">
+  
+  <tr>
+    <td width="40%" align="left"><a accessKey="p" href="ch-TextViewWidget.html">Pr&eacute;c.</a></td>
+    <td width="20%" align="center"><a accessKey="u" href="ch-TextViewWidget.html">Chapitre parent</a></td>
+    <td width="40%" align="right"><a accessKey="n" href="sec-TextBuffers.html">Suiv.</a></td></tr>
+  <tr>
+    <td width="40%" align="left" vAlign="top">13.1. Pr&eacute;sentation des widgets de texte</td>
+    <td width="20%" align="center"><a accessKey="h" href="index.html">Table des mati&egrave;res</a></td>
+    <td width="40%" align="right" vAlign="top">13.3. TextBuffer&nbsp;: le buffer de texte</td></tr>
+  
+</table>
+
+</div>
+</body>
+
+</html>

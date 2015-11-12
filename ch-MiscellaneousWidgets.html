@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+<title>Chapitre 9. Widgets divers</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,etiquette">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="index.html" title="Table des mati&egrave;res">
+<link rel="previous" href="sec-RangeWidgetExample.html" title="8.5. D&eacute;monstration des widgets d'intervalle">
+<link rel="next" href="sec-Arrows.html" title="9.2. Les fl&egrave;ches">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici&nbsp;: 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">Chapitre 9. Widgets divers</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-RangeWidgetExample.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center"></th>
+<td width="20%" align="right"><a accesskey="n" href="sec-Arrows.html">Suiv.</a></td></tr></table>
+
+<hr>
+</div>
+
+<div class="chapter"><div class="titlepage">
+<div><h2 class="title"><a name="WidgetsDivers"></a>Chapitre 9. Widgets divers</h2></div></div>
+
+<div class="toc">
+<p><b>Sommaire</b></p>
+<dl>
+    <dt>9.1. <a href="ch-MiscellaneousWidgets.html#sec-Labels">Les &eacute;tiquettes</a></dt>
+    <dt>9.2. <a href="sec-Arrows.html">Les fl&egrave;ches</a></dt>
+    <dt>9.3. <a href="sec-TooltipsObject.html">Les infobulles</a></dt>
+    <dt>9.4. <a href="sec-ProgressBars.html">La barre de progression</a></dt>
+    <dt>9.5. <a href="sec-Dialogs.html">Les boites de dialogue</a></dt>
+    <dt>9.6. <a href="sec-Images.html">Les images</a></dt><dd><dl>
+        <dt>9.6.1. <a href="sec-Images.html#Pixmaps">Les Pixmaps</a></dt></dl></dd>
+    <dt>9.7. <a href="sec-Rulers.html">Les r&egrave;gles</a></dt>
+    <dt>9.8. <a href="sec-Statusbars.html">La barre d'&eacute;tat</a></dt>
+    <dt>9.9. <a href="sec-TextEntries.html">Les champs de saisie</a></dt>
+    <dt>9.10. <a href="sec-SpinButtons.html">Les boites d'incr&eacute;ment</a></dt>
+    <dt>9.11. <a href="sec-ComboWidget.html">Les listes d&eacute;roulantes</a></dt>
+    <dt>9.12. <a href="sec-Calendar.html">Le calendrier</a></dt>
+    <dt>9.13. <a href="sec-ColorSelection.html">Le s&eacute;lecteur de couleur</a></dt>
+    <dt>9.14. <a href="sec-FileSelections.html">Le s&eacute;lecteur de fichier</a></dt>
+    <dt>9.15. <a href="sec-FontSelectionDialog.html">Le s&eacute;lecteur de police</a></dt>
+</dl>
+</div>
+
+<div class="sect1"><div class="titlepage">
+<div><h2 class="title" style="clear: both"><a name="sec-Labels"></a>9.1. Les &eacute;tiquettes</h2>
+</div></div>
+
+<p>Les &eacute;tiquettes (gtk.<tt>Label</tt>) sont des widgets relativement simples et 
+tr&egrave;s utilis&eacute;s dans GTK. Elles ne peuvent &eacute;mettre aucun signal car 
+elles n'ont pas de fen&ecirc;tres X associ&eacute;es. Pour capter quand m&ecirc;me des 
+signaux ou pour ce qui concerne le d&eacute;coupage, il vous faudra les placer 
+dans des <a href="ch-ContainerWidgets.html#sec-EventBox" title="10.1. Les boites 
+&agrave; &eacute;v&egrave;nements"><tt>boites &agrave; &eacute;v&egrave;nements</tt></a> 
+ou dans des boutons (voir <a href="ch-ButtonWidget.html#BoutonsSimples" 
+title="6.1 Les boutons simples"><tt>Boutons simples</tt></a>).</p>
+<p>Pour cr&eacute;er une &eacute;tiquette, on utilise la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class="programlisting">
+  etiquette = gtk.Label(<b><tt>str</tt></b>)
+</pre>
+<p>L'unique argument &agrave; fournir, <i>str</i>, est la chaine de caract&egrave;res que 
+doit afficher l'&eacute;tiquette. Pour changer ce texte une fois 
+l'&eacute;tiquette cr&eacute;&eacute;e, on fera appel &agrave; la m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  etiquette.set_text(<b><tt>str</tt></b>)
+</pre>
+
+<p><i><tt>etiquette</tt></i> est l'etiquette pr&eacute;c&eacute;demment cr&eacute;&eacute;e, 
+et <i><tt>str</tt></i> la nouvelle chaine de caract&egrave;res. L'espace allou&eacute; 
+&agrave; la nouvelle chaine sera automatiquement ajust&eacute; si n&eacute;cessaire. 
+Vous pouvez cr&eacute;er une &eacute;tiquette de plusieurs lignes en ins&eacute;rant 
+des sauts de lignes dans la chaine de caract&egrave;res.</p>
+<p>Pour r&eacute;cup&eacute;rer la chaine courante, faites&nbsp;:</p>
+
+<pre class="programlisting">
+  chaine = etiquette.get_text()
+</pre>
+
+<p><i><tt>etiquette</tt></i> est l'&eacute;tiquette que vous avez cr&eacute;&eacute;e, 
+et <i><tt>chaine</tt></i> la chaine de caract&egrave;res. On peut d&eacute;finir le type 
+d'alignement du texte d'une &eacute;tiquette avec&nbsp;:</p>
+
+<pre class="programlisting">
+  etiquette.set_justify(<b><tt>jtype</tt></b>)
+</pre>
+
+<p>L'argument <i><tt>jtype</tt></i> peut prendre les valeurs suivantes&nbsp;:</p>
+<pre class="programlisting">
+  JUSTIFY_LEFT		# align&eacute; &agrave; gauche
+  JUSTIFY_RIGHT		# align&eacute; &agrave; droite
+  JUSTIFY_CENTER	# centr&eacute; (valeur par d&eacute;faut)
+  JUSTIFY_FILL		# justifi&eacute;
+</pre>
+
+<p>Le texte des &eacute;tiquettes peut aussi &ecirc;tre renvoy&eacute; &agrave; la 
+ligne automatiquement. Il faut pour cela utiliser cette m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  etiquette.set_line_wrap(<b><tt>wrap</tt></b>)
+</pre>
+
+<p>L'argument <i><tt>wrap</tt></i> peut prendre les valeurs TRUE (activ&eacute;) ou 
+FALSE (d&eacute;sactiv&eacute;).</p>
+<p>Pour que le texte de votre &eacute;tiquette soit soulign&eacute;, vous pouvez lui 
+fournir un patron &agrave; suivre&nbsp;:</p>
+
+<pre class="programlisting">
+  etiquette.set_pattern(<b><tt>pattern</tt></b>)
+</pre>
+
+<p>L'argument <i><tt>pattern</tt></i> (patron) pr&eacute;cise le profil du soulignement. 
+Il s'agit d'une chaine de caract&egrave;res constitu&eacute;e de &quot;_&quot; et d'espaces, 
+un &quot;_&quot; indiquant que le caract&egrave;re correspondant de l'&eacute;tiquette 
+doit &ecirc;tre soulign&eacute;. Par exemple, la chaine <tt>&quot;__ __&quot;</tt> 
+soulignerait les deux premiers caract&egrave;res ainsi que le huiti&egrave;me et le 
+neuvi&egrave;me. Si vous voulez simplement d&eacute;finir un raccourci clavier 
+soulign&eacute; (un caract&egrave;re &quot;mn&eacute;monique&quot;) dans votre 
+&eacute;tiquette, utilisez plut&ocirc;t la m&eacute;thode <tt>set_text_with_mnemonic</tt>
+(<b><tt>str</tt></b>), et non <tt>set_pattern</tt>().</p>
+<p>Le programme <a href="exemples/etiquettes.py" target="_top"><b>etiquettes.py</b></a> 
+est un court exemple qui illustre ces m&eacute;thodes. Pour mieux distinguer les 
+diff&eacute;rents styles d'&eacute;tiquettes, il utilise des <!--<a href="sec-Frames.html" 
+title="10.5. Les cadres">--><tt>cadres</tt> (pas encore traduit) <!--</a>--> (<tt>gtk.Frame</tt>). N'en tenez cependant 
+pas compte pour l'instant, nous aborderons ce widget plus loin.</p>
+<p>Les &eacute;tiquettes de GTK+ 2.0 peuvent &ecirc;tre s&eacute;lectionn&eacute;es 
+(pour le copier-coller), et leur texte peut contenir des balises qui modifient la police 
+et d'autres attributs de texte. Ces caract&eacute;ristiques avanc&eacute;es ne seront 
+toutefois pas abord&eacute;es ici.</p>
+<p>La <a href="ch-MiscellaneousWidgets.html#FigEtiquettes" title="Figure 9.1. 
+Exemples d'&eacute;tiquettes">figure 9.1</a> montre la fen&ecirc;tre affich&eacute;e par 
+le programme <a href="exemples/etiquettes.py" target="_top"><b>etiquettes.py</b></a>&nbsp;:</p>
+
+<div class="figure"><a name="FigEtiquettes"></a>
+<p class="title"><b>Figure 9.1. Exemples d'&eacute;tiquettes</b></p>
+<div class="mediaobject" align="center"><img src="figures/etiquettes.png" align="middle" 
+alt="exemple étiquette"></div></div>
+
+<p>Le code source du programme est le suivant&nbsp;:</p>
+
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2     
+     3   # exemple etiquettes.py
+     4   
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8   
+     9   class Etiquettes:
+    10       def __init__(self):
+    11           self.fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    12           self.fenetre.connect("destroy", gtk.main_quit)
+    13   
+    14           self.fenetre.set_title("Etiquettes")
+    15           boite_v = gtk.VBox(False, 5)
+    16           boite_h = gtk.HBox(False, 5)
+    17           self.fenetre.add(boite_h)
+    18           boite_h.pack_start(boite_v, False, False, 0)
+    19           self.fenetre.set_border_width(5)
+    20   
+    21           cadre = gtk.Frame("Etiquette normale")
+    22           etiquette = gtk.Label("Voici une etiquette normale")
+    23           cadre.add(etiquette)
+    24           boite_v.pack_start(cadre, False, False, 0)
+    25     
+    26           cadre = gtk.Frame("Etiquette de plusieurs lignes")
+    27           etiquette = gtk.Label("Voici une etiquette de plusieurs lignes.\nDeuxieme ligne\n"
+    28                                 "Troisieme ligne")
+    29           cadre.add(etiquette)
+    30           boite_v.pack_start(cadre, False, False, 0)
+    31     
+    32           cadre = gtk.Frame("Etiquette alignee a gauche")
+    33           etiquette = gtk.Label("Voici une etiquette de plusieurs lignes\n"
+    34                                 "dont le texte est aligne a gauche.\nTroisieme      ligne")
+    35           etiquette.set_justify(gtk.JUSTIFY_LEFT)
+    36           cadre.add(etiquette)
+    37           boite_v.pack_start(cadre, False, False, 0)
+    38     
+    39           cadre = gtk.Frame("Etiquette alignee a droite")
+    40           etiquette = gtk.Label("Voici une etiquette de plusieurs lignes\ndont le texte est aligne a droite.\n"
+    41                                 "Quatrieme ligne, (j/k)")
+    42           etiquette.set_justify(gtk.JUSTIFY_RIGHT)
+    43           cadre.add(etiquette)
+    44           boite_v.pack_start(cadre, False, False, 0)
+    45   
+    46           boite_v = gtk.VBox(False, 5)
+    47           boite_h.pack_start(boite_v, False, False, 0)
+    48           cadre = gtk.Frame("Etiquette avec retour a la ligne auto")
+    49           etiquette = gtk.Label("Voici un exemple d'etiquette avec retour a la ligne auto.  Elle "
+    50                                 "ne doit pas remplir l'espace qui lui est             "
+    51                                 "alloue, mais elle s'ajuste automatiquement "
+    52                                 "en renvoyant les mots a la ligne.  "
+    53                                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed "
+    54                                 "do eiusmod tempor incididunt ut labore et dolore magna aliqua.  "
+    55                                 "Seize jacinthes sechent dans seize sachets secs.\n"
+    56                                 "     Ces etiquettes peuvent contenir plusieurs paragraphes "
+    57                                 "et ajoutent   correctement "
+    58                                 "de nombreux          espaces supplementaires ")
+    59           etiquette.set_line_wrap(True)
+    60           cadre.add(etiquette)
+    61           boite_v.pack_start(cadre, False, False, 0)
+    62     
+    63           cadre = gtk.Frame("Etiquette justifiee avec retour a la ligne auto")
+    64           etiquette = gtk.Label("Voici un exemple d'etiquette justifiee avec retour a la ligne auto.  "
+    65                                "Elle doit remplir "
+    66                                "entierement              l'espace qui lui est alloue.  "
+    67                                "Quelques phrases pour les besoins de la "
+    68                                "demonstration&nbsp;:  Voila, voila. Le lundi au soleil, "
+    69                                "c'est une chose qu'on n'aura jamais, ta la la ta da la la...\n"
+    70                                "    Nouveau paragraphe.\n"
+    71                                "    Nouveau paragraphe, mais mieux que"
+    72                                " l'autre.  Helas, il est deja fini.
+    73                                ")
+    74           etiquette.set_justify(gtk.JUSTIFY_FILL)
+    75           etiquette.set_line_wrap(True)
+    76           cadre.add(etiquette)
+    77           boite_v.pack_start(cadre, False, False, 0)
+    78     
+    79           cadre = gtk.Frame("Etiquette avec texte souligne")
+    80           etiquette = gtk.Label("Cette etiquette comporte du texte souligne !\n"
+    81                                 "Cette phrase est bizarrement soulignee")
+    82           etiquette.set_justify(gtk.JUSTIFY_LEFT)
+    83           etiquette.set_pattern(
+    84               "____________________________________________ _ _________ _ ______     __ _______ ___")
+    85           cadre.add(etiquette)
+    86           boite_v.pack_start(cadre, False, False, 0)
+    87           self.fenetre.show_all ()
+    88   
+    89   def main():
+    90       gtk.main()
+    91       return 0
+    92   
+    93   if __name__ == "__main__":
+    94       Etiquettes()
+    95       main()
+</pre>
+<p>À noter que le  "Etiquette justifiee avec retour a la ligne auto" n'est pas rempli.</p>
+</div></div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="sec-RangeWidgetExample.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="index.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="sec-Arrows.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">8.5. D&eacute;monstration des widgets d'intervalle</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">9.2. Les fl&egrave;ches</td>
+</tr></table>
+</div>
+<!-- phpmyvisites -->
+<a href="http://st.free.fr/" title="phpMyVisites | Open source web analytics"
+onclick="window.open(this.href);return(false);"><script type="text/javascript">
+<!--
+var a_vars = Array();
+var pagename=document.title;
+
+var phpmyvisitesSite = 17647;
+var phpmyvisitesURL = "http://st.free.fr/phpmyvisites.php";
+//-->
+</script>
+<script language="javascript" src="http://st.free.fr/phpmyvisites.js" type="text/javascript"></script>
+<object><noscript><p>phpMyVisites | Open source web analytics
+<img src="http://st.free.fr/phpmyvisites.php" alt="Statistics" style="border:0" />
+</p></noscript></object></a>
+<!-- /phpmyvisites --> 
+</body>
+
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>14.2. L'interface TreeModel et le stockage des données</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,treeview" />
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-TreeViewWidget.html" title="Chapitre 14. Le widget TreeView">
+<link rel="prev" href="ch-TreeViewWidget.html" title="Chapitre 14. Le widget TreeView">
+<link rel="next" href="sec-TreeViews.html" title="14.3. Les TreeView">
+</head>
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici : 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">14.2. L'interface TreeModel et le stockage des données</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch-TreeViewWidget.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 14. Le widget TreeView</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-TreeViews.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-TreeModelInterface"></a>14.2. L'interface TreeModel et le stockage des données</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-TreeModelIntroduction"></a>14.2.1. Introduction</h3></div></div></div>
+<p>Toutes les sous-classes <code class="classname">TreeModel</code> implémentent l'interface <code class="classname">TreeModel</code>. Elle fournit des méthodes pour :
+</p>
+<div class="itemizedlist"><ul type="disc">
+<li>récupérer les caractéristiques du modèle, telles que le nombre de colonnes et le type de données dans une colonne.</li>
+<li>récupérer un <code class="classname">TreeIter</code> (une référence temporaire pointant sur une ligne du modèle).</li>
+<li>récupérer des informations sur un n&#339;ud (ou une ligne) comme une liste de ses n&#339;uds enfants, leur nombre, le contenu de ses colonnes ou un pointeur sur son n&#339;ud parent.</li>
+<li>obtenir des notifications de changement des données du <code class="classname">TreeModel</code>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-CreatingTreeStoreAndListStore"></a>14.2.2. Créer des objets TreeStore et ListStore</h3></div></div></div>
+<p>Les classes de base de stockage des données, le <code class="classname">ListStore</code> et le <code class="classname">TreeStore</code>, permettent de définir et de manipuler les lignes et les colonnes de données dans le modèle. Dans les constructeurs de ces deux objets, les colonnes devront être déclarées comme étant de l'un des types suivants :
+</p>
+<div class="itemizedlist"><ul type="disc">
+<li>un type Python, comme les types prédéfinis int, str, long, float et object</li>
+<li>un type PyGTK, comme les <code class="classname">Button</code>, <code class="classname">VBox</code>, <code class="classname">gdk.Rectangle</code>, <code class="classname">gdk.Pixbuf</code>
+</li>
+<li>
+<p>un type <code class="classname">GObject</code> (les GTypes de GTK+), spécifié sous la forme soit d'une constante gobject.TYPE, soit d'une chaine de caractères. La majorité des GTypes sont mappés sur un type Python :</p>
+<div class="itemizedlist"><ul type="circle">
+<li>gobject.TYPE_CHAR ou 'gchar'</li>
+<li>gobject.TYPE_UCHAR ou 'guchar'</li>
+<li>gobject.TYPE_BOOLEAN ou 'gboolean'</li>
+<li>gobject.TYPE_INT ou 'gint'</li>
+<li>gobject.TYPE_UINT ou 'guint'</li>
+<li>gobject.TYPE_LONG ou 'glong</li>
+<li>gobject.TYPE_ULONG ou 'gulong</li>
+<li>gobject.TYPE_INT64 ou 'gint64'</li>
+<li>gobject.TYPE_UINT64 ou 'guint64'</li>
+<li>gobject.TYPE_FLOAT ou 'gfloat'</li>
+<li>gobject.TYPE_DOUBLE ou 'gdouble'</li>
+<li>gobject.TYPE_STRING ou 'gchararray'</li>
+<li>gobject.TYPE_OBJECT ou 'GObject</li>
+</ul></div>
+</li>
+</ul></div>
+<p>Par exemple, la création d'un <code class="classname">ListStore</code> ou d'un <code class="classname">TreeStore</code> dont les lignes contiendraient un <code class="classname">gdk.Pixbuf</code>, un entier, une chaine et un booléen, pourrait ressembler à ceci :</p>
+<pre class="programlisting">
+  liststore = ListStore(gtk.gdk.Pixbuf, int, str, 'gboolean')
+
+  treestore = TreeStore(gtk.gdk.Pixbuf, int, str, 'gboolean')
+</pre>
+<p>Une fois un <code class="classname">ListStore</code> ou un <code class="classname">TreeStore</code> créé et ses colonnes définies, ils ne peuvent plus être modifiés. Il est également important de savoir qu'il n'y a pas de relation prédéfinie entre les colonnes d'un <code class="classname">TreeView</code> et celles de son <code class="classname">TreeModel</code>. Ainsi, la cinquième colonne de données d'un <code class="classname">TreeModel</code> peut être affichée dans la première colonne d'un <code class="classname">TreeView</code> et dans la troisième d'un autre. On n'a donc pas à se soucier de l'affichage des données lorsque l'on crée un modèle.
+</p>
+<p>Si ces deux modèles ne conviennent pas à votre application, il est possible de définir votre propre modèle personnalisé en Python, pourvu qu'il implémente l'interface TreeModel. Nous verrons ceci plus en détail dans la <a href="sec-GenericTreeModel.html" title="14.11. Le TreeModel générique">Section 14.11, « Le TreeModel générique »</a>.
+</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-ReferringToTreeModelRows"></a>14.2.3. Les références aux lignes du modèle</h3></div></div></div>
+<p>Avant de pouvoir manipuler des lignes de données dans un <code class="classname">TreeStore</code> ou un <code class="classname">ListStore</code>, il nous faut pouvoir désigner les lignes à traiter. PyGTK offre trois moyens de faire référence à des lignes de <code class="classname">TreeModel</code> : le chemin d'accès, le <code class="classname">TreeIter</code> et le <code class="classname">TreeRowReference</code>.
+</p>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-TreePaths"></a>14.2.3.1. Le chemin d'accès</h4></div></div></div>
+<p>Le chemin d'accès consiste en un entier, une chaine ou un tuple représentant l'emplacement d'une ligne dans le modèle. Une valeur entière indique le numéro d'une ligne dans un modèle en partant de 0 (le premier niveau). Par exemple, un chemin d'accès valant 4 indiquerait la cinquième ligne du modèle. Par comparaison, la même ligne serait désignée par "4" sous forme de chaine et par (4) sous forme de tuple. Si cela suffit effectivement à désigner toutes les lignes d'un <code class="classname">ListStore</code>, il nous reste encore à désigner les lignes enfants pour un <code class="classname">TreeStore</code>. On n'utilisera pour ce faire que les représentations sous forme de chaine ou de tuple.
+</p>
+<p>La profondeur de l'arborescence d'un <code class="classname">TreeStore</code> étant complètement arbitraire, la représentation sous forme de chaine indique le chemin d'accès en partant du premier niveau jusqu'à la ligne voulue, et en séparant chaque valeur par le caractère ":". La représentation par tuple suit le même principe, le tuple étant constitué d'une séquence d'entiers conduisant à la ligne voulue en partant du premier niveau. Par exemple, les chemins "0:2" (troisième ligne enfant de la première ligne) et "4:0:1" (deuxième ligne enfant du premier enfant de la cinquième ligne) sont des représentations valides sous la forme de chaines de caractères. Les équivalents en tuples de ces chemins d'accès sont respectivement (0, 2) et (4, 0, 1).
+</p>
+<p>Le chemin d'accès représente la seule possiblité de mapper une ligne d'un <code class="classname">TreeView</code> sur une ligne d'un <code class="classname">TreeModel</code>, car leurs chemins d'accès sont identiques. Le chemin d'accès pose toutefois quelques problèmes :
+
+
+</p>
+<div class="itemizedlist"><ul type="disc">
+<li>il peut désigner une ligne qui n'existe pas dans le <code class="classname">ListStore</code> ou dans le <code class="classname">TreeStore</code>.</li>
+<li>il peut pointer vers une autre ligne de données après l'insertion ou la suppression d'une ligne dans le <code class="classname">ListStore</code> ou dans le <code class="classname">TreeStore</code>.
+</li>
+</ul></div>
+<p>La représentation par tuple est utilisée par PyGTK lors du renvoi de chemins d'accès mais les trois formes sont acceptées indifféremment en entrée. La représentation par tuple est conseillée dans un souci de cohérence.</p>
+<p>On peut récupérer un chemin d'accès à partir d'un <code class="classname">TreeIter</code> à l'aide de la méthode <code class="methodname">get_path</code>() :</p>
+<pre class="programlisting">
+  chemin = modele.get_path(<strong class="parameter"><code>iter</code></strong>)
+</pre>
+<p>...où <em class="parameter"><code>iter</code></em> est un <code class="classname">TreeIter</code> pointant sur une ligne de modele et <em class="parameter"><code>chemin</code></em> le chemin d'accès de la ligne sous la forme d'un tuple.</p>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-TreeIters"></a>14.2.3.2. Les TreeIter</h4></div></div></div>
+<p>Un <code class="classname">TreeIter</code> est un objet offrant une référence temporaire à une ligne de <code class="classname">ListStore</code> ou de <code class="classname">TreeStore</code>. Si le contenu du modèle est modifié (généralement par l'insertion ou la suppressiono d'une ligne), le <code class="classname">TreeIter</code> peut devenir invalide. Un <code class="classname">TreeModel</code> supportant les <code class="classname">TreeIter</code> persistants devrait avoir le drapeau <code class="literal">gtk.TREE_MODEL_ITERS_PERSIST</code>. Une application peut vérifier la présence de ce drapeau avec la méthode <code class="methodname">get_flags</code>().
+</p>
+<p>Pour créer un <code class="classname">TreeIter</code>, on utilise une des méthodes du <code class="classname">TreeModel</code> qui sont applicables aux <code class="classname">TreeStore</code> comme aux <code class="classname">ListStore</code> :
+</p>
+<pre class="programlisting">
+  treeiter = modele.get_iter(<strong class="parameter"><code>path</code></strong>)
+</pre>
+<p>...où <em class="parameter"><code>treeiter</code></em> pointe sur la ligne indiquée par le chemin d'accès <em class="parameter"><code>path</code></em>. Si le chemin d'accès est invalide, l'exception ValueError est levée.</p>
+<pre class="programlisting">
+  treeiter = modele.get_iter_first()
+</pre>
+<p>...où <em class="parameter"><code>treeiter</code></em> est un <code class="classname">TreeIter</code> pointant sur la ligne située au chemin (0,). <em class="parameter"><code>treeiter</code></em> vaudra <code class="literal">None</code> si le modèle est vide.</p>
+<pre class="programlisting">
+  treeiter = modele.iter_next(<strong class="parameter"><code>iter</code></strong>)
+</pre>
+<p>...où <em class="parameter"><code>treeiter</code></em> est un <code class="classname">TreeIter</code> qui pointe sur la ligne suivante, sur le même niveau que le <code class="classname">TreeIter</code> indiqué par <em class="parameter"><code>iter</code></em>. <em class="parameter"><code>treeiter</code></em> vaudra <code class="literal">None</code> s'il n'y a pas de ligne suivante (et <em class="parameter"><code>iter</code></em> sera invalidé).</p>
+<p>Les méthodes qui suivent ne servent à recupérer un <code class="classname">TreeIter</code> qu'à partir d'un <code class="classname">TreeStore</code> :</p>
+<pre class="programlisting">
+  treeiter = treestore.iter_children(<strong class="parameter"><code>parent</code></strong>)
+</pre>
+<p>...où <em class="parameter"><code>treeiter</code></em> est un <code class="classname">TreeIter</code> pointant sur le premier enfant de la ligne indiquée par le <code class="classname">TreeIter</code> <em class="parameter"><code>parent</code></em>. <em class="parameter"><code>treeiter</code></em> vaudra <code class="literal">None</code> s'il n'y pas de ligne enfant.</p>
+<pre class="programlisting">
+  treeiter = treestore.iter_nth_child(<strong class="parameter"><code>parent</code></strong>, <strong class="parameter"><code>n</code></strong>)
+</pre>
+<p>...où <em class="parameter"><code>treeiter</code></em> est un <code class="classname">TreeIter</code> pointant sur la ligne enfant d'index <em class="parameter"><code>n</code></em> de la ligne désignée par le <code class="classname">TreeIter</code> <em class="parameter"><code>parent</code></em>. <em class="parameter"><code>parent</code></em> peut valoir <code class="literal">None</code> dans le cas où l'on souhaite récupérer un ligne de premier niveau. <em class="parameter"><code>treeiter</code></em> vaudra <code class="literal">None</code> s'il n'y a pas de ligne enfant.
+</p>
+<pre class="programlisting">
+  treeiter = treestore.iter_parent(<strong class="parameter"><code>child</code></strong>)
+</pre>
+<p>...où <em class="parameter"><code>treeiter</code></em> est un <code class="classname">TreeIter</code> pointant sur la ligne parent de la ligne désignée par le <code class="classname">TreeIter</code> <em class="parameter"><code>child</code></em>. <em class="parameter"><code>treeiter</code></em> vaudra <code class="literal">None</code> s'il n'y a pas de ligne enfant.
+</p>
+<p>La méthode <code class="methodname">get_path</code>() permet de récupérer un chemin d'accès à partir d'un <code class="classname">TreeIter</code> :</p>
+<pre class="programlisting">
+  chemin = modele.get_path(<strong class="parameter"><code>iter</code></strong>)
+</pre>
+<p>...où <em class="parameter"><code>iter</code></em> est un <code class="classname">Treeiter</code> pointant sur un ligne de modele et <em class="parameter"><code>chemin</code></em> le chemin d'accès de la ligne sous la fome d'un tuple.</p>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-TreeRowReferences"></a>14.2.3.3. Les TreeRowReference</h4></div></div></div>
+<p>Un <code class="classname">TreeRowReference</code> est une référence persistante à une ligne de données dans un modèle. Alors que le chemin d'accès (c'est-à-dire la situation) de la ligne (c'est-à-dire son emplacement) est susceptible de changer avec l'ajout ou la suppression d'autres lignes, le <code class="classname">TreeRowReference</code> pointera toujours sur la même ligne de données.
+</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>Les <code class="classname">TreeRowReference</code> ne sont disponibles dans PyGTK qu'à partir de la version 2.4.</p>
+</div>
+<p>On crée un <code class="classname">TreeRowReference</code> grâce à son constructeur :</p>
+<pre class="programlisting">
+  treerowref = TreeRowReference(<strong class="parameter"><code>model</code></strong>, <strong class="parameter"><code>path</code></strong>)
+</pre>
+<p>...où <em class="parameter"><code>model</code></em> est le <code class="classname">TreeModel</code> contenant la ligne et <em class="parameter"><code>path</code></em> le chemin d'accès vers la ligne à laquelle faire référence. Si <em class="parameter"><code>path</code></em> n'est pas un chemin d'accès valide pour <em class="parameter"><code>model</code></em>, <code class="literal">None</code> est renvoyé.
+</p>
+</div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-AddingStoreRows"></a>14.2.4. Ajouter des lignes</h3></div></div></div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-AddingListStoreRows"></a>14.2.4.1. Ajouter des lignes à un ListStore</h4></div></div></div>
+<p>Une fois que vous avez un <code class="classname">ListStore</code>, il vous faut lui ajouter des lignes de données. Plusieurs méthodes sont à votre disposition :</p>
+<pre class="programlisting">
+  iter = append(<strong class="parameter"><code>row</code></strong>=None)
+  iter = prepend(<strong class="parameter"><code>row</code></strong>=None)
+  iter = insert(<strong class="parameter"><code>position</code></strong>, <strong class="parameter"><code>row</code></strong>=None)
+  iter = insert_before(<strong class="parameter"><code>sibling</code></strong>, <strong class="parameter"><code>row</code></strong>=None)
+  iter = insert_after(<strong class="parameter"><code>sibling</code></strong>, <strong class="parameter"><code>row</code></strong>=None)
+</pre>
+<p>Chacune de ces méthodes insère une ligne à un emplacement implicite ou spécifié du 
+<code class="classname">ListStore</code>. Les méthodes <code class="methodname">append</code>() et <code class="methodname">prepend</code>() utilisent des emplacements implicites : respectivement après la dernière ligne et avant la première. La méthode <code class="methodname">insert</code>() attend un entier (le paramètre <em class="parameter"><code>position</code></em>) qui spécifie l'emplacement où insérer la ligne. les deux autres méthodes attendent un <code class="classname">TreeIter</code> (<em class="parameter"><code>sibling</code></em>) pointant sur un ligne du <code class="classname">ListStore</code>, afin d'insérer la ligne avant ou après.
+</p>
+<p>Le paramètre <em class="parameter"><code>row</code></em> indique les données devant être insérées dans la ligne après sa création. Si <em class="parameter"><code>row</code></em> vaut <code class="literal">None</code> ou n'est pas spécifié, la ligne créée sera vide. Si <em class="parameter"><code>row</code></em> est spécifié, il doit être un tuple ou une liste contenant autant d'éléments que le nombre de colonnes dans le <code class="classname">ListStore</code>. Les éléments doivent également respecter le type de données de leurs colonnes respectives dans le <code class="classname">ListStore</code>.
+</p>
+<p>Toutes ces méthodes renvoient un <code class="classname">TreeIter</code> pointant sur la ligne qui vient d'être insérée. La portion de code suivante illustre la création d'un <code class="classname">ListStore</code> et l'ajout de lignes de données :
+</p>
+<pre class="programlisting">
+  ...
+  liststore = gtk.ListStore(int, str, gtk.gdk.Color)
+  liststore.append([0,'red',colormap.alloc_color('red')])
+  liststore.append([1,'green',colormap.alloc_color('green')])
+  iter = liststore.insert(1, (2,'blue',colormap.alloc_color('blue')) )
+  iter = liststore.insert_after(iter, [3,'yellow',colormap.alloc_color('blue')])
+  ...
+</pre>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-AddingTreeStoreRows"></a>14.2.4.2. Ajouter des lignes à un TreeStore</h4></div></div></div>
+<p>L'ajout de lignes à un <code class="classname">TreeStore</code> est identique à l'ajout de lignes dans un <code class="classname">ListStore</code> à ceci près qu'il faut également indiquer une ligne parent (avec un <code class="classname">TreeIter</code>) à laquelle ajouter la nouvelle ligne. Les méthodes pour les <code class="classname">TreeStore</code> sont :
+</p>
+<pre class="programlisting">
+  iter = append(<strong class="parameter"><code>parent</code></strong>, <strong class="parameter"><code>row</code></strong>=None)
+  iter = prepend(<strong class="parameter"><code>parent</code></strong>, <strong class="parameter"><code>row</code></strong>=None)
+  iter = insert(<strong class="parameter"><code>parent</code></strong>, <strong class="parameter"><code>position</code></strong>, <strong class="parameter"><code>row</code></strong>=None)
+  iter = insert_before(<strong class="parameter"><code>parent</code></strong>, <strong class="parameter"><code>sibling</code></strong>, <strong class="parameter"><code>row</code></strong>=None)
+  iter = insert_after(<strong class="parameter"><code>parent</code></strong>, <strong class="parameter"><code>sibling</code></strong>, <strong class="parameter"><code>row</code></strong>=None)
+</pre>
+<p>Si <em class="parameter"><code>parent</code></em> vaut <code class="literal">None</code>, la ligne sera ajoutée au premier niveau.</p>
+<p>Chacune de ces méthodes insère une ligne à un emplacement implicite ou spécifié du <code class="classname">TreeStore</code>. Les méthodes <code class="methodname">append</code>() et <code class="methodname">prepend</code>() utilisent des emplacements implicites : respectivement après la dernière ligne enfant et avant la première. La méthode <code class="methodname">insert</code>() attend un entier (le paramètre <em class="parameter"><code>position</code></em>) qui spécifie l'emplacement où insérer la ligne enfant. Les deux autres méthodes attendent un <code class="classname">TreeIter</code> (<em class="parameter"><code>sibling</code></em>) pointant sur une ligne enfant du <code class="classname">TreeStore</code>, afin d'insérer la ligne avant ou après.
+</p>
+<p>Le paramètre <em class="parameter"><code>row</code></em> indique les données devant être insérées dans la ligne après sa création. Si <em class="parameter"><code>row</code></em> vaut <code class="literal">None</code> ou n'est pas spécifié, la ligne créée sera vide. Si <em class="parameter"><code>row</code></em> est spécifié, il doit être un tuple ou une liste contenant autant d'éléments que le nombre de colonnes dans le <code class="classname">TreeStore</code>. Les éléments doivent également respecter le type de données de leurs colonnes respectives dans le <code class="classname">TreeStore</code>.
+</p>
+<p>Toutes ces méthodes renvoient un <code class="classname">TreeIter</code> pointant sur la ligne qui vient d'être insérée. La portion de code suivante illustre la création d'un <code class="classname">TreeStore</code> et l'ajout de lignes de données :
+</p>
+<pre class="programlisting">
+  ...
+  pbdossier = gtk.gdk.pixbuf_from_file('dossier.xpm')
+  pbfichier = gtk.gdk.pixbuf_from_file('fichier.xpm')
+  treestore = gtk.TreeStore(int, str, gtk.gdk.Pixbuf)
+  iter0 = treestore.append(None, [1,'(0,)',pbdossier] )
+  treestore.insert(iter0, 0, [11,'(0,0)',pbfichier])
+  treestore.append(iter0, [12,'(0,1)',pbfichier])
+  iter1 = treestore.insert_after(None, iter0, [2,'(1,)',pbdossier])
+  treestore.insert(iter1, 0, [22,'(1,1)',pbfichier])
+  treestore.prepend(iter1, [21,'(1,0)',pbfichier])
+  ...
+</pre>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-LargeDataStores"></a>14.2.4.3. Modèles de grande taille</h4></div></div></div>
+<p>Lorsqu'un <code class="classname">ListStore</code> ou un <code class="classname">TreeStore</code> contient déjà un grand nombre de lignes, en ajouter de nouvelles peut se révéler très lent. Pour pallier cet inconvénient, on pourra suivre les conseils suivants :
+</p>
+<div class="itemizedlist"><ul type="disc">
+<li>Dans le cas de l'ajout d'un grand nombre de lignes, déconnecter le <code class="classname">TreeModel</code> de son <code class="classname">TreeView</code> (en utilisant la méthode <code class="methodname">set_model</code>() avec son paramètre <em class="parameter"><code>model</code></em> à <code class="literal">None</code>). Ceci afin d'éviter que le <code class="classname">TreeView</code> n'actualise l'affichage à chaque nouvelle ligne.</li>
+<li>Toujours dans le cas de l'ajout d'un grand nombre de lignes, désactiver le classement (en utilisant la méthode <code class="methodname">set_default_sort_func</code>() avec son paramètre <em class="parameter"><code>sort_func</code></em> à <code class="literal">None</code>).</li>
+<li>Limiter le nombre de <code class="classname">TreeRowReference</code> utilisés car ils actualisent leur chemin d'accès à chaque ajout/suppression.</li>
+<li>Fixez la propriété "fixed-height-mode" du <code class="classname">TreeView</code> sur <code class="literal">TRUE</code> pour faire en sorte que toutes les lignes aient la même hauteur et ainsi éviter le calcul individuel de la hauteur pour chaque ligne (disponible seulement à partir de PyGTK 2.4).</li>
+</ul></div>
+</div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-RemovingStoreRows"></a>14.2.5. Supprimer des lignes</h3></div></div></div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-RemovingListStoreRows"></a>14.2.5.1. Supprimer des lignes d'un ListStore</h4></div></div></div>
+<p>On peut supprimer une ligne de données d'un <code class="classname">ListStore</code> en faisant appel à la méthode <code class="methodname">remove</code>() :</p>
+<pre class="programlisting">
+  treeiter = liststore.remove(<strong class="parameter"><code>iter</code></strong>)
+</pre>
+<p>...où <em class="parameter"><code>iter</code></em> est un <code class="classname">TreeIter</code> pointant sur la ligne à supprimer. Le <code class="classname">TreeIter</code> renvoyé (<em class="parameter"><code>treeiter</code></em>) pointera sur la ligne suivante ou sera invalide si <em class="parameter"><code>iter</code></em> pointait sur la dernière ligne.</p>
+<p>La méthode <code class="methodname">clear</code>() supprimer toutes les lignes du <code class="classname">ListStore</code> :</p>
+<pre class="programlisting">
+  liststore.clear()
+</pre>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-RemovingTreeStoreRows"></a>14.2.5.2. Supprimer des lignes d'un TreeStore</h4></div></div></div>
+<p>Les méthodes servant à suprimer des lignes de données d'un <code class="classname">TreeStore</code> sont similaires à celles du <code class="classname">ListStore</code> :</p>
+<pre class="programlisting">
+  result = treestore.remove(<strong class="parameter"><code>iter</code></strong>)
+  treestore.clear()
+</pre>
+<p>...où <em class="parameter"><code>resultat</code></em> vaudra <code class="literal">TRUE</code> si la ligne a été supprimée et <em class="parameter"><code>iter</code></em> pointera sur la ligne valide suivante. Dans le cas contraire, <em class="parameter"><code>resultat</code></em> vaudra <code class="literal">FALSE</code> et <em class="parameter"><code>iter</code></em> sera invalidé.</p>
+</div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-ManagingRowData"></a>14.2.6. Manipuler les données des lignes</h3></div></div></div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-AccessingDataValues"></a>14.2.6.1. Définir et récupérer des valeurs</h4></div></div></div>
+<p>Les méthodes permettant d'accéder aux valeurs stockées dans un <code class="classname">ListStore</code> et dans un <code class="classname">TreeStore</code> ont le même format. Toutes les manipulations des données du modèle nécessitent un <code class="classname">TreeIter</code> pour indiquer la ligne sur laquelle on travaille. Une fois qu'on a un <code class="classname">TreeIter</code>, la méthode <code class="methodname">get_value</code>() permet de récupérer les valeurs d'une colonne dans une rangée donnée :
+</p>
+<pre class="programlisting">
+  valeur = modele.get_value(<strong class="parameter"><code>iter</code></strong>, <strong class="parameter"><code>column</code></strong>)
+</pre>
+<p>...où <em class="parameter"><code>iter</code></em> est un <code class="classname">TreeIter</code> pointant sur une ligne, <em class="parameter"><code>column</code></em> le numéro d'une colonne de <em class="parameter"><code>modele</code></em>, et valeur la <em class="parameter"><code>valeur</code></em> stockée à l'emplacement ligne-colonne.
+</p>
+<p>Pour récupérer les valeurs de plusieurs colonnes en un seul appel, on utilisera la méthode <code class="methodname">get</code>() :</p>
+<pre class="programlisting">
+  valeurs = modele.get(iter, column, ...)
+</pre>
+<p>...où <em class="parameter"><code>iter</code></em> est un <code class="classname">TreeIter</code> pointant sur une ligne, <em class="parameter"><code>column</code></em> le numéro d'une colonne de modele, et <em class="parameter"><code>...</code></em> représente d'éventuels numéros de colonne supplémentaires et <em class="parameter"><code>valeurs</code></em> est un tuple contenant les valeurs récupérées. Par exemple, pour récupérer les valeurs des colonnes 0 et 2 :
+</p>
+<pre class="programlisting">
+  val0, val2 = modele.get(iter, 0, 2)
+</pre>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>La méthode <code class="methodname">get</code>() n'est disponible qu'à partir de PyGTK 2.4</p>
+</div>
+<p>Pour définir la valeur d'une colonne unique, on utilise la méthode <code class="methodname">set_value</code>() :</p>
+<pre class="programlisting">
+  modele.set_value(<strong class="parameter"><code>iter</code></strong>, <strong class="parameter"><code>column</code></strong>, <strong class="parameter"><code>value</code></strong>)
+</pre>
+<p>...où <em class="parameter"><code>iter</code></em> (un <code class="classname">TreeIter</code>) et <em class="parameter"><code>column</code></em> (un entier) indiquent l'emplacement ligne-colonne dans <em class="parameter"><code>modele</code></em> et <em class="parameter"><code>column</code></em> est le numéro de la colonne où l'on veut stocker <em class="parameter"><code>value</code></em>. <em class="parameter"><code>value</code></em> doit être du même type de données que la colonne du <em class="parameter"><code>modele</code></em>.
+</p>
+<p>Pour définir les valeurs de plusieurs colonnes d'un même ligne à la fois, on utilisera la méthode <code class="methodname">set</code>() :</p>
+<pre class="programlisting">
+  modele.set(<em class="parameter"><code>iter</code></em>, <em class="parameter"><code>...</code></em>)
+</pre>
+<p>...où <em class="parameter"><code>iter</code></em> désigne la ligne du modèle et <em class="parameter"><code>...</code></em> est un ou plusieurs numéros de colonne - les paires de valeurs indiquant la colonne et la valeur à stocker. Par exemple, l'appel suivant :</p>
+<pre class="programlisting">
+  modele.set(iter, 0, 'Foo', 5, 'Bar', 1, 123)
+</pre>
+<p>...stockera 'Foo' dans la première colonne, 'Bar' dans la sixième et 123 dans la deuxième, tout ceci à la ligne de <em class="parameter"><code>modele</code></em> indiquée par <em class="parameter"><code>iter</code></em>.</p>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-RearrangingListStoreRows"></a>14.2.6.2. Réordonner les lignes d'un ListStore</h4></div></div></div>
+<p>Les lignes d'un <code class="classname">ListStore</code> peuvent être déplacées à l'aide des méthodes suivantes (disponibles à partir de PyGTK 2.2) :</p>
+<pre class="programlisting">
+  liststore.swap(<strong class="parameter"><code>a</code></strong>, <strong class="parameter"><code>b</code></strong>)
+  liststore.move_after(<strong class="parameter"><code>iter</code></strong>, <strong class="parameter"><code>position</code></strong>)
+  liststore.move_before(<strong class="parameter"><code>iter</code></strong>, <strong class="parameter"><code>position</code></strong>)
+</pre>
+<p><code class="methodname">swap</code>() intervertit les positions des lignes désignées par les <code class="classname">TreeIter</code> <em class="parameter"><code>a</code></em> et <em class="parameter"><code>b</code></em>. <code class="methodname">move_after</code>() et <code class="methodname">move_before</code>() déplacent la ligne désignée par le <code class="classname">TreeIter</code> <em class="parameter"><code>iter</code></em> après ou avant la ligne désignée par le <code class="classname">TreeIter</code> <em class="parameter"><code>position</code></em>. Si <em class="parameter"><code>position</code></em> vaut <code class="literal">None</code>, <code class="methodname">move_after</code>() placera la ligne au début du modèle et <code class="methodname">move_before</code>() à la fin.
+</p>
+<p>Pour réordonner complètement les lignes d'un <code class="classname">ListStore</code>, on fera appel à la méthode suivante :</p>
+<pre class="programlisting">
+  liststore.reorder(<em class="parameter"><code>nouvel_ordre</code></em>)
+</pre>
+<p>...où <em class="parameter"><code>nouvel_ordre</code></em> est une liste d'entiers représentant le nouvel ordre des lignes tel que :</p>
+<pre class="programlisting">
+  <em class="parameter"><code>nouvel_ordre</code></em>[nouvelleposition] = ancienneposition
+</pre>
+<p>Par exemple, si <em class="parameter"><code>liststore</code></em> contient quatre lignes :</p>
+<pre class="programlisting">
+  'un'
+  'deux'
+  'trois'
+  'quatre'
+</pre>
+<p>...l'appel suivant :</p>
+<pre class="programlisting">
+  liststore.reorder([2, 1, 3, 0])
+</pre>
+<p>...produirait le nouvel ordre suivant :</p>
+<pre class="programlisting">
+  'trois'
+  'deux'
+  'quatre'
+  'un'
+</pre>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>Ces méthodes réordonnent uniquement les <code class="classname">ListStore</code> non-ordonnés.</p>
+</div>
+<p>Pour réordonner les lignes avec PyGTK 2.0, il vous faudra les supprimer et les insérer avec les méthodes décrites aux <a href="sec-TreeModelInterface.html#sec-AddingStoreRows" title="14.2.4. Ajouter des lignes">Section 14.2.4, « Ajouter des lignes »</a> et <a href="sec-TreeModelInterface.html#sec-RemovingStoreRows" title="14.2.5. Supprimer des lignes">Section 14.2.5, « Supprimer des lignes »</a>.
+</p>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-RearrangingTreeStoreRows"></a>14.2.6.3. Réordonner les lignes d'un TreeStore</h4></div></div></div>
+<p>Les méthodes utilisées pour réordonner les lignes du <code class="classname">TreeStore</code> sont identiques à celles du <code class="classname">ListStore</code> à ceci près qu'elles n'affectent que les lignes enfants d'une ligne parent implicite - il n'est pas possible, par exemple, d'intervertir des lignes de parents différents :
+</p>
+<pre class="programlisting">
+  treestore.swap(<strong class="parameter"><code>a</code></strong>, <strong class="parameter"><code>b</code></strong>)
+  treestore.move_after(<strong class="parameter"><code>iter</code></strong>, <strong class="parameter"><code>position</code></strong>)
+  treestore.move_before(<strong class="parameter"><code>iter</code></strong>, <strong class="parameter"><code>position</code></strong>)
+</pre>
+<p><code class="methodname">swap</code>() intervertit les positions des lignes enfants désignées par les TreeIter <em class="parameter"><code>a</code></em> et <em class="parameter"><code>b</code></em>. <em class="parameter"><code>a</code></em> et <em class="parameter"><code>b</code></em> doivent avoir la même ligne parent. <code class="methodname">move_after</code>() et <code class="methodname">move_before</code>() déplacent la ligne désignée par le <code class="classname">TreeIter</code> <em class="parameter"><code>iter</code></em> après ou avant la ligne désignée par le <code class="classname">TreeIter</code> <em class="parameter"><code>position</code></em>. <em class="parameter"><code>iter</code></em> et <em class="parameter"><code>position</code></em> doivent avoir la même ligne parent. Si <em class="parameter"><code>position</code></em> vaut <code class="literal">None</code>, <code class="methodname">move_after</code>() placera la ligne au début du modèle et <code class="methodname">move_before</code>() à la fin.
+</p>
+<p>La méthode <code class="methodname">reorder</code>() attend un paramètre supplémentaire qui désigne la ligne parent dont les enfants doivent être réordonnés :</p>
+<pre class="programlisting">
+  treestore.reorder(<strong class="parameter"><code>parent</code></strong>, <strong class="parameter"><code>new_order</code></strong>)
+</pre>
+<p>...où <em class="parameter"><code>new_order</code></em> est une liste d'entiers représentant le nouvel ordre des lignes enfants pour la ligne parent spécifiée par le <code class="classname">TreeIter</code> <em class="parameter"><code>parent</code></em>, telle que :</p>
+<pre class="programlisting">
+  <em class="parameter"><code>new_order</code></em>[nouvelleposition] = ancienneposition
+</pre>
+<p>Par exemple, si <em class="parameter"><code>treestore</code></em> contient quatre lignes :</p>
+<pre class="programlisting">
+  'ligne parent'
+      'un'
+      'deux'
+      'trois'
+      'quatre'
+</pre>
+<p>... l'appel suivant</p>
+<pre class="programlisting">
+  treestore.reorder(parent, [2, 1, 3, 0])
+</pre>
+<p>...produirait le nouvel ordre suivant :</p>
+<pre class="programlisting">
+  'ligne parent'
+      'trois'
+      'deux'
+      'quatre'
+      'un'
+</pre>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>Ces méthodes réordonnent uniquement les <code class="classname">TreeStore</code> non-ordonnés.</p>
+</div>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-ManagingMultipleRows"></a>14.2.6.4. Manipuler plusieurs lignes</h4></div></div></div>
+<p>L'une des opérations les plus délicates avec les <code class="classname">ListStore</code> ou des <code class="classname">TreeStore</code> est la manipulation de plusieurs lignes, par exemple le déplacement de plusieurs lignes d'une ligne parent à une autre, ou encore la suppression de certaines lignes en fonction de critères spéciaux. La difficulté provient de la nécessité d'utiliser un <code class="classname">TreeIter</code> qui peut devenir invalide du fait même de l'opération. Pour les <code class="classname">ListStore</code> et les <code class="classname">TreeStore</code>, les <code class="classname">TreeIter</code> sont persistants (afin de s'en assurer, la présence du drapeau <code class="literal">gtk.TREE_MODEL_ITERS_PERSIST</code> peut être vérifiée avec la méthode <code class="methodname">get_flags</code>()). En revanche, les classes empilables <code class="classname">TreeModelFilter</code> et <code class="classname">TreeModelSort</code> ne disposent pas de <code class="classname">TreeIter</code> persistants.
+</p>
+<p>Comment déplacer toutes les lignes enfants d'une ligne vers une autre si les <code class="classname">TreeIter</code> ne résistent pas à l'opération ? Il faut :</p>
+<div class="itemizedlist"><ul type="disc">
+<li>itérer sur les enfants de la ligne parent</li>
+<li>récupérer les données de chaque ligne enfant</li>
+<li>supprimer chaque ligne enfant</li>
+<li>ajouter une nouvelle ligne, contenant les données de la ligne supprimée, à la liste de la nouvelle ligne parent</li>
+</ul></div>
+<p>On ne peut pas se fier à la méthode <code class="methodname">remove</code>() pour renvoyer un <code class="classname">TreeIter</code> valide. On demandera donc simplement l'iter de la première ligne enfant, et ce jusqu'à recevoir <code class="literal">None</code>. Voici un exemple de fonction pouvant déplacer des lignes enfants :</p>
+<pre class="programlisting">
+  def deplace_enfants(treestore, parent_source, parent_destination):
+    nb_colonnes = treestore.get_n_columns()
+    iter = treestore.iter_children(parent_source)
+    while iter:
+      valeurs = treestore.get(iter, *range(nb_colonnes))
+      treestore.remove(iter)
+      treestore.append(parent_destination, valeurs)
+      iter = treestore.iter_children(parent_source)
+    return
+</pre>
+<p>La fonction ci-dessus convient pour le simple cas où l'on souhaiterait déplacer tous les enfants d'une même ligne parent. Mais que faire si l'on veut supprimer toutes les lignes du <code class="classname">TreeStore</code> qui correspondent à un critère donné, comme la valeur de la première colonne par exemple ? Vous pensez peut-être à utiliser la méthode <code class="methodname">foreach</code>() pour itérer sur toutes les lignes et supprimer celles qui correspondent :
+</p>
+<pre class="programlisting">
+  modele.foreach(<em class="parameter"><code>fonction</code></em>, <em class="parameter"><code>donnees_utilisateur</code></em>)
+</pre>
+<p>...où <em class="parameter"><code>fonction</code></em> est une fonction à invoquer pour chaque ligne du modèle et dont la signature est :</p>
+<pre class="programlisting">
+  def fonction(<em class="parameter"><code>modele</code></em>, <em class="parameter"><code>chemin</code></em>, <em class="parameter"><code>iter</code></em>, <em class="parameter"><code>donnees_utilisateur</code></em>):
+</pre>
+<p>...où <em class="parameter"><code>modele</code></em> est le <code class="classname">TreeModel</code>, <em class="parameter"><code>chemin</code></em> le chemin d'accès à une ligne de <em class="parameter"><code>modele</code></em>, <em class="parameter"><code>iter</code></em> un <code class="classname">TreeIter</code> pointant sur <em class="parameter"><code>chemin</code></em> et <em class="parameter"><code>donnees_utilisateur</code></em> les données transmises. Si <em class="parameter"><code>fonction</code></em> renvoie <code class="literal">TRUE</code>, la méthode <code class="methodname">foreach</code>() cesse d'itérer et se termine.
+</p>
+<p>Le problème de ce procédé est que modifier le contenu du modèle pendant que la méthode <code class="methodname">foreach</code>() est en train d'itérer peut avoir des conséquences imprévisibles. Une meilleure stratégie serait d'utiliser la méthode <code class="methodname">foreach</code>() pour créer et sauvegarder des TreeRowReferences pointant sur les lignes à supprimer, puis de supprimer celles-ci une fois la méthode <code class="methodname">foreach</code>() terminée. Mais cela ne fonctionnerait pas avec PyGTK 2.0 et 2.2 dans lesquels les <code class="classname">TreeRowReference</code> n'existent pas.
+</p>
+<p>Si l'on souhaite couvrir toutes les variantes de PyGTK, on peut utiliser la méthode <code class="methodname">foreach</code>() pour rassembler les chemins d'accès des lignes à supprimer, puis les supprimer dans l'ordre inverse afin de préserver la validité des chemins d'accès. Par exemple, la portion de code suivante utilise cette stratégie :</p>
+<pre class="programlisting">
+  ...
+  # On verifie que la valeur de la premiere colonne &gt;= la valeur transmise
+  # donnees est un tuple contenant la valeur de comparaison ainsi qu'une liste
+  # pour sauvegarder les chemins d'acces
+  def rappel_compar_valeur(modele, chemin, iter, donnees):
+    if modele.get_value(iter, 0) &gt;= donnees[0]:
+      donnees[1].append(chemin)
+    return False     # foreach continue d'iterer
+
+  listechemins = []
+  treestore.foreach(rappel_compar_valeur, (10, listechemins))
+
+  # foreach fonctionne en profondeur d'abord (depth-first)
+  listechemins.reverse()
+  for chemin in listechemins:
+    treestore.remove(treestore.get_iter(chemin))
+  ...
+</pre>
+<p>Dans le cas où l'on voudrait rechercher la première ligne d'un <code class="classname">TreeStore</code> répondant à un critère donné, on pourrait effectuer soi-même l'itération :</p>
+<pre class="programlisting">
+   treestore = TreeStore(str)
+   ...
+   def fonction_compar(modele, iter, donnees):
+       colonne, critere = donnees # donnes est un tuple contenant un numero de colonne et un critere
+       valeur = modele.get_value(iter, colonne)
+       return valeur == critere
+   def recherche(modele, iter, fonction, donnees):
+       while iter:
+           if fonction(modele, iter, donnees):
+               return iter
+           resultat = recherche(modele, modele.iter_children(iter), fonction, donnees)
+           if resultat: return resultat
+           iter = modele.iter_next(iter)
+       return None
+   ...
+   compar_iter = recherche(treestore, treestore.iter_children(None), 
+                       fonction_compar, (0, 'bla'))
+</pre>
+<p>La fonction <code class="function">recherche</code>() effectue une itération en profondeur sur la ligne (spécifiée par <em class="parameter"><code>iter</code></em>), sur ses pairs et sur leurs enfants à la recherche d'une ligne dont une colonne correspond à la chaine de caractère donnéee.  La recherche prend fin lorsqu'une ligne est trouvée.</p>
+</div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-PythonProtocolSupport"></a>14.2.7. Support du protocole Python</h3></div></div></div>
+<p>Les classes qui implémentent l'interface <code class="classname">TreeModel</code> (<code class="classname">TreeStore</code>, <code class="classname">ListStore</code> et, à partir de PyGTK 2.4 <code class="classname">TreeModelSort</code> et <code class="classname">TreeModelFilter</code>) supportent les protocoles Python de mappage et d'itération. Le protocole d'itération permet d'utiliser la fonction <code class="function">iter</code>() de Python sur un <code class="classname">Treemodel</code> pour créer un itérateur qui servira à itérer sur ses lignes de premier niveau. Une possibilité plus utile est d'itérer en utilisant l'instruction <code class="literal">for</code> ou une création fonctionnelle de liste (list comprehension). Par exemple :
+</p>
+<pre class="programlisting">
+  ...
+  liststore = gtk.ListStore(str, str)
+  ...
+  # on ajoute des lignes au ListStore
+  ...
+  # une boucle for
+  for ligne in liststore:
+      # traitement individuel des lignes
+  ...
+  # creation fonctionnelle de liste renvoyant une liste des valeurs de la premiere colonne
+  valeurs = [ l[0] for l in liststore ]
+  ...
+</pre>
+<p>L'utilisation de <code class="literal">del</code> pour supprimer une ligne du modèle et l'extraction d'un <code class="classname">TreeModelRow</code>w PyGTK de ce dernier à partir d'une valeur-clé qui est un chemin d'accès ou un <code class="classname">TreeIter</code> sont d'autres parties supportées des protocoles de mappage. Par exemple, les instructions suivantes renvoient toutes la première ligne d'un <code class="classname">TreeModel</code> et la dernière instruction supprime le premier enfant de la première ligne :
+</p>
+<pre class="programlisting">
+  ligne = modele[0]
+  ligne = modele['0']
+  ligne = modele["0"]
+  ligne = modele[(0,)]
+  i = modele.get_iter(0)
+  ligne = modele[i]
+  del modele[(0,0)]
+</pre>
+<p>De plus, on peut fixer les valeurs d'une ligne existante comme ceci :</p>
+<pre class="programlisting">
+  ...
+  liststore = gtk.ListStore(str, int, object)
+  ...
+  liststore[0] = ['Bouton', 23, gtk.Button('Etiquette')]
+</pre>
+<p>Les objets <code class="classname">TreeModelRow</code> de PyGTK supportent les protocoles de séquence et d'itération Python. On peut faire en sorte qu'un itérateur itère sur les valeurs des colonnes de la ligne, ou bien utiliser l'instruction <code class="literal">for</code> ou encore une création fonctionnelle de liste. Les <code class="classname">TreeModelRow</code> utilisent le numéro de colonne comme l'index à partir duquel extraire une valeur. Par exemple :</p>
+<pre class="programlisting">
+  ...
+  liststore = gtk.ListStore(str, int)
+  liststore.append(['Chaine de caracteres', 514])
+  ...
+  ligne = liststore[0]
+  valeur1 = ligne[1]
+  valeur0 = liststore['0'][0]
+  for valeur in ligne:
+      print valeur
+  val0, val1 = ligne
+  ...
+</pre>
+<p>On utilise l'exemple de la section précédente pour itérer sur un <code class="classname">TreeStore</code> afin de localiser une ligne contenant une valeur particulière, le code devient :</p>
+<pre class="programlisting">
+   treestore = TreeStore(str)
+   ...
+   def fonction_compar(ligne, donnees):
+       colonne, critere = donnees # donnes est un tuple contenant un numero de colonne et un critere
+       return ligne[colonne] == critere
+   ...
+   def recherche(lignes, fonction, donnees):
+       if not lignes: return None
+       for ligne in lignes:
+           if fonction(ligne, donnees):
+               return ligne
+           resultat = recherche(ligne.iterchildren(), fonction, donnees)
+           if resultat: return resultat
+       return None
+   ...
+   compar_ligne = recherche(treestore, fonction_compar, (0, 'bla'))
+</pre>
+<p>On peut également définir une valeur dans une colonne existante ainsi :</p>
+<pre class="programlisting">
+  treestore[(1,0,1)][1] = 'abc'
+</pre>
+<p>Les <code class="classname">TreeModelRow</code> supportent aussi l'instruction <code class="literal">del</code> et la conversion en listes ou tuples avec les fonctions <code class="function">list</code>() et <code class="function">tuple</code>() de Python. Comme illustré dans l'exemple suivant, le <code class="classname">TreeModelRow</code> dispose de la méthode <code class="methodname">iterchildren</code>() qui renvoie un itérateur pour itérer sur les lignes enfants du <code class="classname">TreeModelRow</code>.
+</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-TreeModelSignals"></a>14.2.8. Les signaux du TreeModel</h3></div></div></div>
+<p>Votre application peut suivre les changements d'un <code class="classname">TreeModel</code> en se connectant aux signaux qu'il émet : "row-changed", "row-deleted", "row-inserted", "row-has-child-toggled" et "rows-reordered". Ces signaux sont utilisés par un <code class="classname">TreeView</code> pour suivre les changements dans son <code class="classname">TreeModel</code>.
+</p>
+<p>Dans une application connectée à ces signaux, l'appel de certaines méthodes peut déclencher l'émission de plusieurs signaux. Par exemple, l'appel pour ajouter à une ligne sa première ligne enfant :
+
+</p>
+<pre class="programlisting">
+  treestore.append(parent, ['qwe', 'asd', 123])
+</pre>
+<p>...déclenchera l'émission des signaux suivants :</p>
+<div class="itemizedlist"><ul type="disc">
+<li>"row-inserted" (<em class="parameter"><code>ligne-insérée</code></em>), du fait de l'insertion de la ligne (vide).</li>
+<li>"row-has-child-toggled" (<em class="parameter"><code>ligne-possède-enfant-modifié</code></em>), puisque <em class="parameter"><code>parent</code></em> n'avait pas de ligne enfant auparavant.</li>
+<li>"row-changed" (<em class="parameter"><code>ligne-modifiée</code></em>) car la valeur de la première colonne est fixée à 'qwe'.</li>
+<li>"row-changed" (<em class="parameter"><code>ligne-modifiée</code></em>) car la valeur de la deuxième colonne est fixée à 'asd'.</li>
+<li>"row-changed" (<em class="parameter"><code>ligne-modifiée</code></em>) car la valeur de la troisième colonne est fixée à 123.
+
+</li>
+</ul></div>
+<p>Notez qu'il n'est pas possible de récupérer l'ordre des lignes dans la fonction de rappel du signal "rows-reordered" car le nouvel ordre des lignes est transmis sous la forme d'un pointeur opaque vers un tableau d'entiers.</p>
+<p>On trouvera plus d'information sur les signaux des <code class="classname">TreeModel</code> dans le <a href="http://www.pygtk.org/pygtk2reference/class-gtktreemodel.html" target="_top">PyGTK
+Reference Manual</a>.</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-SortingTreeModelRows"></a>14.2.9. Ordonner les lignes d'un TreeModel</h3></div></div></div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-TreeSortable"></a>14.2.9.1. L'interface TreeSortable</h4></div></div></div>
+<p>Les objets <code class="classname">ListStore</code> et <code class="classname">TreeStore</code> implémentent l'interface <code class="classname">TreeSortable</code> qui fournit des méthodes pour contrôler le classement des lignes de <code class="classname">TreeModel</code>. L'élément clé de l'interface est l'identificateur de classement de colonne, une valeur entière arbitraire faisant référence à une fonction de comparaison de classement et à des données utilisateur associées. Un identificateur de classement de colonne doit être supérieur ou égal à zéro. On en crée un avec la méthode suivante :
+</p>
+<pre class="programlisting">
+  treesortable.set_sort_func(<em class="parameter"><code>id_class_colonne</code></em>, <em class="parameter"><code>fonction_classement</code></em>, <em class="parameter"><code>donnees_utilisateur</code></em>=<code class="literal">None</code>)
+</pre>
+<p>...où <em class="parameter"><code>id_class_colonne</code></em> est une valeur entière assignée par le programmeur, <em class="parameter"><code>fonction_classement</code></em> une fonction ou une méthode utilisée pour comparer des lignes et <em class="parameter"><code>donnees_utilisateur</code></em> des données contextuelles. <em class="parameter"><code>fonction_classement</code></em> a la signature suivante :</p>
+<pre class="programlisting">
+  def fonction_classement(modele, iter1, iter2, donnees)
+  def methode_classement(self, modele, iter1, iter2, donnees)
+</pre>
+<p>... où <em class="parameter"><code>modele</code></em> est le <code class="classname">TreeModel</code> contenant les lignes sur lesquelles pointent les <code class="classname">TreeIter</code> <em class="parameter"><code>iter1</code></em> et <em class="parameter"><code>iter2</code></em>, et où <em class="parameter"><code>donnees</code></em> est <em class="parameter"><code>donnees_utilisateur</code></em>. <em class="parameter"><code>fonction_classement</code></em> doit renvoyer -1 si la ligne <em class="parameter"><code>iter1</code></em> précède la ligne <em class="parameter"><code>iter2</code></em>, 0 si les lignes sont égales, et 1 si la ligne <em class="parameter"><code>iter2</code></em> précède la ligne <em class="parameter"><code>iter1</code></em>. La fonction de comparaison de classement devrait toujours considérer que l'ordre de classement est <code class="literal">gtk.SORT_ASCENDING</code> puisque l'ordre de classement sera pris en compte par les implémentations <code class="classname">TreeSortable</code>.
+</p>
+<p>La même fonction de comparaison de classement peut être utilisée pour plusieurs identificateurs de classement de colonne en variant les données utilisateur afin de fournir des informations contextuelles. Par exemple, les <em class="parameter"><code>donnees_utilisateur</code></em> spécifiées dans la méthode <code class="methodname">set_sort_func</code>() pourraient être l'index de la colonne d'où extraire les données de classement..
+</p>
+<p>Une fois qu'un identificateur de classement de colonne est créé, un modèle peut s'en servir pour le classement en appelant la méthode :</p>
+<pre class="programlisting">
+  treesortable.set_sort_column_id(<strong class="parameter"><code>sort_column_id</code></strong>, <strong class="parameter"><code>order</code></strong>)
+</pre>
+<p>...où <em class="parameter"><code>order</code></em> est l'ordre de classement ascendant
+<code class="literal">gtk.SORT_ASCENDING</code> ou descendant <code class="literal">gtk.SORT_DESCENDING</code>.</p>
+<p>Un identificateur de classement de colonne valant -1 signifie que le modèle devrait utiliser la fonction de classement par défaut qui se définit avec la méthode suivante :</p>
+<pre class="programlisting">
+  treesortable.set_default_sort_func(<em class="parameter"><code>fonction_classement</code></em>, <em class="parameter"><code>donnees_utilisateur</code></em>=<code class="literal">None</code>)
+</pre>
+<p>On peut vérifier si un modèle a une fonction de classement par défaut avec la méthode :</p>
+<pre class="programlisting">
+  resultat = treesortable.has_default_sort_func()
+</pre>
+<p>...qui renvoie <code class="literal">TRUE</code> si une fonction de classement par défaut a été définie.</p>
+<p>Une fois qu'un identificateur de classement de colonne a été appliqué sur un <code class="classname">TreeModel</code> implémentant l'interface <code class="classname">TreeSortable</code>, il ne peut plus revenir à son état original non classé. On peut changer la fonction de classement ou utiliser une fonction de classement par défaut mais on ne peut pas retirer au <code class="classname">TreeModel</code> la fonction de classement.
+</p>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-SortingStores"></a>14.2.9.2. Classement dans les ListStore et les TreeStore</h4></div></div></div>
+<p>Lorsqu'un objet <code class="classname">ListStore</code> ou <code class="classname">TreeStore</code> est créé, il définit automatiquement des identificateurs de classement de colonne correspondant aux colonnes du modèle en utilisant le numéro de l'index de la colonne. Par exemple, un <code class="classname">ListStore</code> avec trois colonnes aurait trois identificateurs de classement de colonnes (0, 1, 2) créés automatiquement. Ces identificateurs de classement de colonne sont associés avec une fonction interne de comparaison de classement qui gère les types fondamentaux :
+</p>
+<div class="itemizedlist"><ul type="disc">
+<li>'gboolean'</li>
+<li>str</li>
+<li>int</li>
+<li>long</li>
+<li>float</li>
+</ul></div>
+<p>Initialement, un <code class="classname">ListStore</code> ou un <code class="classname">TreeStore</code> sont définis avec un identificateur de classement de colonne de -2 qui indique qu'aucune fonction de classement n'est utilisée et que le modèle est non-classé. Une fois défini un identificateur de classement de colonne sur un <code class="classname">ListStore</code> ou sur un <code class="classname">TreeStore</code>, il est impossible de le ramener à -2.</p>
+<p>Si l'on souhaite maintenir les identificateurs de classement de colonne par défaut, on peut définir un identificateur de classement de colonne bien en-dehors de l'intervalle du nombre de colonnes, comme 1000 ou plus. Puis l'on peut alterner entre la fonction de classement par défaut et les fonctions de classement de l'application selon les besoins.</p>
+</div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch-TreeViewWidget.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-TreeViewWidget.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-TreeViews.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapitre 14. Le widget TreeView </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> 14.3. Les TreeView</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

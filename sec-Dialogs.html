@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+<title>9.5. Les boites de dialogue</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,dialogue">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
+<link rel="previous" href="sec-ProgressBars.html" title="9.4. La barre de progression">
+<link rel="next" href="sec-Images.html" title="9.6. Les images">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici&nbsp;: 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">9.5. Les boites de dialogue</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-ProgressBars.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 9. Widgets divers</th>
+<td width="20%" align="right"><a accesskey="n" href="sec-Images.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage">
+<div><h2 class="title" style="clear: both"><a name="BoitesDialogue"></a>9.5. Les boites de dialogue</h2></div></div>
+
+<p>Les boites de dialogue sont tr&egrave;s simples, et ne sont en d&eacute;finitive que 
+des fen&ecirc;tres dans lesquelles quelques widgets sont pr&eacute;-plac&eacute;s. 
+Un <tt>gtk.Dialog</tt> cr&eacute;e une fen&ecirc;tre, place dans sa partie sup&eacute;rieure 
+une boite horizontale contenant un s&eacute;parateur, et place &agrave; sa suite une boite 
+horizontale qui sera la &quot;zone d'action&quot; (<i>action area</i>).</p>
+<p>Les boites de dialogues peuvent servir pour des messages &agrave; destination de 
+l'utilisateur, et pour d'autres t&acirc;ches similaires. Il s'agit vraiment d'un widget 
+basique, qui ne poss&egrave;de en lui-m&ecirc;me qu'une fonction&nbsp;:</p>
+
+<pre class="programlisting">
+  boitedialogue = gtk.Dialog(<b><tt>title</tt></b>=None, <b><tt>parent</tt></b>=None, <b><tt>flags</tt></b>=0, <b><tt>buttons</tt></b>=None)
+</pre>
+
+<p>L'argument <i><tt>title</tt></i> (titre) attend le texte &agrave; utiliser dans la 
+barre de titre, <i><tt>parent</tt></i> repr&eacute;sente la fen&ecirc;tre principale de 
+l'application, et <i><tt>flags</tt></i> (drapeaux) d&eacute;finit plusieurs modes 
+d'op&eacute;ration pour la boite de dialogue&nbsp;:</p>
+
+<pre class="programlisting">
+  DIALOG_MODAL			# rend la boite de dialogue modale
+  DIALOG_DESTROY_WITH_PARENT	# d&eacute;truit la boite de dialogue quand son parent est d&eacute;truit
+  DIALOG_NO_SEPARATOR		# pas de s&eacute;parateur entre la boite verticale et la zone d'action
+</pre>
+
+<p>L'argument <i><tt>buttons</tt></i> (boutons) est un tuple contenant pour chaque 
+bouton une couple texte-r&eacute;ponse. Tous les arguments ont des valeurs par d&eacute;faut 
+et peuvent &ecirc;tre sp&eacute;cifi&eacute;s avec des mots-cl&eacute;s.</p>
+<p>Vous savez maintenant cr&eacute;er une boite de dialogue. Il ne vous reste plus 
+qu'&agrave; vous en servir. Vous pourriez placer un bouton dans la zone d'action&nbsp;:</p>
+
+<pre class="programlisting">
+  bouton = ...
+  boitedialogue.action_area.pack_start(bouton, True, True, 0)
+  bouton.show()
+</pre>
+
+<p>Vous pourriez &eacute;galement enrichir votre boite verticale d'une &eacute;tiquette, 
+par exemple. Essayer quelque chose dans ce style&nbsp;:</p>
+
+<pre class="programlisting">
+  etiquette = gtk.Label(&quot;Cool, la boite de dialogue&quot;)
+  boitedialogue.vbox.pack_start(etiquette, True, True, 0)
+  etiquette.show()
+</pre>
+
+<p>En guise d'exemple d'utilisation de la boite de dialogue, vous pourriez mettre 
+deux boutons dans la zone d'action, un bouton Annuler et un bouton OK, puis placer 
+une &eacute;tiquette dans la boite verticale qui interrogerait l'utilisateur ou 
+l'informerait d'une erreur. Vous connecteriez ensuite un signal diff&eacute;rent 
+&agrave; chacun des boutons et feriez en sorte que l'op&eacute;ration choisie soit 
+ex&eacute;cut&eacute;e.</p>
+<p>Si la simple configuration par d&eacute;faut (boites verticale et horizontale 
+dans les deux zones de la fen&ecirc;tre) ne vous offre pas assez de possibilit&eacute;s 
+pour ce que vous souhaitez faire dans votre application, rien ne vous emp&ecirc;che de 
+placer un autre widget de placement dans les boites. Il est tout &agrave; fait possible, 
+par exemple, de placer un tableau dans la boite verticale.</p></div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="sec-ProgressBars.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="sec-Images.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">9.4. La barre de progression</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">9.6. Les images</td>
+</tr></table>
+</div>
+
+</body>
+
+</html>

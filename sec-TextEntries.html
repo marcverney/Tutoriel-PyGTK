@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+<title>9.9. Les champs de saisie</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,champ de saisie">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
+<link rel="previous" href="sec-Statusbars.html" title="9.8. La barre d'&eacute;tat">
+<link rel="next" href="sec-SpinButtons.html" title="9.10. Les boite d'incr&eacute;ment">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici&nbsp;: 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">9.9. Les champs de saisie</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-Statusbars.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 9. Widgets divers</th>
+<td width="20%" align="right"><a accesskey="n" href="sec-SpinButtons.html">Suiv.</a></td></tr>
+</table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage"><div>
+<h2 class="title" style="clear: both"><a name="SaisieTexte"></a>9.9. Les champs de saisie</h2>
+</div></div>
+
+<p>Le widget <tt>gtk.Entry</tt> permet la saisie et l'affichage de texte dans une boite, 
+sur une seule ligne. Le texte peut &ecirc;tre d&eacute;fini en appelant diff&eacute;rentes 
+m&eacute;thodes, lesquelles peuvent soit remplacer int&eacute;gralement le contenu courant 
+de la boite, soit y ajouter du texte avant ou apr&egrave;s.</p>
+<p>La fonction de cr&eacute;ation d'un champ de saisie est la suivante&nbsp;:</p>
+
+<pre class="programlisting">
+  champsaisie = gtk.Entry(<b><tt>max</tt></b>=0)
+</pre>
+
+<p>Si l'argument <i><tt>max</tt></i> est sp&eacute;cifi&eacute;, il fixe une limite de 
+longueur au texte du champ de saisie. S'il vaut 0, aucune limite n'est fix&eacute;e.</p>
+<p>La longueur maximale du champ de saisie peut &ecirc;tre modifi&eacute;e avec la 
+m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  champsaisie.set_max_length(<b><tt>max</tt></b>)
+</pre>
+
+<p>La m&eacute;thode qui suit modifie le texte pr&eacute;sent dans le <tt>gtk.Entry</tt>.</p>
+
+<pre class="programlisting">
+  champsaisie.set_text(<b><tt>text</tt></b>)
+</pre>
+
+<p>La m&eacute;thode <tt>set_text</tt>() remplace le contenu courant du champ de saisie 
+par <i><tt>text</tt></i>. Notez que la classe <tt>gtk.Entry</tt> impl&eacute;mente 
+l'interface <tt>Editable</tt> (oui, <tt>gobject</tt> supporte les interfaces &quot;&agrave; 
+la Java&quot;) qui contient davantage de fonctions pour manipuler le contenu du champ de 
+saisie. Par exemple, la m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  champsaisie.insert_text(<b><tt>text</tt></b>, <b><tt>position</tt></b>=0)
+</pre>
+
+<p>... ins&egrave;re <i><tt>text</tt></i> dans <i><tt>champsaisie</i></tt>, &agrave; 
+la position sp&eacute;cifi&eacute;e.</p>
+<p>On peut r&eacute;cup&eacute;rer le contenu du <tt>gtk.Entry</tt> en appelant 
+la m&eacute;thode suivante. Cela nous servira pour notre fonction de rappel, plus bas.</p>
+
+<pre class="programlisting">
+  texte = champsaisie.get_text()
+</pre>
+
+<p>Si l'on ne souhaite pas que le contenu du <tt>gtk.Entry</tt> puisse &ecirc;tre 
+modifi&eacute; en tapant directement du texte dedans, on peut changer son 
+&eacute;ditabilit&eacute;.</p>
+
+<pre class="programlisting">
+  champsaisie.set_editable(<b><tt>is_editable</tt></b>)
+</pre>
+
+<p>La m&eacute;thode ci-dessus permet de basculer le mode d'&eacute;ditabilit&eacute; 
+du champ de saisie en donnant &agrave; l'argument <i><tt>is_editable</tt></i> 
+(litt&eacute;ralement&nbsp;: &quot;est &eacute;ditable&quot;) la valeur TRUE (vrai) ou 
+FALSE (faux).</p>
+<p>Si l'on utilise le <tt>gtk.Entry</tt> dans un contexte o&ugrave; le texte saisi ne 
+doit pas &ecirc;tre visible, par exemple pour un mot de passe, on peut faire appel &agrave; 
+la m&eacute;thode suivante (qui attend &eacute;galement un drapeau bool&eacute;en)&nbsp;:</p>
+
+<pre class="programlisting">
+  champsaisie.set_visibility(<b><tt>visible</tt></b>)
+</pre>
+
+<p>La m&eacute;thode qui suit permet de d&eacute;finir une partie du texte comme 
+s&eacute;lectionn&eacute;e, de <i><tt>start</tt></i> (d&eacute;but) &agrave; 
+<i><tt>end</tt></i> (fin). Cette option est principalement utilis&eacute;e dans 
+les cas o&ugrave; l'on fixe un texte par d&eacute;faut pour le champ de saisie et que 
+l'on souhaite que l'utilisateur puisse le supprimer facilement.</p>
+
+<pre class="programlisting">
+  champsaisie.select_region(<b><tt>start</tt></b>, <b><tt>end</tt></b>)
+</pre>
+
+<p>Si l'on veut &ecirc;tre pr&eacute;venu lorsque l'utilisateur a saisi du texte, on peut 
+se connecter aux signaux &quot;<tt>activate</tt>&quot; ou &quot;<tt>changed</tt>&quot;. 
+<tt>activate</tt> (activ&eacute;) est &eacute;mis lorsque l'utilisateur appuie sur la 
+touche <tt>Entr&eacute;e</tt> dans le widget <tt>gtk.Entry</tt>, et <tt>changed</tt> 
+(chang&eacute;) lorsque un changement est apport&eacute; au texte (par exemple pour 
+chaque caract&egrave;re ajout&eacute; ou supprim&eacute;).</p>
+<p>Le programme d'exemple <a href="exemples/champsaisie.py" target="_top">
+<b>champsaisie.py</b></a> illustre l'utilisation d'un widget <tt>gtk.Entry</tt>. 
+La <a href="sec-TextEntries.html#FigChampSaisie" 
+title="Figure 9.10. Exemple de champ de saisie">Figure 9.10</a> montre ce que l'on 
+obtient en ex&eacute;cutant le programme&nbsp;:</p>
+
+<div class="figure"><a name="FigChampSaisie"></a>
+<p class="title"><b>Figure 9.10. Exemple de champ de saisie</b></p>
+<div class="mediaobject" align="center">
+<img src="figures/champsaisie.png" align="middle" alt="exemple champ de saisie">
+</div></div>
+
+<p>Voici le code source de <a href="exemples/champsaisie.py" target="_top">
+<b>champsaisie.py</b></a>&nbsp;:</p>
+
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2   
+     3   # exemple champsaisie.py
+     4   
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8   
+     9   class ExempleSaisieTexte:
+    10       def fct_rappel_entree(self, widget, champsaisie):
+    11           textesaisi = champsaisie.get_text()
+    12           print "Contenu de la champ de saisie : %s\n" % textesaisi
+    13   
+    14       def champsaisie_editable(self, casecocher, champsaisie):
+    15           champsaisie.set_editable(casecocher.get_active())
+    16   
+    17       def champsaisie_visible(self, casecocher, champsaisie):
+    18           champsaisie.set_visibility(casecocher.get_active())
+    19   
+    20       def __init__(self):
+    21           # Creation d'une nouvelle fenetre
+    22           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    23           fenetre.set_size_request(200, 100)
+    24           fenetre.set_title("Saisie de texte GTK")
+    25           fenetre.connect("delete_event", gtk.main_quit)
+    26   
+    27           boite_v = gtk.VBox(False, 0)
+    28           fenetre.add(boite_v)
+    29           boite_v.show()
+    30   
+    31           champsaisie = gtk.Entry()
+    32           champsaisie.set_max_length(50)
+    33           champsaisie.connect("activate", self.fct_rappel_entree, champsaisie)
+    34           champsaisie.set_text("salut")
+    35           champsaisie.insert_text(" tout le monde", len(champsaisie.get_text()))
+    36           champsaisie.select_region(0, len(champsaisie.get_text()))
+    37           boite_v.pack_start(champsaisie, True, True, 0)
+    38           champsaisie.show()
+    39   
+    40           boite_h = gtk.HBox(False, 0)
+    41           boite_v.add(boite_h)
+    42           boite_h.show()
+    43                                     
+    44           casecocher = gtk.CheckButton("Editable")
+    45           boite_h.pack_start(casecocher, True, True, 0)
+    46           casecocher.connect("toggled", self.champsaisie_editable, champsaisie)
+    47           casecocher.set_active(True)
+    48           casecocher.show()
+    49       
+    50           casecocher = gtk.CheckButton("Visible")
+    51           boite_h.pack_start(casecocher, True, True, 0)
+    52           casecocher.connect("toggled", self.champsaisie_visible, champsaisie)
+    53           casecocher.set_active(True)
+    54           casecocher.show()
+    55                                      
+    56           bouton = gtk.Button(stock=gtk.STOCK_CLOSE)
+    57           bouton.connect_object("clicked", gtk.main_quit, fenetre)
+    58           boite_v.pack_start(bouton, True, True, 0)
+    59           bouton.set_flags(gtk.CAN_DEFAULT)
+    60           bouton.grab_default()
+    61           bouton.show()
+    62           fenetre.show()
+    63   
+    64   def main():
+    65       gtk.main()
+    66       return 0
+    67   
+    68   if __name__ == "__main__":
+    69       ExempleSaisieTexte()
+    70       main()
+</pre>
+</div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="sec-Statusbars.html">Pr&eacute;c</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="sec-SpinButtons.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">9.8. La barre d'&eacute;tat</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">9.10. Les boites d'incr&eacute;ment</td>
+</tr></table></div>
+
+</body>
+
+</html>

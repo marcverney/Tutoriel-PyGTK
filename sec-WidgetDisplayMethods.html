@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>18.2. Méthodes d'affichage des widgets</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-SettingWidgetAttributes.html" title="Chapitre 18. Définir les attributs des widgets">
+<link rel="prev" href="ch-SettingWidgetAttributes.html" title="Chapitre 18. Définir les attributs des widgets">
+<link rel="next" href="sec-WidgetAccelerators.html" title="18.3. Accélérateurs pour les widgets">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">18.2. Méthodes d'affichage des widgets</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch-SettingWidgetAttributes.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 18. Définir les attributs des widgets</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-WidgetAccelerators.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-WidgetDisplayMethods"></a>18.2. Méthodes d'affichage des widgets</h2></div></div></div>
+<p>Les méthodes :</p>
+<pre class="programlisting">
+  widget.show()
+  
+  widget.show_all()
+  
+  widget.hide()
+  
+  widget.hide_all()
+  
+  widget.realize()
+  
+  widget.unrealize()
+  
+  widget.map()
+  
+  widget.unmap()
+</pre>
+<p>gérent l'affichage du <em class="parameter"><code>widget</code></em>.</p>
+<p>La méthode <code class="methodname">show</code>() permet l'affichage 
+du widget en utilisant les méthodes <code class="methodname">realize</code>() 
+et <code class="methodname">map</code>() methods.</p>
+<p>La méthode <code class="methodname">hide</code>() permet de plus afficher  
+le widget et de le "démapper", si nécessaire, avec 
+la méthode <code class="methodname">unmap</code>().</p>
+<p>Les méthodes <code class="methodname">show_all</code>() 
+et <code class="methodname">hide_all</code>() permettent d'afficher ou de cacher 
+un widget et tous ses enfants.</p>
+<p>La méthode <code class="methodname">realize</code>() permet de réserver 
+des ressources pour un widget, y compris pour sa propre fenêtre.</p>
+<p>La méthode <code class="methodname">unrealize</code>() libère la fenêtre 
+du widget et des autres ressources qui lui sont associées. Elle a aussi pour 
+effet de cacher et "démapper" le widget.</p>
+<p>La méthode <code class="methodname">map</code>() permet de réserver de l'espace 
+pour le widget sur l'écran. Ceci s'applique seulement aux widgets qui 
+doivent être gérés par le gestionnaire de fenêtre. Mapper un widget 
+permet aussi de le "réaliser" si cela est nécessaire.</p>
+<p>La méthode <code class="methodname">unmap</code>() retire un widget 
+de l'affichage et peut aussi le cacher si nécessaire.</p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch-SettingWidgetAttributes.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-SettingWidgetAttributes.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-WidgetAccelerators.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapitre 18. Définir les attributs des widgets </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> 18.3. Accélérateurs pour les widgets</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

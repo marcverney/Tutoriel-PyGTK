@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+<title>13.6. TextTag et TextTagTable&nbsp;: les balises de texte</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,textview">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-TextViewWidget.html" title="Chapitre 13. Le widget TextView">
+<link rel="previous" href="sec-TextMarks.html" title="13.5. TextMark&nbsp;: les marques de texte">
+<link rel="next" href="sec-TextViewExample.html" title="13.7. Un exemple de TextView">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici&nbsp;: 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">13.6. TextTag et TextTagTable&nbsp;: les balises de texte</th></tr>
+<tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-TextMarks.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 13. Le widget TextView</th>
+<td width="20%" align="right"><a accesskey="n" href="sec-TextViewExample.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage">
+<div><H2 class="title" style="CLEAR: both"><A name="TextTagTextTagTable"></A>13.6. TextTag et TextTagTable&nbsp;: les balises de texte</H2>
+</div></div>
+<p>Les <tt>TextTag</tt> (balises de texte) sp&eacute;cifient les attributs qui peuvent &ecirc;tre appliqu&eacute;s &agrave; une portion du texte d'un <A title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>. Chaque <A title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> a une TextTagTable (table des balises de texte) qui contient les balises pouvant &ecirc;tre appliqu&eacute;es &agrave; l'int&eacute;rieur du <A title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>. Les TextTagTables peuvent &ecirc;tre partag&eacute;es par plusieurs <A title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>, offrant par l&agrave; une meilleure homog&eacute;n&eacute;it&eacute; des styles de texte.</p>
+
+<div class="sect2"><div class="titlepage">
+<div><h3 class="title"><A name="TextTag"></A>13.6.1. Les TextTag</h3></div></div>
+
+<p>Les <tt>TextTag</tt> peuvent porter un nom ou bien &ecirc;tre anonymes. On cr&eacute;e une <tt>TextTag</tt>  en utilisant la fonction&nbsp;:</p>
+
+<pre class="programlisting">
+  balise = gtk.TextTag(<b><tt>name</tt></b>=None)
+</pre>
+
+<p>Si aucun <i><tt>name</tt></i> (nom) n'est donn&eacute; ou s'il vaut <tt>None</tt>, la balise sera anonyme. Il peut &ecirc;tre plus commode de cr&eacute;er des <tt>TextTag</tt> avec la m&eacute;thode de <A title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> <tt>create_tag</tt>(), celle-ci permettant aussi de sp&eacute;cifier les attributs de la <i><tt>balise</tt></i> et de l'ajouter &agrave; la table des balises du buffer (cf. la section <A title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>)</p>
+<p>Les attributs que peut porter une <tt>TextTag</tt> sont&nbsp;:</p>
+
+<div class="informaltable">
+<table width="100%" border="1">
+<tr><td>name</td><td>Lecture / &Eacute;criture</td><td>Nom de la balise de texte. <tt>None</tt> si anonyme.</td></tr>
+<tr><td>background</td><td>&Eacute;criture</td><td>Couleur de l'arri&egrave;re-plan donn&eacute;e sous forme de chaine de caract&egrave;res</td></tr>
+<tr><td>foreground</td><td>&Eacute;criture</td><td>Couleur du premier plan donn&eacute;e sous forme de chaine de caract&egrave;res</td></tr>
+<tr><td>background_gdk</td><td>Lecture / &Eacute;criture</td><td>Couleur de l'arri&egrave;re-plan donn&eacute;e sous forme de GdkColor</td></tr>
+<tr><td>foreground_gdk</td><td>Lecture / &Eacute;criture</td><td>Couleur du premier plan donn&eacute;e sous forme de GdkColor</td></tr>
+<tr><td>background_stipple</td><td>Lecture / &Eacute;criture</td><td>Bitmap &agrave; utiliser comme masque lorsque l'on dessine le texte d'arri&egrave;re-plan</td></tr>
+<tr><td>foreground_stipple</td><td>Lecture / &Eacute;criture</td><td>Bitmap &agrave; utiliser comme masque lorsque l'on dessine le texte du premier plan</td></tr>
+<tr><td>font</td><td>Lecture / &Eacute;criture</td><td>Description de la police donn&eacute;e sous forme de chaine de caract&egrave;res. Ex&nbsp;: <tt>"Sans Italic 12"</tt></td></tr>
+<tr><td>font_desc</td><td>Lecture / &Eacute;criture</td><td>Description de la police donn&eacute;e sous forme de PangoFontDescription</td></tr>
+<tr><td>family</td><td>Lecture / &Eacute;criture</td><td>Nom de la famille de la police. Ex&nbsp;: Sans, Helvetica, Times, Monospace</td></tr>
+<tr><td>style</td><td>Lecture / &Eacute;criture</td><td>Style de la police donn&eacute; sous forme de PangoStyle. Ex&nbsp;:  <tt>pango.STYLE_ITALIC</tt></td></tr>
+<tr><td>variant</td><td>Lecture / &Eacute;criture</td><td>Variante de police donn&eacute; sous forme de PangoVariant. Ex&nbsp;: <tt>pango.VARIANT_SMALL_CAPS</tt></td></tr>
+<tr><td>weight</td><td>Lecture / &Eacute;criture</td><td>&Eacute;paisseur de police donn&eacute;e sous forme d'entier (voir aussi les valeurs pr&eacute;d&eacute;finies dans PangoWeight, ex&nbsp;: <tt>pango.WEIGHT_BOLD</tt>)</td></tr>
+<tr><td>stretch</td><td>Lecture / &Eacute;criture</td><td>&Eacute;tirement de la police donn&eacute; sous forme de PangoStretch. Ex&nbsp;: <tt>pango.STRETCH_CONDENSED</tt></td></tr>
+<tr><td>size</td><td>Lecture / &Eacute;criture</td><td>Taille de la police en unit&eacute;s Pango</td></tr>
+<tr><td>size_points</td><td>Lecture / &Eacute;criture</td><td>Taille de la police en points</td></tr>
+<tr><td>scale</td><td>Lecture / &Eacute;criture</td><td> Taille de la police donn&eacute;e sous forme de facteur d'&eacute;chelle par rapport &agrave; la taille de la police par d&eacute;faut. Recommand&eacute; car tr&egrave;s bonne adaptation aux changements de th&egrave;me, etc. Pango poss&egrave;de quelques &eacute;chelles pr&eacute;d&eacute;finies, comme <tt>pango.SCALE_X_LARGE</tt></td></tr>
+<tr><td>pixels_above_lines</td><td>Lecture / &Eacute;criture</td><td>Espacement au-dessus des paragraphes en pixels </td></tr>
+<tr><td>pixels_below_lines</td><td>Lecture / &Eacute;criture</td><td>Espacement au-dessous des paragraphes en pixels</td></tr>
+<tr><td>pixels_inside_wrap</td><td>Lecture / &Eacute;criture</td><td>Espacement entre les lignes des paragraphes en pixels</td></tr>
+<tr><td>editable</td><td>Lecture / &Eacute;criture</td><td>Possibilit&eacute; pour l'utilisateur d'&eacute;diter le texte</td></tr>
+<tr><td>wrap_mode</td><td>Lecture / &Eacute;criture</td><td>mode de retour &agrave; la ligne automatique (apr&egrave;s le dernier mot de la ligne, apr&egrave;s le dernier caract&egrave;re de la ligne, ou d&eacute;sactiv&eacute;)</td></tr>
+<tr><td>justification</td><td>Lecture / &Eacute;criture</td><td>Alignement &agrave; gauche, &agrave; droite, ou centr&eacute;</td></tr>
+<tr><td>direction</td><td>Lecture / &Eacute;criture</td><td>Direction du texte (de gauche &agrave; droite ou de droite &agrave; gauche)</td></tr>
+<tr><td>left_margin</td><td>Lecture / &Eacute;criture</td><td>Largeur de la marge de gauche en pixels</td></tr>
+<tr><td>indent</td><td>Lecture / &Eacute;criture</td><td>Indentation du paragraphe en pixels</td></tr>
+<tr><td>strikethrough</td><td>Lecture / &Eacute;criture</td><td>Indique si le texte doit &ecirc;tre barr&eacute;</td></tr>
+<tr><td>right_margin</td><td>Lecture / &Eacute;criture</td><td>Largeur de la marge de droite en pixels</td></tr>
+<tr><td>underline</td><td>Lecture / &Eacute;criture</td><td>Style de soulignement</td></tr>
+<tr><td>rise</td><td>Lecture / &Eacute;criture</td><td>D&eacute;calage du texte par rapport &agrave; la ligne de base (au-dessus s'il est positif, au-dessous si n&eacute;gatif) en pixels</td></tr>
+<tr><td>background_full_height</td><td>Lecture / &Eacute;criture</td><td>Indique si la couleur d'arri&egrave;re-plan doit remplir toute la hauteur de la ligne ou seulement la hauteur des caract&egrave;res balis&eacute;s</td></tr>
+<tr><td>language</td><td>Lecture / &Eacute;criture</td><td>La langue du texte, donn&eacute;e sous forme de code ISO. Ceci peut aider Pango pour le rendu du texte. Si vous ne comprenez pas ce param&egrave;tre, vous n'en avez probablement pas besoin.</td></tr>
+<tr><td>tabs</td><td>Lecture / &Eacute;criture</td><td>Tabulations personnalis&eacute;es</td></tr>
+<tr><td>invisible</td><td>Lecture / &Eacute;criture</td><td>Visibilit&eacute; du texte (Non impl&eacute;ment&eacute; dans GTK 2.0)</td></tr>
+</table></div>
+
+<p>On peut d&eacute;finir les attributs d'une balise avec la m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  balise.set_property(<b><tt>nom_attr</b></tt>, <b><tt>valeur</b></tt>)
+</pre>
+
+<p>dans laquelle <i><tt>nom_attr</tt></i> est une chaine contenant le nom de l'attribut et <i><tt>valeur</tt></i> la valeur qui doit lui &ecirc;tre affect&eacute;e.</p>
+<p>De la m&ecirc;me mani&egrave;re, on peut r&eacute;cup&eacute;rer la valeur de l'attribut avec la m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  valeur = balise.get_property(<b><tt>nom_attr</b></tt>)
+</pre>
+
+<p>Du fait qu'une balise ne contient pas forc&eacute;ment tous les attributs pr&eacute;c&eacute;demment cit&eacute;s, un certain nombre de propri&eacute;t&eacute;s bool&eacute;ennes ont &eacute;t&eacute; cr&eacute;&eacute;es, qui permettent simplement de savoir si la balise est porteuse ou pas de tel attribut&nbsp;:</p>
+
+<div class="informaltable">
+<table width="100%" border="1">
+<tr><td>background_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>foreground_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>background_stipple_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>foreground_stipple_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>family_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>style_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>variant_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>weight_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>stretch_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>size_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>scale_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>pixels_above_lines_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>pixels_below_lines_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>pixels_inside_wrap_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>editable_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>wrap_mode_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>justification_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>direction_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>left_margin_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>indent_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>strikethrough_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>right_margin_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>underline_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>rise_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>background_full_height_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>language_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>tabs_set</td><td>Lecture / &Eacute;criture</td></tr>
+<tr><td>invisible_set</td><td>Lecture / &Eacute;criture</td></tr>
+</table></div>
+
+<p>Pour r&eacute;cup&eacute;rer un attribut d'une balise, vous devez donc d'abord v&eacute;rifier s'il est bien d&eacute;fini dans cette balise. Par exemple, pour obtenir un attribut valide d'alignement, vous pourriez proc&eacute;der comme suit&nbsp;:</p>
+
+<pre class="programlisting">
+  if balise.get_property("justification_set"):
+	alignement = balise.get_property("justification")
+</pre>
+
+<p>Par d&eacute;faut, la priorit&eacute; des balises correspond &agrave; l'ordre dans lequel elles sont ajout&eacute;es &agrave; la <A title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></A>. La balise qui a la plus haute priorit&eacute; prend l'avantage dans le cas o&ugrave; plusieurs tentent de d&eacute;finir le m&ecirc;me attribut pour une portion de texte. La priorit&eacute; se r&eacute;cup&egrave;re et se d&eacute;finit avec les m&eacute;thodes suivantes&nbsp;:</p>
+
+<pre class="programlisting">
+  priorite = balise.get_priority()
+
+  balise.set_priority(<b><tt>priorite</tt></b>)
+</pre>
+
+<p>La priorit&eacute; d'une balise doit &ecirc;tre comprise entre 0 et la taille de la <A title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></A> moins 1.</p>
+</div>
+
+<div class="sect2"><div class="titlepage">
+<div><H3 class="title"><A name="TextTagTable"></A>13.6.2. La TextTagTable</H3></div></div>
+
+<p>Par d&eacute;faut, une <tt>TextTagTable</tt> est cr&eacute;&eacute;e avec la cr&eacute;ation d'un <A title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>. Mais elle peut tout aussi bien &ecirc;tre cr&eacute;&eacute;e par la fonction&nbsp;:</p>
+
+<pre class="programlisting">
+  table = TextTagTable()
+</pre>
+
+<p>On ajoute une <A title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></A> a une <tt>TextTagTable</tt> avec la m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  table.add(<b><tt>balise</tt></b>)
+</pre>
+
+<p>La <i><tt>balise</tt></i> ne doit pas d&eacute;j&agrave; &ecirc;tre dans la <i><tt>table</tt></i> et ne doit pas porter le m&ecirc;me nom qu'une balise s'y trouvant d&eacute;j&agrave;.</p>
+<p>On peut chercher une <A title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></A> dans une <tt>TextTagTable</tt> en utilisant la m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  balise = table.lookup(<b><tt>nom</tt></b>)
+</pre>
+
+<p>La m&eacute;thode renvoie la balise qui porte ce <i><tt>nom</tt></i> dans la table, ou <tt>None</tt> si aucune balise ne porte ce nom.</p>
+<p>On peut retirer une <A title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></A> d'une <tt>TextTagTable</tt> avec la m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  table.remove(<b><tt>balise</tt></b>)
+</pre>
+
+<p>Enfin, la taille d'une <tt>TextTagTable</tt> peut &ecirc;tre r&eacute;cup&eacute;r&eacute;e par&nbsp;:</p>
+
+<pre class="programlisting">
+  taille_table = table.get_size()
+</pre>
+
+</div></div>
+<div class="navfooter">
+<HR>
+
+<table width="100%" summary="Bas de page de navigation">
+  
+  <tr>
+    <td width="40%" align="left"><A accessKey=p href="sec-TextMarks.html">Pr&eacute;c.</A></td>
+    <td width="20%" align="center"><A accessKey=u href="ch-TextViewWidget.html">Chapitre parent</A></td>
+    <td width="40%" align="right"><A accessKey=n href="sec-TextViewExample.html">Suiv.</A></td></tr>
+  <tr>
+    <td width="40%" align="left" vAlign="top">13.5. TextMark&nbsp;: les marques de texte</td>
+    <td width="20%" align="center"><A accessKey=h href="index.html">Table des mati&egrave;res</A></td>
+    <td width="40%" align="right" vAlign="top">13.7. Un exemple de TextView</td></tr></table>
+
+</div>
+
+</body>
+
+</html>

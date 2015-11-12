@@ -1,0 +1,454 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+<title>9.10. Les boites d'incr&eacute;ment</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,increment">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
+<link rel="previous" href="sec-TextEntries.html" title="9.9. Les champs de saisie">
+<link rel="next" href="sec-ComboWidget.html" title="9.11. Les listes d&eacute;roulantes">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici&nbsp;: 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">9.10. Les boites d'incr&eacute;ment</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-TextEntries.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 9. Widgets divers</th>
+<td width="20%" align="right"><a accesskey="n" href="sec-ComboWidget.html">Suiv.</a>
+</td></tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage">
+<div><h2 class="title" style="clear: both"><a name="BoitesIncrement"></a>9.10. Les boites 
+d'incr&eacute;ment</h2></div></div>
+On utilise g&eacute;n&eacute;ralement les boites d'incr&eacute;ment (<tt>gtk.SpinButton</tt>) 
+pour permettre &agrave; l'utilisateur de s&eacute;lectionner une valeur num&eacute;rique 
+dans un intervalle donn&eacute;. Ce widget consiste en un champ de texte flanqu&eacute; 
+de deux boutons fl&eacute;ch&eacute;s haut et bas. En s&eacute;lectionnant l'un ou l'autre 
+de ces boutons, on incr&eacute;mente ou d&eacute;cr&eacute;mente la valeur dans les limites 
+de l'intervalle. Le champ de texte peut &eacute;galement &ecirc;tre &eacute;dit&eacute; 
+directement afin de saisir une valeur sp&eacute;cifique.</p>
+<p>La valeur d'un <tt>gtk.SpinButton</tt> peut &ecirc;tre affich&eacute;e sous sa forme 
+enti&egrave;re ou d&eacute;cimale, et il est possible de d&eacute;finir son pas 
+d'incr&eacute;mentation/d&eacute;cr&eacute;mentation. On peut &eacute;galement d&eacute;cider 
+que plus l'on maintient enfonc&eacute; les boutons, plus cette 
+incr&eacute;mentation/d&eacute;cr&eacute;mentation s'acc&eacute;l&egrave;re.</p>
+<p>Les boites d'incr&eacute;ment utilisent des <a href="ch-Adjustments.html" 
+title="Chapitre 7. Les ajustements"><tt>ajustements</tt></a> pour stocker les donn&eacute;es 
+concernant l'intervalle de valeurs du <tt>gtk.SpinButton</tt>. Cela fait du 
+<tt>gtk.SpinButton</tt> un widget tr&egrave;s puissant.</p>
+<p>Pour bien montrer les informations stock&eacute;es par l'<a href="ch-Adjustments.html" 
+title="Chapitre 7. Les ajustements"><tt>ajustement</tt></a>, rappelons-nous sa fonction 
+de cr&eacute;ation&nbsp;:</p>
+
+<pre class="programlisting">
+  ajustement = gtk.Adjustment(<b><tt>value</tt></b>=0, <b><tt>lower</tt></b>=0, <b><tt>upper</tt></b>=0, <b><tt>step_incr</tt></b>=0, <b><tt>page_incr</tt></b>=0, <b><tt>page_size</tt></b>=0)
+</pre>
+
+<p>La boite d'incr&eacute;ment utilise ces attributs de l'ajustement de la mani&egrave;re 
+suivante&nbsp;:</p>
+
+<div class="informaltable">
+<table width="100%" border="1"><colgroup><col><col></colgroup>
+<tr>
+<td><i><tt>value</tt></i></td>
+<td>valeur initiale de la boite d'incr&eacute;ment</td>
+</tr><tr>
+<td><i><tt>lower</tt></i></td>
+<td>limite basse de l'intervalle</td>
+</tr><tr>
+<td><i><tt>upper</tt></i></td>
+<td>limite haute de l'intervalle</td>
+</tr><tr>
+<td><i><tt>step_increment</tt></i></td>
+<td>pas de l'incr&eacute;mentation/d&eacute;cr&eacute;mentation lorsque on clique sur l'un des deux boutons avec le bouton 1 de la souris</td>
+</tr><tr>
+<td><i><tt>page_increment</tt></i></td>
+<td>pas de l'incr&eacute;mentation/d&eacute;cr&eacute;mentation lorsque on clique sur l'un des deux boutons avec le bouton 2 de la souris</td>
+</tr><tr>
+<td><i><tt>page_size</tt></i></td>
+<td>inutilis&eacute;</td>
+</tr></table></div>
+
+<p>Un clic sur un des deux boutons avec le bouton 3 de la souris peut &eacute;galement 
+servir &agrave; aller directement &agrave; la valeur <i><tt>upper</tt></i> ou 
+<i><tt>lower</tt></i>. Voyons donc comment cr&eacute;er une boite &agrave; 
+incr&eacute;ment&nbsp;:</p>
+
+<pre class="programlisting">
+  boite_increment = gtk.SpinButton(<b><tt>adjustment</tt></b>=None, <b><tt>climb_rate</tt></b>=0.0, <b><tt>digits</tt></b>=0)
+</pre>
+
+<p>L'argument <i><tt>climb_rate</tt></i> accepte une valeur comprise entre 0.0 et 1.0 et 
+indique le degr&eacute; d'acc&eacute;l&eacute;ration de la boite d'incr&eacute;ment. 
+L'argument <i><tt>digits</tt></i> sp&eacute;cifie le nombre de d&eacute;cimales de la 
+valeur affich&eacute;e.</p>
+<p>On peut reconfigurer une boite &agrave; incr&eacute;ment apr&egrave;s sa cr&eacute;ation 
+en appelant la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class="programlisting">
+  boite_increment.configure(<b><tt>adjustment</tt></b>, <b><tt>climb_rate</tt></b>, <b><tt>digits</tt></b>)
+</pre>
+
+<p>L'argument <i><tt>boite_increment</tt></i> sp&eacute;cifie le <tt>gtk.SpinButton</tt> 
+&agrave; reconfigurer. Les autres arguments sont les m&ecirc;mes que ceux d&eacute;crits 
+plus haut.</p>
+<p>L'ajustement (<i><tt>adjustment</tt></i>) peut &ecirc;tre d&eacute;fini et 
+r&eacute;cup&eacute;r&eacute; ind&eacute;pendamment &agrave; l'aide des deux m&eacute;thodes 
+suivantes&nbsp;:</p>
+
+<pre class="programlisting">
+  boite_increment.set_adjustment(<b><tt>adjustment</tt></b>)
+
+  ajustement = spin_button.get_adjustment()
+</pre>
+
+<p>On peut &eacute;galement modifier le nombre de d&eacute;cimales ainsi&nbsp;:</p>
+
+<pre class="programlisting">
+  boite_increment.set_digits(<b><tt>digits</tt></b>)
+</pre>
+
+<p>La valeur affich&eacute;e par une boite d'incr&eacute;ment peut &ecirc;tre 
+chang&eacute;e avec cette m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  boite_increment.set_value(<b><tt>value</tt></b>)
+</pre>
+
+<p>La valeur courante d'une boite d'incr&eacute;ment peut &ecirc;tre 
+r&eacute;cup&eacute;r&eacute;e sous sa forme d&eacute;cimale ou enti&egrave;re &agrave; 
+l'aide des deux m&eacute;thodes suivantes&nbsp;:</p>
+
+<pre class="programlisting">
+  valeur_dec = spin_button.get_value()
+
+  valeur_ent = spin_button.get_value_as_int()
+</pre>
+
+<p>Si l'on souhaite que la modification de la valeur soit effectu&eacute;e par 
+rapport &agrave; la valeur courante, on peut utiliser la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class="programlisting">
+  boite_increment.spin(<b><tt>direction</tt></b>, <b><tt>increment</tt></b>)
+</pre>
+
+<p>Le param&egrave;tre <i><tt>direction</tt></i> peut prendre l'une des valeurs 
+suivantes&nbsp;:</p>
+
+<pre class="programlisting">
+  SPIN_STEP_FORWARD
+  SPIN_STEP_BACKWARD
+  SPIN_PAGE_FORWARD
+  SPIN_PAGE_BACKWARD
+  SPIN_HOME
+  SPIN_END
+  SPIN_USER_DEFINED
+</pre>
+
+<p>Cette m&eacute;thode r&eacute;unit plusieurs fonctionnalit&eacute;s que nous allons 
+tenter d'expliquer clairement. Un grand nombre de ces r&eacute;glages utilise les valeurs 
+de l'<a href="ch-Adjustments.html" title="Chapitre 7. Les ajustements"><tt>ajustement</tt></a>
+ associ&eacute; &agrave; la boite d'incr&eacute;ment.</p>
+<p>SPIN_STEP_FORWARD (en avant d'un pas) et SPIN_STEP_BACKWARD (en arri&egrave;re d'un pas) 
+modifient la valeur de la boite d'incr&eacute;ment en lui ajoutant/soustrayant celle 
+sp&eacute;cifi&eacute;e par l'argument <i><tt>increment</tt></i>, ou, si ce dernier vaut 0, 
+celle du <i><tt>step_increment</tt></i> de l'<a href="ch-Adjustments.html" 
+title="Chapitre 7. Les ajustements"><tt>ajustement</tt></a>.</p>
+<p>SPIN_PAGE_FORWARD (en avant d'une page) et SPIN_PAGE_BACKWARD (en arri&egrave;re d'une 
+page) modifient simplement la valeur de la boite d'incr&eacute;ment en lui 
+ajoutant/soustrayant celle de <i><tt>increment</tt></i>.</p>
+<p>SPIN_HOME (d&eacute;but) fixe la valeur de la boite d'incr&eacute;ment &agrave; la borne 
+minimum de l'intervalle de l'<a href="ch-Adjustments.html" title="Chapitre 7. Les ajustements">
+<tt>ajustement</tt></a>.</p>
+<p>SPIN_END (fin) fixe la valeur de la boite d'incr&eacute;ment &agrave; la borne maximum de 
+l'intervalle de l'<a href="ch-Adjustments.html" title="Chapitre 7. Les ajustements">
+<tt>ajustement</tt></a>.</p>
+<p>SPIN_USER_DEFINED (d&eacute;fini par l'utilisateur) modifie simplement la valeur de la 
+boite d'incr&eacute;ment en lui ajoutant la valeur sp&eacute;cifi&eacute;e.</p>
+<p>Abandonnons &agrave; pr&eacute;sent les m&eacute;thodes de d&eacute;finition et 
+r&eacute;cup&eacute;ration des attributs d'intervalle, pour nous int&eacute;resser 
+&agrave; celles qui affectent l'apparence et le comportement du widget <tt>gtk.SpinButton</tt>
+ en lui-m&ecirc;me.</p>
+<p>La premi&egrave;re de ces m&eacute;thodes sert &agrave; faire en sorte que la boite de 
+texte du <tt>gtk.SpinButton</tt> ne puisse contenir que des valeurs num&eacute;riques. 
+L'utilisateur ne pourra alors pas y saisir autre chose&nbsp;:</p>
+
+<pre class="programlisting">
+  boite_increment.set_numeric(<b><tt>numeric</tt></b>)
+</pre>
+
+<p>Si <i><tt>numeric</tt></i> vaut TRUE (vrai), le champ de saisie n'acceptera que les 
+valeurs num&eacute;riques. Si elles vaut FALSE (faux), aucune contrainte n'est 
+pos&eacute;e.</p>
+<p>On peut indiquer si l'on veut que la boite d'incr&eacute;ment effectue une boucle 
+apr&egrave;s avoir pass&eacute; la valeur maximum de l'intervalle, et revienne donc &agrave; 
+la valeur minimum. On utilisera pour ce faire la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class="programlisting">
+  boite_increment.set_wrap(<b><tt>wrap</tt></b>)
+</pre>
+
+<p>La boite d'incr&eacute;ment tournera en boucle si <i><tt>wrap</tt></i> vaut TRUE.</p>
+<p>On peut faire en sorte que la boite d'incr&eacute;ment arrondisse la valeur au 
+<i><tt>step_increment</tt></i> le plus proche (le <i><tt>step_increment</tt></i> 
+est d&eacute;fini dans l'<a href="ch-Adjustments.html" title="Chapitre 7. Les ajustements">
+<tt>ajustement</tt></a> utilis&eacute; par la boite d'incr&eacute;ment). On fera alors 
+appel &agrave; la m&eacute;thode suivante, o&ugrave; <i><tt>snap_to_ticks</tt></i> 
+(s'accrocher aux marques) devra valoir TRUE&nbsp;:</p>
+
+<pre class="programlisting">
+  boite_increment.set_snap_to_ticks(<b><tt>snap_to_ticks</tt></b>)
+</pre>
+
+<p>Le mode d'actualisation d'une boite d'incr&eacute;ment peut &ecirc;tre modifi&eacute; 
+avec la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class="programlisting">
+  boite_increment.set_update_policy(<b><tt>policy</tt></b>)
+</pre>
+
+<p>Les valeurs possibles pour <i><tt>policy</tt></i> (mode) sont&nbsp;:</p>
+
+<pre class="programlisting">
+  UPDATE_ALWAYS
+
+  UPDATE_IF_VALID
+</pre>
+
+<p>Ces modes d'actualisation affectent le comportement de la boite d'incr&eacute;ment 
+lorsqu'elle analyse le texte saisi et qu'elle synchronise sa valeur avec celles de 
+l'<a href="ch-Adjustments.html" title="Chapitre 7. Les ajustements"><tt>ajustement</tt></a>.
+</p>
+<p>Avec UPDATE_IF_VALID (actualiser si valide), la valeur de la boite d'incr&eacute;ment 
+n'est modifi&eacute;e que si le texte saisi est une valeur num&eacute;rique comprise dans 
+l'intervalle de l'<a href="ch-Adjustments.html" title="Chapitre 7. Les ajustements">
+<tt>ajustement</tt></a>. Dans le cas contraire, le champ de saisie reprend sa valeur 
+courante.</p>
+<p>Avec UPDATE_ALWAYS (actualiser toujours), toute erreur sera ignor&eacute;e lors de la 
+conversion du texte en valeur num&eacute;rique.</p>
+<p>Pour finir, on peut demander explicitement une actualisation de la boite 
+d'incr&eacute;ment&nbsp;:</p>
+
+<pre class="programlisting">
+  boite_increment.update()
+</pre>
+
+<p>Le programme d'exemple <a href="exemples/boitesincrement.py" target="_top">
+<b>boitesincrement.py</b></a> offre une d&eacute;monstration d'utilisation des boites 
+d'incr&eacute;ment, incluant la modification de plusieurs caract&eacute;ristiques. 
+La <a href="sec-SpinButtons.html#FigBoiteIncrement" title="Figure 9.11. Exemple de 
+boites d'incr&eacute;ment">Figure 9.11</a> montre ce que l'on obtient en lan&ccedil;ant 
+le programme&nbsp;:</p>
+
+<div class="figure"><a name="FigBoiteIncrement"></a>
+<p class="title"><b>Figure 9.11. Exemple de boites d'incr&eacute;ment</b></p>
+<div class="mediaobject" align="center">
+<img src="figures/boitesincrement.png" align="middle" alt="exemple d'incrément">
+</div></div>
+
+<p>Voici le code source de <a href="exemples/boitesincrement.py" target="_top">
+<b>boitesincrement.py</b></a>&nbsp;:</p>
+
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2   
+     3   # exemple boiteincrement.py
+     4   
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8   
+     9   class ExempleBoiteIncrement:
+    10       def modif_arrondi(self, widget, boiteincr):
+    11           boiteincr.set_snap_to_ticks(widget.get_active())
+    12   
+    13       def modif_numerique(self, widget, boiteincr):
+    14           boiteincr.set_numeric(widget.get_active())
+    15   
+    16       def modif_decimales(self, widget, boiteincr, boiteincr1):
+    17           boiteincr1.set_digits(boiteincr.get_value_as_int())
+    18   
+    19       def recup_valeur(self, widget, donnees, boiteincr, boiteincr2, etiquette):
+    20           if donnees == 1:
+    21               tampon = "%d" % boiteincr.get_value_as_int()
+    22           else:
+    23               tampon = "%0.*f" % (boiteincr2.get_value_as_int(),
+    24                                   boiteincr.get_value())
+    25           etiquette.set_text(tampon)
+    26   
+    27       def __init__(self):
+    28           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    29           fenetre.connect("destroy", gtk.main_quit)
+    30           fenetre.set_title("Boites d'increment")
+    31   
+    32           boite_v0 = gtk.VBox(False, 5)
+    33           boite_v0.set_border_width(10)
+    34           fenetre.add(boite_v0)
+    35   
+    36           cadre = gtk.Frame("Sans acceleration")
+    37           boite_v0.pack_start(cadre, True, True, 0)
+    38     
+    39           boite_v1 = gtk.VBox(False, 0)
+    40           boite_v1.set_border_width(5)
+    41           cadre.add(boite_v1)
+    42   
+    43           # Boites d'increment pour le jour, le mois et l'annee
+    44           boite_h = gtk.HBox(False, 0)
+    45           boite_v1.pack_start(boite_h, True, True, 5)
+    46     
+    47           boite_v2 = gtk.VBox(False, 0)
+    48           boite_h.pack_start(boite_v2, True, True, 5)
+    49   
+    50           etiquette = gtk.Label("Jour :")
+    51           etiquette.set_alignment(0, 0.5)
+    52           boite_v2.pack_start(etiquette, False, True, 0)
+    53     
+    54           ajustement = gtk.Adjustment(1.0, 1.0, 31.0, 1.0, 5.0, 0.0)
+    55           boiteincr = gtk.SpinButton(ajustement, 0, 0)
+    56           boiteincr.set_wrap(True)
+    57           boite_v2.pack_start(boiteincr, False, True, 0)
+    58     
+    59           boite_v2 = gtk.VBox(False, 0)
+    60           boite_h.pack_start(boite_v2, True, True, 5)
+    61     
+    62           etiquette = gtk.Label("Mois :")
+    63           etiquette.set_alignment(0, 0.5)
+    64           boite_v2.pack_start(etiquette, False, True, 0)
+    65   
+    66           ajustement = gtk.Adjustment(1.0, 1.0, 12.0, 1.0, 5.0, 0.0)
+    67           boiteincr = gtk.SpinButton(ajustement, 0, 0)
+    68           boiteincr.set_wrap(True)
+    69           boite_v2.pack_start(boiteincr, False, True, 0)
+    70     
+    71           boite_v2 = gtk.VBox(False, 0)
+    72           boite_h.pack_start(boite_v2, True, True, 5)
+    73     
+    74           etiquette = gtk.Label("Annee :")
+    75           etiquette.set_alignment(0, 0.5)
+    76           boite_v2.pack_start(etiquette, False, True, 0)
+    77     
+    78           ajustement = gtk.Adjustment(1998.0, 0.0, 2100.0, 1.0, 100.0, 0.0)
+    79           boiteincr = gtk.SpinButton(ajustement, 0, 0)
+    80           boiteincr.set_wrap(False)
+    81           boiteincr.set_size_request(55, -1)
+    82           boite_v2.pack_start(boiteincr, False, True, 0)
+    83     
+    84           cadre = gtk.Frame("Avec acceleration")
+    85           boite_v0.pack_start(cadre, True, True, 0)
+    86     
+    87           boite_v1 = gtk.VBox(False, 0)
+    88           boite_v1.set_border_width(5)
+    89           cadre.add(boite_v1)
+    90     
+    91           boite_h = gtk.HBox(False, 0)
+    92           boite_v1.pack_start(boite_h, False, True, 5)
+    93     
+    94           boite_v2 = gtk.VBox(False, 0)
+    95           boite_h.pack_start(boite_v2, True, True, 5)
+    96     
+    97           etiquette = gtk.Label("Valeur :")
+    98           etiquette.set_alignment(0, 0.5)
+    99           boite_v2.pack_start(etiquette, False, True, 0)
+   100     
+   101           ajustement = gtk.Adjustment(0.0, -10000.0, 10000.0, 0.5, 100.0, 0.0)
+   102           boiteincr1 = gtk.SpinButton(ajustement, 1.0, 2)
+   103           boiteincr1.set_wrap(True)
+   104           boiteincr1.set_size_request(100, -1)
+   105           boite_v2.pack_start(boiteincr1, False, True, 0)
+   106     
+   107           boite_v2 = gtk.VBox(False, 0)
+   108           boite_h.pack_start(boite_v2, True, True, 5)
+   109     
+   110           etiquette = gtk.Label("Decimales :")
+   111           etiquette.set_alignment(0, 0.5)
+   112           boite_v2.pack_start(etiquette, False, True, 0)
+   113     
+   114           ajustement = gtk.Adjustment(2, 1, 5, 1, 1, 0)
+   115           boiteincr2 = gtk.SpinButton(ajustement, 0.0, 0)
+   116           boiteincr2.set_wrap(True)
+   117           ajustement.connect("value_changed", self.modif_decimales, boiteincr2, boiteincr1)
+   118           boite_v2.pack_start(boiteincr2, False, True, 0)
+   119     
+   120           boite_h = gtk.HBox(False, 0)
+   121           boite_v1.pack_start(boite_h, False, True, 5)
+   122   
+   123           bouton = gtk.CheckButton("Deplacement tous les 0,5")
+   124           bouton.connect("clicked", self.modif_arrondi, boiteincr1)
+   125           boite_v1.pack_start(bouton, True, True, 0)
+   126           bouton.set_active(True)
+   127     
+   128           bouton = gtk.CheckButton("Saisie numerique seulement")
+   129           bouton.connect("clicked", self.modif_numerique, boiteincr1)
+   130           boite_v1.pack_start(bouton, True, True, 0)
+   131           bouton.set_active(True)
+   132     
+   133           etiquette_valeur = gtk.Label("")
+   134     
+   135           boite_h = gtk.HBox(False, 0)
+   136           boite_v1.pack_start(boite_h, False, True, 5)
+   137           bouton = gtk.Button("Valeur entiere")
+   138           bouton.connect("clicked", self.recup_valeur, 1, boiteincr1, boiteincr2,
+   139                          etiquette_valeur)
+   140           boite_h.pack_start(bouton, True, True, 5)
+   141     
+   142           bouton = gtk.Button("Valeur decimale")
+   143           bouton.connect("clicked", self.recup_valeur, 2, boiteincr1, boiteincr2,
+   144                          etiquette_valeur)
+   145           boite_h.pack_start(bouton, True, True, 5)
+   146     
+   147           boite_v1.pack_start(etiquette_valeur, True, True, 0)
+   148           etiquette_valeur.set_text("0")
+   149     
+   150           boite_h = gtk.HBox(False, 0)
+   151           boite_v0.pack_start(boite_h, False, True, 0)
+   152     
+   153           bouton = gtk.Button("Fermer")
+   154           bouton.connect("clicked", gtk.main_quit)
+   155           boite_h.pack_start(bouton, True, True, 5)
+   156           fenetre.show_all()
+   157   
+   158   def main():
+   159       gtk.main()
+   160       return 0
+   161   
+   162   if __name__ == "__main__":
+   163       ExempleBoiteIncrement()
+   164       main()
+</pre>
+</div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="sec-TextEntries.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="sec-ComboWidget.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">9.9. Les champs de saisie</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">9.11. Les listes d&eacute;roulantes</td>
+</tr></table>
+</div>
+
+</body>
+
+</html>

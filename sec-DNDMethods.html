@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>22.3. Méthodes du glisser-déposer</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-DragAndDrop.html" title="Chapitre 22. Le glisser-déposer (DND)">
+<link rel="prev" href="sec-DNDProperties.html" title="22.2. Propriétés du glisser-déposer">
+<link rel="next" href="ch-GtkRcFiles.html" title="Chapitre 23. Les fichiers de style rc GTK">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.3. Méthodes du glisser-déposer</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-DNDProperties.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 22. Le glisser-déposer (DND)</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch-GtkRcFiles.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-DNDMethods"></a>22.3. Méthodes du glisser-déposer</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id2540883"></a>22.3.1. Configurer le widget origine</h3></div></div></div>
+<p>La méthode <code class="methodname">drag_source_set</code>() 
+indique un ensemble de types de cibles pour une opération de glisser sur un widget.</p>
+<pre class="programlisting">
+  widget.drag_source_set(<strong class="parameter"><code>start_button_mask</code></strong>, <strong class="parameter"><code>targets</code></strong>, <strong class="parameter"><code>actions</code></strong>)
+</pre>
+<p>Les paramètres ont la signification suivante :</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Le paramètre <em class="parameter"><code>widget</code></em> indique le 
+          widget origine du glisser</p></li>
+<li><p>Le paramètre <em class="parameter"><code>start_button_mask</code></em> indique 
+un masque de bits des boutons qui peuvent débuter le glisser 
+(par ex. <code class="literal">BUTTON1_MASK</code>)</p></li>
+<li><p>Le paramètre <em class="parameter"><code>targets</code></em> indique une liste de 
+types de données cibles gérées par le glisser</p></li>
+<li><p>Le paramètre <em class="parameter"><code>actions</code></em> indique un masque 
+de bits des actions possibles pour un glisser depuis cette fenêtre</p></li>
+</ul></div>
+<p>Le paramètre <em class="parameter"><code>targets</code></em> est une liste de 
+tuples semblable à :</p>
+<pre class="programlisting">
+  (target, flags, info)
+</pre>
+<p>... où <em class="parameter"><code>target</code></em> est une chaîne de 
+caractères représentant le type de glisser</p>
+<p>... où <em class="parameter"><code>flags</code></em> limite la portée du 
+      glisser. Il peut prendre la valeur 0 (pas de limitation de la portée) 
+      ou la valeur des constantes suivantes :</p>
+<pre class="programlisting">
+  gtk.TARGET_SAME_APP    # La destination peut être sélectionnée pour un glisser à 
+  l'intérieur de la même application
+
+  gtk.TARGET_SAME_WIDGET # La destination peut être sélectionnée pour un glisser à 
+  l'intérieur du même widget
+</pre>
+<p>... où <em class="parameter"><code>info</code></em> est un identifiant entier 
+assigné à l'application.</p>
+<p>S'il n'est plus nécessaire qu'un widget continue d'être l'origine 
+d'une opération de glisser-déposer, la méthode 
+<code class="methodname">drag_source_unset</code>() </p> peut être 
+utilisée pour supprimer un ensemble de types de glisser-déposer.
+
+	<pre class="programlisting">
+  widget.drag_source_unset()
+</pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-SignalsOnSourceWidget"></a>22.3.2. Les signaux du widget origine</h3></div></div></div>
+<p>Les signaux suivants sont envoyés au widget origine pendant 
+une opération de glisser-déposer :</p>
+<div class="tableinfo">
+<a name="id2633365"></a><p class="title"><b>Tableau 22.1. Signaux du widget origine</b></p>
+<table summary="Signaux du widget origine" width="100%" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td>drag_begin (début du glisser)</td>
+<td>def drag_begin_cb(widget, drag_context, data):</td>
+</tr>
+<tr>
+<td>drag_data_get (obtention des données du glisser)</td>
+<td>def drag_data_get_cb(widget, drag_context, selection_data, info, time, data):</td>
+</tr>
+<tr>
+<td>drag_data_delete (suppression des données du glisser)</td>
+<td>def drag_data_delete_cb(widget, drag_context, data):</td>
+</tr>
+<tr>
+<td>drag_end (fin du glisser)</td>
+<td>def drag_end_cb(widget, drag_context, data):</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Le gestionnaire du signal "drag-begin" peut être utilisé pour 
+définir des conditions de départ telle que l'icône du glisser en utilisant 
+une des méthodes suivantes de la classe <code class="classname">Widget</code> :
+<code class="methodname">drag_source_set_icon</code>(), 
+<code class="methodname">drag_source_set_icon_pixbuf</code>(), 
+<code class="methodname">drag_source_set_icon_stock</code>(). Le gestionnaire 
+du signal "drag-end" peut servir à annuler les actions du gestionnaire 
+du signal "drag-begin".</p>
+<p>Le gestionnaire du signal "drag-data-get" devrait renvoyer les 
+données de glisser correspondantes à la destination indiquée par le paramètre 
+<em class="parameter"><code>info</code></em>. Il fournit à 
+<code class="classname">gtk.gdk.SelectionData</code> les données du glisser.</p>
+<p>Le gestionnaire du signal "drag-delete" est utilisé pour supprimer 
+les données du glisser d'une action <code class="literal">gtk.gdk.ACTION_MOVE</code> 
+une fois la copie des données effectuée.</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-SettingUpDestinationWidget"></a>22.3.3. Configurer un widget destination</h3></div></div></div>
+<p>La méthode <code class="methodname">drag_dest_set</code>() indique que 
+ce widget peut recevoir le déposer et précise les types de déposer qu'il  
+peut accepter.</p>
+<p>La méthode <code class="methodname">drag_dest_unset</code>() indique que ce 
+widget ne peut plus maintenant recevoir de déposer.</p>
+<pre class="programlisting">
+  widget.drag_dest_set(<strong class="parameter"><code>flags</code></strong>, <strong class="parameter"><code>targets</code></strong>, <strong class="parameter"><code>actions</code></strong>)
+
+  widget.drag_dest_unset()
+</pre>
+<p>... où le paramètre <em class="parameter"><code>flags</code></em> indique quelles 
+actions GTK+ doit réaliser pour le widget pour y effectuer le dépot. Voici 
+les valeurs possibles pour <em class="parameter"><code>flags</code></em> :</p>
+<table border="0" width="100%" bgcolor="#FFECCE">
+<col align="left" valign="top" width="0*">
+<tbody>
+<tr>
+<td>
+<span class="term"><code class="literal">gtk.DEST_DEFAULT_MOTION</code></span></td>
+<td><p>Si activé pour un widget, GTK+ vérifiera, pendant le survol 
+d'un glisser au-dessus de ce widget, si le glisser appartient à la liste 
+des cibles et actions possibles de ce widget. Alors, GTK+ appellera 
+la méthode <code class="methodname">drag_status</code>() appropriée.</p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><code class="literal">gtk.DEST_DEFAULT_HIGHLIGHT</code></span></td>
+<td><p>Si activé pour un widget, GTK+ mettra en évidence ce widget 
+pendant la durée du survol par le glisser, si l'action et le format du widget 
+sont compatibles.</p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><code class="literal">gtk.DEST_DEFAULT_DROP</code></span></td>
+<td><p>Si activé pour un widget, au moment du déposer, GTK+ vérifiera 
+si le glisser concorde avec la liste des cibles et action possibles 
+de ce widget ; si oui, GTK+ appellera la méthode 
+<code class="methodname">drag_get_data</code>() pour le widget. Que le 
+déposer soit réussi ou non, GTK+ appellera la methode 
+<code class="methodname">drag_finish</code>(). Si l'action était un déplacement 
+et que le glisser est réussi, le valeur <code class="literal">TRUE</code> sera 
+attibuée au paramètre <em class="parameter"><code>delete</code></em>  de la méthode 
+<code class="methodname">drag_finish</code>().
+</p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><code class="literal">gtk.DEST_DEFAULT_ALL</code></span></td>
+<td><p>Si activé, indique que toutes les actions précédentes 
+            doivent être rélisées.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Le paramètre <em class="parameter"><code>targets</code></em> est une liste de 
+tuples d'information de cibles décrites précèdemment.</p>
+<p>Le paramètre <em class="parameter"><code>actions</code></em>  est un masque de bits 
+des actions possibles à réaliser lors d'un glisser sur ce widget. Les 
+valeurs possibles, combinables avec l'opérateur OR, sont les suivantes :</p>
+<pre class="programlisting">
+  gtk.gdk.ACTION_DEFAULT
+  gtk.gdk.ACTION_COPY
+  gtk.gdk.ACTION_MOVE
+  gtk.gdk.ACTION_LINK
+  gtk.gdk.ACTION_PRIVATE
+  gtk.gdk.ACTION_ASK
+</pre>
+<p>Les paramètres <em class="parameter"><code>targets</code></em> et 
+<em class="parameter"><code>actions</code></em> sont ignorés si le paramètre 
+<em class="parameter"><code>flags</code></em> ne contient pas <code class="literal">gtk.DEST_DEFAULT_MOTION</code> 
+ou <code class="literal">gtk.DEST_DEFAULT_DROP</code>. Dans ce cas, l'application 
+doit gérer les signaux "drag-motion" et "drag-drop".</p>
+<p>Le gestionnaire du signal "drag-motion" doit déterminer si les 
+données du glisser sont appropriées en comparant les cibles de destination 
+avec les cibles <code class="classname">gtk.gdk.DragContext</code>. Il peut aussi 
+étudier les données du glisser en appelant la méthode 
+<code class="methodname">drag_get_data</code>() method. Il faut utiliser la méthode 
+<code class="classname">gtk.gdk.DragContext</code>.<code class="methodname">drag_status</code>() 
+pour mettre à jour le statut du paramètre <em class="parameter"><code>drag_context</code></em>.</p>
+<p>Le gestionnaire du signal "drag-drop" doit déterminer la cible qui 
+correspond en utilisant la méthode 
+<code class="methodname">drag_dest_find_target</code>() du widget et ensuite réclamer  
+les données du glisser en utilisant la méthode 
+<code class="methodname">drag_get_data</code>(). Les données 
+seront disponibles dans le gestionnaire du signal "drag-data-received".</p>
+<p>Le programme 
+<a href="exemples/dragtargets.py" target="_top"><code class="filename">dragtargets.py</code></a>
+affiche les cibles possible d'une opération de glisser dans un widget étiquette.</p>
+<pre class="programlisting">
+    1   #!/usr/local/env python
+    2
+    3   import pygtk
+    4   pygtk.require('2.0')
+    5   import gtk
+    6
+    7   def motion_cb(wid, context, x, y, time):
+    8       context.drag_status(gtk.gdk.ACTION_COPY, time)
+    9       return True
+   10
+   11   def drop_cb(wid, context, x, y, time):
+   12       l.set_text('\n'.join([str(t) for t in context.targets]))
+   13       context.finish(True, False, time)
+   14       return True
+   15
+   16   w = gtk.Window()
+   17   w.set_size_request(200, 150)
+   18   w.drag_dest_set(0, [], 0)
+   19   w.connect('drag_motion', motion_cb)
+   20   w.connect('drag_drop', drop_cb)
+   21   w.connect('destroy', lambda w: gtk.main_quit())
+   22   l = gtk.Label()
+   23   w.add(l)
+   24   w.show_all()
+   25
+   26   gtk.main()
+</pre>
+<p>Le programme crée une fenêtre et ensuite l'utilise comme 
+destination d'un glisser sans cible, ni action en fixant les drapeaux à zéro. 
+Les gestionnaires <code class="function">motion_cb</code>() et <code class="function">drop_cb</code>() 
+sont connectés respectivement aux signaux "drag-motion" et "drag-drop". 
+Le gestionnaire <code class="function">motion_cb</code>() se contente de configurer l'état 
+du glisser pour permettre un déposer. Le gestionnaire <code class="function">drop_cb</code>() 
+modifie le texte de l'étiquette pour indiquer les cibles du glisser et termine 
+le déposer en laissant intacte la source des données.
+</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-SignalsOnDestinationWidget"></a>22.3.4. Les signaux du widget destination</h3></div></div></div>
+<p>Pendant une opération de glisser-déposer, les signaux suivants 
+sont transmis au widget destination.</p>
+<div class="tableinfo">
+<a name="id2646869"></a><p class="title"><b>Tableau 22.2. Signaux du widget destination</b></p>
+<table summary="Signaux du widget destination" width="100%" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td>drag_motion (mouvement du glisser)</td>
+<td>def drag_motion_cb(widget, drag_context, x, y, time, data):</td>
+</tr>
+<tr>
+<td>drag_drop (glisser-déposer)</td>
+<td>def drag_drop_cb(widget, drag_context, x, y, time, data):</td>
+</tr>
+<tr>
+<td>drag_data_received (données reçues)</td>
+<td>def drag_data_received_cb(widget, drag_context,
+x, y, selection_data, info, time, data):</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Le programme 
+<a href="exemples/dragndrop.py" target="_top"><span><strong class="command">dragndrop.py</strong></span></a> 
+illustre l'utilisation du glisser-déposer dans une application. Un bouton 
+avec une image 
+(<a href="exemples/gtkxpm.py" target="_top"><code class="filename">gtkxpm.py</code></a>) 
+constitue la source du glisser, il fournit en même temps un texte et une 
+donnée xpm. Un widget layout constituera la destination du déposer du xpm, 
+un bouton, la destination du texte. La  <a href="sec-DNDMethods.html#dragndropfig" title="Figure 22.1. Exemple de glisser-déposer">Figure 22.1, « Exemple de glisser-déposer »</a>  
+montre le programme après le déposer du xpm et du texte, respectivement 
+sur le layout et sur le bouton.
+</p>
+<div class="figure">
+<a name="dragndropfig"></a><p class="title"><b>Figure 22.1. Exemple de glisser-déposer</b></p>
+<div class="mediaobject" align="center"><img src="figures/dragndrop.png" align="middle" alt="Exemple de glisser-déposer"></div>
+</div>
+<p>Voici le code de <a href="exemples/dragndrop.py" target="_top"><span><strong class="command">dragndrop.py</strong></span></a> :</p>
+<pre class="programlisting">
+    1	#!/usr/bin/env python
+    2	# -*- coding:utf-8 -*-
+    3	# exemple dragndrop.py
+    4	
+    5	import pygtk
+    6	pygtk.require('2.0')
+    7	import gtk
+    8	import string, time
+    9	
+   10	import gtkxpm
+   11	
+   12	class ExempleDragNDrop:
+   13	    HEIGHT = 600
+   14	    WIDTH = 600
+   15	    TARGET_TYPE_TEXT = 80
+   16	    TARGET_TYPE_PIXMAP = 81
+   17	    fromImage = [ ( "text/plain", 0, TARGET_TYPE_TEXT ),
+   18	              ( "image/x-xpixmap", 0, TARGET_TYPE_PIXMAP ) ]
+   19	    toButton = [ ( "text/plain", 0, TARGET_TYPE_TEXT ) ]
+   20	    toCanvas = [ ( "image/x-xpixmap", 0, TARGET_TYPE_PIXMAP ) ]
+   21	
+   22	    def layout_resize(self, widget, event):
+   23	        x, y, width, height = widget.get_allocation()
+   24	        if width &gt; self.lwidth or height &gt; self.lheight:
+   25	            self.lwidth = max(width, self.lwidth)
+   26	            self.lheight = max(height, self.lheight)
+   27	            widget.set_size(self.lwidth, self.lheight)
+   28	
+   29	    def makeLayout(self):
+   30	        self.lwidth = self.WIDTH
+   31	        self.lheight = self.HEIGHT
+   32	        box = gtk.VBox(False,0)
+   33	        box.show()
+   34	        table = gtk.Table(2, 2, False)
+   35	        table.show()
+   36	        box.pack_start(table, True, True, 0)
+   37	        layout = gtk.Layout()
+   38	        self.layout = layout
+   39	        layout.set_size(self.lwidth, self.lheight)
+   40	        layout.connect("size-allocate", self.layout_resize)
+   41	        layout.show()
+   42	        table.attach(layout, 0, 1, 0, 1, gtk.FILL|gtk.EXPAND,
+   43	                     gtk.FILL|gtk.EXPAND, 0, 0)
+   44	        # créer les barres de défilement et les placer dans une table
+   45	        vScrollbar = gtk.VScrollbar(None)
+   46	        vScrollbar.show()
+   47	        table.attach(vScrollbar, 1, 2, 0, 1, gtk.FILL|gtk.SHRINK,
+   48	                     gtk.FILL|gtk.SHRINK, 0, 0)
+   49	        hScrollbar = gtk.HScrollbar(None)
+   50	        hScrollbar.show()
+   51	        table.attach(hScrollbar, 0, 1, 1, 2, gtk.FILL|gtk.SHRINK,
+   52	                     gtk.FILL|gtk.SHRINK,
+   53	                     0, 0)	
+   54	        # utiliser les ajustements du layout par les barres de défilement
+   55	        vAdjust = layout.get_vadjustment()
+   56	        vScrollbar.set_adjustment(vAdjust)
+   57	        hAdjust = layout.get_hadjustment()
+   58	        hScrollbar.set_adjustment(hAdjust)
+   59	        layout.connect("drag_data_received", self.receiveCallback)
+   60	        layout.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
+   61	                                  gtk.DEST_DEFAULT_HIGHLIGHT |
+   62	                                  gtk.DEST_DEFAULT_DROP,
+   63	                                  self.toCanvas, gtk.gdk.ACTION_COPY)
+   64	        self.addImage(gtkxpm.gtk_xpm, 0, 0)
+   65	        button = gtk.Button("Text Target")
+   66	        button.show()
+   67	        button.connect("drag_data_received", self.receiveCallback)
+   68	        button.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
+   69	                             gtk.DEST_DEFAULT_HIGHLIGHT |
+   70	                             gtk.DEST_DEFAULT_DROP,
+   71	                             self.toButton, gtk.gdk.ACTION_COPY)
+   72	        box.pack_start(button, False, False, 0)
+   73	        return box
+   74	
+   75	    def addImage(self, xpm, xd, yd):
+   76	        hadj = self.layout.get_hadjustment()
+   77	        vadj = self.layout.get_vadjustment()
+   78	        style = self.window.get_style()
+   79	        pixmap, mask = gtk.gdk.pixmap_create_from_xpm_d(
+   80	            self.window.window, style.bg[gtk.STATE_NORMAL], xpm)
+   81	        image = gtk.Image()
+   82	        image.set_from_pixmap(pixmap, mask)
+   83	        button = gtk.Button()
+   84	        button.add(image)
+   85	        button.connect("drag_data_get", self.sendCallback)
+   86	        button.drag_source_set(gtk.gdk.BUTTON1_MASK, self.fromImage,
+   87	                               gtk.gdk.ACTION_COPY)
+   88	        button.show_all()
+   89	        # s'adapter au défilement du layout - la localisation de l'évènement
+   90	        # est relative à la zone visible et non à la taille du layout
+   91	        self.layout.put(button, int(xd+hadj.value), int(yd+vadj.value))
+   92	        return
+   93	
+   94	    def sendCallback(self, widget, context, selection, targetType, eventTime):
+   95	        if targetType == self.TARGET_TYPE_TEXT:
+   96	            now = time.time()
+   97	            str = time.ctime(now)
+   98	            selection.set(selection.target, 8, str)
+   99	        elif targetType == self.TARGET_TYPE_PIXMAP:
+  100	            selection.set(selection.target, 8,
+  101	                          string.join(gtkxpm.gtk_xpm, '\n'))
+  102	
+  103	    def receiveCallback(self, widget, context, x, y, selection, targetType,
+  104	                        time):
+  105	        if targetType == self.TARGET_TYPE_TEXT:
+  106	            label = widget.get_children()[0]
+  107	            label.set_text(selection.data)
+  108	        elif targetType == self.TARGET_TYPE_PIXMAP:
+  109	            self.addImage(string.split(selection.data, '\n'), x, y)
+  110	
+  111	    def __init__(self):
+  112	        self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+  113	        self.window.set_default_size(300, 300)
+  114	        self.window.connect("destroy", lambda w: gtk.main_quit())
+  115	        self.window.show()
+  116	        layout = self.makeLayout()
+  117	        self.window.add(layout)
+  118	
+  119	def main():
+  120	    gtk.main()
+  121	
+  122	if __name__ == "__main__":
+  123	    ExempleDragNDrop()
+  124	    main()
+</pre>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-DNDProperties.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-DragAndDrop.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch-GtkRcFiles.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.2. Propriétés du glisser-déposer </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> Chapitre 23. Les fichiers de style rc GTK</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

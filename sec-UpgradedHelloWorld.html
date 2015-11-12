@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>3.2. Modification de notre "Hello World"</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-MovingOn.html" title="Chapitre 3. Avançons">
+<link rel="prev" href="ch-MovingOn.html" title="Chapitre 3. Avançons">
+<link rel="next" href="ch-PackingWidgets.html" title="Chapitre 4. Le placement des widgets">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.2. Modification de notre "Hello World"</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch-MovingOn.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 3. Avançons</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch-PackingWidgets.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-UpgradedHelloWorld"></a>3.2. Modification de notre "Hello World"</h2></div></div></div>
+<pre class="programlisting">
+    1   #!/usr/bin/env python
+    2   # -*- coding:utf-8 -*-
+    3   # exemple helloworld2.py
+    4   
+    5   import pygtk
+    6   pygtk.require('2.0')
+    7   import gtk
+    8   
+    9   class HelloWorld2:
+   10   
+   11       # Notre fonction de rappel ameliorée. Les données
+   12       # qui lui sont transmises sont affichées sur stdout.
+   13       def salut(self, widget, donnees):
+   14           print "Re-salut ! - Clic sur le %s" % donnees
+   15   
+   16       # Une autre fonction de rappel
+   17       def evnmt_delete(self, widget, evenement, donnees=None):
+   18           gtk.main_quit()
+   19           return False
+   20   
+   21       def __init__(self):
+   22           # Création d'une nouvelle fenêtre
+   23           self.fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+   24   
+   25           # Nouvel appel, qui donne le titre "Salut les boutons !"
+   26           # à notre nouvelle fenêtre
+   27           self.fenetre.set_title("Salut les boutons !")
+   28   
+   29           # Ici on définit juste un gestionnaire pour le signal
+   30           # delete_event (qui quittera GTK immédiatement)
+   31           self.fenetre.connect("delete_event", self.evnmt_delete)
+   32   
+   33           # On fixe la largeur des bordures de la fenêtre.
+   34           self.fenetre.set_border_width(10)
+   35   
+   36           # On crée une boîte pour y placer des widgets. Nous y reviendrons
+   37           # en détail dans la section "placement". La boîte n'est pas visible,
+   38           # c'est juste un outil pour disposer des widgets.
+   39           self.boite1 = gtk.HBox(False, 0)
+   40   
+   41           # On place la boîte dans la fenêtre principale.
+   42           self.fenetre.add(self.boite1)
+   43   
+   44           # Création d'un nouveau bouton avec l'étiquette "Bouton 1".
+   45           self.bouton1 = gtk.Button("Bouton 1")
+   46   
+   47           # Lorsqu'on cliquera sur le bouton, la ligne suivante appellera la
+   48           # méthode "salut" avec la chaîne "bouton 1" comme argument.
+   49           self.bouton1.connect("clicked", self.salut, "bouton 1")
+   50   
+   51           # Plutôt que add(), on utilise pack_start() afin de placer le bouton 
+   52           # dans la boîte invisible (qui a elle-même été placée dans la fenêtre).
+   53           self.boite1.pack_start(self.bouton1, True, True, 0)
+   54   
+   55           # N'oubliez pas cette étape, elle fait savoir à GTK que la préparation
+   56           # de ce bouton est terminée et qu'il peut maintenant être affiché
+   57           self.bouton1.show()
+   58   
+   59           # On répète les mêmes étapes pour créer un second bouton
+   60           self.bouton2 = gtk.Button("Bouton 2")
+   61   
+   62           # On appelle la même fonction de rappel, mais avec un argument
+   63           # différent : la chaîne de caractères "bouton 2".
+   64           self.bouton2.connect("clicked", self.salut, "bouton 2")
+   65   
+   66           self.boite1.pack_start(self.bouton2, True, True, 0)
+   67   
+   68           # L'ordre d'affichage des boutons n'est pas trés important, mais je conseille
+   69           # d'afficher la fenêtre en dernier pour que tout s'affiche d'un seul coup.
+   70           self.bouton2.show()
+   71           self.boite1.show()
+   72           self.fenetre.show()
+   73   
+   74   def boucle():
+   75       gtk.main()
+   76   
+   77   if __name__ == "__main__":
+   78       salut = HelloWorld2()
+   79       boucle()
+   
+</pre>
+<p>L'exécution de <a href="exemples/helloworld2.py" target="_top"><span><strong class="command">helloworld2.py</strong></span></a>
+produit la fenêtre représentée à la <a href="sec-UpgradedHelloWorld.html#helloworld2fig" title='Figure 3.1. Exemple de "Hello World" amélioré'>Figure 3.1, « Exemple de "Hello World" amélioré »</a>.</p>
+<div class="figure">
+<a name="helloworld2fig"></a><p class="title"><b>Figure 3.1. Exemple de "Hello World" amélioré</b></p>
+<div class="mediaobject" align="center"><img src="figures/helloworld2.png" align="middle" alt='Exemple de "Hello World" amélioré'></div>
+</div>
+<p>À noter que cette fois, rien n'a été prévu pour sortir du programme, 
+il faut utiliser le gestionnaire de fenêtres ou la ligne de commande. En guise 
+d'exercice, vous pourriez ajouter un troisième bouton  "Quitter" qui mettrait 
+fin au programme. Amusez-vous aussi avec les différentes possibilités de la 
+méthode <code class="methodname">pack_start</code>() en lisant le prochain chapitre. 
+Essayez de redimensionner la fenêtre et observez son comportement.</p>
+<p>Voici un bref commentaire des parties du code qui ont changé par rapport
+ à notre premier "Hello World" :</p>
+<p>Comme précisé plus haut, il n'y a pas de gestionnaire du signal "destroy" 
+dans notre version améliorée.</p>
+<p>La fonction de rappel <code class="methodname">salut</code>() des lignes 
+13-14 est similaire à celle de la première version. La différence est qu'elle 
+affiche désormais un message contenant les données qu'elle a reçues.</p>
+<p>À la ligne 27, on définit une chaine de caractères qui s'affichera 
+dans la barre de titre de la fenêtre (voir <a href="sec-UpgradedHelloWorld.html#helloworld2fig" title='Figure 3.1. Exemple de "Hello World" amélioré'>Figure 3.1, « Exemple de "Hello World" amélioré »</a>).
+</p>
+<p>La ligne 39 crée une boîte horizontale (<code class="classname">gtk.HBox</code>) 
+destinée à contenir les deux boutons créés aux lignes 45 et 60. On place 
+cette boîte dans le conteneur fenetre à la ligne 42.</p>
+<p>Aux lignes 49 et 64, on connecte la méthode <code class="methodname">salut</code>() 
+au signal "clicked" émis par les boutons. Chaque bouton définit 
+une chaine de caractères différente qui sera transmise à la méthode 
+<code class="methodname">salut</code>() lors de son appel.</p>
+<p>On place les boutons dans la boîte horizontale aux lignes 53 et 66 ; 
+ils seront affichés par GTK aux lignes 57 et 70.</p>
+<p>Enfin, on affiche la boîte et la fenêtre, respectivement aux 
+      lignes 71 et 72.</p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch-MovingOn.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-MovingOn.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch-PackingWidgets.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapitre 3. Avançons </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> Chapitre 4. Le placement des widgets</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

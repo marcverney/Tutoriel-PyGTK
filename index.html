@@ -1,0 +1,518 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Tutoriel PyGTK 2.0</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<meta name="keywords" content="pygtk,tutoriel,tutorial,traduction">
+<meta name="description" content="Ce tutoriel décrit l'utilisation du module Python PyGTK.">
+<link rel="start" href="../../index.html" title="Tutoriel PyGTK 2.0">
+<link rel="next" href="ch-Introduction.html" title="Chapitre 1. Introduction">
+<link rel="up" href="../pygtktut.html" title="Tutoriel Pygtk">
+</head>
+<body>
+
+<div class="localisation"> 
+	Vous êtes à peu près ici : 
+	<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+
+<div class="navheader">
+	<table width="100%" summary="Navigation header">
+	<tr><th colspan="3" align="center">Tutoriel PyGTK 2.0</th></tr>
+	<tr>
+		<td width="20%" align="left"> </td>
+	<th width="60%" align="center"> </th>
+		<td width="20%" align="right"> <a accesskey="n" href="ch-Introduction.html">Suiv.</a>
+		</td>
+	</tr>
+	</table>
+	<hr>
+</div>
+
+<div class="book" lang="fr"><!-- 1 -->
+	<div class="titlepage"><!-- 2 -->
+		<div><!-- 3 -->
+			<div><h1 class="title"><a name="pygtk-tut"></a>Tutoriel PyGTK 2.0</h1></div>
+			<div><!-- 4 -->
+				<div class="authorgroup"><!-- 5 -->
+					<div class="author"><!-- 6 -->
+						<h3 class="author"><span class="firstname">John</span> <span class="surname">Finlay</span></h3>
+					</div><!-- fin 6 author -->
+				</div> <!-- fin 5 authorgroup -->
+			</div><!-- fin 4 -->
+			<div><p class="releaseinfo">Version 2.4</p></div>
+			<div><p class="pubdate">April 13, 2005</p></div>
+			<p class="othercredit"><span class="contrib">Adaptation fran&ccedil;aise</span>&nbsp;:</p> 
+			<p><span class="firstname">Marc</span> <span class="surname">Verney</span><br>
+			<span class="firstname">Mc</span> <span class="surname">Collilieux</span></p>
+			
+			<div><!-- 7 -->
+				<div class="abstract">
+					<p class="title"><b>Résumé</b></p>
+					<p>Ce tutoriel décrit l'utilisation du module Python PyGTK.</p>
+				</div> <!-- fin abstract -->
+			</div><!-- fin 7 -->
+		</div><!-- fin 3 -->
+			<hr>
+	</div><!-- fin 2 -->
+	<div class="toc"><!-- 8 -->
+		<p><b>Table des matières</b></p>
+		<p>La table des matières est intégrale, la partie non encore traduite ne comporte pas de lien.
+		<br />La dernière version de la traduction est sur 
+		<a href="http://mcclinews.free.fr/python/pygtktutfr/">http://mcclinews.free.fr/python/pygtktutfr/</a></p>
+		<dl>
+			<dt><span class="chapter">1. <a href="ch-Introduction.html">Introduction</a>
+			</span>&nbsp;&nbsp;&nbsp;</dt>
+			<dd>
+				<dl><dt><span class="sect1">1.1. <a href="ch-Introduction.html#ExplorerPyGTK">
+				Explorer PyGTK</a></span></dt></dl>
+			</dd>
+			
+			<dt><span class="chapter">2. <a href="ch-GettingStarted.html">Premiers pas</a></span>&nbsp;&nbsp;&nbsp;</dt>
+			<dd>
+				<dl><dt><span class="sect1">2.1 <a href="ch-GettingStarted.html#HelloWorld">Le "Hello World" de PyGTK</a></span></dt>
+						<dt><span class="sect1">2.2 <a href="sec-TheoryOfSignalsAndCallbacks.html">Le principe des signaux et des rappels</a></span></dt>
+						<dt><span class="sect1">2.3 <a href="sec-Events.html">Les &eacute;v&egrave;nements</a></span></dt>
+						<dt><span class="sect1">2.4 <a href="sec-SteppingThroughHelloWorld.html">Le &quot;Hello World&quot; pas &agrave; pas</a></span></dt>
+				</dl>
+			</dd>
+			
+			<dt><span class="chapter">3. <a href="ch-MovingOn.html">Avan&ccedil;ons</a></span>&nbsp;&nbsp;&nbsp;</dt>
+			<dd>
+				<dl><dt><span class="sect1">3.1. <a href="ch-MovingOn.html#CompltGestSignaux">Compl&eacute;ments sur les gestionnaires de signaux</a></span></dt>
+						<dt><span class="sect1">3.2. <a href="sec-UpgradedHelloWorld.html">Modification de notre &quot;Hello World&quot;</a></span></dt>
+				</dl>
+			</dd>
+			
+			<dt><span class="chapter">4. <a href="ch-PackingWidgets.html">Le placement des widgets</a></span>&nbsp;&nbsp;&nbsp;</dt>
+			<dd>
+				<dl><dt><span class="sect1">4.1. <a href="ch-PackingWidgets.html#BoitesPlacement">Le principe des boites de placement</a></span></dt>
+						<dt><span class="sect1">4.2. <a href="sec-DetailsOfBoxes.html">Les boites en d&eacute;tail</a></span></dt>
+						<dt><span class="sect1">4.3. <a href="sec-PackingDemonstrationProgram.html">D&eacute;monstration de placement avec les boites</a></span></dt>
+            <dt><span class="sect1">4.4. <a href="sec-PackingUsingTables.html">Le placement avec les tableaux</a></span></dt>
+            <dt><span class="sect1">4.5. <a href="sec-TablePackingExample.html">D&eacute;monstration de placement avec les tableaux</a></span></dt>
+				</dl>
+			</dd>
+			
+<dt><span class="chapter">5. <a href="ch-WidgetOverview.html">Vue d'ensemble des widgets</a></span>&nbsp;&nbsp;&nbsp;</dt>
+<dd><dl>
+<dt><span class="sect1">5.1. <a href="ch-WidgetOverview.html#HierarchieWidgets">Hi&eacute;rarchie des widgets</a></span></dt>
+<dt><span class="sect1">5.2. <a href="sec-WidgetsWithoutWindows.html">Les widgets sans fen&ecirc;tre</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">6. <a href="ch-ButtonWidget.html">Les boutons</a></span>&nbsp;&nbsp;&nbsp;</dt>
+<dd><dl>
+<dt><span class="sect1">6.1. <a href="ch-ButtonWidget.html#BoutonsSimples">Les boutons simples</a></span></dt>
+<dt><span class="sect1">6.2. <a href="sec-ToggleButtons.html">Les boutons &agrave; bascule</a></span></dt>
+<dt><span class="sect1">6.3. <a href="sec-CheckButtons.html">Les cases &agrave; cocher</a></span></dt>
+<dt><span class="sect1">6.4. <a href="sec-RadioButtons.html">Les boutons radio</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">7. <a href="ch-Adjustments.html">Les ajustements</a></span>&nbsp;&nbsp;&nbsp;</dt>
+<dd><dl>
+<dt><span class="sect1">7.1. <a href="ch-Adjustments.html#CreerAjustement">Cr&eacute;er un ajustement</a></span></dt>
+<dt><span class="sect1">7.2. <a href="sec-UsingAdjustmentsTheEasyWay.html">Utiliser facilement les ajustements</a></span></dt>
+<dt><span class="sect1">7.3. <a href="sec-AdjustmentInternals.html">Les ajustements en d&eacute;tail</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">8. <a href="ch-RangeWidgets.html">Les widgets d'intervalle</a></span>&nbsp;&nbsp;&nbsp;</dt>
+<dd><dl>
+<dt><span class="sect1">8.1. <a href="ch-RangeWidgets.html#sec-ScrollbarWidgets">HScrollbar et VScrollbar : les barres de d&eacute;filement</a></span></dt>
+<dt><span class="sect1">8.2. <a href="sec-ScaleWidgets.html">HScale et VScale : les gradateurs</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">8.2.1. <a href="sec-ScaleWidgets.html#id3049331">Cr&eacute;er un gradateur</a></span></dt>
+<dt><span class="sect2">8.2.2. <a href="sec-ScaleWidgets.html#id3049384">M&eacute;thodes et signaux (enfin, au moins m&eacute;thodes...)</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">8.3. <a href="sec-CommonRangeMethods.html">M&eacute;thodes communes aux widgets d'intervalle</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">8.3.1. <a href="sec-CommonRangeMethods.html#id3060169">D&eacute;finir le mode d'actualisation</a></span></dt>
+<dt><span class="sect2">8.3.2. <a href="sec-CommonRangeMethods.html#id3060239">D&eacute;finir et r&eacute;cup&eacute;rer les ajustements</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">8.4. <a href="sec-KeyAndMouseBindings.html">Clavier et souris</a></span></dt>
+<dt><span class="sect1">8.5. <a href="sec-RangeWidgetExample.html">D&eacute;monstration des widgets d'intervalle</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">9. <a href="ch-MiscellaneousWidgets.html">Widgets divers</a></span>&nbsp;&nbsp;&nbsp;</dt>
+<dd><dl>
+<dt><span class="sect1">9.1. <a href="ch-MiscellaneousWidgets.html#sec-Labels">Les &eacute;tiquettes</a></span></dt>
+<dt><span class="sect1">9.2. <a href="sec-Arrows.html">Les fl&egrave;ches</a></span></dt>
+<dt><span class="sect1">9.3. <a href="sec-TooltipsObject.html">Les infobulles</a></span></dt>
+<dt><span class="sect1">9.4. <a href="sec-ProgressBars.html">La barre de progression</a></span></dt>
+<dt><span class="sect1">9.5. <a href="sec-Dialogs.html">Les boites de dialogue</a></span></dt>
+<dt><span class="sect1">9.6. <a href="sec-Images.html">Les images</a></span></dt>
+<dd><dl><dt><span class="sect2">9.6.1. <a href="sec-Images.html#Pixmaps">Les Pixmaps</a></span></dt></dl></dd>
+<dt><span class="sect1">9.7. <a href="sec-Rulers.html">Les r&egrave;gles</a></span></dt>
+<dt><span class="sect1">9.8. <a href="sec-Statusbars.html">La barre d'&eacute;tat</a></span></dt>
+<dt><span class="sect1">9.9. <a href="sec-TextEntries.html">Les champs de saisie</a></span></dt>
+<dt><span class="sect1">9.10. <a href="sec-SpinButtons.html">Les boites d'incr&eacute;ment</a></span></dt>
+<dt><span class="sect1">9.11. <a href="sec-ComboWidget.html">Les listes d&eacute;roulantes</a></span></dt>
+<dt><span class="sect1">9.12. <a href="sec-Calendar.html">Le calendrier</a></span></dt>
+<dt><span class="sect1">9.13. <a href="sec-ColorSelection.html">Le s&eacute;lecteur de couleur</a></span></dt>
+<dt><span class="sect1">9.14. <a href="sec-FileSelections.html">Le s&eacute;lecteur de fichier</a></span></dt>
+<dt><span class="sect1">9.15. <a href="sec-FontSelectionDialog.html">Le s&eacute;lecteur de police</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">10. <a href="ch-ContainerWidgets.html">Les widgets conteneurs</a></span></dt>
+<dd><dl>
+<dt><span class="sect1">10.1. <a href="ch-ContainerWidgets.html#sec-EventBox">10.1. La boîte à évènement (EventBox)</a></span></dt>
+<dt><span class="sect1">10.2. <a href="sec-Alignment.html">Le widget d'alignement (Alignment)</a></span></dt>
+<dt><span class="sect1">10.3. <a href="sec-Fixed.html">Le conteneur Place (Fixed)</a></span></dt>
+<dt><span class="sect1">10.4. <a href="sec-Layout.html">Le conteneur Layout (Affiche)</a></span></dt>
+<dt><span class="sect1">10.5. <a href="sec-Frames.html">Les cadres (Frame)</a></span></dt>
+<dt><span class="sect1">10.6. <a href="sec-AspectFrames.html">Les cadres proportionnels (AspectFrame)</a></span></dt>
+<dt><span class="sect1">10.7. <a href="sec-PanedWindowWidgets.html">Fenêtre à volets (Paned Window)</a></span></dt>
+<dt><span class="sect1">10.8. <a href="sec-Viewports.html">Viewports</a></span></dt>
+<dt><span class="sect1">10.9. <a href="sec-ScrolledWindows.html">Fenêtre avec barres de défilement (Scrolled Window)</a></span></dt>
+<dt><span class="sect1">10.10. <a href="sec-ButtonBoxes.html">Boîtes à boutons (ButtonBox)</a></span></dt>
+<dt><span class="sect1">10.11. <a href="sec-Toolbar.html">La barre d'outils (Toolbar)</a></span></dt>
+<dt><span class="sect1">10.12. <a href="sec-Notebooks.html">Le bloc-notes (Notebook)</a></span></dt>
+<dt><span class="sect1">10.13. <a href="sec-PlugsAndSockets.html">Les connexions et connecteurs (Plugs et Sockets)</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">10.13.1. <a href="sec-PlugsAndSockets.html#id2592006">Les Plugs</a></span></dt>
+<dt><span class="sect2">10.13.2. <a href="sec-PlugsAndSockets.html#id2592155">Les Sockets</a></span></dt>
+</dl></dd>
+</dl></dd>
+
+<dt><span class="chapter">11. <a href="ch-MenuWidget.html">Les menus</a></span>&nbsp;&nbsp;&nbsp;</dt>
+<dd><dl>
+<dt><span class="sect1">11.1. <a href="ch-MenuWidget.html#menusmanu">Cr&eacute;ation manuelle de menus</a></span></dt>
+<dt><span class="sect1">11.2. <a href="sec-ManualMenuExample.html">D&eacute;monstration de cr&eacute;ation manuelle de menus</a></span></dt>
+<dt><span class="sect1">11.3. <a href="sec-UsingItemFactory.html">Cr&eacute;ation de menus avec l'ItemFactory</a></span></dt>
+<dt><span class="sect1">11.4. <a href="sec-ItemFactoryExample.html">D&eacute;monstration de l'ItemFactory</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">12. <a href="ch-DrawingArea.html">La zone de dessin (Drawing Area)</a></span></dt>
+<dd><dl>
+<dt><span class="sect1">12.1. <a href="ch-DrawingArea.html#sec-GraphicsContext">Le contexte graphique</a></span></dt>
+<dt><span class="sect1">12.2. <a href="sec-DrawingMethods.html">Les méthodes pour dessiner</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">13. <a href="ch-TextViewWidget.html">Le widget TextView</a></span>&nbsp;&nbsp;&nbsp;</dt>
+<dd><dl>
+<dt><span class="sect1">13.1. <a href="ch-TextViewWidget.html#sec-TextViewOverview">Pr&eacute;sentation des widgets de texte</a></span></dt>
+<dt><span class="sect1">13.2. <a href="sec-TextViews.html">TextView&nbsp;: la zone de texte</a></span></dt>
+<dt><span class="sect1">13.3. <a href="sec-TextBuffers.html">TextBuffer&nbsp;: le buffer de texte</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">13.3.1. <a href="sec-TextBuffers.html#RecupInfoBuffer">Récupérer des informations sur le buffer</a></span></dt>
+<dt><span class="sect2">13.3.2. <a href="sec-TextBuffers.html#CreerTextIter">Créer des TextIter</a></span></dt>
+<dt><span class="sect2">13.3.3. <a href="sec-TextBuffers.html#InserRecupSuppr">Insérer, récupérer et supprimer du texte</a></span></dt>
+<dt><span class="sect2">13.3.4. <a href="sec-TextBuffers.html#CreerManipTextMark">Créer et manipuler des TextMark</a></span></dt>
+<dt><span class="sect2">13.3.5. <a href="sec-TextBuffers.html#CreerAppliqTextTag">Créer et appliquer des TextTag</a></span></dt>
+<dt><span class="sect2">13.3.6. <a href="sec-TextBuffers.html#InserImagesWidgets">Ins&eacute;rer des images et des widgets</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">13.4. <a href="sec-TextIters.html">TextIter&nbsp;: les it&eacute;rateurs de texte</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">13.4.1. <a href="sec-TextIters.html#RecupAttrTextIter">R&eacute;cup&eacute;rer les attributs d'un TextIter</a></span></dt>
+<dt><span class="sect2">13.4.2. <a href="sec-TextIters.html#RecupAttrTexte">R&eacute;cup&eacute;rer les attributs d'un texte portant un TextIter</a></span></dt>
+<dt><span class="sect2">13.4.3. <a href="sec-TextIters.html#CopierTextIter">Copier un TextIter</a></span></dt>
+<dt><span class="sect2">13.4.4. <a href="sec-TextIters.html#RecupTexteobjets">R&eacute;cup&eacute;rer du texte et des objets</a></span></dt>
+<dt><span class="sect2">13.4.5. <a href="sec-TextIters.html#VerifBalises">V&eacute;rifier les balises &agrave; une position de TextIter</a></span></dt>
+<dt><span class="sect2">13.4.6. <a href="sec-TextIters.html#VerifPosition">V&eacute;rifier la position dans le texte</a></span></dt>
+<dt><span class="sect2">13.4.7. <a href="sec-TextIters.html#SeDeplacerTexte">Se d&eacute;placer dans le texte</a></span></dt>
+<dt><span class="sect2">13.4.8. <a href="sec-TextIters.html#SeDeplacerEmplSpec">Se d&eacute;placer &agrave; un emplacement sp&eacute;cifique</a></span></dt>
+<dt><span class="sect2">13.4.9. <a href="sec-TextIters.html#RechercherTexte">Rechercher du texte</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">13.5. <a href="sec-TextMarks.html">TextMark&nbsp;: les marques de texte</a></span></dt>
+<dt><span class="sect1">13.6. <a href="sec-TextTagsAndTextTagTables.html">TextTag et TextTagTable&nbsp;: les balises de texte</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">13.6.1. <a href="sec-TextTagsAndTextTagTables.html#TextTag">Les TextTag</a></span></dt>
+<dt><span class="sect2">13.6.2. <a href="sec-TextTagsAndTextTagTables.html#TextTagTable">La TextTagTable</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">13.7. <a href="sec-TextViewExample.html">Un exemple de TextView</a></span></dt>
+</dl><a name="chap14"></a></dd>
+
+<dt><span class="chapter">14. <a href="ch-TreeViewWidget.html">Le widget TreeView</a></span></dt>
+	<dd>
+		<dl><dt><span class="sect1">14.1. <a href="ch-TreeViewWidget.html#sec-TreeViewOverview">Présentation</a></span></dt>
+				<dt><span class="sect1">14.2. <a href="sec-TreeModelInterface.html">L'interface TreeModel et le stockage des données</a></span></dt>
+        	<dd>
+        		<dl><dt><span class="sect2">14.2.1. <a href="sec-TreeModelInterface.html#sec-TreeModelIntroduction">Introduction</a></span></dt>
+        				<dt><span class="sect2">14.2.2. <a href="sec-TreeModelInterface.html#sec-CreatingTreeStoreAndListStore">Créer des objets TreeStore et ListStore</a></span></dt>
+                <dt><span class="sect2">14.2.3. <a href="sec-TreeModelInterface.html#sec-ReferringToTreeModelRows">Les références aux lignes du modèle</a></span></dt>
+                <dt><span class="sect2">14.2.4. <a href="sec-TreeModelInterface.html#sec-AddingStoreRows">Ajouter des lignes</a></span></dt>
+                <dt><span class="sect2">14.2.5. <a href="sec-TreeModelInterface.html#sec-RemovingStoreRows">Supprimer des lignes</a></span></dt>
+                <dt><span class="sect2">14.2.6. <a href="sec-TreeModelInterface.html#sec-ManagingRowData">Manipuler les données des lignes</a></span></dt>
+                <dt><span class="sect2">14.2.7. <a href="sec-TreeModelInterface.html#sec-PythonProtocolSupport">Support du protocole Python</a></span></dt>
+                <dt><span class="sect2">14.2.8. <a href="sec-TreeModelInterface.html#sec-TreeModelSignals">Les signaux du TreeModel</a></span></dt>
+                <dt><span class="sect2">14.2.9. <a href="sec-TreeModelInterface.html#sec-SortingTreeModelRows">Ordonner les lignes d'un TreeModel</a></span></dt>
+        		</dl>
+        	</dd>
+				<dt><span class="sect1">14.3. <a href="sec-TreeViews.html">Les TreeView</a></span></dt>
+					<dd>
+						<dl><dt><span class="sect2">14.3.1. <a href="sec-TreeViews.html#sec-CreatingTreeView">Créer un TreeView</a></span></dt>
+                <dt><span class="sect2">14.3.2. <a href="sec-TreeViews.html#sec-TreeViewModelAccess">Récupérer et spécifier le modèle du TreeView</a></span></dt>
+                <dt><span class="sect2">14.3.3. <a href="sec-TreeViews.html#sec-TreeViewProperties">Les propriétés du TreeView</a></span></dt>
+						</dl>
+					</dd>
+				<dt><span class="sect1">14.4. <a href="sec-CellRenderers.html">Les CellRenderer</a></span></dt>
+					<dd>
+						<dl><dt><span class="sect2">14.4.1. <a href="sec-CellRenderers.html#sec-CellRendererOverview">Vue d'ensemble</a></span></dt>
+                <dt><span class="sect2">14.4.2. <a href="sec-CellRenderers.html#sec-CellRendererTypes">Les différents types de CellRenderer</a></span></dt>
+                <dt><span class="sect2">14.4.3. <a href="sec-CellRenderers.html#sec-CellRendererProperties">Les propriétés des CellRenderer</a></span></dt>
+                <dt><span class="sect2">14.4.4. <a href="sec-CellRenderers.html#sec-CellRendererAttributes">Les attributs du CellRenderer</a></span></dt>
+                <dt><span class="sect2">14.4.5. <a href="sec-CellRenderers.html#sec-CellDataFunction">Fonction d'affichage des données cellulaires</a></span></dt>
+                <dt><span class="sect2">14.4.6. <a href="sec-CellRenderers.html#sec-CellRendererTextMarkup">CellRendererText Markup</a></span></dt>
+                <dt><span class="sect2">14.4.7. <a href="sec-CellRenderers.html#EditableTextCells">Cellules de texte éditables</a></span></dt>
+                <dt><span class="sect2">14.4.8. <a href="sec-CellRenderers.html#sec-ActivatableToggleCells">Cellules à bascule activables</a></span></dt>
+                <dt><span class="sect2">14.4.9. <a href="sec-CellRenderers.html#sec-EditableActivatableProgram">Programme d'exemple avec cellules éditables et activables</a></span></dt>
+						</dl>
+					</dd>
+<dt><span class="sect1">14.5. <a href="sec-TreeViewColumns.html">TreeViewColumn</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">14.5.1. <a href="sec-TreeViewColumns.html#sec-CreatingTreeViewColumns">Créer des TreeViewColumn</a></span></dt>
+<dt><span class="sect2">14.5.2. <a href="sec-TreeViewColumns.html#sec-ManagingCellRenderers">Gérer les CellRenderer</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">14.6. <a href="sec-ManipulatingTreeViews.html">Manipuler les TreeView</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">14.6.1. <a href="sec-ManipulatingTreeViews.html#sec-ManagingColumns">Gérer les colonnes</a></span></dt>
+<dt><span class="sect2">14.6.2. <a href="sec-ManipulatingTreeViews.html#sec-ExpandCollapseChildRows">Afficher ou masquer les enfants d'une ligne</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">14.7. <a href="sec-TreeViewSignals.html">Les signaux des TreeView</a></span></dt>
+<dt><span class="sect1">14.8. <a href="sec-TreeSelections.html">Gestion des Treeselection</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">14.8.1. <a href="sec-TreeSelections.html#sec-GettingTheTreeSelection">Obtenir un TreeSelection</a></span></dt>
+<dt><span class="sect2">14.8.2. <a href="sec-TreeSelections.html#sec-TreeSelectionMode">Modes du TreeSelection</a></span></dt>
+<dt><span class="sect2">14.8.3. <a href="sec-TreeSelections.html#sec-RetrievingTheTreeSelection">Retrouver la sélection</a></span></dt>
+<dt><span class="sect2">14.8.4. <a href="sec-TreeSelections.html#sec-TreeSelectionFunction"> Utiliser une fonction TreeSelection</a></span></dt>
+<dt><span class="sect2">14.8.5. <a href="sec-TreeSelections.html#sec-SelectingAndUnselectingRows">Sélectionner et déselectionner les lignes</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">14.9. <a href="sec-TreeViewDragAndDrop.html">Glisser-déposer dans un TreeView</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">14.9.1. <a href="sec-TreeViewDragAndDrop.html#DragDropReordering">Reclasser avec un glisser-déposer</a></span></dt>
+<dt><span class="sect2">14.9.2. <a href="sec-TreeViewDragAndDrop.html#sec-ExternalDragDrop">Glisser-déposer externe</a></span></dt>
+<dt><span class="sect2">14.9.3. <a href="sec-TreeViewDragAndDrop.html#sec-TreeViewDnDExample">Exemple de glisser-déposer dans un TreeView</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">14.10. <a href="sec-TreeModelSortAndTreeModelFilter.html">TreeModelSort et TreeModelFilter</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">14.10.1. <a href="sec-TreeModelSortAndTreeModelFilter.html#sec-TreeModelSort">Le TreeModelSort</a></span></dt>
+<dt><span class="sect2">14.10.2. <a href="sec-TreeModelSortAndTreeModelFilter.html#sec-TreeModelFilter">Le TreeModelFilter</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">14.11. <a href="sec-GenericTreeModel.html">Le TreeModel générique</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">14.11.1. <a href="sec-GenericTreeModel.html#sec-GenericTreeModelOverview">Aperçu du GenericTreeModel</a></span></dt>
+<dt><span class="sect2">14.11.2. <a href="sec-GenericTreeModel.html#sec-GenericTreeModelInterface">Interface du GenericTreeModel</a></span></dt>
+<dt><span class="sect2">14.11.3. <a href="sec-GenericTreeModel.html#sec-AddRemoveGenericTreeModelRows">Ajouter et supprimer des lignes</a></span></dt>
+<dt><span class="sect2">14.11.4. <a href="sec-GenericTreeModel.html#sec-GenericTreeModelMemoryManagement">Gestion de la mémoire</a></span></dt>
+<dt><span class="sect2">14.11.5. <a href="sec-GenericTreeModel.html#sec-OtherInterfaces">Autres interfaces</a></span></dt>
+<dt><span class="sect2">14.11.6. <a href="sec-GenericTreeModel.html#sec-ApplyingGenericTreeModel">Utilisation du GenericTreeModel</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">14.12. <a href="sec-GenericCellRenderer.html">The Generic CellRenderer</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">15. <a href="ch-NewInPyGTK2.2.html">Nouveaux Widgets dans PyGTK 2.2</a></span></dt>
+	<dd><dl>
+		<dt><span class="sect1">15.1. <a href="ch-NewInPyGTK2.2.html#sec-Clipboards">Les Clipboards</a></span></dt>
+		<dd><dl>
+			<dt><span class="sect2">15.1.1. <a href="ch-NewInPyGTK2.2.html#sec-CreatingClipboard">Créer un clipboard</a></span></dt>
+			<dt><span class="sect2">15.1.2. <a href="ch-NewInPyGTK2.2.html#sec-UsingClipboards">Utiliser les Clipboard avec les Entry, Spinbutton et TextView</a></span></dt>
+			<dt><span class="sect2">15.1.3. <a href="ch-NewInPyGTK2.2.html#sec-SettingClipboardData">Affecter des données à un Clipboard</a></span></dt>
+			<dt><span class="sect2">15.1.4. <a href="ch-NewInPyGTK2.2.html#sec-RetrievingClipboardContents">Récupérer le contenu du Clipboard</a></span></dt>
+			<dt><span class="sect2">15.1.5. <a href="ch-NewInPyGTK2.2.html#sec-ClipboardExample">Exemple de Clipboard</a></span></dt>
+		</dl></dd>
+	</dl></dd>
+
+<dt><span class="chapter">16. <a href="ch-NewInPyGTK2.4.html">Nouveaux Widgets dans PyGTK 2.4</a></span></dt>
+	<dd><dl>
+		<dt><span class="sect1">16.1. <a href="ch-NewInPyGTK2.4.html#sec-ActionsAndActionGroups">Les objets Action et groupes d'Actions (ActionGroup)</a></span></dt>
+		<dd><dl>
+			<dt><span class="sect2">16.1.1. <a href="ch-NewInPyGTK2.4.html#sec-Actions">Actions</a></span></dt>
+			<dt><span class="sect2">16.1.2. <a href="ch-NewInPyGTK2.4.html#sec-ActionGroups">ActionGroups</a></span></dt>
+		</dl></dd>
+		<dt><span class="sect1">16.2. <a href="sec-ComboBoxAndComboboxEntry.html">Les listes déroulantes (ComboBox) et listes déroulantes avec saisie (ComboBoxEntry)</a></span></dt>
+		<dd><dl>
+			<dt><span class="sect2">16.2.1. <a href="sec-ComboBoxAndComboboxEntry.html#sec-ComboBox">Le widget ComboBox</a></span></dt>
+			<dt><span class="sect2">16.2.2. <a href="sec-ComboBoxAndComboboxEntry.html#sec-ComboBoxEntry">Le widget ComboBoxEntry</a></span></dt>
+		</dl></dd>
+<dt><span class="sect1">16.3. <a href="sec-ColorButtonAndFontButton.html">Bouton de couleur (ColorButton) et de police (FontButton)</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">16.3.1. <a href="sec-ColorButtonAndFontButton.html#sec-ColorButton">Bouton de couleur (ColorButton)</a></span></dt>
+<dt><span class="sect2">16.3.2. <a href="sec-ColorButtonAndFontButton.html#sec-FontButton">Bouton de police (FontButton)</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">16.4. <a href="sec-EntryCompletion.html">Zone de saisie avec complètement (EntryCompletion)</a></span></dt>
+<dt><span class="sect1">16.5. <a href="sec-ExpanderWidget.html">Flèche de développement (Expander)</a></span></dt>
+<dt><span class="sect1">16.6. <a href="sec-FileChoosers.html">Sélection de fichier avec un widget basé sur le sélecteur FileChooser</a></span></dt>
+<dt><span class="sect1">16.7. <a href="sec-UIManager.html">Le gestionnaire d'Interface Utilisateur UIManager</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">16.7.1. <a href="sec-UIManager.html#sec-UIManagerOverview">Aperçu</a></span></dt>
+<dt><span class="sect2">16.7.2. <a href="sec-UIManager.html#sec-CreatingUIManager">Créer un UIManager</a></span></dt>
+<dt><span class="sect2">16.7.3. <a href="sec-UIManager.html#sec-AddRemoveActionGroups">Ajouter et supprimer des groupe d'actions</a></span></dt>
+<dt><span class="sect2">16.7.4. <a href="sec-UIManager.html#sec-UIDescriptions">Descriptions de l'Interface Utilisateur</a></span></dt>
+<dt><span class="sect2">16.7.5. <a href="sec-UIManager.html#sec-AddRemoveUIDescriptions">Ajouter et supprimer des descriptions d'Interface Utilisateur</a></span></dt>
+<dt><span class="sect2">16.7.6. <a href="sec-UIManager.html#sec-AccessingUIWidgets">Accès aux widgets d'un Interface Utilisateur</a></span></dt>
+<dt><span class="sect2">16.7.7. <a href="sec-UIManager.html#sec-SimpleUIManagerExample">Un exemple d'Interface Utilisateur simple</a></span></dt>
+<dt><span class="sect2">16.7.8. <a href="sec-UIManager.html#sec-MergingUIDescriptions">Combiner des descriptions d'Interface Utilisateur</a></span></dt>
+<dt><span class="sect2">16.7.9. <a href="sec-UIManager.html#sec-UIManagerSignals">Signaux de l'Interface Utilisateur</a></span></dt>
+</dl></dd>
+</dl></dd>
+
+
+<dt><span class="chapter">17. <a href="ch-UndocumentedWidgets.html">Widgets non décrits</a></span></dt>
+<dd><dl>
+<dt><span class="sect1">17.1. <a href="ch-UndocumentedWidgets.html#sec-AccelLabel">Étiquette de raccourci</a></span></dt>
+<dt><span class="sect1">17.2. <a href="sec-OptionMenu.html">Option de menu</a></span></dt>
+<dt><span class="sect1">17.3. <a href="sec-MenuItems.html">Éléments de menu</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">17.3.1. <a href="sec-MenuItems.html#id2566645">Éléments de menu à cocher</a></span></dt>
+<dt><span class="sect2">17.3.2. <a href="sec-MenuItems.html#id2541012">Élément de menu Radio</a></span></dt>
+<dt><span class="sect2">17.3.3. <a href="sec-MenuItems.html#id2595366">Élément de menu séparateur</a></span></dt>
+<dt><span class="sect2">17.3.4. <a href="sec-MenuItems.html#id2565122">Élément rattacheur de menu</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">17.4. <a href="sec-Curves.html">Curves</a></span></dt>
+<dt><span class="sect1">17.5. <a href="sec-MessageDialog.html">Fenêtre de dialogue de message</a></span></dt>
+<dt><span class="sect1">17.6. <a href="sec-GammaCurve.html">Courbe Gamma</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">18. <a href="ch-SettingWidgetAttributes.html">Définir les attributs des widgets</a></span></dt>
+<dd><dl>
+<dt><span class="sect1">18.1. <a href="ch-SettingWidgetAttributes.html#sec-WidgetFlagMethods">Méthodes des drapeaux des widgets</a></span></dt>
+<dt><span class="sect1">18.2. <a href="sec-WidgetDisplayMethods.html">Méthodes d'affichage des widgets</a></span></dt>
+<dt><span class="sect1">18.3. <a href="sec-WidgetAccelerators.html">Accélérateurs pour les widgets</a></span></dt>
+<dt><span class="sect1">18.4. <a href="sec-WidgetNameMethods.html">Méthodes de nom des widgets</a></span></dt>
+<dt><span class="sect1">18.5. <a href="sec-WidgetStyles.html">Style des widgets</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">19. <a href="ch-TimeoutsIOAndIdleFunctions.html">Temporisations, Entrées/Sorties et fonctions d'inactivité</a></span></dt>
+<dd><dl>
+<dt><span class="sect1">19.1. <a href="ch-TimeoutsIOAndIdleFunctions.html#sec-Timeouts">Temporisations</a></span></dt>
+<dt><span class="sect1">19.2. <a href="sec-MonitoringIO.html">Contrôler les Entrées/Sorties</a></span></dt>
+<dt><span class="sect1">19.3. <a href="sec-IdleFunctions.html">Les fonctions d'inactivité</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">20. <a href="ch-AdvancedEventAndSignalHandling.html">Gestion avancée des évènements et signaux</a></span></dt>
+<dd><dl>
+<dt><span class="sect1">20.1. <a href="ch-AdvancedEventAndSignalHandling.html#sec-SignalMethods">Méthodes des signaux</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">20.1.1. <a href="ch-AdvancedEventAndSignalHandling.html#id2574560">Connecter et déconnecter les gestionnaires de signaux</a></span></dt>
+<dt><span class="sect2">20.1.2. <a href="ch-AdvancedEventAndSignalHandling.html#id2586483">Bloquer et libérer les gestionnaires de signaux</a></span></dt>
+<dt><span class="sect2">20.1.3. <a href="ch-AdvancedEventAndSignalHandling.html#id2641409">Émettre et stopper les signaux</a></span></dt>
+</dl></dd>
+<dt><span class="sect1">20.2. <a href="sec-SignalEmissionAndPropagation.html">Émission et propagation du signal</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">21. <a href="ch-ManagingSelections.html">Gérer les sélections</a></span></dt>
+<dd><dl>
+<dt><span class="sect1">21.1. <a href="ch-ManagingSelections.html#sec-SelectionOverview">Généralités</a></span></dt>
+<dt><span class="sect1">21.2. <a href="sec-RetrievingTheSelection.html">Récupérer la sélection</a></span></dt>
+<dt><span class="sect1">21.3. <a href="sec-SupplyingTheSelection.html">Alimenter la sélection</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">22. <a href="ch-DragAndDrop.html">Le glisser-déposer (DND)</a></span></dt>
+<dd><dl>
+<dt><span class="sect1">22.1. <a href="ch-DragAndDrop.html#sec-DNDOverview">Aperçu du DND</a></span></dt>
+<dt><span class="sect1">22.2. <a href="sec-DNDProperties.html">Propriétés du glisser-déposer</a></span></dt>
+<dt><span class="sect1">22.3. <a href="sec-DNDMethods.html">Méthodes du glisser-déposer</a></span></dt>
+<dd><dl>
+<dt><span class="sect2">22.3.1. <a href="sec-DNDMethods.html#id2540892">Configurer le widget origine</a></span></dt>
+<dt><span class="sect2">22.3.2. <a href="sec-DNDMethods.html#sec-SignalsOnSourceWidget">Les signaux du widget origine</a></span></dt>
+<dt><span class="sect2">22.3.3. <a href="sec-DNDMethods.html#sec-SettingUpDestinationWidget">Configurer un widget destination</a></span></dt>
+<dt><span class="sect2">22.3.4. <a href="sec-DNDMethods.html#sec-SignalsOnDestinationWidget">Les signaux du widget destination</a></span></dt>
+</dl></dd>
+</dl></dd>
+
+<dt><span class="chapter">23. <a href="ch-GtkRcFiles.html">Les fichiers de style rc GTK</a></span></dt>
+<dd><dl>
+<dt><span class="sect1">23.1. <a href="ch-GtkRcFiles.html#sec-FunctionsForRcFiles">Les fonctions pour le fichier rc</a></span></dt>
+<dt><span class="sect1">23.2. <a href="sec-GTKRcFileFormat.html">Format du fichier rc GTK</a></span></dt>
+<dt><span class="sect1">23.3. <a href="sec-ExampleRcFile.html">Exemple de fichier rc</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">24. <a href="ch-Scribble.html">Scribble, Un programme simple de dessin</a></span></dt>
+<dd><dl>
+<dt><span class="sect1">24.1. <a href="ch-Scribble.html#sec-ScribbleOverview">Aperçu de Scribble</a></span></dt>
+<dt><span class="sect1">24.2. <a href="sec-EventHandling.html">Gestion des évènements</a></span></dt>
+<dd><dl><dt><span class="sect2">24.2.1. <a href="sec-EventHandling.html#id2643367">Gestion des évènements</a></span></dt></dl></dd>
+<dt><span class="sect1">24.3. <a href="sec-DrawingAreaWidgetAndDrawing.html">Le widget zone de dessin (DrawingArea) et le dessin</a></span></dt>
+</dl></dd>
+
+<dt><span class="chapter">25. Tips For Writing PyGTK Applications</span></dt>
+
+<dt><span class="chapter">26. Contributing</span></dt>
+
+<dt><span class="chapter">27. Credits</span></dt>
+<dd><dl>
+<dt><span class="sect1">27.1. PyGTK Credits</span></dt>
+<dt><span class="sect1">27.2. Original GTK+ Credits</span></dt>
+</dl></dd>
+
+<dt><span class="chapter">28. <a href="ch-Copyright.html">Copyright du tutoriel et licence d'utilisation</a></span></dt>
+<!--</dl>-->
+
+
+<dt><span class="appendix">A. <a href="app-GtkSignals.html">Les signaux GTK</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="app-GtkSignals.html#sec-GtkObject">A.1. GtkObject</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkWidget.html">A.2. GtkWidget</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkData.html">A.3. GtkData</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkContainer.html">A.4. GtkContainer</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkCalendar.html">A.5. GtkCalendar</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkEditable.html">A.6. GtkEditable</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkNotebook.html">A.7. GtkNotebook</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkList.html">A.8. GtkList</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkMenuShell.html">A.9. GtkMenuShell</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkToolbar.html">A.10. GtkToolbar</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkButton.html">A.11. GtkButton</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkItem.html">A.12. GtkItem</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkWindow.html">A.13. GtkWindow</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkHandleBox.html">A.14. GtkHandleBox</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkToggleButton.html">A.15. GtkToggleButton</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkMenuItem.html">A.16. GtkMenuItem</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkCheckMenuItem.html">A.17. GtkCheckMenuItem</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkInputDialog.html">A.18. GtkInputDialog</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkColorSelection.html">A.19. GtkColorSelection</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkStatusBar.html">A.20. GtkStatusBar</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkCurve.html">A.21. GtkCurve</a></span></dt>
+<dt><span class="sect1"><a href="sec-GtkAdjustment.html">A.22. GtkAdjustment</a></span></dt>
+</dl></dd>
+	<dt><span class="appendix"><a href="app-CodeExamples.html">B. Code Examples</a></span></dt>
+<dd><dl>
+	<dt><span class="sect1"><a href="app-CodeExamples.html#sec-scribblesimple.py">B.1. scribblesimple.py</a></span></dt>
+</dl></dd>
+	<dt><span class="appendix">C. ChangeLog</span></dt>
+	<dt><span class="appendix">D. <a href="app-apropos.html">À propos de la traduction</a></span></dt>
+</dl>
+
+
+
+</div><!-- fin 8 -->
+
+
+</div><!-- fin 1 -->
+
+<div class="navfooter">
+	<hr>
+	<table width="100%" summary="Navigation footer">
+		<tr>
+			<td width="40%" align="left"> </td>
+			<td width="20%" align="center"> <a href="../pygtktut.html" accesskey="u" >Haut</a></td>
+			<td width="40%" align="right"> <a href="ch-Introduction.html" accesskey="n" >Suiv.</a>
+			</td>
+	</tr>
+	<tr>
+		<td width="40%" align="left" valign="top"> </td>
+		<td width="20%" align="center"> Tutoriel pygtk</td>
+		<td width="40%" align="right" valign="top"> Chapitre 1. Introduction</td>
+	</tr>
+	</table>
+</div>
+<!-- phpmyvisites -->
+<a href="http://st.free.fr/" title="phpMyVisites | Open source web analytics"
+onclick="window.open(this.href);return(false);"><script type="text/javascript">
+<!--
+var a_vars = Array();
+var pagename=document.title;
+
+var phpmyvisitesSite = 17647;
+var phpmyvisitesURL = "http://st.free.fr/phpmyvisites.php";
+//-->
+</script>
+<script language="javascript" src="http://st.free.fr/phpmyvisites.js" type="text/javascript"></script>
+<object><noscript><p>phpMyVisites | Open source web analytics
+<img src="http://st.free.fr/phpmyvisites.php" alt="Statistics" style="border:0" />
+</p></noscript></object></a>
+<!-- /phpmyvisites -->
+</body>
+</html>

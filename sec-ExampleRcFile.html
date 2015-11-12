@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>23.3. Exemple de fichier rc</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-GtkRcFiles.html" title="Chapitre 23. Les fichiers de style rc GTK">
+<link rel="prev" href="sec-GTKRcFileFormat.html" title="23.2. Format du fichier rc GTK">
+<link rel="next" href="ch-Scribble.html" title="Chapitre 24. Scribble, Un exemple simple de programme de dessin">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction, gtkrc">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">23.3. Exemple de fichier rc</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-GTKRcFileFormat.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 23. Les fichiers de style rc GTK</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch-Scribble.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-ExampleRcFile"></a>23.3. Exemple de fichier rc</h2></div></div></div>
+<pre class="programlisting">
+# -*- coding:utf-8 -*-      
+# pixmap_path "&lt;dir 1&gt;:&lt;dir 2&gt;:&lt;dir 3&gt;:..."
+#
+pixmap_path "/usr/include/X11R6/pixmaps:/home/images/pixmaps"
+#
+# style &lt;name&gt; [= &lt;name&gt;]
+# {
+#   &lt;option&gt;
+# }
+#
+# widget &lt;widget_set&gt; style &lt;style_name&gt;
+# widget_class &lt;widget_class_set&gt; style &lt;style_name&gt;
+
+# Voici la liste de tous les états possibles. 
+# Certains ne s'appliquent pas à tous les widgets
+#
+# NORMAL - L'état normal d'un widget, la souris n'est pas 
+# au-dessus, il n'est pas enfoncé, etc.
+#
+# PRELIGHT - Lorsque le widget est survolé par la souris, 
+# les couleurs définies pour cet état seront utilisées.
+#
+# ACTIVE - Lorsque le widget est cliqué ou enfoncé, il devient 
+# actif et les attributs définis pour cet état seront utilisés.
+#
+# INSENSITIVE - Lorsqu'un widget est marqué "insensible", 
+# et ne peut être activé, il prendra ces attributs
+#
+# SELECTED - Quand un objet est sélectionné, il prend ces attributs.
+#
+# À partir de ces états, on peut définir les attributs des widgets pour 
+# chacun d'eux avec les commandes suivantes :
+#
+# fg - indique la couleur de premier plan d'un widget.
+# fg - indique la couleur d'arrière-plan d'un widget.
+# bg_pixmap - l'arrière plan du widget est une image en mosaïque.
+# font - définit la police utilisée avec ce widget.
+#
+
+# Ceci crée un style appelé "button". Le nom n'a pas réellement 
+# d'importance, il est assigné aux widgets en cours à la fin du fichier.
+
+style "window"
+{
+  # Ceci remplit l'espacement autour de la fenêtre avec l'image indiquée.
+  #bg_pixmap[&lt;STATE&gt;] = "&lt;pixmap filename&gt;"
+  bg_pixmap[NORMAL] = "warning.xpm"
+}
+
+style "scale"
+{
+  # Donne la valeur rouge à la couleur de premier plan (la couleur 
+  # de police) dans l'état "NORMAL".
+  
+  fg[NORMAL] = { 1.0, 0, 0 }
+  
+  # Donne à ce widget la même image de fond que celle de son parent.
+  bg_pixmap[NORMAL] = "&lt;parent&gt;"
+}
+
+style "button"
+{
+  # Ceci montre tous les états possibles d'un bouton. Le seul 
+  # qui ne s'applique pas dans ce cas est l'état "SELECTED".
+  
+  fg[PRELIGHT] = { 0, 1.0, 1.0 }
+  bg[PRELIGHT] = { 0, 0, 1.0 }
+  bg[ACTIVE] = { 1.0, 0, 0 }
+  fg[ACTIVE] = { 0, 1.0, 0 }
+  bg[NORMAL] = { 1.0, 1.0, 0 }
+  fg[NORMAL] = { .99, 0, .99 }
+  bg[INSENSITIVE] = { 1.0, 1.0, 1.0 }
+  fg[INSENSITIVE] = { 1.0, 0, 1.0 }
+}
+
+# Dans cet exemple, le style "main_button" hérite des attributs 
+# du style "button" et ensuite, on remplace les couleurs de police 
+# et d'arrière-plan de l'état "PRELIGHT"
+
+style "main_button" = "button"
+{
+  font = "-adobe-helvetica-medium-r-normal--*-100-*-*-*-*-*-*"
+  bg[PRELIGHT] = { 0.75, 0, 0 }
+}
+
+style "toggle_button" = "button"
+{
+  fg[NORMAL] = { 1.0, 0, 0 }
+  fg[ACTIVE] = { 1.0, 0, 0 }
+  
+  # Ceci définit comme image d'arrière-plan du bouton à bascule, celle 
+  # de son parent (tel qu'il est défini dans l'application).
+  bg_pixmap[NORMAL] = "&lt;parent&gt;"
+}
+
+style "text"
+{
+  bg_pixmap[NORMAL] = "marble.xpm"
+  fg[NORMAL] = { 1.0, 1.0, 1.0 }
+}
+
+style "ruler"
+{
+  font = "-adobe-helvetica-medium-r-normal--*-80-*-*-*-*-*-*"
+}
+
+# pixmap_path "~/.pixmaps"
+
+# Les lignes suivantes indiquent aux widgets d'utiliser les styles 
+# définis ci-dessus. 
+# Les types de widget sont énumérés dans la hiérarchie des classes, 
+# mais on pourrait aussi les rappeler dans ce document pour servir 
+# de référence aux utilisateurs.
+
+widget_class "GtkWindow" style "window"
+widget_class "GtkDialog" style "window"
+widget_class "GtkFileSelection" style "window"
+widget_class "*Gtk*Scale" style "scale"
+widget_class "*GtkCheckButton*" style "toggle_button"
+widget_class "*GtkRadioButton*" style "toggle_button"
+widget_class "*GtkButton*" style "button"
+widget_class "*Ruler" style "ruler"
+widget_class "*GtkText" style "text"
+
+# Cette ligne donne à tous les boutons, enfants de la fenêtre 
+# principale ("main window"), le style main_button. Ceux-ci doivent 
+# être renseignés pour en profiter.
+widget "main window.*GtkButton*" style "main_button"
+</pre>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-GTKRcFileFormat.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-GtkRcFiles.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch-Scribble.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">23.2. Format du fichier rc GTK </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> Chapitre 24. Scribble, Un exemple simple de programme de dessin</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

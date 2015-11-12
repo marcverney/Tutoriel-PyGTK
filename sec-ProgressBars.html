@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+<title>9.4. La barre de progression</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,progression">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
+<link rel="previous" href="sec-TooltipsObject.html" title="9.3. Les infobulles">
+<link rel="next" href="sec-Dialogs.html" title="9.5. Les boites de dialogue">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici&nbsp;: 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">9.4. La barre de progression</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-TooltipsObject.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 9. Widgets divers</th>
+<td width="20%" align="right"><a accesskey="n" href="sec-Dialogs.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage"><div><h2 class="title" style="clear: both">
+<a name="BarreProgression"></a>9.4. La barre de progression</h2>
+</div></div>
+<p>On emploie la barre de progression pour montrer l'&eacute;tat d'avancement d'une 
+op&eacute;ration. Son utilisation est tr&egrave;s facile, comme vous pourrez le constater 
+plus bas avec le code source de notre exemple. Mais commen&ccedil;ons par d&eacute;couvrir 
+son appel de cr&eacute;ation&nbsp;:</p>
+
+<pre class="programlisting">
+  barreprogression = gtk.ProgressBar(<b><tt>adjustment</tt></b>=None)
+</pre>
+
+<p>L'argument <i><tt>adjustment</tt></i> indique un ajustement &agrave; utiliser avec 
+la barre de progression. Si aucun n'est sp&eacute;cifi&eacute;, il en sera 
+cr&eacute;&eacute; un automatiquement. &Agrave; pr&eacute;sent que notre barre de 
+progression existe, nous pouvons l'utiliser.</p>
+
+<pre class="programlisting">
+  barreprogression.set_fraction(<b><tt>fraction</tt></b>)
+</pre>
+
+<p>L'objet <i><tt>barreprogression</tt></i> est la barre de progression sur laquelle 
+l'on souhaite agir, et l'argument <i><tt>fraction</tt></i> la proportion 
+&quot;effectu&eacute;e&quot;, c'est-&agrave;-dire le pourcentage de remplissage de la 
+barre de progression. Cette indication est donn&eacute;e &agrave; la m&eacute;thode sous 
+la forme d'un r&eacute;el compris entre <tt>0</tt> et <tt>1</tt>.</p>
+<p>L'orientation de la barre de progression peut &ecirc;tre d&eacute;finie avec la 
+m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  barreprogression.set_orientation(<b><tt>orientation</tt></b>)
+</pre>
+
+<p>L'argument <i><tt>orientation</tt></i> peut prendre les valeurs suivantes, qui 
+indiquent le sens de progression de la barre&nbsp;:</p>
+
+<pre class="programlisting">
+  PROGRESS_LEFT_TO_RIGHT	# de gauche &agrave; droite
+  PROGRESS_RIGHT_TO_LEFT	# de droite &agrave; gauche
+  PROGRESS_BOTTOM_TO_TOP	# de bas en haut
+  PROGRESS_TOP_TO_BOTTOM	# de haut en bas
+</pre>
+
+<p>On peut configurerla barre de progression pour que, plut&ocirc;t que de donner 
+l'&eacute;tat d'avancement de l'op&eacute;ration, elle indique juste un &eacute;tat 
+d'activit&eacute;. Cela peut servir dans des situations o&ugrave; l'&eacute;tat 
+d'avancement ne peut pas &ecirc;tre repr&eacute;sent&eacute; dans un intervalle de 
+valeurs. La fonction suivante indique que l'op&eacute;ration a avanc&eacute; dans une 
+certaine mesure.</p>
+
+<pre class="programlisting">
+  barreprogression.pulse()
+</pre>
+
+<p>Le pas de d&eacute;placement de l'indicateur d'activit&eacute; se d&eacute;finit avec 
+la m&eacute;thode suivante, o&ugrave; <i><tt>fraction</tt></i>  est compris entre 
+<tt>0.0</tt> et <tt>1.0</tt>.</p>
+
+<pre class="programlisting">
+  barreprogression.set_pulse_step(<b><tt>fraction</tt></b>)
+</pre>
+
+<p>Lorsqu'elle n'est pas en mode &quot;activit&eacute;&quot;, la barre de progression 
+peut &eacute;galement afficher une chaine de texte configurable dans sa coulisse. On 
+utilise alors la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class="programlisting">
+  barreprogression.set_text(<b><tt>text</tt></b>)
+</pre>
+
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+<p>Notez que <tt>set_text</tt>() ne prend pas en charge le formattage de type 
+<tt>printf</tt>() des barre de progression de GTK+ 1.2.</p></div>
+
+<p>Pour d&eacute;sactiver l'affichage de la chaine de caract&egrave;res, on appelle 
+<tt>set_text</tt>() &agrave; nouveau, mais sans argument.</p>
+<p>Le texte pr&eacute;sent dans une barre de progression peut se r&eacute;cup&eacute;rer 
+&agrave; l'aide de la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class="programlisting">
+  text = barreprogression.get_text()
+</pre>
+
+<p>Les barres de progression sont g&eacute;n&eacute;ralement utilis&eacute;es avec des 
+temporisations ou d'autres fonctions de ce genre (cf. 
+<a href="ch-TimeoutsIOAndIdleFunctions.html" title="Temporisations, Entrées/Sorties 
+et fonctions d'inactivité">Chapitre 19. Temporisations, Entrées/Sorties et fonctions d'inactivité</a>) pour donner une illusion de 
+mode multit&acirc;che. Dans tous les cas, les fonctions <tt>set_fraction</tt>() ou 
+<tt>pulse</tt>() sont employ&eacute;es de la m&ecirc;me mani&egrave;re.</p>
+<p>Le programme <a href="exemples/barreprogression.py" target="_top">
+<b>barreprogression.py</b></a> offre un exemple de barre de progression actualis&eacute;e 
+par l'interm&eacute;diaire de temporisations. Ce code vous montre en outre comment 
+r&eacute;initialiser la barre de progression. La 
+<a href="sec-ProgressBars.html#FigBarreProgression" 
+title="Figure 9.4. Exemple de barre de progression">Figure 9.4</a> montre la 
+fen&ecirc;tre que l'on obtient&nbsp;:</p>
+
+<div class="figure"><a name="FigBarreProgression"></a>
+<p class="title"><b>Figure 9.4. Exemple de barre de progression</b></p>
+<div class="mediaobject" align="center"><img src="figures/barreprogression.png" 
+align="middle" alt="exemple barre de progression"></div></div>
+
+<p>Voici le code source de <a href="exemples/barreprogression.py" target="_top">
+<b>barreprogression.py</b></a>&nbsp;:</p>
+
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2     
+     3   # exemple barreprogression.py
+     4   
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8   
+     9   # Fonction qui actualise la valeur de la barre de progression
+    10   # pour qu'on ait un petit peu de mouvement
+    11   def tempo_progression(objetbarre):
+    12       if objetbarre.case_activite.get_active():
+    13           objetbarre.barreprogression.pulse()
+    14       else:
+    15           # On calcule la valeur de la barre de progression en prenant
+    16           # en compte l'intervalle defini dans l'ajustement
+    17           nouv_val = objetbarre.barreprogression.get_fraction() + 0.01
+    18           if nouv_val > 1.0:
+    19               nouv_val = 0.0
+    20           # On fixe la nouvelle valeur
+    21           objetbarre.barreprogression.set_fraction(nouv_val)
+    22   
+    23       # Cette fonction etant une fonction de temporisation, on
+    24       # renvoie TRUE afin qu'elle puisse encore etre appelee
+    25       return True
+    26   
+    27   class BarreProgression:
+    28       # Fonction de rappel qui active ou desactive l'affichage du texte
+    29       # dans la coulisse de la barre de progression
+    30       def modif_affich_texte(self, widget, data=None):
+    31           if widget.get_active():
+    32               self.barreprogression.set_text("exemple de texte")
+    33           else:
+    34               self.barreprogression.set_text("")
+    35   
+    36       # Fonction de rappel qui active ou desactive le mode "activite" de
+    37       # la barre de progression
+    38       def modif_mode(self, widget, data=None):
+    39           if widget.get_active():
+    40               self.barreprogression.pulse()
+    41           else:
+    42               self.barreprogression.set_fraction(0.0)
+    43   
+    44       # Fonction de rappel qui modifie l'orientation de la barre de progression
+    45       def modif_orientation(self, widget, data=None):
+    46           if self.barreprogression.get_orientation() == gtk.PROGRESS_LEFT_TO_RIGHT:
+    47               self.barreprogression.set_orientation(gtk.PROGRESS_RIGHT_TO_LEFT)
+    48           elif self.barreprogression.get_orientation() == gtk.PROGRESS_RIGHT_TO_LEFT:
+    49               self.barreprogression.set_orientation(gtk.PROGRESS_LEFT_TO_RIGHT)
+    50   
+    51       # Liberation de la memoire reservee et retrait de la temporisation
+    52       def sortie(self, widget, data=None):
+    53           gtk.timeout_remove(self.tempo)
+    54           self.tempo = 0
+    55           gtk.main_quit()
+    56   
+    57       def __init__(self):
+    58           self.fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    59           self.fenetre.set_resizable(True)
+    60   
+    61           self.fenetre.connect("destroy", self.sortie)
+    62           self.fenetre.set_title("Barre de progression")
+    63           self.fenetre.set_border_width(0)
+    64   
+    65           boite_v = gtk.VBox(False, 5)
+    66           boite_v.set_border_width(10)
+    67           self.fenetre.add(boite_v)
+    68           boite_v.show()
+    69     
+    70           # Creation d'un objet alignement au centre
+    71           align = gtk.Alignment(0.5, 0.5, 0, 0)
+    72           boite_v.pack_start(align, False, False, 5)
+    73           align.show()
+    74   
+    75           # Creation de la barre de progression en utilisant l'ajustement
+    76           self.barreprogression = gtk.ProgressBar()
+    77   
+    78           align.add(self.barreprogression)
+    79           self.barreprogression.show()
+    80   
+    81           # On ajoute une fonction de rappel temporisee, qui actualisera
+    82           # la valeur de la barre de progression
+    83           self.tempo = gtk.timeout_add (100, tempo_progression, self)
+    84   
+    85           separateur = gtk.HSeparator()
+    86           boite_v.pack_start(separateur, False, False, 0)
+    87           separateur.show()
+    88   
+    89           # lignes, colonnes, homogene
+    90           tableau = gtk.Table(2, 2, False)
+    91           boite_v.pack_start(tableau, False, True, 0)
+    92           tableau.show()
+    93   
+    94           # Ajout d'une case a cocher pour l'affichage du texte dans la coulisse
+    95           case = gtk.CheckButton("Afficher le texte")
+    96           tableau.attach(case, 0, 1, 0, 1,
+    97                          gtk.EXPAND | gtk.FILL, gtk.EXPAND | gtk.FILL,
+    98                          5, 5)
+    99           case.connect("clicked", self.modif_affich_texte)
+   100           case.show()
+   101   
+   102           # Ajout d'une case a cocher pour activer ou desactiver le mode "activite"
+   103           self.case_activite = case = gtk.CheckButton("Mode activite")
+   104           tableau.attach(case, 0, 1, 1, 2,
+   105                          gtk.EXPAND | gtk.FILL, gtk.EXPAND | gtk.FILL,
+   106                          5, 5)
+   107           case.connect("clicked", self.modif_mode)
+   108           case.show()
+   109   
+   110           # Ajout d'une case a cocher pour modifier l'orientation
+   111           case = gtk.CheckButton("De droite a gauche")
+   112           tableau.attach(case, 0, 1, 2, 3,
+   113                          gtk.EXPAND | gtk.FILL, gtk.EXPAND | gtk.FILL,
+   114                          5, 5)
+   115           case.connect("clicked", self.modif_orientation)
+   116           case.show()
+   117   
+   118           # Ajout d'un bouton pour quitter le programme
+   119           bouton = gtk.Button("Fermer")
+   120           bouton.connect("clicked", self.sortie)
+   121           boite_v.pack_start(bouton, False, False, 0)
+   122   
+   123           # Ceci fait en sorte que le bouton puisse etre le widget par defaut
+   124           bouton.set_flags(gtk.CAN_DEFAULT)
+   125   
+   126           # Ceci fait du bouton le bouton par defaut. Le simple fait d'appuyer
+   127           # sur la touche "Enter" l'activera
+   128           bouton.grab_default ()
+   129           bouton.show()
+   130   
+   131           self.fenetre.show()
+   132   
+   133   def main():
+   134       gtk.main()
+   135       return 0
+   136   
+   137   if __name__ == "__main__":
+   138       BarreProgression()
+   139       main()
+</pre>
+
+</div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="sec-TooltipsObject.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="sec-Dialogs.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">9.3. Les infobulles</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">9.5. Les boites de dialogue</td>
+</tr></table></div>
+
+</body>
+
+</html>

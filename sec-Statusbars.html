@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+<title>9.8. La barre d'&eacute;tat</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,barre d'etat">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
+<link rel="previous" href="sec-Rulers.html" title="9.7. Les r&egrave;gles">
+<link rel="next" href="sec-TextEntries.html" title="9.9. Les champs de saisie">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici&nbsp;: 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">9.8. La barre d'&eacute;tat</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-Rulers.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 9. Widgets divers</th>
+<td width="20%" align="right"><a accesskey="n" href="sec-TextEntries.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage"><div><h2 class="title" style="clear: both">
+<a name="sec-Statusbars"></a>9.8. La barre d'&eacute;tat</h2></div></div>
+<p>La barre d'&eacute;tat (<tt>gtk.Statusbar</tt>) est un widget assez simple qui sert 
+&agrave; afficher un message textuel. Elle tient &agrave; jour une pile des messages qu'on 
+lui a donn&eacute;s, de sorte que le fait de d&eacute;piler le message courant entraine 
+le r&eacute;-affichage du pr&eacute;c&eacute;dent.</p>
+<p>Afin de permettre l'utilisation de la m&ecirc;me barre d'&eacute;tat par 
+diff&eacute;rentes parties d'une application, le widget <tt>gtk.Statusbar</tt> distribue 
+des &quot;identifiants contextuels&quot; qui serviront &agrave; identifier diff&eacute;rents 
+&quot;utilisateurs&quot;. Le message affich&eacute; est celui qui se trouve au sommet de la 
+pile, peu importe son contexte. Les messages sont empil&eacute;s suivant le sch&eacute;ma 
+dernier-entr&eacute;-premier-sorti, et non suivant leur identifiant contextuel.</p>
+<p>On cr&eacute;e une barre d'&eacute;tat avec un appel &agrave;&nbsp;:</p>
+
+<pre class="programlisting">
+  barredetat = gtk.Statusbar()
+</pre>
+
+<p>On obtient un nouvel identifiant contextuel en invoquant la m&eacute;thode suivante 
+avec une courte description textuelle du contexte (<i><tt>context_description</i></tt>)&nbsp;:
+</p>
+
+<pre class="programlisting">
+  context_id = barredetat.get_context_id(<b><tt>context_description</tt></b>)
+</pre>
+
+<p>Trois autres m&eacute;thodes agissent sur les barres d'&eacute;tat&nbsp;:</p>
+
+<pre class="programlisting">
+  message_id = barredetat.push(<b><tt>context_id</tt></b>, <b><tt>text</tt></b>)
+
+  barredetat.pop(<b><tt>context_id</tt></b>)
+
+  barredetat.remove(<b><tt>context_id</tt></b>, <b><tt>message_id</tt></b>)
+</pre>
+
+<p>La premi&egrave;re, <tt>push()</tt> (empiler), sert &agrave; ajouter un nouveau message 
+&agrave; <i><tt>barredetat</tt></i>. Elle renvoie un identifiant de message 
+(<i><tt>message_id</tt></i>). Ce dernier, accompagn&eacute; du <tt>context_id</tt> 
+appropri&eacute; peut &ecirc;tre transmis plus tard &agrave; la m&eacute;thode 
+<tt>remove</tt>() (retirer) afin de retirer le message de la pile de 
+<i><tt>barredetat</tt></i>.</p>
+<p>La m&eacute;thode <tt>pop</tt>() retire le message, ayant le <i><tt>context_id</tt></i> 
+sp&eacute;cifi&eacute;, qui se trouve le plus haut plac&eacute; dans la pile.</p>
+<p>Le programme d'exemple <a href="exemples/barredetat.py" target="_top"><b>barredetat.py</b>
+</a> cr&eacute;e une barre d'&eacute;tat ainsi que deux boutons&nbsp;: un pour empiler 
+des &eacute;l&eacute;ments dans la  barre d'&eacute;tat, et un autre pour d&eacute;piler 
+le dernier &eacute;l&eacute;ment affich&eacute;. La 
+<a href="sec-Statusbars.html#FigBarreEtat" title="Figure 9.9. Exemple de barre d'&eacute;tat">
+Figure 9.9</a> montre le r&eacute;sultat&nbsp;:</p>
+
+<div class="figure"><a name="FigBarreEtat"></a>
+<p class="title"><b>Figure 9.9. Exemple de barre d'&eacute;tat</b></p>
+<div class="mediaobject" align="center">
+<img src="figures/barredetat.png" align="middle" alt="exemple de barre d'état">
+</div></div>
+
+<p>Voici le code source de barredetat.py&nbsp;:</p>
+
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2   
+     3   # exemple barredetat.py
+     4   
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8   
+     9   class ExempleBarreEtat:
+    10       def empiler(self, widget, donnees):
+    11           tampon = " Element %d" % self.compteur
+    12           self.compteur = self.compteur + 1
+    13           self.barredetat.push(donnees, tampon)
+    14           return
+    15   
+    16       def depiler(self, widget, donnees):
+    17           self.barredetat.pop(donnees)
+    18           return
+    19   
+    20       def __init__(self):
+    21           self.compteur = 1
+    22           # Creation d'une fenetre
+    23           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    24           fenetre.set_size_request(200, 100)
+    25           fenetre.set_title("Exemple de barre d'etat PyGTK")
+    26           fenetre.connect("delete_event", gtk.main_quit)
+    27    
+    28           boite_v = gtk.VBox(False, 1)
+    29           fenetre.add(boite_v)
+    30           boite_v.show()
+    31             
+    32           self.barredetat = gtk.Statusbar()      
+    33           boite_v.pack_start(self.barredetat, True, True, 0)
+    34           self.barredetat.show()
+    35   
+    36           context_id = self.barredetat.get_context_id("Exemple barredetat")
+    37           
+    38           bouton = gtk.Button("empiler un element")
+    39           bouton.connect("clicked", self.empiler, context_id)
+    40           boite_v.pack_start(bouton, True, True, 2)
+    41           bouton.show()              
+    42   
+    43           bouton = gtk.Button("depiler le dernier element")
+    44           bouton.connect("clicked", self.depiler, context_id)
+    45           boite_v.pack_start(bouton, True, True, 2)
+    46           bouton.show()              
+    47   
+    48           # On affichera toujours la fenetre a la derniere etape, de sorte que
+    49           # tout apparaisse a l'ecran en un bloc.
+    50           fenetre.show()
+    51   
+    52   def main():
+    53       gtk.main()
+    54       return 0
+    55   
+    56   if __name__ == "__main__":
+    57       ExempleBarreEtat()
+    58       main()
+</pre>
+</div>
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="sec-Rulers.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="sec-TextEntries.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">9.7. Les r&egrave;gles</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">9.9. Les champs de saisie</td>
+</tr></table>
+</div>
+
+</body>
+
+</html>

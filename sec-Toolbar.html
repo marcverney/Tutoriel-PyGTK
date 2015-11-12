@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>10.11. La barre d'outils (Toolbar)</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-ContainerWidgets.html" title="Chapitre 10. Les widgets conteneurs">
+<link rel="prev" href="sec-ButtonBoxes.html" title="10.10. Boîtes à boutons (ButtonBox)">
+<link rel="next" href="sec-Notebooks.html" title="10.12. Le bloc-notes (Notebook)">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">10.11. La barre d'outils (Toolbar)</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-ButtonBoxes.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 10. Les widgets conteneurs</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-Notebooks.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-Toolbar"></a>10.11. La barre d'outils (Toolbar)</h2></div></div></div>
+<p>Les barres d'outils <code class="classname">Toolbars</code> sont habituellement 
+utilisées pour grouper des widgets dans le but de faciliter la personnalisation 
+de leur style et de leur disposition. Typiquement une barre d'outils se 
+compose de boutons avec des icônes, des étiquettes et des infobulles, mais 
+n'importe quel autre widget peut aussi être placé dans une barre d'outils. 
+Enfin, les éléments peuvent être disposés horizontalement ou verticalement 
+et les boutons peuvent être affichés avec des icônes, des étiquettes, ou les deux.</p>
+<p>Créer une barre d'outil se fait (comme on pourrait s'en douter) 
+de la façon suivante :</p>
+<pre class="programlisting">
+  barre_outil = gtk.Toolbar()
+</pre>
+<p>Une fois la barre d'outil créée, on peut y ajouter en début ou 
+en fin ou y insérer au milieu, des items (du texte simple) ou des éléments 
+(de type widget). Pour décrire un item, il nous faut un texte pour l'étiquette, 
+l'infobulle, un texte privé pour l'infobulle, une icône pour le bouton et une 
+fonction de rappel pour celui-ci. Par exemple, pour ajouter un item en début 
+ou en fin , on peut utiliser la méthode suivante :</p>
+<pre class="programlisting">
+  barre_outil.append_item(<strong class="parameter"><code>text</code></strong>, <strong class="parameter"><code>tooltip_text</code></strong>, <strong class="parameter"><code>tooltip_private_text</code></strong>, <strong class="parameter"><code>icon</code></strong>, <strong class="parameter"><code>callback</code></strong>, <strong class="parameter"><code>user_data</code></strong>=None)
+
+  barre_outil.prepend_item(<strong class="parameter"><code>text</code></strong>, <strong class="parameter"><code>tooltip_text</code></strong>, <strong class="parameter"><code>tooltip_private_text</code></strong>, <strong class="parameter"><code>icon</code></strong>, <strong class="parameter"><code>callback</code></strong>, <strong class="parameter"><code>user_data</code></strong>)
+</pre>
+<p>Si l'on souhaite utiliser la méthode 
+<code class="methodname">insert_item</code>(), le seul paramètre 
+supplémentaire à indiquer est la position à laquelle il faut 
+insérer l'item, ainsi :</p>
+<pre class="programlisting">
+  barre_outil.insert_item(<strong class="parameter"><code>text</code></strong>, <strong class="parameter"><code>tooltip_text</code></strong>, <strong class="parameter"><code>tooltip_private_text</code></strong>, <strong class="parameter"><code>icon</code></strong>, <strong class="parameter"><code>callback</code></strong>, <strong class="parameter"><code>user_data</code></strong>, 
+                          <strong class="parameter"><code>position</code></strong>)
+</pre>
+<p>Pour simplifier l'ajout d'espaces entre les items de la 
+barre d'outils, on peut utiliser les méthodes suivantes :</p>
+<pre class="programlisting">
+  barre_outil.append_space()
+
+  barre_outil.prepend_space()
+
+  barre_outil.insert_space(<strong class="parameter"><code>position</code></strong>)
+</pre>
+<p>Si nécessaire, l'orientation de la barre d'outils, son 
+style et la disponiblité des infobulles peuvent être modifiés "à la volée" 
+en utilisant les méthodes suivantes :</p>
+<pre class="programlisting">
+  barre_outil.set_orientation(<strong class="parameter"><code>orientation</code></strong>)
+
+  barre_outil.set_style(<strong class="parameter"><code>style</code></strong>)
+
+  barre_outil.set_tooltips(<strong class="parameter"><code>enable</code></strong>)
+</pre>
+<p>... où le paramètre <em class="parameter"><code>orientation</code></em> peut avoir pour valeur  
+<code class="literal">ORIENTATION_HORIZONTAL</code> ou <code class="literal">ORIENTATION_VERTICAL</code>. 
+<em class="parameter"><code>style</code></em> sert à définir l'apparence de la barre d'outils 
+grâce aux valeurs <code class="literal">TOOLBAR_ICONS</code>, <code class="literal">TOOLBAR_TEXT</code> ou
+<code class="literal">TOOLBAR_BOTH</code>. L'argument <em class="parameter"><code>enable</code></em> est  
+<code class="literal">TRUE</code> soit <code class="literal">FALSE</code>.</p>
+<p>Pour montrer certaines autres possibilités de la barre d'outils, prenons 
+le programme exemple <a href="exemples/toolbar.py" target="_top"><span><strong class="command">toolbar.py</strong></span>
+</a> (nous interromprons le listing avec quelques explications supplémentaires) :</p>
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2   # -*- coding:utf-8 -*-
+     3   # example barre_outils.py
+     4   
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8   
+     9   class ExempleBarreOutils:
+    10       # Cette méthode est connectée au bouton Fermer ou à la fermeture
+    11       # de la fenêtre depuis le gestionnaire de fenêtre
+    12       def delete_event(self, widget, event=None):
+    13           gtk.main_quit()
+    14           return False
+    15   
+ </pre>
+<p>Le début ci-dessus devrait vous sembler familier si ce n'est 
+pas votre premier programme PyGTK. Il y a cependant un élément supplémentaire, 
+nous importons une jolie image XPM  (<a href="exemples/gtk.xpm" target="_top"><code class="filename">
+gtk.xpm</code></a>) pour l'utiliser comme icône pour tous les boutons. 
+La ligne 10 débute la classe <code class="classname">ExempleBarreOutils</code> et 
+aux lignes 12-14, on définit la méthode de rappel qui terminera le programme.
+</p>
+<pre class="programlisting">
+    16       # Ceci est simple... quand l'un de ces boutons est commuté, 
+    17       # on cherche lequel est actif et on régle le style de la
+    18       # barre d'outils en conséquence.
+    19       def change_radio(self, widget, barre_outils):
+    20           if self.bouton_texte.get_active(): 
+    21               barre_outils.set_style(gtk.TOOLBAR_TEXT)
+    22           elif self.bouton_icone.get_active():
+    23               barre_outils.set_style(gtk.TOOLBAR_ICONS)
+    24           elif self.bouton_deux.get_active():
+    25               barre_outils.set_style(gtk.TOOLBAR_BOTH)
+    26   
+    27       # Encore plus simple, on vérifie le bouton à bascule et on
+    28       # autorise / interdit les infobulles
+    29       def change_bascule(self, widget, barre_outils):
+    30           barre_outils.set_tooltips(widget.get_active())
+    31   
+ </pre>
+<p>Aux lignes 19-30, deux méthodes de rappel qui seront appelées 
+quand on cliquera sur un des boutons de la barre d'outils. Ce genre de chose 
+devraient déjà vous être familières si vous avez déjà utilisé des boutons de 
+bouton à bascule (et des boutons radio).</p>
+<pre class="programlisting">
+    32       def __init__(self):
+    33           # Ici, la fenêtre principale (un dialogueue) et la boîte à poignée
+    34           # Bon, on a besoin d'une barre d'outils, d'une icône avec un masque
+    35           # (un pour tous les boutons) et un widget icône dans lequel la placer
+    36           # (on crée un widget pour chaque bouton)
+    37           # On crée une nouvelle fenêtre avec son titre, d'une taille adaptée
+    38           dialogue = gtk.Dialog()
+    39           dialogue.set_title("Exemple GTKToolbar")
+    40           dialogue.set_size_request(450, 250)
+    41           dialogue.set_resizable(True)
+    42   
+    43           # En général, on quitte quand quelqu'un essaie de nous fermer
+    44           dialogue.connect("delete_event", self.delete_event)
+    45   
+    46           # Pour faire les chose bien, nous plaçons la barre d'outils dans une
+    47           # boîte à poignée, ainsi elle peut être détachée de la fenêtre principale. 
+    48           boite_poing = gtk.HandleBox()
+    49           dialogue.vbox.pack_start(boite_poing, False, False, 5)
+    50   
+ </pre>
+<p>La partie ci-dessus devrait être similaire à toute autre 
+application PyGTK. Simplement une initialisation d'une instance de 
+<code class="classname">ExempleBarreOutils</code>, création de la fenêtre, etc. 
+Un élément, peut-être, demande une explication : la boîte à poignée. Une 
+boîte à poignée est simplement une boîte qui peut être utilisée pour y placer 
+des widgets. La différence avec une boîte standard est que la précédent peut 
+être détachée d'une fenêtre parent (en reélité, la boîte demeure à l'intérieur 
+de son parent, mais est réduite à un tout petit rectangle, pendant que tous ses 
+éléments peuvent être raccordés à une nouvelle fenêtre flottante libre). 
+Habituellement il est pratique d'avoir une barre d'outils détachable, donc ces 
+deux widgets vont souvent ensemble.</p>
+<pre class="programlisting">
+    51           # La barre d'outils sera horizontale, avec à la fois des icônes 
+    52           # et du texte et un espace de 5 pixels entre les items. Enfin, 
+    53           # nous la mettons dans notre boîte à poignée. 
+    54           barre_outils = gtk.Toolbar()
+    55           barre_outils.set_orientation(gtk.ORIENTATION_HORIZONTAL)
+    56           barre_outils.set_style(gtk.TOOLBAR_BOTH)
+    57           barre_outils.set_border_width(5)
+    58           boite_poing.add(barre_outils)
+    59   
+ </pre>
+<p>Bon, ce que nous faisons ici est une simple initialisation 
+de la barre d'outils.</p>
+<pre class="programlisting">
+    60           # le premier item est le bouton "Fermer"
+    61           img_icone = gtk.Image() # widget icône
+    62           img_icone.set_from_file("gtk.xpm")
+    63           bouton_fermer = barre_outils.append_item(
+    64               "Fermer",               # étiquette du bouton
+    65               "Fermer l'application", # infobulle du bouton
+    66               "Privé",                # info privée du bouton
+    67               img_icone,              # widget icône
+    68               self.delete_event)      # un signal
+    69           barre_outils.append_space() # espace après l'item
+    70   
+    </pre>
+<p>Dans le code ci-dessus, nous voyons le cas le plus simple : l'ajout 
+d'un bouton à la barre d'outils. Juste avant d'ajouter un nouvel élément nous 
+devons créer un widget image pour servir d'icône pour cet élément ; il 
+faudra répéter cette étape pour chaque nouvel élément. Nous ajoutons aussi un 
+espace juste après l'élément, de façon à ce que les élément ne soient pas collés 
+les uns aux autres. Comme vous pouvez le voir, la méthode <code class="methodname">append_item</code>() 
+renvoit une référence au nouveau bouton créé, ainsi, on peut l'utiliser de la 
+manière habituelle</p>
+<pre class="programlisting">
+    71           # maintenant, on crée le groupe de boutons radio
+    72           img_icone = gtk.Image() # widget icône
+    73           img_icone.set_from_file("gtk.xpm")
+    74           bouton_icone = barre_outils.append_element(
+    75               gtk.TOOLBAR_CHILD_RADIOBUTTON, # type d'élément
+    76               None,                          # widget
+    77               "Icônes",                      # étiquette
+    78               "Barre d'outils avec icônes uniquement",       # infobulle
+    79               "Privé",                       # info privée du bouton
+    80               img_icone,                     # icône
+    81               self.change_radio,             # signal
+    82               barre_outils)                  # donnée pour le signal
+    83           barre_outils.append_space()
+    84           self.bouton_icone = bouton_icone
+    85   
+ </pre>
+<p>Ici nous commençons à créer un groupe de boutons radio. 
+Pour ce faire nous utilisons la méthode <code class="methodname">append_element</code>(). 
+En fait, en utilisant cette méthode on peut aussi ajouter des éléments simples 
+et même des espaces (<em class="parameter"><code>type</code></em> = <code class="literal">gtk.TOOLBAR_CHILD_SPACE</code> 
+ou <code class="literal">gtk.TOOLBAR_CHILD_BUTTON</code>). Dans l'exemple précédent, nous 
+commençons à créer un groupe de boutons radio. Pour créer d'autres boutons radio, 
+une référence au bouton précédent dans ce groupe est exigée, de sorte que l'on puisse 
+construire facilement une liste de boutons (voir la <a href="sec-RadioButtons.html" title="6.4. Radio Buttons">Section 6.4, « Radio Buttons »</a>). Nous sauvons aussi une référence au bouton dans l'instance de classe 
+<code class="classname">ExempleBarreOutils</code> pour y accèder ensuite.
+</p>
+<pre class="programlisting">
+    86           # les boutons radio suivants renvoient aux précédents
+    87           img_icone = gtk.Image() # widget icône
+    88           img_icone.set_from_file("gtk.xpm")
+    89           bouton_texte = barre_outils.append_element(
+    90               gtk.TOOLBAR_CHILD_RADIOBUTTON,
+    91               bouton_icone,
+    92               "Texte",
+    93               "Barre d'outils avec texte uniquement",
+    94               "Privé",
+    95               img_icone,
+    96               self.change_radio,
+    97               barre_outils)
+    98           barre_outils.append_space()
+    99           self.bouton_texte = bouton_texte
+   100   
+   101           img_icone = gtk.Image() # widget icône
+   102           img_icone.set_from_file("gtk.xpm")
+   103           bouton_deux = barre_outils.append_element(
+   104               gtk.TOOLBAR_CHILD_RADIOBUTTON,
+   105               bouton_texte,
+   106               "Les deux",
+   107               "Barre d'outils avec icônes et texte",
+   108               "Privé",
+   109               img_icone,
+   110               self.change_radio,
+   111               barre_outils)
+   112           barre_outils.append_space()
+   113           self.bouton_deux = bouton_deux
+   114           bouton_deux.set_active(True)
+   115   
+ </pre>
+<p>Nous créons les autres boutons radio de la même manière en 
+rajoutant le nom de l'un des boutons crées à la méthode 
+<code class="methodname">append_element</code>() pour indiquer à quel groupe de 
+boutons appartient ce dernier.</p>
+<p>Enfin, il faut définir manuellement l'état de l'un des boutons 
+      radio (sinon ils seraient tous dans l'état actif, nous interdisant de 
+      passer de l'un à l'autre).</p>
+<pre class="programlisting">
+   116           # Ici un simple bouton à bascule
+   117           img_icone = gtk.Image() # widget icône
+   118           img_icone.set_from_file("gtk.xpm")
+   119           bouton_info = barre_outils.append_element(
+   120               gtk.TOOLBAR_CHILD_TOGGLEBUTTON,
+   121               None,
+   122               "Infobulles",
+   123               "Barre d'outils avec/sans infobulles",
+   124               "Privé",
+   125               img_icone,
+   126               self.change_bascule,
+   127               barre_outils)
+   128           barre_outils.append_space()
+   129           bouton_info.set_active(True)
+   130   
+ </pre>
+<p>Un bouton à bascule peut être créé de la manière habituelle 
+(si l'on sait déjà créer les boutons radio).</p>
+<pre class="programlisting">
+   131           # pour placer un élément dans la barre d'outils, il faut
+   132           # seulement le créer et l'ajouter avec une infobulle adéquate
+   133           zone_saisie = gtk.Entry()
+   134           barre_outils.append_widget(zone_saisie,  "Juste une zone de saisie", "Privé")
+   135   
+   136           # il n'est pas créé dans la barre d'outils, il faut l'afficher
+   137           zone_saisie.show()
+   138   
+ </pre>
+<p>On constate qu'ajouter n'importe quel type de widget dans une 
+barre d'outils est simple. La chose à se rappeler est que ce widget doit 
+être affiché manuellement (contrairement aux éléments qui seront affichés 
+ensemble avec la barre d'outils)
+</p>
+<pre class="programlisting">
+   139           # C'est fait ! Affichons tout.
+   140           barre_outils.show()
+   141           boite_poing.show()
+   142           dialogue.show()
+   143   
+   144   def main():
+   145       # On reste dans gtk_main et on attend que la fête commence !
+   146       gtk.main()
+   147       return 0
+   148   
+   149   if __name__ == "__main__":
+   150       ExempleBarreOutils()
+   151       main()
+</pre>
+<p>À la ligne 142, on clôt la définition de la classe 
+<code class="classname">ExempleBarreOutils</code>. Aus lignes 144-147, on définit la 
+fonction <code class="function">main</code>() qui appelle simplement la fonction 
+<code class="function">gtk.main</code>() pour lancer la boucle de traitement d'événement. 
+Aux lignes 149-151, on crée l'instance de <code class="classname">ExempleBarreOutils</code> 
+et ensuite on entre dans la boucle de traitement d'événement. Nous voici à la 
+fin du tutoriel de barre d'outils. Naturellement, pour l'apprécier dans sa totalité, 
+il vous faut aussi cette sympathique icône <a href="exemples/gtk.xpm" target="_top"><code class="filename">
+gtk.xpm</code></a>. La <a href="sec-Toolbar.html#toolbarfig" title="Figure 10.8. Exemple de barre d'outils">Figure 10.8, « Exemple de barre d'outils »</a> montre 
+l'affichage obtenu :
+</p>
+<div class="figure">
+<a name="toolbarfig"></a><p class="title"><b>Figure 10.8. Exemple de barre d'outils</b></p>
+<div class="mediaobject" align="center"><img src="figures/toolbar.png" align="middle" alt="Exemple de barre d'outils"></div>
+<span>Exemple de barre d'outils</span>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-ButtonBoxes.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-ContainerWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-Notebooks.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">10.10. Boîtes à boutons (ButtonBox) </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 10.12. Le bloc-notes (Notebook)</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

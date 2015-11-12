@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>14.9. Glisser-déposer dans un TreeView</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,treeview" />
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-TreeViewWidget.html" title="Chapitre 14. Le widget TreeView">
+<link rel="prev" href="sec-TreeSelections.html" title="14.8. Gestion des Treeselection">
+<link rel="next" href="sec-TreeModelSortAndTreeModelFilter.html" title="14.10. TreeModelSort et TreeModelFilter">
+</head>
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici : 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">14.9. Glisser-déposer dans un TreeView</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-TreeSelections.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 14. Le widget TreeView</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-TreeModelSortAndTreeModelFilter.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-TreeViewDragAndDrop"></a>14.9. Glisser-déposer dans un TreeView</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="DragDropReordering"></a>14.9.1. Reclasser avec un glisser-déposer</h3></div></div></div>
+<p>Reclasser les lignes d'un <code class="classname">TreeView</code> (et les lignes 
+sous-jacentes d'un tree model) s'effectue par la méthode 
+<code class="methodname">set_reorderable</code>() mentionnée précédemment. La 
+méthode <em class="parameter"><code>set_reorderable</code></em>() fixe la propriété 
+"reorderable" à la valeur indiquée et autorise ou interdit le glisser-
+déposer interne aux lignes du <code class="classname">TreeView</code>. Lorsque 
+la propriété "reorderable" vaut <code class="literal">TRUE</code>, l'utilisateur 
+peut faire glisser des lignes et les relâcher à un nouvel endroit. Cette 
+action provoque le reclassement en parallèle des lignes sous-jacentes du 
+<code class="classname">TreeModel</code>. Reclasser avec un glisser-déposer n'est 
+possible qu'avec des treeview non triés.
+</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-ExternalDragDrop"></a>14.9.2. Glisser-déposer externe</h3></div></div></div>
+<p>Si l'on souhaite contrôler ou gérer un glisser-déposer 
+depuis une source extérieure, il faut permettre et contrôler le glisser-déposer 
+avec les méthodes suivantes :
+</p>
+<pre class="programlisting">
+  treeview.enable_model_drag_source(<strong class="parameter"><code>start_button_mask</code></strong>, <strong class="parameter"><code>targets</code></strong>, <strong class="parameter"><code>actions</code></strong>)
+  treeview.enable_model_drag_dest(<strong class="parameter"><code>targets</code></strong>, <strong class="parameter"><code>actions</code></strong>)
+</pre>
+<p>Ces méthodes permettent d'utiliser les lignes respectivement comme source du glisser 
+et cible du déposer. Le paramètre <em class="parameter"><code>start_button_mask</code></em> est un masque 
+modificateur (voir la référence à <a href="http://www.pygtk.org/pygtk2reference/gdk-constants.html#gdk-modifier-constants" target="_top">gtk.gtk
+Constants</a> dans le <a href="http://www.pygtk.org/pygtk2reference/index.html" target="_top">PyGTK Reference
+Manual</a>) qui indique les boutons ou les touches qui doivent être utilisés pour 
+débuter le glisser. Le paramètre <em class="parameter"><code>targets</code></em> est une liste de 3-tuples 
+qui définit l'information de cible qui peut être envoyée ou reçue. Pour qu'un 
+glisser-déposer réussisse, au moins une des cibles de la source doit correspondre à une 
+des cibles de la destination (par exemple, la cible "STRING"). Chaque tuple de cible 
+contient le type de la cible, des indicateurs (une combinaison de 
+<code class="literal">gtk.TARGET_SAME_APP</code> et <code class="literal">gtk.TARGET_SAME_WIDGET</code> ou 
+aucune) et un identifiant unique entier. Le paramètre <em class="parameter"><code>actions</code></em> 
+définit le résultat attendu de l'opération :
+</p>
+<table border="0" width="100%" bgcolor="#FFECCE">
+<col align="left" valign="top" width="0*">
+<tbody>
+<tr>
+<td>
+<span class="term"><code class="literal">gtk.gdk.ACTION_DEFAULT</code>, </span><span class="term"><code class="literal">gtk.gdk.ACTION_COPY</code>, </span></td>
+<td>Copie les données.</td>
+</tr>
+<tr>
+<td>
+<span class="term"><code class="literal">gtk.gdk.ACTION_MOVE</code></span></td>
+<td>Déplace les données, c-a-d réalise une copie puis efface les 
+données de la source en utilisant le <code class="literal">DELETE</code> cible du protocole 
+de sélection de X.</td>
+</tr>
+<tr>
+<td>
+<span class="term"><code class="literal">gtk.gdk.ACTION_LINK</code></span></td>
+<td>Crée un lien vers les données. Ceci n'est utile que si source et cible 
+concordent sur ce qu'il signifie.</td>
+</tr>
+<tr>
+<td>
+<span class="term"><code class="literal">gtk.gdk.ACTION_PRIVATE</code></span></td>
+<td>Action spécifique qui informe la source que la destination fera quelque chose 
+que la source ne comprend pas.</td>
+</tr>
+<tr>
+<td>
+<span class="term"><code class="literal">gtk.gdk.ACTION_ASK</code></span></td>
+<td>Demande à l'utilisateur que faire avec les données.</td>
+</tr>
+</tbody>
+</table>
+<p>Par exemple, pour créer la destination d'un glisser-déposer</p>
+<pre class="programlisting">
+  treeview.enable_model_drag_dest([('text/plain', 0, 0)],
+                  gtk.gdk.ACTION_DEFAULT | gtk.gdk.ACTION_MOVE)
+</pre>
+<p>Ensuite, il faut gérer le signal "drag-data-received" du 
+<code class="classname">Widget</code> pour accueillir ces données déposées - peut-être 
+remplacer les données de la ligne où on les dépose. La fonction de 
+rappel du signal "drag-data-received" a pour signature :
+</p>
+<pre class="programlisting">
+  def fonct_rappel(<em class="parameter"><code>widget</code></em>, <em class="parameter"><code>drag_context</code></em>, <em class="parameter"><code>x</code></em>, <em class="parameter"><code>y</code></em>, <em class="parameter"><code>selection_data</code></em>, <em class="parameter"><code>info</code></em>, <em class="parameter"><code>timestamp</code></em>)
+</pre>
+<p>... où <em class="parameter"><code>widget</code></em> est le <code class="classname">TreeView</code>, 
+<em class="parameter"><code>drag_context</code></em> est un <code class="classname">DragContext</code> 
+contenant le contexte de la sélection, <em class="parameter"><code>x</code></em> et 
+<em class="parameter"><code>y</code></em> représente la position où le déposer est fait, 
+<em class="parameter"><code>selection_data</code></em> est le <code class="classname">SelectionData</code> 
+contenant les données, <em class="parameter"><code>info</code></em> est l'identifiant entier du 
+type, <em class="parameter"><code>timestamp</code></em> est le moment où le déposer est réalisé. 
+La ligne peut être récupérée par cette méthode :
+</p>
+<pre class="programlisting">
+  info_depot = treeview.get_dest_row_at_pos(<strong class="parameter"><code>x</code></strong>, <strong class="parameter"><code>y</code></strong>)
+</pre>
+<p>... où (<em class="parameter"><code>x</code></em>, <em class="parameter"><code>y</code></em>) représentent 
+la position transmise à la fonction de rappel, <em class="parameter"><code>info_depot</code></em> 
+est un 2-tuple contenant le chemin d'une ligne et une constante indiquant la 
+position du déposer par rapport à cette ligne : 
+<code class="literal">gtk.TREE_VIEW_DROP_BEFORE</code>, 
+<code class="literal">gtk.TREE_VIEW_DROP_AFTER</code>,
+<code class="literal">gtk.TREE_VIEW_DROP_INTO_OR_BEFORE</code> ou
+<code class="literal">gtk.TREE_VIEW_DROP_INTO_OR_AFTER</code> (avant, après, dedans ou avant, 
+dedans ou après). La fonction de 
+rappel ressemble à ceci :
+</p>
+<pre class="programlisting">
+  treeview.enable_model_drag_dest([('text/plain', 0, 0)],
+                  gtk.gdk.ACTION_DEFAULT | gtk.gdk.ACTION_MOVE)
+  treeview.connect("drag-data-received", rappel_donnees_du__deposer)
+  ...
+  ...
+  def rappel_donnees_du__deposer(treeview, contexte, x, y, selection, info, dateur):
+      depot_info = treeview.get_dest_row_at_pos(x, y)
+      if depot_info:
+          modele = treeview.get_model()
+          chemin, position = depot_info
+          donnees = selection.data
+          # faire quelquechose avec les donnees et le modele
+          ...
+      return
+  ...
+</pre>
+<p>Si une ligne est utilisé comme source du glisser, elle doit gérer le signal 
+"drag-data-get" du <code class="classname">Widget</code>, lequel remplit une sélection 
+avec les données devant être transmises à la destination du glisser-déposer 
+par une fonction de rappel ayant comme signature :
+</p>
+<pre class="programlisting">
+  def fonct_rappel(<em class="parameter"><code>widget</code></em>, <em class="parameter"><code>drag_context</code></em>, <em class="parameter"><code>selection_data</code></em>, <em class="parameter"><code>info</code></em>, <em class="parameter"><code>timestamp</code></em>)
+</pre>
+<p>Les paramètres de cette <em class="parameter"><code>fonction de rappel</code></em> sont 
+semblables à ceux de la fonction de rappel "drag-data-received". Comme 
+la fonction de rappel ne transmet pas le chemin de l'arborescence ou tout 
+autre moyen simple de récupérer l'information sur la ligne qui est glissée, 
+nous présumons que la ligne glissée est celle qui est sélectionnée et que le 
+mode de sélection est <code class="literal">gtk.SELECTION_SINGLE</code> ou 
+<code class="literal">gtk.SELECTION_BROWSE</code>. De cette façon, il est possible de 
+récupérer la ligne en obtenant le <code class="classname">TreeSelection</code> et de 
+retrouver le modele et le <code class="classname">TreeIter</code> pointant sur 
+cette ligne. Par exemple, un texte dans une ligne peut être transmis ainsi 
+dans le glisser-déposer :
+</p>
+<pre class="programlisting">
+  ...
+  treestore = gtk.TreeStore(str, str)
+  ...
+  treeview.enable_model_drag_source(gtk.gdk.BUTTON1_MASK,
+                  [('text/plain', 0, 0)],
+                  gtk.gdk.ACTION_DEFAULT | gtk.gdk.ACTION_MOVE)
+  treeview.connect("drag-data-get", rappel_donnees_du_glisser)
+  ...
+  ...
+  def rappel_donnees_du_glisser(treeview, contexte, selection, info, dateur):
+      treeselection = treeview.get_selection()
+      modele, iter = treeselection.get_selected()
+      texte = modele.get_value(iter, 1)
+      selection.set('text/plain', 8, texte)
+      return
+  ...
+</pre>
+<p>On peut désactiver l'utilisation du <code class="classname">TreeView</code> comme 
+source ou destination du glisser-déposer par la méthode :
+</p>
+<pre class="programlisting">
+  treeview.unset_rows_drag_source()
+  treeview.unset_rows_drag_dest()
+</pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-TreeViewDnDExample"></a>14.9.3. Exemple de glisser-déposer dans un TreeView</h3></div></div></div>
+<p>Un exemple simple est nécessaire pour assembler les extraits de code 
+présentés ci-dessus. Cet exemple (<a href="exemples/treeviewdnd.py" target="_top">treeviewdnd.py</a>) consiste en une liste 
+dans laquelle des URL peuvent être glissées et déposées. Les URL peuvent aussi 
+être reclassées en effectuant un glisser-déposer à l'intérieur du 
+<code class="classname">TreeView</code>. Deux boutons permettent de vider la liste 
+ou de supprimer un item sélectionné.
+</p>
+<pre class="programlisting">
+    1   #!/usr/bin/env python
+    2   
+    3   # exemple treeviewdnd.py
+    4   
+    5   import pygtk
+    6   pygtk.require('2.0')
+    7   import gtk
+    8   
+    9   class TreeViewDnDExemple:
+   10   
+   11       CIBLES = [
+   12           ('MY_TREE_MODEL_ROW', gtk.TARGET_SAME_WIDGET, 0),
+   13           ('text/plain', 0, 1),
+   14           ('TEXT', 0, 2),
+   15           ('STRING', 0, 3),
+   16           ]
+   17       # fermer la fenetre et quitter
+   18       def ferme_event(self, widget, event, donnees=None):
+   19           gtk.main_quit()
+   20           return False
+   21   
+   22       def efface_selection(self, bouton):
+   23           selection = self.treeview.get_selection()
+   24           modele, iter = selection.get_selected()
+   25           if iter:
+   26               modele.remove(iter)
+   27           return
+   28   
+   29       def __init__(self):
+   30           # Creer une nouvelle fenetre
+   31           self.fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+   32   
+   33           self.fenetre.set_title("Cache URL")
+   34   
+   35           self.fenetre.set_size_request(250, 200)
+   36   
+   37           self.fenetre.connect("delete_event", self.ferme_event)
+   38   
+   39           self.fen_deroule = gtk.ScrolledWindow()
+   40           self.vboite = gtk.VBox()
+   41           self.hboite = gtk.HButtonBox()
+   42           self.vboite.pack_start(self.fen_deroule, True)
+   43           self.vboite.pack_start(self.hboite, False)
+   44           self.b0 = gtk.Button('Effacer tout')
+   45           self.b1 = gtk.Button('Effacer selection')
+   46           self.hboite.pack_start(self.b0)
+   47           self.hboite.pack_start(self.b1)
+   48   
+   49           # pour modele, creer une liste avec une colonne contenant une chaine
+   50           self.modeleliste = gtk.ListStore(str)
+   51   
+   52           # creer la vue arborescente utilisant le modeleliste
+   53           self.treeview = gtk.TreeView(self.modeleliste)
+   54   
+   55           # creer un CellRenderer pour preparer les donnees
+   56           self.cell = gtk.CellRendererText()
+   57   
+   58           # creer unTreeViewColumn pour afficher les donnees
+   59           self.colonneTV = gtk.TreeViewColumn('URL', self.cell, text=0)
+   60   
+   61           # ajouter la colonne au treeview
+   62           self.treeview.append_column(self.colonneTV)
+   63           self.b0.connect_object('clicked', gtk.ListStore.clear, self.modeleliste)
+   64           self.b1.connect('clicked', self.efface_selection)
+   65           # autoriser la recherche dans le treeview
+   66           self.treeview.set_search_column(0)
+   67   
+   68           # autoriser le tri pour la colonne
+   69           self.colonneTV.set_sort_column_id(0)
+   70   
+   71           # Autoriser le glisser-deposer y compris interne a la colonne
+   72           self.treeview.enable_model_drag_source( gtk.gdk.BUTTON1_MASK,
+   73                                                   self.CIBLES,
+   74                                                   gtk.gdk.ACTION_DEFAULT|
+   75                                                   gtk.gdk.ACTION_MOVE)
+   76           self.treeview.enable_model_drag_dest(self.CIBLES,
+   77                                                gtk.gdk.ACTION_DEFAULT)
+   78   
+   79           self.treeview.connect("drag_data_get", self.donnees_du_glisser)
+   80           self.treeview.connect("drag_data_received",
+   81                                 self.donnees_du_deposer)
+   82   
+   83           self.fen_deroule.add(self.treeview)
+   84           self.fenetre.add(self.vboite)
+   85           self.fenetre.show_all()
+   86   
+   87       def donnees_du_glisser(self, treeview, context, selection, id_cible,
+   88                              etime):
+   89           treeselection = treeview.get_selection()
+   90           modele, iter = treeselection.get_selected()
+   91           donnees = modele.get_value(iter, 0)
+   92           selection.set(selection.target, 8, donnees)
+   93   
+   94       def donnees_du_deposer(self, treeview, context, x, y, selection,
+   95                                   info, etime):
+   96           modele = treeview.get_model()
+   97           donnees = selection.data
+   98           info_depot = treeview.get_dest_row_at_pos(x, y)
+   99           if info_depot:
+  100               chemin, position = info_depot
+  101               iter = modele.get_iter(chemin)
+  102               if (position == gtk.TREE_VIEW_DROP_BEFORE
+  103                   or position == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
+  104                   modele.insert_before(iter, [donnees])
+  105               else:
+  106                   modele.insert_after(iter, [donnees])
+  107           else:
+  108               modele.append([donnees])
+  109           if context.action == gtk.gdk.ACTION_MOVE:
+  110               context.finish(True, True, etime)
+  111           return
+  112   
+  113   def main():
+  114       gtk.main()
+  115   
+  116   if __name__ == "__main__":
+  117       treeviewdndex = TreeViewDnDExemple()
+  118       main()
+</pre>
+<p>Voici une copie d'écran <a href="sec-TreeViewDragAndDrop.html#treeviewdndfig" title="Figure 14.8. Exemple de glisser-déposer dans un TreeView">Figure 14.8, « Exemple de glisser-déposer dans un TreeView »</a> du programme 
+exemple <a href="exemples/treeviewdnd.py" target="_top">treeviewdnd.py</a> 
+en cours d'exécution :
+</p>
+<div class="figure">
+<a name="treeviewdndfig"></a><p class="title"><b>Figure 14.8. Exemple de glisser-déposer dans un TreeView</b></p>
+<div class="mediaobject" align="center"><img src="figures/treeviewdnd.png" align="middle" alt="Exemple de glisser-déposer dans un TreeView."></div>
+</div>
+<p>L'essentiel pour permettre à la fois un glisser-déposer externe et un reclassement 
+interne des lignes est l'organisation des cibles (l'attribut 
+<code class="literal">TARGETS</code> - ligne 11). Une cible spécifique à l'application 
+(<code class="literal">MY_TREE_MODEL_ROW</code>) est créée et utilisée pour signifier 
+un glisser-déposer interne au treeview en fixant l'indicateur à 
+<code class="literal">gtk.TARGET_SAME_WIDGET</code>. En indiquant celle-ci comme première 
+cible, la destination tentera d'abord cette corespondance avec les cibles sources.
+Ensuite , les actions de glisser de la source doivent comprendre 
+<code class="literal">gtk.gdk.ACTION_MOVE</code> et
+<code class="literal">gtk.gdk.ACTION_DEFAULT</code> (voir lignes 72-75). Quand la 
+destination reçoit les données en provenance de la source, si l'action du 
+<code class="classname">DragContext</code> est <code class="literal">gtk.gdk.ACTION_MOVE</code>, 
+la source est informée qu'elle doit détruire les données (la ligne dans cet exemple) 
+en appelant la méthode <code class="methodname">finish</code>() du 
+<code class="classname">DragContext</code> (lignes 109-110). Le <code class="classname">TreeView</code> 
+fournit un certain nombre de fonctions internes que nous complétons   
+pour glisser, déposer et effacer les données.
+
+</p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-TreeSelections.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-TreeViewWidget.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-TreeModelSortAndTreeModelFilter.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">14.8. Gestion des Treeselection </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> 14.10. TreeModelSort et TreeModelFilter</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

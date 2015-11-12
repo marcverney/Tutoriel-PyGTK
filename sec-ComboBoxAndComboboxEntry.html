@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>16.2. Les listes déroulantes (ComboBox) et listes déroulantes avec saisie (ComboBoxEntry)</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-NewInPyGTK2.4.html" title="Chapitre 16. Nouveaux Widgets dans PyGTK 2.4">
+<link rel="prev" href="ch-NewInPyGTK2.4.html" title="Chapitre 16. Nouveaux Widgets dans PyGTK 2.4">
+<link rel="next" href="sec-ColorButtonAndFontButton.html" title="16.3. Bouton de couleur (ColorButton) et de police (FontButton)">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">16.2. Les listes déroulantes (ComboBox) et listes déroulantes avec saisie (ComboBoxEntry)</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch-NewInPyGTK2.4.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 16. Nouveaux Widgets dans PyGTK 2.4</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-ColorButtonAndFontButton.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-ComboBoxAndComboboxEntry"></a>16.2. Les listes déroulantes (ComboBox) et listes déroulantes avec saisie (ComboBoxEntry)</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-ComboBox"></a>16.2.1. Le widget ComboBox</h3></div></div></div>
+<p>La boîte déroulante <code class="classname">ComboBox</code> remplace le 
+<code class="classname">OptionMenu</code> par un widget puissant qui utilise 
+un <code class="classname">TreeModel</code> (généralement un <code class="classname">ListStore</code>) 
+pour obtenir la liste d'éléments à afficher. Le <code class="classname">ComboBox</code> 
+applique l'interface du <code class="classname">CellLayout</code> qui fournit un certain 
+nombre de méthodes pour gérer l'affichage des éléments de liste. Un ou plusieurs 
+<code class="classname">CellRenderers</code> peuvent être placés dans un 
+<code class="classname">ComboBox</code> pour personnaliser l'affichage des éléments de liste.
+</p>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-BasicComboBox"></a>16.2.1.1. Utiliser la boîte déroulante de base</h4></div></div></div>
+<p>La manière simple de créer et remplir un <code class="classname">ComboBox</code> 
+est d'utiliser la fonction suivante :</p>
+<pre class="programlisting">
+  boitederoul = gtk.combo_box_new_text()
+</pre>
+<p>Cette fonction crée un <code class="classname">ComboBox</code> et son 
+<code class="classname">ListStore</code> associé et le place avec un 
+<code class="classname">CellRendererText</code>. On utilise les méthodes 
+suivantes pour remplir ou supprimer le contenu du <code class="classname">ComboBox</code> 
+et de son <code class="classname">ListStore</code> :
+</p>
+<pre class="programlisting">
+  boitederoul.append_text(<strong class="parameter"><code>text</code></strong>)
+  boitederoul.prepend_text(<strong class="parameter"><code>text</code></strong>)
+  boitederoul.insert_text(<strong class="parameter"><code>position</code></strong>, <strong class="parameter"><code>text</code></strong>)
+  boitederoul.remove_text(<strong class="parameter"><code>position</code></strong>)
+</pre>
+<p>... où <em class="parameter"><code>text</code></em> est une chaîne à ajouter au 
+<code class="classname">ComboBox</code> et <em class="parameter"><code>position</code></em> est l'index 
+où le <em class="parameter"><code>text</code></em> doit être inséré ou retiré. Dans la 
+plupart des cas, on n'aura besoin que de cette fonction et de ces méthodes.
+</p>
+<p>Le programme d'exemple <a href="exemples/comboboxbasic.py" target="_top">comboboxbasic.py</a> montre l'usage des 
+fonction et méthodes ci-dessus. La <a href="sec-ComboBoxAndComboboxEntry.html#comboboxbasicfig" title="Figure 16.5. Basic ComboBox">Figure 16.5, « Basic ComboBox »</a> illustre le programme en
+cours :</p>
+<div class="figure">
+<a name="comboboxbasicfig"></a><p class="title"><b>Figure 16.5. Basic ComboBox</b></p>
+<div class="mediaobject" align="center"><img src="figures/comboboxbasic.png" align="middle" alt="Basic ComboBox"></div>
+<span>Exemple de ComboBox simple.</span>
+</div>
+<p>Malheureusement, les développeurs de <code class="literal">GTK</code>+ n'ont pas fourni 
+de méthode commode pour récupérer l'élément actif. Ceci serait pourtant  
+une méthode utile. Il faut créer la sienne, semblable à :
+</p>
+<pre class="programlisting">
+  def get_active_text(boitederoul):
+      modele = boitederoul.get_model()
+      est_actif = boitederoul.get_active()
+      if est_actif &lt; 0:
+          return None
+      return modele[est_actif][0]
+</pre>
+<p>L'index de l'élément actif est récupéré par la méthode :</p>
+<pre class="programlisting">
+  est_actif = boitederoul.get_active()
+</pre>
+<p>L'élément actif peut être défini par la méthode :</p>
+<pre class="programlisting">
+  boitederoul.set_active(<strong class="parameter"><code>index</code></strong>)
+</pre>
+<p>... où <em class="parameter"><code>index</code></em> est un entier supérieur à -2. Si 
+<em class="parameter"><code>index</code></em> vaut -1, il n'y a aucun élément actif et l'affichage 
+du ComboBox est vierge. Si <em class="parameter"><code>index</code></em> est inférieur à -1, 
+l'appel sera ignoré. Si <em class="parameter"><code>index</code></em> est supérieur à -1, 
+l'élément de liste qui possède cette valeur d'index sera affiché.
+</p>
+<p>On peut se connecter au signal "changed" d'un <code class="classname">ComboBox</code> 
+pour être prévenu lorsque l'élément actif change. Le gestionnaire de "changed" 
+a la forme :
+</p>
+<pre class="programlisting">
+  def fct_rappel_change(combobox, ...):
+</pre>
+<p>... où <em class="parameter"><code>...</code></em> représente zéro ou plusieurs 
+      arguments transmis à la méthode <code class="methodname">GObject.connect</code>().
+</p>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-AdvancedComboBox"></a>16.2.1.2. Usage avancé de ComboBox</h4></div></div></div>
+<p>Créer un <code class="classname">ComboBox</code> par la fonction 
+<code class="function">gtk.combo_box_new_text</code>() correspond à peu près 
+au code suivant :
+</p>
+<pre class="programlisting">
+  liststore = gtk.ListStore(str)
+  boitederoul = gtk.ComboBox(liststore)
+  case = gtk.CellRendererText()
+  boitederoul.pack_start(case, True)
+  boitederoul.add_attribute(case, 'text', 0)  
+</pre>
+<p>Pour utiliser les possibilités des divers objets des 
+      <code class="classname">TreeModel</code> et des 
+      <code class="classname">CellRenderer</code>, il faut créer le 
+      <code class="classname">ComboBox</code> par le constructeur :
+</p>
+<pre class="programlisting">
+  combobox = gtk.ComboBox(<strong class="parameter"><code>model</code></strong>=None)
+</pre>
+<p>...où <em class="parameter"><code>model</code></em> est un <code class="classname">TreeModel</code>.  
+Lorsque l'on crée un <code class="classname">ComboBox</code> sans l'associer 
+à un <code class="classname">TreeModel</code>, on peut ajouter celui-ci ensuite 
+par la méthode :
+</p>
+<pre class="programlisting">
+  boitederoul.set_model(<strong class="parameter"><code>model</code></strong>)
+</pre>
+<p>Le <code class="classname">TreeModel</code> associé peut être 
+      récupéré par la méthode :</p>
+<pre class="programlisting">
+  modele = boitederoul.get_model()
+</pre>
+<p>Quelques unes des possibilités réalisables avec un 
+<code class="classname">ComboBox</code> :</p>
+<div class="itemizedlist"><ul type="disc">
+<li>Partager le même <code class="classname">TreeModel</code> avec
+un autre <code class="classname">ComboBox</code> et
+<code class="classname">TreeView</code>.</li>
+<li>Afficher des images et du texte dans les éléments de liste du 
+<code class="classname">ComboBox</code>.</li>
+<li>Utiliser un <code class="classname">TreeStore</code> ou un 
+<code class="classname">ListStore</code> préexistant comme modèle des éléments 
+de liste du <code class="classname">ComboBox</code>.</li>
+<li>Utiliser un <code class="classname">TreeModelSort</code> pour 
+          obtenir une liste classée dans le <code class="classname">ComboBox</code>.
+          </li>
+<li>Utiliser un <code class="classname">TreeModelFilter</code> pour utiliser 
+          un sous-arbre d'un <code class="classname">TreeStore</code> comme the source pour 
+          les éléments de liste du <code class="classname">ComboBox</code>.</li>
+<li>Utiliser un <code class="classname">TreeModelFilter</code> pour utiliser 
+          un sous-ensemble des lignes d'un <code class="classname">TreeStore</code> ou d'un 
+<code class="classname">ListStore</code> comme éléments de liste du 
+ <code class="classname">ComboBox</code>.</li>
+<li>Utiliser une fonction de données de cellule pour modifier 
+          ou synthétiser l'affichage des articles de liste.</li>
+</ul></div>
+<p>L'utilisation des objets <code class="classname">TreeModel</code> et  
+<code class="classname">CellRenderer</code> objects est exposée en détail dans <a href="ch-TreeViewWidget.html" title="Chapitre 14. Le widget TreeView">Chapitre 14, <i>Le widget TreeView</i></a>.</p>
+<p>Si on a <code class="classname">ComboBox</code> avec beaucoup d'éléments de liste, 
+      ceux-ci peuvent être affichés dans une grille. Autrement, si on ne peut 
+      afficher la liste entière, celle-ci aura des flèches de défilement. La méthode 
+      suivante est utilisée pour fixer le nombre de colonnes à afficher ::
+</p>
+<pre class="programlisting">
+  boitederoul.set_wrap_width(<strong class="parameter"><code>width</code></strong>)
+</pre>
+<p>... où <em class="parameter"><code>width</code></em> est le nombre de colonnes de la grille 
+affichant les éléments de liste. Par exemple, le programme 
+<a href="exemples/comboboxwrap.py" target="_top">comboboxwrap.py</a> affiche 
+une liste de 50 éléments sur 5 colonnes. La <a href="sec-ComboBoxAndComboboxEntry.html#comboboxwrapfig" title="Figure 16.6. ComboBox avec colonnes">Figure 16.6, « ComboBox avec colonnes »</a> illustre le programme en action :
+</p>
+<div class="figure">
+<a name="comboboxwrapfig"></a><p class="title"><b>Figure 16.6. ComboBox avec colonnes</b></p>
+<div class="mediaobject" align="center"><img src="figures/comboboxwrap.png" align="middle" alt="Exemple de ComboBox à colonnes."></div>
+</div>
+<p>Avec un grand nombre d'éléments, c'est à dire au-delà de 50, l'utilisation 
+de la méthode <code class="methodname">set_wrap_width</code>() fournira une faible 
+performance à cause du calcul de l'affichage de la grille. Pour avoir un aperçu 
+de l'effet, modifier la ligne 18 du programme 
+<a href="exemples/comboboxwrap.py" target="_top">comboboxwrap.py</a> pour afficher 
+150 éléments.
+</p>
+<pre class="programlisting">
+        for n in range(150):
+</pre>
+<p> Lancer le programme pour obtenir une estimation du temps d'initialisation. 
+ Puis le modifier en commentant la ligne 17 :</p>
+<pre class="programlisting">
+        #boitederoul.set_wrap_width(5)
+</pre>
+<p>Relancer le programme et chronométrer à nouveau. Il devrait s'exécuter 
+beaucoup plus vite, à peu prés 20 fois plus rapidement.</p>
+<p>Outre la méthode <code class="methodname">get_active</code>() décrite ci-dessus, 
+il est possible d'obtenir un <code class="classname">TreeIter</code> désignant  
+la ligne active en utilisant la méthode :</p>
+<pre class="programlisting">
+  iter = boitederoul.get_active_iter()
+</pre>
+<p>On peut aussi établir l'élément de liste actif en utilisant un 
+<code class="classname">TreeIter</code> avec la méthode :</p>
+<pre class="programlisting">
+  boitederoul.set_active_iter(<strong class="parameter"><code>iter</code></strong>)
+</pre>
+<p>Les méthodes <code class="methodname">set_row_span_column</code>() et 
+<code class="methodname">set_column_span_column</code>() sont supposées permettre 
+la spécification du nombre de colonnes d'un <code class="classname">TreeModel</code> 
+qui contient le nombre de lignes ou de colonnes sur lesquelles les éléments de 
+liste doivent s'étendre dans la grille. Malheureusement, ces méthodes sont 
+cassées dans GTK+ 2.4.
+</p>
+<p>Puisque le <code class="classname">ComboBox</code> implémente l'interface 
+<code class="classname">CellLayout</code> qui possède les mêmes capacités que 
+le <code class="classname">TreeViewColumn</code> (voir 
+<a href="sec-TreeViewColumns.html" title="14.5. TreeViewColumn">Section 14.5, « TreeViewColumn »</a> pour plus d'information). 
+En bref, l'interface fournit :
+</p>
+<pre class="programlisting">
+  boitederoul.pack_start(<strong class="parameter"><code>cell</code></strong>, <strong class="parameter"><code>expand</code></strong>=True)
+  boitederoul.pack_end(<strong class="parameter"><code>cell</code></strong>, <strong class="parameter"><code>expand</code></strong>=True)
+  boitederoul.clear()
+</pre>
+<p>Les deux premières méthodes place un <code class="classname">CellRenderer</code> 
+dans le <code class="classname">ComboBox</code>, la méthode <code class="methodname">clear</code>() 
+supprime tous les attributs de tous les <code class="classname">CellRenderer</code>.
+</p>
+<p>Les méthodes suivantes :</p>
+<pre class="programlisting">
+  comboboxentry.add_attribute(<strong class="parameter"><code>cell</code></strong>, <strong class="parameter"><code>attribute</code></strong>, <strong class="parameter"><code>column</code></strong>)
+
+  comboboxentry.set_attributes(<em class="parameter"><code>cell</code></em>, <em class="parameter"><code>...</code></em>)
+</pre>
+<p>... fixent les attributs pour les <code class="classname">CellRenderer</code> 
+indiqués par <em class="parameter"><code>cell</code></em>. La méthode 
+<code class="methodname">add_attribute</code>() prend une chaîne, nom d'attibut 
+<em class="parameter"><code>attribute</code></em> (par exemple 'texte') et un entier 
+numéro de colonne de la <em class="parameter"><code>column</code></em> du 
+<code class="classname">TreeModel</code> à utiliser pour placer l'attribut. 
+Les arguments supplémentaires de la méthode 
+<code class="methodname">set_attributes</code>() sont des paires 
+<code class="literal">attribute=column</code> (par exemple texte=1).
+
+</p>
+</div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-ComboBoxEntry"></a>16.2.2. Le widget ComboBoxEntry</h3></div></div></div>
+<p>Le widget <code class="classname">ComboBoxEntry</code> remplace le widget  
+<code class="classname">Combo</code>. C'est une sous-classe du widget 
+<code class="classname">ComboBox</code> qui contient un widget fils 
+<code class="classname">Entry</code> dont le contenu est fixé en choisissant un 
+élément dans une liste déroulante, en entrant directement le texte au clavier 
+ou par un coller depuis un presse-papier <code class="classname">Clipboard</code> ou 
+une sélection.
+</p>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec-BasicComboBoxEntry"></a>16.2.2.1. Utilisation fondamentale du ComboBoxEntry</h4></div></div></div>
+<p>Comme le <code class="classname">ComboBox</code>, le <code class="classname">ComboBoxEntry</code> 
+peut être créé par la fonction :</p>
+<pre class="programlisting">
+  boitderoulsaisie = gtk.combo_box_entry_new_text()
+</pre>
+<p>Le <code class="classname">ComboBoxEntry</code> devrait être rempli en utilisant les méthodes 
+auxiliaires du <code class="classname">ComboBox</code> décrites dans la section 
+<a href="sec-ComboBoxAndComboboxEntry.html#sec-BasicComboBox" title="16.2.1.1. Utiliser la boîte déroulante de base">Section 16.2.1.1, « Utiliser la boîte déroulante de base »</a>.</p>
+<p>Comme un widget <code class="classname">ComboBoxEntry</code> est un widget 
+<code class="classname">Bin</code>, son widget fils <code class="classname">Entry</code> 
+est disponible en utilisant l'attibut "child" ou la méthode 
+<code class="methodname">get_child</code>() :</p>
+<pre class="programlisting">
+  saisie = boitderoulsaisie.child
+  saisie = boitderoulsaisie.get_child()
+</pre>
+<p>On peut récupérer le texte de la zone <code class="classname">Entry</code> par la 
+méthode <code class="methodname">get_text</code>().
+</p>
+<p>Comme pour le <code class="classname">ComboBox</code>, on peut surveiller les 
+changements de l'élément actif de la liste en se connectant au signal 
+"changed". Malheureusement, cela ne permet pas de suivre les modifications  
+de texte dans le <code class="classname">Entry</code> fils lorsque ce sont des saisies  
+directes. Quand und saisie directe est réalisée dans le widget fils 
+<code class="classname">Entry</code>, le signal "changed" est bien émis mais l'index retourné  
+par la méthode <code class="methodname">get_active</code>() vaudra -1. Pour surveiller 
+tous les changements dans le texte de la zone de saisie <code class="classname">Entry</code>, il faudra 
+utiliser le signal "changed" du widget <code class="classname">Entry</code>. Par exemple :
+
+</p>
+<pre class="programlisting">
+  def fct_rappel_change(saisie):
+      print saisie.get_text()
+
+  boitderoulsaisie.child.connect('changed', fct_rappel_change)
+</pre>
+<p>... affichera le texte après chaque modification dans le widget fils 
+<code class="classname">Entry</code>. Pour exemple, le programme 
+<a href="exemples/comboboxentrybasic.py" target="_top">comboboxentrybasic.py</a> 
+montre l'utilisation de l'API. La figure <a href="sec-ComboBoxAndComboboxEntry.html#comboboxentrybasicfig" title="Figure 16.7. Liste déroulante avec zone de saisie">Figure 16.7, « Liste déroulante avec zone de saisie »</a> 
+illustre le programme en action.
+</p>
+<div class="figure">
+<a name="comboboxentrybasicfig"></a><p class="title"><b>Figure 16.7. Liste déroulante avec zone de saisie</b></p>
+<div class="mediaobject" align="center"><img src="figures/comboboxentrybasic.png" align="middle" alt="Exemple de ComboBox avec saisie."></div>
+</div>
+<p>Il faut noter que lorsque le texte du <code class="classname">Entry</code> est modifié 
+par un choix dans la liste déroulante, le gestionnaire du signal "changed" est 
+appelé deux fois :une fois quand le texte est supprimé  et une autre fois 
+quand le texte prend la valeur du texte de l'élément de liste choisi.
+</p>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sec=AdvancedComboBoxEntry"></a>16.2.2.2. Utilisation avancée du ComboBoxEntry</h4></div></div></div>
+<p>Le constructeur du ComboBoxEntry est :</p>
+<pre class="programlisting">
+  boitderoulsaisie = gtk.ComboBoxEntry(<strong class="parameter"><code>model</code></strong>=None, <strong class="parameter"><code>column</code></strong>=-1)
+</pre>
+<p>... où <em class="parameter"><code>model</code></em> est un <code class="classname">TreeModel</code> 
+et <em class="parameter"><code>column</code></em> est le numéro de la colonne du 
+<em class="parameter"><code>model</code></em> à utiliser pour créer la liste d'éléments. 
+Si la colonne n'est pas précisée, la valeur par défaut est -1, 
+ce qui signifie que la colonne du texte n'est pas indiquée.
+</p>
+<p>Créer un <code class="classname">ComboBoxEntry</code> avec la fonction 
+      auxiliaire <code class="function">gtk.combo_box_entry_new_text</code>() est équivalent 
+      à :
+</p>
+<pre class="programlisting">
+  liststore = gtk.ListStore(str)
+  boitderoulsaisie = gtk.ComboBoxEntry(liststore, 0)
+</pre>
+<p>Le <code class="classname">ComboBoxEntry</code> ajoute quelques méthodes utilisées 
+pour fixer et récupérer le numéro de colonne du 
+<code class="classname">TreeModel</code> à utiliser pour fixer les chaînes des éléments 
+de liste :
+</p>
+<pre class="programlisting">
+  boitderoulsaisie.set_text_column(<strong class="parameter"><code>text_column</code></strong>)
+  text_column = boitderoulsaisie.get_text_column()
+</pre>
+<p>La colonne du texte peut aussi être récupérée et fixée en utilisant la 
+propriété "text-column". Se reporter à la section <a href="sec-ComboBoxAndComboboxEntry.html#sec-AdvancedComboBox" title="16.2.1.2. Usage avancé de ComboBox">Section 16.2.1.2, « Usage avancé de ComboBox »</a> pour plus de renseignements sur l'utilisation avancée du 
+<code class="classname">ComboBoxEntry</code>.
+</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>Votre application doit indiquer la colonne de texte pour que le 
+<code class="classname">ComboBoxEntry</code> établisse le contenu 
+de la zone <code class="classname">Entry</code> depuis la liste déroulante. 
+la colonne de texte ne peut être indiqué qu'une fois, soit en utilisant le 
+constructeur, soit en utilisant la méthode <code class="methodname">set_text_column</code>().
+</p>
+</div>
+<p>Lorqu'on crée un <code class="classname">ComboBoxEntry</code>, il est placé avec un 
+nouveau <code class="classname">CellRendererText</code> qui n'est pas accessible. L'
+attribut 'text' du <code class="classname">CellRendererText</code> doit être fixé, c'est un  
+effet secondaire de l'utilisation de la méthode <code class="methodname">set_text_column</code>() 
+pour déterminer la colonne de texte. On peut placer des <code class="classname">CellRenderer</code> 
+supplémentaires dans un <code class="classname">ComboBoxEntry</code> pour l'affichage dans la 
+liste déroulante. Se reporter à la section <a href="sec-ComboBoxAndComboboxEntry.html#sec-AdvancedComboBox" title="16.2.1.2. Usage avancé de ComboBox">Section 16.2.1.2, « Usage avancé de ComboBox »</a> 
+pour plus d'information.
+</p>
+</div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch-NewInPyGTK2.4.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-NewInPyGTK2.4.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-ColorButtonAndFontButton.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapitre 16. Nouveaux Widgets dans PyGTK 2.4 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> 16.3. Bouton de couleur (ColorButton) et de police (FontButton)</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

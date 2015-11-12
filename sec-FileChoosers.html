@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>16.6. Sélection de fichier basée sur le sélecteur FileChooser</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-NewInPyGTK2.4.html" title="Chapitre 16. Nouveaux Widgets dans PyGTK 2.4">
+<link rel="prev" href="sec-ExpanderWidget.html" title="16.5. Expanseur (Expander)">
+<link rel="next" href="sec-UIManager.html" title="16.7. Le gestionnaire d'Interface Utilisateur UIManager">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">16.6. Sélection de fichier basée sur le sélecteur FileChooser</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-ExpanderWidget.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 16. Nouveaux Widgets dans PyGTK 2.4</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-UIManager.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-FileChoosers"></a>16.6. Sélection de fichier basée sur le sélecteur FileChooser</h2></div></div></div>
+<p>La nouvelle manière de choisir un fichier dans PyGTK 2.4 consiste à 
+utiliser les variantes du widget <code class="classname">FileChooser</code>. Les deux 
+objets qui implémentent cette nouvelle interface dans PyGTK 2.4 sont 
+<code class="classname">FileChooserWidget</code> et <code class="classname">FileChooserDialog</code>. 
+Ce dernier est un dialogue complet avec la fenêtre et des boutons facilement définis. 
+Le premier est un widget utile pour l'inscrire dans un autre widget.
+</p>
+<p>Le <code class="classname">FileChooserWidget</code> comme le <code class="classname">FileChooserDialog</code> 
+possèdent les capacités de naviguer dans l'arborescence du système de fichiers et 
+de sélectionner des fichiers. L'apparence du widget dépend de l'action utilisée pour 
+ouvrir le widget.
+</p>
+<p>Pour créer une nouvelle fenêtre de sélection de fichiers pour choisir un fichier 
+existant (comme dans le classique <span class="guimenu">Fichier</span> &#8594; <span class="guimenuitem">
+Ouvrir</span>), il faut utiliser :
+</p>
+<pre class="programlisting">
+  chooser = gtk.FileChooserDialog(<strong class="parameter"><code>title</code></strong>=None,<strong class="parameter"><code>action</code></strong>=gtk.FILE_CHOOSER_ACTION_OPEN,
+                                  <strong class="parameter"><code>buttons</code></strong>=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
+</pre>
+<p>Pour créer une nouvelle fenêtre de sélection de fichiers pour choisir un nouveau 
+nom de fichier (comme dans le classique <span class="guimenu">Fichier</span> &#8594; <span class="guimenuitem">Enregistrer</span>), il faut utiliser :
+</p>
+<pre class="programlisting">
+  chooser = gtk.FileChooserDialog(<strong class="parameter"><code>title</code></strong>=None,<strong class="parameter"><code>action</code></strong>=gtk.FILE_CHOOSER_ACTION_SAVE,
+                                  <strong class="parameter"><code>buttons</code></strong>=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
+</pre>
+<p>Dans les exemples précédents, les deux boutons (éléments de stock 
+<span class="guibutton">Annuler</span> and <span class="guibutton">Ouvrir</span>)  
+sont créés et connectés à leur réponse respective (réponses 
+<span class="guibutton">Annuler</span> et <span class="guibutton">Valider(OK)</span>s).
+      </p>
+<p>Pour définir le dossier qui sera affiché dans le sélecteur de fichiers, 
+on utilise la méthode :
+</p>
+<pre class="programlisting">
+  chooser.set_current_folder(<strong class="parameter"><code>pathname</code></strong>)
+</pre>
+<p>Pour définir le nom de fichier suggéré comme s'il était tapé par 
+l'utilisateur (le classique<span class="guimenu">Fichier</span> &#8594; <span class="guimenuitem">Enregistrer Sous</span>), on utilise la 
+méthode :
+</p>
+<pre class="programlisting">
+  chooser.set_current_name(<strong class="parameter"><code>name</code></strong>)
+</pre>
+<p>La méthode ci-dessus n'exige pas que le nom du fichier existe déjà. Si on préfére 
+préselectionner un fichier existant particulier (comme dans 
+<span class="guimenu">Fichier</span> &#8594; <span class="guimenuitem">Ouvrir</span>, on utilise la méthode :
+</p>
+<pre class="programlisting">
+  chooser.set_filename(<strong class="parameter"><code>filename</code></strong>)
+</pre>
+<p>Pour récupérer le nom du fichier que l'utilisateur a tapé ou sur lequel 
+il a cliqué, on utilise la méthode :
+</p>
+<pre class="programlisting">
+  filename = chooser.get_filename()
+</pre>
+<p>Il est possible d'autoriser de multiples sélections (uniquement pour 
+l'action <code class="literal">gtk.FILE_CHOOSER_ACTION_OPEN</code>) en utilisant 
+la méthode :
+</p>
+<pre class="programlisting">
+  chooser.set_select_multiple(<strong class="parameter"><code>select_multiple</code></strong>)
+</pre>
+<p>... où le paramètre <em class="parameter"><code>select_mutiple</code></em> doit valoir 
+<code class="literal">TRUE</code> pour autoriser les sélections multiples. Dans 
+ce cas, il faudra utiliser la méthode suivante pour récupérer la liste 
+des fichiers sélectionnés :
+</p>
+<pre class="programlisting">
+  filenames = chooser.get_filenames()
+</pre>
+<p>Une caractéristique importante de tous les sélecteurs de fichiers est leur 
+capacité à ajouter des filtres de sélection de fichiers. Le filtre peut 
+être ajouté par cette méthode :
+</p>
+<pre class="programlisting">
+  chooser.add_filter(<strong class="parameter"><code>filter</code></strong>)
+</pre>
+<p>Dans l'exemple ci-dessus, <em class="parameter"><code>filter</code></em> doit être une 
+instance de la classe <code class="classname">FileFilter</code>.
+</p>
+<p>Le panneau de gauche du sélecteur de fichier contient quelques signets (raccourcis 
+vers les dossiers) tels <span class="guilabel">Dossier personnel</span>, <span class="guilabel">Système de fichiers</span>, 
+<span class="guilabel">CDrom</span>, etc. Il est possible d'ajouter un dossier 
+à la liste de ces signets, ou de l'enlever, avec ces méthodes :
+</p>
+<pre class="programlisting">
+  chooser.add_shortcut_folder(<strong class="parameter"><code>folder</code></strong>)
+  chooser.remove_shortcut_folder(<strong class="parameter"><code>folder</code></strong>)
+</pre>
+<p>... où  <em class="parameter"><code>folder</code></em> est le chemin du dossier. Le 
+programme d'exemple <a href="exemples/filechooser.py" target="_top">
+<span><strong class="command">filechooser.py</strong></span></a> illustre 
+l'utilisation du sélecteur de fichier. La <a href="sec-FileChoosers.html#filechooserfig" title="Figure 16.12. Exemple de sélecteur de fichiers">Figure 16.12, « Exemple de sélecteur de fichiers »</a> 
+montre le programme en cours d'exécution.
+
+      </p>
+<div class="figure">
+<a name="filechooserfig"></a><p class="title"><b>Figure 16.12. Exemple de sélecteur de fichiers</b></p>
+<div class="mediaobject" align="center"><img src="figures/filechooser.png" align="middle" alt="Exemple de sélecteur de fichiers."></div>
+</div>
+<p>Voici le code source du programme <a href="exemples/filechooser.py" target="_top"><span><strong class="command">filechooser.py</strong></span></a> 
+ :</p>
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2   # coding: utf8
+     3   # exemple filechooser.py
+     4   
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   
+     8   import gtk
+     9   
+    10   # Vérification du nouveau PyGtk : c'est une nouvelle classe de PyGtk 2.4
+    11   if gtk.pygtk_version &lt; (2,3,90):
+    12      print "Cet exemple nécessite PyGtk 2.3.90 ou ultérieur"
+    13      raise SystemExit
+    14   
+    15   dialogue = gtk.FileChooserDialog("Ouvrir..",
+    16                                  None,
+    17                                  gtk.FILE_CHOOSER_ACTION_OPEN,
+    18                                  (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+    19                                   gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+    20   dialogue.set_default_response(gtk.RESPONSE_OK)
+    21   
+    22   filtre = gtk.FileFilter()
+    23   filtre.set_name("All files")
+    24   filtre.add_pattern("*")
+    25   dialogue.add_filter(filtre)
+    26   
+    27   filtre = gtk.FileFilter()
+    28   filtre.set_name("Images")
+    29   filtre.add_mime_type("image/png")
+    30   filtre.add_mime_type("image/jpeg")
+    31   filtre.add_mime_type("image/gif")
+    32   filtre.add_pattern("*.png")
+    33   filtre.add_pattern("*.jpg")
+    34   filtre.add_pattern("*.gif")
+    35   filtre.add_pattern("*.tif")
+    36   filtre.add_pattern("*.xpm")
+    37   dialogue.add_filter(filtre)
+    38   
+    39   reponse = dialogue.run()
+    40   if reponse == gtk.RESPONSE_OK:
+    41       print dialogue.get_filename(), 'choisi'
+    42   elif reponse == gtk.RESPONSE_CANCEL:
+    43       print 'On ferme, pas de fichier sélectionné'
+    44   dialogue.destroy()
+</pre>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-ExpanderWidget.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-NewInPyGTK2.4.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-UIManager.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">16.5. Expanseur (Expander) </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> 16.7. Le gestionnaire d'Interface Utilisateur UIManager</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

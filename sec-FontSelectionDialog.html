@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+<title>9.15. Le s&eacute;lecteur de police</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,fonte,police">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
+<link rel="previous" href="sec-FileSelections.html" title="9.14. Le s&eacute;lecteur de fichier">
+<link rel="next" href="ch-ContainerWidgets.html" title="Chapitre 10. Les widgets conteneurs">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici&nbsp;: 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">9.15. Le s&eacute;lecteur de police</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-FileSelections.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 9. Widgets divers</th>
+<td width="20%" align="right"><a accesskey="n" href="ch-ContainerWidgets.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage">
+<div><h2 class="title" style="clear: both"><a name="SelecteurPolice"></a>9.15. Le s&eacute;lecteur de police</h2></div></div>
+
+<p>Le <tt>gtk.FontSelectionDialog</tt> permet &agrave; l'utilisateur de s&eacute;lectionner interactivement une police pour le programme. Il s'agit d'une boite de dialogue contenant un widget <tt>gtk.FontSelection</tt> et des boutons &quot;Valider&quot; et &quot;Annuler&quot;. Un bouton &quot;Appliquer&quot; est &eacute;galement disponible mais il est cach&eacute; par d&eacute;faut. Le s&eacute;lecteur de fichier permet de choisir parmi les polices syst&egrave;me disponibles (les m&ecirc;mes que celles qu'on obtient avec <b>xlsfonts</b>).</p>
+<p>La <a href="sec-FontSelectionDialog.html#FigSelectionPolice" title="Figure 9.15. Boite de dialogue du s&eacute;lecteur de police">Figure 9.15</a> montre la boite de dialogue du s&eacute;lecteur de police&nbsp;:</p>
+
+<div class="figure"><a name="FigSelectionPolice"></a>
+<p class="title"><b>Figure 9.15. Boite de dialogue du s&eacute;lecteur de police</b></p>
+<div class="mediaobject" align="center">
+<img src="figures/selectpolice.png" align="middle" alt="exemple sélecteur de police">
+</div></div>
+
+<p>La boite de dialogue contient un ensemble de trois onglets qui proposent&nbsp;:</p>
+
+<div class="itemizedlist"><ul type="disc">
+<li><p>une interface de s&eacute;lection de la police, de son style et de sa taille</p></li>
+<li><p>des informations d&eacute;taill&eacute;es sur la police s&eacute;lectionn&eacute;e</p></li>
+<li><p>une interface pour le m&eacute;canisme de filtrage des polices, qui d&eacute;cide des polices pouvant &ecirc;tre s&eacute;lectionn&eacute;es</p></li>
+</ul></div>
+
+<p>La fonction de cr&eacute;ation de cette boite de dialogue est la suivante&nbsp;:</p>
+
+<pre class="programlisting">
+  dialselectpolice = gtk.FontSelectionDialog(<b><tt>title</tt></b>)
+</pre>
+
+<p>Le titre (<i><tt>title</tt></i>) est une chaine de caract&egrave;res qui sera utilis&eacute;e comme texte pour la barre de titre.</p>
+<p>Une instance de <tt>gtk.FontSelectionDialog</tt> poss&egrave;de plusieurs attributs&nbsp;:</p>
+
+<pre class="programlisting">
+  fontsel
+  main_vbox
+  action_area
+  ok_button
+  apply_button
+  cancel_button
+</pre>
+
+<p>L'attribut <i><tt>fontsel</tt></i> fait r&eacute;f&eacute;rence au widget de s&eacute;lection de police, et <i><tt> main_vbox</tt></i> &agrave; la boite verticale contenant ce dernier ainsi que l'&quot;action_area&quot;. <i><tt>action_area</tt></i> se r&eacute;f&egrave;re &agrave; la <tt>gtk.HButtonBox</tt> qui contient les boutons 'Valider', 'Appliquer' et 'Annuler'. Les attributs <i><tt>ok_button</tt></i>, <i><tt>cancel_button</tt></i> et <i><tt>apply_button</tt></i> se rapportent aux boutons 'Valider', 'Appliquer' et 'Annuler' et peuvent servir &agrave; &eacute;tablir des connexions aux signaux de ces derniers. <i><tt>apply_button</tt></i> peut servir &agrave; afficher le bouton 'Appliquer'.</p>
+
+<p>Avec la m&eacute;thode qui suit, on peut d&eacute;finir la police qui doit &ecirc;tre initialement affich&eacute;e dans le s&eacute;lecteur de police&nbsp;:</p>
+
+<pre class="programlisting">
+  dialselectpolice.set_font_name(<b><tt>fontname</tt></b>)
+</pre>
+
+<p>L'argument <i><tt>fontname</tt></i> (nom de police) attend le nom d'une police syst&egrave;me int&eacute;gralement ou partiellement sp&eacute;cifi&eacute;e. Par exemple&nbsp;:</p>
+
+<pre class="programlisting">
+  dialselectpolice.set_font_name('-adobe-courier-bold-*-*-*-*-120-*-*-*-*-*-*')
+</pre>
+
+<p>... sp&eacute;cifie partiellement la police initiale.</p>
+<p>Le nom de la police s&eacute;lectionn&eacute;e peut &ecirc;tre r&eacute;cup&eacute;r&eacute; avec cette m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  nom_police = dialselectpolice.get_font_name()
+</pre>
+
+<p>La boite de dialogue du s&eacute;lecteur de police dispose d'une zone d'aper&ccedil;u qui affiche du texte dans la police s&eacute;lectionn&eacute;e. Le texte utilis&eacute; dans cette zone d'aper&ccedil;u peut &ecirc;tre d&eacute;fini avec la m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  dialselectpolice.set_preview_text(<b><tt>text</tt></b>)
+</pre>
+
+<p>Le texte de l'aper&ccedil;u peut &ecirc;tre r&eacute;cup&eacute;r&eacute; &agrave; l'aide de la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class="programlisting">
+  texte = dialselectpolice.get_preview_text()
+</pre>
+
+<p>Le programme exemple <a href="exemples/calendrier.py" target="_top"><b>calendrier.py</b></a> utilise un <tt>gtk.FontSelectionDialog</tt> pour la s&eacute;lection de la police du calendrier. Les lignes 106 &agrave; 111 d&eacute;finissent une fonction de rappel qui r&eacute;cup&egrave;re le nom de la police &agrave; partir du s&eacute;lecteur de police et l'utilise pour d&eacute;finir la police du calendrier. Les lignes 113-132 d&eacute;finissent la m&eacute;thode qui cr&eacute;e le s&eacute;lecteur de police, connecte les boutons 'Valider' et 'Annuler' &agrave; leur fonction de rappel, et affiche la boite de dialogue.</p></div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="sec-FileSelections.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="ch-ContainerWidgets.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">9.14. Le s&eacute;lecteur de fichier</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">Chapitre 10. Les widgets conteneurs</td>
+</tr></table>
+</div>
+
+</body>
+
+</html>

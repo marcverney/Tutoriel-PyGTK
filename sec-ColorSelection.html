@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+<title>9.13. Le s&eacute;lecteur de couleur</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,selection,couleur">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
+<link rel="previous" href="sec-Calendar.html" title="9.12. Le calendrier">
+<link rel="next" href="sec-FileSelections.html" title="9.14. Le s&eacute;lecteur de fichiers">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici&nbsp;: 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">9.13. Le s&eacute;lecteur de couleur</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-Calendar.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 9. Widgets divers</th>
+<td width="20%" align="right"><a accesskey="n" href="sec-FileSelections.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage"><div>
+<h2 class="title" style="clear: both"><a name="SelecteurCouleur"></a>9.13. Le s&eacute;lecteur de couleur</h2></div></div>
+
+<p>Le s&eacute;lecteur de couleur est, on l'aura devin&eacute;, un widget permettant une s&eacute;lection interactive des couleurs. Ce widget composite permet &agrave; l'utilisateur de choisir une couleur en manipulant des triplets RVB (Rouge, Vert, Bleu) ou TSV (Teinte, Saturation, Valeur). Chacune des valeurs peut &ecirc;tre ajust&eacute;e &agrave; l'aide de gradateurs ou de champs de saisie, ou bien en d&eacute;signant directement la couleur d&eacute;sir&eacute;e dans une roue de teinte-saturation/barre de valeur. Il est &eacute;galement possible de d&eacute;finir l'opacit&eacute; de la couleur.</p>
+<p>Le s&eacute;lecteur de couleur ne dispose actuellement que d'un seul signal, &quot;color_changed&quot;. Il est &eacute;mis &agrave; chaque modification de la couleur courante dans le widget, qu'elle vienne de l'utilisateur ou bien d'une d&eacute;finition explicite par la m&eacute;thode <tt>set_color</tt>().</p>
+<p>Observons &agrave; pr&eacute;sent ce que peut nous offrir ce widget. Il est propos&eacute; sous deux formes diff&eacute;rentes&nbsp;: <tt>gtk.ColorSelection</tt> et <tt>gtk.ColorSelectionDialog</tt>.</p>
+
+<pre class="programlisting">
+  selectcouleur = gtk.ColorSelection()
+</pre>
+
+<p>Vous n'aurez probablement pas &agrave; utiliser ce constructeur directement. Il cr&eacute;e un <tt>gtk.ColorSelection</tt> orphelin auquel vous devrez affecter un parent vous-m&ecirc;me. Le widget <tt>gtk.ColorSelection</tt> h&eacute;rite du widget <tt>gtk.VBox</tt>.</p>
+
+<pre class="programlisting">
+  dialselectcouleur = gtk.ColorSelectionDialog(<b><tt>title</tt></b>)
+</pre>
+
+<p>... o&ugrave; <i><tt>title</tt></i> (titre) est une chaine de caract&egrave;res &agrave; utiliser pour la barre de titre de la boite de dialogue.</p>
+<p>Il s'agit l&agrave; du constructeur le plus courant pour les s&eacute;lecteurs de couleur. Il cr&eacute;e un <tt>gtk.ColorSelectionDialog</tt>, qui consiste en un cadre (<tt>gtk.Frame</tt>) contenant un <tt>gtk.ColorSelection</tt>, un s&eacute;parateur horizontal, ainsi qu'une boite horizontale poss&eacute;dant trois boutons&nbsp;: &quot;Ok&quot;, &quot;Cancel&quot; and &quot;Help&quot;. Ces derniers sont accessibles par les attributs <i><tt>ok_button</tt></i>, <i><tt>cancel_button</tt></i> et <i><tt>help_button</tt></i> du <tt>ColorSelectionDialog</tt> (ex&nbsp;: <i><tt>dialselectcouleur.ok_button</tt></i>). Pour acc&eacute;der au s&eacute;lecteur de couleur en lui-m&ecirc;me, on utilisera l'attribut <i><tt>colorsel</tt></i>&nbsp;:</p>
+
+<pre class="programlisting">
+  selectcouleur = dialselectcouleur.colorsel
+</pre>
+
+<p>Le widget <tt>gtk.ColorSelection</tt> dispose de plusieurs m&eacute;thodes qui changent ses caract&eacute;ristiques ou permettent d'acc&eacute;der &agrave; la s&eacute;lection de couleur.</p>
+
+<pre class="programlisting">
+  selectcouleur.set_has_opacity_control(<b><tt>has_opacity</tt></b>)
+</pre>
+
+<p>Le s&eacute;lecteur de couleur permet de r&eacute;gler l'opacit&eacute; d'une couleur (aussi appel&eacute;e canal alpha). Cette option est d&eacute;sactiv&eacute;e par d&eacute;faut. Pour autoriser les r&eacute;glages d'opacit&eacute;, il faut appeler la m&eacute;thode ci-dessus en donnant la valeur TRUE &agrave; son argument <i><tt>has_opacity</tt></i>. Inversement, l'appeler avec FALSE interdira cette possibilit&eacute;.</p>
+
+<pre class="programlisting">
+  selectcouleur.set_current_color(<b><tt>color</tt></b>)
+  selectcouleur.set_current_alpha(<b><tt>alpha</tt></b>)
+</pre>
+
+<p>On peut d&eacute;finir explicitement la couleur courante en appelant la m&eacute;thode <tt>set_current_color</tt>() avec une <tt>GdkColor</tt>. Le r&eacute;glage d'opacit&eacute; (le canal alpha) s'effectue avec la m&eacute;thode <tt>set_current_alpha</tt>().  La valeur alpha doit &ecirc;tre comprise entre 0 (transparence totale) et 65 636 (opacit&eacute; totale).</p>
+
+<pre class="programlisting">
+  couleur = selectcouleur.get_current_color()
+  alpha = selectcouleur.get_current_alpha()
+</pre>
+
+<p>Pour r&eacute;cup&eacute;rer la couleur courante, g&eacute;n&eacute;ralement lors de la r&eacute;ception d'un signal &quot;color_changed&quot;, on utilise ces m&eacute;thodes.</p>
+<p>Le programme <a href="exemples/selectcouleur.py" target="_top"><b>selectcouleur.py</b></a> donne un exemple d'utilisation du <tt>gtk.ColorSelectionDialog</tt>. Le programme affiche une fen&ecirc;tre contenant une zone de dessin qui, si elle est cliqu&eacute;e, ouvre une boite de dialogue de s&eacute;lection de couleur. Les modifications de couleur effectu&eacute;es dans cette boite de dialogue entrainent le changement de la couleur d'arri&egrave;re-plan de la zone de dessin. La <a href="sec-ColorSelection.html#FigSelectCouleur" title="Figure 9.13. Exemple de s&eacute;lecteur de couleur">Figure 9.13</a> montre ce programme en ex&eacute;cution&nbsp;:</p>
+
+<div class="figure"><a name="FigSelectCouleur"></a>
+<p class="title"><b>Figure 9.13. Exemple de s&eacute;lecteur de couleur</b></p>
+<div class="mediaobject" align="center">
+<img src="figures/selectcouleur.png" align="middle" alt="exemple sélecteur de couleur">
+</div></div>
+
+<p>Le code source de <a href="exemples/selectcouleur.py" target="_top"><b>selectcouleur.py</b></a> est le suivant&nbsp;:</p>
+
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2   
+     3   # exemple selectcouleur.py
+     4   
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8   
+     9   class ExempleSelecteurCouleur:
+    10       # Gestionnaire du signal "color_changed"
+    11       def rappel_color_changed(self, widget):
+    12           # On recupere la table des couleurs de la zone de dessin
+    13           tablecouleurs = self.zonedessin.get_colormap()
+    14   
+    15           # On recupere la couleur courante
+    16           couleur = self.dialselectcouleur.colorsel.get_current_color()
+    17   
+    18           # On definit la couleur d'arriere plan de la fenetre
+    19           self.zonedessin.modify_bg(gtk.STATE_NORMAL, couleur)
+    20   
+    21       # Gestionnaire d'evenement de la zone de dessin
+    22       def evnmt_zone(self, widget, evnmt):
+    23           prisencharge = False
+    24   
+    25           # On verifie si on a recu un evenement "button-press"
+    26           if evnmt.type == gtk.gdk.BUTTON_PRESS:
+    27               prisencharge = True
+    28   
+    29               # Creation de la boite de dialogue du selecteur de couleur
+    30               if self.dialselectcouleur == None:
+    31                   self.dialselectcouleur = gtk.ColorSelectionDialog(
+    32                       "Selection de la couleur d'arriere-plan")
+    33   
+    34               # On recupere le selecteur de couleur
+    35               selectcouleur = self.dialselectcouleur.colorsel
+    36   
+    37               selectcouleur.set_previous_color(self.couleur)
+    38               selectcouleur.set_current_color(self.couleur)
+    39               selectcouleur.set_has_palette(True)
+    40   
+    41               # Connexion au signal "color_changed"
+    42               selectcouleur.connect("color_changed", self.rappel_color_changed)
+    43               # Affichage de la boite de dialogue
+    44               reponse = self.dialselectcouleur.run()
+    45   
+    46               if reponse -- gtk.RESPONSE_OK:
+    47                   self.couleur = selectcouleur.get_current_color()
+    48               else:
+    49                   self.zonedessin.modify_bg(gtk.STATE_NORMAL, self.couleur)
+    50   
+    51               self.dialselectcouleur.hide()
+    52   
+    53           return prisencharge
+    54   
+    55       # Fermeture et sortie du gestionnaire
+    56       def destruct_fenetre(self, widget, evnmt):
+    57           gtk.main_quit()
+    58           return True
+    59   
+    60       def __init__(self):
+    61           self.dialselectcouleur = None
+    62           # Creation d'une fenetre racine + titre + modes
+    63           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    64           fenetre.set_title("Test de selection de couleur")
+    65           fenetre.set_resizable(True)
+    66   
+    67           # Connexion aux evenements "delete" et "destroy" pour pouvoir sortir
+    68           fenetre.connect("delete_event", self.destruct_fenetre)
+    69     
+    70           # Creation de la zone de dessin + taille + recup evnmts des boutons
+    71           self.zonedessin = gtk.DrawingArea()
+    72   
+    73           self.couleur = self.zonedessin.get_colormap().alloc_color(0, 65535, 0)
+    74   
+    75           self.zonedessin.set_size_request(200, 200)
+    76           self.zonedessin.set_events(gtk.gdk.BUTTON_PRESS_MASK)
+    77           self.zonedessin.connect("event", self.evnmt_zone)
+    78     
+    79           # Ajout de la zone de dessin a la fenetre, puis affichage des deux
+    80           fenetre.add(self.zonedessin)
+    81           self.zonedessin.show()
+    82           fenetre.show()
+    83     
+    84   def main():
+    85       gtk.main()
+    86       return 0
+    87   
+    88   if __name__ == "__main__":
+    89       ExempleSelecteurCouleur()
+    90       main()
+</pre>
+</div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="sec-Calendar.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="sec-FileSelections.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">9.12. Le calendrier</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">9.14. Le s&eacute;lecteur de fichier</td>
+</tr></table>
+</div>
+
+</body>
+
+</html>

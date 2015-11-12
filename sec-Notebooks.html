@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>10.12. Le bloc-notes (Notebook)</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-ContainerWidgets.html" title="Chapitre 10. Les widgets conteneurs">
+<link rel="prev" href="sec-Toolbar.html" title="10.11. La barre d'outils (Toolbar)">
+<link rel="next" href="sec-PlugsAndSockets.html" title="10.13. Les connexions et connecteurs (Plugs et Sockets)">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">10.12. Le bloc-notes (Notebook)</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-Toolbar.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 10. Les widgets conteneurs</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-PlugsAndSockets.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-Notebooks"></a>10.12. Le bloc-notes (Notebook)</h2></div></div></div>
+<p>Le bloc-notes <code class="classname">Notebook</code> est une 
+      collection de "pages" qui se recouvrent ; chaque page contient des 
+      informations différentes et l'une seule de ces pages est visible à la fois. 
+      Ce widget est devenu très commun dernièrement dans la programmation d'interface 
+      graphique, et c'est un bon moyen de montrer des blocs d'information similaire 
+      en garantissant une séparation de leurs affichages.</p>
+<p>La première fonction dont on aura besoin, comme on pourrait s'en douter, 
+sert à créer un nouveau bloc-notes.</p>
+<pre class="programlisting">
+  bloc_notes = gtk.Notebook()
+</pre>
+<p>Une fois le bloc-notes créé, il existe un certain nombre de méthodes 
+qui agissent sur lui. Regardons-les une à une.</p>
+<p>La première que nous verrons sert à positionner les indicateurs 
+      de pages. Ces indicateurs de pages ou "onglets" comme on les appelle, 
+      peuvent être positionnés de quatre manières : en haut, en bas, à gauche 
+      ou à droite.</p>
+<pre class="programlisting">
+  bloc_notes.set_tab_pos(<strong class="parameter"><code>pos</code></strong>)
+</pre>
+<p>... où <em class="parameter"><code>pos</code></em> peut prendre 
+      une des valeurs suivantes (assez claires par elles-même) :</p>
+<pre class="programlisting">
+  POS_LEFT       # à gauche
+  POS_RIGHT      # à droite
+  POS_TOP        # en haut
+  POS_BOTTOM     # en bas
+</pre>
+<p>La valeur par défaut est <code class="literal">POS_TOP</code>.</p>
+<p>Ensuite, voyons comment ajouter des pages au bloc-notes. Il 
+existe trois moyens d'ajouter des pages à un bloc-notes <code class="classname">Notebook</code>. 
+Voyons les deux premiers, presque similaires :
+
+</p>
+<pre class="programlisting">
+  bloc_notes.append_page(<strong class="parameter"><code>child</code></strong>, <strong class="parameter"><code>tab_label</code></strong>)
+
+  bloc_notes.prepend_page(<strong class="parameter"><code>child</code></strong>, <strong class="parameter"><code>tab_label</code></strong>)
+</pre>
+<p>Ces méthodes ajoutent des pages en les insérant à la fin (append) 
+ou au début (prepend) du bloc-notes. Le paramètre <em class="parameter"><code>child</code></em> 
+est le widget qui est placé dans la page et le paramètre <em class="parameter"><code>tab_label</code></em> 
+est l'étiquette de la page ajoutée. Le widget <em class="parameter"><code>child</code></em> 
+doit être créé séparément et consiste en un ensemble de déclarations d'options placé 
+dans un autre widget conteneur, tels qu'une table.</p>
+<p>La dernière méthode pour ajouter des pages à un bloc-notes contient 
+      toutes les propriétés des deux précédentes mais permet de préciser la 
+      position où l'on veut insérer la page.</p>
+<pre class="programlisting">
+  bloc_notes.insert_page(<strong class="parameter"><code>child</code></strong>, <strong class="parameter"><code>tab_label</code></strong>, <strong class="parameter"><code>position</code></strong>)
+</pre>
+<p>Les paramètres sont les mêmes que pour <code class="methodname">append</code>() 
+et <code class="methodname">prepend</code>() avec un paramètre supplémentaire, 
+<em class="parameter"><code>position</code></em>. Ce paramètre indique la position de la 
+page à insérer, la première page possèdant la position zéro.</p>
+<p>Maintenant que nous savons comment ajouter des pages, voyons 
+comment supprimer une page du bloc-notes.</p>
+<pre class="programlisting">
+  bloc_notes.remove_page(<strong class="parameter"><code>num_page</code></strong>)
+</pre>
+<p>Cette méthode supprime du <em class="parameter"><code>bloc-notes</code></em> la page 
+indiquée par <em class="parameter"><code>num_page</code></em>.</p>
+<p>Pour connaître la page courante d'un bloc-notes, on utilise la 
+      méthode :</p>
+<pre class="programlisting">
+  page = bloc_notes.get_current_page()
+</pre>
+<p>Les deux méthodes suivantes sont de simples appels qui permettent 
+de passer à la page précédente ou à la page suivante. Il suffit de fournir 
+à chaque méthode le bloc-notes sur lequel on veut agir.</p>
+<pre class="programlisting">
+  bloc_notes.next_page()
+
+  bloc_notes.prev_page()
+</pre>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>Lorsque le <em class="parameter"><code>bloc-notes</code></em> est sur la dernière 
+page et que l'on appelle la méthode <code class="methodname">next_page</code>(), 
+rien ne se passe. De même, lorque l'on est sur la première page et que 
+l'on appelle <code class="methodname">prev_page</code>(), rien ne se passe.</p>
+</div>
+<p>La méthode suivante définit la page "active". Si l'on veut que le 
+bloc-notes s'ouvre à la page 5 par exemple, on utilisera cette méthode. 
+Sinon, le bloc-notes affichera par défaut la première page.</p>
+<pre class="programlisting">
+  bloc_notes.set_current_page(<strong class="parameter"><code>num_page</code></strong>)
+</pre>
+<p>Les deux méthodes suivantes ajoutent ou enlèvent respectivement 
+les onglets des pages et les bordures du bloc-notes.</p>
+<pre class="programlisting">
+  bloc_notes.set_show_tabs(<strong class="parameter"><code>montre_onglet</code></strong>)
+
+  bloc_notes.set_show_border(<strong class="parameter"><code>montre_bordure</code></strong>)
+</pre>
+<p>La méthode suivante est utile lorsque l'on a un grand nombre 
+de pages, et que tous les onglets ne puissent pas être affichés. Cela permet 
+de faire défiler les onglets en utilisant deux boutons de navigation.</p>
+<pre class="programlisting">
+  bloc_notes.set_scrollable(<strong class="parameter"><code>defile</code></strong>)
+</pre>
+<p>Les paramètres <em class="parameter"><code>montre_onglet</code></em>,
+<em class="parameter"><code>montre_bordure</code></em> et <em class="parameter"><code>defile</code></em> ont 
+pour valeur <code class="literal">TRUE</code> ou <code class="literal">FALSE</code>.
+</p>
+<p>Voyons maintenant un exemple. Le programme <a href="exemples/notebook.py" target="_top">
+<span><strong class="command">notebook.py</strong></span></a>crée une fenêtre avec un bloc-nots et six boutons. 
+Le bloc-notes contient 11 pages, ajoutées selon les trois méthodes différentes, au début, 
+à la fin ou insérées. Les boutons vous permettent de décaler la position des onglets, 
+d'ajouter ou d'enlever les onglets ou les bordures, de supprimer une page, 
+de circuler entre les pages d'avant en arrière et de quitter le  programme.</p>
+<div class="figure">
+<a name="notebookfig"></a><p class="title"><b>Figure 10.9. Exemple de bloc-notes</b></p>
+<div class="mediaobject" align="center"><img src="figures/notebook.png" align="middle" alt="Exemple de bloc-notes"></div>
+<span>Exemple de bloc-notes</span>
+</div>
+<p>Voici le code source de <a href="exemples/notebook.py" target="_top"><span><strong class="command">
+notebook.py</strong></span></a> :</p>
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2   # -*- coding:utf-8 -*-
+     3   # example bloc_notes.py
+     4   
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8   
+     9   class ExempleBlocNotes:
+    10       # Cette méthode fait circuler la position des étiquettes
+    11       def circule_bloc(self, bouton, bloc_notes):
+    12           bloc_notes.set_tab_pos((bloc_notes.get_tab_pos()+1) %4)
+    13   
+    14       # Ajoute/supprime les onglets et bordures des pages
+    15       def style_bloc(self, bouton, bloc_notes):
+    16           val_onglet = False
+    17           val_bord = False
+    18           if self.show_tabs == False:
+    19   	    val_onglet = True 
+    20           if self.show_border == False:
+    21   	    val_bord = True
+    22   
+    23           bloc_notes.set_show_tabs(val_onglet)
+    24           self.show_tabs = val_onglet
+    25           bloc_notes.set_show_border(val_bord)
+    26           self.show_border = val_bord
+    27   
+    28       # Supprime une page du bloc-notes
+    29       def supprime_bloc(self, bouton, bloc_notes):
+    30           page = bloc_notes.get_current_page()
+    31           bloc_notes.remove_page(page)
+    32           # Il faut rafraîchir l'affichage du widget
+    33           # Ceci oblige le widget à se redessiner
+    34           bloc_notes.queue_draw_area(0,0,-1,-1)
+    35   
+    36       def delete(self, widget, event=None):
+    37           gtk.main_quit()
+    38           return False
+    39   
+    40       def __init__(self):
+    41           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    42           fenetre.connect("delete_event", self.delete)
+    43           fenetre.set_border_width(10)
+    44   
+    45           table = gtk.Table(3,6,False)
+    46           fenetre.add(table)
+    47   
+    48           # Créer un nouveau bloc-notes, définir la position des onglets
+    49           bloc_notes = gtk.Notebook()
+    50           bloc_notes.set_tab_pos(gtk.POS_TOP)
+    51           table.attach(bloc_notes, 0,6,0,1)
+    52           bloc_notes.show()
+    53           self.show_tabs = True
+    54           self.show_border = True
+    55   
+    56           # On ajoute quelques pages au bloc-notes
+    57           for i in range(5):
+    58               bufferf = "Ajout après cadre %d" % (i+1)
+    59               bufferl = "PostPage %d" % (i+1)
+    60   
+    61               cadre = gtk.Frame(bufferf)
+    62               cadre.set_border_width(10)
+    63               cadre.set_size_request(100, 75)
+    64               cadre.show()
+    65   
+    66               label = gtk.Label(bufferf)
+    67               cadre.add(label)
+    68               label.show()
+    69   
+    70               label = gtk.Label(bufferl)
+    71               bloc_notes.append_page(cadre, label)
+    72         
+    73           # Ajout d'une page à un endroit précis
+    74           checkbouton = gtk.CheckButton("Cliquez moi svp !")
+    75           checkbouton.set_size_request(100, 75)
+    76           checkbouton.show ()
+    77   
+    78           label = gtk.Label("Ajout page")
+    79           bloc_notes.insert_page(checkbouton, label, 2)
+    80   
+    81           # Enfin, ajout de page au début du bloc-notes
+    82           for i in range(5):
+    83               bufferf = "Ajout avant cadre %d" % (i+1)
+    84               bufferl = "PréPage %d" % (i+1)
+    85   
+    86               cadre = gtk.Frame(bufferf)
+    87               cadre.set_border_width(10)
+    88               cadre.set_size_request(100, 75)
+    89               cadre.show()
+    90   
+    91               label = gtk.Label(bufferf)
+    92               cadre.add(label)
+    93               label.show()
+    94   
+    95               label = gtk.Label(bufferl)
+    96               bloc_notes.prepend_page(cadre, label)
+    97       
+    98           # Définir la page d'ouverture (page 4)
+    99           bloc_notes.set_current_page(3)
+   100   
+   101           # Créer quelques boutons
+   102           bouton = gtk.Button("fermer")
+   103           bouton.connect("clicked", self.delete)
+   104           table.attach(bouton, 0,1,1,2)
+   105           bouton.show()
+   106   
+   107           bouton = gtk.Button("page suiv.")
+   108           bouton.connect("clicked", lambda w: bloc_notes.next_page())
+   109           table.attach(bouton, 1,2,1,2)
+   110           bouton.show()
+   111   
+   112           bouton = gtk.Button("page préc.")
+   113           bouton.connect("clicked", lambda w: bloc_notes.prev_page())
+   114           table.attach(bouton, 2,3,1,2)
+   115           bouton.show()
+   116   
+   117           bouton = gtk.Button("pos. onglet")
+   118           bouton.connect("clicked", self.circule_bloc, bloc_notes)
+   119           table.attach(bouton, 3,4,1,2)
+   120           bouton.show()
+   121   
+   122           bouton = gtk.Button("onglet/bords")
+   123           bouton.connect("clicked", self.style_bloc, bloc_notes)
+   124           table.attach(bouton, 4,5,1,2)
+   125           bouton.show()
+   126   
+   127           bouton = gtk.Button("supp. page")
+   128           bouton.connect("clicked", self.supprime_bloc, bloc_notes)
+   129           table.attach(bouton, 5,6,1,2)
+   130           bouton.show()
+   131   
+   132           table.show()
+   133           fenetre.show()
+   134   
+   135   def main():
+   136       gtk.main()
+   137       return 0
+   138   
+   139   if __name__ == "__main__":
+   140       ExempleBlocNotes()
+   141       main()
+  </pre>
+<p>J'espère que ceci vous aidera dans vos créations de bloc-notes 
+pour vos applications PyGTK.</p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-Toolbar.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-ContainerWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-PlugsAndSockets.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">10.11. La barre d'outils (Toolbar) </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 10.13. Les connexions et connecteurs (Plugs et Sockets)</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

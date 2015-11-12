@@ -1,0 +1,308 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+<title>8.5. D&eacute;monstration des widgets d'intervalle</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,intervalle">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-RangeWidgets.html" title="Chapitre 8. Les widgets d'intervalle">
+<link rel="previous" href="sec-KeyAndMouseBindings.html" title="8.4. Clavier et souris">
+<link rel="next" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici : 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">8.5. D&eacute;monstration des widgets d'intervalle</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-KeyAndMouseBindings.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 8. Les widgets d'intervalle</th>
+<td width="20%" align="right"><a accesskey="n" href="ch-MiscellaneousWidgets.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage">
+<div><h2 class="title" style="clear: both"><a name="DemoWidgetsIntervalle"></a>8.5. D&eacute;monstration des widgets d'intervalle</h2>
+</div></div>
+
+<p>Le programme d'exemple <a href="exemples/widgetsintervalle.py" target="_top"><b>widgetsintervalle.py</b></a> affiche une fen&ecirc;tre comprenant trois widgets d'intervalle connect&eacute;s au m&ecirc;me ajustement, ainsi que plusieurs autres widgets par lesquels il est possible de modifier certains des param&egrave;tres vus plus haut ou &agrave; la section sur les ajustements. Ceci vous permettra de vous faire une id&eacute;e plus pr&eacute;cise de ce que ces param&egrave;tres contr&ocirc;lent dans le widget. La <a href="sec-RangeWidgetExample.html#figwidgetsintervalle" title="Figure 8.1. Exemple de widgets d'intervalle">figure 8.1</a> montre ce que l'on obtient apr&egrave;s avoir lanc&eacute; le programme :</p>
+
+<div class="figure"><a name="figwidgetsintervalle">
+</a><p class="title"><b>Figure 8.1. Exemple de widgets d'intervalle</b></p>
+<div class="mediaobject" align="center"><img src="figures/widgetsintervalle.png" align="middle"></div></div>
+
+<p>Le code source de <a href="exemples/widgetsintervalle.py" target="_top"><b>widgetsintervalle.py</b></a> est le suivant :</p>
+
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2   
+     3   # exemple widgetsintervalle.py
+     4   
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8   
+     9   # Ces fonctions sont la pour nous faciliter les choses
+    10   
+    11   def nouvelle_entree(nom, rappel, donnees=None):
+    12       entree = gtk.MenuItem(nom)
+    13       entree.connect("activate", rappel, donnees)
+    14       entree.show()
+    15       return entree
+    16   
+    17   def gradateurs_valeurs_defaut(gradateur):
+    18       gradateur.set_update_policy(gtk.UPDATE_CONTINUOUS)
+    19       gradateur.set_digits(1)
+    20       gradateur.set_value_pos(gtk.POS_TOP)
+    21       gradateur.set_draw_value(True)
+    22   
+    23   class WidgetsIntervalle:
+    24       def modif_position(self, entree, position):
+    25           # Fixe la position de la valeur pour les deux gradateurs
+    26           self.gradateurh.set_value_pos(position)
+    27           self.gradateurv.set_value_pos(position)
+    28   
+    29       def modif_mode_actu(self, entree, mode):
+    30           # Fixe le mode d'actualisation pour les deux gradateurs
+    31           self.gradateurh.set_update_policy(mode)
+    32           self.gradateurv.set_update_policy(mode)
+    33   
+    34       def modif_decimales(self, ajust):
+    35           # Fixe le nombre de decimales pour arrondir la valeur de ajust
+    36           self.gradateurh.set_digits(ajust.value)
+    37           self.gradateurv.set_digits(ajust.value)
+    38   
+    39       def modif_taille_page(self, ajust2, ajust1):
+    40           # Les valeurs "taille de la page" et "incrementation par page" de l'ajustement 
+    41           # exemple prennent la valeur donnee par le gradateur "Taille de la page".
+    42           ajust1.page_size = ajust2.value
+    43           ajust1.page_incr = ajust2.value
+    44           # Puis on fait emettre le signal "changed" a ajust1 pour reconfigurer tous les
+    45           # widgets qui lui sont attaches
+    46           ajust1.emit("changed")
+    47   
+    48       def affiche_valeur(self, bouton):
+    49           # Active ou desactive l'affichage de la valeur sur les gradateurs,
+    50           # en fonction de l'etat du bouton a bascule
+    51           self.gradateurh.set_draw_value(bouton.get_active())
+    52           self.gradateurv.set_draw_value(bouton.get_active())  
+    53   
+    54       # Construction de notre fenetre exemple
+    55   
+    56       def __init__(self):
+    57           # Creation standard d'une fenetre
+    58           self.fenetre = gtk.Window (gtk.WINDOW_TOPLEVEL)
+    59           self.fenetre.connect("destroy", gtk.main_quit)
+    60           self.fenetre.set_title("Widgets d'intervalle")
+    61   
+    62           boite1 = gtk.VBox(False, 0)
+    63           self.fenetre.add(boite1)
+    64           boite1.show()
+    65   
+    66           boite2 = gtk.HBox(False, 10)
+    67           boite2.set_border_width(10)
+    68           boite1.pack_start(boite2, True, True, 0)
+    69           boite2.show()
+    70   
+    71           # valeur, minimale, maximale, incr/pas, incr/page, taille de la page
+    72           # Notez que le parametre "taille de la page" n'a d'effet qu'avec les
+    73           # barres de defilement, la plus haute valeur etant alors egale a
+    74           # "maximale" moins "taille de la page"
+    75           ajust1 = gtk.Adjustment(0.0, 0.0, 101.0, 0.1, 1.0, 1.0)
+    76     
+    77           self.gradateurv = gtk.VScale(ajust1)
+    78           gradateurs_valeurs_defaut(self.gradateurv)
+    79           boite2.pack_start(self.gradateurv, True, True, 0)
+    80           self.gradateurv.show()
+    81   
+    82           boite3 = gtk.VBox(False, 10)
+    83           boite2.pack_start(boite3, True, True, 0)
+    84           boite3.show()
+    85   
+    86           # On reutilise le meme ajustement
+    87           self.gradateurh = gtk.HScale(ajust1)
+    88           self.gradateurh.set_size_request(200, 30)
+    89           gradateurs_valeurs_defaut(self.gradateurh)
+    90           boite3.pack_start(self.gradateurh, True, True, 0)
+    91           self.gradateurh.show()
+    92   
+    93           # On reutilise encore le meme ajustement
+    94           barredefil = gtk.HScrollbar(ajust1)
+    95           # Notez que l'on demande a ce que les gradateurs soient toujours
+    96           # actualises en continu quand la barre de defilement est manipulee
+    97           barredefil.set_update_policy(gtk.UPDATE_CONTINUOUS)
+    98           boite3.pack_start(barredefil, True, True, 0)
+    99           barredefil.show()
+   100   
+   101           boite2 = gtk.HBox(False, 10)
+   102           boite2.set_border_width(10)
+   103           boite1.pack_start(boite2, True, True, 0)
+   104           boite2.show()
+   105   
+   106           # Un bouton a bascule pour afficher ou pas la valeur
+   107           bouton = gtk.CheckButton("Afficher la valeur sur les gradateurs")
+   108           bouton.set_active(True)
+   109           bouton.connect("toggled", self.affiche_valeur)
+   110           boite2.pack_start(bouton, True, True, 0)
+   111           bouton.show()
+   112     
+   113           boite2 = gtk.HBox(False, 10)
+   114           boite2.set_border_width(10)
+   115   
+   116           # Un menu deroulant pour changer la position de la valeur
+   117           etiquette = gtk.Label("Position de la valeur :")
+   118           boite2.pack_start(etiquette, False, False, 0)
+   119           etiquette.show()
+   120     
+   121           menuderoul = gtk.OptionMenu()
+   122           menu = gtk.Menu()
+   123   
+   124           entree = nouvelle_entree ("Au-dessus", self.modif_position, gtk.POS_TOP)
+   125           menu.append(entree)
+   126     
+   127           entree = nouvelle_entree ("Au-dessous", self.modif_position,
+   128                                     gtk.POS_BOTTOM)
+   129           menu.append(entree)
+   130     
+   131           entree = nouvelle_entree ("A gauche", self.modif_position, gtk.POS_LEFT)
+   132           menu.append(entree)
+   133     
+   134           entree = nouvelle_entree ("A droite", self.modif_position, gtk.POS_RIGHT)
+   135           menu.append(entree)
+   136     
+   137           menuderoul.set_menu(menu)
+   138           boite2.pack_start(menuderoul, True, True, 0)
+   139           menuderoul.show()
+   140   
+   141           boite1.pack_start(boite2, True, True, 0)
+   142           boite2.show()
+   143   
+   144           boite2 = gtk.HBox(False, 10)
+   145           boite2.set_border_width(10)
+   146   
+   147           # Encore un autre menu deroulant, cette fois-ci pour le mode
+   148           # d'actualisation des gradateurs
+   149           etiquette = gtk.Label("Mode d'actualisation :")
+   150           boite2.pack_start(etiquette, False, False, 0)
+   151           etiquette.show()
+   152     
+   153           menuderoul = gtk.OptionMenu()
+   154           menu = gtk.Menu()
+   155     
+   156           entree = nouvelle_entree("Continu", self.modif_mode_actu,
+   157                                    gtk.UPDATE_CONTINUOUS)
+   158           menu.append(entree)
+   159     
+   160           entree = nouvelle_entree ("Discontinu", self.modif_mode_actu,
+   161                                     gtk.UPDATE_DISCONTINUOUS)
+   162           menu.append(entree)
+   163     
+   164           entree = nouvelle_entree ("Differe", self.modif_mode_actu,
+   165                                     gtk.UPDATE_DELAYED)
+   166           menu.append(entree)
+   167     
+   168           menuderoul.set_menu(menu)
+   169           boite2.pack_start(menuderoul, True, True, 0)
+   170           menuderoul.show()
+   171     
+   172           boite1.pack_start(boite2, True, True, 0)
+   173           boite2.show()
+   174   
+   175           boite2 = gtk.HBox(False, 10)
+   176           boite2.set_border_width(10)
+   177     
+   178           # Creation d'un gradateur horizontal pout choisir le nombre de
+   179           # decimales dans les gradateurs exemples.
+   180           etiquette = gtk.Label("Decimales :")
+   181           boite2.pack_start(etiquette, False, False, 0)
+   182           etiquette.show()
+   183   
+   184           ajust2 = gtk.Adjustment(1.0, 0.0, 5.0, 1.0, 1.0, 0.0)
+   185           ajust2.connect("value_changed", self.modif_decimales)
+   186           gradateur = gtk.HScale(ajust2)
+   187           gradateur.set_digits(0)
+   188           boite2.pack_start(gradateur, True, True, 0)
+   189           gradateur.show()
+   190   
+   191           boite1.pack_start(boite2, True, True, 0)
+   192           boite2.show()
+   193     
+   194           boite2 = gtk.HBox(False, 10)
+   195           boite2.set_border_width(10)
+   196     
+   197           # Un dernier gradateur horizontal pour choisir la taille de la page
+   198           # de la barre de defilement.
+   199           etiquette = gtk.Label("Taille de la page de la\nbarre de defilement :")
+   200           boite2.pack_start(etiquette, False, False, 0)
+   201           etiquette.show()
+   202   
+   203           ajust2 = gtk.Adjustment(1.0, 1.0, 101.0, 1.0, 1.0, 0.0)
+   204           ajust2.connect("value_changed", self.modif_taille_page, ajust1)
+   205           gradateur = gtk.HScale(ajust2)
+   206           gradateur.set_digits(0)
+   207           boite2.pack_start(gradateur, True, True, 0)
+   208           gradateur.show()
+   209   
+   210           boite1.pack_start(boite2, True, True, 0)
+   211           boite2.show()
+   212   
+   213           separateur = gtk.HSeparator()
+   214           boite1.pack_start(separateur, False, True, 0)
+   215           separateur.show()
+   216   
+   217           boite2 = gtk.VBox(False, 10)
+   218           boite2.set_border_width(10)
+   219           boite1.pack_start(boite2, False, True, 0)
+   220           boite2.show()
+   221   
+   222           bouton = gtk.Button("Quitter")
+   223           bouton.connect_object("clicked", gtk.main_quit, self.fenetre)
+   224           boite2.pack_start(bouton, True, True, 0)
+   225           bouton.set_flags(gtk.CAN_DEFAULT)
+   226           bouton.grab_default()
+   227           bouton.show()
+   228           self.fenetre.show()
+   229   
+   230   def main():
+   231       gtk.main()
+   232       return 0            
+   233   
+   234   if __name__ == "__main__":
+   235       WidgetsIntervalle()
+   236       main()
+</pre>
+
+<p>Vous avez peut-&ecirc;tre remarqu&eacute; que le programme n'appelle pas la m&eacute;thode <tt>connect</tt>() pour l'&eacute;v&egrave;nement &quot;<tt>delete_event</tt>&quot;, mais seulement pour le signal &quot;<tt>destroy</tt>&quot;, et pourtant tout se passe tr&egrave;s bien. Ceci est d&ucirc; au fait qu'un &eacute;v&egrave;nement &quot;<tt>delete_event</tt>&quot; non trait&eacute; d&eacute;clenche automatiquement l'&eacute;mission du signal &quot;<tt>destroy</tt>&quot; sur la fen&ecirc;tre.</p>
+</div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href=sec-KeyAndMouseBindings.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-RangeWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="ch-MiscellaneousWidgets.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">8.4. Clavier et souris</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">Chapitre 9. Widgets divers</td>
+</tr></table>
+</div>
+
+</body>
+
+</html>
+

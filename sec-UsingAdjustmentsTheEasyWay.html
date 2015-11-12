@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+<title>7.2. Utiliser facilement les ajustements</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,adjustment,ajustement">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-Adjustments.html" title="Chapitre 7. Les ajustements">
+<link rel="previous" href="ch-Adjustments.html" title="Chapitre 7. Les ajustements">
+<link rel="next" href="sec-AdjustmentInternals.html" title="7.3. Les ajustements en d&eacute;tail">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici : 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">7.2. Utiliser facilement les ajustements</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="ch-Adjustments.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 7. Les ajustements</th>
+<td width="20%" align="right"><a accesskey="n" href="sec-AdjustmentInternals.html">Suiv.</a></td></tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage">
+<div><h2 class="title" style="clear: both"><a name="ajustementsfacile"></a>7.2. Utiliser facilement les ajustements</h2>
+</div></div>
+
+<p>On pourrait diviser grossi&egrave;rement les widgets ajustables en deux cat&eacute;gories : ceux qui utilisent et n&eacute;cessitent des unit&eacute;s sp&eacute;cifiques pour les valeurs dont on vient de parler, et ceux qui les traitent comme des nombres arbitraires. Ce dernier groupe inclut les widgets d'intervalle (barre de d&eacute;filement et gradateur), la barre de progression et les boutons fl&eacute;ch&eacute;s. Il s'agit de l'ensemble des widgets qui, de par leur nature m&ecirc;me, sont ajust&eacute;s directement par l'utilisateur au moyen de la souris ou du clavier. Ils traitent toujours les valeurs donn&eacute;es aux arguments <i><tt>lower</tt></i> et <i><tt>upper</tt></i> d'un ajustement comme un intervalle &agrave; l'int&eacute;rieur duquel l'utilisateur peut manipuler la valeur (l'argument <i><tt>value</tt></i>) de l'ajustement. Par d&eacute;faut, ils ne modifient que cette derni&egrave;re.</p>
+<p>L'autre groupe inclut la zone de texte, la vue orientable, la liste compos&eacute;e et la fen&ecirc;tre &agrave; d&eacute;filement. Tous ces widgets utilisent des valeurs en pixels pour leurs ajustements. Il s'agit, de plus, de l'ensemble des widgets qui sont ajust&eacute;s indirectement, par l'interm&eacute;diaire de barres de d&eacute;filement. M&ecirc;me si tous les widgets qui utilisent des ajustements peuvent soit cr&eacute;er les leurs, soit utiliser ceux qu'on leur fournit, il vaut mieux, en r&egrave;gle g&eacute;n&eacute;rale, laisser cette cat&eacute;gorie-l&agrave; cr&eacute;er les siens. La plupart du temps, ils finissent par ne tenir compte d'aucune valeur provenant des ajustements qu'on leur a affect&eacute;s, except&eacute; la valeur elle-m&ecirc;me (<i><tt>value</tt></i>) ; les r&eacute;sultats sont, en g&eacute;n&eacute;ral, ind&eacute;finis (il vous faudra chercher dans les codes sources, et ils peuvent &ecirc;tre diff&eacute;rents d'un widget &agrave; l'autre).</p>
+<p>Vous devez &ecirc;tre en train de vous dire que puisque les zones de texte et les vues orientables insistent pour tout d&eacute;finir except&eacute; la valeur de leurs ajustements, et puisque les barres de d&eacute;filement ne touchent qu'&agrave; la valeur de l'ajustement, alors si l'on partage un ajustement entre une barre de d&eacute;filement et une zone de texte, manipuler la barre de d&eacute;filement devrait ajuster comme par magie la zone de texte. Parfaitement ! &Ccedil;a se passe comme &ccedil;a :</p>
+
+<pre class="programlisting">
+  # Elle crée ses propres ajustements
+  vue_orientable = gtk.Viewport()
+  # l'ajustement qui vient d'être créé servira aussi pour la barre de défilement
+  barredef_v = gtk.VScrollbar(vue_orientable.get_vadjustment())
+</pre>
+</div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="ch-Adjustments.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-Adjustments.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="sec-AdjustmentInternals.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">Chapitre 7. Les ajustements</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">7.3. Les ajustements en d&eacute;tail</td>
+</tr></table>
+
+</div>
+
+</body>
+
+</html>

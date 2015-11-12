@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+<title>8.2. HScale et VScale : les gradateurs</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,intervalle">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-RangeWidgets.html" title="Chapitre 8. Les widgets d'intervalle">
+<link rel="previous" href="ch-RangeWidgets.html" title="Chapitre 8. Les widgets d'intervalle">
+<link rel="next" href="sec-CommonRangeMethods.html" title="8.3. M&eacute;thodes communes aux widgets d'intervalle"></head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici : 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">8.2. HScale et VScale : les gradateurs</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="ch-RangeWidgets.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 8. Les widgets d'intervalle</th>
+<td width="20%" align="right"><a accesskey="n" href="sec-CommonRangeMethods.html">Suiv.</a></td></tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage">
+<div><h2 class="title" style="clear: both"><a name="Gradateurs"></a>8.2. HScale et VScale : les gradateurs</h2>
+</div></div>
+
+<p>Les <tt>gradateurs</tt> permettent &agrave; l'utilisateur de s&eacute;lectionner et de manipuler une valeur dans un intervalle donn&eacute;, ceci graphiquement. Ils peuvent servir, par exemple, &agrave; ajuster le degr&eacute; d'agrandissement de l'aper&ccedil;u d'une image, &agrave; contr&ocirc;ler la luminosit&eacute; d'une couleur, ou encore &agrave; sp&eacute;cifier le nombre de minutes d'inactivit&eacute; avant le lancement d'un &eacute;conomiseur d'&eacute;cran.</p>
+
+<div class="sect2"><div class="titlepage">
+<div><h3 class="title"><a name="id3049331"></a>8.2.1. Cr&eacute;er un gradateur</h3>
+</div></div>
+
+<p>Tout comme pour les barres de d&eacute;filement, il existe un type de widget pour les gradateurs verticaux et un autre pour les horizontaux (la majorit&eacute; des programmeurs semble pr&eacute;f&eacute;rer ces derniers). Malgr&eacute; tout, vu qu'ils fonctionnent de la m&ecirc;me mani&egrave;re, nous ne les traiterons pas s&eacute;par&eacute;ment. Les m&eacute;thodes suivantes cr&eacute;ent respectivement un gradateur vertical et un gradateur horizontal :</p>
+
+<pre class="programlisting">
+  gradateurv = gtk.VScale(<b><tt>adjustment</tt></b>=None)
+
+  gradateurh = gtk.HScale(<b><tt>adjustment</tt></b>=None)
+</pre>
+
+<p>L'argument <i><tt>adjustment</tt></i> (ajustement) attend une r&eacute;f&eacute;rence &agrave; un <a href="ch-Adjustments.html" title="Chapitre 7. Les ch-Adjustments.html"><tt>ajustement</tt></a> d&eacute;j&agrave; cr&eacute;&eacute; avec <tt>gtk.Adjustment</tt>(). Si vous ne lui en fournissez pas, la m&eacute;thode en cr&eacute;era un anonyme dont toutes les valeurs vaudront 0.0 (ce qui n'est pas tr&egrave;s utile ici). Afin de vous y retrouver, vous pourriez cr&eacute;er un ajustement dont vous fixeriez la <i><tt>page_size</tt></i> &agrave; 0.0, de sorte que sa valeur <i><tt>upper</tt></i> corresponde bien &agrave; la plus grande valeur que l'utilisateur peut s&eacute;lectionner (si vous &ecirc;tes d&eacute;j&agrave; compl&egrave;tement perdu, relisez la section sur les <a href="ch-Adjustments.html" title="Chapitre 7. Les ch-Adjustments.html">ajustements</a> pour mieux comprendre leur r&ocirc;le, leur processus de cr&eacute;ation et leur manipulation).</p></div>
+
+<div class="sect2"><div class="titlepage">
+<div><h3 class="title"><a name="id3049384"></a>8.2.2. M&eacute;thodes et signaux (enfin, au moins m&eacute;thodes...)</h3>
+</div></div>
+
+<p>Les gradateurs peuvent afficher un nombre repr&eacute;sentant leur valeur courante &agrave; c&ocirc;t&eacute; de la coulisse. Cette option, activ&eacute;e par d&eacute;faut, peut &ecirc;tre modifi&eacute;e avec la m&eacute;thode :</p>
+
+<pre class="programlisting">
+  gradateur.set_draw_value(<b><tt>draw_value</tt></b>)
+</pre></td></tr></table>
+
+<p>Comme vous l'avez s&ucirc;rement devin&eacute;, <i><tt>draw_value</tt></i> (valeur d'affichage) vaut soit TRUE soit FALSE, chacune de ces deux expressions entrainant les cons&eacute;quences que l'on peut en attendre.</p>
+<p>La valeur affich&eacute;e par un gradateur est arrondie par d&eacute;faut au premier chiffre apr&egrave;s la virgule, comme la valeur de son <a href="ch-Adjustments.html" title="Chapitre 7. Les ch-Adjustments.html"><tt>ajustement</tt></a>. Vous pouvez changer ceci avec la m&eacute;thode suivante :</p>
+
+<pre class="programlisting">
+  gradateur.set_digits(<b><tt>digits</tt></b>)
+</pre></td></tr></table>
+
+<p>... o&ugrave; <i><tt>digits</tt></i> est le nombre de d&eacute;cimales. Vous pouvez en demander autant que vous le souhaitez, mais sachez que seules les 13 premi&egrave;res seront r&eacute;ellement affich&eacute;es.</p>
+<p>Enfin, la valeur peut &ecirc;tre affich&eacute;e &agrave; diff&eacute;rents endroits autour de la coulisse :</p>
+
+<pre class="programlisting">
+  gradateur.set_value_pos(<b><tt>pos</tt></b>)
+</pre></td></tr></table>
+
+<p>L'argument <i><tt>pos</tt></i> peut prendre l'une des valeurs suivantes :</p>
+
+<pre class="programlisting">
+  POS_LEFT	# &agrave; gauche
+  POS_RIGHT	# &agrave; droite
+  POS_TOP	# au-dessus
+  POS_BOTTOM	# au-dessous
+</pre></td></tr></table>
+
+<p>Si vous placez la valeur le long de la coulisse (au-dessus ou au-dessous d'un gradateur horizontal, par exemple), elle suivra le curseur dans ses d&eacute;placements.</p>
+</div></div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="ch-RangeWidgets.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-RangeWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="sec-CommonRangeMethods.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">Chapitre 8. Les widgets d'intervalle</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">8.3. M&eacute;thodes communes aux widgets d'intervalle</td>
+</tr></table>
+</div>
+
+</body>
+
+</html>

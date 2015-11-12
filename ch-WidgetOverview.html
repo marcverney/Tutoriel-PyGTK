@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+<title>Chapitre 5. Vue d'ensemble des widgets</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,widget">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="index.html" title="Table des mati&egrave;res">
+<link rel="previous" href="sec-TablePackingExample.html" title="4.5. D&eacute;monstration de placement avec les tableaux">
+<link rel="next" href="sec-WidgetsWithoutWindows.html" title="5.2. Les widgets sans fen&ecirc;tre">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici : 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">Chapitre 5. Vue d'ensemble des widgets</th></tr>
+<tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-TablePackingExample.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center"></th>
+<td width="20%" align="right"><a accesskey="n" href="sec-WidgetsWithoutWindows.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+
+<div class="chapter">
+<div class="titlepage">
+<div><h2 class="title"><a name="VueEnsembleWidgets"></a>Chapitre 5. Vue d'ensemble des widgets</h2>
+</div></div>
+
+<div class="toc"><p><b>Sommaire</b></p><dl>
+<dt>5.1. <a href="ch-WidgetOverview.html#HierarchieWidgets">Hi&eacute;rarchie des widgets</a></dt>
+<dt>5.2. <a href="sec-WidgetsWithoutWindows.html">Les widgets sans fen&ecirc;tre</a></dt>
+</dl>
+
+</div>
+<p>Avec PyGTK, l'utilisation d'un widget passe en g&eacute;n&eacute;ral par les &eacute;tapes 
+suivantes&nbsp;:</p>
+
+<div class="itemizedlist"><ul type="disc">
+<li>invoquer <tt>gtk.*</tt> - l'une des diff&eacute;rentes fonctions de cr&eacute;ation de 
+widget. Elles sont toutes d&eacute;taill&eacute;es dans cette section.</li>
+<li>connecter tous les signaux et &eacute;v&egrave;nements que l'on veut utiliser aux 
+gestionnaires appropri&eacute;s.</li>
+<li>configurer les attributs du widget.</li>
+<li>placer le widget dans un conteneur gr&acirc;ce &agrave; l'appel ad hoc : 
+<tt>gtk.Container.add</tt>(), <tt>gtk.Box.pack_start</tt>(), etc.</li>
+<li>afficher le widget avec <tt>gtk.Widget.show</tt>().</li>
+</ul></div>
+
+<P><TT>show</TT>() fait savoir &agrave; GTK que la pr&eacute;paration du widget est 
+achev&eacute;e et qu'il peut maintenant &ecirc;tre affich&eacute;. Pour le faire 
+disparaitre &agrave; nouveau, vous pouvez utiliser <TT>gtk.Widget.hide</TT>(). L'ordre 
+d'affichage des widgets n'est pas important, mais je conseille d'afficher la fen&ecirc;tre 
+en dernier de sorte que celle-ci apparaisse compl&egrave;te, plut&ocirc;t que de voir chaque 
+widget s'y afficher &agrave; tour de r&ocirc;le. Les enfants d'un widgets (une fen&ecirc;tre 
+est aussi un widget) ne seront pas affich&eacute;s tant que la fen&ecirc;tre elle-m&ecirc;me 
+ne l'aura pas &eacute;t&eacute; avec la m&eacute;thode <TT>show</TT>().</P>
+
+<div class="sect1">
+<div class="titlepage">
+<div><h2 class="title" style="clear: both"><a name="HierarchieWidgets"></a>
+5.1. Hi&eacute;rarchie des widgets</h2>
+</div></div>
+
+<p>Pour information, voici repr&eacute;sent&eacute;e sous forme d'arbre la hi&eacute;rarchie 
+des classes utilis&eacute;es pour impl&eacute;menter les widgets (les widgets obsol&egrave;tes 
+et les classes auxilliaires ont &eacute;t&eacute; omis).</p>
+
+<pre class="programlisting">
+gobject.GObject
+ |
+ gtk.Object
+  +gtk.Widget
+  | +gtk.Misc
+  | | +gtk.Label
+  | | | `gtk.AccelLabel
+  | | +gtk.Arrow
+  | | `gtk.Image
+  | +gtk.Container
+  | | +gtk.Bin
+  | | | +gtk.Alignment
+  | | | +gtk.Frame
+  | | | | `gtk.AspectFrame
+  | | | +gtk.Button
+  | | | | +gtk.ToggleButton
+  | | | | | `gtk.CheckButton
+  | | | | |   `gtk.RadioButton
+  | | | | `gtk.OptionMenu
+  | | | +gtk.Item
+  | | | | +gtk.MenuItem
+  | | | |   +gtk.CheckMenuItem
+  | | | |   | `gtk.RadioMenuItem
+  | | | |   +gtk.ImageMenuItem
+  | | | |   `gtk.TearoffMenuItem
+  | | | +gtk.Window
+  | | | | +gtk.Dialog
+  | | | | | +gtk.ColorSelectionDialog
+  | | | | | +gtk.FileSelection
+  | | | | | +gtk.FontSelectionDialog
+  | | | | | +gtk.InputDialog
+  | | | | | `gtk.MessageDialog
+  | | | | `gtk.Plug
+  | | | +gtk.EventBox
+  | | | +gtk.HandleBox
+  | | | +gtk.ScrolledWindow
+  | | | `gtk.Viewport
+  | | +gtk.Box
+  | | | +gtk.ButtonBox
+  | | | | +gtk.HButtonBox
+  | | | | `gtk.VButtonBox
+  | | | +gtk.VBox
+  | | | | +gtk.ColorSelection
+  | | | | +gtk.FontSelection
+  | | | | `gtk.GammaCurve
+  | | | `gtk.HBox
+  | | |   +gtk.Combo
+  | | |   `gtk.Statusbar
+  | | +gtk.Fixed
+  | | +gtk.Paned
+  | | | +gtk.HPaned
+  | | | `gtk.VPaned
+  | | +gtk.Layout
+  | | +gtk.MenuShell
+  | | | +gtk.MenuBar
+  | | | `gtk.Menu
+  | | +gtk.Notebook
+  | | +gtk.Socket
+  | | +gtk.Table
+  | | +gtk.TextView
+  | | +gtk.Toolbar
+  | | `gtk.TreeView
+  | +gtk.Calendar
+  | +gtk.DrawingArea
+  | | `gtk.Curve
+  | +gtk.Editable
+  | | +gtk.Entry
+  | | | `gtk.SpinButton
+  | +gtk.Ruler
+  | | +gtk.HRuler
+  | | `gtk.VRuler
+  | +gtk.Range
+  | | +gtk.Scale
+  | | | +gtk.HScale
+  | | | `gtk.VScale
+  | | `gtk.Scrollbar
+  | |   +gtk.HScrollbar
+  | |   `gtk.VScrollbar
+  | +gtk.Separator
+  | | +gtk.HSeparator
+  | | `gtk.VSeparator
+  | +gtk.Invisible
+  | +gtk.Preview
+  | `gtk.ProgressBar
+  | +gtk.Adjustment
+  +gtk.CellRenderer
+  | +gtk.CellRendererPixbuf
+  | +gtk.CellRendererText
+  | +gtk.CellRendererToggle
+  +gtk.ItemFactory
+  +gtk.Tooltips
+  `gtk.TreeViewColumn
+</pre>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="sec-TablePackingExample.html">Pr&eacute;c.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="index.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-WidgetsWithoutWindows.html">Suiv.</a></td></tr>
+<tr>
+<td width="40%" align="left" valign="top">4.5. D&eacute;monstration de placement avec les tableaux</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">5.2. Les widgets sans fen&ecirc;tre</td>
+</tr></table>
+
+</div>
+<!-- phpmyvisites -->
+<a href="http://st.free.fr/" title="phpMyVisites | Open source web analytics"
+onclick="window.open(this.href);return(false);"><script type="text/javascript">
+<!--
+var a_vars = Array();
+var pagename=document.title;
+
+var phpmyvisitesSite = 17647;
+var phpmyvisitesURL = "http://st.free.fr/phpmyvisites.php";
+//-->
+</script>
+<script language="javascript" src="http://st.free.fr/phpmyvisites.js" type="text/javascript"></script>
+<object><noscript><p>phpMyVisites | Open source web analytics
+<img src="http://st.free.fr/phpmyvisites.php" alt="Statistics" style="border:0" />
+</p></noscript></object></a>
+<!-- /phpmyvisites --> 
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>2.3. Évènements</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-GettingStarted.html" title="Chapitre 2. Premiers pas">
+<link rel="prev" href="sec-TheoryOfSignalsAndCallbacks.html" title="2.2. Le principe des signaux et des rappels">
+<link rel="next" href="sec-SteppingThroughHelloWorld.html" title='2.4. Le "Hello World" pas à pas'>
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.3. Évènements</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-TheoryOfSignalsAndCallbacks.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 2. Premiers pas</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-SteppingThroughHelloWorld.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-Events"></a>2.3. Évènements</h2></div></div></div>
+<p>En plus du système de signaux décrit auparavant, un certain nombre d'évènements 
+reflètent le système évènementiel de X, des fonctions de rappel peuvent être associés à 
+ceux-ci. En voici une liste :</p>
+<pre class="programlisting">
+  event
+  button_press_event
+  button_release_event
+  scroll_event
+  motion_notify_event
+  delete_event
+  destroy_event
+  expose_event
+  key_press_event
+  key_release_event
+  enter_notify_event
+  leave_notify_event
+  configure_event
+  focus_in_event
+  focus_out_event
+  map_event
+  unmap_event
+  property_notify_event
+  selection_clear_event
+  selection_request_event
+  selection_notify_event
+  proximity_in_event
+  proximity_out_event
+  visibility_notify_event
+  client_event
+  no_expose_event
+  window_state_event
+</pre>
+<p>Pour connecter une fonction de rappel à l'un de ces évènements, 
+on utilise la méthode <code class="methodname">connect</code>() décrite à la section 
+précédente, en mentionnant l'un des noms d'évènement ci-dessus comme paramètre 
+<em class="parameter"><code>nom</code></em>. Les fonctions (ou méthodes) de rappel employées pour 
+les évènements sont légèrement différentes de celles utilisées pour les signaux :
+</p>
+<pre class="programlisting">
+  def fct_rappel(widget, evenement, donnees_fct):
+
+  def meth_rappel(self, widget, evenement, donnees_meth):  
+</pre>
+<p><code class="classname">GdkEvent</code> est un type d'objet Python dont l'attribut 
+type indique lequel des évènements ci-dessus est survenu. Les autres 
+attributs de l'évènement dépendent du type de cet évènement. Les valeurs 
+pour les types peuvent être les suivantes :</p>
+<pre class="programlisting">
+  NOTHING
+  DELETE
+  DESTROY
+  EXPOSE
+  MOTION_NOTIFY
+  BUTTON_PRESS
+  _2BUTTON_PRESS
+  _3BUTTON_PRESS
+  BUTTON_RELEASE
+  KEY_PRESS
+  KEY_RELEASE
+  ENTER_NOTIFY
+  LEAVE_NOTIFY
+  FOCUS_CHANGE
+  CONFIGURE
+  MAP
+  UNMAP
+  PROPERTY_NOTIFY
+  SELECTION_CLEAR
+  SELECTION_REQUEST
+  SELECTION_NOTIFY
+  PROXIMITY_IN
+  PROXIMITY_OUT
+  DRAG_ENTER
+  DRAG_LEAVE
+  DRAG_MOTION
+  DRAG_STATUS
+  DROP_START
+  DROP_FINISHED
+  CLIENT_EVENT
+  VISIBILITY_NOTIFY
+  NO_EXPOSE
+  SCROLL
+  WINDOW_STATE
+  SETTING
+</pre>
+<p>On accède à ces valeurs en préfixant le type d'évènement 
+      avec gtk.gdk. Par exemple : <code class="varname">gtk.gdk.DRAG_ENTER</code>.
+</p>
+<p>En résumé, pour connecter une fonction de rappel à un de ces 
+évènements, on peut procéder ainsi :</p>
+<pre class="programlisting">
+  bouton.connect("button_press_event", fct_rappel_bouton)
+</pre>
+<p>Ainsi, le fait de cliquer avec la souris lorsque le pointeur 
+se trouve au-dessus du bouton invoque la fonction <em class="parameter"><code>fct_rappel_bouton</code></em>. 
+On peut définir cette fonction comme ceci :</p>
+<pre class="programlisting">
+  def fct_rappel_bouton(widget, evenement, donnees):
+</pre>
+<p>La valeur renvoyée par cette fonction indique si l'évènement 
+doit être propagé par le système de gestion des évènements de GTK+. 
+Renvoyer <code class="varname">True</code> indique que l'évènement a été traité et que 
+sa diffusion s'arrête ici. En revanche, <code class="varname">False</code> laisse se 
+poursuivre le processus normal de traitement de l'évènement. Voir le 
+
+<a href="ch-AdvancedEventAndSignalHandling.html" title="Chapitre 20. Gestion avancée des signaux et évènements">
+Chapitre 20, <i>Gestion avancée des signaux et évènements</i></a>  
+pour en apprendre plus sur ce processus de diffusion.</p>
+<p>Les API de sélection et de glisser-déposer de GDK émettent également 
+un certain nombre d'évènements qui sont représentés dans GTK+ par des signaux. 
+Voyez les sections 22.3.2 
+
+<em class="parameter"><code>Les signaux du widget source</code></em> et 22.3.4 
+<em class="parameter"><code>Les signaux du widget destination</code></em> (pas encore traduites) si 
+vous souhaitez en apprendre plus sur les signatures des fonctions de rappel 
+pour les signaux suivants :</p>
+<pre class="programlisting">
+  selection_received
+  selection_get
+  drag_begin_event
+  drag_end_event
+  drag_data_delete
+  drag_motion
+  drag_drop
+  drag_data_get
+  drag_data_received  
+</pre>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-TheoryOfSignalsAndCallbacks.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-GettingStarted.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-SteppingThroughHelloWorld.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">2.2. Le principe des signaux et des rappels </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> 2.4. Le "Hello World" pas à pas</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

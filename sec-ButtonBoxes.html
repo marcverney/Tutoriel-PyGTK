@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>10.10. Boîtes à boutons (ButtonBox)</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-ContainerWidgets.html" title="Chapitre 10. Les widgets conteneurs">
+<link rel="prev" href="sec-ScrolledWindows.html" title="10.9. Fenêtre avec barres de défilement (Scrolled Window)">
+<link rel="next" href="sec-Toolbar.html" title="10.11. La barre d'outils (Toolbar)">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">10.10. Boîtes à boutons (ButtonBox)</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-ScrolledWindows.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 10. Les widgets conteneurs</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-Toolbar.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-ButtonBoxes"></a>10.10. Boîtes à boutons (ButtonBox)</h2></div></div></div>
+<p>La boîte à boutons <code class="classname">ButtonBox</code> est un moyen 
+simple de réaliser rapidement un groupe de boutons. Elle peut être 
+horizontale ou verticale. On crée une nouvelle boîte à boutons par un 
+des appels suivants, respectivement pour une boîte horizontale ou verticale :</p>
+<pre class="programlisting">
+  hboite_bout = gtk.HButtonBox()
+
+  vboite_bout = gtk.VButtonBox()
+</pre>
+<p>Les seules méthodes s'appliquant aux boîtes à boutons 
+concernent leur disposition à l'intérieur de la boîte.</p>
+<p>La disposition des boutons dans leur boîte se fait par :</p>
+<pre class="programlisting">
+  boite_bout.set_layout(<strong class="parameter"><code>layout_style</code></strong>)
+</pre>
+<p>Le paramètre <em class="parameter"><code>layout_style</code></em> peut 
+prendre une des valeurs suivantes :</p>
+<pre class="programlisting">
+  BUTTONBOX_DEFAULT_STYLE   # par défaut
+  BUTTONBOX_SPREAD          # espacé
+  BUTTONBOX_EDGE            # collé aux bords
+  BUTTONBOX_START           # collé au début
+  BUTTONBOX_END             # collé à la fin
+</pre>
+<p>Le style d'affichage <em class="parameter"><code>layout_style</code></em> 
+peut être retrouvé en utilisant :</p>
+<pre class="programlisting">
+  layout_style = boite_bout.get_layout()
+</pre>
+<p>Les boutons sont sjoutés dans la <code class="classname">ButtonBox</code> 
+en utilisant la méthode habituelle des <code class="classname">Container</code> :</p>
+<pre class="programlisting">
+  boite_bout.add(<strong class="parameter"><code>widget</code></strong>)
+</pre>
+<p>Le programmme exemple <a href="exemples/buttonbox.py" target="_top">
+<span><strong class="command">buttonbox.py</strong></span></a> utilise tous les 
+différents modes de placement des <code class="classname">ButtonBoxes</code>. 
+En voici le résultat :</p>
+<div class="informalfigure">
+<a name="buttonboxfig"></a><div class="mediaobject" align="center"><img src="figures/buttonbox.png" align="middle"></div>
+<span>Exemple de boîte à boutons</span>
+</div>
+<p>Voici le code source du programme <a href="exemples/buttonbox.py" target="_top">
+<span><strong class="command">buttonbox.py</strong></span></a> :</p>
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2   # -*- coding:utf-8 -*-
+     3   # example boutonbox.py
+     4   
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8   
+     9   class ExempleBoiteBouton:
+    10       # Créer une boîte à boutons avec les paramètres indiqués
+    11       def create_boite_bout(self, horizontal, title, spacing, layout):
+    12           cadre = gtk.Frame(title)
+    13   
+    14           if horizontal:
+    15               boite_bout = gtk.HButtonBox()
+    16           else:
+    17               boite_bout = gtk.VButtonBox()
+    18   
+    19           boite_bout.set_border_width(5)
+    20           cadre.add(boite_bout)
+    21   
+    22           # Définir l'apparence de la boîte à bouton
+    23           boite_bout.set_layout(layout)
+    24           boite_bout.set_spacing(spacing)
+    25   
+    26           bouton = gtk.Button(stock=gtk.STOCK_OK)
+    27           boite_bout.add(bouton)
+    28   
+    29           bouton = gtk.Button(stock=gtk.STOCK_CANCEL)
+    30           boite_bout.add(bouton)
+    31   
+    32           bouton = gtk.Button(stock=gtk.STOCK_HELP)
+    33           boite_bout.add(bouton)
+    34   
+    35           return cadre
+    36   
+    37       def __init__(self):
+    38           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    39           fenetre.set_title("Boîtes à boutons")
+    40   
+    41           fenetre.connect("destroy", lambda x: gtk.main_quit())
+    42   
+    43           fenetre.set_border_width(10)
+    44   
+    45           boîtev_princ = gtk.VBox(False, 0)
+    46           fenetre.add(boîtev_princ)
+    47   
+    48           cadre_horz = gtk.Frame("Boîtes à boutons horizontales")
+    49           boîtev_princ.pack_start(cadre_horz, True, True, 10)
+    50   
+    51           boîtev = gtk.VBox(False, 0)
+    52           boîtev.set_border_width(10)
+    53           cadre_horz.add(boîtev)
+    54   
+    55           boîtev.pack_start(self.create_boite_bout(True, "Spread (spacing 40)",
+    56                                            40, gtk.BUTTONBOX_SPREAD),
+    57                           True, True, 0)
+    58   
+    59           boîtev.pack_start(self.create_boite_bout(True, "Edge (spacing 30)",
+    60                                            30, gtk.BUTTONBOX_EDGE),
+    61                           True, True, 5)
+    62   
+    63           boîtev.pack_start(self.create_boite_bout(True, "Start (spacing 20)",
+    64                                            20, gtk.BUTTONBOX_START),
+    65                           True, True, 5)
+    66   
+    67           boîtev.pack_start(self.create_boite_bout(True, "End (spacing 10)",
+    68                                            10, gtk.BUTTONBOX_END),
+    69                           True, True, 5)
+    70   
+    71           cadre_vert = gtk.Frame("Boîtes à boutons verticales")
+    72           boîtev_princ.pack_start(cadre_vert, True, True, 10)
+    73   
+    74           boîteh = gtk.HBox(False, 0)
+    75           boîteh.set_border_width(10)
+    76           cadre_vert.add(boîteh)
+    77   
+    78           boîteh.pack_start(self.create_boite_bout(False, "Spread (spacing 5)",
+    79                                            5, gtk.BUTTONBOX_SPREAD),
+    80                           True, True, 0)
+    81   
+    82           boîteh.pack_start(self.create_boite_bout(False, "Edge (spacing 30)",
+    83                                            30, gtk.BUTTONBOX_EDGE),
+    84                           True, True, 5)
+    85   
+    86           boîteh.pack_start(self.create_boite_bout(False, "Start (spacing 20)",
+    87                                            20, gtk.BUTTONBOX_START),
+    88                           True, True, 5)
+    89   
+    90           boîteh.pack_start(self.create_boite_bout(False, "End (spacing 20)",
+    91                                            20, gtk.BUTTONBOX_END),
+    92                           True, True, 5)
+    93   
+    94           fenetre.show_all()
+    95   
+    96   def main():
+    97       # Entrer dans la boucle principale
+    98       gtk.main()
+    99       return 0
+   100   
+   101   if __name__ == "__main__":
+   102       ExempleBoiteBouton()
+   103       main()
+</pre>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-ScrolledWindows.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-ContainerWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-Toolbar.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">10.9. Fenêtre avec barres de défilement (Scrolled Window) </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 10.11. La barre d'outils (Toolbar)</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

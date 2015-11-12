@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>14.8. Gestion des Treeselection</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,treeview" />
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-TreeViewWidget.html" title="Chapitre 14. Le widget TreeView">
+<link rel="prev" href="sec-TreeViewSignals.html" title="14.7. Les signaux des TreeView">
+<link rel="next" href="sec-TreeViewDragAndDrop.html" title="14.9. Glisser-déposer dans un TreeView">
+</head>
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici : 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">14.8. Gestion des Treeselection</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-TreeViewSignals.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 14. Le widget TreeView</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-TreeViewDragAndDrop.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-TreeSelections"></a>14.8. Gestion des Treeselection</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-GettingTheTreeSelection"></a>14.8.1. Obtenir un TreeSelection</h3></div></div></div>
+<p>Les <code class="classname">TreeSelection</code> sont des objets qui gèrent les sélections dans un 
+<code class="classname">TreeView</code>. Quand on crée un <code class="classname">TreeView</code>, un 
+<code class="classname">TreeSelection</code> est automatiquement créé en même temps. Le 
+<code class="classname">TreeSelection</code> peut être obtenu à partir du <code class="classname">TreeView</code> 
+par la méthode :
+</p>
+<pre class="programlisting">
+  treeselection = treeview.get_selection()
+</pre>
+<p>On peut retrouver le <code class="classname">TreeView</code> associé au 
+<code class="classname">TreeSelection</code> par la méthode :
+</p>
+<pre class="programlisting">
+  treeview = treeselection.get_treeview()
+</pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-TreeSelectionMode"></a>14.8.2. Modes du TreeSelection</h3></div></div></div>
+<p>Le <code class="classname">TreeSelection</code> dispose des modes 
+de sélection suivants :</p>
+<table border="0" width="100%" bgcolor="#FFECCE">
+<col align="left" valign="top" width="0*">
+<tbody>
+<tr>
+<td>
+<span class="term"><code class="literal">gtk.SELECTION_NONE</code></span></td>
+<td>Aucune sélection n'est permise.</td>
+</tr>
+<tr>
+<td>
+<span class="term"><code class="literal">gtk.SELECTION_SINGLE</code></span></td>
+<td>Permet une sélection unique par un clic.</td>
+</tr>
+<tr>
+<td>
+<span class="term"><code class="literal">gtk.SELECTION_BROWSE</code></span></td>
+<td>Permet une sélection unique par un survol du pointeur.</td>
+</tr>
+<tr>
+<td>
+<span class="term"><code class="literal">gtk.SELECTION_MULTIPLE</code></span></td>
+<td>Plusieurs items peuvent être sélectionnés ensemble.</td>
+</tr>
+</tbody>
+</table>
+<p>On peut récupérer le mode de sélection en cours par la méthode :</p>
+<pre class="programlisting">
+  mode = treeselection.get_mode()
+</pre>
+<p>Ce mode peut être fixé en utilisant :</p>
+<pre class="programlisting">
+  treeselection.set_mode(<strong class="parameter"><code>mode</code></strong>)
+</pre>
+<p>... où <em class="parameter"><code>mode</code></em> est l'un des modes de sélection 
+ci-dessus.</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-RetrievingTheTreeSelection"></a>14.8.3. Retrouver la sélection</h3></div></div></div>
+<p>La méthode à utiliser pour retrouver la sélection est fonction du mode 
+de sélection en cours. Si le mode de sélection est 
+<code class="literal">gtk.SELECTION_SINGLE</code> ou
+<code class="literal">gtk.SELECTION_BROWSE</code>, il faut utiliser la méthode 
+suivante :
+</p>
+<pre class="programlisting">
+  (modele, iter) = treeselection.get_selected()
+</pre>
+<p>... qui renvoie un 2-tuple contenant <em class="parameter"><code>modele</code></em>, le 
+<code class="classname">TreeModel</code> utilisé par le <code class="classname">TreeView</code> 
+associé au <em class="parameter"><code>treeselection</code></em> et <em class="parameter"><code>iter</code></em>, 
+un <code class="classname">TreeIter</code> pointant sur la ligne sélectionnée. S'il n'y 
+a pas de ligne sélectionnée, alors <em class="parameter"><code>iter</code></em> vaut 
+<code class="literal">None</code>. Si le mode de sélection est 
+<code class="literal">gtk.SELECTION_MULTIPLE</code>, une exception TypeError est 
+déclenchée.
+</p>
+<p>Pour un <code class="classname">TreeView</code> utilisant le mode de sélection 
+<code class="literal">gtk.SELECTION_MULTIPLE</code>, il faut utiliser la méthode :
+</p>
+<pre class="programlisting">
+  (modele, listechemins) = treeselection.get_selected_rows()
+</pre>
+<p>... qui renvoie un 2-tuple contenant le modèle et une liste des chemins 
+des lignes sélectionnées dans l'arborescence. Cette méthode n'est pas disponible 
+en PyGTK 2.0 ; pour retrouver cette liste, il faut passer par une fonction 
+intermédiaire en utilisant :
+</p>
+<pre class="programlisting">
+  treeselection.selected_foreach(<em class="parameter"><code>fonct</code></em>, <em class="parameter"><code>donnees</code></em>=None)
+</pre>
+<p>... où <em class="parameter"><code>fonct</code></em> est une fonction appelée 
+pour chaque ligne sélectionnée avec les données 
+<em class="parameter"><code>donnees</code></em>. La fonction a la signature suivante :
+</p>
+<pre class="programlisting">
+  def fonct(<em class="parameter"><code>modele</code></em>, <em class="parameter"><code>chemin</code></em>, <em class="parameter"><code>iter</code></em>, <em class="parameter"><code>donnees</code></em>)
+</pre>
+<p>... où <em class="parameter"><code>modele</code></em> est le <code class="classname">TreeModel</code>, 
+<em class="parameter"><code>chemin</code></em> est le chemin de la ligne 
+sélectionnée dans l'arborescence et <em class="parameter"><code>iter</code></em> est un 
+<code class="classname">TreeIter</code> pointant sur la ligne sélectionnée. 
+</p>
+<p>Cette méthode peut être utilisée pour simuler la méthode 
+<code class="methodname">get_selected_row</code>() de la manière suivante :
+</p>
+<pre class="programlisting">
+  ...
+  def rappel_chacune(modele, chemin, iter, listechemins) :
+      liste.append(chemin)
+  ...
+  def ma_recup_selection(treeselection) :
+      listechemins = []
+      treeselection.selected_foreach(rappel_chacune, listechemins)
+      modele = choix.get_treeview().get_model()
+      return(modele, listechemins)
+  ...
+
+
+</pre>
+<p>La méthode <code class="methodname">selected_foreach</code>() ne peut servir à 
+modifier le treemodel ou la sélection, mais peut permettre de modifier les 
+données des lignes.
+</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-TreeSelectionFunction"></a>14.8.4. Utiliser une fonction TreeSelection</h3></div></div></div>
+<p>Si on souhaite avoir un contrôle total sur la sélection de ligne, on peut 
+définir une fonction à appeler avant qu'une ligne soit sélectionnée ou 
+déselectionnée grâce à la méthode :
+</p>
+<pre class="programlisting">
+  treeselection.set_select_function(<em class="parameter"><code>fonct</code></em>, <em class="parameter"><code>donnees</code></em>)
+</pre>
+<p>... où <em class="parameter"><code>fonct</code></em> est une fonction de rappel et 
+<em class="parameter"><code>donnees</code></em> sont les données utilisateur qui sont 
+transmises à <em class="parameter"><code>fonct</code></em> quand celle-ci est appelée. 
+La méthode <em class="parameter"><code>fonct</code></em> a pour signature :
+</p>
+<pre class="programlisting">
+  def fonct(<em class="parameter"><code>selection</code></em>, <em class="parameter"><code>modele</code></em>, <em class="parameter"><code>chemin</code></em>, <em class="parameter"><code>est_choisi</code></em>, <em class="parameter"><code>donnees_utilisateur</code></em>)
+</pre>
+<p>... où <em class="parameter"><code>selection</code></em> est le <code class="classname">TreeSelection</code>, 
+<em class="parameter"><code>modele</code></em> est le <code class="classname">TreeModel</code> utilisé avec 
+le <code class="classname">TreeView</code> associé à la <em class="parameter"><code>selection</code></em>, 
+<em class="parameter"><code>chemin</code></em> est le chemin dans l'arbre de la ligne sélectionnée, 
+<em class="parameter"><code>est_choisi</code></em> vaut <code class="literal">TRUE</code> si la ligne est 
+actuellement sélectionnée et <em class="parameter"><code>donnees_utilisateur</code></em> est donnees. 
+<em class="parameter"><code>fonct</code></em> renvoie <code class="literal">TRUE</code> si l'état de  
+sélection de la ligne peut être modifié.
+</p>
+<p>Établir une fonction de sélection est utile si :</p>
+<div class="itemizedlist"><ul type="disc">
+<li>on souhaite contrôler la sélection ou déselection d'une ligne en fonction 
+d'une information complémentaire du contexte. On doit indiquer 
+d'une façon ou d'une autre que le changement de sélection ne peut être réalisé 
+et pourquoi. Par exemple, on peut différencier visuellement la ligne ou ouvrir 
+un <code class="classname">MessageDialog</code> contextuel.
+</li>
+<li>on doit maintenir soi-même la liste des lignes sélectionnées 
+ou déselectionnées quoique cela puisse aussi être réalisé, mais de manière plus 
+laborieuse, en se connectant au signal "changed".
+</li>
+<li>on veut faire un traitement complémentaire avant qu'une ligne soit 
+sélectionnée ou non. Changer par exemple l'apparence de la ligne ou modifier 
+les données de cette ligne.
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sec-SelectingAndUnselectingRows"></a>14.8.5. Sélectionner et déselectionner les lignes</h3></div></div></div>
+<p>Il est possible de modifier la sélection par programme en employant 
+les méthodes suivantes :
+</p>
+<pre class="programlisting">
+  treeselection.select_path(<strong class="parameter"><code>path</code></strong>)
+  treeselection.unselect_path(<strong class="parameter"><code>path</code></strong>)
+
+  treeselection.select_iter(<strong class="parameter"><code>iter</code></strong>)
+  treeselection.unselect_iter(<strong class="parameter"><code>iter</code></strong>)
+</pre>
+<p>Ces méthodes sélectionnent ou déselectionnent une ligne unique indiquée, soit 
+par le <em class="parameter"><code>path</code></em>, un chemin de l'arbre, soit par 
+<em class="parameter"><code>iter</code></em>, un <code class="classname">TreeIter</code> pointant 
+sur la ligne. Les méthodes qui suivent sélectionnent ou déselectionnent 
+plusieurs lignes à la fois :
+</p>
+<pre class="programlisting">
+  treeselection.select_all()
+  treeselection.unselect_all()
+
+  treeselection.select_range(<strong class="parameter"><code>start_path</code></strong>, <strong class="parameter"><code>end_path</code></strong>)
+  treeselection.unselect_range(<strong class="parameter"><code>start_path</code></strong>, <strong class="parameter"><code>end_path</code></strong>)
+</pre>
+<p>Les méthodes <code class="methodname">select_all</code>() et 
+<code class="methodname">select_range</code>() nécessitent que le mode de 
+sélection soit <code class="literal">gtk.SELECTION_MULTIPLE</code>. Les méthodes 
+<code class="methodname">unselect_all</code>() et 
+<code class="methodname">unselect_range</code>() fonctionnent quel que soit 
+le mode de sélection. A noter que la méthode 
+<code class="methodname">unselect_all</code>() n'est pas disponible en PyGTK 2.0.
+</p>
+<p>On peut vérifier si une ligne est sélectionnée en utilisant 
+l'une de ces méthodes :
+</p>
+<pre class="programlisting">
+  resultat = treeselection.path_is_selected(chemin)
+  resultat = treeselection.iter_is_selected(iter)
+</pre>
+<p>qui renvoie <code class="literal">TRUE</code> si la ligne indiquée par 
+<em class="parameter"><code>chemin</code></em> ou <em class="parameter"><code>iter</code></em> est 
+actuellement sélectionnée. On peut connaître le nombre de lignes 
+sélectionnées avec la méthode :
+</p>
+<pre class="programlisting">
+  compte = treeselection.count_selected_rows()
+</pre>
+<p>Cette méthode n'est pas disponible en PyGTK 2.0 ; il faut donc la simuler 
+en utilisant la méthode <code class="methodname">selected_foreach</code>() 
+semblable à l'émulation de la méthode <code class="methodname">get_selected_rows</code>() 
+dans <!--<a href="sec-RetrievingTheSelection.html" title="21.2. Retrieving the Selection">-->
+Section 21.2, « Retrieving the Selection » (pas encore traduit)<!--</a>-->. Par exemple :
+</p>
+<pre class="programlisting">
+  ...
+  def rappel_chacune(modele, chemin, iter, compteur) :
+      compteur[0] += 1
+  ...
+  def mon_compte_lignes_choisies(treeselection) :
+      compteur = [0]
+      treeselection.selected_foreach(rappel_chacune, compteur)
+      return compteur[0]
+  ...
+</pre>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-TreeViewSignals.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-TreeViewWidget.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-TreeViewDragAndDrop.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">14.7. Les signaux des TreeView </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> 14.9. Glisser-déposer dans un TreeView</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

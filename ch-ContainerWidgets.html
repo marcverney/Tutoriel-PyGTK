@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Chapitre 10. Les widgets conteneurs</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="prev" href="sec-FontSelectionDialog.html" title="9.15. Font Selection Dialog">
+<link rel="next" href="sec-Alignment.html" title="10.2. Le widget d'alignement (Alignment)">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapitre 10. Les widgets conteneurs</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sec-FontSelectionDialog.html">Préc.</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-Alignment.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter" lang="fr">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="ch-ContainerWidgets"></a>Chapitre 10. Les widgets conteneurs</h2></div></div></div>
+<div class="toc">
+<p><b>Table des matières</b></p>
+<dl>
+<dt><span class="sect1"><a href="ch-ContainerWidgets.html#sec-EventBox">10.1. La boîte à évènement (EventBox)</a></span></dt>
+<dt><span class="sect1"><a href="sec-Alignment.html">10.2. Le widget d'alignement (Alignment)</a></span></dt>
+<dt><span class="sect1"><a href="sec-Fixed.html">10.3. Le conteneur Place (Fixed)</a></span></dt>
+<dt><span class="sect1"><a href="sec-Layout.html">10.4. Le conteneur Layout (Affiche)</a></span></dt>
+<dt><span class="sect1"><a href="sec-Frames.html">10.5. Les cadres (Frame)</a></span></dt>
+<dt><span class="sect1"><a href="sec-AspectFrames.html">10.6. Les cadres proportionnels (AspectFrame)</a></span></dt>
+<dt><span class="sect1"><a href="sec-PanedWindowWidgets.html">10.7. Fenêtre à volets (Paned Window)</a></span></dt>
+<dt><span class="sect1"><a href="sec-Viewports.html">10.8. Viewports</a></span></dt>
+<dt><span class="sect1"><a href="sec-ScrolledWindows.html">10.9. Fenêtre avec barres de défilement (Scrolled Window)</a></span></dt>
+<dt><span class="sect1"><a href="sec-ButtonBoxes.html">10.10. Boîtes à boutons (ButtonBox)</a></span></dt>
+<dt><span class="sect1"><a href="sec-Toolbar.html">10.11. La barre d'outils (Toolbar)</a></span></dt>
+<dt><span class="sect1"><a href="sec-Notebooks.html">10.12. Le bloc-notes (Notebook)</a></span></dt>
+<dt><span class="sect1"><a href="sec-PlugsAndSockets.html">10.13. Les connexions et connecteurs (Plugs et Sockets)</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="sec-PlugsAndSockets.html#id2592001">10.13.1. Les Plugs</a></span></dt>
+<dt><span class="sect2"><a href="sec-PlugsAndSockets.html#id2592150">10.13.2. Sockets</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-EventBox"></a>10.1. La boîte à évènement (EventBox)</h2></div></div></div>
+<p>Certains widgets GTK ne possèdent pas de 
+fenêtre X associée, ils se dessinent juste sur leur widget parent. Donc, ils 
+ne peuvent recevoir d'évènements et si leurs dimensions sont incorrectes, 
+ils ne s'ajustent pas et vous pouvez obtenir des chevauchements d'écriture, etc. 
+Si vous voulez obtenir plus de ces widgets, il faut utiliser la boîte à évènement 
+<code class="classname">EventBox</code>.</p>
+<p>À première vue, la boîte à évènement <code class="classname">EventBox</code> 
+peut sembler totalement inutile. Elle ne dessine rien sur l'écran et ne 
+répond à  aucun évènement. Cependant, elle réalise une fonction :elle 
+fournit une fenêtre X pour son widget enfant. Et comme beaucoup de widgets 
+ne possèdent pas de fenêtre X associée, cette fonction est importante. Ne pas 
+de fenêtre X économise de la memoire et augmente les performances mais 
+a aussi quelques inconvénients. Un widget sans fenêtre X ne peut recevoir 
+d'évènement, ne peut réaliser aucun ajustement sur son contenu et ne peut 
+posséder de couleur d'arrière-plan. Quoique le nom <code class="classname">EventBox</code> 
+met en évidence la fonction de gestion d'évènement, ce widget peut aussi être 
+redimensionné, (et plus encore, voir l'exemple ci-dessous).
+</p>
+<p>Pour créer une nouvelle boîte à évènement 
+<code class="classname">EventBox</code>, faire :
+</p>
+<pre class="programlisting">
+  boite_evenement = gtk.EventBox()
+</pre>
+<p>Un widget enfant peut être ajouté à la boîte à 
+évènement par :
+</p>
+<pre class="programlisting">
+  event_box.add(<strong class="parameter"><code>widget</code></strong>) 
+</pre>
+<p>Le programme d'exemple <a href="exemples/eventbox.py" target="_top"><span><strong class="command">eventbox.py</strong></span></a> 
+illustre les deux utilisations de la boîte à évènement. Créer un label, 
+inscrit dans une petite boîte, possédant un arrière-plan vert et permettant, 
+lors d'un clic sur ce label, de sortir du programme. Redimensionner la 
+fenêtre permet les variations de taille du label.
+La <a href="ch-ContainerWidgets.html#eventboxfig" title="Figure 10.1. Exemple de boîte à évènement">Figure 10.1, « Exemple de boîte à évènement »</a> montre l'affichage du programme.
+</p>
+<div class="figure">
+<a name="eventboxfig"></a><p class="title"><b>Figure 10.1. Exemple de boîte à évènement</b></p>
+<div class="mediaobject" align="center"><img src="figures/eventbox.png" align="middle" alt="Exemple de boîte à évènement"></div>
+<span>Exemple de boîte à évènement</span>
+</div>
+<p>Voici le code source du programme <a href="exemples/eventbox.py" target="_top"><span><strong class="command">eventbox.py</strong></span></a> :</p>
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2   # -*- coding:utf-8 -*-
+     3   # exemple eventbox.py
+     4   
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8   
+     9   class ExempleBoiteEvenement:
+    10       def __init__(self):
+    11           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    12           fenetre.set_title("Boîte à évènement")
+    13           fenetre.connect("destroy", lambda w: gtk.main_quit())
+    14           fenetre.set_border_width(10)
+    15   
+    16           # On crée une boîte à évènement et on l'ajoute à la fenêtre principale
+    17           boite_evenement = gtk.EventBox()
+    18           fenetre.add(boite_evenement)
+    19           boite_evenement.show()
+    20   
+    21           # On crée un label long
+    22           label = gtk.Label("Cliquer ici pour quitter, finir, terminer, sortir...")
+    23           boite_evenement.add(label)
+    24           label.show()
+    25   
+    26           # On fixe sa taille de départ (largeur, hauteur).
+    27           label.set_size_request(110, 30)
+    28   
+    29           # On relie une action à la boîte
+    30           boite_evenement.set_events(gtk.gdk.BUTTON_PRESS_MASK)
+    31           boite_evenement.connect("button_press_event", lambda w,e: gtk.main_quit())
+    32   
+    33           # D'autres choses pour lesquelles il faut une fenêtre X...
+    34           boite_evenement.realize()
+    35           boite_evenement.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.HAND1))
+    36   
+    37           # Un arrière-plan en vert
+    38           boite_evenement.modify_bg(gtk.STATE_NORMAL,
+    39                               boite_evenement.get_colormap().alloc_color("green"))
+    40   
+    41           fenetre.show()
+    42   
+    43   def main():
+    44       gtk.main()
+    45       return 0
+    46   
+    47   if __name__ == "__main__":
+    48       ExempleBoiteEvenement()
+    49       main()
+</pre>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sec-FontSelectionDialog.html">Préc.</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-Alignment.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.15. Font Selection Dialog </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 10.2. Le widget d'alignement (Alignment)</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

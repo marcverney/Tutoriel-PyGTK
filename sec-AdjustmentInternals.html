@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+<title>7.3. Les ajustements en d&eacute;tail</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,adjustment,ajustement">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-Adjustments.html" title="Chapitre 7. Les ajustements">
+<link rel="previous" href="sec-UsingAdjustmentsTheEasyWay.html" title="7.2. Utiliser facilement les ajustements">
+<link rel="next" href="ch-RangeWidgets.html" title="Chapitre 8. Les widgets d'intervalle">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici : 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">7.3. Les ajustements en d&eacute;tail</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-UsingAdjustmentsTheEasyWay.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 7. Les ajustements</th>
+<td width="20%" align="right"><a accesskey="n" href="ch-RangeWidgets.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage"><div>
+<h2 class="title" style="clear: both"><a name="AjustementsDetail"></a>7.3. Les ajustements en d&eacute;tail</h2>
+</div></div>
+
+<p>Vous devez penser : &laquo;C'est bien beau tout &ccedil;a, mais qu'est-ce qui se passe si je veux cr&eacute;er mes propres gestionnaires pour r&eacute;agir quand l'utilisateur r&egrave;gle un widget d'intervalle ou un bouton fl&eacute;ch&eacute; ? Et comment je r&eacute;cup&egrave;re la valeur d'un ajustement dans ces gestionnaires ?&raquo; Afin de r&eacute;pondre &agrave; ces questions et &agrave; bien d'autres, commen&ccedil;ons par jeter un &oelig;il aux attributs de l'objet <tt>gtk.Adjustment</tt> :</p>
+
+<pre class="programlisting">
+  lower
+  upper
+  value
+  step_increment
+  page_increment
+  page_size
+</pre>
+
+<p>Pour une instance donn&eacute;e <i><tt>ajust</tt></i> de <tt>gtk.Adjustment</tt>, on d&eacute;finit ou r&eacute;cup&egrave;re chacun de ses attributs avec <i><tt>ajust.lower</tt></i>, <i><tt>ajust.value</tt></i>, etc.</p>
+<p>En r&egrave;gle g&eacute;n&eacute;rale, lorsqu'on d&eacute;finit la valeur d'un ajustement, on veut que le changement soit reflet&eacute; par chaque widget qui utilise cet ajustement. &Agrave; cet effet, PyGTK fournit la m&eacute;thode suivante  :</p>
+
+<pre class="programlisting">
+  ajustement.set_value(<b><tt>value</tt></b>)
+</pre>
+
+<p>La classe <tt>gtk.Adjustment</tt>, nous l'avons vu plus haut, est une sous-classe de <tt>gtk.Object</tt> au m&ecirc;me titre que n'importe quel widget, et peut donc &eacute;mettre des signaux. Voil&agrave; pourquoi les modifications sont refl&eacute;t&eacute;es automatiquement lorsque vous partagez un ajustement entre une barre de d&eacute;filement et un autre widget ajustable ; tous les widgets ajustables connectent des gestionnaires au signal &quot;<tt>value_changed</tt>&quot; de leur ajustement,  ce que peut aussi faire votre programme. Voici comment d&eacute;finir la fonction de rappel de ce signal :</p>
+
+<pre class="programlisting">
+  def value_changed(ajustement):
+</pre>
+
+<p>Les diff&eacute;rents widgets qui utilisent un ajustement lui font &eacute;mettre ce signal &agrave; chaque fois qu'ils modifient sa valeur. Cela arrive lorsque une action de l'utilisateur fait se d&eacute;placer le curseur dans un widget d'intervalle, mais aussi lorsque le programme change explicitement la valeur gr&acirc;ce &agrave; la m&eacute;thode <tt>set_value</tt>(). Imaginons, par exemple, que vous ayez un gradateur et que vous vouliez changer la rotation d'une image &agrave; chaque fois que sa valeur est modifi&eacute;e. Vous &eacute;cririez alors une fonction de rappel semblable &agrave; celle-ci :</p>
+
+<pre class="programlisting">
+  def rpl_rotation_img(ajust, image):
+      rotation_image (image, ajust.value)
+  ...
+</pre>
+
+<p>Puis il vous faudrait la connecter &agrave; l'ajustement du gradateur ainsi :</p>
+
+<pre class="programlisting">
+  ajust.connect(&quot;value_changed&quot;, rpl_rotation_img, image)
+</pre>
+
+<p>Et si un widget reconfigure les champs <i><tt>upper</tt></i> ou <i><tt>lower</tt></i> de son ajustement ? &Ccedil;a arrive par exemple quand un utilisateur ajoute du texte &agrave; une zone de texte. L'ajustement &eacute;met alors le signal &quot;<tt>changed</tt>&quot;, qui ressemble &agrave; &ccedil;a :</p>
+
+<pre class="programlisting">
+  def changed(ajustement):
+</pre>
+
+<p>Les widgets d'intervalle connectent tous automatiquement un gestionnaire &agrave; ce signal, qui refl&egrave;te le changement en modifiant leur apparence. La taille du curseur d'une barre de d&eacute;filement est par exemple inversement proportionnelle &agrave; la diff&eacute;rence entre les valeurs des arguments <i><tt>lower</tt></i> et <i><tt>upper</tt></i> de son ajustement.</p>
+<p>Il est peu probable que vous ayez un jour besoin d'attacher un gestionnaire &agrave; ce signal, &agrave; moins que vous n'&eacute;criviez un nouveau type de widget d'intervalle. Dans tous les cas, si vous modifiez directement une des valeurs d'un ajustement, vous devriez lui faire &eacute;mettre ce signal afin de reconfigurer tous les widgets qui l'utilisent. Utilisez pour cela cette m&eacute;thode :</p>
+
+<pre class="programlisting">
+  ajustement.emit(&quot;changed&quot;)
+</pre>
+<p>Maintenant, en avant, et ajustez !</p>
+</div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="sec-UsingAdjustmentsTheEasyWay.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-Adjustments.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="ch-RangeWidgets.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">7.2. Utiliser facilement les ajustements</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">Chapitre 8. Les widgets d'intervalle</td>
+</tr></table>
+</div>
+
+</body>
+
+</html>

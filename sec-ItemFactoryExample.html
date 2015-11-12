@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+<title>11.4. D&eacute;monstration de l'ItemFactory</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,menu">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-MenuWidget.html" title="Chapitre 11. Les menus">
+<link rel="previous" href="sec-UsingItemFactory.html" title="11.3. Cr&eacute;ation de menus avec l'ItemFactory">
+<link rel="next" href="ch-DrawingArea.html" title="Chapitre 12. La zone de dessin (Drawing Area)">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici&nbsp;: 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="middle">11.4. D&eacute;monstration de l'ItemFactory</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-UsingItemFactory.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapter 11. Menu Widget</th>
+<td width="20%" align="right"><a accesskey="n" href="ch-DrawingArea.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage">
+<div><h2 class="title" style="clear: both"><a name="ExempleItemFactory"></a>11.4. D&eacute;monstration de l'ItemFactory</h2>
+</div></div>
+
+<p>La <a href="sec-ItemFactoryExample.html#fig-itemfactory" title="Figure 11.2. Item Factory Example">Figure 11.2</a> montre la fenetre cr&eacute;&eacute;e par le programme d'exemple <a href="exemples/itemfactory.py" target="_top"><b>itemfactory.py</b></a>, qui utilise la <tt>gtk.ItemFactory</tt> :</p>
+
+<div class="figure"><a name="fig-itemfactory"></a>
+<p class="title"><b>Figure 11.2. Exemple de menu cr&eacute;&eacute; avec l'ItemFactory</b></p>
+<div class="mediaobject" align="center">
+<img src="figures/itemfactory.png" align="middle" alt="exemple itemfactory">
+
+</div></div>
+
+<p>Voici le code source de <a href="exemples/itemfactory.py" target="_top"><b>itemfactory.py</b></a> :</p>
+
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2     
+     3   # exemple itemfactory.py
+     4     
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8     
+     9   class ExempleItemFactory:
+    10       # L'inevitable petite fonction de rappel
+    11       def affiche_hello(self, w, donnees):
+    12           print "Salut tout le monde !"
+    13   
+    14       # Voici la structure d'ItemFactoryEntry utilisee pour generer de nouveaux menus
+    15       # Element 1: Le chemin du menu. la lettre qui suit le caractere "_" indique un 
+    16       #            raccourci clavier actif une fois le menu ouvert.
+    17       # Element 2: Le raccourci clavier pour cette entree.
+    18       # Element 3: La fonction de rappel.
+    19       # Element 4: L'action de la fonction de rappel. Modifie les parametres avec
+    20       #            lesquels la fonction de rappel est appelee. 0 par defaut.
+    21       # Element 5: Le type d'entree. Indique quelle sorte d'entree l'on souhaite creer.
+    22       #            Voici les differentes valeurs possibles :
+    23   
+    24       #       NULL               -> "<Item>"
+    25       #       ""                 -> "<Item>"
+    26       #       "<Title>"          -> cree une entree titre
+    27       #       "<Item>"           -> cree une entree simple
+    28       #       "<CheckItem>"      -> cree une entree a cocher
+    29       #       "<ToggleItem>"     -> cree une entree a bascule
+    30       #       "<RadioItem>"      -> cree une entree radio
+    31       #       <chemin>           -> chemin d'une entree radio a laquelle attacher celle-ci
+    32       #       "<Separator>"      -> cree un separateur
+    33       #       "<Branch>"         -> cree une entree pouvant contenir des sous-entrees (optionel)
+    34       #       "<LastBranch>"     -> cree une entree "Branch" alignee a droite
+    35   
+    36       def menu_principal(self, fenetre):
+    37           racc_clavier = gtk.AccelGroup()
+    38   
+    39           # Cette fonction initialise l'ItemFactory.
+    40           # Param 1: Le type de menu - peut etre MenuBar, Menu,
+    41           #          ou OptionMenu.
+    42           # Param 2: Le chemin du menu.
+    43           # Param 3: une reference a un AccelGroup. L'ItemFactory configure
+    44           #          la table des raccourcis en generant les menus.
+    45           item_factory = gtk.ItemFactory(gtk.MenuBar, "<main>", racc_clavier)
+    46   
+    47           # Cette methode genere les entrees du menu. On transmet a l'ItemFactory
+    48           # la liste des entrees de menu.
+    49           item_factory.create_items(self.entrees_menu)
+    50   
+    51           # On attache le nouveau groupe de raccourcis clavier a la fenetre.
+    52           fenetre.add_accel_group(racc_clavier)
+    53   
+    54           # On a besoin de garder une reference a item_factory pour empecher sa destruction
+    55           self.item_factory = item_factory
+    56           # Enfin, on renvoie la barre de menus creee par l'ItemFactory.
+    57           return item_factory.get_widget("<main>")
+    58   
+    59       def __init__(self):
+    60           self.entrees_menu = (
+    61               ( "/_Fichier",         None,         None, 0, "<Branch>" ),
+    62               ( "/Fichier/_Nouveau",     "<control>N", self.affiche_hello, 0, None ),
+    63               ( "/Fichier/_Ouvrir",    "<control>O", self.affiche_hello, 0, None ),
+    64               ( "/Fichier/_Enregistrer",    "<control>S", self.affiche_hello, 0, None ),
+    65               ( "/Fichier/Enregistrer _sous", None,         None, 0, None ),
+    66               ( "/Fichier/sep1",     None,         None, 0, "<Separator>" ),
+    67               ( "/Fichier/Quitter",     "<control>Q", gtk.main_quit, 0, None ),
+    68               ( "/_Options",      None,         None, 0, "<Branch>" ),
+    69               ( "/Options/Test",  None,         None, 0, None ),
+    70               ( "/_Aide",         None,         None, 0, "<LastBranch>" ),
+    71               ( "/_Aide/A propos",   None,         None, 0, None ),
+    72               )
+    73           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    74           fenetre.connect("destroy", gtk.main_quit, "WM destroy")
+    75           fenetre.set_title("ItemFactory")
+    76           fenetre.set_size_request(300, 200)
+    77   
+    78           boitev_princ = gtk.VBox(False, 1)
+    79           boitev_princ.set_border_width(1)
+    80           fenetre.add(boitev_princ)
+    81           boitev_princ.show()
+    82   
+    83           barremenus = self.menu_principal(fenetre)
+    84   
+    85           boitev_princ.pack_start(barremenus, False, True, 0)
+    86           barremenus.show()
+    87           fenetre.show()
+    88   
+    89   def main():
+    90       gtk.main()
+    91       return 0
+    92   
+    93   if __name__ == "__main__":
+    94       ExempleItemFactory()
+    95       main()
+</pre>
+
+<p>Pour le moment, il n'y a que cet exemple. Une explication et de nombreux commentaires suivront plus tard.</p>
+</div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="sec-UsingItemFactory.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-MenuWidget.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="ch-DrawingArea.html">Suiv.</a>
+</td></tr><tr>
+<td width="40%" align="left" valign="top">11.3. Cr&eacute;ation de menus avec l'ItemFactory</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">Chapitre 12. La zone de dessin (Drawing Area)</td>
+</tr></table>
+
+</div>
+
+</body>
+
+</html>

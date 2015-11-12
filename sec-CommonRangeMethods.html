@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+<title>8.3. M&eacute;thodes communes aux widgets d'intervalle</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,intervalle">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-RangeWidgets.html" title="Chapitre 8. Les widgets d'intervalle">
+<link rel="previous" href="sec-ScaleWidgets.html" title="8.2. HScale et VScale : les gradateurs">
+<link rel="next" href="sec-KeyAndMouseBindings.html" title="8.4. Clavier et souris">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici : 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">8.3. M&eacute;thodes communes aux widgets d'intervalle</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-ScaleWidgets.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 8. Les widgets d'intervalle</th>
+<td width="20%" align="right"><a accesskey="n" href="sec-KeyAndMouseBindings.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage"><div>
+<h2 class="title" style="clear: both"><a name="MethodesCommunes"></a>8.3. M&eacute;thodes communes aux widgets d'intervalle</h2>
+</div></div>
+
+<p>La classe des widgets d'intervalle (<tt>gtk.Range</tt>) a des m&eacute;canismes internes assez compliqu&eacute;s, qui, comme tous ceux des classes &quot;de base&quot;, ne sont pas tr&egrave;s int&eacute;ressants &agrave; moins de vouloir les bidouiller. De plus, parmi ses m&eacute;thodes et signaux, la quasi totalit&eacute; n'est vraiment utile que pour &eacute;crire des widgets d&eacute;riv&eacute;s. On trouve cependant quelques m&eacute;thodes utiles qui fonctionnent avec tous les widgets de la classe.</p>
+
+<div class="sect2"><div class="titlepage"><div>
+<h3 class="title"><a name="id3060169"></a>8.3.1. D&eacute;finir le mode d'actualisation</h3>
+</div></div>
+
+<p>Le &quot;mode d'actualisation&quot; d'un widget d'intervalle pr&eacute;cise le moment o&ugrave;, durant sa manipulation par l'utilisateur, le widget devra changer la valeur de son <a href="ch-Adjustments.html" title="Chapitre 7. Les ch-Adjustments.html"><tt>ajustement</tt></a> et lui faire &eacute;mettre le signal &quot;<tt>value_changed</tt>&quot;. Les diff&eacute;rents modes d'actualisation sont :</p>
+
+<table border="0" width="100%" bgcolor="#FFECCE"><col align="left" valign="top" width="0*">
+<tr>
+<td><span class="term"> UPDATE_CONTINUOUS<br>(continu)</span></td>
+<td><p>C'est le mode par d&eacute;faut. Le signal &quot;<tt>value_changed</tt>&quot; est &eacute;mis de mani&egrave;re continue, c'est-&agrave;-dire au moindre d&eacute;placement du curseur.</p></td>
+</tr><tr>
+<td><span class="term">UPDATE_DISCONTINUOUS<br>(discontinu)</span></td>
+<td><p>Le signal &quot;<tt>value_changed</tt>&quot; n'est &eacute;mis qu'apr&egrave;s que le curseur a cess&eacute; de bouger et que l'utilisateur a rel&acirc;ch&eacute; le bouton de la souris.</p></td>
+</tr><tr>
+<td><span class="term">UPDATE_DELAYED<br>(diff&eacute;r&eacute;)</span></td>
+<td><p>Le signal &quot;<tt>value_changed</tt>&quot; est &eacute;mis lorsque l'utilisateur rel&acirc;che le bouton de la souris, ou si le curseur cesse de bouger durant un court instant.</p>
+</td></tr>
+</table>
+
+<p>On d&eacute;finit le mode d'actualisation d'un widget d'intervalle en l'indiquant &agrave; l'argument <i>policy</i> (mode) de cette m&eacute;thode :</p>
+
+<pre class="programlisting">
+  widget.set_update_policy(<b><tt>policy</tt></b>)
+</pre>
+
+</div><div class="sect2"><div class="titlepage"><div>
+<h3 class="title"><a name="id3060239"></a>8.3.2. D&eacute;finir et r&eacute;cup&eacute;rer les ajustements</h3>
+</div></div>
+
+<p>Pour d&eacute;finir et r&eacute;cup&eacute;rer &quot;&agrave; la vol&eacute;e&quot; l'ajustement d'un widget d'intervalle, on utilise naturellement les m&eacute;thodes :</p>
+
+<pre class="programlisting">
+  widget.set_adjustment(<b><tt>adjustment</tt></b>)
+
+  ajustement = widget.get_adjustment()
+</pre>
+
+<p>La m&eacute;thode <tt>get_adjustment</tt>() renvoie une r&eacute;f&eacute;rence &agrave; l'ajustement auquel <i><tt>widget</tt></i> est connect&eacute;.</p>
+<p>La m&eacute;thode <tt>set_adjustment</tt>() ne fait absolument rien si vous lui transmettez l'ajustement que <i><tt>widget</tt></i> utilise d&eacute;j&agrave;, que vous ayez modifi&eacute; ou non ses valeurs. En revanche, si vous lui passez un nouvel <a href="ch-Adjustments.html" title="Chapitre 7. Les ch-Adjustments.html"><tt>ajustement</tt></a>, elle d&eacute;r&eacute;f&eacute;rence le pr&eacute;c&eacute;dent s'il existe (voire le d&eacute;truit), connecte les signaux appropri&eacute;s au nouveau, puis recalcule la taille et/ou la position du curseur avant de le r&eacute;afficher si n&eacute;cessaire. Comme nous l'avons vu dans la section sur les <a href="ch-Adjustments.html" title="Chapitre 7. Les ch-Adjustments.html"><tt>ajustements</tt></a>, si vous voulez r&eacute;utiliser le m&ecirc;me, vous devriez lui faire &eacute;mettre le signal &quot;<tt>changed</tt>&quot; quand vous modifiez directement ses valeurs :</p>
+
+<pre class="programlisting">
+  ajustement.emit(&quot;changed&quot;)
+</pre>
+</div></div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="sec-ScaleWidgets.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-RangeWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="sec-KeyAndMouseBindings.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">8.2. HScale et VScale : les gradateurs</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top"> 8.4. Clavier et souris</td>
+</tr></table>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>19.2. Contrôler les Entrées/Sorties</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="generator" content="Bluefish 1.0.5">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="up" href="ch-TimeoutsIOAndIdleFunctions.html" title="Chapitre 19. Temporisations, Entrées/Sorties et fonctions d'inactivité">
+<link rel="prev" href="ch-TimeoutsIOAndIdleFunctions.html" title="Chapitre 19. Temporisations, Entrées/Sorties et fonctions d'inactivité">
+<link rel="next" href="sec-IdleFunctions.html" title="19.3. Les fonctions d'inactivité">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,contrôle entrées/sorties">
+<link rel="home" href="index.html" title="Table des matières">
+</head>
+<body>
+<div class="localisation"> 
+ Vous êtes à peu près ici :  
+ <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
+ <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div>
+<!-- fin localisation -->
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">19.2. Contrôler les Entrées/Sorties</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch-TimeoutsIOAndIdleFunctions.html">Préc.</a> </td>
+<th width="60%" align="center">Chapitre 19. Temporisations, Entrées/Sorties et fonctions d'inactivité</th>
+<td width="20%" align="right"> <a accesskey="n" href="sec-IdleFunctions.html">Suiv.</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sec-MonitoringIO"></a>19.2. Contrôler les Entrées/Sorties</h2></div></div></div>
+<p>On peut vérifier la capacité à lire ou écrire un fichier (un 
+fichier Python ou un fichier de bas niveau du système d'exploitation) et 
+invoquer alors automatiquement un rappel. Ceci est surtout utile pour les 
+applications réseau. La fonction de module gobject :</p>
+<pre class="programlisting">
+  source_id = gobject.io_add_watch(<em class="parameter"><code>source</code></em>, <em class="parameter"><code>condition</code></em>, <em class="parameter"><code>rappel</code></em>)
+</pre>
+<p>... où le premier argument (<em class="parameter"><code>source</code></em>) représente 
+le fichier ouvert (un entier, descripteur du fichier Python ou du fichier 
+système de bas niveau) que l'on veut surveiller. La fonction 
+<code class="function">gobject.io_add_watch</code>() utilise l'entier descripteur 
+du fichier de bas niveau de manière interne mais l'extraira de l'objet fichier 
+Python par la méthode <code class="methodname">fileno</code>() si nécessaire. 
+Le deuxième argument (<em class="parameter"><code>condition</code></em>) précise 
+ce que l'on veut contrôler. Ce peut être :</p>
+<pre class="programlisting">
+  gobject.IO_IN - Des données sont disponibles en lecture.
+
+  gobject.IO_OUT - Le fichier est prêt pour une écriture.
+
+  gobject.IO_PRI - Il y a des données urgentes à lire dans le fichier.
+
+  gobject.IO_ERR - Condition d'erreur.
+
+  gobject.IO_HUP - Blocage (la connexion est rompue, habituellement pour les 
+                   pipes et sockets).
+</pre>
+<p>Celles-ci sont définies dans le module gobject. Comme vous l'avez 
+déjà compris, le troisième argument, <em class="parameter"><code>rappel</code></em>, est la 
+fonction que l'on souhaite appeler lorsque les conditions précédentes sont 
+remplies.</p>
+<p>La valeur de retour <em class="parameter"><code>source_id</code></em> peut être utilisée 
+pour arrêter le contrôle du fichier grâce à la fonction suivante :</p>
+<pre class="programlisting">
+  gobject.source_remove(<em class="parameter"><code>source_id</code></em>)
+</pre>
+<p>La fonction de rappel doit ressembler à :</p>
+<pre class="programlisting">
+  def rappel_entree(<em class="parameter"><code>source</code></em>, <em class="parameter"><code>condition</code></em>):
+</pre>
+<p>... où <em class="parameter"><code>source</code></em> et <em class="parameter"><code>condition</code></em> 
+sont tels que décrits précédemment. La valeur de source 
+sera le descripteur de fichier de bas niveau et non l'objet fichier 
+Python (c-a-d la valeur retournée par la méthode de fichier Python 
+<code class="methodname">fileno</code>()).</p>
+<p>On peut aussi empêcher la fonction de rappel d'être à nouveau utilisée  
+en renvoyant zéro ou <code class="literal">FALSE</code> depuis le rappel. Si on 
+veut que le callback soit réutilisé, il doit retourner <code class="literal">TRUE</code>.
+</p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch-TimeoutsIOAndIdleFunctions.html">Préc.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch-TimeoutsIOAndIdleFunctions.html">Chapitre parent</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sec-IdleFunctions.html">Suiv.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapitre 19. Temporisations, Entrées/Sorties et fonctions d'inactivité </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top"> 19.3. Les fonctions d'inactivité</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

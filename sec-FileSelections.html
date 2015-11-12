@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+<title>9.14. Le s&eacute;lecteur de fichier</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,selection de fichier">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
+<link rel="previous" href="sec-ColorSelection.html" title="9.13. Le s&eacute;lecteur de couleur">
+<link rel="next" href="sec-FontSelectionDialog.html" title="9.15. Le s&eacute;lecteur de police">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici&nbsp;: 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">9.14. Le s&eacute;lecteur de fichier</th>
+</tr><tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-ColorSelection.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 9. Widgets divers</th>
+<td width="20%" align="right"><a accesskey="n" href="sec-FontSelectionDialog.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+
+<div class="sect1"><div class="titlepage">
+<div><h2 class="title" style="clear: both"><a name="SelecteurFichier"></a>9.14. Le s&eacute;lecteur de fichier</h2></div></div>
+
+<p>Le s&eacute;lecteur de fichier est un moyen simple et rapide d'afficher une boite de dialogue de fichier d&eacute;j&agrave; &eacute;quip&eacute;e des boutons Valider, Annuler, et Aide. Une bonne &eacute;conomie en temps de programmation !</p>
+<p>Pour cr&eacute;er une nouvelle boite de s&eacute;lection de fichier, on utilise&nbsp;:</p>
+
+<pre class="programlisting">
+  selectfichier = gtk.FileSelection(<b><tt>title</tt></b>=None)
+</pre>
+
+<p>Pour d&eacute;finir le nom du fichier, par exemple pour joindre directement un dossier sp&eacute;cifique ou donner un nom de fichier par d&eacute;faut, on utilise la m&eacute;thode&nbsp;:</p>
+
+<pre class="programlisting">
+  selectfichier.set_filename(<b><tt>filename</tt></b>)
+</pre>
+
+<p>... o&ugrave; <i><tt>filename</tt></i> est le nom du fichier. Pour r&eacute;cup&eacute;rer, sous forme de texte, le nom du fichier que l'utilisateur a saisi ou cliqu&eacute;, on fait appel &agrave; la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class="programlisting">
+  nomfichier = selectfichier.get_filename()
+</pre>
+
+<p>Il existe aussi des r&eacute;f&eacute;rences aux widgets contenus dans le s&eacute;lecteur de fichier. Ce sont tous des attributs de <i>selectfichier</i>&nbsp;:</p>
+
+<pre class="programlisting">
+  selectfichier.dir_list                 # (liste des dossiers)
+  selectfichier.file_list                # (liste des fichiers)
+  selectfichier.selection_entry          # (champ de saisie &quot;S&eacute;lection&quot;)
+  selectfichier.selection_text           # (texte &quot;S&eacute;lection&quot;)
+  selectfichier.main_vbox                # (boite verticale principale)
+  selectfichier.ok_button                # (bouton Valider)
+  selectfichier.cancel_button            # (bouton Annuler)
+  selectfichier.help_button              # (bouton Aide)
+  selectfichier.history_pulldown         # (menu historique d&eacute;roulant)
+  selectfichier.history_menu	         #
+  selectfichier.fileop_dialog            # (boutons d'op&eacute;ration sur fichier&nbsp;: boite de dialogue)
+  selectfichier.fileop_entry             # (boutons d'op&eacute;ration sur fichier&nbsp;: champ de saisie)
+  selectfichier.fileop_file              # (boutons d'op&eacute;ration sur fichier&nbsp;: fichier)
+  selectfichier.fileop_c_dir             # (boutons d'op&eacute;ration sur fichier&nbsp;: bouton &quot;Cr&eacute;er un dossier&quot;)
+  selectfichier.fileop_del_file          # (boutons d'op&eacute;ration sur fichier&nbsp;: bouton &quot;Supprimer le fichier&quot;)
+  selectfichier.fileop_ren_file          # (boutons d'op&eacute;ration sur fichier&nbsp;: bouton &quot;Renommer le fichier&quot;)
+  selectfichier.button_area              # (zone des boutons d'op&eacute;ration sur fichier)
+  selectfichier.action_area              #
+</pre>
+
+<p>On utilisera le plus souvent les attributs <i><tt>ok_button</tt></i>, <i><tt>cancel_button</tt></i>, et <i><tt>help_button</tt></i> afin de connecter les signaux de leur widget &agrave; des fonctions de rappel.</p>
+<p>Le programme <a href="exemples/selectfichier.py" target="_top"><b>selectfichier.py</b></a> donne un exemple d'utilisation du widget de s&eacute;lection de fichier. Notez que, bien que le bouton Aide apparaisse &agrave; l'&eacute;cran, il n'a aucun effet car aucun signal ne lui est attach&eacute;. La <a href="sec-FileSelections.html#FigSelectFichier" title="Figure 9.14. Exemple de S&eacute;lecteur de fichier">Figure 9.14</a> montre l'affichage obtenu&nbsp;:</p>
+
+<div class="figure"><a name="FigSelectFichier"></a>
+<p class="title"><b>Figure 9.14. Exemple de s&eacute;lecteur de fichier</b></p>
+<div class="mediaobject" align="center">
+<img src="figures/selectfichier.png" align="middle" alt="exemple sélecteur de fichier">
+</div></div>
+
+<p>Le code source de <a href="exemples/selectfichier.py" target="_top"><b>selectfichier.py</b></a> est le suivant&nbsp;:</p>
+
+<pre class="programlisting">
+     1   #!/usr/bin/env python
+     2   
+     3   # exemple selectfichier.py
+     4   
+     5   import pygtk
+     6   pygtk.require('2.0')
+     7   import gtk
+     8   
+     9   class ExempleSelecteurFichier:
+    10       # On recupere le nom du fichier choisi et on l'affiche dans la console
+    11       def ok_fichier(self, w):
+    12           print "%s" % self.selectfichier.get_filename()
+    13   
+    14       def destroy(self, widget):
+    15           gtk.main_quit()
+    16   
+    17       def __init__(self):
+    18           # Creation d'un nouveau widget de selection de fichier
+    19           self.selectfichier = gtk.FileSelection("Selection de fichier")
+    20   
+    21           self.selectfichier.connect("destroy", self.destroy)
+    22           # Connexion du bouton OK a la methode ok_fichier()
+    23           self.selectfichier.ok_button.connect("clicked", self.ok_fichier)
+    24       
+    25           # Connexion du bouton Annuler a la destruction du widget
+    26           self.selectfichier.cancel_button.connect("clicked",
+    27                                            lambda w: self.selectfichier.destroy())
+    28       
+    29           # Definissons le fichier, comme s'il s'agissait d'une boite de dialogue
+    30           # d'enregistrement de fichier et que nous donnions un fichier par defaut
+    31           self.selectfichier.set_filename("pingouin.png")
+    32       
+    33           self.selectfichier.show()
+    34   
+    35   def main():
+    36       gtk.main()
+    37       return 0
+    38   
+    39   if __name__ == "__main__":
+    40       ExempleSelecteurFichier()
+    41       main()
+</pre>
+</div>
+
+<div class="navfooter">
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+<tr>
+<td width="40%" align="left"><a accesskey="p" href="sec-ColorSelection.html">Pr&eacute;c.</a></td>
+<td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
+<td width="40%" align="right"><a accesskey="n" href="sec-FontSelectionDialog.html">Suiv.</a></td>
+</tr><tr>
+<td width="40%" align="left" valign="top">9.13. Le s&eacute;lecteur de couleur</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="right" valign="top">9.15. Le s&eacute;lecteur de police</td>
+</tr></table></div>
+
+</body>
+
+</html>

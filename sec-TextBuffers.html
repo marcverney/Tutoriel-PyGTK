@@ -1,0 +1,364 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+<title>13.3. TextBuffer&nbsp;: le buffer de texte</title>
+<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,textview">
+<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="ch-TextViewWidget.html" title="Chapitre 13. Le widget TextView">
+<link rel="previous" href="sec-TextViews.html" title="13.2. TextView&nbsp;: la zone de texte">
+<link rel="next" href="sec-TextIters.html" title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte">
+</head>
+
+<body>
+<div class="localisation"> 
+Vous êtes à peu près ici&nbsp;: 
+<a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
+<a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
+ <a href="index.html">PyGTK : sommaire</a>
+</div> <!-- fin localisation --> 
+<div class="navheader">
+<table width="100%" summary="En-t&ecirc;te de navigation">
+<tr>
+<th colspan="3" align="center">13.3. TextBuffer&nbsp;: le buffer de texte</th></tr>
+<tr>
+<td width="20%" align="left"><a accesskey="p" href="sec-TextViews.html">Pr&eacute;c.</a></td>
+<th width="60%" align="center">Chapitre 13. Le widget TextView</th>
+<td width="20%" align="right"><a accesskey="n" href="sec-TextIters.html">Suiv.</a></td>
+</tr></table>
+
+<hr>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage">
+<div>
+<h2 class="title" style="clear: both"><a name=TextBuffer></a>13.3. TextBuffer&nbsp;: le buffer de texte</h2></div></div>
+
+<p>Le <tt>TextBuffer</tt> est le composant principal du syst&egrave;me d'&eacute;dition de texte de PyGTK. Il contient le texte, les <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> (dans une <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a>), et les <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a>, qui, ensemble, d&eacute;crivent comment le texte doit &ecirc;tre affich&eacute; et permettent &agrave; l'utilisateur de modifier interactivement le texte ou la mani&egrave;re dont il s'affiche. Comme nous l'avons fait remarquer dans la section pr&eacute;c&eacute;dente, un <tt>TextBuffer</tt> est associ&eacute; &agrave; un ou plusieurs <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a>, qui se chargent d'afficher son contenu.</p>
+<p>La cr&eacute;ation d'un <tt>TextBuffer</tt> se fait soit automatiquement lorsque l'on cr&eacute;e un <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a>, soit avec la fonction&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte = TextBuffer(<b><tt>table</tt></b>=None)
+</pre>
+
+<p>o&ugrave; <i><tt>table</tt></i> est une <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a>. Si <i><tt>table</tt></i> n'est pas sp&eacute;cifi&eacute; (ou s'il vaut None), une nouvelle <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a> sera cr&eacute;&eacute;e pour le TextBuffer.</p>
+<p>Un grand nombre de m&eacute;thodes est disponible pour&nbsp;:</p>
+
+<div class=itemizedlist><ul type=disc>
+  <li>ins&eacute;rer et supprimer du texte dans un buffer
+  <li>cr&eacute;er, supprimer et manipuler des marques
+  <li>manipuler le curseur et la s&eacute;lection
+  <li>cr&eacute;er, appliquer, et supprimer des balises
+  <li>sp&eacute;cifier et manipuler des <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a>
+  <li>r&eacute;cup&eacute;rer des informations sur l'&eacute;tat du buffer</li></ul></div>
+
+<div class="sect2" lang="fr"><div class="titlepage">
+<div><h3 class="title"><a name="RecupInfoBuffer"></a>13.3.1. R&eacute;cup&eacute;rer des informations sur le buffer</h3></div></div>
+
+<p>Vous pouvez r&eacute;cup&eacute;rer le nombre de lignes d'un <tt>TextBuffer</tt> avec la m&eacute;thode&nbsp;:</p>
+
+<pre class=programlisting>
+  nombre_lignes = bufferdetexte.get_line_count()
+</pre>
+
+<p>De la m&ecirc;me mani&egrave;re, vous pouvez obtenir le nombre de caract&egrave;res pr&eacute;sents dans le <tt>TextBuffer</tt>&nbsp;:</p>
+
+<pre class=programlisting>
+  nombre_caract = bufferdetexte.get_char_count()
+</pre>
+
+<p>Lorsque le contenu du <tt>TextBuffer</tt> est modifi&eacute;, le drapeau de modification est lev&eacute;. L'&eacute;tat de ce drapeau peut &ecirc;tre obtenu &agrave; l'aide de la m&eacute;thode&nbsp;:</p>
+
+<pre class=programlisting>
+  modif = bufferdetexte.get_modified()
+</pre>
+
+<p>Si le programme sauvegarde le contenu du buffer, la m&eacute;thode suivante peut r&eacute;initialiser le drapeau de modification&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte.set_modified(<b><tt>choix</tt></b>)
+</pre>
+
+</div><div class="sect2" lang="fr"><div class="titlepage">
+<div><h3 class="title"><a name="CreerTextIter"></a>13.3.2. Cr&eacute;er  des TextIter</h3></div></div>
+
+<p>On utilise les <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> pour sp&eacute;cifier une position entre deux caract&egrave;res d'un <tt>TextBuffer</tt>. Les m&eacute;thodes du <tt>TextBuffer</tt> qui manipulent du texte s'en servent pour indiquer &agrave; quelle position elles doivent s'appliquer. Les <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> poss&egrave;dent de nombreuses m&eacute;thodes qui seront d&eacute;crites dans la section <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a>.</p>
+<p>Les m&eacute;thodes de <tt>TextBuffer</tt> basiques pour cr&eacute;er des <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> sont&nbsp;:</p>
+
+<pre class=programlisting>
+  iter = bufferdetexte.get_iter_at_offset(<b><tt>n</tt></b>)
+
+  iter = bufferdetexte.get_iter_at_line(<b><tt>x</tt></b>)
+
+  iter = bufferdetexte.get_iter_at_line_offset(<b><tt>x</tt></b>, <b><tt>n</tt></b>)
+
+  iter = bufferdetexte.get_iter_at_mark(<b><tt>marque</tt></b>)
+</pre>
+
+<p><tt>get_iter_at_offset</tt>() cr&eacute;e un it&eacute;rateur juste apr&egrave;s le <i><tt>n</tt></i><sup><sup><font SIZE=1>&egrave;me</font></sup></sup> caract&egrave;re &agrave; partir du d&eacute;but du <tt>TextBuffer</tt>.</p>
+<p><tt>get_iter_at_line</tt>() cr&eacute;e un it&eacute;rateur juste avant le premier caract&egrave;re de la <i><tt>x</tt></i><sup><sup><font SIZE=1>&egrave;me</font></sup></sup> ligne.</p>
+<p><tt>get_iter_at_line_offset</tt>() cr&eacute;e un it&eacute;rateur juste apr&egrave;s le <i><tt>n</tt></i><sup><sup><font SIZE=1>&egrave;me</font></sup></sup> caract&egrave;re de la <i><tt>x</tt></i><sup><sup><font SIZE=1>&egrave;me</font></sup></sup> ligne.</p>
+<p><tt>get_iter_at_mark</tt>() cr&eacute;e un it&eacute;rateur &agrave; la m&ecirc;me position que la <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a> <i><tt>marque</tt></i>.</p>
+<p>Le m&eacute;thode qui suit cr&eacute;e un ou plusieurs <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> &agrave; des emplacements sp&eacute;cifiques du buffer&nbsp;:</p>
+
+<pre class=programlisting>
+  iterdebut = bufferdetexte.get_start_iter()
+
+  iterfin = bufferdetexte.get_end_iter()
+
+  iterdebut, iterfin = bufferdetexte.get_bounds()
+
+  debut, fin = bufferdetexte.get_selection_bounds()
+</pre>
+
+<p><tt>get_start_iter</tt>() cr&eacute;e un it&eacute;rateur juste avant le premier caract&egrave;re du buffer.</p>
+<p><tt>get_end_iter</tt>() cr&eacute;e un it&eacute;rateur juste apr&egrave;s le dernier caract&egrave;re du buffer.</p>
+<p><tt>get_bounds</tt>() cr&eacute;e un tuple de deux it&eacute;rateurs respectivement situ&eacute;s juste avant le premier caract&egrave;re et juste apr&egrave;s le dernier caract&egrave;re du buffer.</p>
+<p><tt>get_selection_bounds</tt>() cr&eacute;e un tuple de deux it&eacute;rateurs aux m&ecirc;mes positions que les marques <i><tt>insert</tt></i> et <i><tt>selection_bound</tt></i> du buffer.</p></div>
+
+<div class="sect2" lang="fr"><div class="titlepage">
+<div><h3 class="title"><a name="InserRecupSuppr"></a>13.3.3. Ins&eacute;rer, r&eacute;cup&eacute;rer et supprimer du texte</h3></div></div>
+
+<p>Le texte contenu par un <tt>TextBuffer</tt> peut &ecirc;tre d&eacute;fini avec la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte.set_text(<b><tt>texte</tt></b>)
+</pre>
+
+<p>Cette m&eacute;thode remplace le contenu actuel de <i>bufferdetexte</i> par <i><tt>texte</tt></i>.</p>
+<p>La m&eacute;thode la plus g&eacute;n&eacute;rale pour ins&eacute;rer des caract&egrave;res dans un <tt>TextBuffer</tt> est&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte.insert(<b><tt>iter</tt></b>, <b><tt>texte</tt></b>)
+</pre>
+
+<p>o&ugrave; l'on ins&egrave;re le texte <i><tt>texte</tt></i> &agrave; l'emplacement de <i>bufferdetexte</i> sp&eacute;cifi&eacute; par <i><tt>iter</tt></i>.</p>
+<p>Si vous souhaitez simuler une insertion de texte par un utilisateur interactif, faites appel &agrave; la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class=programlisting>
+  resultat = bufferdetexte.insert_interactive(<b><tt>iter</tt></b>, <b><tt>texte</tt></b>, <b><tt>defaut_editable</tt></b>)
+</pre>
+
+<p>qui ins&egrave;rera <i><tt>texte</tt></i> dans le buffer, &agrave; la position sp&eacute;cifi&eacute;e par <i><tt>iter</tt></i>, mais seulement si cette position est &eacute;ditable (c'est-&agrave;-dire si elle ne porte pas de balise mentionnant que le texte est non &eacute;ditable) et que la valeur de <i><tt>defaut_editable</tt></i> est TRUE. Le r&eacute;sultat indique si le texte a &eacute;t&eacute; ins&eacute;r&eacute;.</p>
+<p>L'argument <i><tt>defaut_editable</tt></i> pr&eacute;cise si un texte peut &ecirc;tre &eacute;dit&eacute; dans le cas o&ugrave; il ne porte pas de balise le sp&eacute;cifiant ; <i><tt>defaut_editable</tt></i> est g&eacute;n&eacute;ralement d&eacute;termin&eacute; par un appel &agrave; la m&eacute;thode <tt>get_editable</tt>() du <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a>.</p>
+<p>D'autres m&eacute;thodes existent pour ins&eacute;rer du texte&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte.insert_at_cursor(<b><tt>texte</tt></b>)
+
+  resultat = bufferdetexte.insert_at_cursor_interactive(<b><tt>texte</tt></b>, <b><tt>defaut_editable</tt></b>)
+
+  bufferdetexte.insert_range(<b><tt>iter</tt></b>, <b><tt>debut</tt></b>, <b><tt>fin</tt></b>)
+
+  resultat = bufferdetexte.insert_range_interactive(<b><tt>iter</tt></b>, <b><tt>debut</tt></b>, <b><tt>fin</tt></b>, <b><tt>defaut_editable</tt></b>)
+</pre>
+
+<p><tt>insert_at_cursor</tt>() est une m&eacute;thode pratique pour ins&eacute;rer du texte &agrave; l'emplacement courant du curseur (<i><tt>insert</tt></i>).</p>
+<p><tt>insert_range</tt>() copie le texte, les pixbufs et les balises compris entre les it&eacute;rateurs <i><tt>debut</tt></i> et <i><tt>fin</tt></i> d'un <tt>TextBuffer</tt> (si ce <tt>TextBuffer</tt> n'est pas <i>bufferdetexte</i>, la table des balises doit &ecirc;tre la m&ecirc;me), puis colle le tout dans <i>bufferdetexte</i> &agrave; l'emplacement indiqu&eacute; par <i><tt>iter</tt></i>.</p>
+
+<p>Les versions interactives de ces m&eacute;thodes op&egrave;rent de la m&ecirc;me mani&egrave;re &agrave; la diff&eacute;rence qu'elles n'ins&egrave;rent la copie que si l'emplacement est &eacute;ditable.</p>
+<p>Enfin, en peut ins&eacute;rer du texte et lui appliquer des balises en m&ecirc;me temps par l'interm&eacute;diaire des m&eacute;thodes&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte.insert_with_tags(iter, texte, balise1, balise2, ...)
+  
+  bufferdetexte.insert_with_tags_by_name(iter, texte, nom_balise1, nom_balise2, ...)
+</pre>
+
+<p><tt>insert_with_tags</tt>() ins&egrave;re le <i><tt>texte</tt></i> dans le <i>bufferdetexte</i>, &agrave; l'emplacement sp&eacute;cifi&eacute; par l'<i><tt>iter</tt></i>, et lui applique les balises donn&eacute;es.</p>
+<p><tt>insert_with_tags_by_name</tt>() fait la m&ecirc;me chose mais permet de sp&eacute;cifier les balises en les nommant.</p>
+<p>On peut effacer du texte d'un buffer avec les m&eacute;thodes&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte.delete(<b><tt>debut</tt></b>, <b><tt>fin</tt></b>)
+  
+  resultat = bufferdetexte.delete_interactive(<b><tt>debut</tt></b>, <b><tt>fin</tt></b>, <b><tt>defaut_editable</tt></b>)
+</pre>
+
+<p><tt>delete</tt>() supprime le texte compris entre les <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> <i><tt>debut</tt></i> et <i><tt>fin</tt></i> de <i>bufferdetexte</i>.</p>
+<p><tt>delete_interactive</tt>() supprime tout texte &eacute;ditable (d&eacute;termin&eacute; comme tel par les balises de texte applicables et par l'argument <i><tt>defaut_editable</tt></i>) compris entre <i><tt>debut</tt></i> et <i><tt>fin</tt></i>.</p>
+<p>Vous pouvez r&eacute;cup&eacute;rer une copie du texte d'un <tt>TextBuffer</tt> gr&acirc;ce aux m&eacute;thodes&nbsp;:</p>
+
+<pre class=programlisting>
+  texte = bufferdetexte.get_text(<b><tt>debut</tt></b>, <b><tt>fin</tt></b>, <b><tt>include_hidden_chars</tt></b>=TRUE)
+
+  texte = bufferdetexte.get_slice(<b><tt>debut</tt></b>, <b><tt>fin</tt></b>, <b><tt>include_hidden_chars</tt></b>=TRUE)
+</pre>
+
+<p><tt>get_text</tt>() retourne une copie du texte du buffer compris entre <i><tt>debut</tt></i> et <i><tt>fin</tt></i> ; le texte non affich&eacute; est exclu si <i><tt>include_hidden_chars</tt></i> vaut FALSE. Les caract&egrave;res repr&eacute;sentant des images incrust&eacute;es ou des widgets sont exclus.</p>
+<p><tt>get_slice</tt>() est identique &agrave; <tt>get_text</tt>() &agrave; la diff&eacute;rence que le texte qu'elle retourne inclut un caract&egrave;re 0xFFFC pour chaque image incrust&eacute;e ou widget.</p></div>
+
+<div class="sect2" lang="fr"><div class="titlepage">
+<div><h3 class="title"><a name="CreerManipTextMark"></a>13.3.4. Cr&eacute;er et manipuler des TextMark</h3></div></div>
+
+<p>Les <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a> sont similaires aux <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> en ceci qu'elles sp&eacute;cifient une position entre deux caract&egrave;res d'un <tt>TextBuffer</tt>. Cependant, les <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a> maintiennent leur information de position m&ecirc;me apr&egrave;s modification du buffer. Les m&eacute;thodes des <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a> seront d&eacute;crites plus loin dans la section <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a>.</p>
+
+<p>Un buffer de texte contient deux marques inh&eacute;rentes&nbsp;: la marque <i><tt>insert</tt></i> (insertion) et la marque <i><tt>selection_bound</tt></i> (fin de s&eacute;lection). La marque <i><tt>insert</tt></i> est la position par d&eacute;faut pour l'insertion de texte (le curseur). La marque <i><tt>selection_bound</tt></i> se combine avec la marque <i><tt>insert</tt></i> pour d&eacute;finir une s&eacute;lection.</p>
+
+<p>On peut retrouver ces deux marques en faisant appel aux m&eacute;thodes suivantes&nbsp;:</p>
+
+<pre class=programlisting>
+  marque_insert = bufferdetexte.get_insert()
+
+  marque_selectionbound = bufferdetexte.get_selection_bound()
+</pre>
+
+<p>Les marques <i><tt>insert</tt></i> et <i><tt>selection_bound</tt></i> peuvent &ecirc;tre plac&eacute;es simultan&eacute;ment &agrave; une position gr&acirc;ce &agrave; la m&eacute;thode&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte.place_cursor(<b><tt>emplacement</tt></b>)
+</pre>
+
+<p><i><tt>emplacement</tt></i> est un <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> qui indique la position. La m&eacute;thode <tt>place_cursor</tt>() est n&eacute;cessaire pour &eacute;viter de cr&eacute;er temporairement une s&eacute;lection si les marques ont &eacute;t&eacute; d&eacute;plac&eacute;es individuellement.</p>
+
+<p>On cr&eacute;e des <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a> avec la m&eacute;thode&nbsp;:</p>
+
+<pre class=programlisting>
+  marque = bufferdetexte.create_mark(<b><tt>nom_marque</tt></b>, <b><tt>emplacement</tt></b>, <b><tt>left_gravity</tt></b>=FALSE)
+</pre>
+
+<p>o&ugrave; <i><tt>nom_marque</tt></i> est le nom assign&eacute; &agrave; la marque cr&eacute;&eacute;e (<tt>None</tt> pour une marque anonyme), <i><tt>emplacement</tt></i> est l'it&eacute;rateur de texte indiquant la position de la marque dans le buffer, et <i><tt>left_gravity</tt></i> indique la situation de la marque apr&egrave;s que du texte y aura &eacute;t&eacute; ins&eacute;r&eacute; (gauche si TRUE, droite si FALSE).</p>
+<p>Une marque peut &ecirc;tre d&eacute;plac&eacute;e dans le buffer avec les m&eacute;thodes&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte.move_mark(<b><tt>marque</tt></b>, <b><tt>emplacement</tt></b>)
+
+  bufferdetexte.move_mark_by_name(<b><tt>nom_marque</tt></b>, <b><tt>emplacement</tt></b>)
+</pre>
+
+<p><i><tt>marque</tt></i> d&eacute;signe la marque &agrave; d&eacute;placer. <i><tt>nom_marque</tt></i> sp&eacute;cifie le nom de la marque &agrave; d&eacute;placer. <i><tt>emplacement</tt></i> est un it&eacute;rateur de texte indiquant la nouvelle position.</p>
+<p>On peut supprimer une marque d'un buffer avec les m&eacute;thodes&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte.delete_mark(<b><tt>marque</tt></b>)
+
+  bufferdetexte.delete_mark_by_name(<b><tt>nom_marque</tt></b>)
+</pre>
+
+<p>On peut r&eacute;cup&eacute;rer une marque par son nom avec la m&eacute;thode&nbsp;:</p>
+
+<pre class=programlisting>
+  marque = bufferdetexte.get_mark(<b><tt>nom_marque</tt></b>)
+</pre>
+
+</div>
+
+<div class="sect2" lang="fr"><div class="titlepage">
+<div><h3 class="title"><a name="CreerAppliqTextTag"></a>13.3.5. Cr&eacute;er et appliquer des TextTag</h3></div></div>
+
+<p>Les <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> contiennent un ou plusieurs attributs (comme les couleurs d'arri&egrave;re-plan et de premier plan, la police, la possibilit&eacute; d'&eacute;dition) que l'on peut appliquer &agrave; une ou plusieurs portions du texte d'un buffer. Les attributs pouvant &ecirc;tre sp&eacute;cifi&eacute;s par une <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> seront d&eacute;crits dans la section <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a>.</p>
+<p>La m&eacute;thode suivante cr&eacute;e une <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> avec des attributs et l'installe dans la <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a> d'un <tt>TextBuffer</tt>&nbsp;:</p>
+
+<pre class=programlisting>
+  balise = bufferdetexte.create_tag(name=None, attribut1=valeur1, attribut2=valeur2, ...)
+</pre>
+
+<p><i><tt>name</tt></i> est soit une cha&icirc;ne de caract&egrave;res sp&eacute;cifiant le nom de la balise, soit <tt>None</tt> si la balise est anonyme. Les couples <tt>attribut</tt>-<tt>valeur</tt> d&eacute;terminent les attributs de la balise. Reportez-vous &agrave; la section <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> pour des informations concernant les attributs qui peuvent &ecirc;tre d&eacute;finis par les propri&eacute;t&eacute;s d'une <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a>.</p>
+<p>Une balise peut &ecirc;tre appliqu&eacute;e &agrave; une portion du texte d'un buffer par la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte.apply_tag(<b><tt>balise</tt></b>, <b><tt>debut</tt></b>, <b><tt>fin</tt></b>)
+
+  bufferdetexte.apply_tag_by_name(<b><tt>nom_balise</tt></b>, <b><tt>debut</tt></b>, <b><tt>fin</tt></b>)
+</pre>
+
+<p>o&ugrave; <i><tt>balise</tt></i> est la balise &agrave; appliquer au texte, <i><tt>nom_balise</tt></i> le nom de la balise, et <i><tt>debut</tt></i> et <i><tt>fin</tt></i> des it&eacute;rateurs de texte qui indiquent la portion de texte &agrave; laquelle la balise doit &ecirc;tre appliqu&eacute;e.</p>
+<p>On peut retirer une balise d'une portion de texte en utilisant les m&eacute;thodes suivantes&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte.remove_tag(<b><tt>balise</tt></b>, <b><tt>debut</tt></b>, <b><tt>fin</tt></b>)
+
+  bufferdetexte.remove_tag_by_name(<b><tt>nom_balise</tt></b>, <b><tt>debut</tt></b>, <b><tt>fin</tt></b>)
+</pre>
+
+<p>Pour retirer toutes les balises d'une portion de texte, on utilisera&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte.remove_all_tags(<b><tt>debut</tt></b>, <b><tt>fin</tt></b>)
+</pre>
+
+</div>
+
+<div class="sect2" lang="fr"><div class="titlepage">
+<div><h3 class="title"><a name="InserImagesWidgets"></a>13.3.6. Ins&eacute;rer des images et des widgets</h3></div></div>
+
+<p>En plus du texte, un <tt>TextBuffer</tt> peut contenir des images pixbuf et un point d'ancrage pour widgets. Ce point d'ancrage sert &agrave; ajouter un widget &agrave; une <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a>. Un widget diff&eacute;rent peut &ecirc;tre ajout&eacute; dans chaque <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a> qui affiche un buffer contenant un point d'ancrage.</p>
+<p>On peut ins&eacute;rer une image pixbuf avec la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class=programlisting>
+  bufferdetexte.insert_pixbuf(<b><tt>iter</tt></b>, <b><tt>pixbuf</tt></b>)
+</pre>
+
+<p>dans laquelle <i><tt>iter</tt></i> pr&eacute;cise l'emplacement du buffer o&ugrave; ins&eacute;rer l'image <i><tt>pixbuf</tt></i>. Cette image comptera pour un caract&egrave;re et sera repr&eacute;sent&eacute;e par le caract&egrave;re Unicode "0xFFFC" dans le texte retourn&eacute; par la m&eacute;thode <tt>get_slice</tt>() (il ne figurera pas dans celui retourn&eacute; par <tt>get_text</tt>() ).</p>
+<p>On peut ins&eacute;rer un widget GTK+ dans une <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a>, &grave; un emplacement du buffer sp&eacute;cifi&eacute;e par un <tt>TextChildAnchor</tt> (point d'ancrage pour enfant). Tout comme une image pixbuf, le <tt>TextChildAnchor</tt> comptera pour un caract&egrave;re repr&eacute;sent&eacute; par "0xFFFC".</p>
+<p>Le moyen le plus commode de cr&eacute;er et d'ins&eacute;rer un <tt>TextChildAnchor</tt> est la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class=programlisting>
+  ancrage = bufferdetexte.create_child_anchor(<b><tt>iter</tt></b>)
+</pre>
+
+<p>o&ugrave; <i><tt>iter</tt></i> est l'emplacement destin&eacute; &agrave; recevoir le point d'ancrage.</p>
+<p>Mais on peut aussi cr&eacute;er et ins&eacute;rer le <tt>TextChildAnchor</tt> en deux temps ainsi:</p>
+
+<pre class=programlisting>
+  ancrage = gtk.TextChildAnchor()
+
+  bufferdetexte.insert_child_anchor(<b><tt>iter</tt></b>, <b><tt>ancrage</tt></b>)
+</pre>
+
+<p>Puis l'on peut ajouter le widget &agrave; la <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a>, au point d'ancrage, gr&acirc;ce &agrave; la m&eacute;thode suivante&nbsp;:</p>
+
+<pre class=programlisting>
+  zonedetexte.add_child_at_anchor(<b><tt>widget_enfant</tt></b>, <b><tt>ancrage</tt></b>)
+</pre>
+
+<p>La m&eacute;thode qui suit permet de r&eacute;cup&eacute;rer la liste des widgets attach&eacute;s &agrave; un point d'ancrage&nbsp;:</p>
+
+<pre class=programlisting>
+  liste_widgets = ancrage.get_widgets()
+</pre>
+
+<p>On peut &eacute;galement ajouter un widget &agrave; une <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a> en utilisant cette m&eacute;thode&nbsp;:</p>
+
+<pre class=programlisting>
+  zonedetexte.add_child_in_window(<b><tt>widget_enfant</tt></b>, <b><tt>fenetre</tt></b>, <b><tt>position_x</tt></b>, <b><tt>position_y</tt></b>)
+</pre>
+
+<p>o&ugrave; le <i><tt>widget_enfant</tt></i> sera plac&eacute; dans la fen&ecirc;tre <i><tt>fenetre</tt></i> &agrave; la positon sp&eacute;cifi&eacute;e par <i><tt>position_x</tt></i> et <i><tt>position_y</tt></i>. <i><tt>fenetre</tt></i> indique laquelle des fen&ecirc;tres qui composent la <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a> doit recevoir le widget enfant&nbsp;:</p>
+
+<pre class=programlisting>
+  gtk.TEXT_WINDOW_TOP       # fen&ecirc;tre sup&eacute;rieure
+  gtk.TEXT_WINDOW_BOTTOM    # fen&ecirc;tre inf&eacute;rieure
+  gtk.TEXT_WINDOW_LEFT      # fen&ecirc;tre de gauche
+  gtk.TEXT_WINDOW_RIGHT     # fen&ecirc;tre de droite
+  gtk.TEXT_WINDOW_TEXT      # fen&ecirc;tre du texte
+  gtk.TEXT_WINDOW_WIDGET    # fen&ecirc;tre du widget
+</pre>
+
+</div>
+</div>
+
+<div class=navfooter>
+<hr>
+
+<table width="100%" summary="Bas de page de navigation">
+  
+  <tr>
+    <td align=left width="40%"><a accessKey=p href="sec-TextViews.html">Pr&eacute;c.</a>&nbsp;</td>
+    <td align=center width="20%"><a accessKey=u href="ch-TextViewWidget.html">Chapitre parent</a></td>
+    <td align=right width="40%">&nbsp;<a accessKey=n href="sec-TextIters.html">Suiv.</a></td></tr>
+  <tr>
+    <td vAlign=top align=left width="40%">13.2. TextView&nbsp;: la zone de texte&nbsp;</td>
+    <td align=center width="20%"><a accessKey=h href="index.html">Table des mati&egrave;res</a></td>
+    <td vAlign=top align=right width="40%">13.4. TextIter&nbsp;: les it&eacute;rateurs de texte</td>
+</tr></table>
+
+</div>
+
+</body>
+
+</html>
