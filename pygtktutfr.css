@@ -1,49 +1,10 @@
-/*
-* feuille de style pour tutoriel pygtk
-*/
-body {
-	background : #fdfbf4 ;
-	color:#000000 ;
-	font-family : "Bitstream Vera Serif" , "Times new roman", serif ;
-	font-size : 1em;
-}
-a {	color : #0000FF ;}
-a:visited {	color : #840084 ;}
-a:hover	{color : #0000FF ;}
-
-*[class~="surname"]:lang(fr) { font-variant: small-caps; }
-
 .programlisting {
-	background: #EEEED9;
-	color : black ;
-	padding-top : 1ex ;
-	padding-bottom : 1ex ;
+font: monospace;
+background-color: #E0E0E0;
+padding: 5;
 }
 
-.trad {font-style : italic;}
-.localisation {
-	font-size : 0.9em;
-	background : #C5C7A5;
-	color : #635E50;
-	padding : 0.3em;
-}
-
-.informaltable table{
-	border-collapse: collapse;
-	border : medium solid  #505040;
-}
-
-.informaltable td {
-	padding : 0.5ex ;
-	border : thin solid  #505040;
-}
-
-.tableinfo table{
-	border-collapse: collapse;
-	border : medium solid  #505040;
-}
-
-.tableinfo td {
-	padding : 0.5ex ;
-	border : thin solid  #505040;
+pre.synopsis {
+background-color: #E0E0E0;
+padding: 5;
 }
