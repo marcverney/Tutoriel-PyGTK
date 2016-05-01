@@ -1,11 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
-<title>Chapitre 7. Les ajustements</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+    <title>Chapitre 7. Les ajustements</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,adjustment,ajustement">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -15,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici : 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici :
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En-t&ecirc;te de navigation">
 <tr>
@@ -43,55 +42,55 @@ Vous êtes à peu près ici :
 <dt>7.3. <a href="sec-AdjustmentInternals.html">Les ajustements en d&eacute;tail</a></dt>
 </dl></div>
 
-<p>GTK dispose de plusieurs widgets pouvant &ecirc;tre regl&eacute;s visuellement par 
-l'utilisateur au moyen de la souris ou du clavier, comme les 
-<a title="Chapitre 8. Les widgets d'intervalle" href="ch-RangeWidgets.html">widgets 
-d'intervalle</a> par exemple. D'autres existent qui affichent une partie ajustable d'une 
-plus grande aire de donn&eacute;es, comme la zone de texte (gtk.TextView) et la vue orientable 
+<p>GTK dispose de plusieurs widgets pouvant &ecirc;tre regl&eacute;s visuellement par
+l'utilisateur au moyen de la souris ou du clavier, comme les
+<a title="Chapitre 8. Les widgets d'intervalle" href="ch-RangeWidgets.html">widgets
+d'intervalle</a> par exemple. D'autres existent qui affichent une partie ajustable d'une
+plus grande aire de donn&eacute;es, comme la zone de texte (gtk.TextView) et la vue orientable
 (gtk.Viewport).</p>
-<p>Une application doit &ecirc;tre capable de r&eacute;agir aux changements que l'utilisateur 
-effectue dans les widgets d'intervalle. Pour ce faire, chaque widget qu'on ajuste pourrait 
-&eacute;mettre son propre type de signal, puis, soit transmettre la nouvelle valeur au 
-gestionnaire de signal, soit faire inspecter sa structure de donn&eacute;es par ce dernier 
-afin de v&eacute;rifier la valeur. Mais il peut aussi arriver que l'on souhaite connecter 
-ensemble les changements de plusieurs widgets, de sorte qu'en r&eacute;glant l'un deux, 
-on r&egrave;gle les autres. L'exemple le plus &eacute;vident est le cas o&ugrave; l'on 
-souhaite connecter une barre de d&eacute;filement &agrave; une vue orientable ou &agrave; 
-une zone de texte &agrave; d&eacute;filement. Si chaque widget a sa propre fa&ccedil;on de 
-d&eacute;finir ou de r&eacute;cup&eacute;rer la valeur d'ajustement, le programmeur devra 
-certainement &eacute;crire un gestionnaire de signal pour chacun, ceci afin d'effectuer la 
-traduction entre, d'un c&ocirc;t&eacute; le signal &eacute;mis par un widget, et de l'autre, 
+<p>Une application doit &ecirc;tre capable de r&eacute;agir aux changements que l'utilisateur
+effectue dans les widgets d'intervalle. Pour ce faire, chaque widget qu'on ajuste pourrait
+&eacute;mettre son propre type de signal, puis, soit transmettre la nouvelle valeur au
+gestionnaire de signal, soit faire inspecter sa structure de donn&eacute;es par ce dernier
+afin de v&eacute;rifier la valeur. Mais il peut aussi arriver que l'on souhaite connecter
+ensemble les changements de plusieurs widgets, de sorte qu'en r&eacute;glant l'un deux,
+on r&egrave;gle les autres. L'exemple le plus &eacute;vident est le cas o&ugrave; l'on
+souhaite connecter une barre de d&eacute;filement &agrave; une vue orientable ou &agrave;
+une zone de texte &agrave; d&eacute;filement. Si chaque widget a sa propre fa&ccedil;on de
+d&eacute;finir ou de r&eacute;cup&eacute;rer la valeur d'ajustement, le programmeur devra
+certainement &eacute;crire un gestionnaire de signal pour chacun, ceci afin d'effectuer la
+traduction entre, d'un c&ocirc;t&eacute; le signal &eacute;mis par un widget, et de l'autre,
 les donn&eacute;es re&ccedil;ues par la m&eacute;thode d'ajustement d'un autre widget.</p>
-<p>GTK r&eacute;soud ce probl&egrave;me avec l'objet <tt>Adjustment</tt> (ajustement, 
-r&eacute;glage), qui n'est pas un widget mais un moyen pour les widgets de stocker et 
-transmettre, sous une forme abstraite et flexible, des informations de r&eacute;glage. 
-L'utilisation la plus &eacute;vidente de l'ajustement est de stocker les param&egrave;tres 
-et valeurs de configuration des widgets d'intervalle, comme les barres de d&eacute;filement 
-ou les gradateurs. Mais ce n'est pas tout : du fait qu'il d&eacute;rive de la classe 
-<tt>Object</tt>, il offre des possibilit&eacute;s dont ne disposent pas les structures 
-de donn&eacute;es normales, en particulier la possibilit&eacute; d'&eacute;mettre des 
-signaux, comme les widgets. On peut utiliser ces signaux pour faire r&eacute;agir le 
-programme aux modifications des widgets ajustables par l'utilisateur, mais &eacute;galement 
+<p>GTK r&eacute;soud ce probl&egrave;me avec l'objet <tt>Adjustment</tt> (ajustement,
+r&eacute;glage), qui n'est pas un widget mais un moyen pour les widgets de stocker et
+transmettre, sous une forme abstraite et flexible, des informations de r&eacute;glage.
+L'utilisation la plus &eacute;vidente de l'ajustement est de stocker les param&egrave;tres
+et valeurs de configuration des widgets d'intervalle, comme les barres de d&eacute;filement
+ou les gradateurs. Mais ce n'est pas tout : du fait qu'il d&eacute;rive de la classe
+<tt>Object</tt>, il offre des possibilit&eacute;s dont ne disposent pas les structures
+de donn&eacute;es normales, en particulier la possibilit&eacute; d'&eacute;mettre des
+signaux, comme les widgets. On peut utiliser ces signaux pour faire r&eacute;agir le
+programme aux modifications des widgets ajustables par l'utilisateur, mais &eacute;galement
 pour propager les valeurs d'ajustement entre ces widgets de mani&egrave;re transparente.</p>
-<p>Certains widgets incorporent des ajustements. C'est le cas, entre autres, des barres de 
-progression, des vues orientables et des fen&ecirc;tres &agrave; d&eacute;filement. Nous 
-observerons cette int&eacute;gration des ajustements dans les chapitres concernant ces 
+<p>Certains widgets incorporent des ajustements. C'est le cas, entre autres, des barres de
+progression, des vues orientables et des fen&ecirc;tres &agrave; d&eacute;filement. Nous
+observerons cette int&eacute;gration des ajustements dans les chapitres concernant ces
 widgets.</p>
 
 <div class="sect1"><div class="titlepage">
-<div><h2 class="title" style="clear: both"><a name="CreerAjustement"></a>7.1. Cr&eacute;er 
+<div><h2 class="title" style="clear: both"><a name="CreerAjustement"></a>7.1. Cr&eacute;er
 un ajustement</h2>
 </div></div>
 
-<p>Un grand nombre des widgets qui utilisent des ajustements le font de mani&egrave;re 
-automatique. Cependant, certains cas peuvent se pr&eacute;senter o&ugrave; il vous faudra 
+<p>Un grand nombre des widgets qui utilisent des ajustements le font de mani&egrave;re
+automatique. Cependant, certains cas peuvent se pr&eacute;senter o&ugrave; il vous faudra
 en cr&eacute;er un vous-m&ecirc;me. Vous utiliserez alors la m&eacute;thode suivante :</p>
 
 <pre class="programlisting">
   ajustement = gtk.Adjustment(<b><tt>value</tt></b>=0, <b><tt>lower</tt></b>=0, <b><tt>upper</tt></b>=0, <b><tt>step_incr</tt></b>=0, <b><tt>page_incr</tt></b>=0, <b><tt>page_size</tt></b>=0)
 </pre>
 
-<p>L'argument <i><tt>value</tt></i> (valeur) est la valeur initiale que vous voulez 
+<p>L'argument <i><tt>value</tt></i> (valeur) est la valeur initiale que vous voulez
 donner &agrave; votre <i><tt>ajustement</tt></i>, elle correspondra g&eacute;n&eacute;ralement &agrave; la position la plus haute ou la plus &agrave; gauche d'un widget ajustable. L'argument <i><tt>lower</tt></i> (minimale) sp&eacute;cifie la valeur la plus basse que peut prendre <i><tt>ajustement</tt></i>. L'argument <i><tt>step_incr</tt></i> (incr&eacute;mentation par pas) sp&eacute;cifie le plus petit des deux incr&eacute;ments par lequel l'utilisateur peut modifier la valeur, et <i><tt>page_incr</tt></i> (incr&eacute;mentation par page) le plus grand. L'argument <i><tt>page_size</tt></i> (taille de la page) correspond en quelque sorte &agrave; la partie visible d'un widget &agrave; d&eacute;filement. Enfin, <i><tt>upper</tt></i> (maximale) repr&eacute;sente la coordonn&eacute;e la plus basse ou la plus &agrave; droite de l'enfant d'un widget &agrave; d&eacute;filement. Il ne s'agit donc pas forc&eacute;ment de la valeur la plus grande que peut prendre <i><tt>value</tt></i> car, dans ces widgets, l'argument <i><tt>page_size</tt></i> est g&eacute;n&eacute;ralement diff&eacute;rent de z&eacute;ro.</p>
 </div></div>
 

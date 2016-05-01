@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>10.6. Les cadres proportionnels (AspectFrame)</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>10.6.Â Les cadres proportionnels (AspectFrame)</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-ContainerWidgets.html" title="Chapitre 10. Les widgets conteneurs">
-<link rel="prev" href="sec-Frames.html" title="10.5. Les cadres (Frame)">
-<link rel="next" href="sec-PanedWindowWidgets.html" title="10.7. Fenêtre à volets (Paned Window)">
+<link rel="up" href="ch-ContainerWidgets.html" title="ChapitreÂ 10.Â Les widgets conteneurs">
+<link rel="prev" href="sec-Frames.html" title="10.5.Â Les cadres (Frame)">
+<link rel="next" href="sec-PanedWindowWidgets.html" title="10.7.Â FenÃªtre Ã  volets (Paned Window)">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">10.6. Les cadres proportionnels (AspectFrame)</th></tr>
+<tr><th colspan="3" align="center">10.6.Â Les cadres proportionnels (AspectFrame)</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-Frames.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 10. Les widgets conteneurs</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-PanedWindowWidgets.html">Suiv.</a>
+<a accesskey="p" href="sec-Frames.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 10.Â Les widgets conteneurs</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-PanedWindowWidgets.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,86 +36,86 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-AspectFrames"></a>10.6. Les cadres proportionnels (AspectFrame)</h2></div></div></div>
-<p>Le cadre proportionnel est semblable au widget cadre, en outre 
-il maintient le rapport largeur/hauteur du widget enfant à sa valeur 
-en ajoutant de l'espace supplémentaire si nécessaire. Ceci est utile si, 
-par exemple, vous voulez présenter une image plus grande. La taille 
-de la prévisualisation peut varier lorsque l'utilisateur redimensionne 
-la fenêtre, mais les proportions de l'image doivent toujours 
-correspondre à l'image originale.
+<a name="sec-AspectFrames"></a>10.6.Â Les cadres proportionnels (AspectFrame)</h2></div></div></div>
+<p>Le cadre proportionnel est semblable au widget cadre, en outre
+il maintient le rapport largeur/hauteur du widget enfant Ã  sa valeur
+en ajoutant de l'espace supplÃ©mentaire si nÃ©cessaire. Ceci est utile si,
+par exemple, vous voulez prÃ©senter une image plus grande. La taille
+de la prÃ©visualisation peut varier lorsque l'utilisateur redimensionne
+la fenÃªtre, mais les proportions de l'image doivent toujours
+correspondre Ã  l'image originale.
 </p>
-<p>Pour créer un cadre proportionnel, on utilise :</p>
+<p>Pour crÃ©er un cadre proportionnel, on utiliseÂ :</p>
 <pre class="programlisting">
   cadre_prop = gtk.AspectFrame(<strong class="parameter"><code>label</code></strong>=None, <strong class="parameter"><code>xalign</code></strong>=0.5, <strong class="parameter"><code>yalign</code></strong>=0.5, <strong class="parameter"><code>ratio</code></strong>=1.0, <strong class="parameter"><code>obey_child</code></strong>=TRUE)
 </pre>
-<p>... où l'étiquette <em class="parameter"><code>label</code></em> indique le 
-texte qui sera affiché, les paramètres <em class="parameter"><code>xalign</code></em>et 
-<em class="parameter"><code>yalign</code></em> indiquent l'alignement comme décrit dans 
+<p>... oÃ¹ l'Ã©tiquette <em class="parameter"><code>label</code></em> indique le
+texte qui sera affichÃ©, les paramÃ¨tres <em class="parameter"><code>xalign</code></em>et
+<em class="parameter"><code>yalign</code></em> indiquent l'alignement comme dÃ©crit dans
 <a href="http://www.pygtk.org/pygtk2reference/class-gtkalignment.html" target="_top">
-<code class="classname">gtk.Alignment</code></a>. Si le paramètre 
-<em class="parameter"><code>obey_child</code></em> vaut <code class="literal">TRUE</code>, 
-les proportions du widget enfant correspondront à la taille idéale qu'il demande, 
-autrement elles seront données par la valeur de <em class="parameter"><code>ratio</code></em>.
+<code class="classname">gtk.Alignment</code></a>. Si le paramÃ¨tre
+<em class="parameter"><code>obey_child</code></em> vaut <code class="literal">TRUE</code>,
+les proportions du widget enfant correspondront Ã  la taille idÃ©ale qu'il demande,
+autrement elles seront donnÃ©es par la valeur de <em class="parameter"><code>ratio</code></em>.
 </p>
-<p>Pour modifier les arguments d'un cadre proportionnel existant, 
-      on utilise :</p>
+<p>Pour modifier les arguments d'un cadre proportionnel existant,
+      on utiliseÂ :</p>
 <pre class="programlisting">
   cadre_prop.set(<strong class="parameter"><code>xalign</code></strong>=0.0, <strong class="parameter"><code>yalign</code></strong>=0.0, <strong class="parameter"><code>ratio</code></strong>=1.0, <strong class="parameter"><code>obey_child</code></strong>=TRUE)
 </pre>
 <p>En exemple, le programme <a href="exemples/aspectframe.py" target="_top">
-<span><strong class="command">aspectframe.py</strong></span></a> utilise un cadre proportionnel 
-<code class="classname">AspectFrame</code> pour offrir une zone de dessin 
-dont le rapport de proportions sera toujours de 2/1, quel que 
-soit la manière dont l'utilisateur redimensionne la fenêtre. 
-La <a href="sec-AspectFrames.html#aspectframefig" title="Figure 10.5. Exemple de cadre proportionnel">Figure 10.5, « Exemple de cadre proportionnel »</a> montre l'affichage du 
+<span><strong class="command">aspectframe.py</strong></span></a> utilise un cadre proportionnel
+<code class="classname">AspectFrame</code> pour offrir une zone de dessin
+dont le rapport de proportions sera toujours de 2/1, quel que
+soit la maniÃ¨re dont l'utilisateur redimensionne la fenÃªtre.
+La <a href="sec-AspectFrames.html#aspectframefig" title="FigureÂ 10.5.Â Exemple de cadre proportionnel">FigureÂ 10.5, Â«Â Exemple de cadre proportionnelÂ Â»</a> montre l'affichage du
 programme.</p>
 <div class="figure">
-<a name="aspectframefig"></a><p class="title"><b>Figure 10.5. Exemple de cadre proportionnel</b></p>
+<a name="aspectframefig"></a><p class="title"><b>FigureÂ 10.5.Â Exemple de cadre proportionnel</b></p>
 <div class="mediaobject" align="center"><img src="figures/aspectframe.png" align="middle" alt="Exemple de cadre proportionnel"></div>
 <span>Exemple de cadre proportionnel</span>
 </div>
 <p>Voici le code du programme <a href="exemples/aspectframe.py" target="_top">
-<span><strong class="command">aspectframe.py</strong></span></a> :</p>
+<span><strong class="command">aspectframe.py</strong></span></a>Â :</p>
 <pre class="programlisting">
      1   #!/usr/bin/env python
      2   # -*- coding:utf-8 -*-
      3   # exemple aspectframe.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   class ExempleAspectFrame:
     10       def __init__(self):
     11           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL);
     12           fenetre.set_title("Cadre_proportionnel")
     13           fenetre.connect("destroy", lambda x: gtk.main_quit())
     14           fenetre.set_border_width(10)
-    15   
-    16           # Créer un cadre proportionnel - l'ajouter à la fenêtre principale
-    17           cadre_prop = gtk.AspectFrame("2x1", # étiquette
-    18                                          0.5, # x centré dans la fenêtre à
-    19                                          0.5, # y centré dans la fenêtre à
+    15
+    16           # CrÃ©er un cadre proportionnel - l'ajouter Ã  la fenÃªtre principale
+    17           cadre_prop = gtk.AspectFrame("2x1", # Ã©tiquette
+    18                                          0.5, # x centrÃ© dans la fenÃªtre Ã 
+    19                                          0.5, # y centrÃ© dans la fenÃªtre Ã 
     20                                          2, # rapport x/y = 2
     21                                          False) # ignorer taille des widgets enfant
     22           fenetre.add(cadre_prop)
     23           cadre_prop.show()
-    24   
+    24
     25           # Ajouter un widget enfant dans le cadre proportionnel
     26           zone_dessin = gtk.DrawingArea()
-    27   
-    28           # Déclarer une fenêtre de 200x200 mais le cadre proportionnel
+    27
+    28           # DÃ©clarer une fenÃªtre de 200x200 mais le cadre proportionnel
     29           # avec un rapport de 2x1 affiche une zone de 200x100
     30           zone_dessin.set_size_request(200, 200)
     31           cadre_prop.add(zone_dessin)
     32           zone_dessin.show()
     33           fenetre.show()
-    34   
+    34
     35   def main():
     36       gtk.main()
     37       return 0
-    38   
+    38
     39   if __name__ == "__main__":
     40       ExempleAspectFrame()
     41       main()
@@ -125,15 +126,15 @@ programme.</p>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-Frames.html">Préc.</a> </td>
+<a accesskey="p" href="sec-Frames.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-ContainerWidgets.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-PanedWindowWidgets.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-PanedWindowWidgets.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">10.5. Les cadres (Frame) </td>
+<td width="40%" align="left" valign="top">10.5.Â Les cadres (Frame)Â </td>
 <td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
-<td width="40%" align="right" valign="top"> 10.7. Fenêtre à volets (Paned Window)</td>
+<td width="40%" align="right" valign="top">Â 10.7.Â FenÃªtre Ã  volets (Paned Window)</td>
 </tr>
 </table>
 </div>

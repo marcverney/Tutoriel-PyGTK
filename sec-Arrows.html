@@ -1,10 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>9.2. Les fl&egrave;ches</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,fleche">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -14,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici&nbsp;: 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃšs ici&nbsp;:
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En-t&ecirc;te de navigation">
 <tr>
@@ -36,10 +36,10 @@ Vous êtes à peu près ici&nbsp;:
 <div class="sect1"><div class="titlepage">
 <div><h2 class="title" style="clear: both"><a name="sec-Arrows"></a>9.2. Les fl&egrave;ches</h2></div></div>
 
-<p>Le widget <tt>gtk.Arrow</tt> consiste en une t&ecirc;te de fl&egrave;che pouvant 
-pointer dans diff&eacute;rentes directions et &agrave; laquelle on peut appliquer un 
-certain nombre de styles. Dans beaucoup d'applications, ce widget se r&eacute;v&egrave;lera 
-tr&egrave;s utile une fois plac&eacute; &agrave; l'int&eacute;rieur d'un bouton. A l'instar 
+<p>Le widget <tt>gtk.Arrow</tt> consiste en une t&ecirc;te de fl&egrave;che pouvant
+pointer dans diff&eacute;rentes directions et &agrave; laquelle on peut appliquer un
+certain nombre de styles. Dans beaucoup d'applications, ce widget se r&eacute;v&egrave;lera
+tr&egrave;s utile une fois plac&eacute; &agrave; l'int&eacute;rieur d'un bouton. A l'instar
 des &eacute;tiquettes, il n'&eacute;met pas de signaux.</p>
 
 <p>Pour manipuler les fl&egrave;ches, il n'y a que deux appels&nbsp;:</p>
@@ -50,9 +50,9 @@ des &eacute;tiquettes, il n'&eacute;met pas de signaux.</p>
   fleche.set(<b><tt>arrow_type</tt></b>, <b><tt>shadow_type</tt></b>)
 </pre>
 
-<p>Le premier cr&eacute;e une fl&egrave;che, en prenant en compte le type et le style 
-demand&eacute;s. Le second appel permet de modifier ces valeurs apr&egrave;s la 
-cr&eacute;ation. L'argument <i><tt>arrow_type</tt></i> (type de fl&egrave;che) peut 
+<p>Le premier cr&eacute;e une fl&egrave;che, en prenant en compte le type et le style
+demand&eacute;s. Le second appel permet de modifier ces valeurs apr&egrave;s la
+cr&eacute;ation. L'argument <i><tt>arrow_type</tt></i> (type de fl&egrave;che) peut
 prendre l'une des valeurs suivantes&nbsp;:</p>
 
 <pre class="programlisting">
@@ -62,27 +62,27 @@ prendre l'une des valeurs suivantes&nbsp;:</p>
   ARROW_RIGHT		# droite
 </pre>
 
-<p>Ces valeurs indiquent &eacute;videmment la direction dans laquelle pointera la 
-fl&egrave;che. Les valeurs possibles pour l'argument <i><tt>shadow_type</tt></i> 
+<p>Ces valeurs indiquent &eacute;videmment la direction dans laquelle pointera la
+fl&egrave;che. Les valeurs possibles pour l'argument <i><tt>shadow_type</tt></i>
 (type d'ombre) sont&nbsp;:</p>
 
 <pre class="programlisting">
-  SHADOW_IN		# empreinte	
+  SHADOW_IN		# empreinte
   SHADOW_OUT		# relief (par d&eacute;faut)
   SHADOW_ETCHED_IN	# contour en empreinte
   SHADOW_ETCHED_OUT	# contour en relief
 </pre>
 
-<p>Le programme exemple <a href="exemples/fleches.py" target="_top"><b>fleches.py</b></a> 
-donne un aper&ccedil;u de l'utilisation du widget <tt>gtk.Arrow</tt>. La 
-<a href="sec-Arrows.html#FigFleches" title="Figure 9.2. Exemple de boutons avec 
-fl&egrave;ches">Figure 9.2</a> montre la fen&ecirc;tre que l'on obtient au lancement 
+<p>Le programme exemple <a href="exemples/fleches.py" target="_top"><b>fleches.py</b></a>
+donne un aper&ccedil;u de l'utilisation du widget <tt>gtk.Arrow</tt>. La
+<a href="sec-Arrows.html#FigFleches" title="Figure 9.2. Exemple de boutons avec
+fl&egrave;ches">Figure 9.2</a> montre la fen&ecirc;tre que l'on obtient au lancement
 du programme&nbsp;:</p>
 
 <div class="figure"><a name="FigFleches"></a>
 <p class="title"><b>Figure 9.2. Exemple de boutons avec fl&egrave;ches</b></p>
-<div class="mediaobject" align="center"><img src="figures/fleches.png" align="middle" 
-alt="exemple de flèche">
+<div class="mediaobject" align="center"><img src="figures/fleches.png" align="middle"
+alt="exemple de flÃšche">
 </div></div>
 
 <p>Voici le code source de <a href="exemples/fleches.py" target="_top"><b>fleches.py</b>
@@ -90,13 +90,13 @@ alt="exemple de flèche">
 
 <pre class="programlisting">
      1   #!/usr/bin/env python
-     2   
+     2
      3   # exemple fleches.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   # On cree une fleche avec les parametres specifies
     10   # et on la place dans un bouton
     11   def cree_fleche_bouton(type, ombre):
@@ -106,46 +106,46 @@ alt="exemple de flèche">
     15       bouton.show()
     16       fleche.show()
     17       return bouton
-    18   
+    18
     19   class Fleches:
     20       def __init__(self):
     21           # Creation d'une fenetre
     22           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    23   
+    23
     24           fenetre.set_title("Fleches dans boutons")
-    25   
+    25
     26           # C'est une bonne idee de faire ceci pour chaque fenetre
     27           fenetre.connect("destroy", gtk.main_quit)
-    28   
+    28
     29           # On fixe la largeur des bordures de la fenetre
     30           fenetre.set_border_width(10)
-    31   
+    31
     32           # On cree une boite pour contenir les boutons/fleches
     33           boite = gtk.HBox(False, 0)
     34           boite.set_border_width(2)
     35           fenetre.add(boite)
-    36   
+    36
     37           # On place et on affiche tous nos widgets
     38           boite.show()
-    39   
+    39
     40           bouton = cree_fleche_bouton(gtk.ARROW_UP, gtk.SHADOW_IN)
     41           boite.pack_start(bouton, False, False, 3)
-    42   
+    42
     43           bouton = cree_fleche_bouton(gtk.ARROW_DOWN, gtk.SHADOW_OUT)
     44           boite.pack_start(bouton, False, False, 3)
-    45     
+    45
     46           bouton = cree_fleche_bouton(gtk.ARROW_LEFT, gtk.SHADOW_ETCHED_IN)
     47           boite.pack_start(bouton, False, False, 3)
-    48     
+    48
     49           bouton = cree_fleche_bouton(gtk.ARROW_RIGHT, gtk.SHADOW_ETCHED_OUT)
     50           boite.pack_start(bouton, False, False, 3)
-    51     
+    51
     52           fenetre.show()
-    53   
+    53
     54   def main():
     55       gtk.main()
     56       return 0
-    57   
+    57
     58   if __name__ == "__main__":
     59       Fleches()
     60       main()

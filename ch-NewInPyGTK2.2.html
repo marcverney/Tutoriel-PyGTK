@@ -1,240 +1,241 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Chapitre 15. Nouveaux Widgets dans PyGTK 2.2</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>ChapitreÂ 15.Â Nouveaux Widgets dans PyGTK 2.2</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,clipboard" />
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="prev" href="sec-GenericCellRenderer.html" title="14.12. The Generic CellRenderer">
-<link rel="next" href="ch-NewInPyGTK2.4.html" title="Chapitre 16. Nouveaux Widgets dans PyGTK 2.4">
+<link rel="prev" href="sec-GenericCellRenderer.html" title="14.12.Â The Generic CellRenderer">
+<link rel="next" href="ch-NewInPyGTK2.4.html" title="ChapitreÂ 16.Â Nouveaux Widgets dans PyGTK 2.4">
 </head>
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici : 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici :
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">Chapitre 15. Nouveaux Widgets dans PyGTK 2.2</th></tr>
+<tr><th colspan="3" align="center">ChapitreÂ 15.Â Nouveaux Widgets dans PyGTK 2.2</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-GenericCellRenderer.html">Préc.</a> </td>
-<th width="60%" align="center"> </th>
-<td width="20%" align="right"> <a accesskey="n" href="ch-NewInPyGTK2.4.html">Suiv.</a>
+<a accesskey="p" href="sec-GenericCellRenderer.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">Â </th>
+<td width="20%" align="right">Â <a accesskey="n" href="ch-NewInPyGTK2.4.html">Suiv.</a>
 </tr>
 </table>
 <hr>
 </div>
 <div class="chapter" lang="fr">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="ch-NewInPyGTK2.2"></a>Chapitre 15. Nouveaux Widgets dans PyGTK 2.2</h2>
+<a name="ch-NewInPyGTK2.2"></a>ChapitreÂ 15.Â Nouveaux Widgets dans PyGTK 2.2</h2>
 </div></div></div>
 <div class="toc">
-<p><b>Table des matières</b></p>
+<p><b>Table des matiÃ¨res</b></p>
 <dl>
 <dt><span class="sect1"><a href="ch-NewInPyGTK2.2.html#sec-Clipboards">15.1. Les Clipboards</a></span></dt>
 <dd><dl>
-<dt><span class="sect2"><a href="ch-NewInPyGTK2.2.html#sec-CreatingClipboard">15.1.1. Créer un clipboard</a></span></dt>
+<dt><span class="sect2"><a href="ch-NewInPyGTK2.2.html#sec-CreatingClipboard">15.1.1. CrÃ©er un clipboard</a></span></dt>
 <dt><span class="sect2"><a href="ch-NewInPyGTK2.2.html#sec-UsingClipboards">15.1.2. Utiliser les Clipboard avec les Entry, Spinbutton et TextView</a></span></dt>
-<dt><span class="sect2"><a href="ch-NewInPyGTK2.2.html#sec-SettingClipboardData">15.1.3. Affecter des données à un Clipboard</a></span></dt>
-<dt><span class="sect2"><a href="ch-NewInPyGTK2.2.html#sec-RetrievingClipboardContents">15.1.4. Récupérer le contenu du Clipboard</a></span></dt>
+<dt><span class="sect2"><a href="ch-NewInPyGTK2.2.html#sec-SettingClipboardData">15.1.3. Affecter des donnÃ©es Ã  un Clipboard</a></span></dt>
+<dt><span class="sect2"><a href="ch-NewInPyGTK2.2.html#sec-RetrievingClipboardContents">15.1.4. RÃ©cupÃ©rer le contenu du Clipboard</a></span></dt>
 <dt><span class="sect2"><a href="ch-NewInPyGTK2.2.html#sec-ClipboardExample">15.1.5. Exemple de Clipboard</a></span></dt>
 </dl></dd>
 </dl>
 </div>
-<p>L'objet <code class="classname">Clipboard</code> a été ajouté en PyGTK 2.2. Le 
-<code class="classname">GtkClipboard</code> était disponible en GTK+ 2.0 mais 
-n'était pas utilisé par PyGTK 2.0 car il n'était pas un 
-<code class="classname">GObject</code> complet. Quelques nouveaux objets ont été ajoutés 
-au module gtk.gdk de PyGTK 2.2 mais ils ne seront pas décrits dans ce tutoriel. 
+<p>L'objet <code class="classname">Clipboard</code> a Ã©tÃ© ajoutÃ© en PyGTKÂ 2.2. Le
+<code class="classname">GtkClipboard</code> Ã©tait disponible en GTK+Â 2.0 mais
+n'Ã©tait pas utilisÃ© par PyGTKÂ 2.0 car il n'Ã©tait pas un
+<code class="classname">GObject</code> complet. Quelques nouveaux objets ont Ã©tÃ© ajoutÃ©s
+au module gtk.gdk de PyGTKÂ 2.2 mais ils ne seront pas dÃ©crits dans ce tutoriel.
 Lisez le <a href="http://www.pygtk.org/pygtk2reference/index.html" target="_top">PyGTK 2
-Reference Manual</a> pour obtenir des informations sur les objets 
-<code class="classname">gtk.gdk.Display</code>, 
-<code class="classname">gtk.gdk.DisplayManager</code> et 
+Reference Manual</a> pour obtenir des informations sur les objets
+<code class="classname">gtk.gdk.Display</code>,
+<code class="classname">gtk.gdk.DisplayManager</code> et
 <code class="classname">gtk.gdk.Screen</code>
 </p>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-Clipboards"></a>15.1. Les Clipboards</h2></div></div></div>
-<p>Un <code class="classname">Clipboard</code> fournit une zone de stockage pour partager 
-des données entre processus ou entre différents widgets du même 
-processus. Chaque <code class="classname">Clipboard</code> est identifié par un nom 
-encodé en tant que <code class="classname">gdk.Atom</code>. On peut utiliser n'importe 
-quel nom souhaité pour identifier un <code class="classname">Clipboard</code>, celui-ci 
-sera créé s'il n'existe pas. Si on souhaite partager un <code class="classname">Clipboard</code> 
-avec d'autres processus, chaque processus doit connaître le nom du 
+<a name="sec-Clipboards"></a>15.1.Â Les Clipboards</h2></div></div></div>
+<p>Un <code class="classname">Clipboard</code> fournit une zone de stockage pour partager
+des donnÃ©es entre processus ou entre diffÃ©rents widgets du mÃªme
+processus. Chaque <code class="classname">Clipboard</code> est identifiÃ© par un nom
+encodÃ© en tant que <code class="classname">gdk.Atom</code>. On peut utiliser n'importe
+quel nom souhaitÃ© pour identifier un <code class="classname">Clipboard</code>, celui-ci
+sera crÃ©Ã© s'il n'existe pas. Si on souhaite partager un <code class="classname">Clipboard</code>
+avec d'autres processus, chaque processus doit connaÃ®tre le nom du
 <code class="classname">Clipboard</code>.
 </p>
-<p>Les <code class="classname">Clipboard</code> sont construits à partir des 
-<code class="classname">SelectionData</code> et des interfaces de sélection. Le 
-<code class="classname">Clipboard</code> par défaut utilisé par les widgets
+<p>Les <code class="classname">Clipboard</code> sont construits Ã  partir des
+<code class="classname">SelectionData</code> et des interfaces de sÃ©lection. Le
+<code class="classname">Clipboard</code> par dÃ©faut utilisÃ© par les widgets
 <code class="classname">TextView</code>, <code class="classname">Label</code> et
-<code class="classname">Entry</code> se nomme "CLIPBOARD". Les autres clipboards 
-courants sont  "PRIMARY" et "SECONDARY", ce qui correspond aux sélections 
-primaires et secondaires (inconnues de Win32). Elles peuvent aussi être 
-désignées par les objets <code class="classname">gtk.gdk.Atom</code> :
+<code class="classname">Entry</code> se nomme "CLIPBOARD". Les autres clipboards
+courants sont  "PRIMARY" et "SECONDARY", ce qui correspond aux sÃ©lections
+primaires et secondaires (inconnues de Win32). Elles peuvent aussi Ãªtre
+dÃ©signÃ©es par les objets <code class="classname">gtk.gdk.Atom</code>Â :
 <code class="literal">gtk.gdk.SELECTION_CLIPBOARD</code>,
 <code class="literal">gtk.gdk.SELECTION_PRIMARY</code> et
-<code class="literal">gtk.gdk.SELECTION_SECONDARY</code>.  Se reporter à la  
+<code class="literal">gtk.gdk.SELECTION_SECONDARY</code>.  Se reporter Ã  la
 <a href="http://www.pygtk.org/pygtk2reference/class-gdkatom.html" target="_top">
- documentation de référence gtk.gdk.Atom</a> pour plus d'information.
+ documentation de rÃ©fÃ©rence gtk.gdk.Atom</a> pour plus d'information.
 </p>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-CreatingClipboard"></a>15.1.1. Créer un clipboard</h3></div></div></div>
-<p>Un <code class="classname">Clipboard</code> est créé par le 
-constructeur :</p>
+<a name="sec-CreatingClipboard"></a>15.1.1.Â CrÃ©er un clipboard</h3></div></div></div>
+<p>Un <code class="classname">Clipboard</code> est crÃ©Ã© par le
+constructeurÂ :</p>
 <pre class="programlisting">
   presse_papier = gtk.Clipboard(<strong class="parameter"><code>display</code></strong>, <strong class="parameter"><code>selection</code></strong>)
 </pre>
-<p>...où <em class="parameter"><code>display</code></em> est le <code class="classname">gtk.gdk.Display</code> 
-associé avec le <code class="classname">Clipboard</code> désigné par le paramètre 
-<em class="parameter"><code>selection</code></em>. 
-La fonction suivante crée un <code class="classname">Clipboard</code> en utilisant le 
-<code class="classname">gtk.gdk.Display</code> par défaut :
+<p>...oÃ¹ <em class="parameter"><code>display</code></em> est le <code class="classname">gtk.gdk.Display</code>
+associÃ© avec le <code class="classname">Clipboard</code> dÃ©signÃ© par le paramÃ¨tre
+<em class="parameter"><code>selection</code></em>.
+La fonction suivante crÃ©e un <code class="classname">Clipboard</code> en utilisant le
+<code class="classname">gtk.gdk.Display</code> par dÃ©fautÂ :
 
 </p>
 <pre class="programlisting">
   presse_papier = gtk.clipboard_get(<strong class="parameter"><code>selection</code></strong>)
 </pre>
-<p>Enfin, un <code class="classname">Clipboard</code> peut aussi être créé par la 
-méthode <code class="classname">Widget</code> :
+<p>Enfin, un <code class="classname">Clipboard</code> peut aussi Ãªtre crÃ©Ã© par la
+mÃ©thode <code class="classname">Widget</code>Â :
 </p>
 <pre class="programlisting">
   presse_papier = widget.get_clipboard(<strong class="parameter"><code>selection</code></strong>)
 </pre>
-<p>Le widget doit être "réalisé" et appartenir à la hiérarchie de la fenêtre 
+<p>Le widget doit Ãªtre "rÃ©alisÃ©" et appartenir Ã  la hiÃ©rarchie de la fenÃªtre
 racine.
 </p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-UsingClipboards"></a>15.1.2. Utiliser les Clipboard avec les Entry, Spinbutton et TextView</h3></div></div></div>
-<p>Les widgets <code class="classname">Entry</code>, <code class="classname">SpinButton</code> 
-et <code class="classname">TextView</code> possèdent des menus contextuels qui offrent la 
-possibilité de couper ou copier le texte sélectionné et de le coller à partir 
-du presse-papier "CLIPBOARD". De plus, des liens sont établis 
- pour permettre des raccourcis clavier pour couper, copier et coller. 
-Couper est activé par <span><strong class="keycap">Control</strong></span>+<span><strong class="keycap">X</strong></span> , 
-copier par <span><strong class="keycap">Control</strong></span>+<span><strong class="keycap">C</strong></span> et 
+<a name="sec-UsingClipboards"></a>15.1.2.Â Utiliser les Clipboard avec les Entry, Spinbutton et TextView</h3></div></div></div>
+<p>Les widgets <code class="classname">Entry</code>, <code class="classname">SpinButton</code>
+et <code class="classname">TextView</code> possÃ¨dent des menus contextuels qui offrent la
+possibilitÃ© de couper ou copier le texte sÃ©lectionnÃ© et de le coller Ã  partir
+du presse-papier "CLIPBOARD". De plus, des liens sont Ã©tablis
+ pour permettre des raccourcis clavier pour couper, copier et coller.
+Couper est activÃ© par <span><strong class="keycap">Control</strong></span>+<span><strong class="keycap">X</strong></span> ,
+copier par <span><strong class="keycap">Control</strong></span>+<span><strong class="keycap">C</strong></span> et
 coller par <span><strong class="keycap">Control</strong></span>+<span><strong class="keycap">V</strong></span>.
 </p>
-<p>Les widgets (<code class="classname">Entry</code> et 
-<code class="classname">SpinButton</code>) mettent en oeuvre l'interface 
-<code class="classname">Editable</code> qui possède les méthodes suivantes pour 
-couper, copier et coller de et vers le "CLIPBOARD" clipboard :
+<p>Les widgets (<code class="classname">Entry</code> et
+<code class="classname">SpinButton</code>) mettent en oeuvre l'interface
+<code class="classname">Editable</code> qui possÃ¨de les mÃ©thodes suivantes pour
+couper, copier et coller de et vers le "CLIPBOARD" clipboardÂ :
 </p>
 <pre class="programlisting">
   editable.cut_clipboard()
   editable.copy_clipboard()
   editable.paste_clipboard()
 </pre>
-<p>Un <code class="classname">Label</code> sélectionnable (la propriété "selectable" 
-vaut <code class="literal">TRUE</code>) permet aussi de copier le texte dans le 
+<p>Un <code class="classname">Label</code> sÃ©lectionnable (la propriÃ©tÃ© "selectable"
+vaut <code class="literal">TRUE</code>) permet aussi de copier le texte dans le
 presse-papier "CLIPBOARD"
-</p>en utilisant un menu contextuel ou  le raccourci clavier 
+</p>en utilisant un menu contextuel ou  le raccourci clavier
 <span><strong class="keycap">Control</strong></span>+<span><strong class="keycap">C</strong></span>.
 
-        <p>Les <code class="classname">TextBuffer</code> ont des méthodes similaires bien qu'ils 
-permettent aussi de préciser le presse-papier à utiliser :
+        <p>Les <code class="classname">TextBuffer</code> ont des mÃ©thodes similaires bien qu'ils
+permettent aussi de prÃ©ciser le presse-papier Ã  utiliserÂ :
 </p>
 <pre class="programlisting">
   textbuffer.copy_clipboard(<strong class="parameter"><code>clipboard</code></strong>)
 </pre>
-<p>Le texte sélectionné sera copié dans le <code class="classname">Clipboard</code> 
-indiqué par <em class="parameter"><code>clipboard</code></em>.
+<p>Le texte sÃ©lectionnÃ© sera copiÃ© dans le <code class="classname">Clipboard</code>
+indiquÃ© par <em class="parameter"><code>clipboard</code></em>.
 </p>
 <pre class="programlisting">
   textbuffer.cut_clipboard(<strong class="parameter"><code>clipboard</code></strong>, <strong class="parameter"><code>default_editable</code></strong>)
 </pre>
-<p>Le texte sélectionné sera copié dans <em class="parameter"><code>clipboard</code></em>. 
-Si le paramètre <em class="parameter"><code>default_editable</code></em> vaut 
-<code class="literal">TRUE</code>, le texte sélectionné sera aussi effacé du 
-<code class="classname">TextBuffer</code>. Sinon, la methode 
-<code class="methodname">cut_clipboard</code>() fonctionnera comme la méthode 
+<p>Le texte sÃ©lectionnÃ© sera copiÃ© dans <em class="parameter"><code>clipboard</code></em>.
+Si le paramÃ¨tre <em class="parameter"><code>default_editable</code></em> vaut
+<code class="literal">TRUE</code>, le texte sÃ©lectionnÃ© sera aussi effacÃ© du
+<code class="classname">TextBuffer</code>. Sinon, la methode
+<code class="methodname">cut_clipboard</code>() fonctionnera comme la mÃ©thode
 <code class="methodname">copy_clipboard</code>() .
 </p>
 <pre class="programlisting">
   textbuffer.paste_clipboard(<strong class="parameter"><code>clipboard</code></strong>, <strong class="parameter"><code>override_location</code></strong>, <strong class="parameter"><code>default_editable</code></strong>)
 </pre>
-<p>Si le paramètre <em class="parameter"><code>default_editable</code></em> vaut 
-<code class="literal">TRUE</code>, 
-le contenu de <em class="parameter"><code>clipboard</code></em> sera inséré dans le 
-<code class="classname">TextBuffer</code> à l'endroit indiqué par le paramètre 
+<p>Si le paramÃ¨tre <em class="parameter"><code>default_editable</code></em> vaut
+<code class="literal">TRUE</code>,
+le contenu de <em class="parameter"><code>clipboard</code></em> sera insÃ©rÃ© dans le
+<code class="classname">TextBuffer</code> Ã  l'endroit indiquÃ© par le paramÃ¨tre
 <em class="parameter"><code>override_location</code></em> du <code class="classname">TextIter</code>
-</p>. Si <em class="parameter"><code>default_editable</code></em> vaut <code class="literal">FALSE</code>, 
-la méthode <code class="methodname">paste_clipboard</code>() n'insèrera pas le 
-contenu de <em class="parameter"><code>clipboard</code></em>. Si le paramètre 
-<em class="parameter"><code>override_location</code></em> vaut <code class="literal">None</code>, le contenu de 
-<em class="parameter"><code>clipboard</code></em> sera inséré à l'emplacement du curseur. 
+</p>. Si <em class="parameter"><code>default_editable</code></em> vaut <code class="literal">FALSE</code>,
+la mÃ©thode <code class="methodname">paste_clipboard</code>() n'insÃ¨rera pas le
+contenu de <em class="parameter"><code>clipboard</code></em>. Si le paramÃ¨tre
+<em class="parameter"><code>override_location</code></em> vaut <code class="literal">None</code>, le contenu de
+<em class="parameter"><code>clipboard</code></em> sera insÃ©rÃ© Ã  l'emplacement du curseur.
 
-        <p>Les <code class="classname">TextBuffer</code> possèdent aussi deux méthodes 
-pour gérer un ensemble de <code class="classname">Clipboard</code> qui sont automatiquement 
-affectés avec le contenu de la sélection en cours :
+        <p>Les <code class="classname">TextBuffer</code> possÃ¨dent aussi deux mÃ©thodes
+pour gÃ©rer un ensemble de <code class="classname">Clipboard</code> qui sont automatiquement
+affectÃ©s avec le contenu de la sÃ©lection en coursÂ :
 </p>
 <pre class="programlisting">
   textbuffer.add_selection_clipboard(<strong class="parameter"><code>clipboard</code></strong>)
   textbuffer.remove_selection_clipboard(<strong class="parameter"><code>clipboard</code></strong>)
 </pre>
-<p>Quand un <code class="classname">TextBuffer</code> est ajouté à un 
-<code class="classname">TextView</code>, le presse-papiers "PRIMARY" est automatiquement 
-ajouté aux presse-papiers choisis. L'application peut ajouter d'autres presse-papiers, 
-(par exemple le presse-papier "CLIPBOARD"). 
+<p>Quand un <code class="classname">TextBuffer</code> est ajoutÃ© Ã  un
+<code class="classname">TextView</code>, le presse-papiers "PRIMARY" est automatiquement
+ajoutÃ© aux presse-papiers choisis. L'application peut ajouter d'autres presse-papiers,
+(par exemple le presse-papier "CLIPBOARD").
 </p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-SettingClipboardData"></a>15.1.3. Affecter des données à un Clipboard</h3></div></div></div>
-<p>Il est possible d'affecter des données au <code class="classname">Clipboard</code> 
-par programme  en utilisant l'une de ces méthodes :
+<a name="sec-SettingClipboardData"></a>15.1.3.Â Affecter des donnÃ©es Ã  un Clipboard</h3></div></div></div>
+<p>Il est possible d'affecter des donnÃ©es au <code class="classname">Clipboard</code>
+par programme  en utilisant l'une de ces mÃ©thodesÂ :
 </p>
 <pre class="programlisting">
   presse_papier.set_with_data(<strong class="parameter"><code>cibles</code></strong>, <strong class="parameter"><code>get_func</code></strong>, <strong class="parameter"><code>clear_func</code></strong>, <strong class="parameter"><code>donnees_utilisateur</code></strong>)
 
   presse_papier.set_text(<strong class="parameter"><code>text</code></strong>, <strong class="parameter"><code>len</code></strong>=-1)
 </pre>
-<p>La méthode <code class="methodname">set_with_data</code>() indique quelles cibles de 
-données sélectionnées sont acceptées et fournit les fonctions
-(<em class="parameter"><code>get_func</code></em> et <em class="parameter"><code>clear_func</code></em>) qui 
-sont appelées quand les données sont appelées ou quand les données du presse-papiers 
-sont  modifiées. Le paramètre <em class="parameter"><code>donnees_utilisateur</code></em> est transmis 
-à  <em class="parameter"><code>get_func</code></em> où  à <em class="parameter"><code>clear_func</code></em> 
-quand elles sont appelées. Le paramètre <em class="parameter"><code>cibles</code></em> est une 
-liste de 3-tuples contenant :
+<p>La mÃ©thode <code class="methodname">set_with_data</code>() indique quelles cibles de
+donnÃ©es sÃ©lectionnÃ©es sont acceptÃ©es et fournit les fonctions
+(<em class="parameter"><code>get_func</code></em> et <em class="parameter"><code>clear_func</code></em>) qui
+sont appelÃ©es quand les donnÃ©es sont appelÃ©es ou quand les donnÃ©es du presse-papiers
+sont  modifiÃ©es. Le paramÃ¨tre <em class="parameter"><code>donnees_utilisateur</code></em> est transmis
+Ã   <em class="parameter"><code>get_func</code></em> oÃ¹  Ã  <em class="parameter"><code>clear_func</code></em>
+quand elles sont appelÃ©es. Le paramÃ¨tre <em class="parameter"><code>cibles</code></em> est une
+liste de 3-tuples contenantÂ :
 </p>
 <div class="itemizedlist"><ul type="disc">
-<li>une chaîne représentant une cible acceptée 
+<li>une chaÃ®ne reprÃ©sentant une cible acceptÃ©e
             par le presse-papiers.</li>
-<li>une valeur de drapeau utilisée pour le glisser/déposer - 
+<li>une valeur de drapeau utilisÃ©e pour le glisser/dÃ©poser -
             on utilise 0.</li>
-<li>un entier affecté à l'application qui est transmis comme paramètre 
-            au gestionnaire de signal pour aider à identifier le type de cible.</li>
+<li>un entier affectÃ© Ã  l'application qui est transmis comme paramÃ¨tre
+            au gestionnaire de signal pour aider Ã  identifier le type de cible.</li>
 </ul></div>
-<p>Les paramètres de <em class="parameter"><code>get_func</code></em> et de 
-<em class="parameter"><code>clear_func</code></em> sont :
+<p>Les paramÃ¨tres de <em class="parameter"><code>get_func</code></em> et de
+<em class="parameter"><code>clear_func</code></em> sontÂ :
 </p>
 <pre class="programlisting">
   def get_func(presse_papier, donnees_selection, info, data):
 
   def clear_func(presse_papier, data):
 </pre>
-<p>...où le paramètre <em class="parameter"><code>presse_papier</code></em> est le 
-        <code class="classname">Clipboard</code>, le paramètre <em class="parameter"><code>donnees_selection</code></em> 
-        est un objet  <code class="classname">SelectionData</code> contenant les données, le paramètre 
-<em class="parameter"><code>info</code></em>  est l'entier assigné à l'application, associé à une cible 
-et le paramètre <em class="parameter"><code>data</code></em> représente les données utilisateur.
+<p>...oÃ¹ le paramÃ¨tre <em class="parameter"><code>presse_papier</code></em> est le
+        <code class="classname">Clipboard</code>, le paramÃ¨tre <em class="parameter"><code>donnees_selection</code></em>
+        est un objet  <code class="classname">SelectionData</code> contenant les donnÃ©es, le paramÃ¨tre
+<em class="parameter"><code>info</code></em>  est l'entier assignÃ© Ã  l'application, associÃ© Ã  une cible
+et le paramÃ¨tre <em class="parameter"><code>data</code></em> reprÃ©sente les donnÃ©es utilisateur.
 </p>
-<p>La méthode <code class="methodname">set_text</code>() est une méthode commode 
-qui utilise la méthode <code class="methodname">set_with_data</code>() pour 
-placer les données texte dans un <code class="classname">Clipboard</code> avec pour 
-cibles : "STRING", "TEXT", "COMPOUND_TEXT", et "UTF8_STRING". Elle utilise 
-les fonctions internes get et clear pour gérer les données. Cette méthode 
-est équivalente à :
+<p>La mÃ©thode <code class="methodname">set_text</code>() est une mÃ©thode commode
+qui utilise la mÃ©thode <code class="methodname">set_with_data</code>() pour
+placer les donnÃ©es texte dans un <code class="classname">Clipboard</code> avec pour
+ciblesÂ : "STRING", "TEXT", "COMPOUND_TEXT", et "UTF8_STRING". Elle utilise
+les fonctions internes get et clear pour gÃ©rer les donnÃ©es. Cette mÃ©thode
+est Ã©quivalente Ã Â :
 </p>
 <pre class="programlisting">
   def my_set_text(self, texte, len=-1):
@@ -251,53 +252,53 @@ est équivalente à :
       self.set_with_data(cibles, text_get_func, text_clear_func, texte)
       return
 </pre>
-<p>Une fois les données placées dans le presse-papiers, elles demeurent disponibles 
-jusqu'à la fermeture de l'application ou jusqu'à leur remplacement.
+<p>Une fois les donnÃ©es placÃ©es dans le presse-papiers, elles demeurent disponibles
+jusqu'Ã  la fermeture de l'application ou jusqu'Ã  leur remplacement.
 </p>
-<p>Pour obtenir le comportement habituel du couper dans un presse-papiers, 
-l'application doit supprimer le texte ou l'objet sélectionné après 
-l'avoir recopié dans le presse-papiers.
+<p>Pour obtenir le comportement habituel du couper dans un presse-papiers,
+l'application doit supprimer le texte ou l'objet sÃ©lectionnÃ© aprÃ¨s
+l'avoir recopiÃ© dans le presse-papiers.
 </p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-RetrievingClipboardContents"></a>15.1.4. Récupérer le contenu du Clipboard</h3></div></div></div>
-<p>Le contenu du <code class="classname">Clipboard</code> peut être récupéré 
-avec la méthode suivante :
+<a name="sec-RetrievingClipboardContents"></a>15.1.4.Â RÃ©cupÃ©rer le contenu du Clipboard</h3></div></div></div>
+<p>Le contenu du <code class="classname">Clipboard</code> peut Ãªtre rÃ©cupÃ©rÃ©
+avec la mÃ©thode suivanteÂ :
 </p>
 <pre class="programlisting">
   clipboard.request_contents(<strong class="parameter"><code>target</code></strong>, <strong class="parameter"><code>callback</code></strong>, <strong class="parameter"><code>user_data</code></strong>=None)
 </pre>
-<p>Les contenus indiqués par <em class="parameter"><code>target</code></em> sont récupérés de 
-manière asynchrone dans la fonction indiquée par le paramètre 
-<em class="parameter"><code>callback</code></em> qui est appelé avec <em class="parameter"><code>user_data</code></em>. 
-le paramètre <em class="parameter"><code>callback</code></em> a la forme :
+<p>Les contenus indiquÃ©s par <em class="parameter"><code>target</code></em> sont rÃ©cupÃ©rÃ©s de
+maniÃ¨re asynchrone dans la fonction indiquÃ©e par le paramÃ¨tre
+<em class="parameter"><code>callback</code></em> qui est appelÃ© avec <em class="parameter"><code>user_data</code></em>.
+le paramÃ¨tre <em class="parameter"><code>callback</code></em> a la formeÂ :
 </p>
 <pre class="programlisting">
   def callback(presse_papier, donnees_selection, data):
 </pre>
-<p>... où <em class="parameter"><code>donnees_selection</code></em> est un objet <code class="classname">SelectionData</code> 
-conservant le contenu du <em class="parameter"><code>presse_papier</code></em>. <em class="parameter"><code>data</code></em> 
-contient les <em class="parameter"><code>données utilisateur</code></em>. La méthode <code class="methodname">request_contents</code>() 
-est la façon la plus commune de récupérer le contenu d'un <code class="classname">Clipboard</code>. 
-La méthode suivante est commode pour retrouver le contenu texte d'un <code class="classname">Clipboard</code> :
+<p>... oÃ¹ <em class="parameter"><code>donnees_selection</code></em> est un objet <code class="classname">SelectionData</code>
+conservant le contenu du <em class="parameter"><code>presse_papier</code></em>. <em class="parameter"><code>data</code></em>
+contient les <em class="parameter"><code>donnÃ©es utilisateur</code></em>. La mÃ©thode <code class="methodname">request_contents</code>()
+est la faÃ§on la plus commune de rÃ©cupÃ©rer le contenu d'un <code class="classname">Clipboard</code>.
+La mÃ©thode suivante est commode pour retrouver le contenu texte d'un <code class="classname">Clipboard</code>Â :
 
 </p>
 <pre class="programlisting">
   clipboard.request_text(<strong class="parameter"><code>callback</code></strong>, <strong class="parameter"><code>user_data</code></strong>=None)
 </pre>
-<p>La chaîne texte est renvoyée à la fonction de rappel à la place d'un objet 
-<code class="classname">Selectiondata</code>. Vous pouvez vérifier quelles cibles sont 
-disponibles sur le  <code class="classname">Clipboard</code> en employant la méthode :
+<p>La chaÃ®ne texte est renvoyÃ©e Ã  la fonction de rappel Ã  la place d'un objet
+<code class="classname">Selectiondata</code>. Vous pouvez vÃ©rifier quelles cibles sont
+disponibles sur le  <code class="classname">Clipboard</code> en employant la mÃ©thodeÂ :
 </p>
 <pre class="programlisting">
   clipboard.request_targets(<strong class="parameter"><code>callback</code></strong>, <strong class="parameter"><code>user_data</code></strong>=None)
 </pre>
-<p>Les cibles sont retournées à la fonction de rappel comme un tuple d'objets 
+<p>Les cibles sont retournÃ©es Ã  la fonction de rappel comme un tuple d'objets
 <code class="classname">gtk.gdk.Atom</code>.
 </p>
-<p>Deux méthodes pratiques sont fournies pour renvoyer le contenu du 
-<code class="classname">Clipboard</code> de manière synchrone :
+<p>Deux mÃ©thodes pratiques sont fournies pour renvoyer le contenu du
+<code class="classname">Clipboard</code> de maniÃ¨re synchroneÂ :
 </p>
 <pre class="programlisting">
   donnees_selection = clipboard.wait_for_contents(cible)
@@ -307,29 +308,29 @@ disponibles sur le  <code class="classname">Clipboard</code> en employant la mét
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-ClipboardExample"></a>15.1.5. Exemple de Clipboard</h3></div></div></div>
-<p>Pour illustrer l'utilisation d'un <code class="classname">Clipboard</code>, le programme 
-<a href="exemples/clipboard.py" target="_top">clipboard.py</a> récupère les éléments de texte 
-qui sont coupés ou copiés vers le presse-papiers "CLIPBOARD" et sauvegarde les dix 
-dernières entrées du presse-papiers. Il y a dix boutons qui permettent d'accéder 
-au texte des entrées sauvegardées. Le texte du bouton affiche les seize premiers 
-caractères du texte sauvé et les infobulles montrent les cibles que la zone de texte avait à l'origine. 
-Quand on clique sur un bouton d'entrée, le texte sauvegardé associé s'inscrit 
-dans la fenêtre de texte ; il est modifiable. Le bouton sous la fenêtre de texte sauvegarde 
-le contenu actuel de la fenêtre dans le presse-papiers.
+<a name="sec-ClipboardExample"></a>15.1.5.Â Exemple de Clipboard</h3></div></div></div>
+<p>Pour illustrer l'utilisation d'un <code class="classname">Clipboard</code>, le programme
+<a href="exemples/clipboard.py" target="_top">clipboard.py</a> rÃ©cupÃ¨re les Ã©lÃ©ments de texte
+qui sont coupÃ©s ou copiÃ©s vers le presse-papiers "CLIPBOARD" et sauvegarde les dix
+derniÃ¨res entrÃ©es du presse-papiers. Il y a dix boutons qui permettent d'accÃ©der
+au texte des entrÃ©es sauvegardÃ©es. Le texte du bouton affiche les seize premiers
+caractÃ¨res du texte sauvÃ© et les infobulles montrent les cibles que la zone de texte avait Ã  l'origine.
+Quand on clique sur un bouton d'entrÃ©e, le texte sauvegardÃ© associÃ© s'inscrit
+dans la fenÃªtre de texte ; il est modifiable. Le bouton sous la fenÃªtre de texte sauvegarde
+le contenu actuel de la fenÃªtre dans le presse-papiers.
 </p>
-<p><a href="ch-NewInPyGTK2.2.html#clipboardfig" title="Figure 15.1. Exemple de Clipboard">Figure 15.1, « Exemple de Clipboard »</a> montre le programme <a href="exemples/clipboard.py" target="_top">clipboard.py</a> en action :</p>
+<p><a href="ch-NewInPyGTK2.2.html#clipboardfig" title="FigureÂ 15.1.Â Exemple de Clipboard">FigureÂ 15.1, Â«Â Exemple de ClipboardÂ Â»</a> montre le programme <a href="exemples/clipboard.py" target="_top">clipboard.py</a> en actionÂ :</p>
 <div class="figure">
-<a name="clipboardfig"></a><p class="title"><b>Figure 15.1. Exemple de Clipboard</b></p>
+<a name="clipboardfig"></a><p class="title"><b>FigureÂ 15.1.Â Exemple de Clipboard</b></p>
 <div class="mediaobject" align="center"><img src="figures/clipboard.png" align="middle" alt="Programme d'exemple de Clipboard"></div>
 </div>
-<p>Le programme d'exemple sonde le presse-papiers toutes les 1,5 secondes pour voir 
-si le contenu a changé. Le programme peut être modifié pour dupliquer la totalité 
-de contenu de cible et prendre le contrôle en employant la méthode 
-<code class="methodname">set_with_data</code>(). Plus tard, quand un autre programme 
-place du contenu dans le presse-papiers, le paramètre <em class="parameter"><code>clear_func</code></em> sera 
-appelé , il pourra être utilisé pour recharger le contenu du presse-papiers et en
-reprendre le contrôle .
+<p>Le programme d'exemple sonde le presse-papiers toutes les 1,5 secondes pour voir
+si le contenu a changÃ©. Le programme peut Ãªtre modifiÃ© pour dupliquer la totalitÃ©
+de contenu de cible et prendre le contrÃ´le en employant la mÃ©thode
+<code class="methodname">set_with_data</code>(). Plus tard, quand un autre programme
+place du contenu dans le presse-papiers, le paramÃ¨tre <em class="parameter"><code>clear_func</code></em> sera
+appelÃ© , il pourra Ãªtre utilisÃ© pour recharger le contenu du presse-papiers et en
+reprendre le contrÃ´le .
 </p>
 </div>
 </div>
@@ -339,14 +340,14 @@ reprendre le contrôle .
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-GenericCellRenderer.html">Préc.</a> </td>
-<td width="20%" align="center"> </td>
-<td width="40%" align="right"> <a accesskey="n" href="ch-NewInPyGTK2.4.html">Suiv.</a>
+<a accesskey="p" href="sec-GenericCellRenderer.html">PrÃ©c.</a>Â </td>
+<td width="20%" align="center">Â </td>
+<td width="40%" align="right">Â <a accesskey="n" href="ch-NewInPyGTK2.4.html">Suiv.</a>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">14.12. The Generic CellRenderer </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> Chapitre 16. Nouveaux Widgets dans PyGTK 2.4</td>
+<td width="40%" align="left" valign="top">14.12.Â The Generic CellRendererÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â ChapitreÂ 16.Â Nouveaux Widgets dans PyGTK 2.4</td>
 </tr>
 </table>
 </div>

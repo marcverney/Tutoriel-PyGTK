@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Chapitre 24. Scribble, Un programme simple de dessin</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>ChapitreÂ 24.Â Scribble, Un programme simple de dessin</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="prev" href="sec-ExampleRcFile.html" title="23.3. Exemple de fichier rc">
-<link rel="next" href="sec-EventHandling.html" title="24.2. Gestion des évènements">
+<link rel="prev" href="sec-ExampleRcFile.html" title="23.3.Â Exemple de fichier rc">
+<link rel="next" href="sec-EventHandling.html" title="24.2.Â Gestion des Ã©vÃ¨nements">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">Chapitre 24. Scribble, Un programme simple de dessin</th></tr>
+<tr><th colspan="3" align="center">ChapitreÂ 24.Â Scribble, Un programme simple de dessin</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-ExampleRcFile.html">Préc.</a> </td>
-<th width="60%" align="center"> </th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-EventHandling.html">Suiv.</a>
+<a accesskey="p" href="sec-ExampleRcFile.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">Â </th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-EventHandling.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,25 +36,25 @@
 </div>
 <div class="chapter" lang="fr">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="ch-Scribble"></a>Chapitre 24. Scribble, Un programme simple de dessin</h2></div></div></div>
+<a name="ch-Scribble"></a>ChapitreÂ 24.Â Scribble, Un programme simple de dessin</h2></div></div></div>
 <div class="toc">
-<p><b>Table des matières</b></p>
+<p><b>Table des matiÃ¨res</b></p>
 <dl>
-<dt><span class="sect1"><a href="ch-Scribble.html#sec-ScribbleOverview">24.1. Aperçu de Scribble</a></span></dt>
-<dt><span class="sect1"><a href="sec-EventHandling.html">24.2. Gestion des évènements</a></span></dt>
-<dd><dl><dt><span class="sect2"><a href="sec-EventHandling.html#id2643367">24.2.1. Gestion des évènements dans Scribble</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="ch-Scribble.html#sec-ScribbleOverview">24.1. AperÃ§u de Scribble</a></span></dt>
+<dt><span class="sect1"><a href="sec-EventHandling.html">24.2. Gestion des Ã©vÃ¨nements</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="sec-EventHandling.html#id2643367">24.2.1. Gestion des Ã©vÃ¨nements dans Scribble</a></span></dt></dl></dd>
 <dt><span class="sect1"><a href="sec-DrawingAreaWidgetAndDrawing.html">24.3. Le widget zone de dessin (DrawingArea) et le dessin</a></span></dt>
 </dl>
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-ScribbleOverview"></a>24.1. Aperçu de Scribble</h2></div></div></div>
-<p>Dans cette section, nous construirons un programme 
-simple de dessin. Ce faisant, nous examinerons comment gérer les événements souris, 
-comment dessiner dans une fenêtre, et comment mieux dessiner en utilisant un pixmap 
-en arrière plan.</p>
+<a name="sec-ScribbleOverview"></a>24.1.Â AperÃ§u de Scribble</h2></div></div></div>
+<p>Dans cette section, nous construirons un programme
+simple de dessin. Ce faisant, nous examinerons comment gÃ©rer les Ã©vÃ©nements souris,
+comment dessiner dans une fenÃªtre, et comment mieux dessiner en utilisant un pixmap
+en arriÃ¨re plan.</p>
 <div class="figure">
-<a name="scribblesimplefig"></a><p class="title"><b>Figure 24.1. Le programme de dessin Scribble</b></p>
+<a name="scribblesimplefig"></a><p class="title"><b>FigureÂ 24.1.Â Le programme de dessin Scribble</b></p>
 <div class="mediaobject" align="center"><img src="figures/scribblesimple.png" align="middle" alt="Le programme de dessin Scribble"></div>
 </div>
 </div>
@@ -63,15 +64,15 @@ en arrière plan.</p>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-ExampleRcFile.html">Préc.</a> </td>
-<td width="20%" align="center"> </td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-EventHandling.html">Suiv.</a>
+<a accesskey="p" href="sec-ExampleRcFile.html">PrÃ©c.</a>Â </td>
+<td width="20%" align="center">Â </td>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-EventHandling.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">23.3. Exemple de fichier rc </td>
+<td width="40%" align="left" valign="top">23.3.Â Exemple de fichier rcÂ </td>
 <td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
-<td width="40%" align="right" valign="top"> 24.2. Gestion des évènements</td>
+<td width="40%" align="right" valign="top">Â 24.2.Â Gestion des Ã©vÃ¨nements</td>
 </tr>
 </table>
 </div>

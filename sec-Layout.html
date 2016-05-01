@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>10.4. Le conteneur Layout (Affiche)</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>10.4.Â Le conteneur Layout (Affiche)</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-ContainerWidgets.html" title="Chapitre 10. Les widgets conteneurs">
-<link rel="prev" href="sec-Fixed.html" title="10.3. Le conteneur Place (Fixed)">
-<link rel="next" href="sec-Frames.html" title="10.5. Les cadres (Frame)">
+<link rel="up" href="ch-ContainerWidgets.html" title="ChapitreÂ 10.Â Les widgets conteneurs">
+<link rel="prev" href="sec-Fixed.html" title="10.3.Â Le conteneur Place (Fixed)">
+<link rel="next" href="sec-Frames.html" title="10.5.Â Les cadres (Frame)">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">10.4. Le conteneur Layout (Affiche)</th></tr>
+<tr><th colspan="3" align="center">10.4.Â Le conteneur Layout (Affiche)</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-Fixed.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 10. Les widgets conteneurs</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-Frames.html">Suiv.</a>
+<a accesskey="p" href="sec-Fixed.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 10.Â Les widgets conteneurs</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-Frames.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,44 +36,44 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-Layout"></a>10.4. Le conteneur Layout (Affiche)</h2></div></div></div>
-<p>Le conteneur <code class="classname">Layout</code> ressemble au conteneur 
-<code class="classname">Fixed</code> à ceci près qu'il implémente 
-une zone défilable infinie (un infini limité à 2^32). Le système X window 
-possède une limitation de taille de fenêtre de 32767x32767 pixels. Le 
-conteneur <code class="classname">Layout</code>  tourne cette limitation en 
-réalisant des trucs exotiques utilisant la gravité de fenêtre et de bit. 
-Il devient ainsi possible d'obtenir un défilement régulier même lorsque 
-l'on a plein de widgets enfants dans la zone de défilement.
+<a name="sec-Layout"></a>10.4.Â Le conteneur Layout (Affiche)</h2></div></div></div>
+<p>Le conteneur <code class="classname">Layout</code> ressemble au conteneur
+<code class="classname">Fixed</code> Ã  ceci prÃ¨s qu'il implÃ©mente
+une zone dÃ©filable infinie (un infini limitÃ© Ã  2^32). Le systÃ¨me X window
+possÃ¨de une limitation de taille de fenÃªtre de 32767x32767 pixels. Le
+conteneur <code class="classname">Layout</code>  tourne cette limitation en
+rÃ©alisant des trucs exotiques utilisant la gravitÃ© de fenÃªtre et de bit.
+Il devient ainsi possible d'obtenir un dÃ©filement rÃ©gulier mÃªme lorsque
+l'on a plein de widgets enfants dans la zone de dÃ©filement.
 </p>
-<p>On crée un conteneur<code class="classname">Layout</code>  par :</p>
+<p>On crÃ©e un conteneur<code class="classname">Layout</code>  parÂ :</p>
 <pre class="programlisting">
   affiche = gtk.Layout(<strong class="parameter"><code>hadjustment</code></strong>=None, <strong class="parameter"><code>vadjustment</code></strong>=None)
 </pre>
-<p>Comme on peut le constater, il est possible d'indiquer, 
-de manière facultative, des objets <code class="classname">Adjustment</code>, 
-(voir <a href="ch-Adjustments.html" title="Chapitre 7. Adjustments">Chapitre 7, <i>Adjustments</i></a>) que le widget 
-<code class="classname">Layout</code> va utiliser pour son défilement. Si 
-l'on ne précise pas d'objets <code class="classname">Adjustment</code>, des  
-nouveaux seront créés automatiquement.
+<p>Comme on peut le constater, il est possible d'indiquer,
+de maniÃ¨re facultative, des objets <code class="classname">Adjustment</code>,
+(voir <a href="ch-Adjustments.html" title="ChapitreÂ 7.Â Adjustments">ChapitreÂ 7, <i>Adjustments</i></a>) que le widget
+<code class="classname">Layout</code> va utiliser pour son dÃ©filement. Si
+l'on ne prÃ©cise pas d'objets <code class="classname">Adjustment</code>, des
+nouveaux seront crÃ©Ã©s automatiquement.
 </p>
-<p>On peut ajouter et déplacer des widgets dans un 
-conteneur <code class="classname">Layout</code> avec les méthodes 
-suivantes :</p>
+<p>On peut ajouter et dÃ©placer des widgets dans un
+conteneur <code class="classname">Layout</code> avec les mÃ©thodes
+suivantesÂ :</p>
 <pre class="programlisting">
   affiche.put(<strong class="parameter"><code>widget_enfant</code></strong>, <strong class="parameter"><code>x</code></strong>, <strong class="parameter"><code>y</code></strong>)
 
   affiche.move(<strong class="parameter"><code>widget_enfant</code></strong>, <strong class="parameter"><code>x</code></strong>, <strong class="parameter"><code>y</code></strong>)
 </pre>
-<p>On peut indiquer ou connaître la taille du conteneur 
-<code class="classname">Layout</code> en utilisant les méthodes :</p>
+<p>On peut indiquer ou connaÃ®tre la taille du conteneur
+<code class="classname">Layout</code> en utilisant les mÃ©thodesÂ :</p>
 <pre class="programlisting">
   affiche.set_size(<strong class="parameter"><code>largeur</code></strong>, <strong class="parameter"><code>hauteur</code></strong>)
 
   taille = layout.get_size()
 </pre>
-<p>Ces quatres dernières méthodes du widget <code class="classname">Layout</code> 
-permettent de manipuler les widgets d'ajustement horizontal et vertical :</p>
+<p>Ces quatres derniÃ¨res mÃ©thodes du widget <code class="classname">Layout</code>
+permettent de manipuler les widgets d'ajustement horizontal et verticalÂ :</p>
 <pre class="programlisting">
   horiz_ajust = affiche.get_hadjustment()
 
@@ -83,70 +84,70 @@ permettent de manipuler les widgets d'ajustement horizontal et vertical :</p>
   affiche.set_vadjustment(<strong class="parameter"><code>ajustement</code></strong>)
 </pre>
 <p>Le programme <a href="exemples/layout.py" target="_top"><span><strong class="command">
-layout.py</strong></span></a> crée trois boutons et les place dans un 
-conteneur <code class="classname">Layout</code> affiche. Quand on clique sur 
-l'un des boutons, il est transféré à un nouvel emplacement, aléatoire, 
-dans le conteneur. La <a href="sec-Layout.html#layoutfig" title="Figure 10.3. Exemple de conteneur Layout">Figure 10.3, « Exemple de conteneur Layout »</a>montre l'affichage de départ.
+layout.py</strong></span></a> crÃ©e trois boutons et les place dans un
+conteneur <code class="classname">Layout</code> affiche. Quand on clique sur
+l'un des boutons, il est transfÃ©rÃ© Ã  un nouvel emplacement, alÃ©atoire,
+dans le conteneur. La <a href="sec-Layout.html#layoutfig" title="FigureÂ 10.3.Â Exemple de conteneur Layout">FigureÂ 10.3, Â«Â Exemple de conteneur LayoutÂ Â»</a>montre l'affichage de dÃ©part.
 </p>
 <div class="figure">
-<a name="layoutfig"></a><p class="title"><b>Figure 10.3. Exemple de conteneur Layout</b></p>
+<a name="layoutfig"></a><p class="title"><b>FigureÂ 10.3.Â Exemple de conteneur Layout</b></p>
 <div class="mediaobject" align="center"><img src="figures/layout.png" align="middle" alt="Exemple de conteneur Layout"></div>
 <span>Exemple de conteneur Layout</span>
 </div>
 <p>Voici le code source du programme <a href="exemples/layout.py" target="_top">
-<span><strong class="command">layout.py</strong></span></a> :</p>
+<span><strong class="command">layout.py</strong></span></a>Â :</p>
 <pre class="programlisting">
      1   #!/usr/bin/env python
      2   # -*- coding:utf-8 -*-
      3   # exemple layout.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
      8   import random
-     9   
+     9
     10   class ExempleAffiche:
     11       def WindowDeleteEvent(self, widget, event):
-    12           # retourne False pour que la fenêtre soit détruite
+    12           # retourne False pour que la fenÃªtre soit dÃ©truite
     13           return False
-    14   
+    14
     15       def WindowDestroy(self, widget, *data):
     16           # quitte la boucle principale
     17           gtk.main_quit()
-    18   
+    18
     19       def ButtonClicked(self, bouton):
-    20           # déplace le bouton
+    20           # dÃ©place le bouton
     21           self.affiche.move(bouton, random.randint(0,500),
     22                            random.randint(0,500))
-    23   
+    23
     24       def __init__(self):
-    25           # crée la fenêtre de niveau supérieur
+    25           # crÃ©e la fenÃªtre de niveau supÃ©rieur
     26           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
     27           fenetre.set_title("Exemple conteneur Layout")
     28           fenetre.set_default_size(300, 300)
     29           fenetre.connect("delete-event", self.WindowDeleteEvent)
     30           fenetre.connect("destroy", self.WindowDestroy)
-    31           # crée une table et la place dans la fenêtre
+    31           # crÃ©e une table et la place dans la fenÃªtre
     32           table = gtk.Table(2, 2, False)
     33           fenetre.add(table)
-    34           # crée le conteneur affiche affiche et le place dans la table
+    34           # crÃ©e le conteneur affiche affiche et le place dans la table
     35           self.affiche = gtk.Layout(None, None)
     36           self.affiche.set_size(600, 600)
     37           table.attach(self.affiche, 0, 1, 0, 1, gtk.FILL|gtk.EXPAND,
     38                        gtk.FILL|gtk.EXPAND, 0, 0)
-    39           # crée les barres de défilement et les place dans la table
+    39           # crÃ©e les barres de dÃ©filement et les place dans la table
     40           vert_defil = gtk.VScrollbar(None)
     41           table.attach(vert_defil, 1, 2, 0, 1, gtk.FILL|gtk.SHRINK,
     42                        gtk.FILL|gtk.SHRINK, 0, 0)
     43           horiz_defil = gtk.HScrollbar(None)
     44           table.attach(horiz_defil, 0, 1, 1, 2, gtk.FILL|gtk.SHRINK,
-    45                        gtk.FILL|gtk.SHRINK, 0, 0)	
-    46           # les barres de défilement utilisent les ajustements du conteneur
+    45                        gtk.FILL|gtk.SHRINK, 0, 0)
+    46           # les barres de dÃ©filement utilisent les ajustements du conteneur
     47           vAdjust = self.affiche.get_vadjustment()
     48           vert_defil.set_adjustment(vAdjust)
     49           hAdjust = self.affiche.get_hadjustment()
     50           horiz_defil.set_adjustment(hAdjust)
-    51           # crée 3 boutons et les place dans le conteneur 
+    51           # crÃ©e 3 boutons et les place dans le conteneur
     52           bouton = gtk.Button("Clic !")
     53           bouton.connect("clicked", self.ButtonClicked)
     54           self.affiche.put(bouton, 0, 0)
@@ -158,12 +159,12 @@ dans le conteneur. La <a href="sec-Layout.html#layoutfig" title="Figure 10.3. Ex
     60           self.affiche.put(bouton, 200, 0)
     61           # Montre tous les widgets
     62           fenetre.show_all()
-    63   
+    63
     64   def main():
     65       # on entre dans la boucle principale
     66       gtk.main()
     67       return 0
-    68   
+    68
     69   if __name__ == "__main__":
     70       ExempleAffiche()
     71       main()
@@ -174,15 +175,15 @@ dans le conteneur. La <a href="sec-Layout.html#layoutfig" title="Figure 10.3. Ex
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-Fixed.html">Préc.</a> </td>
+<a accesskey="p" href="sec-Fixed.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-ContainerWidgets.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-Frames.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-Frames.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">10.3. Le conteneur Place (Fixed) </td>
+<td width="40%" align="left" valign="top">10.3.Â Le conteneur Place (Fixed)Â </td>
 <td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
-<td width="40%" align="right" valign="top"> 10.5. Les cadres (Frame)</td>
+<td width="40%" align="right" valign="top">Â 10.5.Â Les cadres (Frame)</td>
 </tr>
 </table>
 </div>

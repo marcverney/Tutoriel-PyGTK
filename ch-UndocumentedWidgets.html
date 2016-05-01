@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Chapitre 17. Widgets non décrits</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>ChapitreÂ 17.Â Widgets non dÃ©crits</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="prev" href="sec-UIManager.html" title="16.7. Le gestionnaire d'Interface Utilisateur UIManager">
-<link rel="next" href="sec-OptionMenu.html" title="17.2. Option de menu">
+<link rel="prev" href="sec-UIManager.html" title="16.7.Â Le gestionnaire d'Interface Utilisateur UIManager">
+<link rel="next" href="sec-OptionMenu.html" title="17.2.Â Option de menu">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">Chapitre 17. Widgets non décrits</th></tr>
+<tr><th colspan="3" align="center">ChapitreÂ 17.Â Widgets non dÃ©crits</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-UIManager.html">Préc.</a> </td>
-<th width="60%" align="center"> </th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-OptionMenu.html">Suiv.</a>
+<a accesskey="p" href="sec-UIManager.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">Â </th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-OptionMenu.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,43 +36,43 @@
 </div>
 <div class="chapter" lang="fr">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="ch-UndocumentedWidgets"></a>Chapitre 17. Widgets non décrits</h2></div></div></div>
+<a name="ch-UndocumentedWidgets"></a>ChapitreÂ 17.Â Widgets non dÃ©crits</h2></div></div></div>
 <div class="toc">
-<p><b>Table des matières</b></p>
+<p><b>Table des matiÃ¨res</b></p>
 <dl>
-<dt><span class="sect1"><a href="ch-UndocumentedWidgets.html#sec-AccelLabel">17.1. Étiquette de raccourci</a></span></dt>
+<dt><span class="sect1"><a href="ch-UndocumentedWidgets.html#sec-AccelLabel">17.1. Ã‰tiquette de raccourci</a></span></dt>
 <dt><span class="sect1"><a href="sec-OptionMenu.html">17.2. Option de menu</a></span></dt>
-<dt><span class="sect1"><a href="sec-MenuItems.html">17.3. Éléments de menu</a></span></dt>
+<dt><span class="sect1"><a href="sec-MenuItems.html">17.3. Ã‰lÃ©ments de menu</a></span></dt>
 <dd><dl>
-<dt><span class="sect2"><a href="sec-MenuItems.html#id2566645">17.3.1. Éléments de menu à cocher</a></span></dt>
-<dt><span class="sect2"><a href="sec-MenuItems.html#id2541012">17.3.2. Élément de menu Radio</a></span></dt>
-<dt><span class="sect2"><a href="sec-MenuItems.html#id2595366">17.3.3. Élément de menu séparateur</a></span></dt>
-<dt><span class="sect2"><a href="sec-MenuItems.html#id2565122">17.3.4. Élément rattacheur de menu</a></span></dt>
+<dt><span class="sect2"><a href="sec-MenuItems.html#id2566645">17.3.1. Ã‰lÃ©ments de menu Ã  cocher</a></span></dt>
+<dt><span class="sect2"><a href="sec-MenuItems.html#id2541012">17.3.2. Ã‰lÃ©ment de menu Radio</a></span></dt>
+<dt><span class="sect2"><a href="sec-MenuItems.html#id2595366">17.3.3. Ã‰lÃ©ment de menu sÃ©parateur</a></span></dt>
+<dt><span class="sect2"><a href="sec-MenuItems.html#id2565122">17.3.4. Ã‰lÃ©ment rattacheur de menu</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="sec-Curves.html">17.4. Courbes</a></span></dt>
-<dt><span class="sect1"><a href="sec-MessageDialog.html">17.5. Fenêtre de dialogue de message</a></span></dt>
+<dt><span class="sect1"><a href="sec-MessageDialog.html">17.5. FenÃªtre de dialogue de message</a></span></dt>
 <dt><span class="sect1"><a href="sec-GammaCurve.html">17.6. Courbe Gamma</a></span></dt>
 </dl>
 </div>
-<p>Tous ces widgets sont à la recherche d'un auteur ! :) Vous pouvez 
-    envisager de contribuer à notre tutoriel.</p>
-<p>Si vous avez besoin d'utiliser l'un de ces widgets encore non documentés, 
-je vous suggère fortement de jeter un coup d'oeil aux fichiers .c de 
-PyGTK. Les noms de méthode de PyGTK sont trés suggestifs. Lorsque vous 
-avez compris comment cela fonctionne, ce n'est pas difficile d'en 
-déduire comment utiliser un widget, en lisant ses définitions de méthode. 
-Ceci, ajouté à quelques exemples de codes d'autres personnes, et vous 
-n'aurez pas de problèmes.
+<p>Tous ces widgets sont Ã  la recherche d'un auteur ! :) Vous pouvez
+    envisager de contribuer Ã  notre tutoriel.</p>
+<p>Si vous avez besoin d'utiliser l'un de ces widgets encore non documentÃ©s,
+je vous suggÃ¨re fortement de jeter un coup d'oeil aux fichiers .c de
+PyGTK. Les noms de mÃ©thode de PyGTK sont trÃ©s suggestifs. Lorsque vous
+avez compris comment cela fonctionne, ce n'est pas difficile d'en
+dÃ©duire comment utiliser un widget, en lisant ses dÃ©finitions de mÃ©thode.
+Ceci, ajoutÃ© Ã  quelques exemples de codes d'autres personnes, et vous
+n'aurez pas de problÃ¨mes.
 </p>
-<p>Quand vouz aurez compris toutes les méthodes d'un nouveau widget 
-sans documentation, s'il vous plaît, n'hésitez pas à envisager d'écrire un 
-tutoriel à son sujet, de façon à ce que les autres puissent bénéficier 
-du temps que que vous y avez consacré.
+<p>Quand vouz aurez compris toutes les mÃ©thodes d'un nouveau widget
+sans documentation, s'il vous plaÃ®t, n'hÃ©sitez pas Ã  envisager d'Ã©crire un
+tutoriel Ã  son sujet, de faÃ§on Ã  ce que les autres puissent bÃ©nÃ©ficier
+du temps que que vous y avez consacrÃ©.
 
 </p>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-AccelLabel"></a>17.1. Étiquette de raccourci</h2></div></div></div>
+<a name="sec-AccelLabel"></a>17.1.Â Ã‰tiquette de raccourci</h2></div></div></div>
 <p></p>
 </div>
 </div>
@@ -80,15 +81,15 @@ du temps que que vous y avez consacré.
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-UIManager.html">Préc.</a> </td>
-<td width="20%" align="center"> </td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-OptionMenu.html">Suiv.</a>
+<a accesskey="p" href="sec-UIManager.html">PrÃ©c.</a>Â </td>
+<td width="20%" align="center">Â </td>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-OptionMenu.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">16.7. Le gestionnaire d'Interface Utilisateur UIManager </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 17.2. Option de menu</td>
+<td width="40%" align="left" valign="top">16.7.Â Le gestionnaire d'Interface Utilisateur UIManagerÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 17.2.Â Option de menu</td>
 </tr>
 </table>
 </div>

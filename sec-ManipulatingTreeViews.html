@@ -1,31 +1,32 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>14.6. Manipuler les TreeView</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>14.6.Â Manipuler les TreeView</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,treeview" />
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-TreeViewWidget.html" title="Chapitre 14. Le widget TreeView">
-<link rel="prev" href="sec-TreeViewColumns.html" title="14.5. TreeViewColumn">
-<link rel="next" href="sec-TreeViewSignals.html" title="14.7. Les signaux des TreeView">
+<link rel="up" href="ch-TreeViewWidget.html" title="ChapitreÂ 14.Â Le widget TreeView">
+<link rel="prev" href="sec-TreeViewColumns.html" title="14.5.Â TreeViewColumn">
+<link rel="next" href="sec-TreeViewSignals.html" title="14.7.Â Les signaux des TreeView">
 </head>
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici : 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici :
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">14.6. Manipuler les TreeView</th></tr>
+<tr><th colspan="3" align="center">14.6.Â Manipuler les TreeView</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-TreeViewColumns.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 14. Le widget TreeView</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-TreeViewSignals.html">Suiv.</a>
+<a accesskey="p" href="sec-TreeViewColumns.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 14.Â Le widget TreeView</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-TreeViewSignals.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -33,69 +34,69 @@ Vous êtes à peu près ici :
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-ManipulatingTreeViews"></a>14.6. Manipuler les TreeView</h2></div></div></div>
+<a name="sec-ManipulatingTreeViews"></a>14.6.Â Manipuler les TreeView</h2></div></div></div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-ManagingColumns"></a>14.6.1. Gérer les colonnes</h3></div></div></div>
-<p>On peut récupérer un <code class="classname">TreeViewColumn</code> dans un 
-<code class="classname">TreeView</code> soit isolément, soit comme une liste :
+<a name="sec-ManagingColumns"></a>14.6.1.Â GÃ©rer les colonnes</h3></div></div></div>
+<p>On peut rÃ©cupÃ©rer un <code class="classname">TreeViewColumn</code> dans un
+<code class="classname">TreeView</code> soit isolÃ©ment, soit comme une listeÂ :
 </p>
 <pre class="programlisting">
   treeviewcolumn = treeview.get_column(<strong class="parameter"><code>n</code></strong>)
   columnlist = treeview.get_columns()
 </pre>
-<p>... où n est l'index (à partir de zéro) de la colonne à récupérer. Une 
-colonne peut être effacée par la méthode :
+<p>... oÃ¹ n est l'index (Ã  partir de zÃ©ro) de la colonne Ã  rÃ©cupÃ©rer. Une
+colonne peut Ãªtre effacÃ©e par la mÃ©thodeÂ :
 </p>
 <pre class="programlisting">
   treeview.remove_column(<strong class="parameter"><code>column</code></strong>)
 </pre>
-<p>... où <em class="parameter"><code>column</code></em> est un <code class="classname">TreeViewColumn</code> 
+<p>... oÃ¹ <em class="parameter"><code>column</code></em> est un <code class="classname">TreeViewColumn</code>
 du <em class="parameter"><code>treeview</code></em>.
 </p>
-<p>Les lignes qui possédent des ligne enfants sont affichées avec une flèche 
-de développement (voir <a href="sec-CellRenderers.html#celldatafuncfig" title="Figure 14.3. Fonction d'affichage des données cellulaires">Figure 14.3, « Fonction d'affichage des données cellulaires »</a>) sur laquelle 
-l'utilisateur peut cliquer pour masquer ou afficher les lignes enfants. On peut 
-choisir la colonne qui possède la flèche de développement par 
-cette méthode :
+<p>Les lignes qui possÃ©dent des ligne enfants sont affichÃ©es avec une flÃ¨che
+de dÃ©veloppement (voir <a href="sec-CellRenderers.html#celldatafuncfig" title="FigureÂ 14.3.Â Fonction d'affichage des donnÃ©es cellulaires">FigureÂ 14.3, Â«Â Fonction d'affichage des donnÃ©es cellulairesÂ Â»</a>) sur laquelle
+l'utilisateur peut cliquer pour masquer ou afficher les lignes enfants. On peut
+choisir la colonne qui possÃ¨de la flÃ¨che de dÃ©veloppement par
+cette mÃ©thodeÂ :
 </p>
 <pre class="programlisting">
   treeview.set_expander_column(<strong class="parameter"><code>column</code></strong>)
 </pre>
-<p>... où <em class="parameter"><code>column</code></em> est un <code class="classname">TreeViewColumn</code> 
-du treeview. Cette méthode est utile lorsqu'on ne souhaite pas que la première colonne soit 
-indentée. Par exemple, <a href="sec-ManipulatingTreeViews.html#treeviewcolumn1expanderfig" title="Figure 14.7. Flèche de développement dans la seconde colonne">Figure 14.7, « Flèche de développement dans la seconde colonne »</a> montre la flèche 
-de développement dans la seconde colonne :
+<p>... oÃ¹ <em class="parameter"><code>column</code></em> est un <code class="classname">TreeViewColumn</code>
+du treeview. Cette mÃ©thode est utile lorsqu'on ne souhaite pas que la premiÃ¨re colonne soit
+indentÃ©e. Par exemple, <a href="sec-ManipulatingTreeViews.html#treeviewcolumn1expanderfig" title="FigureÂ 14.7.Â FlÃ¨che de dÃ©veloppement dans la seconde colonne">FigureÂ 14.7, Â«Â FlÃ¨che de dÃ©veloppement dans la seconde colonneÂ Â»</a> montre la flÃ¨che
+de dÃ©veloppement dans la seconde colonneÂ :
 </p>
 <div class="figure">
-<a name="treeviewcolumn1expanderfig"></a><p class="title"><b>Figure 14.7. Flèche de développement dans la seconde colonne</b></p>
-<div class="mediaobject" align="center"><img src="figures/treeviewcolumn1expander.png" align="middle" alt="Exemple de flèche de développement dans la seconde colonne."></div>
+<a name="treeviewcolumn1expanderfig"></a><p class="title"><b>FigureÂ 14.7.Â FlÃ¨che de dÃ©veloppement dans la seconde colonne</b></p>
+<div class="mediaobject" align="center"><img src="figures/treeviewcolumn1expander.png" align="middle" alt="Exemple de flÃ¨che de dÃ©veloppement dans la seconde colonne."></div>
 </div>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-ExpandCollapseChildRows"></a>14.6.2. Afficher ou masquer les enfants d'une ligne</h3></div></div></div>
-<p>Toutes les lignes enfants d'un <code class="classname">TreeView</code> peuvent 
-être affichées ou masquées grâce aux méthodes suivantes :
+<a name="sec-ExpandCollapseChildRows"></a>14.6.2.Â Afficher ou masquer les enfants d'une ligne</h3></div></div></div>
+<p>Toutes les lignes enfants d'un <code class="classname">TreeView</code> peuvent
+Ãªtre affichÃ©es ou masquÃ©es grÃ¢ce aux mÃ©thodes suivantesÂ :
 </p>
 <pre class="programlisting">
   treeview.expand_all()
   treeview.collapse_all()
 </pre>
-<p>Ces méthodes sont pratiques pour initialiser l'affichage du 
-<code class="classname">TreeView</code> dans un état donné. Chaque ligne peut avoir ses 
-lignes enfants affichées ou masquées de manière indépendante par :
+<p>Ces mÃ©thodes sont pratiques pour initialiser l'affichage du
+<code class="classname">TreeView</code> dans un Ã©tat donnÃ©. Chaque ligne peut avoir ses
+lignes enfants affichÃ©es ou masquÃ©es de maniÃ¨re indÃ©pendante parÂ :
 </p>
 <pre class="programlisting">
   treeview.expand_row(<strong class="parameter"><code>path</code></strong>, <strong class="parameter"><code>open_all</code></strong>)
   treeview.collapse_row(<strong class="parameter"><code>path</code></strong>)
 </pre>
-<p>... où <em class="parameter"><code>path</code></em> est le chemin arborescent vers une ligne du 
-treeview ; si <em class="parameter"><code>open_all</code></em> vaut <code class="literal">TRUE</code>, 
-toute la descendance de la ligne est affichée, sinon, seuls ses enfants directs 
-sont affichés.
+<p>... oÃ¹ <em class="parameter"><code>path</code></em> est le chemin arborescent vers une ligne du
+treeviewÂ ; si <em class="parameter"><code>open_all</code></em> vaut <code class="literal">TRUE</code>,
+toute la descendance de la ligne est affichÃ©e, sinon, seuls ses enfants directs
+sont affichÃ©s.
 </p>
-<p>On peut savoir si une ligne a ses enfants affichés par cette méthode :
+<p>On peut savoir si une ligne a ses enfants affichÃ©s par cette mÃ©thodeÂ :
 </p>
 <pre class="programlisting">
   is_expanded = treeview.row_expanded(<strong class="parameter"><code>path</code></strong>)
@@ -107,15 +108,15 @@ sont affichés.
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-TreeViewColumns.html">Préc.</a> </td>
+<a accesskey="p" href="sec-TreeViewColumns.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-TreeViewWidget.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-TreeViewSignals.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-TreeViewSignals.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">14.5. TreeViewColumn </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 14.7. Les signaux des TreeView</td>
+<td width="40%" align="left" valign="top">14.5.Â TreeViewColumnÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 14.7.Â Les signaux des TreeView</td>
 </tr>
 </table>
 </div>

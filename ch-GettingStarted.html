@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Chapitre 2. Premiers pas</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>ChapitreÂ 2.Â Premiers pas</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="prev" href="ch-Introduction.html" title="Chapitre 1. Introduction">
-<link rel="next" href="sec-TheoryOfSignalsAndCallbacks.html" title="2.2. Le principe des signaux et des rappels">
+<link rel="prev" href="ch-Introduction.html" title="ChapitreÂ 1.Â Introduction">
+<link rel="next" href="sec-TheoryOfSignalsAndCallbacks.html" title="2.2.Â Le principe des signaux et des rappels">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">Chapitre 2. Premiers pas</th></tr>
+<tr><th colspan="3" align="center">ChapitreÂ 2.Â Premiers pas</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="ch-Introduction.html">Préc.</a> </td>
-<th width="60%" align="center"> </th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-TheoryOfSignalsAndCallbacks.html">Suiv.</a>
+<a accesskey="p" href="ch-Introduction.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">Â </th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-TheoryOfSignalsAndCallbacks.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,19 +36,19 @@
 </div>
 <div class="chapter" lang="fr">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="ch-GettingStarted"></a>Chapitre 2. Premiers pas</h2></div></div></div>
+<a name="ch-GettingStarted"></a>ChapitreÂ 2.Â Premiers pas</h2></div></div></div>
 <div class="toc">
-<p><b>Table des matières</b></p>
+<p><b>Table des matiÃ¨res</b></p>
 <dl>
 <dt><span class="sect1"><a href="ch-GettingStarted.html#sec-HelloWorld">2.1. "Hello World" en PyGTK</a></span></dt>
 <dt><span class="sect1"><a href="sec-TheoryOfSignalsAndCallbacks.html">2.2. Le principe des signaux et des rappels</a></span></dt>
-<dt><span class="sect1"><a href="sec-Events.html">2.3. Évènements</a></span></dt>
-<dt><span class="sect1"><a href="sec-SteppingThroughHelloWorld.html">2.4. Le "Hello World" pas à pas</a></span></dt>
+<dt><span class="sect1"><a href="sec-Events.html">2.3. Ã‰vÃ¨nements</a></span></dt>
+<dt><span class="sect1"><a href="sec-SteppingThroughHelloWorld.html">2.4. Le "Hello World" pas Ã  pas</a></span></dt>
 </dl>
 </div>
-<p>Nous commencerons notre découverte de PyGTK avec le programme le plus simple possible. 
-Ce programme (<a href="exemples/base.py" target="_top"><span><strong class="command">base.py</strong></span></a>) crée 
-une fenêtre de 200x200 pixels et n'offre aucune possibilité de sortie, si ce n'est par le shell.
+<p>Nous commencerons notre dÃ©couverte de PyGTK avec le programme le plus simple possible.
+Ce programme (<a href="exemples/base.py" target="_top"><span><strong class="command">base.py</strong></span></a>) crÃ©e
+une fenÃªtre de 200x200 pixels et n'offre aucune possibilitÃ© de sortie, si ce n'est par le shell.
 
 </p>
 <pre class="programlisting">
@@ -63,55 +64,55 @@ une fenêtre de 200x200 pixels et n'offre aucune possibilité de sortie, si ce n'e
    10       def __init__(self):
    11           self.fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
    12           self.fenetre.show()
-   13   
+   13
    14       def boucle(self):
    15           gtk.main()
-   16   
+   16
    17   print __name__
    18   if __name__ == "__main__":
    19       base = Base()
-   20       base.boucle()   
+   20       base.boucle()
 </pre>
-<p>Vous pouvez exécuter le programme ci-dessus en tapant : </p>
+<p>Vous pouvez exÃ©cuter le programme ci-dessus en tapantÂ : </p>
 <pre class="programlisting">
   python base.py
 </pre>
-<p>Si <a href="exemples/base.py" target="_top"><span><strong class="command">base.py</strong></span></a> est 
-rendu exécutable et qu'il se trouve dans votre PATH, il suffira de 
-taper :</p>
+<p>Si <a href="exemples/base.py" target="_top"><span><strong class="command">base.py</strong></span></a> est
+rendu exÃ©cutable et qu'il se trouve dans votre PATH, il suffira de
+taperÂ :</p>
 <pre class="programlisting">
   base.py
 </pre>
-<p>La ligne 1 invoquera alors Python pour exécuter le programme. Les lignes 5 et 6 
-font la distinction entre les différentes versions de PyGTK qui peuvent être installées 
-sur votre système. On précise que l'on veut utiliser la version 2.0 de PyGTK, ce qui 
-couvre toutes les versions dont le premier chiffre est 2. Ainsi, on empêche le programme 
-d'utiliser une version antérieure de PyGTK au cas où elle serait installée sur le système. 
-Les lignes 18 à 20 vérifient que la variable <code class="varname">__name__</code> vaut bien 
-<code class="literal">"__main__"</code>, ce qui indique que le programme est lancé directement à 
-partir de Python et non pas importé dans un interpréteur Python en cours de fonctionnement. 
-Si cette condition est vérifiée, le programme crée une nouvelle instance de la classe Base 
-et enregistre une référence à celle-ci dans la variable base. Puis il invoque la méthode 
-<code class="methodname">main</code>() pour démarrer la boucle de traitement des évènements GTK+.
+<p>La ligne 1 invoquera alors Python pour exÃ©cuter le programme. Les lignes 5 et 6
+font la distinction entre les diffÃ©rentes versions de PyGTK qui peuvent Ãªtre installÃ©es
+sur votre systÃ¨me. On prÃ©cise que l'on veut utiliser la version 2.0 de PyGTK, ce qui
+couvre toutes les versions dont le premier chiffre est 2. Ainsi, on empÃªche le programme
+d'utiliser une version antÃ©rieure de PyGTK au cas oÃ¹ elle serait installÃ©e sur le systÃ¨me.
+Les lignes 18 Ã  20 vÃ©rifient que la variable <code class="varname">__name__</code> vaut bien
+<code class="literal">"__main__"</code>, ce qui indique que le programme est lancÃ© directement Ã 
+partir de Python et non pas importÃ© dans un interprÃ©teur Python en cours de fonctionnement.
+Si cette condition est vÃ©rifiÃ©e, le programme crÃ©e une nouvelle instance de la classe Base
+et enregistre une rÃ©fÃ©rence Ã  celle-ci dans la variable base. Puis il invoque la mÃ©thode
+<code class="methodname">main</code>() pour dÃ©marrer la boucle de traitement des Ã©vÃ¨nements GTK+.
 </p>
-<p>Une fenêtre semblable à celle de la <a href="ch-GettingStarted.html#basefig" title="Figure 2.1. Une simple fenêtre PyGTK">Figure 2.1, « Une simple fenêtre PyGTK »</a> devrait 
-    apparaître à l'écran.</p>
+<p>Une fenÃªtre semblable Ã  celle de la <a href="ch-GettingStarted.html#basefig" title="FigureÂ 2.1.Â Une simple fenÃªtre PyGTK">FigureÂ 2.1, Â«Â Une simple fenÃªtre PyGTKÂ Â»</a> devrait
+    apparaÃ®tre Ã  l'Ã©cran.</p>
 <div class="figure">
-<a name="basefig"></a><p class="title"><b>Figure 2.1. Une simple fenêtre PyGTK</b></p>
-<div class="mediaobject" align="center"><img src="figures/base.png" align="middle" alt="Une simple fenêtre PyGTK."></div>
+<a name="basefig"></a><p class="title"><b>FigureÂ 2.1.Â Une simple fenÃªtre PyGTK</b></p>
+<div class="mediaobject" align="center"><img src="figures/base.png" align="middle" alt="Une simple fenÃªtre PyGTK."></div>
 </div>
-<p>La première ligne permet au programme <a href="exemples/base.py" target="_top">
-<span><strong class="command">base.py</strong></span></a> d'être invoqué à partir d'un shell Linux ou Unix, 
-pourvu que <span><strong class="command">python</strong></span> figure dans votre <code class="varname">PATH</code>. Cette 
-ligne doit être la première dans chacun des programmes exemples.
+<p>La premiÃ¨re ligne permet au programme <a href="exemples/base.py" target="_top">
+<span><strong class="command">base.py</strong></span></a> d'Ãªtre invoquÃ© Ã  partir d'un shell Linux ou Unix,
+pourvu que <span><strong class="command">python</strong></span> figure dans votre <code class="varname">PATH</code>. Cette
+ligne doit Ãªtre la premiÃ¨re dans chacun des programmes exemples.
 </p>
-<p>Les lignes 5 à 7 importent le module PyGTK 2 et initialise l'environnement GTK+. 
-Le module PyGTK définit les interfaces Python des fonctions GTK+ qui seront utilisées 
-dans le programme. Pour ceux qui connaissent déjà GTK+, l'initialisation comprend un 
-appel à la fonction <code class="function">gtk_init</code>(). Celle-ci règle plusieurs choses 
-pour nous, comme le format d'affichage et la table des couleurs par défaut, les 
-gestionnaires de signaux par défaut, etc. Elle vérifie également si un ou plusieurs des 
-paramètres suivants ont été passés à l'application via la ligne de commande :
+<p>Les lignes 5 Ã  7 importent le module PyGTKÂ 2 et initialise l'environnement GTK+.
+Le module PyGTK dÃ©finit les interfaces Python des fonctions GTK+ qui seront utilisÃ©es
+dans le programme. Pour ceux qui connaissent dÃ©jÃ  GTK+, l'initialisation comprend un
+appel Ã  la fonction <code class="function">gtk_init</code>(). Celle-ci rÃ¨gle plusieurs choses
+pour nous, comme le format d'affichage et la table des couleurs par dÃ©faut, les
+gestionnaires de signaux par dÃ©faut, etc. Elle vÃ©rifie Ã©galement si un ou plusieurs des
+paramÃ¨tres suivants ont Ã©tÃ© passÃ©s Ã  l'application via la ligne de commandeÂ :
 </p>
 <div class="itemizedlist"><ul type="disc">
 <li>--gtk-module</li>
@@ -125,138 +126,138 @@ paramètres suivants ont été passés à l'application via la ligne de commande :
 <li>--name</li>
 <li>--class</li>
 </ul></div>
-<p>Elle les retire alors de la liste des paramètres, et laisse tout ce 
-qu'elle n'a pas reconnu être analysé ou ignoré par notre application. Ces paramètres 
-sont standard, ils sont acceptés par toutes les applications GTK+.</p>
-<p>Aux lignes 9 à 15, on définit une classe Python nommée 
-<code class="classname">Base</code>, dans laquelle est définie une méthode d'initialisation 
-d'instance : <code class="methodname">__init__</code>(). Cette fonction crée une fenêtre 
-racine (ligne 11) et ordonne à GTK+ de l'afficher (ligne 12). La  <code class="classname">gtk.Window</code> 
-est créée avec l'argument <code class="varname">gtk.WINDOW_TOPLEVEL</code>, indiquant que l'on souhaite 
-que l'aspect et le positionnement de le fenêtre soient pris en charge par le gestionnaire de 
-fenêtres. Plutôt que de créer une fenêtre de 0x0 pixels, une fenêtre sans enfant a une taille 
-par défaut de 200x200 pixels de manière à pouvoir être manipulée facilement.</p>
-<p>Aux lignes 14 et 15, on définit la méthode <code class="methodname">boucle</code>() 
-qui appelle la fonction <code class="function">main</code>() de PyGTK. Cette dernière 
-initialise la boucle principale du traitement des évènements de GTK, pour capter 
-les évènements de la souris, du clavier, même des fenêtres.</p>
-<p>Les lignes 18 à 20 permettent au programme de démarrer automatiquement 
-s'il est appelé directement ou passé comme argument à l'interpréteur Python ; 
-dans ces deux cas, le nom du programme contenu dans la variable Python  
-<code class="varname">__name__</code> sera la chaîne de caractères <code class="literal">"__main__"</code> 
-et le code des lignes 18-20 sera exécuté. Par contre, si le programme est 
-importé dans un interpréteur Python en cours de fonctionnement, 
-les lignes 18-20 seront ignorées.</p>
-<p>À la ligne 19, on crée une instance de la classe 
-<code class="classname">Base</code> nommée base. Ce qui a pour effet de créer et 
+<p>Elle les retire alors de la liste des paramÃ¨tres, et laisse tout ce
+qu'elle n'a pas reconnu Ãªtre analysÃ© ou ignorÃ© par notre application. Ces paramÃ¨tres
+sont standard, ils sont acceptÃ©s par toutes les applications GTK+.</p>
+<p>Aux lignes 9 Ã  15, on dÃ©finit une classe Python nommÃ©e
+<code class="classname">Base</code>, dans laquelle est dÃ©finie une mÃ©thode d'initialisation
+d'instanceÂ : <code class="methodname">__init__</code>(). Cette fonction crÃ©e une fenÃªtre
+racine (ligne 11) et ordonne Ã  GTK+ de l'afficher (ligne 12). La  <code class="classname">gtk.Window</code>
+est crÃ©Ã©e avec l'argument <code class="varname">gtk.WINDOW_TOPLEVEL</code>, indiquant que l'on souhaite
+que l'aspect et le positionnement de le fenÃªtre soient pris en charge par le gestionnaire de
+fenÃªtres. PlutÃ´t que de crÃ©er une fenÃªtre de 0x0 pixels, une fenÃªtre sans enfant a une taille
+par dÃ©faut de 200x200 pixels de maniÃ¨re Ã  pouvoir Ãªtre manipulÃ©e facilement.</p>
+<p>Aux lignes 14 et 15, on dÃ©finit la mÃ©thode <code class="methodname">boucle</code>()
+qui appelle la fonction <code class="function">main</code>() de PyGTK. Cette derniÃ¨re
+initialise la boucle principale du traitement des Ã©vÃ¨nements de GTK, pour capter
+les Ã©vÃ¨nements de la souris, du clavier, mÃªme des fenÃªtres.</p>
+<p>Les lignes 18 Ã  20 permettent au programme de dÃ©marrer automatiquement
+s'il est appelÃ© directement ou passÃ© comme argument Ã  l'interprÃ©teur Python ;
+dans ces deux cas, le nom du programme contenu dans la variable Python
+<code class="varname">__name__</code> sera la chaÃ®ne de caractÃ¨res <code class="literal">"__main__"</code>
+et le code des lignes 18-20 sera exÃ©cutÃ©. Par contre, si le programme est
+importÃ© dans un interprÃ©teur Python en cours de fonctionnement,
+les lignes 18-20 seront ignorÃ©es.</p>
+<p>Ã€ la ligne 19, on crÃ©e une instance de la classe
+<code class="classname">Base</code> nommÃ©e base. Ce qui a pour effet de crÃ©er et
 d'afficher une <code class="classname">gtk.Window</code>.</p>
-<p>La ligne 20 invoque la méthode <code class="methodname">main</code>() 
-de la classe <code class="classname">Base</code>, qui démarre la boucle du traitement 
-des évènements de GTK+. Une fois ce point atteint, GTK se met en attente d'évènements 
-en provenance de X (un clic sur un bouton, une touche enfoncée, etc.), de timeouts 
-ou de notifications d'entrées-sorties fichier. Dans notre exemple tout simple, 
-ils seront cependant ignorés.
+<p>La ligne 20 invoque la mÃ©thode <code class="methodname">main</code>()
+de la classe <code class="classname">Base</code>, qui dÃ©marre la boucle du traitement
+des Ã©vÃ¨nements de GTK+. Une fois ce point atteint, GTK se met en attente d'Ã©vÃ¨nements
+en provenance de X (un clic sur un bouton, une touche enfoncÃ©e, etc.), de timeouts
+ou de notifications d'entrÃ©es-sorties fichier. Dans notre exemple tout simple,
+ils seront cependant ignorÃ©s.
 </p>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-HelloWorld"></a>2.1. "Hello World" en PyGTK</h2></div></div></div>
-<p>Voici maintenant un programme avec un widget (un bouton). Il s'agit de 
+<a name="sec-HelloWorld"></a>2.1.Â "Hello World" en PyGTK</h2></div></div></div>
+<p>Voici maintenant un programme avec un widget (un bouton). Il s'agit de
 la version PyGTK des classiques "Hello World" (<a href="exemples/helloworld.py" target="_top">
 <span><strong class="command">helloworld.py</strong></span></a>).</p>
 <pre class="programlisting">
      1   # !/usr/bin/env python
      2   # coding: utf8
      3   # exemple helloworld.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   class SalutMonde:
-    10   
-    11       # Ceci est une fonction de rappel. Les arguments sont ignorés dans
-    12       # cet exemple. Plus de précisions sur ces fonctions plus bas.
+    10
+    11       # Ceci est une fonction de rappel. Les arguments sont ignorÃ©s dans
+    12       # cet exemple. Plus de prÃ©cisions sur ces fonctions plus bas.
     13       def salut(self, widget, donnees=None):
     14           print "Salut tout le monde !"
-    15   
+    15
     16       def evnmt_delete(self, widget, evenement, donnees=None):
     17           # Si on renvoie FALSE dans le gestionnaire du signal "evnmt_delete",
-    18           # GTK émettra le signal "destroy". Renvoyer TRUE signifie que l'on
-    19           # ne veut pas que la fenêtre soit détruite.
-    20           # Ceci peut être utile pour faire apparaître des fenêtres
-    21           # du type "Êtes vous sûr de vouloir quitter ?"
-    22           print "Évènement delete survenu."
-    23   
-    24           # Changez FALSE par TRUE et la fenêtre principale ne 
-    25           # sera pas détruite par un "delete_event"
+    18           # GTK Ã©mettra le signal "destroy". Renvoyer TRUE signifie que l'on
+    19           # ne veut pas que la fenÃªtre soit dÃ©truite.
+    20           # Ceci peut Ãªtre utile pour faire apparaÃ®tre des fenÃªtres
+    21           # du type "ÃŠtes vous sÃ»r de vouloir quitter ?"
+    22           print "Ã‰vÃ¨nement delete survenu."
+    23
+    24           # Changez FALSE par TRUE et la fenÃªtre principale ne
+    25           # sera pas dÃ©truite par un "delete_event"
     26           return False
-    27   
+    27
     28       def destroy(self, widget, donnees=None):
-    29           print "Évènement destroy survenu."
+    29           print "Ã‰vÃ¨nement destroy survenu."
     30           gtk.main_quit()
-    31   
+    31
     32       def __init__(self):
-    33           # création d'une nouvelle fenêtre
+    33           # crÃ©ation d'une nouvelle fenÃªtre
     34           self.fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    35   
-    36           # Quand la fenêtre reçoit le signal "delete_event" (donné par le
-    37           # gestionnaire de fenêtres, généralement par l'option "fermer" ou
+    35
+    36           # Quand la fenÃªtre reÃ§oit le signal "delete_event" (donnÃ© par le
+    37           # gestionnaire de fenÃªtres, gÃ©nÃ©ralement par l'option "fermer" ou
     38           # la croix de la barre de titre), on lui demande d'appeler la
-    39           # fonction evnmt_delete() définie plus haut. On lui passe l'argument
-    40           # NULL, qui est ignoré.
+    39           # fonction evnmt_delete() dÃ©finie plus haut. On lui passe l'argument
+    40           # NULL, qui est ignorÃ©.
     41           self.fenetre.connect("delete_event", self.evnmt_delete)
-    42   
-    43           # Ici on connecte l'évènement "destroy" à un gestionnaire de signal.
-    44           # Cet évènement se produit lorsqu'on invoque gtk_widget_destroy() sur
-    45           # la fenêtre ou lorsque le gestionnaire du signal "delete" renvoie FALSE.
+    42
+    43           # Ici on connecte l'Ã©vÃ¨nement "destroy" Ã  un gestionnaire de signal.
+    44           # Cet Ã©vÃ¨nement se produit lorsqu'on invoque gtk_widget_destroy() sur
+    45           # la fenÃªtre ou lorsque le gestionnaire du signal "delete" renvoie FALSE.
     46           self.fenetre.connect("destroy", self.destroy)
-    47   
-    48           # On fixe la largeur des bordures de la fenêtre.
+    47
+    48           # On fixe la largeur des bordures de la fenÃªtre.
     49           self.fenetre.set_border_width(10)
-    50   
-    51           # On crée un nouveau bouton avec l'étiquette "Salut tout le monde !".
+    50
+    51           # On crÃ©e un nouveau bouton avec l'Ã©tiquette "Salut tout le monde !".
     52           self.bouton = gtk.Button("Salut tout le monde !")
-    53   
-    54           # Lorsque le bouton reçoit le signal "clicked", il appelle la
+    53
+    54           # Lorsque le bouton reÃ§oit le signal "clicked", il appelle la
     55           # fonction salut() et lui passe None comme argument. La fonction
-    56           # salut() est définie plus haut.
+    56           # salut() est dÃ©finie plus haut.
     57           self.bouton.connect("clicked", self.salut, None)
-    58   
-    59           # Ceci entrainera la destruction de la fenêtre par l'appel de
+    58
+    59           # Ceci entrainera la destruction de la fenÃªtre par l'appel de
     60           # gtk_widget_destroy(fenetre) si l'on clique le bouton. Encore une fois,
-    61           # le signal "destroy" peut venir d'ici ou du gestionnaire de fenêtres.
+    61           # le signal "destroy" peut venir d'ici ou du gestionnaire de fenÃªtres.
     62           self.bouton.connect_object("clicked", gtk.Widget.destroy, self.fenetre)
-    63   
-    64           # On place le bouton dans la fenêtre (un conteneur GTK).
+    63
+    64           # On place le bouton dans la fenÃªtre (un conteneur GTK).
     65           self.fenetre.add(self.bouton)
-    66   
-    67           # La dernière étape consiste à afficher ce nouveau widget...
+    66
+    67           # La derniÃ¨re Ã©tape consiste Ã  afficher ce nouveau widget...
     68           self.bouton.show()
-    69   
-    70           # ...ainsi que la fenêtre
+    69
+    70           # ...ainsi que la fenÃªtre
     71           self.fenetre.show()
-    72   
+    72
     73       def boucle(self):
-    74           # Toutes les applications PyGTK doivent avoir un gtk.main(). Arrivé à ce point,
-    75           # le programme se met en attente d'un évènement (clic, appui d'une touche, etc.)
+    74           # Toutes les applications PyGTK doivent avoir un gtk.main(). ArrivÃ© Ã  ce point,
+    75           # le programme se met en attente d'un Ã©vÃ¨nement (clic, appui d'une touche, etc.)
     76           gtk.main()
-    77   
-    78   # Si le programme est lancé directement ou passé en argument à l'interpréteur 
-    79   # Python, ceci crée une instance de la classe SalutMonde et l'affiche
+    77
+    78   # Si le programme est lancÃ© directement ou passÃ© en argument Ã  l'interprÃ©teur
+    79   # Python, ceci crÃ©e une instance de la classe SalutMonde et l'affiche
     80   if __name__ == "__main__":
     81       salut = SalutMonde()
     82       salut.boucle()
 </pre>
-<p>La <a href="ch-GettingStarted.html#helloworldfig" title='Figure 2.2. Exemple "Salut tout le monde !"'>Figure 2.2, « Exemple "Salut tout le monde !" »</a> montre la fenêtre obtenue 
+<p>La <a href="ch-GettingStarted.html#helloworldfig" title='FigureÂ 2.2.Â Exemple "Salut tout le monde !"'>FigureÂ 2.2, Â«Â Exemple "Salut tout le monde !"Â Â»</a> montre la fenÃªtre obtenue
       avec <a href="exemples/helloworld.py" target="_top"><span><strong class="command">helloworld.py</strong></span>
       </a>.</p>
 <div class="figure">
-<a name="helloworldfig"></a><p class="title"><b>Figure 2.2. Exemple "Salut tout le monde !"</b></p>
+<a name="helloworldfig"></a><p class="title"><b>FigureÂ 2.2.Â Exemple "Salut tout le monde !"</b></p>
 <div class="mediaobject" align="center"><img src="figures/helloworld.png" align="middle" alt='Le programme exemple "Salut tout le monde !"'></div>
 </div>
-<p>Les variables et fonctions du module PyGTK portent toutes un nom de la forme 
+<p>Les variables et fonctions du module PyGTK portent toutes un nom de la forme
 <code class="literal">gtk.*</code>. Par exemple, le programme <a href="exemples/helloworld.py" target="_top">
-<span><strong class="command">helloworld.py</strong></span></a> fait appel à :
+<span><strong class="command">helloworld.py</strong></span></a> fait appel Ã Â :
 </p>
 <pre class="programlisting">
   False
@@ -264,9 +265,9 @@ la version PyGTK des classiques "Hello World" (<a href="exemples/helloworld.py" 
   gtk.Window()
   gtk.Button()
 </pre>
-<p>... qui appartiennent au module PyGTK. Dans les prochaines sections, 
-      le préfixe gtk ne sera pas toujours précisé mais il sera à chaque fois 
-      sous-entendu. Les programmes d'exemple, évidemment l'utiliseront.</p>
+<p>... qui appartiennent au module PyGTK. Dans les prochaines sections,
+      le prÃ©fixe gtk ne sera pas toujours prÃ©cisÃ© mais il sera Ã  chaque fois
+      sous-entendu. Les programmes d'exemple, Ã©videmment l'utiliseront.</p>
 </div>
 </div>
 <div class="navfooter">
@@ -274,15 +275,15 @@ la version PyGTK des classiques "Hello World" (<a href="exemples/helloworld.py" 
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="ch-Introduction.html">Préc.</a> </td>
-<td width="20%" align="center"> </td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-TheoryOfSignalsAndCallbacks.html">Suiv.</a>
+<a accesskey="p" href="ch-Introduction.html">PrÃ©c.</a>Â </td>
+<td width="20%" align="center">Â </td>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-TheoryOfSignalsAndCallbacks.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">Chapitre 1. Introduction </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 2.2. Le principe des signaux et des rappels</td>
+<td width="40%" align="left" valign="top">ChapitreÂ 1.Â IntroductionÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 2.2.Â Le principe des signaux et des rappels</td>
 </tr>
 </table>
 </div>

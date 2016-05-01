@@ -1,11 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>6.2. Les boutons &agrave; bascule</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,bouton">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -15,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici : 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici :
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 
 <table width="100%" summary="En-t&ecirc;te de navigation">
@@ -39,12 +38,12 @@ Vous êtes à peu près ici :
 <div class="titlepage">
 <div><h2 class="title" style="clear: both"><a name="BoutonsBascule"></a>6.2. Les boutons &agrave; bascule</h2></div></div>
 
-<p>Le bouton &agrave; bascule d&eacute;rive du bouton simple et lui est donc tr&egrave;s 
-similaire. Il a cependant ceci de diff&eacute;rent qu'il poss&egrave;de deux &eacute;tats 
-et qu'un clic le fait basculer de l'un &agrave; l'autre. Lorsqu'il est enfonc&eacute;, 
+<p>Le bouton &agrave; bascule d&eacute;rive du bouton simple et lui est donc tr&egrave;s
+similaire. Il a cependant ceci de diff&eacute;rent qu'il poss&egrave;de deux &eacute;tats
+et qu'un clic le fait basculer de l'un &agrave; l'autre. Lorsqu'il est enfonc&eacute;,
 un clic le fait remonter. Un autre clic et le voil&agrave; de nouveau enfonc&eacute;.</p>
-<p>Les boutons &agrave; bascule sont la base des cases &agrave; cocher et des boutons radio, 
-ces derniers h&eacute;ritent donc de beaucoup de leurs appels (nous le signalerons le 
+<p>Les boutons &agrave; bascule sont la base des cases &agrave; cocher et des boutons radio,
+ces derniers h&eacute;ritent donc de beaucoup de leurs appels (nous le signalerons le
 cas &eacute;ch&eacute;ant).</p>
 <p>Cr&eacute;ation d'un bouton &agrave; bascule&nbsp;:</p>
 
@@ -52,19 +51,19 @@ cas &eacute;ch&eacute;ant).</p>
   bouton_bascule = gtk.ToggleButton(<b><tt>label</tt></b>=None)
 </pre>
 
-<p>Comme vous pouvez l'imaginer, le fonctionnement de cet appel est identique &agrave; 
-celui des boutons normaux. Si aucune &eacute;tiquette n'est sp&eacute;cifi&eacute;e, 
-le bouton sera vierge. Dans le cas contraire, le texte donn&eacute; sera inspect&eacute; 
-&agrave; la recherche de caract&egrave;res mn&eacute;moniques (pr&eacute;fix&eacute;s 
+<p>Comme vous pouvez l'imaginer, le fonctionnement de cet appel est identique &agrave;
+celui des boutons normaux. Si aucune &eacute;tiquette n'est sp&eacute;cifi&eacute;e,
+le bouton sera vierge. Dans le cas contraire, le texte donn&eacute; sera inspect&eacute;
+&agrave; la recherche de caract&egrave;res mn&eacute;moniques (pr&eacute;fix&eacute;s
 par '<tt>_</tt>').</p>
-<p>Pour r&eacute;cup&eacute;rer l'&eacute;tat d'un bouton &agrave; bascule, ainsi que 
-des boutons radio et des cases &agrave; cocher, on fait appel &agrave; une construction 
-semblable &agrave; l'exemple ci-dessous. Elle teste l'&eacute;tat du bouton en invoquant 
-la m&eacute;thode <tt>get_active</tt>() de <tt>gtk.ToggleButton</tt>. Parmi les signaux 
-&eacute;mis par les boutons &agrave; bascule, celui qui nous int&eacute;resse est 
-&quot;<tt>toggled</tt>&quot;. Pour v&eacute;rifier l'&eacute;tat d'un bouton &agrave; 
-bascule, on d&eacute;finira alors un gestionnaire de signal qui se chargera de le capter, 
-puis qui acc&egrave;dera aux attributs de l'objet afin de d&eacute;terminer son &eacute;tat. 
+<p>Pour r&eacute;cup&eacute;rer l'&eacute;tat d'un bouton &agrave; bascule, ainsi que
+des boutons radio et des cases &agrave; cocher, on fait appel &agrave; une construction
+semblable &agrave; l'exemple ci-dessous. Elle teste l'&eacute;tat du bouton en invoquant
+la m&eacute;thode <tt>get_active</tt>() de <tt>gtk.ToggleButton</tt>. Parmi les signaux
+&eacute;mis par les boutons &agrave; bascule, celui qui nous int&eacute;resse est
+&quot;<tt>toggled</tt>&quot;. Pour v&eacute;rifier l'&eacute;tat d'un bouton &agrave;
+bascule, on d&eacute;finira alors un gestionnaire de signal qui se chargera de le capter,
+puis qui acc&egrave;dera aux attributs de l'objet afin de d&eacute;terminer son &eacute;tat.
 La fonction de rappel ressemblera &agrave; ceci&nbsp;:</p>
 
 <pre class="programlisting">
@@ -75,33 +74,33 @@ La fonction de rappel ressemblera &agrave; ceci&nbsp;:</p>
           # si le contr&ocirc;le arrive ici, le bouton &agrave; bascule est relev&eacute;
 </pre>
 
-<p>Pour forcer l'&eacute;tat d'un bouton &agrave; bascule (et de ses descendants les cases 
+<p>Pour forcer l'&eacute;tat d'un bouton &agrave; bascule (et de ses descendants les cases
 &agrave; cocher et les boutons radio) on utilise la m&eacute;thode&nbsp;:</p>
 
 <pre class="programlisting">
   bouton_bascule.set_active(<B><tt>is_active</tt></B>)
 </pre>
 
-<p>La m&eacute;thode ci-dessus peut &ecirc;tre utilis&eacute;e pour imposer l'&eacute;tat 
-d'un bouton &agrave; bascule, et de ses descendants les cases &agrave; cocher et les boutons 
-radio. En donnant les valeurs TRUE ou FALSE &agrave; l'argument <i><tt>is_active</tt></i>, 
-on indique que le bouton doit &ecirc;tre respectivement enfonc&eacute; ou relev&eacute;. 
-Lors de sa cr&eacute;ation, un bouton &agrave; bascule est en position relev&eacute;e 
+<p>La m&eacute;thode ci-dessus peut &ecirc;tre utilis&eacute;e pour imposer l'&eacute;tat
+d'un bouton &agrave; bascule, et de ses descendants les cases &agrave; cocher et les boutons
+radio. En donnant les valeurs TRUE ou FALSE &agrave; l'argument <i><tt>is_active</tt></i>,
+on indique que le bouton doit &ecirc;tre respectivement enfonc&eacute; ou relev&eacute;.
+Lors de sa cr&eacute;ation, un bouton &agrave; bascule est en position relev&eacute;e
 (FALSE) par d&eacute;faut.</p>
-<p>Notez que lorsqu'on utilise la m&eacute;thode <tt>set_active</tt>() et que l'&eacute;tat 
-est effectivement modifi&eacute;, les signaux &quot;<tt>clicked</tt>&quot; et 
+<p>Notez que lorsqu'on utilise la m&eacute;thode <tt>set_active</tt>() et que l'&eacute;tat
+est effectivement modifi&eacute;, les signaux &quot;<tt>clicked</tt>&quot; et
 &quot;<tt>toggled</tt>&quot; sont automatiquement &eacute;mis par le bouton.</p>
 
 <pre class="programlisting">
   bouton_bascule.get_active()
 </pre>
 
-<p>Cette m&eacute;thode renvoie l'&eacute;tat actuel du bouton &agrave; bascule sous la 
+<p>Cette m&eacute;thode renvoie l'&eacute;tat actuel du bouton &agrave; bascule sous la
 forme d'une valeur bool&eacute;enne TRUE/FALSE.</p>
-<p>Le programme <a href="exemples/boutonsbascule.py" target="_top"><B>boutonsbascule.py</B></a> 
-donne un exemple courant d'utilisation des boutons &agrave; bascule. 
-La <a title="Figure 6.2. Exemple de boutons &agrave; bascule" 
-href="sec-ToggleButtons.html#basculefig">figure 6.2</a> montre la fen&ecirc;tre 
+<p>Le programme <a href="exemples/boutonsbascule.py" target="_top"><B>boutonsbascule.py</B></a>
+donne un exemple courant d'utilisation des boutons &agrave; bascule.
+La <a title="Figure 6.2. Exemple de boutons &agrave; bascule"
+href="sec-ToggleButtons.html#basculefig">figure 6.2</a> montre la fen&ecirc;tre
 obtenue, dans laquelle le deuxi&egrave;me bouton est enfonc&eacute;&nbsp;:</p>
 
 <div class="figure"><a name="basculefig"></a><p class="title">
@@ -113,96 +112,96 @@ obtenue, dans laquelle le deuxi&egrave;me bouton est enfonc&eacute;&nbsp;:</p>
 
 <pre class=programlisting>
      1   #!/usr/bin/env python
-     2   
+     2
      3   # exemple boutonsbascule.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   class BoutonsBascule:
     10       # Notre fonction de rappel. Le parametre "donnees"
     11       # transmis a cette methode est affiche sur stdout
     12       def fct_rappel(self, widget, donnees=None):
     13           print "Le %s a ete %s." % (donnees, ("releve", "enfonce")[widget.get_active()])
-    14   
+    14
     15       # Cette fonction de rappel quitte le programme
     16       def evnmt_delete(self, widget, evenement, donnees=None):
     17           gtk.main_quit()
     18           return gtk.FALSE
-    19   
+    19
     20       def __init__(self):
     21           # Creation d'une nouvelle fenetre.
     22           self.fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    23   
+    23
     24           # On definit le titre de la fenetre.
     25           self.fenetre.set_title("Boutons a bascule")
-    26   
+    26
     27           # On definit un gestionnaire de signal pour "delete_event",
     28           # qui quitte GTK immediatement.
     29           self.fenetre.connect("delete_event", self.evnmt_delete)
-    30   
+    30
     31           # On fixe la largeur des bordures de la fenetre.
     32           self.fenetre.set_border_width(20)
-    33   
+    33
     34           # Creation d'une boite verticale.
     35           boite_v = gtk.VBox(True, 2)
-    36   
+    36
     37           # On place la VBox dans la fenetre principale.
     38           self.fenetre.add(boite_v)
-    39   
+    39
     40           # Creation du premier bouton.
     41           bouton = gtk.ToggleButton("bouton a bascule 1")
-    42   
+    42
     43           # Lorsque l'on change l'etat du bouton, la methode fct_rappel() est
     44           # appelee, avec un pointeur sur "bouton a bascule 1" comme argument.
     45           bouton.connect("toggled", self.fct_rappel, "bouton a bascule 1")
-    46   
-    47   
+    46
+    47
     48           # Insertion du bouton 1 dans le quart superieur gauche du tableau.
     49           boite_v.pack_start(bouton, True, True, 2)
-    50   
+    50
     51           bouton.show()
-    52   
+    52
     53           # Creation du deuxieme bouton.
-    54   
+    54
     55           bouton = gtk.ToggleButton("bouton a bascule 2")
-    56   
+    56
     57           # Lorsque l'on change l'etat du bouton, la methode fct_rappel() est
     58           # appelee, avec un pointeur sur "bouton a bascule 2" comme argument.
     59           bouton.connect("toggled", self.fct_rappel, "bouton a bascule 2")
     60           # Insertion du bouton 2 dans le quart superieur droit du tableau.
     61           boite_v.pack_start(bouton, True, True, 2)
-    62   
+    62
     63           bouton.show()
-    64   
+    64
     65           # Creation du bouton "Quitter".
     66           bouton = gtk.Button("Quitter")
-    67   
+    67
     68           # Lorsque l'on clique sur le bouton, la fonction mainquit() est
     69           # appelee et le programme se termine.
     70           bouton.connect("clicked", lambda wid: gtk.main_quit())
-    71   
+    71
     72           # Insertion du bouton "Quitter" dans les deux quarts inferieurs du tableau.
     73           boite_v.pack_start(bouton, True, True, 2)
-    74   
+    74
     75           bouton.show()
     76           boite_v.show()
     77           self.fenetre.show()
-    78   
+    78
     79   def main():
     80       gtk.main()
-    81       return 0       
-    82    
+    81       return 0
+    82
     83   if __name__ == "__main__":
     84       BoutonsBascule()
     85       main()
 </pre>
 
-<p>Les parties int&eacute;ressantes sont les lignes 12-13, qui d&eacute;finissent la 
-m&eacute;thode <tt>fct_rappel</tt>() charg&eacute;e d'afficher le nom et l'&eacute;tat 
-du bouton &agrave; bascule quand celui-ci voit son &eacute;tat modifi&eacute;, et les 
-lignes 45 et 59, qui connectent le signal &quot;<tt>toggled</tt>&quot; des deux boutons 
+<p>Les parties int&eacute;ressantes sont les lignes 12-13, qui d&eacute;finissent la
+m&eacute;thode <tt>fct_rappel</tt>() charg&eacute;e d'afficher le nom et l'&eacute;tat
+du bouton &agrave; bascule quand celui-ci voit son &eacute;tat modifi&eacute;, et les
+lignes 45 et 59, qui connectent le signal &quot;<tt>toggled</tt>&quot; des deux boutons
 &agrave; cette m&ecirc;me m&eacute;thode.</p></div>
 
 <div class="navfooter">

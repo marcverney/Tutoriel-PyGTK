@@ -1,10 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>9.14. Le s&eacute;lecteur de fichier</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,selection de fichier">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -14,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici&nbsp;: 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃšs ici&nbsp;:
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En-t&ecirc;te de navigation">
 <tr>
@@ -84,50 +84,50 @@ Vous êtes à peu près ici&nbsp;:
 <div class="figure"><a name="FigSelectFichier"></a>
 <p class="title"><b>Figure 9.14. Exemple de s&eacute;lecteur de fichier</b></p>
 <div class="mediaobject" align="center">
-<img src="figures/selectfichier.png" align="middle" alt="exemple sélecteur de fichier">
+<img src="figures/selectfichier.png" align="middle" alt="exemple sÃ©lecteur de fichier">
 </div></div>
 
 <p>Le code source de <a href="exemples/selectfichier.py" target="_top"><b>selectfichier.py</b></a> est le suivant&nbsp;:</p>
 
 <pre class="programlisting">
      1   #!/usr/bin/env python
-     2   
+     2
      3   # exemple selectfichier.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   class ExempleSelecteurFichier:
     10       # On recupere le nom du fichier choisi et on l'affiche dans la console
     11       def ok_fichier(self, w):
     12           print "%s" % self.selectfichier.get_filename()
-    13   
+    13
     14       def destroy(self, widget):
     15           gtk.main_quit()
-    16   
+    16
     17       def __init__(self):
     18           # Creation d'un nouveau widget de selection de fichier
     19           self.selectfichier = gtk.FileSelection("Selection de fichier")
-    20   
+    20
     21           self.selectfichier.connect("destroy", self.destroy)
     22           # Connexion du bouton OK a la methode ok_fichier()
     23           self.selectfichier.ok_button.connect("clicked", self.ok_fichier)
-    24       
+    24
     25           # Connexion du bouton Annuler a la destruction du widget
     26           self.selectfichier.cancel_button.connect("clicked",
     27                                            lambda w: self.selectfichier.destroy())
-    28       
+    28
     29           # Definissons le fichier, comme s'il s'agissait d'une boite de dialogue
     30           # d'enregistrement de fichier et que nous donnions un fichier par defaut
     31           self.selectfichier.set_filename("pingouin.png")
-    32       
+    32
     33           self.selectfichier.show()
-    34   
+    34
     35   def main():
     36       gtk.main()
     37       return 0
-    38   
+    38
     39   if __name__ == "__main__":
     40       ExempleSelecteurFichier()
     41       main()

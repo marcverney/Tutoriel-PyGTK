@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Chapitre 3. Avançons</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>ChapitreÂ 3.Â AvanÃ§ons</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="prev" href="sec-SteppingThroughHelloWorld.html" title='2.4. Le "Hello World" pas à pas'>
-<link rel="next" href="sec-UpgradedHelloWorld.html" title='3.2. Modification de notre "Hello World"'>
+<link rel="prev" href="sec-SteppingThroughHelloWorld.html" title='2.4.Â Le "Hello World" pas Ã  pas'>
+<link rel="next" href="sec-UpgradedHelloWorld.html" title='3.2.Â Modification de notre "Hello World"'>
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">Chapitre 3. Avançons</th></tr>
+<tr><th colspan="3" align="center">ChapitreÂ 3.Â AvanÃ§ons</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-SteppingThroughHelloWorld.html">Préc.</a> </td>
-<th width="60%" align="center"> </th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-UpgradedHelloWorld.html">Suiv.</a>
+<a accesskey="p" href="sec-SteppingThroughHelloWorld.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">Â </th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-UpgradedHelloWorld.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,40 +36,40 @@
 </div>
 <div class="chapter" lang="fr">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="ch-MovingOn"></a>Chapitre 3. Avançons</h2></div></div></div>
+<a name="ch-MovingOn"></a>ChapitreÂ 3.Â AvanÃ§ons</h2></div></div></div>
 <div class="toc">
-<p><b>Table des matières</b></p>
+<p><b>Table des matiÃ¨res</b></p>
 <dl>
-<dt><span class="sect1"><a href="ch-MovingOn.html#sec-MoreOnSignalHandlers">3.1. Compléments sur les gestionnaires de signaux</a></span></dt>
+<dt><span class="sect1"><a href="ch-MovingOn.html#sec-MoreOnSignalHandlers">3.1. ComplÃ©ments sur les gestionnaires de signaux</a></span></dt>
 <dt><span class="sect1"><a href="sec-UpgradedHelloWorld.html">3.2. Modification de notre "Hello World"</a></span></dt>
 </dl>
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-MoreOnSignalHandlers"></a>3.1. Compléments sur les gestionnaires de signaux</h2></div></div></div>
-<p>Regardons à nouveau la méthode connect() :</p>
+<a name="sec-MoreOnSignalHandlers"></a>3.1.Â ComplÃ©ments sur les gestionnaires de signaux</h2></div></div></div>
+<p>Regardons Ã  nouveau la mÃ©thode connect()Â :</p>
 <pre class="programlisting">
   objet.connect(nom, fonction, donnees_fct)
 </pre>
-<p>La valeur de retour d'un appel <code class="methodname">connect()</code> est 
-un marqueur entier qui identifie votre fonction de rappel. Comme nous l'avons 
-déjà vu, il est possible de définir autant de fonctions de rappel que l'on 
-souhaite pour chaque signal et chaque objet ; elles s'exécuteront à tour de rôle, 
-dans l'ordre où elles ont été attachées.</p>
-<p>Ce marqueur nous permet de retirer une fonction de rappel de la liste 
-en utilisant :</p>
+<p>La valeur de retour d'un appel <code class="methodname">connect()</code> est
+un marqueur entier qui identifie votre fonction de rappel. Comme nous l'avons
+dÃ©jÃ  vu, il est possible de dÃ©finir autant de fonctions de rappel que l'on
+souhaite pour chaque signal et chaque objet ; elles s'exÃ©cuteront Ã  tour de rÃ´le,
+dans l'ordre oÃ¹ elles ont Ã©tÃ© attachÃ©es.</p>
+<p>Ce marqueur nous permet de retirer une fonction de rappel de la liste
+en utilisantÂ :</p>
 <pre class="programlisting">
   objet.disconnect(marqueur)
 </pre>
-<p>Donc, en passant le marqueur renvoyé par l'une des méthodes de connexion 
-du signal, on peut déconnecter un gestionnaire de signal.</p>
-<p>On peut aussi désactiver temporairement les gestionnaires de signaux 
-grâce au couple de méthodes <code class="methodname">signal_handler_block</code>() 
-et <code class="methodname">signal_handler_unblock</code>() :</p>
+<p>Donc, en passant le marqueur renvoyÃ© par l'une des mÃ©thodes de connexion
+du signal, on peut dÃ©connecter un gestionnaire de signal.</p>
+<p>On peut aussi dÃ©sactiver temporairement les gestionnaires de signaux
+grÃ¢ce au couple de mÃ©thodes <code class="methodname">signal_handler_block</code>()
+et <code class="methodname">signal_handler_unblock</code>()Â :</p>
 <pre class="programlisting">
   objet.signal_handler_block(marqueur)
 
-  objet.signal_handler_unblock(marqueur)  
+  objet.signal_handler_unblock(marqueur)
 </pre>
 </div>
 </div>
@@ -77,15 +78,15 @@ et <code class="methodname">signal_handler_unblock</code>() :</p>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-SteppingThroughHelloWorld.html">Préc.</a> </td>
-<td width="20%" align="center"> </td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-UpgradedHelloWorld.html">Suiv.</a>
+<a accesskey="p" href="sec-SteppingThroughHelloWorld.html">PrÃ©c.</a>Â </td>
+<td width="20%" align="center">Â </td>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-UpgradedHelloWorld.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">2.4. Le "Hello World" pas à pas </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 3.2. Modification de notre "Hello World"</td>
+<td width="40%" align="left" valign="top">2.4.Â Le "Hello World" pas Ã  pasÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 3.2.Â Modification de notre "Hello World"</td>
 </tr>
 </table>
 </div>

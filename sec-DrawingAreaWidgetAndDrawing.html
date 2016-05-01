@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>24.3. Le widget zone de dessin (DrawingArea) et le dessin</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>24.3.Â Le widget zone de dessin (DrawingArea) et le dessin</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-Scribble.html" title="Chapitre 24. Scribble, Un programme simple de dessin">
-<link rel="prev" href="sec-EventHandling.html" title="24.2. Gestion des évènements">
-<link rel="next" href="ch-TipsForWritingPyGTKApplications.html" title="Chapitre 25. Tips For Writing PyGTK Applications">
+<link rel="up" href="ch-Scribble.html" title="ChapitreÂ 24.Â Scribble, Un programme simple de dessin">
+<link rel="prev" href="sec-EventHandling.html" title="24.2.Â Gestion des Ã©vÃ¨nements">
+<link rel="next" href="ch-TipsForWritingPyGTKApplications.html" title="ChapitreÂ 25.Â Tips For Writing PyGTK Applications">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,13 +23,13 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">24.3. Le widget zone de dessin (DrawingArea) et le dessin</th></tr>
+<tr><th colspan="3" align="center">24.3.Â Le widget zone de dessin (DrawingArea) et le dessin</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-EventHandling.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 24. Scribble, Un programme simple de dessin</th>
+<a accesskey="p" href="sec-EventHandling.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 24.Â Scribble, Un programme simple de dessin</th>
 <!--
-<td width="20%" align="right"> <a accesskey="n" href="ch-TipsForWritingPyGTKApplications.html">Suiv.</a>
+<td width="20%" align="right">Â <a accesskey="n" href="ch-TipsForWritingPyGTKApplications.html">Suiv.</a>
 -->
 <td width="20%" align="right">Suiv.</a>
 </td>
@@ -38,83 +39,83 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-DrawingAreaWidgetAndDrawing"></a>24.3. Le widget zone de dessin (DrawingArea) et le dessin</h2></div></div></div>
-<p>Passons au processus de dessin sur l'écran. Le widget que l'on 
-utilise pour ceci est le widget <code class="classname">DrawingArea</code> (voir le 
-<a href="ch-DrawingArea.html" title="Chapitre 12. La zone de dessin (Drawing Area)">Chapitre 12, <i>La zone de dessin (Drawing Area)</i></a>). Un tel widget est essentiellement une 
-fenêtre X et rien de plus. Il s'agit d'une toile vide sur laquelle nous pouvons 
-dessiner ce que nous voulons. On créé ce widget par l'appel à :</p>
+<a name="sec-DrawingAreaWidgetAndDrawing"></a>24.3.Â Le widget zone de dessin (DrawingArea) et le dessin</h2></div></div></div>
+<p>Passons au processus de dessin sur l'Ã©cran. Le widget que l'on
+utilise pour ceci est le widget <code class="classname">DrawingArea</code> (voir le
+<a href="ch-DrawingArea.html" title="ChapitreÂ 12.Â La zone de dessin (Drawing Area)">ChapitreÂ 12, <i>La zone de dessin (Drawing Area)</i></a>). Un tel widget est essentiellement une
+fenÃªtre X et rien de plus. Il s'agit d'une toile vide sur laquelle nous pouvons
+dessiner ce que nous voulons. On crÃ©Ã© ce widget par l'appel Ã Â :</p>
 <pre class="programlisting">
   darea = gtk.DrawingArea()
 </pre>
-<p>On peut lui donner Une taille par défaut par l'appel :</p>
+<p>On peut lui donner Une taille par dÃ©faut par l'appelÂ :</p>
 <pre class="programlisting">
   darea.set_size_request(<strong class="parameter"><code>largeur</code></strong>, <strong class="parameter"><code>hauteur</code></strong>)
 </pre>
-<p>Cette taille par défaut peu être surchargée, comme pour tous les widgets, 
-en appelant la méthode <code class="methodname">set_size_request</code>() et celle-ci, 
-à son tour, peut être surchargée si l'utilisateur modifie manuellement la taille 
-de la fenêtre contenant la zone de dessin.</p>
-<p>Il faut noter que lorsque l'on crée un widget 
-<code class="classname">DrawingArea</code>, on est complètement responsable du dessin 
-du contenu. Si la fenêtre est cachée puis redécouverte, on reçoit un événement 
-d'exposition et on doit redessiner ce qui avait été caché auparavant.</p>
-<p>Devoir se rappeler tout ce qui a été dessiné à l'écran pour pouvoir 
-correctement le redessiner peut s'avérer, et c'est un euphémisme, pénible. De plus, 
-cela peut être visible si des portions de la fenêtre sont effacées puis redessinées 
-étape par étape. La solution à ce problème est d'utiliser un pixmap d'arrière-plan 
-hors écran. Au lieu de dessiner directement sur l'écran, on dessine sur une image 
-stockée dans la mémoire du serveur et non affichée, puis, lorsque l'image change ou 
-lorsque de nouvelles parties de l'image sont affichées, on copie les parties 
-correspndantes sur l'écran.</p>
-<p>Pour créer un pixmap hors écran, on appelle la fonction :</p>
+<p>Cette taille par dÃ©faut peu Ãªtre surchargÃ©e, comme pour tous les widgets,
+en appelant la mÃ©thode <code class="methodname">set_size_request</code>() et celle-ci,
+Ã  son tour, peut Ãªtre surchargÃ©e si l'utilisateur modifie manuellement la taille
+de la fenÃªtre contenant la zone de dessin.</p>
+<p>Il faut noter que lorsque l'on crÃ©e un widget
+<code class="classname">DrawingArea</code>, on est complÃ¨tement responsable du dessin
+du contenu. Si la fenÃªtre est cachÃ©e puis redÃ©couverte, on reÃ§oit un Ã©vÃ©nement
+d'exposition et on doit redessiner ce qui avait Ã©tÃ© cachÃ© auparavant.</p>
+<p>Devoir se rappeler tout ce qui a Ã©tÃ© dessinÃ© Ã  l'Ã©cran pour pouvoir
+correctement le redessiner peut s'avÃ©rer, et c'est un euphÃ©misme, pÃ©nible. De plus,
+cela peut Ãªtre visible si des portions de la fenÃªtre sont effacÃ©es puis redessinÃ©es
+Ã©tape par Ã©tape. La solution Ã  ce problÃ¨me est d'utiliser un pixmap d'arriÃ¨re-plan
+hors Ã©cran. Au lieu de dessiner directement sur l'Ã©cran, on dessine sur une image
+stockÃ©e dans la mÃ©moire du serveur et non affichÃ©e, puis, lorsque l'image change ou
+lorsque de nouvelles parties de l'image sont affichÃ©es, on copie les parties
+correspndantes sur l'Ã©cran.</p>
+<p>Pour crÃ©er un pixmap hors Ã©cran, on appelle la fonctionÂ :</p>
 <pre class="programlisting">
   pixmap = gtk.gdk.Pixmap(<strong class="parameter"><code>fenetre</code></strong>, <strong class="parameter"><code>largeur</code></strong>, <strong class="parameter"><code>hauteur</code></strong>, <strong class="parameter"><code>profondeur</code></strong>=-1)
 </pre>
-<p>Le paramètre <em class="parameter"><code>fenetre</code></em> désigne une fenêtre 
-<code class="classname">gtk.gdk.Window</code> d'où ce pixmap tire certaines de ses 
-propriétés. Les paramètres  <em class="parameter"><code>largeur</code></em> et 
-<em class="parameter"><code>hauteur</code></em> précisent la taille du pixmap, <em class="parameter"><code>profondeur</code></em> 
-précise la profondeur de couleur (c'est-à-dire le nombre de bits par pixel) 
-de la nouvelle fenêtre. Si cette <em class="parameter"><code>profondeur</code></em> vaut -1 ou 
-n'est pas indiquée, elle correspondra à celle de <em class="parameter"><code>fenetre</code></em>.</p>
-<p>On crée le pixmap dans notre gestionnaire "configure_event". 
-Cet événement est généré à chaque fois que la fenêtre change de taille, 
-y compris lors de sa création initiale.</p>
+<p>Le paramÃ¨tre <em class="parameter"><code>fenetre</code></em> dÃ©signe une fenÃªtre
+<code class="classname">gtk.gdk.Window</code> d'oÃ¹ ce pixmap tire certaines de ses
+propriÃ©tÃ©s. Les paramÃ¨tres  <em class="parameter"><code>largeur</code></em> et
+<em class="parameter"><code>hauteur</code></em> prÃ©cisent la taille du pixmap, <em class="parameter"><code>profondeur</code></em>
+prÃ©cise la profondeur de couleur (c'est-Ã -dire le nombre de bits par pixel)
+de la nouvelle fenÃªtre. Si cette <em class="parameter"><code>profondeur</code></em> vaut -1 ou
+n'est pas indiquÃ©e, elle correspondra Ã  celle de <em class="parameter"><code>fenetre</code></em>.</p>
+<p>On crÃ©e le pixmap dans notre gestionnaire "configure_event".
+Cet Ã©vÃ©nement est gÃ©nÃ©rÃ© Ã  chaque fois que la fenÃªtre change de taille,
+y compris lors de sa crÃ©ation initiale.</p>
 <pre class="programlisting">
-    32   # Création d'un nouveau pixmap d'arrière-plan de la taille voulue
+    32   # CrÃ©ation d'un nouveau pixmap d'arriÃ¨re-plan de la taille voulue
     33   def configure_event(widget, event):
     34       global pixmap
-    35   
+    35
     36       x, y, largeur, hauteur = widget.get_allocation()
     37       pixmap = gtk.gdk.Pixmap(widget.window, largeur, hauteur)
     38       pixmap.draw_rectangle(widget.get_style().white_gc,
     39                             True, 0, 0, largeur, hauteur)
-    40   
+    40
     41       return True
  </pre>
-<p>L'appel à <code class="methodname">draw_rectangle</code>() initialise le pixmap 
-à blanc. Nous en dirons plus tout à l'heure.</p>
-<p>Le gestionnaire d'événement d'exposition copie alors simplement la 
-partie utile du pixmap sur la zone de dessin (widget) en utilisant la 
-méthode <code class="methodname">draw_pixmap</code>(). On détermine la zone 
-à redessiner en utilisant l'attribut <em class="parameter"><code>event.area</code></em> de 
-l'événement d'exposition) :</p>
+<p>L'appel Ã  <code class="methodname">draw_rectangle</code>() initialise le pixmap
+Ã  blanc. Nous en dirons plus tout Ã  l'heure.</p>
+<p>Le gestionnaire d'Ã©vÃ©nement d'exposition copie alors simplement la
+partie utile du pixmap sur la zone de dessin (widget) en utilisant la
+mÃ©thode <code class="methodname">draw_pixmap</code>(). On dÃ©termine la zone
+Ã  redessiner en utilisant l'attribut <em class="parameter"><code>event.area</code></em> de
+l'Ã©vÃ©nement d'exposition)Â :</p>
 <pre class="programlisting">
-    43   # Redessine l'écran à partir du pixmap d'arrière-plan
+    43   # Redessine l'Ã©cran Ã  partir du pixmap d'arriÃ¨re-plan
     44   def expose_event(widget, event):
     45       x , y, largeur, hauteur = event.area
     46       widget.window.draw_drawable(widget.get_style().fg_gc[gtk.STATE_NORMAL],
     47                                   pixmap, x, y, x, y, largeur, hauteur)
     48       return False
 </pre>
-<p>On a vu comment garder l'écran à jour avec notre pixmap, mais 
-comment dessine-t-on réellement ce que l'on veut dans le pixmap ? Il existe 
-un grand nombre d'appels dans PyGTK pour dessiner sur des dessinables. Un 
-dessinable est simplement quelque chose sur lequel on peut dessiner. Cela peut 
-être une fenêtre, un pixmap, ou un bitmap (une image en noir et blanc). On a déjà 
-vu plus haut deux de ces appels, <code class="methodname">draw_rectangle</code>() et 
-<code class="methodname">draw_pixmap</code>(). En voici La liste complète :</p>
+<p>On a vu comment garder l'Ã©cran Ã  jour avec notre pixmap, mais
+comment dessine-t-on rÃ©ellement ce que l'on veut dans le pixmap ? Il existe
+un grand nombre d'appels dans PyGTK pour dessiner sur des dessinables. Un
+dessinable est simplement quelque chose sur lequel on peut dessiner. Cela peut
+Ãªtre une fenÃªtre, un pixmap, ou un bitmap (une image en noir et blanc). On a dÃ©jÃ 
+vu plus haut deux de ces appels, <code class="methodname">draw_rectangle</code>() et
+<code class="methodname">draw_pixmap</code>(). En voici La liste complÃ¨teÂ :</p>
 <pre class="programlisting">
   drawable.draw_point(<strong class="parameter"><code>gc</code></strong>, <strong class="parameter"><code>x</code></strong>, <strong class="parameter"><code>y</code></strong>)
 
@@ -140,20 +141,20 @@ vu plus haut deux de ces appels, <code class="methodname">draw_rectangle</code>(
 
   drawable.draw_gray_image(<strong class="parameter"><code>gc</code></strong>, <strong class="parameter"><code>x</code></strong>, <strong class="parameter"><code>y</code></strong>, <strong class="parameter"><code>width</code></strong>, <strong class="parameter"><code>height</code></strong>, <strong class="parameter"><code>dither</code></strong>, <strong class="parameter"><code>buffer</code></strong>, <strong class="parameter"><code>rowstride</code></strong>)
 </pre>
-<p>Les méthodes des zones de dessin sont identiques à celles des 
-dessinables, ainsi on peut se reporter aux méthodes décrites dans la 
-<a href="sec-DrawingMethods.html" title="12.2. Les méthodes pour dessiner">Section 12.2, « Les méthodes pour dessiner »</a> pour plus de détails sur celles-ci. 
-Toutes ces méthodes partagent les mêmes premiers arguments, le premier étant 
+<p>Les mÃ©thodes des zones de dessin sont identiques Ã  celles des
+dessinables, ainsi on peut se reporter aux mÃ©thodes dÃ©crites dans la
+<a href="sec-DrawingMethods.html" title="12.2.Â Les mÃ©thodes pour dessiner">SectionÂ 12.2, Â«Â Les mÃ©thodes pour dessinerÂ Â»</a> pour plus de dÃ©tails sur celles-ci.
+Toutes ces mÃ©thodes partagent les mÃªmes premiers arguments, le premier Ã©tant
 le contexte graphique (<em class="parameter"><code>gc</code></em>).</p>
-<p>Un contexte graphique encapsule l'information sur des éléments 
-comme la couleur de premier et d'arrière plan et la largeur de ligne. PyGTK 
-possède un ensemble complet de fonctions pour créer et manipuler les contextes 
-graphiques, mais, pour faire simple, nous n'utiliserons que les contextes graphiques 
-prédéfinis. Reportez-vous à la <a href="ch-DrawingArea.html#sec-GraphicsContext" title="12.1. Le contexte graphique">Section 12.1, « Le contexte graphique »</a> pour 
-plus d'informations sur les contextes graphiques. Chaque widget posséde un style 
-associé (qui peut être modifié dans un fichier <code class="filename">gtkrc</code>, voir la 
-<a href="ch-GtkRcFiles.html" title="Chapitre 23. Les fichiers de style rc GTK">Chapitre 23, <i>Les fichiers de style rc GTK</i></a>. Celui-ci, entre autres choses, stocke plusieurs 
-contextes graphiques. Quelques exemples d'accès à ces contextes graphiques :
+<p>Un contexte graphique encapsule l'information sur des Ã©lÃ©ments
+comme la couleur de premier et d'arriÃ¨re plan et la largeur de ligne. PyGTK
+possÃ¨de un ensemble complet de fonctions pour crÃ©er et manipuler les contextes
+graphiques, mais, pour faire simple, nous n'utiliserons que les contextes graphiques
+prÃ©dÃ©finis. Reportez-vous Ã  la <a href="ch-DrawingArea.html#sec-GraphicsContext" title="12.1.Â Le contexte graphique">SectionÂ 12.1, Â«Â Le contexte graphiqueÂ Â»</a> pour
+plus d'informations sur les contextes graphiques. Chaque widget possÃ©de un style
+associÃ© (qui peut Ãªtre modifiÃ© dans un fichier <code class="filename">gtkrc</code>, voir la
+<a href="ch-GtkRcFiles.html" title="ChapitreÂ 23.Â Les fichiers de style rc GTK">ChapitreÂ 23, <i>Les fichiers de style rc GTK</i></a>. Celui-ci, entre autres choses, stocke plusieurs
+contextes graphiques. Quelques exemples d'accÃ¨s Ã  ces contextes graphiquesÂ :
 </p>
 <pre class="programlisting">
   widget.get_style().white_gc
@@ -165,8 +166,8 @@ contextes graphiques. Quelques exemples d'accès à ces contextes graphiques :
   widget.get_style().bg_gc[STATE_PRELIGHT]
 </pre>
 <p>Les champs <em class="parameter"><code>fg_gc</code></em>, <em class="parameter"><code>bg_gc</code></em>,
-<em class="parameter"><code>dark_gc</code></em> et <em class="parameter"><code>light_gc</code></em> sont indexés par 
-un paramètre qui peut prendre les valeurs suivantes :</p>
+<em class="parameter"><code>dark_gc</code></em> et <em class="parameter"><code>light_gc</code></em> sont indexÃ©s par
+un paramÃ¨tre qui peut prendre les valeurs suivantesÂ :</p>
 <pre class="programlisting">
   STATE_NORMAL,
   STATE_ACTIVE,
@@ -174,49 +175,49 @@ un paramètre qui peut prendre les valeurs suivantes :</p>
   STATE_SELECTED,
   STATE_INSENSITIVE
 </pre>
-<p>Par exemple, pour <code class="literal">STATE_SELECTED</code>, la couleur de premier 
-plan par défaut est blanc, la couleur d'arrière plan par défaut est bleu foncé.</p>
-<p>La fonction <code class="methodname">draw_brush</code>(), qui réalise le dessin 
-sur le pixmap est alors :</p>
+<p>Par exemple, pour <code class="literal">STATE_SELECTED</code>, la couleur de premier
+plan par dÃ©faut est blanc, la couleur d'arriÃ¨re plan par dÃ©faut est bleu foncÃ©.</p>
+<p>La fonction <code class="methodname">draw_brush</code>(), qui rÃ©alise le dessin
+sur le pixmap est alorsÂ :</p>
 <pre class="programlisting">
-    50   # Dessine un rectangle sur l'écran
+    50   # Dessine un rectangle sur l'Ã©cran
     51   def brosse_dessin(widget, x, y):
     52       rect = (int(x-5), int(y-5), 10, 10)
     53       pixmap.draw_rectangle(widget.get_style().black_gc, True,
     54                             rect[0], rect[1], rect[2], rect[3])
     55       widget.queue_draw_area(rect[0], rect[1], rect[2], rect[3])
 </pre>
-<p>Après avoir dessiné le rectangle représentant la brosse sur 
-      le pixmap, on appelle la fonction :</p>
+<p>AprÃ¨s avoir dessinÃ© le rectangle reprÃ©sentant la brosse sur
+      le pixmap, on appelle la fonctionÂ :</p>
 <pre class="programlisting">
   widget.queue_draw_area(<strong class="parameter"><code>x</code></strong>, <strong class="parameter"><code>y</code></strong>, <strong class="parameter"><code>width</code></strong>, <strong class="parameter"><code>height</code></strong>)
 </pre>
-<p>... qui indique à X que cette zone nécessite d'être mise à jour. 
-X génèrera éventuellement un événement d'exposition (en combinant peut-être les 
-zones passés dans plusieurs appels à <code class="methodname">draw</code>()) ce qui 
-forcera le gestionnaire d'événement d'exposition à recopier les parties adéquates 
-à l'écran.</p>
-<p>Nous avons maintenant couvert entièrement le programme de dessin, 
-sauf quelques détails banals comme la création de la fenêtre principale.</p>
+<p>... qui indique Ã  X que cette zone nÃ©cessite d'Ãªtre mise Ã  jour.
+X gÃ©nÃ¨rera Ã©ventuellement un Ã©vÃ©nement d'exposition (en combinant peut-Ãªtre les
+zones passÃ©s dans plusieurs appels Ã  <code class="methodname">draw</code>()) ce qui
+forcera le gestionnaire d'Ã©vÃ©nement d'exposition Ã  recopier les parties adÃ©quates
+Ã  l'Ã©cran.</p>
+<p>Nous avons maintenant couvert entiÃ¨rement le programme de dessin,
+sauf quelques dÃ©tails banals comme la crÃ©ation de la fenÃªtre principale.</p>
 </div>
 <div class="navfooter">
 <hr>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-EventHandling.html">Préc.</a> </td>
+<a accesskey="p" href="sec-EventHandling.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-Scribble.html">Chapitre parent</a></td>
 <!--
-<td width="40%" align="right"> <a accesskey="n" href="ch-TipsForWritingPyGTKApplications.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="ch-TipsForWritingPyGTKApplications.html">Suiv.</a>
 -->
 <td width="40%" align="right">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">24.2. Gestion des évènements </td>
+<td width="40%" align="left" valign="top">24.2.Â Gestion des Ã©vÃ¨nementsÂ </td>
 <td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
 <!--
-<td width="40%" align="right" valign="top"> Chapitre 25. Tips For Writing PyGTK Applications</td>
+<td width="40%" align="right" valign="top">Â ChapitreÂ 25.Â Tips For Writing PyGTK Applications</td>
 -->
 <td width="40%" align="right"></a>
 </tr>

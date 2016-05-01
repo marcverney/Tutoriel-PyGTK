@@ -1,26 +1,25 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>Chapitre 13. Le widget TextView</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,textview">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&eagrave;res">
 <link rel="up" href="index.html" title="Table des mati&egrave;res">
-<link rel="previous" href="sec-DrawingMethods.html" title="12.2. Les méthodes pour dessiner">
+<link rel="previous" href="sec-DrawingMethods.html" title="12.2.Â Les mÃ©thodes pour dessiner">
 <link rel="next" href="sec-TextViews.html" title="13.2. TextView&nbsp;: la zone de texte">
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici&nbsp;: 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici&nbsp;:
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En-t&ecirc;te de navigation">
 <tr>
@@ -48,7 +47,7 @@ Vous êtes à peu près ici&nbsp;:
 <dt>13.3.2. <a href="sec-TextBuffers.html#CreerTextIter">Cr&eacute;er des TextIter</a></dt>
 <dt>13.3.3. <a href="sec-TextBuffers.html#InserRecupSuppr">Ins&eacute;rer, r&eacute;cup&eacute;rer et supprimer du texte</a></dt>
 <dt>13.3.4. <a href="sec-TextBuffers.html#CreerManipTextMark">Cr&eacute;er et manipuler des TextMark</a></dt>
-<dt>13.3.5. <a href="sec-TextBuffers.html#CreerAppliqTextTag">Créer et appliquer des TextTag</a></dt>
+<dt>13.3.5. <a href="sec-TextBuffers.html#CreerAppliqTextTag">CrÃ©er et appliquer des TextTag</a></dt>
 <dt>13.3.6. <a href="sec-TextBuffers.html#InserImagesWidgets">Ins&eacute;rer des images et des widgets</a></dt>
 </dl></dd>
 <dt>13.4. <a href="sec-TextIters.html">TextIter&nbsp;: les it&eacute;rateurs de texte</a></dt>
@@ -80,7 +79,7 @@ Vous êtes à peu près ici&nbsp;:
 </div></div>
 
 <p>Le widget <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a> (zone de texte) ainsi que les objets qui lui sont asoci&eacute;s (<a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>, <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a>, <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a>, <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> et <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a>) offrent une structure puissante d'&eacute;dition de texte multiligne.</p>
-<p>Un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> 
+<p>Un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>
 (buffer de texte) contient le texte qui est affich&eacute; par un ou plusieurs widgets <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a>. Avec GTK+ 2.0 le texte est encod&eacute; en UTF-8, ce qui signifie qu'un caract&egrave;re peut &ecirc;tre encod&eacute; avec plusieurs octets. Dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> on doit bien faire la distinction entre le d&eacute;compte des caract&egrave;res (appel&eacute; offset) et le d&eacute;compte des octets (appel&eacute; index).
 </p>
 <p>Les <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> (it&eacute;rateurs de texte) permettent une repr&eacute;sentation volatile d'une position dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>, situ&eacute;e entre deux caract&egrave;res. Les <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> ne sont valables que tant que le nombre de caract&egrave;res dans le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> est inchang&eacute;. Chaque fois que l'on ins&egrave;re ou efface des caract&egrave;res dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> tous les <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> sont invalid&eacute;s. Les <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> sont le moyen le plus utilis&eacute; de sp&eacute;cifier des positions dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> afin d'y manipuler du texte.
@@ -98,7 +97,7 @@ Vous êtes à peu près ici&nbsp;:
     <td width="20%" align="center"><a accessKey=u href="index.html">Chapitre parent</a></td>
     <td width="40%" align="right"><a accessKey="n" href="sec-TextViews.html">Suiv.</a></td>
   </tr><tr>
-    <td width="40%" align="left" vAlign="top">12.2. Les méthodes pour dessiner</td>
+    <td width="40%" align="left" vAlign="top">12.2.Â Les mÃ©thodes pour dessiner</td>
     <td width="20%" align="center"><a accessKey="h" href="index.html">Table des mati&egrave;res</a></td>
     <td width="40%" align="right" vAlign="top">13.2. TextView&nbsp;: la zone de texte</td>
 </tr></table>

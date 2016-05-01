@@ -1,31 +1,32 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>14.4. Les CellRenderer</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>14.4.Â Les CellRenderer</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,treeview" />
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-TreeViewWidget.html" title="Chapitre 14. Le widget TreeView">
-<link rel="prev" href="sec-TreeViews.html" title="14.3. Les TreeView">
-<link rel="next" href="sec-TreeViewColumns.html" title="14.5. TreeViewColumn">
+<link rel="up" href="ch-TreeViewWidget.html" title="ChapitreÂ 14.Â Le widget TreeView">
+<link rel="prev" href="sec-TreeViews.html" title="14.3.Â Les TreeView">
+<link rel="next" href="sec-TreeViewColumns.html" title="14.5.Â TreeViewColumn">
 </head>
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici : 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici :
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">14.4. Les CellRenderer</th></tr>
+<tr><th colspan="3" align="center">14.4.Â Les CellRenderer</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-TreeViews.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 14. Le widget TreeView</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-TreeViewColumns.html">Suiv.</a>
+<a accesskey="p" href="sec-TreeViews.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 14.Â Le widget TreeView</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-TreeViewColumns.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -33,71 +34,71 @@ Vous êtes à peu près ici :
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-CellRenderers"></a>14.4. Les CellRenderer</h2></div></div></div>
+<a name="sec-CellRenderers"></a>14.4.Â Les CellRenderer</h2></div></div></div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-CellRendererOverview"></a>14.4.1. Vue d'ensemble</h3></div></div></div>
+<a name="sec-CellRendererOverview"></a>14.4.1.Â Vue d'ensemble</h3></div></div></div>
 <p>Les <code class="classname">TreeViewColumn</code> et les
-<code class="classname">CellRenderer</code> travaillent ensemble pour afficher une 
-colonne de données dans un <code class="classname">TreeView</code>. Le
-<code class="classname">TreeViewColumn</code> fournit un en-tête de colonne ainsi 
-qu'un espace vertical que les <code class="classname">CellRenderer</code> utiliseront 
-pour afficher une partie des données stockées dans le modèle du 
-<code class="classname">TreeView</code>. Un <code class="classname">CellRenderer</code> prend 
-en charge l'affichage des données de chaque ligne et colonne dans l'espace 
-offert par le <code class="classname">TreeViewColumn</code>. Un 
-<code class="classname">TreeViewColumn</code> peut contenir plusieurs 
-<code class="classname">CellRenderer</code> pour afficher les lignes comme des 
-<code class="classname">HBox</code>. On combine par exemple assez fréquemment un 
-<code class="classname">CellRendererPixbuf</code> et un 
-<code class="classname">CellRendererText</code> dans la même colonne.</p>
-<p>La <a href="sec-CellRenderers.html#treeviewcolumnfig" title="Figure 14.2. TreeViewColumn avec CellRenderer">Figure 14.2, « TreeViewColumn avec CellRenderer »</a> montre un exemple de 
-disposition pour deux <code class="classname">TreeViewColumn</code> : l'un contenant 
+<code class="classname">CellRenderer</code> travaillent ensemble pour afficher une
+colonne de donnÃ©es dans un <code class="classname">TreeView</code>. Le
+<code class="classname">TreeViewColumn</code> fournit un en-tÃªte de colonne ainsi
+qu'un espace vertical que les <code class="classname">CellRenderer</code> utiliseront
+pour afficher une partie des donnÃ©es stockÃ©es dans le modÃ¨le du
+<code class="classname">TreeView</code>. Un <code class="classname">CellRenderer</code> prend
+en charge l'affichage des donnÃ©es de chaque ligne et colonne dans l'espace
+offert par le <code class="classname">TreeViewColumn</code>. Un
+<code class="classname">TreeViewColumn</code> peut contenir plusieurs
+<code class="classname">CellRenderer</code> pour afficher les lignes comme des
+<code class="classname">HBox</code>. On combine par exemple assez frÃ©quemment un
+<code class="classname">CellRendererPixbuf</code> et un
+<code class="classname">CellRendererText</code> dans la mÃªme colonne.</p>
+<p>La <a href="sec-CellRenderers.html#treeviewcolumnfig" title="FigureÂ 14.2.Â TreeViewColumn avec CellRenderer">FigureÂ 14.2, Â«Â TreeViewColumn avec CellRendererÂ Â»</a> montre un exemple de
+disposition pour deux <code class="classname">TreeViewColumn</code>Â : l'un contenant
 deux <code class="classname"> CellRenderer</code> et l'autre un seul.</p>
 <div class="figure">
-<a name="treeviewcolumnfig"></a><p class="title"><b>Figure 14.2. TreeViewColumn avec CellRenderer</b></p>
+<a name="treeviewcolumnfig"></a><p class="title"><b>FigureÂ 14.2.Â TreeViewColumn avec CellRenderer</b></p>
 <div class="mediaobject" align="center"><img src="figures/treeviewcolumnfig.png" align="middle" alt="TreeViewColumn avec CellRenderer"></div>
 </div>
 <p>L'application de chaque <code class="classname">CellRenderer</code> est
-indiquée avec une couleur d'arrière-plan : jaune pour le 
-<code class="classname">CellRendererPixbuf</code>, cyan pour le 
-<code class="classname">CellRendererText</code>, et rose pour l'autre 
-<code class="classname">CellRendererText</code>. Notez que le 
-<code class="classname">CellRendererPixbuf</code> et le premier 
-<code class="classname">CellRendererText</code> sont dans la même colonne, dont l'en-tête 
-est "Pixbuf and Text". La couleur d'arrière-plan du 
-<code class="classname">CellRendererText</code> qui affiche "Imprime un fichier" est la 
-couleur par défaut afin de montrer la zone d'application sur une seule ligne.</p>
-<p>La <a href="sec-CellRenderers.html#treeviewcolumnfig" title="Figure 14.2. TreeViewColumn avec CellRenderer">Figure 14.2, « TreeViewColumn avec CellRenderer »</a>  a été générée par le programme 
+indiquÃ©e avec une couleur d'arriÃ¨re-planÂ : jaune pour le
+<code class="classname">CellRendererPixbuf</code>, cyan pour le
+<code class="classname">CellRendererText</code>, et rose pour l'autre
+<code class="classname">CellRendererText</code>. Notez que le
+<code class="classname">CellRendererPixbuf</code> et le premier
+<code class="classname">CellRendererText</code> sont dans la mÃªme colonne, dont l'en-tÃªte
+est "Pixbuf and Text". La couleur d'arriÃ¨re-plan du
+<code class="classname">CellRendererText</code> qui affiche "Imprime un fichier" est la
+couleur par dÃ©faut afin de montrer la zone d'application sur une seule ligne.</p>
+<p>La <a href="sec-CellRenderers.html#treeviewcolumnfig" title="FigureÂ 14.2.Â TreeViewColumn avec CellRenderer">FigureÂ 14.2, Â«Â TreeViewColumn avec CellRendererÂ Â»</a>  a Ã©tÃ© gÃ©nÃ©rÃ©e par le programme
 <a href="exemples/treeviewcolumn.py" target="_top"><span><strong class="command">treeviewcolumn.py</strong></span></a>
 .</p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-CellRendererTypes"></a>14.4.2. Les différents types de CellRenderer</h3></div></div></div>
-<p>Le type de <code class="classname">CellRenderer</code>  dont on a besoin dépend du type 
-d'affichage attendu pour les données du modèle ; PyGTK dispose de trois 
-<code class="classname">CellRenderer</code> prédéfinis :</p>
+<a name="sec-CellRendererTypes"></a>14.4.2.Â Les diffÃ©rents types de CellRenderer</h3></div></div></div>
+<p>Le type de <code class="classname">CellRenderer</code>  dont on a besoin dÃ©pend du type
+d'affichage attendu pour les donnÃ©es du modÃ¨le ; PyGTK dispose de trois
+<code class="classname">CellRenderer</code> prÃ©dÃ©finisÂ :</p>
 <table border="0" width="100%" bgcolor="#FFECCE">
 <col align="left" valign="top" width="0*">
 <tbody>
 <tr>
 <td>
 <span class="term"><code class="classname">CellRendererPixbuf</code></span></td>
-<td>affiche des images pixbuf créées par le programme ou disponibles dans 
+<td>affiche des images pixbuf crÃ©Ã©es par le programme ou disponibles dans
 le stock de PyGTK.</td>
 </tr>
 <tr>
 <td>
 <span class="term"><code class="classname">CellRendererText</code></span></td>
-<td>affiche des chaines de caractères, ainsi que des nombres pouvant être 
-convertis en chaines de caractères (incluant les entiers, les réels, les booléens).
+<td>affiche des chaines de caractÃ¨res, ainsi que des nombres pouvant Ãªtre
+convertis en chaines de caractÃ¨res (incluant les entiers, les rÃ©els, les boolÃ©ens).
           </td>
 </tr>
 <tr>
 <td>
 <span class="term"><code class="classname">CellRendererToggle</code></span></td>
-<td>affiche une valeur booléenne sous la forme d'un bouton à bascule ou 
+<td>affiche une valeur boolÃ©enne sous la forme d'un bouton Ã  bascule ou
 d'un bouton radio.</td>
 </tr>
 </tbody>
@@ -105,9 +106,9 @@ d'un bouton radio.</td>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-CellRendererProperties"></a>14.4.3. Les propriétés des CellRenderer</h3></div></div></div>
-<p>Les propriétés d'un <code class="classname">CellRenderer</code> déterminent la 
-manière dont les données doivent être affichées :</p>
+<a name="sec-CellRendererProperties"></a>14.4.3.Â Les propriÃ©tÃ©s des CellRenderer</h3></div></div></div>
+<p>Les propriÃ©tÃ©s d'un <code class="classname">CellRenderer</code> dÃ©terminent la
+maniÃ¨re dont les donnÃ©es doivent Ãªtre affichÃ©esÂ :</p>
 <div class="informaltable"><table cellpadding="5" width="100%" border="0">
 <colgroup>
 <col>
@@ -117,86 +118,86 @@ manière dont les données doivent être affichées :</p>
 <tbody>
 <tr valign="top">
 <td valign="top">"mode"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">La possibilité ou non d'éditer le 
-<code class="classname">CellRenderer</code>. Peut être :
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">La possibilitÃ© ou non d'Ã©diter le
+<code class="classname">CellRenderer</code>. Peut ÃªtreÂ :
 <code class="literal">gtk.CELL_RENDERER_MODE_INERT</code>,
 <code class="literal">gtk.CELL_RENDERER_MODE_ACTIVATABLE</code> ou
 <code class="literal">gtk.CELL_RENDERER_MODE_EDITABLE</code> </td>
 </tr>
 <tr valign="top">
 <td valign="top">"visible"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, la cellule est affichée.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, la cellule est affichÃ©e.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"xalign"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">La fraction (entre 0.0 et 1.0) d'espace <span class="emphasis"><em>vide</em></span> devant 
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">La fraction (entre 0.0 et 1.0) d'espace <span class="emphasis"><em>vide</em></span> devant
 se situer dans la partie gauche de la cellule.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"yalign"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">La fraction (entre 0.0 et 1.0) d'espace <span class="emphasis"><em>vide</em></span> devant 
-se situer dans la partie supérieure de la cellule.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">La fraction (entre 0.0 et 1.0) d'espace <span class="emphasis"><em>vide</em></span> devant
+se situer dans la partie supÃ©rieure de la cellule.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"xpad"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">La quantité d'espacement à gauche et à droite de la cellule.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">La quantitÃ© d'espacement Ã  gauche et Ã  droite de la cellule.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"ypad"</td>
 <td valign="top">Read-Write</td>
-<td valign="top">La quantité d'espacement au-dessus et au-dessous de la cellule.</td>
+<td valign="top">La quantitÃ© d'espacement au-dessus et au-dessous de la cellule.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"width"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">La largeur fixe de la cellule.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"height"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">La hauteur fixe de la cellule.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"is-expander"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, la ligne a des lignes 
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, la ligne a des lignes
 filles.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"is-expanded"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, la ligne a des lignes 
-filles et est développée afin de montrer celles-ci.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, la ligne a des lignes
+filles et est dÃ©veloppÃ©e afin de montrer celles-ci.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"cell-background"</td>
-<td valign="top">Écriture</td>
-<td valign="top">La couleur d'arrière-plan de la cellule sous la forme d'une 
-chaine de caractères.</td>
+<td valign="top">Ã‰criture</td>
+<td valign="top">La couleur d'arriÃ¨re-plan de la cellule sous la forme d'une
+chaine de caractÃ¨res.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"cell-background-gdk"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">La couleur d'arrière-plan de la cellule sous la forme d'une <code class="classname">
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">La couleur d'arriÃ¨re-plan de la cellule sous la forme d'une <code class="classname">
 gtk.gdk.Color</code>.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"cell-background-set"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, la couleur d'arrière-plan 
-de la cellule est définie par ce CellRenderer.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, la couleur d'arriÃ¨re-plan
+de la cellule est dÃ©finie par ce CellRenderer.</td>
 </tr>
 </tbody>
 </table></div>
-<p>Les propriétés ci-dessus sont disponibles pour toutes les sous-classes de 
-<code class="classname">CellRenderer</code>.  Chaque type de 
-<code class="classname">CellRenderer</code> dispose en plus de ses propres propriétés.</p>
-<p>Le <code class="classname">CellRendererPixbuf</code> a les propriétés suivantes :</p>
+<p>Les propriÃ©tÃ©s ci-dessus sont disponibles pour toutes les sous-classes de
+<code class="classname">CellRenderer</code>.  Chaque type de
+<code class="classname">CellRenderer</code> dispose en plus de ses propres propriÃ©tÃ©s.</p>
+<p>Le <code class="classname">CellRendererPixbuf</code> a les propriÃ©tÃ©s suivantesÂ :</p>
 <div class="informaltable"><table cellpadding="5" width="100%" border="0">
 <colgroup>
 <col>
@@ -206,38 +207,38 @@ de la cellule est définie par ce CellRenderer.</td>
 <tbody>
 <tr valign="top">
 <td valign="top">"pixbuf"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">La pixbuf à afficher - invalidée par "stock-id".</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">La pixbuf Ã  afficher - invalidÃ©e par "stock-id".</td>
 </tr>
 <tr valign="top">
 <td valign="top">"pixbuf-expander-open"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Pixbuf pour le symbole de développement ouvert.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Pixbuf pour le symbole de dÃ©veloppement ouvert.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"pixbuf-expander-closed"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Pixbuf pour le symbole de développement fermé.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Pixbuf pour le symbole de dÃ©veloppement fermÃ©.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"stock-id"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">L'icône du stock de PyGTK à afficher.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">L'icÃ´ne du stock de PyGTK Ã  afficher.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"stock-size"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">La taille de l'icône à afficher.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">La taille de l'icÃ´ne Ã  afficher.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"stock-detail"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Détail d'affichage à transmettre au moteur de thèmes.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">DÃ©tail d'affichage Ã  transmettre au moteur de thÃ¨mes.</td>
 </tr>
 </tbody>
 </table></div>
-<p>Le <code class="classname">CellRendererText</code> possède un grand nombre de 
-propriétés donnant pour la plupart des indications stylistiques :</p>
+<p>Le <code class="classname">CellRendererText</code> possÃ¨de un grand nombre de
+propriÃ©tÃ©s donnant pour la plupart des indications stylistiquesÂ :</p>
 <div class="informaltable"><table cellpadding="3" width="100%" border="0">
 <colgroup>
 <col>
@@ -247,213 +248,213 @@ propriétés donnant pour la plupart des indications stylistiques :</p>
 <tbody>
 <tr valign="top">
 <td valign="top">"text"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Texte à afficher.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Texte Ã  afficher.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"markup"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Texte balisé à afficher.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Texte balisÃ© Ã  afficher.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"attributes"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Une liste d'attributs de style à appliquer au texte 
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Une liste d'attributs de style Ã  appliquer au texte
 du CellRenderer.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"background"</td>
-<td valign="top">Écriture</td>
-<td valign="top">Couleur d'arrière-plan, sous la forme d'une chaine de caractères.</td>
+<td valign="top">Ã‰criture</td>
+<td valign="top">Couleur d'arriÃ¨re-plan, sous la forme d'une chaine de caractÃ¨res.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"foreground"</td>
-<td valign="top">Écriture</td>
-<td valign="top">Couleur d'avant-plan, sous la forme d'une chaine de caractères.</td>
+<td valign="top">Ã‰criture</td>
+<td valign="top">Couleur d'avant-plan, sous la forme d'une chaine de caractÃ¨res.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"background-gdk"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Couleur d'arrière-plan, sous la forme d'une 
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Couleur d'arriÃ¨re-plan, sous la forme d'une
 <code class="classname">gtk.gdk.Color</code>.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"foreground-gdk"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Couleur d'avant-plan, sous la forme d'une 
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Couleur d'avant-plan, sous la forme d'une
 <code class="classname">gtk.gdk.Color</code>.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"font"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Description de police, sous la forme d'une chaine de caractères.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Description de police, sous la forme d'une chaine de caractÃ¨res.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"font-desc"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Description de police, sous la forme d'une 
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Description de police, sous la forme d'une
 <code class="classname">pango.FontDescription</code>.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"family"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Nom de la famille de police (Sans, Helvetica, Times, Monospace, etc.).</td>
 </tr>
 <tr valign="top">
 <td valign="top">"style"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Style de police.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"variant"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Variante de police.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"weight"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Graisse de la police.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"stretch"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Chasse de la police.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"size"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Taille de la police.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"size-points"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Taille de la police en points.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"scale"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Facteur de taille de la police.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"editable"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le texte peut être 
-édité par l'utilisateur.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le texte peut Ãªtre
+Ã©ditÃ© par l'utilisateur.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"strikethrough"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le texte est barré.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le texte est barrÃ©.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"underline"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Style de soulignement du texte.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"rise"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Position du texte par rapport à la ligne de base 
-(au-dessus si positif, au-dessous si négatif).</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Position du texte par rapport Ã  la ligne de base
+(au-dessus si positif, au-dessous si nÃ©gatif).</td>
 </tr>
 <tr valign="top">
 <td valign="top">"language"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">La langue dans laquelle est rédigé le texte, sous la forme 
-d'un code ISO. Peut servir à Pango lors de l'affichage du texte. Si vous ne 
-comprenez pas ce paramètre, il est fort probable que vous n'en ayez pas besoin. 
-GTK+ 2.4 et supérieur.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">La langue dans laquelle est rÃ©digÃ© le texte, sous la forme
+d'un code ISO. Peut servir Ã  Pango lors de l'affichage du texte. Si vous ne
+comprenez pas ce paramÃ¨tre, il est fort probable que vous n'en ayez pas besoin.
+GTK+ 2.4 et supÃ©rieur.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"single-paragraph-mode"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, tout le texte sera maintenu 
-dans un seul paragraphe. GTK+ 2.4 et supérieur.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, tout le texte sera maintenu
+dans un seul paragraphe. GTK+ 2.4 et supÃ©rieur.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"background-set"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la couleur d'arrière-plan.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la couleur d'arriÃ¨re-plan.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"foreground-set"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la couleur d'avant-plan.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"family-set"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la famille de police.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"style-set"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le style de police.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"variant-set"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la variante de police.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"weight-set"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la graisse de police.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"stretch-set"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la chasse de police.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"size-set"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la taille de police.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"scale-set"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le facteur de taille 
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le facteur de taille
 de police.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"editable-set"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la possibilité ou non 
-d'éditer le texte.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la possibilitÃ© ou non
+d'Ã©diter le texte.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"strikethrough-set"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le trait barrant 
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le trait barrant
 le texte.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"underline-set"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le soulignement 
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le soulignement
 du texte.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"rise-set"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le positionnement 
-du texte par rapport à la ligne de base.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique le positionnement
+du texte par rapport Ã  la ligne de base.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"language-set"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la langue utilisée 
-pour afficher le texte. GTK+ 2.4 et supérieur.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, applique la langue utilisÃ©e
+pour afficher le texte. GTK+ 2.4 et supÃ©rieur.</td>
 </tr>
 </tbody>
 </table></div>
-<p>La quasi totalité des propriétés du <code class="classname">CellRendererText</code> 
-possède un équivalent booléen (avec le suffixe "-set") qui indique si la propriété 
-doit être appliquée. Cela permet de définir une propriété globalement et d'activer 
-ou non son application de manière sélective.</p>
-<p>Le <code class="classname">CellRendererToggle</code> possède les propriétés 
-suivantes :</p>
+<p>La quasi totalitÃ© des propriÃ©tÃ©s du <code class="classname">CellRendererText</code>
+possÃ¨de un Ã©quivalent boolÃ©en (avec le suffixe "-set") qui indique si la propriÃ©tÃ©
+doit Ãªtre appliquÃ©e. Cela permet de dÃ©finir une propriÃ©tÃ© globalement et d'activer
+ou non son application de maniÃ¨re sÃ©lective.</p>
+<p>Le <code class="classname">CellRendererToggle</code> possÃ¨de les propriÃ©tÃ©s
+suivantesÂ :</p>
 <div class="informaltable"><table cellpadding="5" width="100%" border="0">
 <colgroup>
 <col>
@@ -463,100 +464,100 @@ suivantes :</p>
 <tbody>
 <tr valign="top">
 <td valign="top">"activatable"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le bouton à bascule peut 
-être activé.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le bouton Ã  bascule peut
+Ãªtre activÃ©.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"active"</td>
-<td valign="top">Lecture-écriture</td>
+<td valign="top">Lecture-Ã©criture</td>
 <td valign="top">Si elle vaut <code class="literal">TRUE</code>, le bouton est actif.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"radio"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le bouton à bascule sera 
-dessiné comme un bouton radio.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le bouton Ã  bascule sera
+dessinÃ© comme un bouton radio.</td>
 </tr>
 <tr valign="top">
 <td valign="top">"inconsistent"</td>
-<td valign="top">Lecture-écriture</td>
-<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le bouton sera dans un 
-état inconsistant. GTK+ 2.2 et supérieur.</td>
+<td valign="top">Lecture-Ã©criture</td>
+<td valign="top">Si elle vaut <code class="literal">TRUE</code>, le bouton sera dans un
+Ã©tat inconsistant. GTK+ 2.2 et supÃ©rieur.</td>
 </tr>
 </tbody>
 </table></div>
-<p>Les propriétés peuvent être définies pour l'ensemble des lignes en 
-utilisant la méthode <code class="methodname">gobject.set_property</code>(), comme 
+<p>Les propriÃ©tÃ©s peuvent Ãªtre dÃ©finies pour l'ensemble des lignes en
+utilisant la mÃ©thode <code class="methodname">gobject.set_property</code>(), comme
 dans le programme <a href="exemples/treeviewcolumn.py" target="_top"><span><strong class="command">
 treeviewcolumn.py</strong></span></a>, par exemple.</p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-CellRendererAttributes"></a>14.4.4. Les attributs du CellRenderer</h3></div></div></div>
-<p>Les attributs associent une colonne de TreeModel à une propriété de 
-<code class="classname">CellRenderer</code> ; le <code class="classname">CellRenderer</code> 
-définit la propriété à partir de la valeur de colonne de la ligne avant d'afficher 
-la cellule. Cela permet de personnaliser l'affichage des cellules en utilisant 
-les données du modèle. On peut ajouter un attribut à l'ensemble courant de la 
-manière suivante :</p>
+<a name="sec-CellRendererAttributes"></a>14.4.4.Â Les attributs du CellRenderer</h3></div></div></div>
+<p>Les attributs associent une colonne de TreeModel Ã  une propriÃ©tÃ© de
+<code class="classname">CellRenderer</code>Â ; le <code class="classname">CellRenderer</code>
+dÃ©finit la propriÃ©tÃ© Ã  partir de la valeur de colonne de la ligne avant d'afficher
+la cellule. Cela permet de personnaliser l'affichage des cellules en utilisant
+les donnÃ©es du modÃ¨le. On peut ajouter un attribut Ã  l'ensemble courant de la
+maniÃ¨re suivanteÂ :</p>
 <pre class="programlisting">
   treeviewcolumn.add_attribute(<strong class="parameter"><code>cell_renderer</code></strong>, <strong class="parameter"><code>attribute</code></strong>, <strong class="parameter"><code>column</code></strong>)
 </pre>
-<p>... où la propriété spécifiée par <em class="parameter"><code>attribute</code></em>
- est définie pour le <em class="parameter"><code>cell_renderer</code></em> à partir de la colonne 
-<em class="parameter"><code>column</code></em>. Par exemple :</p>
+<p>... oÃ¹ la propriÃ©tÃ© spÃ©cifiÃ©e par <em class="parameter"><code>attribute</code></em>
+ est dÃ©finie pour le <em class="parameter"><code>cell_renderer</code></em> Ã  partir de la colonne
+<em class="parameter"><code>column</code></em>. Par exempleÂ :</p>
 <pre class="programlisting">
   treeviewcolumn.add_attribute(cell, "cell-background", 1)
 </pre>
-<p>... fixe la couleur d'arrière-plan du <code class="classname">CellRenderer</code> 
-à la couleur spécifiée par la chaine de caractères située dans la deuxième colonne 
-du modèle.</p>
-<p>Afin de supprimer tous les attributs et d'en fixer de nouveaux immédiatement, 
-on utilisera :</p>
+<p>... fixe la couleur d'arriÃ¨re-plan du <code class="classname">CellRenderer</code>
+Ã  la couleur spÃ©cifiÃ©e par la chaine de caractÃ¨res situÃ©e dans la deuxiÃ¨me colonne
+du modÃ¨le.</p>
+<p>Afin de supprimer tous les attributs et d'en fixer de nouveaux immÃ©diatement,
+on utiliseraÂ :</p>
 <pre class="programlisting">
   treeviewcolumn.set_attributes(<em class="parameter"><code>cell_renderer</code></em>, ...)
 </pre>
-<p>... où les attributs de <em class="parameter"><code>cell_renderer</code></em> sont définis 
-par des couples clé-valeur : propriété=colonne. Par exemple, pour un 
-<code class="classname">CellRendererText</code>, la méthode :</p>
+<p>... oÃ¹ les attributs de <em class="parameter"><code>cell_renderer</code></em> sont dÃ©finis
+par des couples clÃ©-valeurÂ : propriÃ©tÃ©=colonne. Par exemple, pour un
+<code class="classname">CellRendererText</code>, la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   treeviewcolumn.set_attributes(cell, text=0, cell_background=1, xpad=3)
 </pre>
-<p>... fixe, pour chaque ligne, le texte à partir de la première colonne, 
-la couleur d'arrière-plan à partir de la deuxième et l'espacement à gauche et 
-à droite de la cellule à partir de la quatrième. Le programme <a href="exemples/treeviewcolumn.py" target="_top"><span><strong class="command">treeviewcolumn.py</strong></span></a> 
-donne des exemples d'utilisation de ces méthodes.</p>
-<p>Les attributs d'un <code class="classname">CellRenderer</code> peuvent être 
-supprimés comme suit :</p>
+<p>... fixe, pour chaque ligne, le texte Ã  partir de la premiÃ¨re colonne,
+la couleur d'arriÃ¨re-plan Ã  partir de la deuxiÃ¨me et l'espacement Ã  gauche et
+Ã  droite de la cellule Ã  partir de la quatriÃ¨me. Le programme <a href="exemples/treeviewcolumn.py" target="_top"><span><strong class="command">treeviewcolumn.py</strong></span></a>
+donne des exemples d'utilisation de ces mÃ©thodes.</p>
+<p>Les attributs d'un <code class="classname">CellRenderer</code> peuvent Ãªtre
+supprimÃ©s comme suitÂ :</p>
 <pre class="programlisting">
   treeviewcolumn.clear_attributes(<strong class="parameter"><code>cell_renderer</code></strong>)
 </pre>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-CellDataFunction"></a>14.4.5. Fonction d'affichage des données cellulaires</h3></div></div></div>
-<p>Si définir des attributs ne suffit pas, il est possible de définir une 
-fonction à appeler à chaque ligne pour fixer les propriétés du 
-<code class="classname">CellRenderer</code> :</p>
+<a name="sec-CellDataFunction"></a>14.4.5.Â Fonction d'affichage des donnÃ©es cellulaires</h3></div></div></div>
+<p>Si dÃ©finir des attributs ne suffit pas, il est possible de dÃ©finir une
+fonction Ã  appeler Ã  chaque ligne pour fixer les propriÃ©tÃ©s du
+<code class="classname">CellRenderer</code>Â :</p>
 <pre class="programlisting">
   treeviewcolumn.set_cell_data_func(<em class="parameter"><code>cell_renderer</code></em>, <em class="parameter"><code>fonction_rendu</code></em>, <em class="parameter"><code>donnees</code></em>=None)
 </pre>
-<p>... où <em class="parameter"><code>fonction_rendu</code></em> est de la forme :</p>
+<p>... oÃ¹ <em class="parameter"><code>fonction_rendu</code></em> est de la formeÂ :</p>
 <pre class="programlisting">
   def fonction_rendu(colonne, cell_renderer, tree_model, iter, donnees_utilisateur)
 </pre>
-<p>... où <em class="parameter"><code>colonne</code></em> est le 
-<code class="classname">TreeViewColumn</code> contenant le 
-<em class="parameter"><code>cell_renderer</code></em>, <em class="parameter"><code>tree_model</code></em> est  
-le modèle et <em class="parameter"><code>iter</code></em> est un 
-<code class="classname">TreeIter</code> pointant vers une ligne du 
+<p>... oÃ¹ <em class="parameter"><code>colonne</code></em> est le
+<code class="classname">TreeViewColumn</code> contenant le
+<em class="parameter"><code>cell_renderer</code></em>, <em class="parameter"><code>tree_model</code></em> est
+le modÃ¨le et <em class="parameter"><code>iter</code></em> est un
+<code class="classname">TreeIter</code> pointant vers une ligne du
 <em class="parameter"><code>tree_model</code></em>. <em class="parameter"><code>donnees_utilisateur</code></em> contient la
-valeur des <em class="parameter"><code>donnees</code></em> transmises par la méthode 
+valeur des <em class="parameter"><code>donnees</code></em> transmises par la mÃ©thode
 <code class="methodname">set_cell_data_func</code>().</p>
-<p>Dans <em class="parameter"><code>fonction_rendu</code></em> on peut définir toutes les propriétés 
-voulues du <em class="parameter"><code>cell_renderer</code></em>. La portion de code suivante 
-définit la propriété "text" pour afficher les objets PyGTK sous la forme d'une chaine 
+<p>Dans <em class="parameter"><code>fonction_rendu</code></em> on peut dÃ©finir toutes les propriÃ©tÃ©s
+voulues du <em class="parameter"><code>cell_renderer</code></em>. La portion de code suivante
+dÃ©finit la propriÃ©tÃ© "text" pour afficher les objets PyGTK sous la forme d'une chaine
 les identifiant.
 </p>
 <pre class="programlisting">
@@ -580,23 +581,23 @@ les identifiant.
   iter = treestore.append(None, [treestore])
   ...
 </pre>
-<p>La <a href="sec-CellRenderers.html#celldatafuncfig" title="Figure 14.3. Fonction d'affichage des données cellulaires">Figure 14.3, « Fonction d'affichage des données cellulaires »</a> montre le 
-résultat :</p>
+<p>La <a href="sec-CellRenderers.html#celldatafuncfig" title="FigureÂ 14.3.Â Fonction d'affichage des donnÃ©es cellulaires">FigureÂ 14.3, Â«Â Fonction d'affichage des donnÃ©es cellulairesÂ Â»</a> montre le
+rÃ©sultatÂ :</p>
 <div class="figure">
-<a name="celldatafuncfig"></a><p class="title"><b>Figure 14.3. Fonction d'affichage des données cellulaires</b></p>
-<div class="mediaobject" align="center"><img src="figures/celldatafuncfig.png" align="middle" alt="Exemple de fonction d'affichage des données cellulaires"></div>
+<a name="celldatafuncfig"></a><p class="title"><b>FigureÂ 14.3.Â Fonction d'affichage des donnÃ©es cellulaires</b></p>
+<div class="mediaobject" align="center"><img src="figures/celldatafuncfig.png" align="middle" alt="Exemple de fonction d'affichage des donnÃ©es cellulaires"></div>
 </div>
-<p>Cette fonction permet aussi de contrôler l'affichage des données 
-numériques en format texte (par exemple d'un nombre réel). Un 
-<code class="classname">CellRendererText</code> affiche et convertit 
-automatiquement un réel en chaine avec le format par défaut 
+<p>Cette fonction permet aussi de contrÃ´ler l'affichage des donnÃ©es
+numÃ©riques en format texte (par exemple d'un nombre rÃ©el). Un
+<code class="classname">CellRendererText</code> affiche et convertit
+automatiquement un rÃ©el en chaine avec le format par dÃ©faut
 "%f".</p>
-<p>Les fonctions d'affichage de données cellulaires permettent même de créer 
-les données des colonnes à partir de données externes. Le programme <a href="exemples/listefichiers.py" target="_top"><span><strong class="command">listefichiers.py</strong></span></a> 
-utilise un <code class="classname">ListStore</code> avec une seule colonne contenant 
-une liste de fichiers. Le <code class="classname">TreeView</code> affiche des colonnes 
-qui comprennent un pixbuf, le nom du fichier, sa taille, son mode et la date 
-de dernière modification. Les données sont créées par la fonction suivante :</p>
+<p>Les fonctions d'affichage de donnÃ©es cellulaires permettent mÃªme de crÃ©er
+les donnÃ©es des colonnes Ã  partir de donnÃ©es externes. Le programme <a href="exemples/listefichiers.py" target="_top"><span><strong class="command">listefichiers.py</strong></span></a>
+utilise un <code class="classname">ListStore</code> avec une seule colonne contenant
+une liste de fichiers. Le <code class="classname">TreeView</code> affiche des colonnes
+qui comprennent un pixbuf, le nom du fichier, sa taille, son mode et la date
+de derniÃ¨re modification. Les donnÃ©es sont crÃ©Ã©es par la fonction suivanteÂ :</p>
 <pre class="programlisting">
     def fichier_pixbuf(self, colonne, cell, modele, iter):
         nomfichier = os.path.join(self.nomrep, modele.get_value(iter, 0))
@@ -631,28 +632,28 @@ de dernière modification. Les données sont créées par la fonction suivante :</p>
         cell.set_property('text', time.ctime(statsfichier.st_mtime))
         return
 </pre>
-<p>Ces fonctions d'affichage de données cellulaires récupérent l'information 
-sur chaque fichier par son nom, extraient les données nécessaires et fixent la propriété 
-'text' ou 'pixbuf' des cellules selon les données. La 
-<a href="sec-CellRenderers.html#listefichiersfig" title="Figure 14.4. Exemple de liste de fichiers utilisant les fonctions d'affichage de données cellulaires">Figure 14.4, « Exemple de liste de fichiers utilisant les fonctions d'affichage de données cellulaires »</a> illustre le résultat du programme.</p>
+<p>Ces fonctions d'affichage de donnÃ©es cellulaires rÃ©cupÃ©rent l'information
+sur chaque fichier par son nom, extraient les donnÃ©es nÃ©cessaires et fixent la propriÃ©tÃ©
+'text' ou 'pixbuf' des cellules selon les donnÃ©es. La
+<a href="sec-CellRenderers.html#listefichiersfig" title="FigureÂ 14.4.Â Exemple de liste de fichiers utilisant les fonctions d'affichage de donnÃ©es cellulaires">FigureÂ 14.4, Â«Â Exemple de liste de fichiers utilisant les fonctions d'affichage de donnÃ©es cellulairesÂ Â»</a> illustre le rÃ©sultat du programme.</p>
 <div class="figure">
-<a name="listefichiersfig"></a><p class="title"><b>Figure 14.4. Exemple de liste de fichiers utilisant les fonctions d'affichage de données cellulaires</b></p>
-<div class="mediaobject" align="center"><img src="figures/listefichiersfig.png" align="middle" alt="Exemple de liste de fichiers utilisant les fonctions d'affichage de données cellulaires"></div>
+<a name="listefichiersfig"></a><p class="title"><b>FigureÂ 14.4.Â Exemple de liste de fichiers utilisant les fonctions d'affichage de donnÃ©es cellulaires</b></p>
+<div class="mediaobject" align="center"><img src="figures/listefichiersfig.png" align="middle" alt="Exemple de liste de fichiers utilisant les fonctions d'affichage de donnÃ©es cellulaires"></div>
 </div>
 
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-CellRendererTextMarkup"></a>14.4.6. CellRendererText Markup</h3></div></div></div>
-<p>Un <code class="classname">CellRendererText</code> peut présenter un texte enrichi 
-avec des polices et des styles différents plutôt qu'une simple chaine de caractères 
-bruts grâce à l'utilisation du balisage Pango (en définissant la propriété "markup"). 
-On trouvera davantage de renseignements sur le balisage Pango dans la section 
-<a href="http://www.pygtk.org/pygtk2reference/pango-markup-language.html" target="_top">Pango 
+<a name="sec-CellRendererTextMarkup"></a>14.4.6.Â CellRendererText Markup</h3></div></div></div>
+<p>Un <code class="classname">CellRendererText</code> peut prÃ©senter un texte enrichi
+avec des polices et des styles diffÃ©rents plutÃ´t qu'une simple chaine de caractÃ¨res
+bruts grÃ¢ce Ã  l'utilisation du balisage Pango (en dÃ©finissant la propriÃ©tÃ© "markup").
+On trouvera davantage de renseignements sur le balisage Pango dans la section
+<a href="http://www.pygtk.org/pygtk2reference/pango-markup-language.html" target="_top">Pango
 Markup</a> du <a href="http://www.pygtk.org/pygtk2reference" target="_top">
 PyGTK Reference Manual</a>.</p>
-<p>L'extrait de code ci-dessous montre l'utilisation de la propriété 
-"markup" :</p>
+<p>L'extrait de code ci-dessous montre l'utilisation de la propriÃ©tÃ©
+"markup"Â :</p>
 <pre class="programlisting">
   ...
   liststore = gtk.ListStore(str)
@@ -664,67 +665,67 @@ PyGTK Reference Manual</a>.</p>
  &lt;s&gt;barrer&lt;/s&gt;&lt;/u&gt;,\n'
 'et &lt;span font_family="URW Chancery L"&gt;&lt;big&gt;changer la police '
 'ex : URW Chancery L&lt;/big&gt;&lt;/span&gt;\n&lt;span foreground="red"&gt;avant-plan'
-' rouge et &lt;span background="cyan"&gt;arrière-plan cyan&lt;/span&gt;&lt;/span&gt;'])
+' rouge et &lt;span background="cyan"&gt;arriÃ¨re-plan cyan&lt;/span&gt;&lt;/span&gt;'])
   ...
 </pre>
-<p>... et donne un résultat semblable à la <a href="sec-CellRenderers.html#celltextmarkupfig" title="Figure 14.5. CellRendererText et balisage">Figure 14.5, « CellRendererText et balisage »</a>:</p>
+<p>... et donne un rÃ©sultat semblable Ã  la <a href="sec-CellRenderers.html#celltextmarkupfig" title="FigureÂ 14.5.Â CellRendererText et balisage">FigureÂ 14.5, Â«Â CellRendererText et balisageÂ Â»</a>:</p>
 <div class="figure">
-<a name="celltextmarkupfig"></a><p class="title"><b>Figure 14.5. CellRendererText et balisage</b></p>
+<a name="celltextmarkupfig"></a><p class="title"><b>FigureÂ 14.5.Â CellRendererText et balisage</b></p>
 <div class="mediaobject" align="center"><img src="figures/celltextmarkupfig.png" align="middle" alt="Exemple de Pango markup"></div>
 </div>
-<p>Lorsque l'on crée un balisage Pango à la volée, il faut faire attention 
-à remplacer les caractères spécifiques au langage balisé : "&lt;", "&gt;", 
-"&amp;". La fonction <code class="function">cgi.escape</code>() de la bibliothèque 
-Python peut réaliser ces conversions élémentaires.</p>
+<p>Lorsque l'on crÃ©e un balisage Pango Ã  la volÃ©e, il faut faire attention
+Ã  remplacer les caractÃ¨res spÃ©cifiques au langage balisÃ©Â : "&lt;", "&gt;",
+"&amp;". La fonction <code class="function">cgi.escape</code>() de la bibliothÃ¨que
+Python peut rÃ©aliser ces conversions Ã©lÃ©mentaires.</p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="EditableTextCells"></a>14.4.7. Cellules de texte éditables</h3></div></div></div>
-<p>Les cellules <code class="classname">CellRendererText</code> peuvent 
-devenir éditables pour permettre à un utilisateur de changer le contenu de la 
-cellule sélectionnée en la cliquant ou en pressant une des touches <span><strong class="keycap">Retour</strong></span>,
-<span><strong class="keycap">Entrée</strong></span>, <span><strong class="keycap">Espace</strong></span> ou <span><strong class="keycap">Maj</strong></span>+<span><strong class="keycap">Espace</strong></span>.  
-On rend un <code class="classname">CellRendererText</code> éditable pour toutes 
-les lignes en fixant sa propriété "editable" à <code class="literal">TRUE</code> 
-de cette façon :</p>
+<a name="EditableTextCells"></a>14.4.7.Â Cellules de texte Ã©ditables</h3></div></div></div>
+<p>Les cellules <code class="classname">CellRendererText</code> peuvent
+devenir Ã©ditables pour permettre Ã  un utilisateur de changer le contenu de la
+cellule sÃ©lectionnÃ©e en la cliquant ou en pressant une des touches <span><strong class="keycap">Retour</strong></span>,
+<span><strong class="keycap">EntrÃ©e</strong></span>, <span><strong class="keycap">Espace</strong></span> ou <span><strong class="keycap">Maj</strong></span>+<span><strong class="keycap">Espace</strong></span>.
+On rend un <code class="classname">CellRendererText</code> Ã©ditable pour toutes
+les lignes en fixant sa propriÃ©tÃ© "editable" Ã  <code class="literal">TRUE</code>
+de cette faÃ§onÂ :</p>
 <pre class="programlisting">
   cellrenderertext.set_property('editable', True)
 </pre>
-<p>Pour rendre éditable une seule cellule, il faut ajouter un attribut au 
-<code class="classname">TreeViewColumn</code> et utiliser le 
-<code class="classname">CellRendererText</code> ainsi :</p>
+<p>Pour rendre Ã©ditable une seule cellule, il faut ajouter un attribut au
+<code class="classname">TreeViewColumn</code> et utiliser le
+<code class="classname">CellRendererText</code> ainsiÂ :</p>
 <pre class="programlisting">
   treeviewcolumn.add_attribute(cellrenderertext, "editable", 2)
 </pre>
-<p>... qui fixe la propriété "editable" pour la valeur contenue dans 
-la troisième colonne du treemodel.</p>
-<p>Les modifications de la cellule terminées, l'application doit gérer le signal 
-"edited" pour récupérer le nouveau texte et modifier la valeur du treemodel associé. 
-Sinon, la cellule reprend sa valeur précédente. Le gestionnaire 
-du signal "edited" a la signature suivante :</p>
+<p>... qui fixe la propriÃ©tÃ© "editable" pour la valeur contenue dans
+la troisiÃ¨me colonne du treemodel.</p>
+<p>Les modifications de la cellule terminÃ©es, l'application doit gÃ©rer le signal
+"edited" pour rÃ©cupÃ©rer le nouveau texte et modifier la valeur du treemodel associÃ©.
+Sinon, la cellule reprend sa valeur prÃ©cÃ©dente. Le gestionnaire
+du signal "edited" a la signature suivanteÂ :</p>
 <pre class="programlisting">
   def rappel_edited(<em class="parameter"><code>celltext</code></em>, <em class="parameter"><code>chemin</code></em>, <em class="parameter"><code>nouveau_texte</code></em>, <em class="parameter"><code>donnees_utilisateur</code></em>)
 </pre>
-<p>... où <em class="parameter"><code>celltext</code></em> est le <code class="classname">CellRendererText</code>, 
-<em class="parameter"><code>chemin</code></em> est le chemin d'accès (une chaine) à la ligne 
-contenant la cellule éditée, <em class="parameter"><code>nouveau_texte</code></em> est le texte modifié 
-et <em class="parameter"><code>donnees_utilisateur</code></em> les données contextuelles. 
-Le <code class="classname">TreeModel</code> étant indispensable pour définir le 
-<em class="parameter"><code>nouveau_texte</code></em> dans le stock de données, il faudra peut-être 
-transmettre le <code class="classname">TreeModel</code> comme 
-<em class="parameter"><code>donnees_utilisateur</code></em> dans la méthode 
-<code class="methodname">connect</code>() :</p>
+<p>... oÃ¹ <em class="parameter"><code>celltext</code></em> est le <code class="classname">CellRendererText</code>,
+<em class="parameter"><code>chemin</code></em> est le chemin d'accÃ¨s (une chaine) Ã  la ligne
+contenant la cellule Ã©ditÃ©e, <em class="parameter"><code>nouveau_texte</code></em> est le texte modifiÃ©
+et <em class="parameter"><code>donnees_utilisateur</code></em> les donnÃ©es contextuelles.
+Le <code class="classname">TreeModel</code> Ã©tant indispensable pour dÃ©finir le
+<em class="parameter"><code>nouveau_texte</code></em> dans le stock de donnÃ©es, il faudra peut-Ãªtre
+transmettre le <code class="classname">TreeModel</code> comme
+<em class="parameter"><code>donnees_utilisateur</code></em> dans la mÃ©thode
+<code class="methodname">connect</code>()Â :</p>
 <pre class="programlisting">
   cellrenderertext.connect('edited', rappel_edited, modele)
 </pre>
-<p>S'il y a deux ou plusieurs cellules éditables dans une ligne, on peut  
-passer le numéro de la colonne dans <em class="parameter"><code>donnees_utilisateur</code></em>, 
-en même temps que le <code class="classname">TreeModel</code> :</p>
+<p>S'il y a deux ou plusieurs cellules Ã©ditables dans une ligne, on peut
+passer le numÃ©ro de la colonne dans <em class="parameter"><code>donnees_utilisateur</code></em>,
+en mÃªme temps que le <code class="classname">TreeModel</code>Â :</p>
 <pre class="programlisting">
   cellrenderertext.connect('edited', rappel_edited, (modele, num_col))
 </pre>
-<p>Ensuite, on peut définir le nouveau texte dens le gestionnaire "edited" 
-comme le montre cet exemple avec un <code class="classname">ListStore</code> :</p>
+<p>Ensuite, on peut dÃ©finir le nouveau texte dens le gestionnaire "edited"
+comme le montre cet exemple avec un <code class="classname">ListStore</code>Â :</p>
 <pre class="programlisting">
   def rappel_edited(celltext, chemin, nouveau_texte, donnees_utilisateur):
       liststore, colonne = donnees_utilisateur
@@ -735,15 +736,15 @@ comme le montre cet exemple avec un <code class="classname">ListStore</code> :</
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-ActivatableToggleCells"></a>14.4.8. Cellules à bascule activables</h3></div></div></div>
-<p>Les boutons <code class="classname">CellRendererToggle</code> peuvent être rendus 
-activables en fixant leur propriété "activatable" à <code class="literal">TRUE</code>. 
-De la même manière que pour les  cellules éditables 
-<code class="classname">CellRendererText</code>, 
-la propriété "activable" peut être fixée pour l'ensemble des cellules 
-<code class="classname">CellRendererToggle</code> en utilisant la méthode 
-<code class="methodname">set_property</code>() ou pour des cellules individuelles 
-en ajoutant un attribut au <code class="classname">TreeViewColumn</code> contenant 
+<a name="sec-ActivatableToggleCells"></a>14.4.8.Â Cellules Ã  bascule activables</h3></div></div></div>
+<p>Les boutons <code class="classname">CellRendererToggle</code> peuvent Ãªtre rendus
+activables en fixant leur propriÃ©tÃ© "activatable" Ã  <code class="literal">TRUE</code>.
+De la mÃªme maniÃ¨re que pour les  cellules Ã©ditables
+<code class="classname">CellRendererText</code>,
+la propriÃ©tÃ© "activable" peut Ãªtre fixÃ©e pour l'ensemble des cellules
+<code class="classname">CellRendererToggle</code> en utilisant la mÃ©thode
+<code class="methodname">set_property</code>() ou pour des cellules individuelles
+en ajoutant un attribut au <code class="classname">TreeViewColumn</code> contenant
 le <code class="classname">CellRendererToggle</code>.
 </p>
 <pre class="programlisting">
@@ -751,30 +752,30 @@ le <code class="classname">CellRendererToggle</code>.
 
   treeviewcolumn.add_attribute(cellrenderertoggle, "activatable", 1)
 </pre>
-<p>La déclaration individuelle des boutons à bascule peut être obtenue à partir 
-des valeurs d'une colonne du <code class="classname">TreeModel</code> en ajoutant un attribut, 
-comme ceci :
+<p>La dÃ©claration individuelle des boutons Ã  bascule peut Ãªtre obtenue Ã  partir
+des valeurs d'une colonne du <code class="classname">TreeModel</code> en ajoutant un attribut,
+comme ceciÂ :
 </p>
 <pre class="programlisting">
   treeviewcolumn.add_attribute(cellrenderertoggle, "active", 2)
 </pre>
-<p>Une connexion au signal "toggled" est nécessaire si l'on veut savoir quand l'utilisateur 
-a cliqué sur le bouton et pouvoir modifier la valeur dans le treemodel. Par exemple :
+<p>Une connexion au signal "toggled" est nÃ©cessaire si l'on veut savoir quand l'utilisateur
+a cliquÃ© sur le bouton et pouvoir modifier la valeur dans le treemodel. Par exempleÂ :
 </p>
 <pre class="programlisting">
   cellrenderertoggle.connect("toggled", rappel_toggled, (modele, colonne))
 </pre>
-<p>La fonction de rappel aura la signature suivante :</p>
+<p>La fonction de rappel aura la signature suivanteÂ :</p>
 <pre class="programlisting">
   def rappel_toggled(<em class="parameter"><code>cellrenderertoggle</code></em>, <em class="parameter"><code>chemin</code></em>, <em class="parameter"><code>donnees_utilisateur</code></em>)
 </pre>
-<p>... où <em class="parameter"><code>chemin</code></em> est le chemin d'accès (une chaine), 
-pointant sur la ligne contenant le bouton à bascule qui a été cliqué. On 
-doit passer le <code class="classname">TreeModel</code> et éventuellement l'index 
-de colonne dans le paramètre <em class="parameter"><code>donnees_utilisateur</code></em> pour fournir 
-les éléments nécessaires à l'établissement des valeurs du treemodel. 
-Par exemple, l'application peut modifier la valeur du treemodel 
-de la façon suivante :
+<p>... oÃ¹ <em class="parameter"><code>chemin</code></em> est le chemin d'accÃ¨s (une chaine),
+pointant sur la ligne contenant le bouton Ã  bascule qui a Ã©tÃ© cliquÃ©. On
+doit passer le <code class="classname">TreeModel</code> et Ã©ventuellement l'index
+de colonne dans le paramÃ¨tre <em class="parameter"><code>donnees_utilisateur</code></em> pour fournir
+les Ã©lÃ©ments nÃ©cessaires Ã  l'Ã©tablissement des valeurs du treemodel.
+Par exemple, l'application peut modifier la valeur du treemodel
+de la faÃ§on suivanteÂ :
 </p>
 <pre class="programlisting">
   def rappel_toggled(cellule, chemin, donnees_utilisateur):
@@ -782,10 +783,10 @@ de la façon suivante :
       modele[chemin][colonne] = not modele[chemin][colonne]
       return
 </pre>
-<p>Si l'on veut afficher les boutons à bascule comme des boutons 
-radio dont un seul serait sélectionné, l'application doit parcourir le treemodel 
-pour désactiver le bouton radio actif et ensuite déclarer le bouton à
-activer. Par exemple, la fonction de rappel suivante :
+<p>Si l'on veut afficher les boutons Ã  bascule comme des boutons
+radio dont un seul serait sÃ©lectionnÃ©, l'application doit parcourir le treemodel
+pour dÃ©sactiver le bouton radio actif et ensuite dÃ©clarer le bouton Ã 
+activer. Par exemple, la fonction de rappel suivanteÂ :
 </p>
 <pre class="programlisting">
   def rappel_toggled(cellule, chemin, donnees_utilisateur):
@@ -795,33 +796,33 @@ activer. Par exemple, la fonction de rappel suivante :
       modele[chemin][colonne] = True
       return
 </pre>
-<p>... utilise la solution de facilité qui consiste à mettre toutes les valeurs 
-du treemodel à <code class="literal">FALSE</code> avant de remettre à <code class="literal">TRUE</code> 
-la valeur pour la ligne indiquée par le <em class="parameter"><code>chemin</code></em>.
+<p>... utilise la solution de facilitÃ© qui consiste Ã  mettre toutes les valeurs
+du treemodel Ã  <code class="literal">FALSE</code> avant de remettre Ã  <code class="literal">TRUE</code>
+la valeur pour la ligne indiquÃ©e par le <em class="parameter"><code>chemin</code></em>.
 </p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-EditableActivatableProgram"></a>14.4.9. Programme d'exemple avec cellules éditables et activables</h3></div></div></div>
-<p>Le programme <a href="exemples/cellrenderer.py" target="_top">cellrenderer.py</a> 
-illustre l'utilisation de <code class="classname">CellRendererText</code> éditables et de  
+<a name="sec-EditableActivatableProgram"></a>14.4.9.Â Programme d'exemple avec cellules Ã©ditables et activables</h3></div></div></div>
+<p>Le programme <a href="exemples/cellrenderer.py" target="_top">cellrenderer.py</a>
+illustre l'utilisation de <code class="classname">CellRendererText</code> Ã©ditables et de
 <code class="classname">CellRendererToggle</code> activables dans un <code class="classname">TreeStore</code>.
 </p>
 <pre class="programlisting">
     1   #!/usr/bin/env python
     2   # vim: ts=4:sw=4:tw=78:nowrap
-    3   """ Exemple avec Cellrenderer éditables et activables """
+    3   """ Exemple avec Cellrenderer Ã©ditables et activables """
     4   import pygtk
     5   pygtk.require("2.0")
     6   import gtk, gobject
-    7   
+    7
     8   taches =  {
     9       "Faire les courses": "Acheter une baguette",
    10       "Programmer": "Mettre a jour le programme",
    11       "Cuisiner": "Allumer le four",
    12       "Regarder la TV": "Enregistrer \"Urgences\""
-   13       } 
-   14   
+   13       }
+   14
    15   class GUI_Controleur:
    16       """ La classe GUI est le controleur de l'application """
    17       def __init__(self):
@@ -843,8 +844,8 @@ illustre l'utilisation de <code class="classname">CellRendererText</code> éditab
    33       def lance(self):
    34           """ La fonction est appelee pour lancer la boucle principale GTK """
    35           gtk.main()
-   36           return  
-   37   
+   36           return
+   37
    38   class InfoModele:
    39       """ La classe du modele contient l'information que nous voulons afficher """
    40       def __init__(self):
@@ -860,10 +861,10 @@ illustre l'utilisation de <code class="classname">CellRendererText</code> éditab
    50       def recup_modele(self):
    51           """ Renvoie le modele """
    52           if self.tree_store:
-   53               return self.tree_store 
+   53               return self.tree_store
    54           else:
    55               return None
-   56   
+   56
    57   class AfficheModele:
    58       """ Affiche le modele InfoModele dans un treeview """
    59       def cree_vue( self, modele ):
@@ -874,18 +875,18 @@ illustre l'utilisation de <code class="classname">CellRendererText</code> éditab
    64           self.renderer = gtk.CellRendererText()
    65           self.renderer.set_property( 'editable', True )
    66           self.renderer.connect( 'edited', self.rappel_edited_col0, modele )
-   67   
-   68           # Cree le CellRendererToggle et permet sa 
+   67
+   68           # Cree le CellRendererToggle et permet sa
    69           # modification (toggled) par l'utilisateur.
    70           self.renderer1 = gtk.CellRendererToggle()
    71           self.renderer1.set_property('activatable', True)
    72           self.renderer1.connect( 'toggled', self.rappel_toggled_col1, modele )
-   73   
+   73
    74           # On connecte la colonne 0 de l'affichage a la colonne 0 du modele
    75           # Le cellrenderer va alors afficher tout ce qui est en colonne 0 de
    76           # notre modele .
    77           self.colonne0 = gtk.TreeViewColumn("Nom", self.renderer, text=0)
-   78   
+   78
    79           # L'etat actif des colonnes est relie a la seconde colonne
    80           # du modele. Ainsi, quand le modele indique True, le bouton
    81           # apparaitra comme actif.
@@ -909,31 +910,31 @@ illustre l'utilisation de <code class="classname">CellRendererText</code> éditab
    99           modele[chemin][1] = not modele[chemin][1]
   100           print "Valeur de '%s'  : %s" % (modele[chemin][0], modele[chemin][1],)
   101           return
-  102   
+  102
   103   if __name__ == '__main__':
-  104       Ranger = InfoModele()	
+  104       Ranger = InfoModele()
   105       Afficher = AfficheModele()
   106       monGUI = GUI_Controleur()
   107       monGUI.lance()
 
 </pre>
-<p>Le programme propose des cellules éditables dans la première colonne 
-et des cellules activables dans la deuxième. Les lignes 64-66 créent un 
-<code class="classname">CellRendererText</code> éditable et connectent le signal 
-"edited" à la fonction de rappel <code class="methodname">rappel_edited_col0</code>() 
-(lignes 87-94) qui modifie la valeur de colonne de la ligne adéquate dans 
-le <code class="classname">TreeStore</code>. De même, les lignes 70-72 créent un 
-<code class="classname">CellRendererToggle</code> activable et connectent le 
-signal "toggled" à la fonction de rappel <code class="methodname">rappel_toggled_col0()</code>() 
-(lignes 95-101) qui modifie la valeur de la ligne adéquate. Lorsqu'une cellule 
-éditable ou activable est modifiée, un message s'affiche, indiquant de quelle 
+<p>Le programme propose des cellules Ã©ditables dans la premiÃ¨re colonne
+et des cellules activables dans la deuxiÃ¨me. Les lignes 64-66 crÃ©ent un
+<code class="classname">CellRendererText</code> Ã©ditable et connectent le signal
+"edited" Ã  la fonction de rappel <code class="methodname">rappel_edited_col0</code>()
+(lignes 87-94) qui modifie la valeur de colonne de la ligne adÃ©quate dans
+le <code class="classname">TreeStore</code>. De mÃªme, les lignes 70-72 crÃ©ent un
+<code class="classname">CellRendererToggle</code> activable et connectent le
+signal "toggled" Ã  la fonction de rappel <code class="methodname">rappel_toggled_col0()</code>()
+(lignes 95-101) qui modifie la valeur de la ligne adÃ©quate. Lorsqu'une cellule
+Ã©ditable ou activable est modifiÃ©e, un message s'affiche, indiquant de quelle
 modification il s'agissait.
 </p>
-<p>La <a href="sec-CellRenderers.html#cellrendererfig" title="Figure 14.6. Cellules éditables et activables">Figure 14.6, « Cellules éditables et activables »</a> montre le programme <a href="exemples/cellrenderer.py" target="_top">cellrenderer.py</a> en action.
+<p>La <a href="sec-CellRenderers.html#cellrendererfig" title="FigureÂ 14.6.Â Cellules Ã©ditables et activables">FigureÂ 14.6, Â«Â Cellules Ã©ditables et activablesÂ Â»</a> montre le programme <a href="exemples/cellrenderer.py" target="_top">cellrenderer.py</a> en action.
 </p>
 <div class="figure">
-<a name="cellrendererfig"></a><p class="title"><b>Figure 14.6. Cellules éditables et activables</b></p>
-<div class="mediaobject" align="center"><img src="figures/cellrendererfig.png" align="middle" alt="Exemple de cellules éditables et activables"></div>
+<a name="cellrendererfig"></a><p class="title"><b>FigureÂ 14.6.Â Cellules Ã©ditables et activables</b></p>
+<div class="mediaobject" align="center"><img src="figures/cellrendererfig.png" align="middle" alt="Exemple de cellules Ã©ditables et activables"></div>
 </div>
 </div>
 </div>
@@ -942,15 +943,15 @@ modification il s'agissait.
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-TreeViews.html">Préc.</a> </td>
+<a accesskey="p" href="sec-TreeViews.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-TreeViewWidget.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-TreeViewColumns.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-TreeViewColumns.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">14.3. Les TreeView </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 14.5. TreeViewColumn</td>
+<td width="40%" align="left" valign="top">14.3.Â Les TreeViewÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 14.5.Â TreeViewColumn</td>
 </tr>
 </table>
 </div>

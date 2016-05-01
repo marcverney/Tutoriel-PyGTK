@@ -1,10 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>9.3. Les infobulles</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,infobulle">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -14,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici&nbsp;: 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃšs ici&nbsp;:
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En-t&ecirc;te de navigation">
 <tr>
@@ -33,42 +33,42 @@ Vous êtes à peu près ici&nbsp;:
 <div class="sect1"><div class="titlepage">
 <div><h2 class="title" style="clear: both"><a name="Infobulles"></a>9.3. Les infobulles</h2></div></div>
 
-<p>Les infobulles sont les petites chaines de texte qui apparaissent lorsque le pointeur 
-de la souris est maintenu quelques secondes au-dessus d'un bouton ou de tout autre widget 
-(&agrave; l'exception de ceux qui ne re&ccedil;oivent pas d'&eacute;v&egrave;nements &mdash; 
+<p>Les infobulles sont les petites chaines de texte qui apparaissent lorsque le pointeur
+de la souris est maintenu quelques secondes au-dessus d'un bouton ou de tout autre widget
+(&agrave; l'exception de ceux qui ne re&ccedil;oivent pas d'&eacute;v&egrave;nements &mdash;
 qui ne disposent pas de leur propre fen&ecirc;tre).</p>
-<p>Dans un premier temps, on utilise l'appel qui suit pour cr&eacute;er une infobulle. 
-Il suffit de le faire une fois pour un groupe d'infobulles donn&eacute;, car l'objet 
-<tt>gtk.Tooltips</tt> renvoy&eacute; peut &ecirc;tre utilis&eacute; pour en cr&eacute;er 
+<p>Dans un premier temps, on utilise l'appel qui suit pour cr&eacute;er une infobulle.
+Il suffit de le faire une fois pour un groupe d'infobulles donn&eacute;, car l'objet
+<tt>gtk.Tooltips</tt> renvoy&eacute; peut &ecirc;tre utilis&eacute; pour en cr&eacute;er
 de nouvelles.</p>
 
 <pre class="programlisting">
   infobulles = gtk.Tooltips()
 </pre>
 
-<p>Une fois cr&eacute;&eacute;s l'infobulle ainsi que le widget auquel on souhaite la 
-rattacher, on utilisera simplement l'appel suivant pour appliquer la premi&egrave;re au 
+<p>Une fois cr&eacute;&eacute;s l'infobulle ainsi que le widget auquel on souhaite la
+rattacher, on utilisera simplement l'appel suivant pour appliquer la premi&egrave;re au
 second&nbsp;:</p>
 
 <pre class="programlisting">
   infobulles.set_tip(<b><tt>widget</tt></b>, <b><tt>tip_text</tt></b>, <b><tt>tip_private</tt></b>=None)
 </pre>
 
-<p>L'objet <i><tt>infobulles</tt></i> est l'infobulle que l'on a cr&eacute;&eacute;e 
-auparavant. Le premier argument (<i><tt>widget</tt></i>) est le widget pour lequel elle 
-doit apparaitre, et le second (<i><tt>tip_text</tt></i>) le texte qu'elle doit afficher. 
-Le dernier argument (<i><tt>tip_private</tt></i>) est une chaine de caract&egrave;res 
+<p>L'objet <i><tt>infobulles</tt></i> est l'infobulle que l'on a cr&eacute;&eacute;e
+auparavant. Le premier argument (<i><tt>widget</tt></i>) est le widget pour lequel elle
+doit apparaitre, et le second (<i><tt>tip_text</tt></i>) le texte qu'elle doit afficher.
+Le dernier argument (<i><tt>tip_private</tt></i>) est une chaine de caract&egrave;res
 pouvant servir d'identifiant.</p>
 <p>Le programme exemple <a href="exemples/infobulles.py" target="_top">
 <b>infobulles.py</b></a> modifie le programme <a href="exemples/fleches.py" target="_top">
-<b>fleches.py</b></a> en ajoutant une infobulle &agrave; chaque bouton. La 
-<a href="sec-TooltipsObject.html#FigInfobulles" title="Figure 9.3. 
-Exemple d'infobulle">Figure 9.3</a> montre la fen&ecirc;tre qu'il g&eacute;n&egrave;re 
+<b>fleches.py</b></a> en ajoutant une infobulle &agrave; chaque bouton. La
+<a href="sec-TooltipsObject.html#FigInfobulles" title="Figure 9.3.
+Exemple d'infobulle">Figure 9.3</a> montre la fen&ecirc;tre qu'il g&eacute;n&egrave;re
 ainsi que l'infobulle du deuxi&egrave;me bouton&nbsp;:</p>
 
 <div class="figure"><a name="FigInfobulles"></a>
 <p class="title"><b>Figure 9.3. Exemple d'infobulle</b></p>
-<div class="mediaobject" align="center"><img src="figures/infobulles.png" align="middle" 
+<div class="mediaobject" align="center"><img src="figures/infobulles.png" align="middle"
 alt="exemple d'infobulle">
 </div></div>
 
@@ -77,13 +77,13 @@ alt="exemple d'infobulle">
 
 <pre class="programlisting">
      1   #!/usr/bin/env python
-     2   
+     2
      3   # exemple infobulles.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   # On cree une fleche avec les parametres specifies
     10   # et on la place dans un bouton
     11   def cree_fleche_bouton(type, ombre):
@@ -93,59 +93,59 @@ alt="exemple d'infobulle">
     15       bouton.show()
     16       fleche.show()
     17       return bouton
-    18   
+    18
     19   class Infobulles:
     20       def __init__(self):
     21           # Creation d'une fenetre
     22           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    23   
+    23
     24           fenetre.set_title("Infobulles")
-    25   
+    25
     26           # C'est une bonne idee de faire ceci pour chaque fenetre
     27           fenetre.connect("destroy", gtk.main_quit)
-    28   
+    28
     29           # On fixe la largeur des bordures de la fenetre
     30           fenetre.set_border_width(10)
-    31   
+    31
     32           # On cree une boite pour contenir les boutons/fleches
     33           boite = gtk.HBox(False, 0)
     34           boite.set_border_width(2)
     35           fenetre.add(boite)
-    36   
+    36
     37           # Creation d'un objet Tooltips
     38           self.infobulles = gtk.Tooltips()
-    39   
+    39
     40           # On place et on affiche tous nos widgets
     41           boite.show()
-    42   
+    42
     43           bouton = cree_fleche_bouton(gtk.ARROW_UP, gtk.SHADOW_IN)
     44           boite.pack_start(bouton, False, False, 3)
     45           self.infobulles.set_tip(bouton, "SHADOW_IN")
-    46   
+    46
     47           bouton = cree_fleche_bouton(gtk.ARROW_DOWN, gtk.SHADOW_OUT)
     48           boite.pack_start(bouton, False, False, 3)
     49           self.infobulles.set_tip(bouton, "SHADOW_OUT")
-    50     
+    50
     51           bouton = cree_fleche_bouton(gtk.ARROW_LEFT, gtk.SHADOW_ETCHED_IN)
     52           boite.pack_start(bouton, False, False, 3)
     53           self.infobulles.set_tip(bouton, "SHADOW_ETCHED_IN")
-    54     
+    54
     55           bouton = cree_fleche_bouton(gtk.ARROW_RIGHT, gtk.SHADOW_ETCHED_OUT)
     56           boite.pack_start(bouton, False, False, 3)
     57           self.infobulles.set_tip(bouton, "SHADOW_ETCHED_OUT")
-    58     
+    58
     59           fenetre.show()
-    60   
+    60
     61   def main():
     62       gtk.main()
     63       return 0
-    64   
+    64
     65   if __name__ == "__main__":
     66       infob = Infobulles()
     67       main()
 </pre>
 
-<p>Il existe d'autres m&eacute;thodes utilisables avec les infobulles. En voici une liste, 
+<p>Il existe d'autres m&eacute;thodes utilisables avec les infobulles. En voici une liste,
 accompagn&eacute;e d'une br&egrave;ve description pour chacune&nbsp;:</p>
 
 <pre class="programlisting">
@@ -164,8 +164,8 @@ accompagn&eacute;e d'une br&egrave;ve description pour chacune&nbsp;:</p>
   infobulles.set_delay(<b><tt>delay</tt></b>)
 </pre>
 
-<p>Fixe le nombre de millisecondes que le pointeur de la souris doit rester au-dessus 
-du widget avant que l'infobulle apparaisse. La valeur par d&eacute;faut est 500 millisecondes 
+<p>Fixe le nombre de millisecondes que le pointeur de la souris doit rester au-dessus
+du widget avant que l'infobulle apparaisse. La valeur par d&eacute;faut est 500 millisecondes
 (une demi-seconde).</p>
 <p>Et voil&agrave;. C'est d&eacute;j&agrave; plus qu'il n'en faut&nbsp;:-)</p></div>
 

@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>10.13. Les connexions et connecteurs (Plugs et Sockets)</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>10.13.Â Les connexions et connecteurs (Plugs et Sockets)</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-ContainerWidgets.html" title="Chapitre 10. Les widgets conteneurs">
-<link rel="prev" href="sec-Notebooks.html" title="10.12. Le bloc-notes (Notebook)">
-<link rel="next" href="ch-MenuWidget.html" title="Chapitre 11. Menu Widget">
+<link rel="up" href="ch-ContainerWidgets.html" title="ChapitreÂ 10.Â Les widgets conteneurs">
+<link rel="prev" href="sec-Notebooks.html" title="10.12.Â Le bloc-notes (Notebook)">
+<link rel="next" href="ch-MenuWidget.html" title="ChapitreÂ 11.Â Menu Widget">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">10.13. Les connexions et connecteurs (Plugs et Sockets)</th></tr>
+<tr><th colspan="3" align="center">10.13.Â Les connexions et connecteurs (Plugs et Sockets)</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-Notebooks.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 10. Les widgets conteneurs</th>
-<td width="20%" align="right"> <a accesskey="n" href="ch-MenuWidget.html">Suiv.</a>
+<a accesskey="p" href="sec-Notebooks.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 10.Â Les widgets conteneurs</th>
+<td width="20%" align="right">Â <a accesskey="n" href="ch-MenuWidget.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,221 +36,221 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-PlugsAndSockets"></a>10.13. Les connexions et connecteurs (Plugs et Sockets)</h2></div></div></div>
-<p>Les <code class="classname">Plugs</code> et les <code class="classname">Sockets</code> 
-agissent ensemble pour insérer l'interface utilisateur d'un processus 
-dans un autre. Ceci peut aussi être réalisé avec Bonobo.</p>
+<a name="sec-PlugsAndSockets"></a>10.13.Â Les connexions et connecteurs (Plugs et Sockets)</h2></div></div></div>
+<p>Les <code class="classname">Plugs</code> et les <code class="classname">Sockets</code>
+agissent ensemble pour insÃ©rer l'interface utilisateur d'un processus
+dans un autre. Ceci peut aussi Ãªtre rÃ©alisÃ© avec Bonobo.</p>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="id2592001"></a>10.13.1. Les Plugs</h3></div></div></div>
-<p>Un <code class="classname">Plug</code> encapsule un interface utilisateur 
-fourni par une application pour qu'il puisse être inséré 
-dans l'interface d'une autre application. Le signal "embedded" 
-avertit l'application connectée qu'elle  a été insérée 
+<a name="id2592001"></a>10.13.1.Â Les Plugs</h3></div></div></div>
+<p>Un <code class="classname">Plug</code> encapsule un interface utilisateur
+fourni par une application pour qu'il puisse Ãªtre insÃ©rÃ©
+dans l'interface d'une autre application. Le signal "embedded"
+avertit l'application connectÃ©e qu'elle  a Ã©tÃ© insÃ©rÃ©e
 dans l'interface utilisateur de l'autre application.</p>
-<p>On crée un <code class="classname">Plug</code> par la fonction suivante :</p>
+<p>On crÃ©e un <code class="classname">Plug</code> par la fonction suivanteÂ :</p>
 <pre class="programlisting">
   plug = gtk.Plug(socket_id)
 </pre>
-<p>... qui crée un nouveau <code class="classname">Plug</code> et l'insère dans le  
-<code class="classname">Socket</code> identifié par <em class="parameter"><code>socket_id</code></em>. 
-Si <em class="parameter"><code>socket_id</code></em> vaut OL, le plug est laissé "déconnecté" 
-et pourra, plus tard, être connecté dans un<code class="classname">Socket</code> 
-en utilisant la méthode <code class="methodname">add_id</code>() du 
+<p>... qui crÃ©e un nouveau <code class="classname">Plug</code> et l'insÃ¨re dans le
+<code class="classname">Socket</code> identifiÃ© par <em class="parameter"><code>socket_id</code></em>.
+Si <em class="parameter"><code>socket_id</code></em> vaut OL, le plug est laissÃ© "dÃ©connectÃ©"
+et pourra, plus tard, Ãªtre connectÃ© dans un<code class="classname">Socket</code>
+en utilisant la mÃ©thode <code class="methodname">add_id</code>() du
 <code class="classname">Socket</code>.
 </p>
-<p>La méthode de <code class="classname">Plug</code> :</p>
+<p>La mÃ©thode de <code class="classname">Plug</code>Â :</p>
 <pre class="programlisting">
   id = plug.get_id()
 </pre>
-<p>... retourne l'identifiant de la fenêtre d'un <code class="classname">Plug</code>, 
-qui peut être utilisé pour l'insérer dans un <code class="classname">Socket</code> 
-en utilisant la méthode <code class="methodname">add_id</code>() du 
+<p>... retourne l'identifiant de la fenÃªtre d'un <code class="classname">Plug</code>,
+qui peut Ãªtre utilisÃ© pour l'insÃ©rer dans un <code class="classname">Socket</code>
+en utilisant la mÃ©thode <code class="methodname">add_id</code>() du
 <code class="classname">Socket</code>.
 </p>
 <p>Le programme exemple <a href="exemples/plug.py" target="_top">
-<span><strong class="command">plug.py</strong></span></a> illustre l'utilisation d'un 
-Plug :</p>
+<span><strong class="command">plug.py</strong></span></a> illustre l'utilisation d'un
+PlugÂ :</p>
 <pre class="programlisting">
      1   #!/usr/bin/python
      2   # -*- coding:utf-8 -*-
      3   import pygtk
      4   pygtk.require('2.0')
      5   import gtk,sys
-     6   
+     6
      7   Wid = 0L
      8   if len(sys.argv) == 2:
      9       Wid = long(sys.argv[1])
-    10   
+    10
     11   plug = gtk.Plug(Wid)
     12   print "Id de Plug=", plug.get_id()
-    13   
+    13
     14   def embed_event(widget):
-    15       print "Je (", widget, ") viens juste d'être inséré !"
-    16   
+    15       print "Je (", widget, ") viens juste d'Ãªtre insÃ©rÃ© !"
+    16
     17   plug.connect("embedded", embed_event)
-    18   
+    18
     19   entry = gtk.Entry()
     20   entry.set_text("salut")
     21   def entry_point(widget):
-    22       print "Vous avez modifié mon texte en '%s'" % widget.get_text()
-    23   
+    22       print "Vous avez modifiÃ© mon texte en '%s'" % widget.get_text()
+    23
     24   entry.connect("changed", entry_point)
     25   plug.connect("destroy", lambda w: gtk.main_quit())
-    26   
+    26
     27   plug.add(entry)
     28   plug.show_all()
-    29   
-    30   
+    29
+    30
     31   gtk.main()
 </pre>
-<p>Ce programme se lance ainsi :</p>
+<p>Ce programme se lance ainsiÂ :</p>
 <pre class="programlisting">
   plug.py [windowID]
 </pre>
-<p>... où le paramètre <em class="parameter"><code>windowID</code></em> est l'identifiant 
-d'un <code class="classname">Socket</code> où connecter le <code class="classname">Plug</code>.
+<p>... oÃ¹ le paramÃ¨tre <em class="parameter"><code>windowID</code></em> est l'identifiant
+d'un <code class="classname">Socket</code> oÃ¹ connecter le <code class="classname">Plug</code>.
 </p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="id2592150"></a>10.13.2. Sockets</h3></div></div></div>
-<p>Un <code class="classname">Socket</code> fournit le widget pour insérer, 
-de manière transparente, un <code class="classname">Plug</code> d'une autre application 
-dans votre interface graphique. Une application crée un <code class="classname">Socket</code> 
-et transmet l'identifiant de fenêtre de ce widget à une autre application, 
-qui, alors, crée un <code class="classname">Plug</code> en utilisant cet identifiant 
-de fenêtre comme paramètre. Tout widget contenu dans le <code class="classname">Plug</code> 
-apparaîtra dans la fenêtre de la première application.
+<a name="id2592150"></a>10.13.2.Â Sockets</h3></div></div></div>
+<p>Un <code class="classname">Socket</code> fournit le widget pour insÃ©rer,
+de maniÃ¨re transparente, un <code class="classname">Plug</code> d'une autre application
+dans votre interface graphique. Une application crÃ©e un <code class="classname">Socket</code>
+et transmet l'identifiant de fenÃªtre de ce widget Ã  une autre application,
+qui, alors, crÃ©e un <code class="classname">Plug</code> en utilisant cet identifiant
+de fenÃªtre comme paramÃ¨tre. Tout widget contenu dans le <code class="classname">Plug</code>
+apparaÃ®tra dans la fenÃªtre de la premiÃ¨re application.
 </p>
-<p>L'ID (identifiant) de fenêtre du <code class="classname">Socket</code> s'obtient 
-en utilisant la méthode de <code class="classname">Socket</code> 
-<code class="methodname">get_id</code>(). Avant d'utiliser cette méthode, le 
-<code class="classname">Socket</code> doit être réalisé et ajouté à son parent.
+<p>L'ID (identifiant) de fenÃªtre du <code class="classname">Socket</code> s'obtient
+en utilisant la mÃ©thode de <code class="classname">Socket</code>
+<code class="methodname">get_id</code>(). Avant d'utiliser cette mÃ©thode, le
+<code class="classname">Socket</code> doit Ãªtre rÃ©alisÃ© et ajoutÃ© Ã  son parent.
 </p>
 <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
 <h3 class="title">Note</h3>
-<p>Si l'on transmet l'ID de fenêtre d'un <code class="classname">Socket</code> à un 
-autre processus qui va créer un <code class="classname">Plug</code> dans ce 
-<code class="classname">Socket</code>, il faut s'assurer que le widget 
-<code class="classname">Socket</code> n'est pas détruit tant que le 
-<code class="classname">Plug</code> n'est pas créé.
+<p>Si l'on transmet l'ID de fenÃªtre d'un <code class="classname">Socket</code> Ã  un
+autre processus qui va crÃ©er un <code class="classname">Plug</code> dans ce
+<code class="classname">Socket</code>, il faut s'assurer que le widget
+<code class="classname">Socket</code> n'est pas dÃ©truit tant que le
+<code class="classname">Plug</code> n'est pas crÃ©Ã©.
 </p>
 </div>
-<p>Quand GTK+ est prévenu que la fenêtre insérée a été détruite, il 
-détruira aussi le <code class="classname">Socket</code>. Il faut toujours 
-être préparé à ce que vos sockets soient détruits à n'importe 
-quel moment quand la boucle principale s'exécute. Détruire un 
-<code class="classname">Socket</code> entraîne aussi la destruction du 
-<code class="classname">Plug</code> inséré.
+<p>Quand GTK+ est prÃ©venu que la fenÃªtre insÃ©rÃ©e a Ã©tÃ© dÃ©truite, il
+dÃ©truira aussi le <code class="classname">Socket</code>. Il faut toujours
+Ãªtre prÃ©parÃ© Ã  ce que vos sockets soient dÃ©truits Ã  n'importe
+quel moment quand la boucle principale s'exÃ©cute. DÃ©truire un
+<code class="classname">Socket</code> entraÃ®ne aussi la destruction du
+<code class="classname">Plug</code> insÃ©rÃ©.
 </p>
-<p>La communication entre un <code class="classname">Socket</code> et 
-un <code class="classname">Plug</code> suit le protocole XEmbed. Ce protocole 
-a été inplémenté dans d'autres toolkits, par ex. Qt, ce qui permet le même 
-niveau d'intégration lorsque l'on incorpore un widget Qt dans GTK ou vice-versa.
+<p>La communication entre un <code class="classname">Socket</code> et
+un <code class="classname">Plug</code> suit le protocole XEmbed. Ce protocole
+a Ã©tÃ© inplÃ©mentÃ© dans d'autres toolkits, par ex. Qt, ce qui permet le mÃªme
+niveau d'intÃ©gration lorsque l'on incorpore un widget Qt dans GTK ou vice-versa.
 </p>
-<p>Création d'un nouveau <code class="classname">Socket</code> vide :</p>
+<p>CrÃ©ation d'un nouveau <code class="classname">Socket</code> videÂ :</p>
 <pre class="programlisting">
   socket = gtk.Socket()
 </pre>
-<p>Le <code class="classname">Socket</code> doit être placé dans une fenêtre 
-de premier niveau avant d'invoquer la méthode 
-<code class="methodname">add_id</code>() :
+<p>Le <code class="classname">Socket</code> doit Ãªtre placÃ© dans une fenÃªtre
+de premier niveau avant d'invoquer la mÃ©thode
+<code class="methodname">add_id</code>()Â :
 </p>
 <pre class="programlisting">
   socket.add_id(window_id)
 </pre>
-<p>... qui ajoute un client XEMBED, tel un <code class="classname">Plug</code>, 
-au <code class="classname">Socket</code>. Le client peut être dans le même 
-processus ou un processus différent.
+<p>... qui ajoute un client XEMBED, tel un <code class="classname">Plug</code>,
+au <code class="classname">Socket</code>. Le client peut Ãªtre dans le mÃªme
+processus ou un processus diffÃ©rent.
 </p>
-<p>Pour insérer un <code class="classname">Plug</code> dans un 
-<code class="classname">Socket</code>, on peut soit créer le 
-<code class="classname">Plug</code> par :
+<p>Pour insÃ©rer un <code class="classname">Plug</code> dans un
+<code class="classname">Socket</code>, on peut soit crÃ©er le
+<code class="classname">Plug</code> parÂ :
 </p>
 <pre class="programlisting">
   plug = gtk.Plug(0L)
 </pre>
-<p>... et ensuite, transmettre à la méthode <code class="methodname">add_id</code>() 
-du <code class="classname">Socket</code> le nombre renvoyé par la méthode 
-<code class="methodname">get_id</code>() du <code class="classname">Plug</code> :
+<p>... et ensuite, transmettre Ã  la mÃ©thode <code class="methodname">add_id</code>()
+du <code class="classname">Socket</code> le nombre renvoyÃ© par la mÃ©thode
+<code class="methodname">get_id</code>() du <code class="classname">Plug</code>Â :
 </p>
 <pre class="programlisting">
   socket.add_id(plug)
 </pre>
-<p>soit utiliser la méthode <code class="methodname">get_id</code>() 
-du <code class="classname">Socket</code> :
+<p>soit utiliser la mÃ©thode <code class="methodname">get_id</code>()
+du <code class="classname">Socket</code>Â :
 </p>
 <pre class="programlisting">
     window_id = socket.get_id()
 </pre>
-<p>... pour obtenir l'ID de fenêtre du socket et ensuite créer le plug par :
+<p>... pour obtenir l'ID de fenÃªtre du socket et ensuite crÃ©er le plug parÂ :
 </p>
 <pre class="programlisting">
   plug = gtk.Plug(window_id)
 </pre>
-<p>Le <code class="classname">Socket</code> doit avoir été déjà ajouté à une fenêtre 
-de niveau supérieur avant cet appel.
+<p>Le <code class="classname">Socket</code> doit avoir Ã©tÃ© dÃ©jÃ  ajoutÃ© Ã  une fenÃªtre
+de niveau supÃ©rieur avant cet appel.
 </p>
 <p>Le programme exemple <a href="exemples/socket.py" target="_top"><span><strong class="command">
-socket.py</strong></span></a> illustre l'utilisatin d'un 
-<code class="classname">Socket</code> :
+socket.py</strong></span></a> illustre l'utilisatin d'un
+<code class="classname">Socket</code>Â :
 </p>
 <pre class="programlisting">
      1   #!/usr/bin/python
      2   # -*- coding:utf-8 -*-
      3   import string
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk,sys
-     8   
+     8
      9   window = gtk.Window()
     10   window.show()
-    11   
+    11
     12   socket = gtk.Socket()
     13   socket.show()
     14   window.add(socket)
-    15   
+    15
     16   print "ID du Socket = ", socket.get_id()
     17   window.connect("destroy", lambda w: gtk.main_quit())
-    18   
+    18
     19   def plugged_event(widget):
-    20       print "Je (", widget, ") viens juste d'avoir un plug inséré !"
-    21   
+    20       print "Je (", widget, ") viens juste d'avoir un plug insÃ©rÃ© !"
+    21
     22   socket.connect("plug-added", plugged_event)
-    23   
+    23
     24   if len(sys.argv) == 2:
     25       socket.add_id(long(sys.argv[1]))
-    26   
+    26
     27   gtk.main()
 </pre>
-<p>Pour tester l'exemple, vous pouvez lancer d'abord 
+<p>Pour tester l'exemple, vous pouvez lancer d'abord
 <a href="exemples/plug.py" target="_top"><span><strong class="command">plug.py</strong></span></a></p>
 <pre class="programlisting">
   $ python plug.py
   Id de Plug= 39845891
 </pre>
-<p>... et copier l'ID résultant comme premier argument à 
-<a href="exemples/socket.py" target="_top"><span><strong class="command">socket.py</strong></span></a> :</p>
+<p>... et copier l'ID rÃ©sultant comme premier argument Ã 
+<a href="exemples/socket.py" target="_top"><span><strong class="command">socket.py</strong></span></a>Â :</p>
 <pre class="programlisting">
   $ python socket.py 39845891
   Socket ID= 48234523
   ID du Socket =  44040231
-  Je ( &lt;gtk.Plug object (GtkPlug) at 0x404057ac&gt; ) viens juste d'être inséré !
-  Je ( &lt;gtk.Socket object (GtkSocket) at 0x4040a9b4&gt; ) viens juste d'avoir un plug inséré !
+  Je ( &lt;gtk.Plug object (GtkPlug) at 0x404057ac&gt; ) viens juste d'Ãªtre insÃ©rÃ© !
+  Je ( &lt;gtk.Socket object (GtkSocket) at 0x4040a9b4&gt; ) viens juste d'avoir un plug insÃ©rÃ© !
 </pre>
-<p>Ou vous pouvez lancer <a href="exemples/socket.py" target="_top"><span><strong class="command">socket.py</strong></span></a> :</p>
+<p>Ou vous pouvez lancer <a href="exemples/socket.py" target="_top"><span><strong class="command">socket.py</strong></span></a>Â :</p>
 <pre class="programlisting">
   $ python socket.py
   ID du Socket =  39845927
 </pre>
-<p>et ensuite lancer <a href="exemples/plug.py" target="_top"><span><strong class="command">plug.py</strong></span></a>, en recopiant 
-L'ID de fenêtre :</p>
+<p>et ensuite lancer <a href="exemples/plug.py" target="_top"><span><strong class="command">plug.py</strong></span></a>, en recopiant
+L'ID de fenÃªtreÂ :</p>
 <pre class="programlisting">
   $ python plug.py
   39845927
-  Je ( &lt;gtk.Socket object (GtkSocket) at 0x4040a9b4&gt; ) viens juste d'avoir un plug inséré !
+  Je ( &lt;gtk.Socket object (GtkSocket) at 0x4040a9b4&gt; ) viens juste d'avoir un plug insÃ©rÃ© !
   Id de Plug= 44040195
 </pre>
 </div>
@@ -259,15 +260,15 @@ L'ID de fenêtre :</p>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-Notebooks.html">Préc.</a> </td>
+<a accesskey="p" href="sec-Notebooks.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-ContainerWidgets.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="ch-MenuWidget.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="ch-MenuWidget.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">10.12. Le bloc-notes (Notebook) </td>
+<td width="40%" align="left" valign="top">10.12.Â Le bloc-notes (Notebook)Â </td>
 <td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
-<td width="40%" align="right" valign="top"> Chapitre 11. Menu Widget</td>
+<td width="40%" align="right" valign="top">Â ChapitreÂ 11.Â Menu Widget</td>
 </tr>
 </table>
 </div>

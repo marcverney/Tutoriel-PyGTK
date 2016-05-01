@@ -1,31 +1,32 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>14.7. Les signaux des TreeView</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>14.7.Â Les signaux des TreeView</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,treeview" />
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-TreeViewWidget.html" title="Chapitre 14. Le widget TreeView">
-<link rel="prev" href="sec-ManipulatingTreeViews.html" title="14.6. Manipuler les TreeView">
-<link rel="next" href="sec-TreeSelections.html" title="14.8. Gestion des Treeselection">
+<link rel="up" href="ch-TreeViewWidget.html" title="ChapitreÂ 14.Â Le widget TreeView">
+<link rel="prev" href="sec-ManipulatingTreeViews.html" title="14.6.Â Manipuler les TreeView">
+<link rel="next" href="sec-TreeSelections.html" title="14.8.Â Gestion des Treeselection">
 </head>
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici : 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici :
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
 </div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">14.7. Les signaux des TreeView</th></tr>
+<tr><th colspan="3" align="center">14.7.Â Les signaux des TreeView</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-ManipulatingTreeViews.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 14. Le widget TreeView</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-TreeSelections.html">Suiv.</a>
+<a accesskey="p" href="sec-ManipulatingTreeViews.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 14.Â Le widget TreeView</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-TreeSelections.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -33,52 +34,52 @@ Vous êtes à peu près ici :
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-TreeViewSignals"></a>14.7. Les signaux des TreeView</h2></div></div></div>
-<p>Les <code class="classname">TreeView</code> émettent un grand nombre de signaux qui 
-permettent de repérer les modifications dans l'afficheur du modèle. Les signaux 
-appartiennent généralement aux catégories suivantes :
+<a name="sec-TreeViewSignals"></a>14.7.Â Les signaux des TreeView</h2></div></div></div>
+<p>Les <code class="classname">TreeView</code> Ã©mettent un grand nombre de signaux qui
+permettent de repÃ©rer les modifications dans l'afficheur du modÃ¨le. Les signaux
+appartiennent gÃ©nÃ©ralement aux catÃ©gories suivantesÂ :
 </p>
 <div class="itemizedlist"><ul type="disc">
-<li>afficher ou masquer les lignes : "row-collapsed",
+<li>afficher ou masquer les lignesÂ : "row-collapsed",
 "row-expanded", "test-collapse-row", "test-expand-row" and
 "expand-collapse-cursor-row"</li>
-<li>curseur : "cursor-changed", "expand-collapse-cursor-row",
+<li>curseurÂ : "cursor-changed", "expand-collapse-cursor-row",
 "move-cursor", "select-cursor-parent", "select-cursor-row" et
 "toggle-cursor-row"</li>
-<li>sélection : "select-all", "select-cursor-parent",
+<li>sÃ©lectionÂ : "select-all", "select-cursor-parent",
 "select-cursor-row" et "unselect-all".</li>
-<li>divers : "columns-changed", "row-activated",
+<li>diversÂ : "columns-changed", "row-activated",
 "set-scroll-adjustments" et "start-interactive-search".</li>
 </ul></div>
-<p>Les signaux "test-collapse-row" et "test-expand-row" sont émis avant qu'une 
-ligne masque ou affiche ses lignes enfants. La valeur de retour de la 
-fonction de rappel peut annuler ou autoriser l'opération - <code class="literal">TRUE</code> 
+<p>Les signaux "test-collapse-row" et "test-expand-row" sont Ã©mis avant qu'une
+ligne masque ou affiche ses lignes enfants. La valeur de retour de la
+fonction de rappel peut annuler ou autoriser l'opÃ©ration - <code class="literal">TRUE</code>
 pour l'autoriser, <code class="literal">FALSE</code> pour l'annuler.
 </p>
 <pre class="programlisting">
   def callback(treeview, iter, chemin, donnees_utilisateur)
 </pre>
-<p>... où <em class="parameter"><code>iter</code></em> est un <code class="classname">TreeIter</code>, 
-<em class="parameter"><code>chemin</code></em> est un chemin de l'arbre pointant sur la ligne 
-et <em class="parameter"><code>donnees_utilisateur</code></em> représente les données indiquées  
-dans la méthode <code class="methodname">connect</code>().
+<p>... oÃ¹ <em class="parameter"><code>iter</code></em> est un <code class="classname">TreeIter</code>,
+<em class="parameter"><code>chemin</code></em> est un chemin de l'arbre pointant sur la ligne
+et <em class="parameter"><code>donnees_utilisateur</code></em> reprÃ©sente les donnÃ©es indiquÃ©es
+dans la mÃ©thode <code class="methodname">connect</code>().
 </p>
-<p>Le signal "row-activated" est émis soit lors d'un double-clic sur une ligne, 
-soit lorsqu'une ligne non modifiable est sélectionnée et une des touches suivantes 
-enfoncée : <span><strong class="keycap">Espace</strong></span>, <span><strong class="keycap">Maj</strong></span>+<span><strong class="keycap">Espace</strong></span>,
-<span><strong class="keycap">Retour</strong></span> or <span><strong class="keycap">Entrée</strong></span>
+<p>Le signal "row-activated" est Ã©mis soit lors d'un double-clic sur une ligne,
+soit lorsqu'une ligne non modifiable est sÃ©lectionnÃ©e et une des touches suivantes
+enfoncÃ©eÂ : <span><strong class="keycap">Espace</strong></span>, <span><strong class="keycap">Maj</strong></span>+<span><strong class="keycap">Espace</strong></span>,
+<span><strong class="keycap">Retour</strong></span> or <span><strong class="keycap">EntrÃ©e</strong></span>
 </p>
-<p>Les autres signaux sont émis après la modification du <code class="classname">TreeView</code>. 
-Le curseur est la ligne entourée par une boite. La plupart du temps, déplacer 
-le curseur déplace la sélection. Le curseur peut être déplacé de manière 
-indépendante par un appui simultané sur les touches 
-<span><strong class="keycap">Ctrl</strong></span>+<span><strong class="keycap">Flèche bas</strong></span> 
-ou 
-<span><strong class="keycap">Ctrl</strong></span>+<span><strong class="keycap">Flèche haut</strong></span> 
+<p>Les autres signaux sont Ã©mis aprÃ¨s la modification du <code class="classname">TreeView</code>.
+Le curseur est la ligne entourÃ©e par une boite. La plupart du temps, dÃ©placer
+le curseur dÃ©place la sÃ©lection. Le curseur peut Ãªtre dÃ©placÃ© de maniÃ¨re
+indÃ©pendante par un appui simultanÃ© sur les touches
+<span><strong class="keycap">Ctrl</strong></span>+<span><strong class="keycap">FlÃ¨che bas</strong></span>
+ou
+<span><strong class="keycap">Ctrl</strong></span>+<span><strong class="keycap">FlÃ¨che haut</strong></span>
 et diverses autres combinaisons de touches.
 </p>
-<p>Pour plus d'information sur les signaux du <code class="classname">TreeView</code>, voir le 
-<a href="http://www.pygtk.org/pygtk2reference/class-gtktreeview.html" target="_top">PyGTK 
+<p>Pour plus d'information sur les signaux du <code class="classname">TreeView</code>, voir le
+<a href="http://www.pygtk.org/pygtk2reference/class-gtktreeview.html" target="_top">PyGTK
 Reference Manual</a>
 </p>
 </div>
@@ -87,15 +88,15 @@ Reference Manual</a>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-ManipulatingTreeViews.html">Préc.</a> </td>
+<a accesskey="p" href="sec-ManipulatingTreeViews.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-TreeViewWidget.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-TreeSelections.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-TreeSelections.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">14.6. Manipuler les TreeView </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 14.8. Gestion des Treeselection</td>
+<td width="40%" align="left" valign="top">14.6.Â Manipuler les TreeViewÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 14.8.Â Gestion des Treeselection</td>
 </tr>
 </table>
 </div>

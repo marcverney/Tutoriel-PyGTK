@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>10.2. Le widget d'alignement (Alignment)</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>10.2.Â Le widget d'alignement (Alignment)</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-ContainerWidgets.html" title="Chapitre 10. Les widgets conteneurs">
-<link rel="prev" href="ch-ContainerWidgets.html" title="Chapitre 10. Les widgets conteneurs">
-<link rel="next" href="sec-Fixed.html" title="10.3. Le conteneur Place (Fixed)">
+<link rel="up" href="ch-ContainerWidgets.html" title="ChapitreÂ 10.Â Les widgets conteneurs">
+<link rel="prev" href="ch-ContainerWidgets.html" title="ChapitreÂ 10.Â Les widgets conteneurs">
+<link rel="next" href="sec-Fixed.html" title="10.3.Â Le conteneur Place (Fixed)">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">10.2. Le widget d'alignement (Alignment)</th></tr>
+<tr><th colspan="3" align="center">10.2.Â Le widget d'alignement (Alignment)</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="ch-ContainerWidgets.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 10. Les widgets conteneurs</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-Fixed.html">Suiv.</a>
+<a accesskey="p" href="ch-ContainerWidgets.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 10.Â Les widgets conteneurs</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-Fixed.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,74 +36,74 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-Alignment"></a>10.2. Le widget d'alignement (Alignment)</h2></div></div></div>
-<p>Le widget d'alignement <code class="classname">Alignment</code> permet 
-de placer un widget dans sa fenêtre à une position et taille relatives 
-à la taille du widget d'alignement lui-même. Ce qui peut être trés utile pour, 
-par exemple, centrer un widget dans sa fenêtre.
+<a name="sec-Alignment"></a>10.2.Â Le widget d'alignement (Alignment)</h2></div></div></div>
+<p>Le widget d'alignement <code class="classname">Alignment</code> permet
+de placer un widget dans sa fenÃªtre Ã  une position et taille relatives
+Ã  la taille du widget d'alignement lui-mÃªme. Ce qui peut Ãªtre trÃ©s utile pour,
+par exemple, centrer un widget dans sa fenÃªtre.
 </p>
 <p>Il n'y a que deux appels
       <sup>[<a name="id2541316" href="#ftn.id2541316">1</a>]</sup>
-       liés au widget d'alignement :</p>
+       liÃ©s au widget d'alignementÂ :</p>
 <pre class="programlisting">
   alignement = gtk.Alignment(<strong class="parameter"><code>xalign</code></strong>=0.0, <strong class="parameter"><code>yalign</code></strong>=0.0, <strong class="parameter"><code>xscale</code></strong>=0.0, <strong class="parameter"><code>yscale</code></strong>=0.0)
 
   alignement.set(<strong class="parameter"><code>xalign</code></strong>, <strong class="parameter"><code>yalign</code></strong>, <strong class="parameter"><code>xscale</code></strong>, <strong class="parameter"><code>yscale</code></strong>)
 </pre>
-<p>La fonction <code class="function">gtk.Alignment</code>() crée 
-un nouveau widget d'alignement <code class="classname">Alignment</code> avec 
-les paramètres indiqués. La méthode <code class="methodname">set</code>() permet 
-de modifier les paramètres d'un widget d'alignement préexistant.
+<p>La fonction <code class="function">gtk.Alignment</code>() crÃ©e
+un nouveau widget d'alignement <code class="classname">Alignment</code> avec
+les paramÃ¨tres indiquÃ©s. La mÃ©thode <code class="methodname">set</code>() permet
+de modifier les paramÃ¨tres d'un widget d'alignement prÃ©existant.
 </p>
-<p>Les quatres paramètres d'alignement sont des nombres 
-décimaux, compris entre 0.0 et 1.0. Les paramètres <em class="parameter"><code>xalign</code></em> 
-et <em class="parameter"><code>yalign</code></em> influent sur la position du widget placé dans 
+<p>Les quatres paramÃ¨tres d'alignement sont des nombres
+dÃ©cimaux, compris entre 0.0 et 1.0. Les paramÃ¨tres <em class="parameter"><code>xalign</code></em>
+et <em class="parameter"><code>yalign</code></em> influent sur la position du widget placÃ© dans
 le widget d'alignement (voir <a href="http://www.pygtk.org/pygtk2reference/class-gtkalignment.html" target="_top">
-<code class="classname">gtk.Alignment</code></a> dans le manuel de référence).
-Les propriétés d'alignement indiquent le rapport d'espace <span class="emphasis"><em>libre</em></span> 
-existant au-dessus et à gauche du widget enfant. Leurs valeurs sont comprises 
-entre 0.0 (pas d'espace <span class="emphasis"><em>libre</em></span> au-dessus, ni à gauche) et 1.0 
-(tout l'espace <span class="emphasis"><em>libre</em></span> au-dessus et à gauche). Bien sûr, 
-si les échelles sont toutes les deux fixées à 1.0, les propriétés d'alignement 
-n'auront pas d'effet car le widget enfant s'étendra pour remplir tout l'espace 
+<code class="classname">gtk.Alignment</code></a> dans le manuel de rÃ©fÃ©rence).
+Les propriÃ©tÃ©s d'alignement indiquent le rapport d'espace <span class="emphasis"><em>libre</em></span>
+existant au-dessus et Ã  gauche du widget enfant. Leurs valeurs sont comprises
+entre 0.0 (pas d'espace <span class="emphasis"><em>libre</em></span> au-dessus, ni Ã  gauche) et 1.0
+(tout l'espace <span class="emphasis"><em>libre</em></span> au-dessus et Ã  gauche). Bien sÃ»r,
+si les Ã©chelles sont toutes les deux fixÃ©es Ã  1.0, les propriÃ©tÃ©s d'alignement
+n'auront pas d'effet car le widget enfant s'Ã©tendra pour remplir tout l'espace
 disponible.
 </p>
-<p>Les paramètres <em class="parameter"><code>xscale</code></em> et 
-<em class="parameter"><code>yscale</code></em> indiquent la fraction d'espace 
-<span class="emphasis"><em>libre</em></span>  qui sera absorbé par le widget enfant. Leurs 
-valeurs sont comprises entre 0.0 (le widget n'absorbe aucun espace) et 
+<p>Les paramÃ¨tres <em class="parameter"><code>xscale</code></em> et
+<em class="parameter"><code>yscale</code></em> indiquent la fraction d'espace
+<span class="emphasis"><em>libre</em></span>  qui sera absorbÃ© par le widget enfant. Leurs
+valeurs sont comprises entre 0.0 (le widget n'absorbe aucun espace) et
 1.0 (le widget absorbe tout l'espace <span class="emphasis"><em>libre</em></span>.
 </p>
-<p>Un exemple<sup>[<a name="id2579174" href="#ftn.id2579174">2</a>]</sup>  pour rendre les choses plus claires :</p>
-<p>un widget bouton (gtk.Button) de 32x32 pixels est placé dans 
-un widget d'alignement de 256 pixels de large sur 128 pixels de haut. 
+<p>Un exemple<sup>[<a name="id2579174" href="#ftn.id2579174">2</a>]</sup>  pour rendre les choses plus clairesÂ :</p>
+<p>un widget bouton (gtk.Button) de 32x32 pixels est placÃ© dans
+un widget d'alignement de 256 pixels de large sur 128 pixels de haut.
 Les valeurs d'alignement sont, xalign=0.25, yalign=0.25, xscale=0.25, yscale=0.25.
 </p>
-<p>l'espace libre horizontal vaut 256-32=224 pixels, 
+<p>l'espace libre horizontal vaut 256-32=224 pixels,
 l'espace libre vertical vaut 128-32=96 pixels.</p>
-<p>Le bouton absorbe 0.25x224=56 pixels de l'espace horizontal 
-et 0.25x96=24 pixels de l'espace vertical. Sa taille devient donc 
+<p>Le bouton absorbe 0.25x224=56 pixels de l'espace horizontal
+et 0.25x96=24 pixels de l'espace vertical. Sa taille devient donc
 32+56=88 pixels de large pour 32+24=56 pixels de haut.</p>
-<p>Ce qui nous laisse 256-88=168 pixels d'espace libre horizontal 
-et 128-56=72 pixels d'espace libre vertical. Puisque les valeurs de 
-xalign et yalign sont de 0.25, l'espace libre horizontal est distribué entre 
-0.25x168=42 pixels à gauche du bouton et le reste à doite ; l'espace libre vertical 
-est réparti entre 0.25x72=18 pixels au-dessus et le reste en dessous.</p>
-<p>On peut ajouter un widget enfant à un widget 
-d'alignement par :</p>
+<p>Ce qui nous laisse 256-88=168 pixels d'espace libre horizontal
+et 128-56=72 pixels d'espace libre vertical. Puisque les valeurs de
+xalign et yalign sont de 0.25, l'espace libre horizontal est distribuÃ© entre
+0.25x168=42 pixels Ã  gauche du bouton et le reste Ã  doite ; l'espace libre vertical
+est rÃ©parti entre 0.25x72=18 pixels au-dessus et le reste en dessous.</p>
+<p>On peut ajouter un widget enfant Ã  un widget
+d'alignement parÂ :</p>
 <pre class="programlisting">
   alignement.add(<strong class="parameter"><code>widget</code></strong>)
 </pre>
-<p>Pour un exemple d'utilisation du widget d'alignement , voir 
+<p>Pour un exemple d'utilisation du widget d'alignement , voir
 le programme <a href="exemples/progressbar.py" target="_top"><span><strong class="command">
 progressbar.py</strong></span></a> sur la barre de progression.</p>
 <div class="footnotes">
 <br><hr width="100" align="left">
 <div class="footnote"><p><sup>[<a name="ftn.id2541316" href="#id2541316">1</a>] </sup>
-      NdT : depuis PyGTK 2.4., il y a aussi 
-      <code class="methodname">gtk.Alignment.set_padding</code>() et 
+      NdTÂ : depuis PyGTK 2.4., il y a aussi
+      <code class="methodname">gtk.Alignment.set_padding</code>() et
       <code class="methodname">gtk.Alignment.get_padding</code>().</p></div>
-<div class="footnote"><p><sup>[<a name="ftn.id2579174" href="#id2579174">2</a>] </sup>NdT : pris dans le manuel de référence <a href="http://www.pygtk.org/pygtk2reference/class-gtkalignment.html" target="_top">
+<div class="footnote"><p><sup>[<a name="ftn.id2579174" href="#id2579174">2</a>] </sup>NdTÂ : pris dans le manuel de rÃ©fÃ©rence <a href="http://www.pygtk.org/pygtk2reference/class-gtkalignment.html" target="_top">
 <code class="classname">gtk.Alignment</code></a></p></div>
 </div>
 </div>
@@ -111,15 +112,15 @@ progressbar.py</strong></span></a> sur la barre de progression.</p>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="ch-ContainerWidgets.html">Préc.</a> </td>
+<a accesskey="p" href="ch-ContainerWidgets.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-ContainerWidgets.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-Fixed.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-Fixed.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">Chapitre 10. Les widgets conteneurs </td>
+<td width="40%" align="left" valign="top">ChapitreÂ 10.Â Les widgets conteneursÂ </td>
 <td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
-<td width="40%" align="right" valign="top"> 10.3. Le conteneur Place (Fixed)</td>
+<td width="40%" align="right" valign="top">Â 10.3.Â Le conteneur Place (Fixed)</td>
 </tr>
 </table>
 </div>

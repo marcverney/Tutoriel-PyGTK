@@ -1,10 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>Chapitre 9. Widgets divers</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,etiquette">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -14,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici&nbsp;: 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃšs ici&nbsp;:
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En-t&ecirc;te de navigation">
 <tr>
@@ -61,31 +61,31 @@ Vous êtes à peu près ici&nbsp;:
 <div><h2 class="title" style="clear: both"><a name="sec-Labels"></a>9.1. Les &eacute;tiquettes</h2>
 </div></div>
 
-<p>Les &eacute;tiquettes (gtk.<tt>Label</tt>) sont des widgets relativement simples et 
-tr&egrave;s utilis&eacute;s dans GTK. Elles ne peuvent &eacute;mettre aucun signal car 
-elles n'ont pas de fen&ecirc;tres X associ&eacute;es. Pour capter quand m&ecirc;me des 
-signaux ou pour ce qui concerne le d&eacute;coupage, il vous faudra les placer 
-dans des <a href="ch-ContainerWidgets.html#sec-EventBox" title="10.1. Les boites 
-&agrave; &eacute;v&egrave;nements"><tt>boites &agrave; &eacute;v&egrave;nements</tt></a> 
-ou dans des boutons (voir <a href="ch-ButtonWidget.html#BoutonsSimples" 
+<p>Les &eacute;tiquettes (gtk.<tt>Label</tt>) sont des widgets relativement simples et
+tr&egrave;s utilis&eacute;s dans GTK. Elles ne peuvent &eacute;mettre aucun signal car
+elles n'ont pas de fen&ecirc;tres X associ&eacute;es. Pour capter quand m&ecirc;me des
+signaux ou pour ce qui concerne le d&eacute;coupage, il vous faudra les placer
+dans des <a href="ch-ContainerWidgets.html#sec-EventBox" title="10.1. Les boites
+&agrave; &eacute;v&egrave;nements"><tt>boites &agrave; &eacute;v&egrave;nements</tt></a>
+ou dans des boutons (voir <a href="ch-ButtonWidget.html#BoutonsSimples"
 title="6.1 Les boutons simples"><tt>Boutons simples</tt></a>).</p>
 <p>Pour cr&eacute;er une &eacute;tiquette, on utilise la m&eacute;thode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   etiquette = gtk.Label(<b><tt>str</tt></b>)
 </pre>
-<p>L'unique argument &agrave; fournir, <i>str</i>, est la chaine de caract&egrave;res que 
-doit afficher l'&eacute;tiquette. Pour changer ce texte une fois 
+<p>L'unique argument &agrave; fournir, <i>str</i>, est la chaine de caract&egrave;res que
+doit afficher l'&eacute;tiquette. Pour changer ce texte une fois
 l'&eacute;tiquette cr&eacute;&eacute;e, on fera appel &agrave; la m&eacute;thode&nbsp;:</p>
 
 <pre class="programlisting">
   etiquette.set_text(<b><tt>str</tt></b>)
 </pre>
 
-<p><i><tt>etiquette</tt></i> est l'etiquette pr&eacute;c&eacute;demment cr&eacute;&eacute;e, 
-et <i><tt>str</tt></i> la nouvelle chaine de caract&egrave;res. L'espace allou&eacute; 
-&agrave; la nouvelle chaine sera automatiquement ajust&eacute; si n&eacute;cessaire. 
-Vous pouvez cr&eacute;er une &eacute;tiquette de plusieurs lignes en ins&eacute;rant 
+<p><i><tt>etiquette</tt></i> est l'etiquette pr&eacute;c&eacute;demment cr&eacute;&eacute;e,
+et <i><tt>str</tt></i> la nouvelle chaine de caract&egrave;res. L'espace allou&eacute;
+&agrave; la nouvelle chaine sera automatiquement ajust&eacute; si n&eacute;cessaire.
+Vous pouvez cr&eacute;er une &eacute;tiquette de plusieurs lignes en ins&eacute;rant
 des sauts de lignes dans la chaine de caract&egrave;res.</p>
 <p>Pour r&eacute;cup&eacute;rer la chaine courante, faites&nbsp;:</p>
 
@@ -93,8 +93,8 @@ des sauts de lignes dans la chaine de caract&egrave;res.</p>
   chaine = etiquette.get_text()
 </pre>
 
-<p><i><tt>etiquette</tt></i> est l'&eacute;tiquette que vous avez cr&eacute;&eacute;e, 
-et <i><tt>chaine</tt></i> la chaine de caract&egrave;res. On peut d&eacute;finir le type 
+<p><i><tt>etiquette</tt></i> est l'&eacute;tiquette que vous avez cr&eacute;&eacute;e,
+et <i><tt>chaine</tt></i> la chaine de caract&egrave;res. On peut d&eacute;finir le type
 d'alignement du texte d'une &eacute;tiquette avec&nbsp;:</p>
 
 <pre class="programlisting">
@@ -109,97 +109,97 @@ d'alignement du texte d'une &eacute;tiquette avec&nbsp;:</p>
   JUSTIFY_FILL		# justifi&eacute;
 </pre>
 
-<p>Le texte des &eacute;tiquettes peut aussi &ecirc;tre renvoy&eacute; &agrave; la 
+<p>Le texte des &eacute;tiquettes peut aussi &ecirc;tre renvoy&eacute; &agrave; la
 ligne automatiquement. Il faut pour cela utiliser cette m&eacute;thode&nbsp;:</p>
 
 <pre class="programlisting">
   etiquette.set_line_wrap(<b><tt>wrap</tt></b>)
 </pre>
 
-<p>L'argument <i><tt>wrap</tt></i> peut prendre les valeurs TRUE (activ&eacute;) ou 
+<p>L'argument <i><tt>wrap</tt></i> peut prendre les valeurs TRUE (activ&eacute;) ou
 FALSE (d&eacute;sactiv&eacute;).</p>
-<p>Pour que le texte de votre &eacute;tiquette soit soulign&eacute;, vous pouvez lui 
+<p>Pour que le texte de votre &eacute;tiquette soit soulign&eacute;, vous pouvez lui
 fournir un patron &agrave; suivre&nbsp;:</p>
 
 <pre class="programlisting">
   etiquette.set_pattern(<b><tt>pattern</tt></b>)
 </pre>
 
-<p>L'argument <i><tt>pattern</tt></i> (patron) pr&eacute;cise le profil du soulignement. 
-Il s'agit d'une chaine de caract&egrave;res constitu&eacute;e de &quot;_&quot; et d'espaces, 
-un &quot;_&quot; indiquant que le caract&egrave;re correspondant de l'&eacute;tiquette 
-doit &ecirc;tre soulign&eacute;. Par exemple, la chaine <tt>&quot;__ __&quot;</tt> 
-soulignerait les deux premiers caract&egrave;res ainsi que le huiti&egrave;me et le 
-neuvi&egrave;me. Si vous voulez simplement d&eacute;finir un raccourci clavier 
-soulign&eacute; (un caract&egrave;re &quot;mn&eacute;monique&quot;) dans votre 
+<p>L'argument <i><tt>pattern</tt></i> (patron) pr&eacute;cise le profil du soulignement.
+Il s'agit d'une chaine de caract&egrave;res constitu&eacute;e de &quot;_&quot; et d'espaces,
+un &quot;_&quot; indiquant que le caract&egrave;re correspondant de l'&eacute;tiquette
+doit &ecirc;tre soulign&eacute;. Par exemple, la chaine <tt>&quot;__ __&quot;</tt>
+soulignerait les deux premiers caract&egrave;res ainsi que le huiti&egrave;me et le
+neuvi&egrave;me. Si vous voulez simplement d&eacute;finir un raccourci clavier
+soulign&eacute; (un caract&egrave;re &quot;mn&eacute;monique&quot;) dans votre
 &eacute;tiquette, utilisez plut&ocirc;t la m&eacute;thode <tt>set_text_with_mnemonic</tt>
 (<b><tt>str</tt></b>), et non <tt>set_pattern</tt>().</p>
-<p>Le programme <a href="exemples/etiquettes.py" target="_top"><b>etiquettes.py</b></a> 
-est un court exemple qui illustre ces m&eacute;thodes. Pour mieux distinguer les 
-diff&eacute;rents styles d'&eacute;tiquettes, il utilise des <!--<a href="sec-Frames.html" 
-title="10.5. Les cadres">--><tt>cadres</tt> (pas encore traduit) <!--</a>--> (<tt>gtk.Frame</tt>). N'en tenez cependant 
+<p>Le programme <a href="exemples/etiquettes.py" target="_top"><b>etiquettes.py</b></a>
+est un court exemple qui illustre ces m&eacute;thodes. Pour mieux distinguer les
+diff&eacute;rents styles d'&eacute;tiquettes, il utilise des <!--<a href="sec-Frames.html"
+title="10.5. Les cadres">--><tt>cadres</tt> (pas encore traduit) <!--</a>--> (<tt>gtk.Frame</tt>). N'en tenez cependant
 pas compte pour l'instant, nous aborderons ce widget plus loin.</p>
-<p>Les &eacute;tiquettes de GTK+ 2.0 peuvent &ecirc;tre s&eacute;lectionn&eacute;es 
-(pour le copier-coller), et leur texte peut contenir des balises qui modifient la police 
-et d'autres attributs de texte. Ces caract&eacute;ristiques avanc&eacute;es ne seront 
+<p>Les &eacute;tiquettes de GTK+ 2.0 peuvent &ecirc;tre s&eacute;lectionn&eacute;es
+(pour le copier-coller), et leur texte peut contenir des balises qui modifient la police
+et d'autres attributs de texte. Ces caract&eacute;ristiques avanc&eacute;es ne seront
 toutefois pas abord&eacute;es ici.</p>
-<p>La <a href="ch-MiscellaneousWidgets.html#FigEtiquettes" title="Figure 9.1. 
-Exemples d'&eacute;tiquettes">figure 9.1</a> montre la fen&ecirc;tre affich&eacute;e par 
+<p>La <a href="ch-MiscellaneousWidgets.html#FigEtiquettes" title="Figure 9.1.
+Exemples d'&eacute;tiquettes">figure 9.1</a> montre la fen&ecirc;tre affich&eacute;e par
 le programme <a href="exemples/etiquettes.py" target="_top"><b>etiquettes.py</b></a>&nbsp;:</p>
 
 <div class="figure"><a name="FigEtiquettes"></a>
 <p class="title"><b>Figure 9.1. Exemples d'&eacute;tiquettes</b></p>
-<div class="mediaobject" align="center"><img src="figures/etiquettes.png" align="middle" 
-alt="exemple étiquette"></div></div>
+<div class="mediaobject" align="center"><img src="figures/etiquettes.png" align="middle"
+alt="exemple Ã©tiquette"></div></div>
 
 <p>Le code source du programme est le suivant&nbsp;:</p>
 
 <pre class="programlisting">
      1   #!/usr/bin/env python
-     2     
+     2
      3   # exemple etiquettes.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   class Etiquettes:
     10       def __init__(self):
     11           self.fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
     12           self.fenetre.connect("destroy", gtk.main_quit)
-    13   
+    13
     14           self.fenetre.set_title("Etiquettes")
     15           boite_v = gtk.VBox(False, 5)
     16           boite_h = gtk.HBox(False, 5)
     17           self.fenetre.add(boite_h)
     18           boite_h.pack_start(boite_v, False, False, 0)
     19           self.fenetre.set_border_width(5)
-    20   
+    20
     21           cadre = gtk.Frame("Etiquette normale")
     22           etiquette = gtk.Label("Voici une etiquette normale")
     23           cadre.add(etiquette)
     24           boite_v.pack_start(cadre, False, False, 0)
-    25     
+    25
     26           cadre = gtk.Frame("Etiquette de plusieurs lignes")
     27           etiquette = gtk.Label("Voici une etiquette de plusieurs lignes.\nDeuxieme ligne\n"
     28                                 "Troisieme ligne")
     29           cadre.add(etiquette)
     30           boite_v.pack_start(cadre, False, False, 0)
-    31     
+    31
     32           cadre = gtk.Frame("Etiquette alignee a gauche")
     33           etiquette = gtk.Label("Voici une etiquette de plusieurs lignes\n"
     34                                 "dont le texte est aligne a gauche.\nTroisieme      ligne")
     35           etiquette.set_justify(gtk.JUSTIFY_LEFT)
     36           cadre.add(etiquette)
     37           boite_v.pack_start(cadre, False, False, 0)
-    38     
+    38
     39           cadre = gtk.Frame("Etiquette alignee a droite")
     40           etiquette = gtk.Label("Voici une etiquette de plusieurs lignes\ndont le texte est aligne a droite.\n"
     41                                 "Quatrieme ligne, (j/k)")
     42           etiquette.set_justify(gtk.JUSTIFY_RIGHT)
     43           cadre.add(etiquette)
     44           boite_v.pack_start(cadre, False, False, 0)
-    45   
+    45
     46           boite_v = gtk.VBox(False, 5)
     47           boite_h.pack_start(boite_v, False, False, 0)
     48           cadre = gtk.Frame("Etiquette avec retour a la ligne auto")
@@ -216,7 +216,7 @@ alt="exemple étiquette"></div></div>
     59           etiquette.set_line_wrap(True)
     60           cadre.add(etiquette)
     61           boite_v.pack_start(cadre, False, False, 0)
-    62     
+    62
     63           cadre = gtk.Frame("Etiquette justifiee avec retour a la ligne auto")
     64           etiquette = gtk.Label("Voici un exemple d'etiquette justifiee avec retour a la ligne auto.  "
     65                                "Elle doit remplir "
@@ -232,7 +232,7 @@ alt="exemple étiquette"></div></div>
     75           etiquette.set_line_wrap(True)
     76           cadre.add(etiquette)
     77           boite_v.pack_start(cadre, False, False, 0)
-    78     
+    78
     79           cadre = gtk.Frame("Etiquette avec texte souligne")
     80           etiquette = gtk.Label("Cette etiquette comporte du texte souligne !\n"
     81                                 "Cette phrase est bizarrement soulignee")
@@ -242,16 +242,16 @@ alt="exemple étiquette"></div></div>
     85           cadre.add(etiquette)
     86           boite_v.pack_start(cadre, False, False, 0)
     87           self.fenetre.show_all ()
-    88   
+    88
     89   def main():
     90       gtk.main()
     91       return 0
-    92   
+    92
     93   if __name__ == "__main__":
     94       Etiquettes()
     95       main()
 </pre>
-<p>À noter que le  "Etiquette justifiee avec retour a la ligne auto" n'est pas rempli.</p>
+<p>Ã noter que le  "Etiquette justifiee avec retour a la ligne auto" n'est pas rempli.</p>
 </div></div>
 
 <div class="navfooter">

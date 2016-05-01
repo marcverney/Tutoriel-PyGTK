@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Chapitre 22. Le glisser-déposer (DND)</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>ChapitreÂ 22.Â Le glisser-dÃ©poser (DND)</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="prev" href="sec-SupplyingTheSelection.html" title="21.3. Alimenter la sélection">
-<link rel="next" href="sec-DNDProperties.html" title="22.2. Propriétés du glisser-déposer">
+<link rel="prev" href="sec-SupplyingTheSelection.html" title="21.3.Â Alimenter la sÃ©lection">
+<link rel="next" href="sec-DNDProperties.html" title="22.2.Â PropriÃ©tÃ©s du glisser-dÃ©poser">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,DND,drag and drop,drag'n drop">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">Chapitre 22. Le glisser-déposer (DND)</th></tr>
+<tr><th colspan="3" align="center">ChapitreÂ 22.Â Le glisser-dÃ©poser (DND)</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-SupplyingTheSelection.html">Préc.</a> </td>
-<th width="60%" align="center"> </th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-DNDProperties.html">Suiv.</a>
+<a accesskey="p" href="sec-SupplyingTheSelection.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">Â </th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-DNDProperties.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,13 +36,13 @@
 </div>
 <div class="chapter" lang="fr">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="ch-DragAndDrop"></a>Chapitre 22. Le glisser-déposer (DND)</h2></div></div></div>
+<a name="ch-DragAndDrop"></a>ChapitreÂ 22.Â Le glisser-dÃ©poser (DND)</h2></div></div></div>
 <div class="toc">
-<p><b>Table des matières</b></p>
+<p><b>Table des matiÃ¨res</b></p>
 <dl>
-<dt><span class="sect1"><a href="ch-DragAndDrop.html#sec-DNDOverview">22.1. Aperçu du DND</a></span></dt>
-<dt><span class="sect1"><a href="sec-DNDProperties.html">22.2. Propriétés du glisser-déposer</a></span></dt>
-<dt><span class="sect1"><a href="sec-DNDMethods.html">22.3. Méthodes du glisser-déposer</a></span></dt>
+<dt><span class="sect1"><a href="ch-DragAndDrop.html#sec-DNDOverview">22.1. AperÃ§u du DND</a></span></dt>
+<dt><span class="sect1"><a href="sec-DNDProperties.html">22.2. PropriÃ©tÃ©s du glisser-dÃ©poser</a></span></dt>
+<dt><span class="sect1"><a href="sec-DNDMethods.html">22.3. MÃ©thodes du glisser-dÃ©poser</a></span></dt>
 <dd><dl>
 <dt><span class="sect2"><a href="sec-DNDMethods.html#id2540892">22.3.1. Configurer le widget origine</a></span></dt>
 <dt><span class="sect2"><a href="sec-DNDMethods.html#sec-SignalsOnSourceWidget">22.3.2. Les signaux du widget origine</a></span></dt>
@@ -50,53 +51,53 @@
 </dl></dd>
 </dl>
 </div>
-<p>PyGTK possède un ensemble de fonctions de haut niveau de communication 
-inter-processus via le système glisser-déposer. PyGTK peut utiliser le glisser-déposer 
-par dessus les protocoles de bas niveau de Xdnd et le glisser-déposer Motif.</p>
+<p>PyGTK possÃ¨de un ensemble de fonctions de haut niveau de communication
+inter-processus via le systÃ¨me glisser-dÃ©poser. PyGTK peut utiliser le glisser-dÃ©poser
+par dessus les protocoles de bas niveau de Xdnd et le glisser-dÃ©poser Motif.</p>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-DNDOverview"></a>22.1. Aperçu du DND</h2></div></div></div>
-<p>Une application capable du glisser-déposer doit d'abord définir et  configurer  
-le(s) widget(s) pour le glisser-déposer. Chacun des widgets peut être l'origine  
-et/ou la destination du glisser-déposer. Il faut noter que ces widgets doivent 
-possèder une fenêtre X associée.</p>
-<p>Les widgets origine peuvent exporter des données du glisser, en permettant 
-ainsi à l'utilisateur de tirer des objets à partir d'elles, pendant que les widgets 
-de destination peuvent recevoir des données du glisser. Les destinations du 
-glisser-déposer peuvent limiter de qui ils acceptent des données du 
-glisser, par ex. la même application ou n'importe quelle application 
-(y compris eux-mêmes).</p>
-<p>Envoyer et recevoir des données de déposer utilisent des signaux. 
-Déposer un élément sur un widget de destination exige à la fois une 
-demande de données (pour le widget origine) et un gestionnaire de signal de 
-réception de données (pour le widget destination). Des gestionnaires de signaux 
-supplémentaires peuvent être connectés si on souhaite savoir quand un glisser 
-commence (à l'instant même du début), jusqu'à la réalisation du déposer, et quand la 
-procédure glisser-déposer entière s'esr terminée (avec succès ou pas).</p>
-<p>Votre application aura besoin de fournir des données aux widgets origine 
-quand ce sera demandé, ce qui implique d'avoir ungestionnaire de signal de 
-requête de données de glisser. Pour les widgets de destination, ils auront besoin 
-d'un gestionnaire de signal de données de déposer reçues.</p>
-<p>Un cycle de glisser-déposer typique se présentera ainsi :</p>
+<a name="sec-DNDOverview"></a>22.1.Â AperÃ§u du DND</h2></div></div></div>
+<p>Une application capable du glisser-dÃ©poser doit d'abord dÃ©finir et  configurer
+le(s) widget(s) pour le glisser-dÃ©poser. Chacun des widgets peut Ãªtre l'origine
+et/ou la destination du glisser-dÃ©poser. Il faut noter que ces widgets doivent
+possÃ¨der une fenÃªtre X associÃ©e.</p>
+<p>Les widgets origine peuvent exporter des donnÃ©es du glisser, en permettant
+ainsi Ã  l'utilisateur de tirer des objets Ã  partir d'elles, pendant que les widgets
+de destination peuvent recevoir des donnÃ©es du glisser. Les destinations du
+glisser-dÃ©poser peuvent limiter de qui ils acceptent des donnÃ©es du
+glisser, par ex. la mÃªme application ou n'importe quelle application
+(y compris eux-mÃªmes).</p>
+<p>Envoyer et recevoir des donnÃ©es de dÃ©poser utilisent des signaux.
+DÃ©poser un Ã©lÃ©ment sur un widget de destination exige Ã  la fois une
+demande de donnÃ©es (pour le widget origine) et un gestionnaire de signal de
+rÃ©ception de donnÃ©es (pour le widget destination). Des gestionnaires de signaux
+supplÃ©mentaires peuvent Ãªtre connectÃ©s si on souhaite savoir quand un glisser
+commence (Ã  l'instant mÃªme du dÃ©but), jusqu'Ã  la rÃ©alisation du dÃ©poser, et quand la
+procÃ©dure glisser-dÃ©poser entiÃ¨re s'esr terminÃ©e (avec succÃ¨s ou pas).</p>
+<p>Votre application aura besoin de fournir des donnÃ©es aux widgets origine
+quand ce sera demandÃ©, ce qui implique d'avoir ungestionnaire de signal de
+requÃªte de donnÃ©es de glisser. Pour les widgets de destination, ils auront besoin
+d'un gestionnaire de signal de donnÃ©es de dÃ©poser reÃ§ues.</p>
+<p>Un cycle de glisser-dÃ©poser typique se prÃ©sentera ainsiÂ :</p>
 <div class="itemizedlist"><ul type="disc">
-<li><p>Le glisser commence. Le widget origine peut recevoir le signal "drag-begin". 
-Il peut  configurer une icône de glisser, etc.
+<li><p>Le glisser commence. Le widget origine peut recevoir le signal "drag-begin".
+Il peut  configurer une icÃ´ne de glisser, etc.
 </p></li>
-<li><p>Le glisser se déplace au-dessus d'une zone de déposer. Le widget destination 
+<li><p>Le glisser se dÃ©place au-dessus d'une zone de dÃ©poser. Le widget destination
 peut recevoir le signal "drag-motion".</p></li>
-<li><p>Le déposer est réalisé. Le widget destination peut recevoir le signal 
-"drag-drop". Il doit demander les données de l'origine.</p></li>
-<li><p>Requête des données du glisser (quand le déposer a lieu). Le widget 
+<li><p>Le dÃ©poser est rÃ©alisÃ©. Le widget destination peut recevoir le signal
+"drag-drop". Il doit demander les donnÃ©es de l'origine.</p></li>
+<li><p>RequÃªte des donnÃ©es du glisser (quand le dÃ©poser a lieu). Le widget
 origine peut recevoir le signal "drag-data-get"</p></li>
-<li><p>Données du déposer reçues (de la même application ou d'une autre). 
+<li><p>DonnÃ©es du dÃ©poser reÃ§ues (de la mÃªme application ou d'une autre).
 Le widget destination peut recevoir le signal "drag-data-received".</p></li>
-<li><p>Données du glisser supprimées (si le glisser était un déplacement). Le 
+<li><p>DonnÃ©es du glisser supprimÃ©es (si le glisser Ã©tait un dÃ©placement). Le
 widget origne peut recevoir le signal "drag-data-delete".</p></li>
-<li><p>Procédure glisser-déposer effectuée. Le widget origine peut recevoir 
+<li><p>ProcÃ©dure glisser-dÃ©poser effectuÃ©e. Le widget origine peut recevoir
 le signal "drag-end".</p></li>
 </ul></div>
-<p>Il existe quelques étapes mineures qui peuvent s'intercaler 
-ici où là, mais nous entrerons dans les détails plus tard.</p>
+<p>Il existe quelques Ã©tapes mineures qui peuvent s'intercaler
+ici oÃ¹ lÃ , mais nous entrerons dans les dÃ©tails plus tard.</p>
 </div>
 </div>
 <div class="navfooter">
@@ -104,15 +105,15 @@ ici où là, mais nous entrerons dans les détails plus tard.</p>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-SupplyingTheSelection.html">Préc.</a> </td>
-<td width="20%" align="center"> </td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-DNDProperties.html">Suiv.</a>
+<a accesskey="p" href="sec-SupplyingTheSelection.html">PrÃ©c.</a>Â </td>
+<td width="20%" align="center">Â </td>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-DNDProperties.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">21.3. Alimenter la sélection </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 22.2. Propriétés du glisser-déposer</td>
+<td width="40%" align="left" valign="top">21.3.Â Alimenter la sÃ©lectionÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 22.2.Â PropriÃ©tÃ©s du glisser-dÃ©poser</td>
 </tr>
 </table>
 </div>

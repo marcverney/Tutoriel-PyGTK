@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>2.3. Évènements</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>2.3.Â Ã‰vÃ¨nements</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-GettingStarted.html" title="Chapitre 2. Premiers pas">
-<link rel="prev" href="sec-TheoryOfSignalsAndCallbacks.html" title="2.2. Le principe des signaux et des rappels">
-<link rel="next" href="sec-SteppingThroughHelloWorld.html" title='2.4. Le "Hello World" pas à pas'>
+<link rel="up" href="ch-GettingStarted.html" title="ChapitreÂ 2.Â Premiers pas">
+<link rel="prev" href="sec-TheoryOfSignalsAndCallbacks.html" title="2.2.Â Le principe des signaux et des rappels">
+<link rel="next" href="sec-SteppingThroughHelloWorld.html" title='2.4.Â Le "Hello World" pas Ã  pas'>
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">2.3. Évènements</th></tr>
+<tr><th colspan="3" align="center">2.3.Â Ã‰vÃ¨nements</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-TheoryOfSignalsAndCallbacks.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 2. Premiers pas</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-SteppingThroughHelloWorld.html">Suiv.</a>
+<a accesskey="p" href="sec-TheoryOfSignalsAndCallbacks.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 2.Â Premiers pas</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-SteppingThroughHelloWorld.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,10 +36,10 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-Events"></a>2.3. Évènements</h2></div></div></div>
-<p>En plus du système de signaux décrit auparavant, un certain nombre d'évènements 
-reflètent le système évènementiel de X, des fonctions de rappel peuvent être associés à 
-ceux-ci. En voici une liste :</p>
+<a name="sec-Events"></a>2.3.Â Ã‰vÃ¨nements</h2></div></div></div>
+<p>En plus du systÃ¨me de signaux dÃ©crit auparavant, un certain nombre d'Ã©vÃ¨nements
+reflÃ¨tent le systÃ¨me Ã©vÃ¨nementiel de X, des fonctions de rappel peuvent Ãªtre associÃ©s Ã 
+ceux-ci. En voici une listeÂ :</p>
 <pre class="programlisting">
   event
   button_press_event
@@ -68,21 +69,21 @@ ceux-ci. En voici une liste :</p>
   no_expose_event
   window_state_event
 </pre>
-<p>Pour connecter une fonction de rappel à l'un de ces évènements, 
-on utilise la méthode <code class="methodname">connect</code>() décrite à la section 
-précédente, en mentionnant l'un des noms d'évènement ci-dessus comme paramètre 
-<em class="parameter"><code>nom</code></em>. Les fonctions (ou méthodes) de rappel employées pour 
-les évènements sont légèrement différentes de celles utilisées pour les signaux :
+<p>Pour connecter une fonction de rappel Ã  l'un de ces Ã©vÃ¨nements,
+on utilise la mÃ©thode <code class="methodname">connect</code>() dÃ©crite Ã  la section
+prÃ©cÃ©dente, en mentionnant l'un des noms d'Ã©vÃ¨nement ci-dessus comme paramÃ¨tre
+<em class="parameter"><code>nom</code></em>. Les fonctions (ou mÃ©thodes) de rappel employÃ©es pour
+les Ã©vÃ¨nements sont lÃ©gÃ¨rement diffÃ©rentes de celles utilisÃ©es pour les signauxÂ :
 </p>
 <pre class="programlisting">
   def fct_rappel(widget, evenement, donnees_fct):
 
-  def meth_rappel(self, widget, evenement, donnees_meth):  
+  def meth_rappel(self, widget, evenement, donnees_meth):
 </pre>
-<p><code class="classname">GdkEvent</code> est un type d'objet Python dont l'attribut 
-type indique lequel des évènements ci-dessus est survenu. Les autres 
-attributs de l'évènement dépendent du type de cet évènement. Les valeurs 
-pour les types peuvent être les suivantes :</p>
+<p><code class="classname">GdkEvent</code> est un type d'objet Python dont l'attribut
+type indique lequel des Ã©vÃ¨nements ci-dessus est survenu. Les autres
+attributs de l'Ã©vÃ¨nement dÃ©pendent du type de cet Ã©vÃ¨nement. Les valeurs
+pour les types peuvent Ãªtre les suivantesÂ :</p>
 <pre class="programlisting">
   NOTHING
   DELETE
@@ -120,37 +121,37 @@ pour les types peuvent être les suivantes :</p>
   WINDOW_STATE
   SETTING
 </pre>
-<p>On accède à ces valeurs en préfixant le type d'évènement 
-      avec gtk.gdk. Par exemple : <code class="varname">gtk.gdk.DRAG_ENTER</code>.
+<p>On accÃ¨de Ã  ces valeurs en prÃ©fixant le type d'Ã©vÃ¨nement
+      avec gtk.gdk. Par exempleÂ : <code class="varname">gtk.gdk.DRAG_ENTER</code>.
 </p>
-<p>En résumé, pour connecter une fonction de rappel à un de ces 
-évènements, on peut procéder ainsi :</p>
+<p>En rÃ©sumÃ©, pour connecter une fonction de rappel Ã  un de ces
+Ã©vÃ¨nements, on peut procÃ©der ainsiÂ :</p>
 <pre class="programlisting">
   bouton.connect("button_press_event", fct_rappel_bouton)
 </pre>
-<p>Ainsi, le fait de cliquer avec la souris lorsque le pointeur 
-se trouve au-dessus du bouton invoque la fonction <em class="parameter"><code>fct_rappel_bouton</code></em>. 
-On peut définir cette fonction comme ceci :</p>
+<p>Ainsi, le fait de cliquer avec la souris lorsque le pointeur
+se trouve au-dessus du bouton invoque la fonction <em class="parameter"><code>fct_rappel_bouton</code></em>.
+On peut dÃ©finir cette fonction comme ceciÂ :</p>
 <pre class="programlisting">
   def fct_rappel_bouton(widget, evenement, donnees):
 </pre>
-<p>La valeur renvoyée par cette fonction indique si l'évènement 
-doit être propagé par le système de gestion des évènements de GTK+. 
-Renvoyer <code class="varname">True</code> indique que l'évènement a été traité et que 
-sa diffusion s'arrête ici. En revanche, <code class="varname">False</code> laisse se 
-poursuivre le processus normal de traitement de l'évènement. Voir le 
+<p>La valeur renvoyÃ©e par cette fonction indique si l'Ã©vÃ¨nement
+doit Ãªtre propagÃ© par le systÃ¨me de gestion des Ã©vÃ¨nements de GTK+.
+Renvoyer <code class="varname">True</code> indique que l'Ã©vÃ¨nement a Ã©tÃ© traitÃ© et que
+sa diffusion s'arrÃªte ici. En revanche, <code class="varname">False</code> laisse se
+poursuivre le processus normal de traitement de l'Ã©vÃ¨nement. Voir le
 
-<a href="ch-AdvancedEventAndSignalHandling.html" title="Chapitre 20. Gestion avancée des signaux et évènements">
-Chapitre 20, <i>Gestion avancée des signaux et évènements</i></a>  
+<a href="ch-AdvancedEventAndSignalHandling.html" title="Chapitre 20. Gestion avancÃ©e des signaux et Ã©vÃ¨nements">
+Chapitre 20, <i>Gestion avancÃ©e des signaux et Ã©vÃ¨nements</i></a>
 pour en apprendre plus sur ce processus de diffusion.</p>
-<p>Les API de sélection et de glisser-déposer de GDK émettent également 
-un certain nombre d'évènements qui sont représentés dans GTK+ par des signaux. 
-Voyez les sections 22.3.2 
+<p>Les API de sÃ©lection et de glisser-dÃ©poser de GDK Ã©mettent Ã©galement
+un certain nombre d'Ã©vÃ¨nements qui sont reprÃ©sentÃ©s dans GTK+ par des signaux.
+Voyez les sections 22.3.2
 
-<em class="parameter"><code>Les signaux du widget source</code></em> et 22.3.4 
-<em class="parameter"><code>Les signaux du widget destination</code></em> (pas encore traduites) si 
-vous souhaitez en apprendre plus sur les signatures des fonctions de rappel 
-pour les signaux suivants :</p>
+<em class="parameter"><code>Les signaux du widget source</code></em> et 22.3.4
+<em class="parameter"><code>Les signaux du widget destination</code></em> (pas encore traduites) si
+vous souhaitez en apprendre plus sur les signatures des fonctions de rappel
+pour les signaux suivantsÂ :</p>
 <pre class="programlisting">
   selection_received
   selection_get
@@ -160,7 +161,7 @@ pour les signaux suivants :</p>
   drag_motion
   drag_drop
   drag_data_get
-  drag_data_received  
+  drag_data_received
 </pre>
 </div>
 <div class="navfooter">
@@ -168,15 +169,15 @@ pour les signaux suivants :</p>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-TheoryOfSignalsAndCallbacks.html">Préc.</a> </td>
+<a accesskey="p" href="sec-TheoryOfSignalsAndCallbacks.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-GettingStarted.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-SteppingThroughHelloWorld.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-SteppingThroughHelloWorld.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">2.2. Le principe des signaux et des rappels </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 2.4. Le "Hello World" pas à pas</td>
+<td width="40%" align="left" valign="top">2.2.Â Le principe des signaux et des rappelsÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 2.4.Â Le "Hello World" pas Ã  pas</td>
 </tr>
 </table>
 </div>

@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Chapitre 19. Temporisations, Entrées/Sorties et fonctions d'inactivité</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>ChapitreÂ 19.Â Temporisations, EntrÃ©es/Sorties et fonctions d'inactivitÃ©</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="prev" href="sec-WidgetStyles.html" title="18.5. Style des widgets">
-<link rel="next" href="sec-MonitoringIO.html" title="19.2. Contrôler les Entrées/Sorties">
-<meta name="keywords" content="python,pygtk,tutoriel,traduction,temporisation,contrôle entrées/sorties,fonction d'inactivité">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="prev" href="sec-WidgetStyles.html" title="18.5.Â Style des widgets">
+<link rel="next" href="sec-MonitoringIO.html" title="19.2.Â ContrÃ´ler les EntrÃ©es/Sorties">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,temporisation,contrÃ´le entrÃ©es/sorties,fonction d'inactivitÃ©">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">Chapitre 19. Temporisations, Entrées/Sorties et fonctions d'inactivité</th></tr>
+<tr><th colspan="3" align="center">ChapitreÂ 19.Â Temporisations, EntrÃ©es/Sorties et fonctions d'inactivitÃ©</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-WidgetStyles.html">Préc.</a> </td>
-<th width="60%" align="center"> </th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-MonitoringIO.html">Suiv.</a>
+<a accesskey="p" href="sec-WidgetStyles.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">Â </th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-MonitoringIO.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,46 +36,46 @@
 </div>
 <div class="chapter" lang="fr">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="ch-TimeoutsIOAndIdleFunctions"></a>Chapitre 19. Temporisations, Entrées/Sorties et fonctions d'inactivité</h2></div></div></div>
+<a name="ch-TimeoutsIOAndIdleFunctions"></a>ChapitreÂ 19.Â Temporisations, EntrÃ©es/Sorties et fonctions d'inactivitÃ©</h2></div></div></div>
 <div class="toc">
-<p><b>Table des matières</b></p>
+<p><b>Table des matiÃ¨res</b></p>
 <dl>
 <dt><span class="sect1"><a href="ch-TimeoutsIOAndIdleFunctions.html#sec-Timeouts">19.1. Temporisations</a></span></dt>
-<dt><span class="sect1"><a href="sec-MonitoringIO.html">19.2. Contrôler les Entrées/Sorties</a></span></dt>
-<dt><span class="sect1"><a href="sec-IdleFunctions.html">19.3. Les fonctions d'inactivité</a></span></dt>
+<dt><span class="sect1"><a href="sec-MonitoringIO.html">19.2. ContrÃ´ler les EntrÃ©es/Sorties</a></span></dt>
+<dt><span class="sect1"><a href="sec-IdleFunctions.html">19.3. Les fonctions d'inactivitÃ©</a></span></dt>
 </dl>
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-Timeouts"></a>19.1. Temporisations</h2></div></div></div>
-<p>On peut se demander comment faire effectuer un travail utile à GTK 
-quand on est dans la fonction <code class="function">main</code>(). Eh bien, on 
-dispose de plusieurs options. En utilisant la fonction suivante du module 
-gobject, on peut créer une fonction de temporisation qui sera appelée 
+<a name="sec-Timeouts"></a>19.1.Â Temporisations</h2></div></div></div>
+<p>On peut se demander comment faire effectuer un travail utile Ã  GTK
+quand on est dans la fonction <code class="function">main</code>(). Eh bien, on
+dispose de plusieurs options. En utilisant la fonction suivante du module
+gobject, on peut crÃ©er une fonction de temporisation qui sera appelÃ©e
 tous les "intervalle" millisecondes.</p>
 <pre class="programlisting">
   source_id = gobject.timeout_add(<em class="parameter"><code>intervalle</code></em>, <em class="parameter"><code>fonction</code></em>, ...)
 </pre>
-<p>Le paramètre <em class="parameter"><code>intervalle</code></em> représente le nombre 
-de millisecondes entre deux appels à notre fonction. le paramètre 
-<em class="parameter"><code>fonction</code></em> est la fonction de rappel que l'on 
-souhaite appeler. Tout argument suivant le deuxième est transmis à la 
-fonction comme données. La valeur de retour "source_id" est un nombre 
-entier qui peut être utilisé pour supprimer la temporisation en appelant :
+<p>Le paramÃ¨tre <em class="parameter"><code>intervalle</code></em> reprÃ©sente le nombre
+de millisecondes entre deux appels Ã  notre fonction. le paramÃ¨tre
+<em class="parameter"><code>fonction</code></em> est la fonction de rappel que l'on
+souhaite appeler. Tout argument suivant le deuxiÃ¨me est transmis Ã  la
+fonction comme donnÃ©es. La valeur de retour "source_id" est un nombre
+entier qui peut Ãªtre utilisÃ© pour supprimer la temporisation en appelantÂ :
 </p>
 <pre class="programlisting">
   gobject.source_remove(<em class="parameter"><code>source_id</code></em>)
 </pre>
-<p>Il est aussi possible d'empêcher un nouvel appel de la temporisation 
-en renvoyant zéro ou <code class="literal">FALSE</code> depuis le rappel. 
-Si on veut que le rappel soit réutilisé, il faut retourner 
+<p>Il est aussi possible d'empÃªcher un nouvel appel de la temporisation
+en renvoyant zÃ©ro ou <code class="literal">FALSE</code> depuis le rappel.
+Si on veut que le rappel soit rÃ©utilisÃ©, il faut retourner
 <code class="literal">TRUE</code>.</p>
-<p>Le rappel doit ressembler à ceci :</p>
+<p>Le rappel doit ressembler Ã  ceciÂ :</p>
 <pre class="programlisting">
   def rappel_temporisateur(...):
 </pre>
-<p>Le nombre d'arguments de la fonction de rappel doit être égal 
-au nombre d'arguments de données indiqués dans la fonction 
+<p>Le nombre d'arguments de la fonction de rappel doit Ãªtre Ã©gal
+au nombre d'arguments de donnÃ©es indiquÃ©s dans la fonction
 <code class="function">timeout_add</code>().</p>
 </div>
 </div>
@@ -83,15 +84,15 @@ au nombre d'arguments de données indiqués dans la fonction
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-WidgetStyles.html">Préc.</a> </td>
-<td width="20%" align="center"> </td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-MonitoringIO.html">Suiv.</a>
+<a accesskey="p" href="sec-WidgetStyles.html">PrÃ©c.</a>Â </td>
+<td width="20%" align="center">Â </td>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-MonitoringIO.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">18.5. Style des widgets </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 19.2. Contrôler les Entrées/Sorties</td>
+<td width="40%" align="left" valign="top">18.5.Â Style des widgetsÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 19.2.Â ContrÃ´ler les EntrÃ©es/Sorties</td>
 </tr>
 </table>
 </div>

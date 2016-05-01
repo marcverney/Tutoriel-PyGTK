@@ -1,11 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>11.2. D&eacute;monstration de cr&eacute;ation manuelle de menus</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,menu">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -15,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici&nbsp;: 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici&nbsp;:
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En_t&ecirc;te de navigation">
 <tr>
@@ -50,13 +49,13 @@ Vous êtes à peu près ici&nbsp;:
 
 <pre class="programlisting">
      1   #!/usr/bin/env python
-     2      
+     2
      3   # exemple menu.py
-     4     
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   class ExempleMenu:
     10       def __init__(self):
     11           # Creation d'une fenetre
@@ -64,13 +63,13 @@ Vous êtes à peu près ici&nbsp;:
     13           fenetre.set_size_request(200, 100)
     14           fenetre.set_title("Test menu GTK")
     15           fenetre.connect("delete_event", gtk.main_quit)
-    16   
+    16
     17           # Initialisation du widget. Souvenez-vous : on n'affiche jamais
     18           # (avec show()) le widget menu !
     19           # Il s'agit du menu qui contiendra les commandes, celui qui apparaitra
     20           # apres un clic sur le "Menu racine" de l'application.
     21           menu = gtk.Menu()
-    22   
+    22
     23           # Ensuite, on ecrit une petite boucle qui cree trois entrees pour le menu.
     24           # Notez l'appel a gtk_menu_append. Ici, nous ajoutons une liste de commandes
     25           # a notre menu. Nous devrions aussi nous debrouiller pour capter le signal
@@ -79,54 +78,54 @@ Vous êtes à peu près ici&nbsp;:
     28           for i in range(3):
     29               # On copie les noms dans une variable "tampon".
     30               tampon = "Sous-menu test - %d" % i
-    31   
+    31
     32               # On cree une nouvelle commande , avec un nom...
     33               commandes = gtk.MenuItem(tampon)
-    34   
+    34
     35               # ... et on l'ajoute au menu
     36               menu.append(commandes)
-    37   
+    37
     38   	    # On reagit a la selection de la commande
     39   	    commandes.connect("activate", self.reponse_commande, tampon)
-    40   
+    40
     41               # On affiche le widget
     42               commandes.show()
-    43   
+    43
     44           # Voici le menu racine. Ce sera aussi l'etiquette visible dans la barre de
     45           # menus. On ne lui connecte pas de gestionnaire de signal, son role etant
     46           # seulement de faire apparaitre le reste du menu lorsqu'on le clique.
     47           menu_racine = gtk.MenuItem("Menu racine")
-    48   
+    48
     49           menu_racine.show()
-    50   
-    51           # Ici on indique que notre "menu" cree plus haut doit etre le menu de 
+    50
+    51           # Ici on indique que notre "menu" cree plus haut doit etre le menu de
     52           # "Menu racine"
     53           menu_racine.set_submenu(menu)
-    54   
+    54
     55           # Une boite verticale pour y placer un menu et un bouton :
     56           boitev = gtk.VBox(False, 0)
     57           fenetre.add(boitev)
     58           boitev.show()
-    59   
+    59
     60           # On cree une barre pour contenir les menus, et on la place dans notre fenetre
     61           barre_menus = gtk.MenuBar()
     62           boitev.pack_start(barre_menus, False, False, 2)
     63           barre_menus.show()
-    64   
+    64
     65           # Creation d'un bouton, auquel on attache le menu comme popup
     66           bouton = gtk.Button("Cliquez-moi")
     67           bouton.connect_object("event", self.evnmt_button_press, menu)
     68           boitev.pack_end(bouton, True, True, 2)
     69           bouton.show()
-    70   
+    70
     71           # Enfin, on rattache la commande a la barre de menus -- il s'agit de la commande
     72           # "Menu racine" sur laquelle je me suis emballe =)
     73           barre_menus.append (menu_racine)
-    74   
+    74
     75           # Toujours afficher la fenetre en dernier, afin qu'elle soit complete lors de
     76           # son apparition a l'ecran.
     77           fenetre.show()
-    78   
+    78
     79       # On repond a l'evenement "button-press" en affichant un menu, qui est
     80       # transmis comme "widget".
     81       # Notez que l'argument "widget" N'EST PAS le bouton qui a ete enfonce,
@@ -139,15 +138,15 @@ Vous êtes à peu près ici&nbsp;:
     88               return True
     89           # On fait savoir au code appelant que l'evenement n'a pas ete traite. Il continue.
     90           return False
-    91   
+    91
     92       # Affiche une chaine de caracteres lorsqu'une commande est selectionnee.
     93       def reponse_commande(self, widget, chaine):
     94           print "%s" % chaine
-    95   
+    95
     96   def main():
     97       gtk.main()
     98       return 0
-    99   
+    99
    100   if __name__ == "__main__":
    101       ExempleMenu()
    102       main()

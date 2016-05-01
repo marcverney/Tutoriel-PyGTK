@@ -1,11 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>11.4. D&eacute;monstration de l'ItemFactory</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,menu">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -15,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici&nbsp;: 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici&nbsp;:
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 
 <table width="100%" summary="En-t&ecirc;te de navigation">
@@ -52,20 +51,20 @@ Vous êtes à peu près ici&nbsp;:
 
 <pre class="programlisting">
      1   #!/usr/bin/env python
-     2     
+     2
      3   # exemple itemfactory.py
-     4     
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8     
+     8
      9   class ExempleItemFactory:
     10       # L'inevitable petite fonction de rappel
     11       def affiche_hello(self, w, donnees):
     12           print "Salut tout le monde !"
-    13   
+    13
     14       # Voici la structure d'ItemFactoryEntry utilisee pour generer de nouveaux menus
-    15       # Element 1: Le chemin du menu. la lettre qui suit le caractere "_" indique un 
+    15       # Element 1: Le chemin du menu. la lettre qui suit le caractere "_" indique un
     16       #            raccourci clavier actif une fois le menu ouvert.
     17       # Element 2: Le raccourci clavier pour cette entree.
     18       # Element 3: La fonction de rappel.
@@ -73,7 +72,7 @@ Vous êtes à peu près ici&nbsp;:
     20       #            lesquels la fonction de rappel est appelee. 0 par defaut.
     21       # Element 5: Le type d'entree. Indique quelle sorte d'entree l'on souhaite creer.
     22       #            Voici les differentes valeurs possibles :
-    23   
+    23
     24       #       NULL               -> "<Item>"
     25       #       ""                 -> "<Item>"
     26       #       "<Title>"          -> cree une entree titre
@@ -85,10 +84,10 @@ Vous êtes à peu près ici&nbsp;:
     32       #       "<Separator>"      -> cree un separateur
     33       #       "<Branch>"         -> cree une entree pouvant contenir des sous-entrees (optionel)
     34       #       "<LastBranch>"     -> cree une entree "Branch" alignee a droite
-    35   
+    35
     36       def menu_principal(self, fenetre):
     37           racc_clavier = gtk.AccelGroup()
-    38   
+    38
     39           # Cette fonction initialise l'ItemFactory.
     40           # Param 1: Le type de menu - peut etre MenuBar, Menu,
     41           #          ou OptionMenu.
@@ -96,19 +95,19 @@ Vous êtes à peu près ici&nbsp;:
     43           # Param 3: une reference a un AccelGroup. L'ItemFactory configure
     44           #          la table des raccourcis en generant les menus.
     45           item_factory = gtk.ItemFactory(gtk.MenuBar, "<main>", racc_clavier)
-    46   
+    46
     47           # Cette methode genere les entrees du menu. On transmet a l'ItemFactory
     48           # la liste des entrees de menu.
     49           item_factory.create_items(self.entrees_menu)
-    50   
+    50
     51           # On attache le nouveau groupe de raccourcis clavier a la fenetre.
     52           fenetre.add_accel_group(racc_clavier)
-    53   
+    53
     54           # On a besoin de garder une reference a item_factory pour empecher sa destruction
     55           self.item_factory = item_factory
     56           # Enfin, on renvoie la barre de menus creee par l'ItemFactory.
     57           return item_factory.get_widget("<main>")
-    58   
+    58
     59       def __init__(self):
     60           self.entrees_menu = (
     61               ( "/_Fichier",         None,         None, 0, "<Branch>" ),
@@ -127,22 +126,22 @@ Vous êtes à peu près ici&nbsp;:
     74           fenetre.connect("destroy", gtk.main_quit, "WM destroy")
     75           fenetre.set_title("ItemFactory")
     76           fenetre.set_size_request(300, 200)
-    77   
+    77
     78           boitev_princ = gtk.VBox(False, 1)
     79           boitev_princ.set_border_width(1)
     80           fenetre.add(boitev_princ)
     81           boitev_princ.show()
-    82   
+    82
     83           barremenus = self.menu_principal(fenetre)
-    84   
+    84
     85           boitev_princ.pack_start(barremenus, False, True, 0)
     86           barremenus.show()
     87           fenetre.show()
-    88   
+    88
     89   def main():
     90       gtk.main()
     91       return 0
-    92   
+    92
     93   if __name__ == "__main__":
     94       ExempleItemFactory()
     95       main()

@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>21.3. Alimenter la sélection</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>21.3.Â Alimenter la sÃ©lection</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-ManagingSelections.html" title="Chapitre 21. Gérer les sélections">
-<link rel="prev" href="sec-RetrievingTheSelection.html" title="21.2. Récupérer la sélection">
-<link rel="next" href="ch-DragAndDrop.html" title="Chapitre 22. Le glisser-déposer (DND)">
+<link rel="up" href="ch-ManagingSelections.html" title="ChapitreÂ 21.Â GÃ©rer les sÃ©lections">
+<link rel="prev" href="sec-RetrievingTheSelection.html" title="21.2.Â RÃ©cupÃ©rer la sÃ©lection">
+<link rel="next" href="ch-DragAndDrop.html" title="ChapitreÂ 22.Â Le glisser-dÃ©poser (DND)">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">21.3. Alimenter la sélection</th></tr>
+<tr><th colspan="3" align="center">21.3.Â Alimenter la sÃ©lection</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-RetrievingTheSelection.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 21. Gérer les sélections</th>
-<td width="20%" align="right"> <a accesskey="n" href="ch-DragAndDrop.html">Suiv.</a>
+<a accesskey="p" href="sec-RetrievingTheSelection.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 21.Â GÃ©rer les sÃ©lections</th>
+<td width="20%" align="right">Â <a accesskey="n" href="ch-DragAndDrop.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,45 +36,45 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-SupplyingTheSelection"></a>21.3. Alimenter la sélection</h2></div></div></div>
-<p>Alimenter la sélection est un peu plus compliqué. Il faut enregistrer 
-des gestionnaires que l'on appelera lorsque la sélection sera réclamée. 
-Pour chaque paire de sélection/cible à gérer, on fait un appel à :
+<a name="sec-SupplyingTheSelection"></a>21.3.Â Alimenter la sÃ©lection</h2></div></div></div>
+<p>Alimenter la sÃ©lection est un peu plus compliquÃ©. Il faut enregistrer
+des gestionnaires que l'on appelera lorsque la sÃ©lection sera rÃ©clamÃ©e.
+Pour chaque paire de sÃ©lection/cible Ã  gÃ©rer, on fait un appel Ã Â :
 </p>
 <pre class="programlisting">
   widget.selection_add_target(<strong class="parameter"><code>selection</code></strong>, <strong class="parameter"><code>target</code></strong>, <strong class="parameter"><code>info</code></strong>)
 </pre>
-<p>... où les paramètres <em class="parameter"><code>widget</code></em>, 
-<em class="parameter"><code>selection</code></em> et <em class="parameter"><code>target</code></em> 
-identifient les requêtes dont doit s'occuper ce gestionnaire. Quand une 
-demande pour une sélection est reçue, on appellera le signal "selection_get". 
-Le paramètre <em class="parameter"><code>info</code></em> est un nombre entier qui peut être 
-utilisé comme un identifiant pour la cible spécifique dans le rappel.
+<p>... oÃ¹ les paramÃ¨tres <em class="parameter"><code>widget</code></em>,
+<em class="parameter"><code>selection</code></em> et <em class="parameter"><code>target</code></em>
+identifient les requÃªtes dont doit s'occuper ce gestionnaire. Quand une
+demande pour une sÃ©lection est reÃ§ue, on appellera le signal "selection_get".
+Le paramÃ¨tre <em class="parameter"><code>info</code></em> est un nombre entier qui peut Ãªtre
+utilisÃ© comme un identifiant pour la cible spÃ©cifique dans le rappel.
 </p>
-<p>La fonction de rappel a la forme :</p>
+<p>La fonction de rappel a la formeÂ :</p>
 <pre class="programlisting">
   def selection_get(widget, selection_data, info, time):
 </pre>
-<p>Le <code class="classname">gtk.SelectionData</code> est le même que précédemment, 
-mais cette fois-ci, on est chargé de remplir les champs <em class="parameter"><code>type</code></em>, 
-<em class="parameter"><code>format</code></em> et <em class="parameter"><code>data</code></em>. Le paramètre 
-<em class="parameter"><code>format</code></em> est important ici - le serveur X l'utilise 
-pour savoir si <em class="parameter"><code>data</code></em> nécessite un changement de 
-l'ordre de ses bytes ou non. Habituellement la valeur est 8, c'est à dire 
-un caractère, ou 32 pour un entier). Ceci est réalisé en appelant la 
-méthode :
+<p>Le <code class="classname">gtk.SelectionData</code> est le mÃªme que prÃ©cÃ©demment,
+mais cette fois-ci, on est chargÃ© de remplir les champs <em class="parameter"><code>type</code></em>,
+<em class="parameter"><code>format</code></em> et <em class="parameter"><code>data</code></em>. Le paramÃ¨tre
+<em class="parameter"><code>format</code></em> est important ici - le serveur X l'utilise
+pour savoir si <em class="parameter"><code>data</code></em> nÃ©cessite un changement de
+l'ordre de ses bytes ou non. Habituellement la valeur est 8, c'est Ã  dire
+un caractÃ¨re, ou 32 pour un entier). Ceci est rÃ©alisÃ© en appelant la
+mÃ©thodeÂ :
 </p>
 <pre class="programlisting">
   selection_data.set(<strong class="parameter"><code>type</code></strong>, <strong class="parameter"><code>format</code></strong>, <strong class="parameter"><code>data</code></strong>)
 </pre>
-<p>Cette méthode PyGTK peut seulement manipuler des chaînes de caractères 
-donc le paramètre <em class="parameter"><code>data</code></em> doit être inclus dans une chaîne 
+<p>Cette mÃ©thode PyGTK peut seulement manipuler des chaÃ®nes de caractÃ¨res
+donc le paramÃ¨tre <em class="parameter"><code>data</code></em> doit Ãªtre inclus dans une chaÃ®ne
 Python, mais le <em class="parameter"><code>format</code></em> sera de la dimension
-appropriée (par ex. 32 pour les atomes et les nombres entiers, 8 pour les 
-chaînes). Les  modules Python <code class="classname">struct</code> ou <code class="classname">StringIO</code> 
-peuvent être utilisés pour convertir des données non-chaîne en chaîne de caractères. 
-Par exemple, vous pouvez convertir une liste de nombres entiers vers une chaîne 
-et renseigner le <em class="parameter"><code>selection_data</code></em> par :</p>
+appropriÃ©e (par ex. 32 pour les atomes et les nombres entiers, 8 pour les
+chaÃ®nes). Les  modules Python <code class="classname">struct</code> ou <code class="classname">StringIO</code>
+peuvent Ãªtre utilisÃ©s pour convertir des donnÃ©es non-chaÃ®ne en chaÃ®ne de caractÃ¨res.
+Par exemple, vous pouvez convertir une liste de nombres entiers vers une chaÃ®ne
+et renseigner le <em class="parameter"><code>selection_data</code></em> parÂ :</p>
 <pre class="programlisting">
   ilist = [1, 2, 3, 4, 5]
 
@@ -81,117 +82,117 @@ et renseigner le <em class="parameter"><code>selection_data</code></em> par :</p
 
   selection_data.set("INTEGER", 32, data)
 </pre>
-<p>La méthode suivante établit les données de la sélection à partir 
-de la chaîne indiquée :
+<p>La mÃ©thode suivante Ã©tablit les donnÃ©es de la sÃ©lection Ã  partir
+de la chaÃ®ne indiquÃ©eÂ :
 </p>
 <pre class="programlisting">
   selection_data.set_text(<strong class="parameter"><code>str</code></strong>, <strong class="parameter"><code>len</code></strong>)
 </pre>
-<p>À la demande de l'utilisateur, on réclame la propriété de la 
-sélection en appelant :
+<p>Ã€ la demande de l'utilisateur, on rÃ©clame la propriÃ©tÃ© de la
+sÃ©lection en appelantÂ :
 </p>
 <pre class="programlisting">
   result = widget.selection_owner_set(<strong class="parameter"><code>selection</code></strong>, <strong class="parameter"><code>time</code></strong>=0L)
 </pre>
-<p>... où  <em class="parameter"><code>result</code></em> vaut <code class="literal">TRUE</code> 
-si le programme a réclamé la sélection <em class="parameter"><code>selection</code></em> 
-avec succès. Si une autre application réclame la possession 
-de la sélection, on obtiendra une réponse "selection_clear_event". 
+<p>... oÃ¹  <em class="parameter"><code>result</code></em> vaut <code class="literal">TRUE</code>
+si le programme a rÃ©clamÃ© la sÃ©lection <em class="parameter"><code>selection</code></em>
+avec succÃ¨s. Si une autre application rÃ©clame la possession
+de la sÃ©lection, on obtiendra une rÃ©ponse "selection_clear_event".
 </p>
-<p>Comme exemple de fourniture de sélection, le programme 
-<a href="exemples/setselection.py" target="_top"><span><strong class="command">setselection.py</strong></span></a> 
-ajoute une fonction de sélection à un bouton interrupteur compris dans 
-une boîte <code class="classname">gtk.EventBox</code>. Le 
-<code class="classname">gtk.Eventbox</code> est nécessaire car la sélection doit 
-être associée à une <code class="classname">gtk.gdk.Window</code> alors que le 
-<code class="classname">gtk.Button</code> est un widget "sans fenêtre" dans GTK+ 2.0. 
-Quand le bouton interrupteur est enfoncé, le programme réclame la propriété 
-de la sélection primaire. La seule cible reconnue (à part certaines cibles 
-comme  "TARGETS" fournies par GTK+ lui-même) est la cible "STRING". Lorsque 
-cette cible est demandée, une représentation en chaîne de caractères du temps 
-actuel est renvoyée. La <a href="sec-SupplyingTheSelection.html#setselectionfig" title="Figure 21.2. Exemple de création de sélection">Figure 21.2, « Exemple de création de sélection »</a> montre le programme 
-au moment où il prend possession de la sélection primaire.
+<p>Comme exemple de fourniture de sÃ©lection, le programme
+<a href="exemples/setselection.py" target="_top"><span><strong class="command">setselection.py</strong></span></a>
+ajoute une fonction de sÃ©lection Ã  un bouton interrupteur compris dans
+une boÃ®te <code class="classname">gtk.EventBox</code>. Le
+<code class="classname">gtk.Eventbox</code> est nÃ©cessaire car la sÃ©lection doit
+Ãªtre associÃ©e Ã  une <code class="classname">gtk.gdk.Window</code> alors que le
+<code class="classname">gtk.Button</code> est un widget "sans fenÃªtre" dans GTK+Â 2.0.
+Quand le bouton interrupteur est enfoncÃ©, le programme rÃ©clame la propriÃ©tÃ©
+de la sÃ©lection primaire. La seule cible reconnue (Ã  part certaines cibles
+comme  "TARGETS" fournies par GTK+ lui-mÃªme) est la cible "STRING". Lorsque
+cette cible est demandÃ©e, une reprÃ©sentation en chaÃ®ne de caractÃ¨res du temps
+actuel est renvoyÃ©e. La <a href="sec-SupplyingTheSelection.html#setselectionfig" title="FigureÂ 21.2.Â Exemple de crÃ©ation de sÃ©lection">FigureÂ 21.2, Â«Â Exemple de crÃ©ation de sÃ©lectionÂ Â»</a> montre le programme
+au moment oÃ¹ il prend possession de la sÃ©lection primaire.
 </p>
 <div class="figure">
-<a name="setselectionfig"></a><p class="title"><b>Figure 21.2. Exemple de création de sélection</b></p>
-<div class="mediaobject" align="center"><img src="figures/setselection.png" align="middle" alt="Exemple de création de sélection"></div>
+<a name="setselectionfig"></a><p class="title"><b>FigureÂ 21.2.Â Exemple de crÃ©ation de sÃ©lection</b></p>
+<div class="mediaobject" align="center"><img src="figures/setselection.png" align="middle" alt="Exemple de crÃ©ation de sÃ©lection"></div>
 </div>
 <p>Voici le code du programme <a href="exemples/setselection.py" target="_top">
-    <span><strong class="command">setselection.py</strong></span></a> :</p>
+    <span><strong class="command">setselection.py</strong></span></a>Â :</p>
 <pre class="programlisting">
      1   #!/usr/bin/env python
      2   # -*- coding:utf-8 -*-
      3   # exemple setselection.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
      8   import time
-     9   
+     9
     10   class SetSelectionExample:
-    11       # Fonction de rappel quand l'utilisateur modifie la sélection.
+    11       # Fonction de rappel quand l'utilisateur modifie la sÃ©lection.
     12       def selection_toggled(self, widget, window):
     13           if widget.get_active():
     14               self.have_selection = window.selection_owner_set("PRIMARY")
-    15               # si réclamer la sélection échoue, on remet le bouton
-    16               # dans l'état inactif.
+    15               # si rÃ©clamer la sÃ©lection Ã©choue, on remet le bouton
+    16               # dans l'Ã©tat inactif.
     17               if not self.have_selection:
     18                   widget.set_active(False)
     19           else:
     20               if self.have_selection:
-    21                   # Impossible de libérer la sélection en PyGTK,
-    22                   # on indique juste que l'on ne la possède pas.
+    21                   # Impossible de libÃ©rer la sÃ©lection en PyGTK,
+    22                   # on indique juste que l'on ne la possÃ¨de pas.
     23                   self.have_selection = False
     24           return
-    25   
-    26       # Appelé lorsqu'une autre application réclame la sélection.
+    25
+    26       # AppelÃ© lorsqu'une autre application rÃ©clame la sÃ©lection.
     27       def selection_clear(self, widget, event):
     28           self.have_selection = False
     29           widget.set_active(False)
     30           return True
-    31   
-    32       # Fournit le temps actuel comme sélection.
+    31
+    32       # Fournit le temps actuel comme sÃ©lection.
     33       def selection_handle(self, widget, selection_data, info, time_stamp):
     34           current_time = time.time()
     35           timestr = time.asctime(time.localtime(current_time))
-    36   
-    37           # Quand on renvoie une chaîne unique, elle ne doit se terminer 
+    36
+    37           # Quand on renvoie une chaÃ®ne unique, elle ne doit se terminer
     38           # par une valeur nulle. Ceci le fait pour nous.
     39           selection_data.set_text(timestr, len(timestr))
     40           return
-    41   
+    41
     42       def __init__(self):
     43           self.have_selection = False
-    44           # Création de la fenêtre de niveau supérieur
+    44           # CrÃ©ation de la fenÃªtre de niveau supÃ©rieur
     45           window = gtk.Window(gtk.WINDOW_TOPLEVEL)
     46           window.set_title("Set Selection")
     47           window.set_border_width(10)
     48           window.connect("destroy", lambda w: gtk.main_quit())
     49           self.window = window
-    50           # Création d'une boîte évènement pour contenir le bouton 
+    50           # CrÃ©ation d'une boÃ®te Ã©vÃ¨nement pour contenir le bouton
     51           # car il n'a pas sa propre GdkWindow.
     52           eventbox = gtk.EventBox()
     53           eventbox.show()
     54           window.add(eventbox)
-    55           
-    56           # Création d'un bouton interrupteur pour agir avec la sélection
-    57           selection_button = gtk.ToggleButton("Réclamer sélection")
+    55
+    56           # CrÃ©ation d'un bouton interrupteur pour agir avec la sÃ©lection
+    57           selection_button = gtk.ToggleButton("RÃ©clamer sÃ©lection")
     58           eventbox.add(selection_button)
-    59   
+    59
     60           selection_button.connect("toggled", self.selection_toggled, eventbox)
     61           eventbox.connect_object("selection_clear_event", self.selection_clear,
     62                                   selection_button)
-    63   
+    63
     64           eventbox.selection_add_target("PRIMARY", "STRING", 1)
     65           eventbox.selection_add_target("PRIMARY", "COMPOUND_TEXT", 1)
     66           eventbox.connect("selection_get", self.selection_handle)
     67           selection_button.show()
     68           window.show()
-    69   
+    69
     70   def main():
     71       gtk.main()
     72       return 0
-    73   
+    73
     74   if __name__ == "__main__":
     75       SetSelectionExample()
     76       main()
@@ -202,15 +203,15 @@ au moment où il prend possession de la sélection primaire.
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-RetrievingTheSelection.html">Préc.</a> </td>
+<a accesskey="p" href="sec-RetrievingTheSelection.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-ManagingSelections.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="ch-DragAndDrop.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="ch-DragAndDrop.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">21.2. Récupérer la sélection </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> Chapitre 22. Le glisser-déposer (DND)</td>
+<td width="40%" align="left" valign="top">21.2.Â RÃ©cupÃ©rer la sÃ©lectionÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â ChapitreÂ 22.Â Le glisser-dÃ©poser (DND)</td>
 </tr>
 </table>
 </div>

@@ -1,10 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>Chapitre 8. Les widgets d'intervalle</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,intervalle">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -14,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici : 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃšs ici :
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En-t&ecirc;te de navigation">
 <tr>
@@ -54,34 +54,34 @@ Vous êtes à peu près ici :
 </dl>
 </div>
 
-<p>La cat&eacute;gorie des widgets d'intervalle (<tt>gtk.Range</tt>) inclut l'incontournable 
-barre de d&eacute;filement  ainsi que le &quot;gradateur&quot;, un peu moins courant. Bien 
-que l'on utilise g&eacute;n&eacute;ralement ces deux types d'objets &agrave; diff&eacute;rentes 
-fins, ils sont assez similaires dans leur impl&eacute;mentation et leur fonctionnement. Les 
-widgets d'intervalle ont un jeu d'&eacute;l&eacute;ments graphiques commun : la coulisse et 
-le curseur, qui poss&egrave;dent tous les deux leur propre fen&ecirc;tre X et qui 
-re&ccedil;oivent des &eacute;v&egrave;nements. Pour faire avancer ou reculer le curseur dans 
-la coulisse on peut le tirer avec la souris ou bien cliquer directement dans la coulisse. 
-Dans ce second cas, et selon le bouton de la souris utilis&eacute;, le curseur viendra se 
-positionner &agrave; l'endroit du clic ou s'en rapprochera suivant un pas 
+<p>La cat&eacute;gorie des widgets d'intervalle (<tt>gtk.Range</tt>) inclut l'incontournable
+barre de d&eacute;filement  ainsi que le &quot;gradateur&quot;, un peu moins courant. Bien
+que l'on utilise g&eacute;n&eacute;ralement ces deux types d'objets &agrave; diff&eacute;rentes
+fins, ils sont assez similaires dans leur impl&eacute;mentation et leur fonctionnement. Les
+widgets d'intervalle ont un jeu d'&eacute;l&eacute;ments graphiques commun : la coulisse et
+le curseur, qui poss&egrave;dent tous les deux leur propre fen&ecirc;tre X et qui
+re&ccedil;oivent des &eacute;v&egrave;nements. Pour faire avancer ou reculer le curseur dans
+la coulisse on peut le tirer avec la souris ou bien cliquer directement dans la coulisse.
+Dans ce second cas, et selon le bouton de la souris utilis&eacute;, le curseur viendra se
+positionner &agrave; l'endroit du clic ou s'en rapprochera suivant un pas
 pr&eacute;f&eacute;fini.</p>
-<p>Comme nous venons de le voir dans le chapitre sur les <a href="ch-Adjustments.html" 
-title="Chapitre 7. Les ajustements">ajustements</a>, tous les widgets d'intervalle sont 
-associ&eacute;s &agrave; un <tt>gtk.Adjustment</tt>, &agrave; partir duquel ils calculent 
-la longueur du curseur et sa position dans la coulisse. Lorsque l'utilisateur manipule 
+<p>Comme nous venons de le voir dans le chapitre sur les <a href="ch-Adjustments.html"
+title="Chapitre 7. Les ajustements">ajustements</a>, tous les widgets d'intervalle sont
+associ&eacute;s &agrave; un <tt>gtk.Adjustment</tt>, &agrave; partir duquel ils calculent
+la longueur du curseur et sa position dans la coulisse. Lorsque l'utilisateur manipule
 le curseur, le widget d'intervalle modifie la valeur de l'ajustement.</p>
 
 <div class="sect1"><div class="titlepage">
-<div><h2 class="title" style="clear: both"><a name="sec-ScrollbarWidgets"></a>8.1. HScrollbar 
+<div><h2 class="title" style="clear: both"><a name="sec-ScrollbarWidgets"></a>8.1. HScrollbar
 et VScrollbar : Les barres de d&eacute;filement</h2></div></div>
-<p>Voici les tr&egrave;s classiques barres de d&eacute;filement. Elles ne devraient 
-&ecirc;tre employ&eacute;es que pour faire d&eacute;filer un autre widget, comme une 
-liste, une zone de texte ou une vue orientable (il est m&ecirc;me bien plus pratique 
-d'utiliser une fen&ecirc;tre &agrave; d&eacute;filement dans la plupart des cas). Pour 
-le reste, les gradateurs seront plus appropri&eacute;s, car plus simples d'utilisation 
+<p>Voici les tr&egrave;s classiques barres de d&eacute;filement. Elles ne devraient
+&ecirc;tre employ&eacute;es que pour faire d&eacute;filer un autre widget, comme une
+liste, une zone de texte ou une vue orientable (il est m&ecirc;me bien plus pratique
+d'utiliser une fen&ecirc;tre &agrave; d&eacute;filement dans la plupart des cas). Pour
+le reste, les gradateurs seront plus appropri&eacute;s, car plus simples d'utilisation
 et offrant plus de fonctionnalit&eacute;s.</p>
-<p>Les barres de d&eacute;filement horizontale et verticale sont impl&eacute;ment&eacute;es 
-dans deux types diff&eacute;rents. Il n'y a pas grand-chose &agrave; dire &agrave; leur 
+<p>Les barres de d&eacute;filement horizontale et verticale sont impl&eacute;ment&eacute;es
+dans deux types diff&eacute;rents. Il n'y a pas grand-chose &agrave; dire &agrave; leur
 sujet. On les cr&eacute;e en appelant l'une de ces m&eacute;thodes&nbsp;:</p>
 
 <pre class="programlisting">
@@ -90,13 +90,13 @@ sujet. On les cr&eacute;e en appelant l'une de ces m&eacute;thodes&nbsp;:</p>
   barredefil_v = gtk.VScrollbar(<b><tt>adjustment</tt></b>=None)
 </pre>
 
-<p>... et voil&agrave; tout. L'argument <i><tt>adjustment</tt></i> (ajustement) attend 
-une r&eacute;f&eacute;rence &agrave; un 
+<p>... et voil&agrave; tout. L'argument <i><tt>adjustment</tt></i> (ajustement) attend
+une r&eacute;f&eacute;rence &agrave; un
 <a href="ch-Adjustments.html" title="Chapitre 7. Les ch-Adjustments.html">
-<tt>ajustement</tt></a> existant. Si vous ne lui en fournissez pas, 
-la m&eacute;thode en cr&eacute;era un pour vous, ce qui peut &ecirc;tre 
-int&eacute;ressant si vous voulez transmettre ce nouvel ajustement &agrave; 
-la m&eacute;thode constructeur d'un autre widget, qui se chargera de le configurer 
+<tt>ajustement</tt></a> existant. Si vous ne lui en fournissez pas,
+la m&eacute;thode en cr&eacute;era un pour vous, ce qui peut &ecirc;tre
+int&eacute;ressant si vous voulez transmettre ce nouvel ajustement &agrave;
+la m&eacute;thode constructeur d'un autre widget, qui se chargera de le configurer
 pour vous (une zone de texte, par exemple).</p>
 </div></div>
 

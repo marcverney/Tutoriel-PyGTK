@@ -1,31 +1,32 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>14.11. Le TreeModel générique</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>14.11.Â Le TreeModel gÃ©nÃ©rique</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,treeview" />
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-TreeViewWidget.html" title="Chapitre 14. Le widget TreeView">
-<link rel="prev" href="sec-TreeModelSortAndTreeModelFilter.html" title="14.10. TreeModelSort et TreeModelFilter">
-<link rel="next" href="sec-GenericCellRenderer.html" title="14.12. The Generic CellRenderer">
+<link rel="up" href="ch-TreeViewWidget.html" title="ChapitreÂ 14.Â Le widget TreeView">
+<link rel="prev" href="sec-TreeModelSortAndTreeModelFilter.html" title="14.10.Â TreeModelSort et TreeModelFilter">
+<link rel="next" href="sec-GenericCellRenderer.html" title="14.12.Â The Generic CellRenderer">
 </head>
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici : 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici :
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">14.11. Le TreeModel générique</th></tr>
+<tr><th colspan="3" align="center">14.11.Â Le TreeModel gÃ©nÃ©rique</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-TreeModelSortAndTreeModelFilter.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 14. Le widget TreeView</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-GenericCellRenderer.html">Suiv.</a>
+<a accesskey="p" href="sec-TreeModelSortAndTreeModelFilter.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 14.Â Le widget TreeView</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-GenericCellRenderer.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -33,61 +34,61 @@ Vous êtes à peu près ici :
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-GenericTreeModel"></a>14.11. Le TreeModel générique</h2></div></div></div>
-<p>Si le <code class="classname">TreeModel</code> standard n'est pas assez puissant pour 
-les besoins de l'application, il est possible d'utiliser le 
-<code class="classname">GenericTreeModel</code> pour construire son propre 
-<code class="classname">TreeModel</code> personnalisé en python. Créer un 
-<code class="classname">GenericTreeModel</code> peut être utile en cas de problème de 
-performance avec les objets <code class="classname">TreeStore</code> et 
-<code class="classname">ListStore</code> standards, ou si on veut une interface 
-directe avec une source de données externe (une base de données ou un système 
-de fichiers) pour éviter une duplication des données de et vers le 
+<a name="sec-GenericTreeModel"></a>14.11.Â Le TreeModel gÃ©nÃ©rique</h2></div></div></div>
+<p>Si le <code class="classname">TreeModel</code> standard n'est pas assez puissant pour
+les besoins de l'application, il est possible d'utiliser le
+<code class="classname">GenericTreeModel</code> pour construire son propre
+<code class="classname">TreeModel</code> personnalisÃ© en python. CrÃ©er un
+<code class="classname">GenericTreeModel</code> peut Ãªtre utile en cas de problÃ¨me de
+performance avec les objets <code class="classname">TreeStore</code> et
+<code class="classname">ListStore</code> standards, ou si on veut une interface
+directe avec une source de donnÃ©es externe (une base de donnÃ©es ou un systÃ¨me
+de fichiers) pour Ã©viter une duplication des donnÃ©es de et vers le
 <code class="classname">TreeStore</code> ou le <code class="classname">ListStore</code>.
 </p>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-GenericTreeModelOverview"></a>14.11.1. Aperçu du GenericTreeModel</h3></div></div></div>
-<p>Avec un <code class="classname">GenericTreeModel</code>, on construit et gère son 
-modèle de données et on fournit un accès externe à travers l'interface du 
-<code class="classname">TreeModel</code> standard en définissant un ensemble de 
-méthodes de classe. PyGTK implémente l'interface du 
-<code class="classname">TreeModel</code> et prend en charge les méthodes du 
-<code class="classname">TreeModel</code> appelées pour fournir le modèle de données 
-réel.
+<a name="sec-GenericTreeModelOverview"></a>14.11.1.Â AperÃ§u du GenericTreeModel</h3></div></div></div>
+<p>Avec un <code class="classname">GenericTreeModel</code>, on construit et gÃ¨re son
+modÃ¨le de donnÃ©es et on fournit un accÃ¨s externe Ã  travers l'interface du
+<code class="classname">TreeModel</code> standard en dÃ©finissant un ensemble de
+mÃ©thodes de classe. PyGTK implÃ©mente l'interface du
+<code class="classname">TreeModel</code> et prend en charge les mÃ©thodes du
+<code class="classname">TreeModel</code> appelÃ©es pour fournir le modÃ¨le de donnÃ©es
+rÃ©el.
 </p>
-<p>Les détails de l'implémentation de votre modèle devraient rester complétement 
-cachés aux applications externes. Ce qui signifie que la manière dont votre 
-modèle identifie, range et retrouve les données n'est pas connue de 
-l'application. En général, la seule information qui est sauvegardée en-dehors 
-du <code class="classname">GenericTreeModel</code> sont les références de ligne qui sont 
-enveloppées par les <code class="classname">TreeIter</code> externes. Ces références ne 
+<p>Les dÃ©tails de l'implÃ©mentation de votre modÃ¨le devraient rester complÃ©tement
+cachÃ©s aux applications externes. Ce qui signifie que la maniÃ¨re dont votre
+modÃ¨le identifie, range et retrouve les donnÃ©es n'est pas connue de
+l'application. En gÃ©nÃ©ral, la seule information qui est sauvegardÃ©e en-dehors
+du <code class="classname">GenericTreeModel</code> sont les rÃ©fÃ©rences de ligne qui sont
+enveloppÃ©es par les <code class="classname">TreeIter</code> externes. Ces rÃ©fÃ©rences ne
 sont pas visibles par l'application.
 </p>
-<p>Voici un examen détaillé de l'interface <code class="classname">GenericTreeModel</code> 
+<p>Voici un examen dÃ©taillÃ© de l'interface <code class="classname">GenericTreeModel</code>
 qu'il faut fournir.
 </p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-GenericTreeModelInterface"></a>14.11.2. Interface du GenericTreeModel</h3></div></div></div>
-<p>L'interface du <code class="classname">GenericTreeModel</code> comprend les 
-méthodes suivantes qui doivent être implémentées dans le modèle 
-personnalisé :
+<a name="sec-GenericTreeModelInterface"></a>14.11.2.Â Interface du GenericTreeModel</h3></div></div></div>
+<p>L'interface du <code class="classname">GenericTreeModel</code> comprend les
+mÃ©thodes suivantes qui doivent Ãªtre implÃ©mentÃ©es dans le modÃ¨le
+personnalisÃ©Â :
 </p>
-<code class="methodsynopsis">    def <span class="methodname">on_get_flags</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_get_n_columns</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_get_column_type</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>index</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_get_iter</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>path</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_get_path</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>rowref</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_get_value</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>rowref</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>column</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_iter_next</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>rowref</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_iter_children</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>parent</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_iter_has_child</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>rowref</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_iter_n_children</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>rowref</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_iter_nth_child</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>parent</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>n</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_iter_parent</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>child</code></em></span></span>)</code><br><p>Il faut remarquer que ces méthodes supportent entièrement l'interface du 
-<code class="classname">TreeModel</code>, y compris :
+<code class="methodsynopsis">    def <span class="methodname">on_get_flags</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_get_n_columns</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_get_column_type</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>index</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_get_iter</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>path</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_get_path</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>rowref</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_get_value</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>rowref</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>column</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_iter_next</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>rowref</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_iter_children</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>parent</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_iter_has_child</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>rowref</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_iter_n_children</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>rowref</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_iter_nth_child</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>parent</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>n</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">on_iter_parent</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>self</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>child</code></em></span></span>)</code><br><p>Il faut remarquer que ces mÃ©thodes supportent entiÃ¨rement l'interface du
+<code class="classname">TreeModel</code>, y comprisÂ :
 </p>
-<code class="methodsynopsis">    def <span class="methodname">get_flags</span>(<span class="methodparam"></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_n_columns</span>(<span class="methodparam"></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_column_type</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>index</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_iter</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>path</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_iter_from_string</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>path_string</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_string_from_iter</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>iter</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_iter_root</span>(<span class="methodparam"></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_iter_first</span>(<span class="methodparam"></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_path</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_value</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>, <span class="methodparam"><span class="parameter"><strong class="parameter"><code>column</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">iter_next</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">iter_children</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>parent</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">iter_has_child</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">iter_n_children</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">iter_nth_child</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>parent</code></strong></span></span>, <span class="methodparam"><span class="parameter"><strong class="parameter"><code>n</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">iter_parent</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>child</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>iter</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>column</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>...</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">foreach</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>func</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>user_data</code></em></span></span>)</code><p>Pour illustrer l'utilisation du <code class="classname">GenericTreeModel</code> 
-j'ai modifié le programme <a href="exemples/listefichiers.py" target="_top"><span><strong class="command">listefichiers.py</strong></span></a> et 
-montre comment les méthodes d'interface sont réalisées. Le programme 
-<a href="exemples/listefichiers-gtm.py" target="_top"><span><strong class="command">listefichiers-gtm.py</strong></span></a> 
-affiche les fichiers d'un répertoire avec une icône indiquant si le fichier est ou 
-non un répertoire, le nom du fichier,  sa taille, son mode et sa date de dernière 
+<code class="methodsynopsis">    def <span class="methodname">get_flags</span>(<span class="methodparam"></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_n_columns</span>(<span class="methodparam"></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_column_type</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>index</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_iter</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>path</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_iter_from_string</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>path_string</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_string_from_iter</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>iter</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_iter_root</span>(<span class="methodparam"></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_iter_first</span>(<span class="methodparam"></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_path</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get_value</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>, <span class="methodparam"><span class="parameter"><strong class="parameter"><code>column</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">iter_next</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">iter_children</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>parent</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">iter_has_child</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">iter_n_children</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">iter_nth_child</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>parent</code></strong></span></span>, <span class="methodparam"><span class="parameter"><strong class="parameter"><code>n</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">iter_parent</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>child</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">get</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>iter</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>column</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>...</code></em></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">foreach</span>(<span class="methodparam"><span class="parameter"><em class="parameter"><code>func</code></em></span></span>, <span class="methodparam"><span class="parameter"><em class="parameter"><code>user_data</code></em></span></span>)</code><p>Pour illustrer l'utilisation du <code class="classname">GenericTreeModel</code>
+j'ai modifiÃ© le programme <a href="exemples/listefichiers.py" target="_top"><span><strong class="command">listefichiers.py</strong></span></a> et
+montre comment les mÃ©thodes d'interface sont rÃ©alisÃ©es. Le programme
+<a href="exemples/listefichiers-gtm.py" target="_top"><span><strong class="command">listefichiers-gtm.py</strong></span></a>
+affiche les fichiers d'un rÃ©pertoire avec une icÃ´ne indiquant si le fichier est ou
+non un rÃ©pertoire, le nom du fichier,  sa taille, son mode et sa date de derniÃ¨re
 modification.
 </p>
-<p>La méthode <code class="methodname">on_get_flags</code>() doit retourner une 
-valeur qui est une combinaison de  :
+<p>La mÃ©thode <code class="methodname">on_get_flags</code>() doit retourner une
+valeur qui est une combinaison de Â :
 </p>
 <table border="0" width="100%" bgcolor="#FFECCE">
 <col align="left" valign="top" width="0*">
@@ -95,33 +96,33 @@ valeur qui est une combinaison de  :
 <tr>
 <td>
 <span class="term"><code class="literal">gtk.TREE_MODEL_ITERS_PERSIST</code></span></td>
-<td>Les <code class="classname">TreeIter</code> perdurent quels que soient 
-les signaux émis par l'arbre.</td>
+<td>Les <code class="classname">TreeIter</code> perdurent quels que soient
+les signaux Ã©mis par l'arbre.</td>
 </tr>
 <tr>
 <td>
 <span class="term"><code class="literal">gtk.TREE_MODEL_LIST_ONLY</code></span></td>
-<td>Le modèle est uniquement une liste et n'a jamais d'enfant.
+<td>Le modÃ¨le est uniquement une liste et n'a jamais d'enfant.
 </td>
 </tr>
 </tbody>
 </table>
-<p>Si  un modèle posséde des références de lignes valides malgré les changements 
-de lignes (réordonnancement, ajout, suppression), on utilise 
-<code class="literal">gtk.TREE_MODEL_ITERS_PERSIST</code>. De la même façon, si un 
-modèle est seulement une liste, on utilise <code class="literal">gtk.TREE_MODEL_LIST_ONLY</code>. 
-Autrement, on renvoie 0 si le modèle ne possède pas de références de lignes 
-persistantes et est une arborescence. Dans l'exemple, le modèle est une liste 
+<p>Si  un modÃ¨le possÃ©de des rÃ©fÃ©rences de lignes valides malgrÃ© les changements
+de lignes (rÃ©ordonnancement, ajout, suppression), on utilise
+<code class="literal">gtk.TREE_MODEL_ITERS_PERSIST</code>. De la mÃªme faÃ§on, si un
+modÃ¨le est seulement une liste, on utilise <code class="literal">gtk.TREE_MODEL_LIST_ONLY</code>.
+Autrement, on renvoie 0 si le modÃ¨le ne possÃ¨de pas de rÃ©fÃ©rences de lignes
+persistantes et est une arborescence. Dans l'exemple, le modÃ¨le est une liste
 avec des <code class="classname">TreeIter</code> persistants.
 </p>
 <pre class="programlisting">
     def on_get_flags(self):
         return gtk.TREE_MODEL_LIST_ONLY|gtk.TREE_MODEL_ITERS_PERSIST
 </pre>
-<p>La méthode <code class="methodname">on_get_n_columns</code>() doit retourner le 
-nombre de colonnes que le modèle exporte vers l'application. L'exemple 
-garde une liste de types de colonnes, ainsi on peut renvoyer la longueur 
-de la liste :
+<p>La mÃ©thode <code class="methodname">on_get_n_columns</code>() doit retourner le
+nombre de colonnes que le modÃ¨le exporte vers l'application. L'exemple
+garde une liste de types de colonnes, ainsi on peut renvoyer la longueur
+de la listeÂ :
 </p>
 <pre class="programlisting">
 class Fichmodeleliste(gtk.GenericTreeModel):
@@ -131,58 +132,58 @@ class Fichmodeleliste(gtk.GenericTreeModel):
     def on_get_n_columns(self):
         return len(self.types_colonnes)
 </pre>
-<p>La méthode <code class="methodname">on_get_column_type</code>() doit renvoyer le type 
-de la colonne pour l'<em class="parameter"><code>index</code></em> indiqué. Cette méthode est généralement 
-appelée par un <code class="classname">TreeView</code> quand le modèle est établi. 
-On peut soit créer une liste ou un tuple contenant l'information de type de colonne 
-soit le créer à la volée. Dans l'exemple :
+<p>La mÃ©thode <code class="methodname">on_get_column_type</code>() doit renvoyer le type
+de la colonne pour l'<em class="parameter"><code>index</code></em> indiquÃ©. Cette mÃ©thode est gÃ©nÃ©ralement
+appelÃ©e par un <code class="classname">TreeView</code> quand le modÃ¨le est Ã©tabli.
+On peut soit crÃ©er une liste ou un tuple contenant l'information de type de colonne
+soit le crÃ©er Ã  la volÃ©e. Dans l'exempleÂ :
 </p>
 <pre class="programlisting">
     def on_get_column_type(self, n):
         return self.types_colonnes[n]
 </pre>
-<p>L'interface <code class="classname">GenericTreeModel</code> convertit le type 
+<p>L'interface <code class="classname">GenericTreeModel</code> convertit le type
 Python en un GType, donc le code suivant</p>
 <pre class="programlisting">
   flm = Fichmodeleliste()
   print flm.on_get_column_type(1), flm.get_column_type(1)
 </pre>
-<p>imprimerait :</p>
+<p>imprimeraitÂ :</p>
 <pre class="programlisting">
 &lt;type 'str'&gt; &lt;GType gchararray (64)&gt;
 </pre>
-<p>Les méthodes suivantes utilisent les références de ligne qui sont conservées 
-comme données privées dans un <code class="classname">TreeIter</code>. L'application 
-ne peut lire la référence de ligne dans un <code class="classname">TreeIter</code> 
-donc on peut utiliser n'importe quel item unique voulu comme référence de 
-ligne. Par exemple, dans un modèle comportant des lignes comme des tuples, il 
-est possible d'utiliser l'index de tuple comme la référence de ligne. Un 
-autre exemple serait d'utiliser un nom de fichier comme référence de ligne 
-dans un modèle représentant des fichiers dans un répertoire. Dans ces deux 
-cas, le référence de ligne n'est pas modifiée par les changements du modèle, 
-aussi les <code class="classname">TreeIter</code> peuvent être déclarés persistants. 
-L'interface de l'application PyGTK <code class="classname">GenericTreeModel</code> 
-extraira vos références de ligne à partir des <code class="classname">TreeIter</code> 
-et enveloppera vos références de ligne dans les <code class="classname">TreeIter</code> 
+<p>Les mÃ©thodes suivantes utilisent les rÃ©fÃ©rences de ligne qui sont conservÃ©es
+comme donnÃ©es privÃ©es dans un <code class="classname">TreeIter</code>. L'application
+ne peut lire la rÃ©fÃ©rence de ligne dans un <code class="classname">TreeIter</code>
+donc on peut utiliser n'importe quel item unique voulu comme rÃ©fÃ©rence de
+ligne. Par exemple, dans un modÃ¨le comportant des lignes comme des tuples, il
+est possible d'utiliser l'index de tuple comme la rÃ©fÃ©rence de ligne. Un
+autre exemple serait d'utiliser un nom de fichier comme rÃ©fÃ©rence de ligne
+dans un modÃ¨le reprÃ©sentant des fichiers dans un rÃ©pertoire. Dans ces deux
+cas, le rÃ©fÃ©rence de ligne n'est pas modifiÃ©e par les changements du modÃ¨le,
+aussi les <code class="classname">TreeIter</code> peuvent Ãªtre dÃ©clarÃ©s persistants.
+L'interface de l'application PyGTK <code class="classname">GenericTreeModel</code>
+extraira vos rÃ©fÃ©rences de ligne Ã  partir des <code class="classname">TreeIter</code>
+et enveloppera vos rÃ©fÃ©rences de ligne dans les <code class="classname">TreeIter</code>
 selons les besoins.
 </p>
-<p>Dans les méthodes suivantes, <code class="literal">refligne</code> se réfère à une 
-référence de ligne interne.</p>
-<p>La méthode <code class="methodname">on_get_iter</code>() devrait renvoyer un refligne 
-pour le chemin de l'arborescence indiqué par le <em class="parameter"><code>chemin</code></em>. 
-Le chemin de l'arborescence doit toujours être représenté par un tuple. L'exemple 
-utilise le nom de fichier comme refligne. Les noms de fichier sont conservés dans 
-une liste dans le modèle, ainsi on prend le premier index du chemin comme index 
-du nom de fichier :
+<p>Dans les mÃ©thodes suivantes, <code class="literal">refligne</code> se rÃ©fÃ¨re Ã  une
+rÃ©fÃ©rence de ligne interne.</p>
+<p>La mÃ©thode <code class="methodname">on_get_iter</code>() devrait renvoyer un refligne
+pour le chemin de l'arborescence indiquÃ© par le <em class="parameter"><code>chemin</code></em>.
+Le chemin de l'arborescence doit toujours Ãªtre reprÃ©sentÃ© par un tuple. L'exemple
+utilise le nom de fichier comme refligne. Les noms de fichier sont conservÃ©s dans
+une liste dans le modÃ¨le, ainsi on prend le premier index du chemin comme index
+du nom de fichierÂ :
 </p>
 <pre class="programlisting">
     def on_get_iter(self, chemin):
         return self.fichiers[chemin[0]]
 </pre>
-<p>Il faut être cohérent dans l'utilisation de la référence de ligne puisque on 
-récupérera une référence de ligne dans les appels de méthode des méthodes 
-<code class="classname">GenericTreeModel</code> qui prennent les arguments 
-<code class="classname">TreeIter</code> :
+<p>Il faut Ãªtre cohÃ©rent dans l'utilisation de la rÃ©fÃ©rence de ligne puisque on
+rÃ©cupÃ©rera une rÃ©fÃ©rence de ligne dans les appels de mÃ©thode des mÃ©thodes
+<code class="classname">GenericTreeModel</code> qui prennent les arguments
+<code class="classname">TreeIter</code>Â :
 <code class="methodname">on_get_path</code>(),
 <code class="methodname">on_get_value</code>(),
 <code class="methodname">on_iter_next</code>(),
@@ -191,24 +192,24 @@ récupérera une référence de ligne dans les appels de méthode des méthodes
 <code class="methodname">on_iter_n_children</code>(),
 <code class="methodname">on_iter_nth_child</code>() et
 <code class="methodname">on_iter_parent</code>().</p>
-<p>La méthode <code class="methodname">on_get_path</code>() devrait retourner un chemin 
-de l'arborescence donnant un <em class="parameter"><code>refligne</code></em>. Par exemple, poursuivant l'exemple précédent 
-où le nom de fichier est utilisé comme <em class="parameter"><code>refligne</code></em>, on pourrait définir la méthode 
-<code class="methodname">on_get_path</code>() comme suit :
+<p>La mÃ©thode <code class="methodname">on_get_path</code>() devrait retourner un chemin
+de l'arborescence donnant un <em class="parameter"><code>refligne</code></em>. Par exemple, poursuivant l'exemple prÃ©cÃ©dent
+oÃ¹ le nom de fichier est utilisÃ© comme <em class="parameter"><code>refligne</code></em>, on pourrait dÃ©finir la mÃ©thode
+<code class="methodname">on_get_path</code>() comme suitÂ :
 </p>
 <pre class="programlisting">
     def on_get_chemin(self, refligne):
         return self.fichiers.index(refligne)
 </pre>
-<p>Cette méthode trouve l'index de la liste contenant le nom de fichier dans 
-<em class="parameter"><code>refligne</code></em>. Cet exemple montre clairement qu'un choix 
-judicieux de référence de ligne rend l'exécution plus efficiente. Par exemple, 
-on pourrait utiliser un dictionnaire Python pour relier 
-<em class="parameter"><code>refligne</code></em> à un chemin.
+<p>Cette mÃ©thode trouve l'index de la liste contenant le nom de fichier dans
+<em class="parameter"><code>refligne</code></em>. Cet exemple montre clairement qu'un choix
+judicieux de rÃ©fÃ©rence de ligne rend l'exÃ©cution plus efficiente. Par exemple,
+on pourrait utiliser un dictionnaire Python pour relier
+<em class="parameter"><code>refligne</code></em> Ã  un chemin.
 </p>
-<p>La méthode <code class="methodname">on_get_value</code>() devrait renvoyer les 
-données rangées à la ligne et colonne indiquées par <em class="parameter"><code>refligne</code></em> 
-et <em class="parameter"><code>colonne</code></em>. Dans l'exemple :
+<p>La mÃ©thode <code class="methodname">on_get_value</code>() devrait renvoyer les
+donnÃ©es rangÃ©es Ã  la ligne et colonne indiquÃ©es par <em class="parameter"><code>refligne</code></em>
+et <em class="parameter"><code>colonne</code></em>. Dans l'exempleÂ :
 </p>
 <pre class="programlisting">
     def on_get_value(self, refligne, colonne):
@@ -231,12 +232,12 @@ et <em class="parameter"><code>colonne</code></em>. Dans l'exemple :
             return oct(stat.S_IMODE(mode))
         return time.ctime(statutfich.st_mtime)
 </pre>
-<p>on doit extraire l'information de fichier associée et renvoyer la valeur 
-appropriée selon la colonne indiquée.
+<p>on doit extraire l'information de fichier associÃ©e et renvoyer la valeur
+appropriÃ©e selon la colonne indiquÃ©e.
 </p>
-<p>La méthode <code class="methodname">on_iter_next</code>() devrait retourner une 
-référence de ligne à la ligne (de même niveau) après la ligne indiquée 
-par <em class="parameter"><code>refligne</code></em>. Dans l'exemple :
+<p>La mÃ©thode <code class="methodname">on_iter_next</code>() devrait retourner une
+rÃ©fÃ©rence de ligne Ã  la ligne (de mÃªme niveau) aprÃ¨s la ligne indiquÃ©e
+par <em class="parameter"><code>refligne</code></em>. Dans l'exempleÂ :
 </p>
 <pre class="programlisting">
     def on_iter_next(self, refligne):
@@ -246,16 +247,16 @@ par <em class="parameter"><code>refligne</code></em>. Dans l'exemple :
         except IndexError:
             return None
 </pre>
-<p>L'index du nom de fichier de <em class="parameter"><code>refligne</code></em> est établi  
-et le nom de fichier suivant est renvoyé ou s'il n'existe pas, 
-<code class="literal">None</code> est renvoyé.
+<p>L'index du nom de fichier de <em class="parameter"><code>refligne</code></em> est Ã©tabli
+et le nom de fichier suivant est renvoyÃ© ou s'il n'existe pas,
+<code class="literal">None</code> est renvoyÃ©.
 </p>
-<p>La méthode <code class="methodname">on_iter_children</code>() devrait retourner une 
-référence de ligne vers la première ligne enfant de la ligne indiquée par 
-<em class="parameter"><code>refligne</code></em>. Si <em class="parameter"><code>refligne</code></em> vaut 
-<code class="literal">None</code>, une référence à la première ligne du niveau 
-supérieur est retournée. S'il n'existe pas de ligne enfant, 
-<code class="literal">None</code> est retourné. Dans l'exemple :
+<p>La mÃ©thode <code class="methodname">on_iter_children</code>() devrait retourner une
+rÃ©fÃ©rence de ligne vers la premiÃ¨re ligne enfant de la ligne indiquÃ©e par
+<em class="parameter"><code>refligne</code></em>. Si <em class="parameter"><code>refligne</code></em> vaut
+<code class="literal">None</code>, une rÃ©fÃ©rence Ã  la premiÃ¨re ligne du niveau
+supÃ©rieur est retournÃ©e. S'il n'existe pas de ligne enfant,
+<code class="literal">None</code> est retournÃ©. Dans l'exempleÂ :
 </p>
 <pre class="programlisting">
     def on_iter_children(self, refligne):
@@ -263,25 +264,25 @@ supérieur est retournée. S'il n'existe pas de ligne enfant,
             return None
         return self.fichiers[0]
 </pre>
-<p>Puisque le modèle est une liste, seul le niveau supérieur 
-(<em class="parameter"><code>refligne</code></em>=<code class="literal">None</code>) peut posséder 
-des lignes enfant. <code class="literal">None</code> est retourné si 
+<p>Puisque le modÃ¨le est une liste, seul le niveau supÃ©rieur
+(<em class="parameter"><code>refligne</code></em>=<code class="literal">None</code>) peut possÃ©der
+des lignes enfant. <code class="literal">None</code> est retournÃ© si
 <em class="parameter"><code>refligne</code></em> contient un nom de fichier.
 </p>
-<p>La méthode <code class="methodname">on_iter_has_child</code>() doit renvoyer 
-<code class="literal">TRUE</code> si la ligne indiquée par <em class="parameter"><code>refligne</code></em> 
-possède des lignes enfant, <code class="literal">FALSE</code> sinon. Dans l'exemple, on renvoie 
-<code class="literal">FALSE</code> puisque aucune ligne ne peut posséder d'enfant :
+<p>La mÃ©thode <code class="methodname">on_iter_has_child</code>() doit renvoyer
+<code class="literal">TRUE</code> si la ligne indiquÃ©e par <em class="parameter"><code>refligne</code></em>
+possÃ¨de des lignes enfant, <code class="literal">FALSE</code> sinon. Dans l'exemple, on renvoie
+<code class="literal">FALSE</code> puisque aucune ligne ne peut possÃ©der d'enfantÂ :
 </p>
 <pre class="programlisting">
     def on_iter_has_child(self, refligne):
         return False
 </pre>
-<p>La méthode <code class="methodname">on_iter_n_children</code>() renvoie le nombre 
-de lignes enfant que posséde la ligne indiquée par <em class="parameter"><code>refligne</code></em>. 
-Si <em class="parameter"><code>refligne</code></em> vaut <code class="literal">None</code>, on renvoie le 
-nombre de lignes du niveau supérieur. Dans l'exemple, on renvoie 0 si 
-<em class="parameter"><code>refligne</code></em> ne vaut pas <code class="literal">None</code> :
+<p>La mÃ©thode <code class="methodname">on_iter_n_children</code>() renvoie le nombre
+de lignes enfant que possÃ©de la ligne indiquÃ©e par <em class="parameter"><code>refligne</code></em>.
+Si <em class="parameter"><code>refligne</code></em> vaut <code class="literal">None</code>, on renvoie le
+nombre de lignes du niveau supÃ©rieur. Dans l'exemple, on renvoie 0 si
+<em class="parameter"><code>refligne</code></em> ne vaut pas <code class="literal">None</code>Â :
 </p>
 <pre class="programlisting">
     def on_iter_n_children(self, refligne):
@@ -289,13 +290,13 @@ nombre de lignes du niveau supérieur. Dans l'exemple, on renvoie 0 si
             return 0
         return len(self.fichiers)
 </pre>
-<p>La méthode <code class="methodname">on_iter_nth_child</code>() renvoie une 
-référence de ligne à la énième ligne enfant de la ligne indiquée par 
-<em class="parameter"><code>parent</code></em>. Si <em class="parameter"><code>parent</code></em> vaut 
-<code class="literal">None</code>, une référence à la énième ligne du niveau 
-supérieur est retournée. Dans l'exemple, on retourne une référence à 
-la énième ligne du niveau supérieur si <em class="parameter"><code>parent</code></em> 
-vaut <code class="literal">None</code>, <code class="literal">None</code> sinon :
+<p>La mÃ©thode <code class="methodname">on_iter_nth_child</code>() renvoie une
+rÃ©fÃ©rence de ligne Ã  la Ã©niÃ¨me ligne enfant de la ligne indiquÃ©e par
+<em class="parameter"><code>parent</code></em>. Si <em class="parameter"><code>parent</code></em> vaut
+<code class="literal">None</code>, une rÃ©fÃ©rence Ã  la Ã©niÃ¨me ligne du niveau
+supÃ©rieur est retournÃ©e. Dans l'exemple, on retourne une rÃ©fÃ©rence Ã 
+la Ã©niÃ¨me ligne du niveau supÃ©rieur si <em class="parameter"><code>parent</code></em>
+vaut <code class="literal">None</code>, <code class="literal">None</code> sinonÂ :
 </p>
 <pre class="programlisting">
     def on_iter_nth_child(self, refligne, n):
@@ -306,37 +307,37 @@ vaut <code class="literal">None</code>, <code class="literal">None</code> sinon 
         except IndexError:
             return None
 </pre>
-<p>La méthode <code class="methodname">on_iter_parent</code>() renvoie une référence de 
-ligne à la ligne parent de la ligne indiquée par <em class="parameter"><code>refligne</code></em>. 
-Si <em class="parameter"><code>refligne</code></em> pointe sur une ligne du niveau supérieur, on 
-renvoie <code class="literal">None</code>. Dans l'exemple, <code class="literal">None</code> est 
-toujours renvoyé en supposant que <em class="parameter"><code>refligne</code></em> doit pointer 
-sur une ligne du niveau supérieur :
+<p>La mÃ©thode <code class="methodname">on_iter_parent</code>() renvoie une rÃ©fÃ©rence de
+ligne Ã  la ligne parent de la ligne indiquÃ©e par <em class="parameter"><code>refligne</code></em>.
+Si <em class="parameter"><code>refligne</code></em> pointe sur une ligne du niveau supÃ©rieur, on
+renvoie <code class="literal">None</code>. Dans l'exemple, <code class="literal">None</code> est
+toujours renvoyÃ© en supposant que <em class="parameter"><code>refligne</code></em> doit pointer
+sur une ligne du niveau supÃ©rieurÂ :
 </p>
 <pre class="programlisting">
     def on_iter_parent(child):
         return None
 </pre>
-<p>Ces exemples sont assemblés dans le programme 
-<a href="exemples/listefichiers-gtm.py" target="_top">listefichiers-gtm.py</a>. La 
-<a href="sec-GenericTreeModel.html#listefichiers-gtmfig" title="Figure 14.11. Exemple de TreeModel générique">Figure 14.11, « Exemple de TreeModel générique »</a> montre le résultat
+<p>Ces exemples sont assemblÃ©s dans le programme
+<a href="exemples/listefichiers-gtm.py" target="_top">listefichiers-gtm.py</a>. La
+<a href="sec-GenericTreeModel.html#listefichiers-gtmfig" title="FigureÂ 14.11.Â Exemple de TreeModel gÃ©nÃ©rique">FigureÂ 14.11, Â«Â Exemple de TreeModel gÃ©nÃ©riqueÂ Â»</a> montre le rÃ©sultat
 </p>
 <div class="figure">
-<a name="listefichiers-gtmfig"></a><p class="title"><b>Figure 14.11. Exemple de TreeModel générique</b></p>
-<div class="mediaobject" align="center"><img src="figures/listefichiers-gtm.png" align="middle" alt="Exemple de TreeModel générique."></div>
+<a name="listefichiers-gtmfig"></a><p class="title"><b>FigureÂ 14.11.Â Exemple de TreeModel gÃ©nÃ©rique</b></p>
+<div class="mediaobject" align="center"><img src="figures/listefichiers-gtm.png" align="middle" alt="Exemple de TreeModel gÃ©nÃ©rique."></div>
 </div>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-AddRemoveGenericTreeModelRows"></a>14.11.3. Ajouter et supprimer des lignes</h3></div></div></div>
-<p>Le programme <a href="exemples/listefichiers-gtm.py" target="_top">listefichiers-gtm.py</a> calcule la liste 
-des noms de fichier lorsqu'il crée une instance de <code class="classname">FileListModel</code>. 
-Si l'on souhaite vérifier réguliérement la création de nouveaux fichiers et ajouter ou 
-retiter des fichiers du modèle, on peut soit créer un nouveau 
-<code class="classname">FileListModel</code> pour le même répertoire, soit ajouter une méthode 
-pour ajouter ou retirer des lignes dans le modèle. Selon le type de modèle créé, il 
-peut être nécessaire d'ajouter une méthode semblable à celles des modèles de 
-<code class="classname">TreeStore</code> et de <code class="classname">ListStore</code> :
+<a name="sec-AddRemoveGenericTreeModelRows"></a>14.11.3.Â Ajouter et supprimer des lignes</h3></div></div></div>
+<p>Le programme <a href="exemples/listefichiers-gtm.py" target="_top">listefichiers-gtm.py</a> calcule la liste
+des noms de fichier lorsqu'il crÃ©e une instance de <code class="classname">FileListModel</code>.
+Si l'on souhaite vÃ©rifier rÃ©guliÃ©rement la crÃ©ation de nouveaux fichiers et ajouter ou
+retiter des fichiers du modÃ¨le, on peut soit crÃ©er un nouveau
+<code class="classname">FileListModel</code> pour le mÃªme rÃ©pertoire, soit ajouter une mÃ©thode
+pour ajouter ou retirer des lignes dans le modÃ¨le. Selon le type de modÃ¨le crÃ©Ã©, il
+peut Ãªtre nÃ©cessaire d'ajouter une mÃ©thode semblable Ã  celles des modÃ¨les de
+<code class="classname">TreeStore</code> et de <code class="classname">ListStore</code>Â :
 </p>
 <div class="itemizedlist"><ul type="disc">
 <li>
@@ -354,19 +355,19 @@ peut être nécessaire d'ajouter une méthode semblable à celles des modèles de
 <li>
 <code class="methodname">clear</code>()</li>
 </ul></div>
-<p>Il n'est, bien sûr, pas nécessaire d'utiliser toutes ou même 
-une seule de ces méthodes. On peut créer ses propres méthodes plus adaptées 
-à son modèle.
+<p>Il n'est, bien sÃ»r, pas nÃ©cessaire d'utiliser toutes ou mÃªme
+une seule de ces mÃ©thodes. On peut crÃ©er ses propres mÃ©thodes plus adaptÃ©es
+Ã  son modÃ¨le.
 </p>
-<p>En utilisant le programme exemple prédécent pour montrer l'ajout de 
-méthodes pour supprimer ou ajouter des fichiers, voici comment on implémente 
-les méthodes 
+<p>En utilisant le programme exemple prÃ©dÃ©cent pour montrer l'ajout de
+mÃ©thodes pour supprimer ou ajouter des fichiers, voici comment on implÃ©mente
+les mÃ©thodesÂ 
 </p>
-<code class="methodsynopsis">    def <span class="methodname">remove</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">add</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>filename</code></strong></span></span>)</code><br><p>La méthode <code class="methodname">remove</code>() retire le fichier indiqué par le 
-paramétre <em class="parameter"><code>iter</code></em>. Outre retirer la ligne du modèle, la 
-méthode efface aussi le fichier du répertoire. Évidemment, si l'utilisateur 
-n'a pas les droits de suppression du ficher, la ligne n'est pas supprimée 
-non plus. Par exemple :
+<code class="methodsynopsis">    def <span class="methodname">remove</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">add</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>filename</code></strong></span></span>)</code><br><p>La mÃ©thode <code class="methodname">remove</code>() retire le fichier indiquÃ© par le
+paramÃ©tre <em class="parameter"><code>iter</code></em>. Outre retirer la ligne du modÃ¨le, la
+mÃ©thode efface aussi le fichier du rÃ©pertoire. Ã‰videmment, si l'utilisateur
+n'a pas les droits de suppression du ficher, la ligne n'est pas supprimÃ©e
+non plus. Par exempleÂ :
 </p>
 <pre class="programlisting">
     def remove(self, iter):
@@ -381,22 +382,22 @@ non plus. Par exemple :
             pass
         return
 </pre>
-<p>La méthode transmet un <code class="classname">TreeIter</code> qu'il faut 
-transformer en un chemin à utiliser pour récupérer le chemin du fichier par 
-la méthode <code class="methodname">get_pathname</code>(). Il est possible que le 
-fichier ait déjà été supprimé, il faut donc tester son existence avant de 
-le supprimer. Si une exception OSError intervient pendant la suppression 
-du fichier, c'est probablement parce que le fichier est dans un répertoire 
-où l'utilisateur n'a pas suffisamment de droits. Finalement, le fichier 
-est supprimé et le signal "row-deleted" est émis par la méthode 
-<code class="methodname">rows_deleted</code>(). Le signal  "file-deleted" indique 
-aux <code class="classname">TreeView</code> utilisant le modèle que ce modèle a changé, 
-ainsi ils peuvent mettre à jour leur état interne et afficher le modèle 
-modifié.
+<p>La mÃ©thode transmet un <code class="classname">TreeIter</code> qu'il faut
+transformer en un chemin Ã  utiliser pour rÃ©cupÃ©rer le chemin du fichier par
+la mÃ©thode <code class="methodname">get_pathname</code>(). Il est possible que le
+fichier ait dÃ©jÃ  Ã©tÃ© supprimÃ©, il faut donc tester son existence avant de
+le supprimer. Si une exception OSError intervient pendant la suppression
+du fichier, c'est probablement parce que le fichier est dans un rÃ©pertoire
+oÃ¹ l'utilisateur n'a pas suffisamment de droits. Finalement, le fichier
+est supprimÃ© et le signal "row-deleted" est Ã©mis par la mÃ©thode
+<code class="methodname">rows_deleted</code>(). Le signal  "file-deleted" indique
+aux <code class="classname">TreeView</code> utilisant le modÃ¨le que ce modÃ¨le a changÃ©,
+ainsi ils peuvent mettre Ã  jour leur Ã©tat interne et afficher le modÃ¨le
+modifiÃ©.
 </p>
-<p>La méthode <code class="methodname">add</code>() impose de créer un fichier dans le 
-répertoire courant avec le nom donné. Si le fichier est créé, son nom est 
-ajouté  à la liste des fichiers du modèle. Par exemple :
+<p>La mÃ©thode <code class="methodname">add</code>() impose de crÃ©er un fichier dans le
+rÃ©pertoire courant avec le nom donnÃ©. Si le fichier est crÃ©Ã©, son nom est
+ajoutÃ©  Ã  la liste des fichiers du modÃ¨le. Par exempleÂ :
 </p>
 <pre class="programlisting">
     def add(self, filename):
@@ -417,24 +418,24 @@ ajouté  à la liste des fichiers du modèle. Par exemple :
             pass
         return
 </pre>
-<p>Cet exemple simple s'assure que le fichier n'existe pas déjà, puis tente 
-d'ouvrir le fichier en écriture. Si cela réussit, le fichier est refermé 
-et son nom inséré dans la liste de fichiers. Le chemin et le 
-<code class="classname">TreeIter</code> de la ligne du fichier ajouté sont 
-récupérés pour être utilisés dans la methode 
-<code class="methodname">row_inserted</code>() qui émet le signal 
-"row-inserted". Ce signal "row-inserted" sert à indiquer aux 
-<code class="classname">TreeView</code> utilisant le modèle qu'ils doivent 
-mettre à jour leur état et rafraîchir leur affichage.
+<p>Cet exemple simple s'assure que le fichier n'existe pas dÃ©jÃ , puis tente
+d'ouvrir le fichier en Ã©criture. Si cela rÃ©ussit, le fichier est refermÃ©
+et son nom insÃ©rÃ© dans la liste de fichiers. Le chemin et le
+<code class="classname">TreeIter</code> de la ligne du fichier ajoutÃ© sont
+rÃ©cupÃ©rÃ©s pour Ãªtre utilisÃ©s dans la methode
+<code class="methodname">row_inserted</code>() qui Ã©met le signal
+"row-inserted". Ce signal "row-inserted" sert Ã  indiquer aux
+<code class="classname">TreeView</code> utilisant le modÃ¨le qu'ils doivent
+mettre Ã  jour leur Ã©tat et rafraÃ®chir leur affichage.
 </p>
-<p>Les autres méthodes mentionnées précèdemment (par exemple 
-<code class="methodname">append</code> et <code class="methodname">prepend</code>) n'ont 
-pas de signification pour cet exemple puisque le modèle sa liste de fichiers 
-triée.
+<p>Les autres mÃ©thodes mentionnÃ©es prÃ©cÃ¨demment (par exemple
+<code class="methodname">append</code> et <code class="methodname">prepend</code>) n'ont
+pas de signification pour cet exemple puisque le modÃ¨le sa liste de fichiers
+triÃ©e.
 </p>
-<p>D'autres méthodes peuvent être utiles à utiliser dans un 
-<code class="classname">TreeModel</code> découlant du 
-<code class="classname">GenericTreeModel</code> :
+<p>D'autres mÃ©thodes peuvent Ãªtre utiles Ã  utiliser dans un
+<code class="classname">TreeModel</code> dÃ©coulant du
+<code class="classname">GenericTreeModel</code>Â :
 </p>
 <div class="itemizedlist"><ul type="disc">
 <li>
@@ -448,130 +449,130 @@ triée.
 <li>
 <code class="methodname">move_before</code>()</li>
 </ul></div>
-<p>L'implémentation de ces méthodes est similaire à celle des méthodes 
-précédentes. Il faut synchroniser le modèle et l'état externe, et ensuite indiquer 
-aux <code class="classname">TreeView</code> que le modèle a changé. Les méthodes suivantes 
-sont utilisées pour indiquer aux <code class="classname">TreeView</code> les 
-changement du modèle en envoyant le signal approprié :
+<p>L'implÃ©mentation de ces mÃ©thodes est similaire Ã  celle des mÃ©thodes
+prÃ©cÃ©dentes. Il faut synchroniser le modÃ¨le et l'Ã©tat externe, et ensuite indiquer
+aux <code class="classname">TreeView</code> que le modÃ¨le a changÃ©. Les mÃ©thodes suivantes
+sont utilisÃ©es pour indiquer aux <code class="classname">TreeView</code> les
+changement du modÃ¨le en envoyant le signal appropriÃ©Â :
 </p>
 <code class="methodsynopsis">    def <span class="methodname">row_changed</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>path</code></strong></span></span>, <span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">row_inserted</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>path</code></strong></span></span>, <span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">row_has_child_toggled</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>path</code></strong></span></span>, <span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">row_deleted</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>path</code></strong></span></span>)</code><br><code class="methodsynopsis">    def <span class="methodname">rows_reordered</span>(<span class="methodparam"><span class="parameter"><strong class="parameter"><code>path</code></strong></span></span>, <span class="methodparam"><span class="parameter"><strong class="parameter"><code>iter</code></strong></span></span>, <span class="methodparam"><span class="parameter"><strong class="parameter"><code>new_order</code></strong></span></span>)</code><p></p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-GenericTreeModelMemoryManagement"></a>14.11.4. Gestion de la mémoire</h3></div></div></div>
-<p>L'un des problèmes avec le <code class="classname">GenericTreeModel</code> est 
-que le <code class="classname">TreeIter</code> contient une référence à un 
-objet Python venent du modèle personnalisé. Puisque le 
-<code class="classname">TreeIter</code> peut être crée et initialisé dans un 
-module en C et être présent dans la pile, il n'est pas possible de 
-connaître le moment où le <code class="classname">TreeIter</code> est détruit 
-et la référence à l'objet Python n'est plus d'utilité. Donc l'objet 
-Python référencé dans un  <code class="classname">TreeIter</code> voit par défaut 
-son cimpteur incrémenté, mais il n'est pas décrémenté lorque le 
-<code class="classname">TreeIter</code> est détruit. Ceci garantit que l'objet 
-Python ne peut être détruit quand il est utilisé par un 
-<code class="classname">TreeIter</code> et produire éventuellement une erreur 
-de segmentation. Malheureusement les comptes de référence supplémentaires 
-font que, au mieux l'objet Python aura un compte de référence excessif et, 
-au pire, il ne sera jamais libéré même lorsque il n'est pas utilisé. 
-Le dernier cas cause des fuites de mémoire et le premier, des fuites de 
-références.
+<a name="sec-GenericTreeModelMemoryManagement"></a>14.11.4.Â Gestion de la mÃ©moire</h3></div></div></div>
+<p>L'un des problÃ¨mes avec le <code class="classname">GenericTreeModel</code> est
+que le <code class="classname">TreeIter</code> contient une rÃ©fÃ©rence Ã  un
+objet Python venent du modÃ¨le personnalisÃ©. Puisque le
+<code class="classname">TreeIter</code> peut Ãªtre crÃ©e et initialisÃ© dans un
+module en C et Ãªtre prÃ©sent dans la pile, il n'est pas possible de
+connaÃ®tre le moment oÃ¹ le <code class="classname">TreeIter</code> est dÃ©truit
+et la rÃ©fÃ©rence Ã  l'objet Python n'est plus d'utilitÃ©. Donc l'objet
+Python rÃ©fÃ©rencÃ© dans un  <code class="classname">TreeIter</code> voit par dÃ©faut
+son cimpteur incrÃ©mentÃ©, mais il n'est pas dÃ©crÃ©mentÃ© lorque le
+<code class="classname">TreeIter</code> est dÃ©truit. Ceci garantit que l'objet
+Python ne peut Ãªtre dÃ©truit quand il est utilisÃ© par un
+<code class="classname">TreeIter</code> et produire Ã©ventuellement une erreur
+de segmentation. Malheureusement les comptes de rÃ©fÃ©rence supplÃ©mentaires
+font que, au mieux l'objet Python aura un compte de rÃ©fÃ©rence excessif et,
+au pire, il ne sera jamais libÃ©rÃ© mÃªme lorsque il n'est pas utilisÃ©.
+Le dernier cas cause des fuites de mÃ©moire et le premier, des fuites de
+rÃ©fÃ©rences.
 
 </p>
-<p>Pour parer à la situation où le <code class="classname">TreeModel</code> personnalisé 
-maintient une référence à l'objet Python jusqu'à ce qu'il ne soit plus disponible 
-(le <code class="classname">TreeIter</code> est invalide car le modèle a changé) et il 
-n'y a pas besoin de relacher les références, le <code class="classname">GenericTreeModel</code> 
-possède une propriété "leak-references". Par défaut, "leak-references" vaut 
-<code class="literal">TRUE</code> pour indiquer que le <code class="classname">GenericTreeModel</code> 
-relachera les références. Si "leak-references" vaut <code class="literal">FALSE</code>, le 
-compteur de références de l'objet Python ne sera pas incrémenté quand il sera référencé 
-dans un <code class="classname">TreeIter</code>. Ce qui signifie que le le 
-<code class="classname">TreeModel</code> personnalisé doit conserver une référence 
-à tous les objets Python utilisés dans un <code class="classname">TreeIter</code> jusqu'à 
-la destruction du modèle. Malheureusement, même ceci ne protège pas d'un mauvais 
-code qui tente d'utiliser un <code class="classname">TreeIter</code> sauvegardé dans un 
-<code class="classname">GenericTreeModel</code> différent. Pour se protéger contre ce cas de 
-figure, l'application doit conserver une référence à tous les objets Python 
-référencés dans un <code class="classname">TreeIter</code> pour toutes les instances du 
-<code class="classname">GenericTreeModel</code>. Naturellement, ceci a le le même effet 
-qu'une fuite de références.
+<p>Pour parer Ã  la situation oÃ¹ le <code class="classname">TreeModel</code> personnalisÃ©
+maintient une rÃ©fÃ©rence Ã  l'objet Python jusqu'Ã  ce qu'il ne soit plus disponible
+(le <code class="classname">TreeIter</code> est invalide car le modÃ¨le a changÃ©) et il
+n'y a pas besoin de relacher les rÃ©fÃ©rences, le <code class="classname">GenericTreeModel</code>
+possÃ¨de une propriÃ©tÃ© "leak-references". Par dÃ©faut, "leak-references" vaut
+<code class="literal">TRUE</code> pour indiquer que le <code class="classname">GenericTreeModel</code>
+relachera les rÃ©fÃ©rences. Si "leak-references" vaut <code class="literal">FALSE</code>, le
+compteur de rÃ©fÃ©rences de l'objet Python ne sera pas incrÃ©mentÃ© quand il sera rÃ©fÃ©rencÃ©
+dans un <code class="classname">TreeIter</code>. Ce qui signifie que le le
+<code class="classname">TreeModel</code> personnalisÃ© doit conserver une rÃ©fÃ©rence
+Ã  tous les objets Python utilisÃ©s dans un <code class="classname">TreeIter</code> jusqu'Ã 
+la destruction du modÃ¨le. Malheureusement, mÃªme ceci ne protÃ¨ge pas d'un mauvais
+code qui tente d'utiliser un <code class="classname">TreeIter</code> sauvegardÃ© dans un
+<code class="classname">GenericTreeModel</code> diffÃ©rent. Pour se protÃ©ger contre ce cas de
+figure, l'application doit conserver une rÃ©fÃ©rence Ã  tous les objets Python
+rÃ©fÃ©rencÃ©s dans un <code class="classname">TreeIter</code> pour toutes les instances du
+<code class="classname">GenericTreeModel</code>. Naturellement, ceci a le le mÃªme effet
+qu'une fuite de rÃ©fÃ©rences.
 </p>
-<p>Avec PyGTK 2.4 et ultérieurs, les méthodes <code class="methodname">invalidate_iters</code>() 
-et <code class="methodname">iter_is_valid</code>() sont disponibles comme aide à la 
-gestion des <code class="classname">TreeIter</code> et des références des objets Python :
+<p>Avec PyGTK 2.4 et ultÃ©rieurs, les mÃ©thodes <code class="methodname">invalidate_iters</code>()
+et <code class="methodname">iter_is_valid</code>() sont disponibles comme aide Ã  la
+gestion des <code class="classname">TreeIter</code> et des rÃ©fÃ©rences des objets PythonÂ :
 </p>
 <pre class="programlisting">
   generictreemodel.invalidate_iters()
 
   result = generictreemodel.iter_is_valid(<strong class="parameter"><code>iter</code></strong>)
 </pre>
-<p>Ceci est particulièrement utile lorsque la propriété "leak-references" vaut 
-<code class="literal">FALSE</code>. Les modèles d'arbre dérivés du 
-<code class="classname">GenericTreeModel</code> sont protégés des problèmes de 
-<code class="classname">TreeIter</code> périmés car la validité des iters est automatiquement 
-vérifiée avec le modèle arbre.
+<p>Ceci est particuliÃ¨rement utile lorsque la propriÃ©tÃ© "leak-references" vaut
+<code class="literal">FALSE</code>. Les modÃ¨les d'arbre dÃ©rivÃ©s du
+<code class="classname">GenericTreeModel</code> sont protÃ©gÃ©s des problÃ¨mes de
+<code class="classname">TreeIter</code> pÃ©rimÃ©s car la validitÃ© des iters est automatiquement
+vÃ©rifiÃ©e avec le modÃ¨le arbre.
 </p>
-<p>Si un modèle d'arbre personnalisé ne gère pas les iters persistants (par exemple, 
-<code class="literal">gtk.TREE_MODEL_ITERS_PERSIST</code> n'est pas établi dans le retour de 
-la méthode <code class="methodname">TreeModel.get_flags</code>(), il est possible d'appeler 
-la methode <code class="methodname">invalidate_iters</code>() pour annuler tous les 
-<code class="classname">TreeIter</code> en cours quand le modèle est modifié (après insertion 
-d'une nouvelle ligne par ex.). Le modèle d'arbre peut aussi utiliser n'importe quel objet 
-Python qui a été référencé par un <code class="classname">TreeIter</code> après l'appel à 
-la méthode <code class="methodname">invalidate_iters</code>().
+<p>Si un modÃ¨le d'arbre personnalisÃ© ne gÃ¨re pas les iters persistants (par exemple,
+<code class="literal">gtk.TREE_MODEL_ITERS_PERSIST</code> n'est pas Ã©tabli dans le retour de
+la mÃ©thode <code class="methodname">TreeModel.get_flags</code>(), il est possible d'appeler
+la methode <code class="methodname">invalidate_iters</code>() pour annuler tous les
+<code class="classname">TreeIter</code> en cours quand le modÃ¨le est modifiÃ© (aprÃ¨s insertion
+d'une nouvelle ligne par ex.). Le modÃ¨le d'arbre peut aussi utiliser n'importe quel objet
+Python qui a Ã©tÃ© rÃ©fÃ©rencÃ© par un <code class="classname">TreeIter</code> aprÃ¨s l'appel Ã 
+la mÃ©thode <code class="methodname">invalidate_iters</code>().
 </p>
-<p>Les applications peuvent utiliser la méthode <code class="methodname">iter_is_valid</code>() 
-pour déterminer si un <code class="classname">TreeIter</code> est encore valide pour le 
-modèle d'arbre personnalisé.
+<p>Les applications peuvent utiliser la mÃ©thode <code class="methodname">iter_is_valid</code>()
+pour dÃ©terminer si un <code class="classname">TreeIter</code> est encore valide pour le
+modÃ¨le d'arbre personnalisÃ©.
 </p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-OtherInterfaces"></a>14.11.5. Autres interfaces</h3></div></div></div>
-<p>Les modèles <code class="classname">ListStore</code> et <code class="classname">TreeStore</code> 
-comprennent outre l'interface <code class="classname">TreeModel</code>, les interfaces 
-<code class="classname">TreeSortable</code>, <code class="classname">TreeDragSource</code> et 
-<code class="classname">TreeDragDest</code>. Le  <code class="classname">GenericTreeModel</code> 
-ne comprend que l'interface <code class="classname">TreeModel</code>. Je pense que c'est 
-à cause de la référence directe au modèle dans le langage C par les modèles 
-<code class="classname">TreeView</code>, <code class="classname">TreeModelSort</code> et 
-<code class="classname">TreeModelFilter</code>. Créer et utiliser un <code class="classname">TreeIter</code> 
-exige un code collant au C pour l'interface avec le modèle d'arbre personnalisé Python 
-qui contient les données. Ce code collant est fourni par le <code class="classname">GenericTreeModel</code> 
-et il semble qu'il n'y a pas d'alternative purement Python de réaliser ceci car le 
-<code class="classname">TreeView</code> et les autres modèles appellent les fonctions du 
-GtkTreeModel en C en passant leur référence au modèle d'arbre personnalisé.
+<a name="sec-OtherInterfaces"></a>14.11.5.Â Autres interfaces</h3></div></div></div>
+<p>Les modÃ¨les <code class="classname">ListStore</code> et <code class="classname">TreeStore</code>
+comprennent outre l'interface <code class="classname">TreeModel</code>, les interfaces
+<code class="classname">TreeSortable</code>, <code class="classname">TreeDragSource</code> et
+<code class="classname">TreeDragDest</code>. Le  <code class="classname">GenericTreeModel</code>
+ne comprend que l'interface <code class="classname">TreeModel</code>. Je pense que c'est
+Ã  cause de la rÃ©fÃ©rence directe au modÃ¨le dans le langage C par les modÃ¨les
+<code class="classname">TreeView</code>, <code class="classname">TreeModelSort</code> et
+<code class="classname">TreeModelFilter</code>. CrÃ©er et utiliser un <code class="classname">TreeIter</code>
+exige un code collant au C pour l'interface avec le modÃ¨le d'arbre personnalisÃ© Python
+qui contient les donnÃ©es. Ce code collant est fourni par le <code class="classname">GenericTreeModel</code>
+et il semble qu'il n'y a pas d'alternative purement Python de rÃ©aliser ceci car le
+<code class="classname">TreeView</code> et les autres modÃ¨les appellent les fonctions du
+GtkTreeModel en C en passant leur rÃ©fÃ©rence au modÃ¨le d'arbre personnalisÃ©.
 </p>
-<p>L'interface <code class="classname">TreeSortable</code> nécessite aussi un code collant 
-au C pour agir sur le mécanisme de tri par défaut du <code class="classname">TreeViewColumn</code> 
-ainsi qu'il est expliqué dans la <a href="sec-TreeModelInterface.html#sec-SortingTreeModelRows" title="14.2.9. Ordonner les lignes d'un TreeModel">Section 14.2.9, « Ordonner les lignes d'un TreeModel »</a>. 
-Cependant un modèle personnalisé doit réaliser ses propres tris et une application 
-doit gérer l'utilisation des critéres de tri en prenant en compte les clics sur 
-les en-têtes des <code class="classname">TreeViewColumn</code> et en appelant les méthodes 
-de tri du modèle d'arbre personnalisé. Le modèle effectue la mise à jour du 
-<code class="classname">TreeView</code> en émettant le signal "rows-reordered" grace à 
-la méthode <code class="methodname">rows_reordered</code>() du <code class="classname">TreeModel</code>. 
-Ainsi le <code class="classname">GenericTreeModel</code> ne nécessite probablement pas 
-d'implémenter l'interface <code class="classname">TreeSortable</code>.
+<p>L'interface <code class="classname">TreeSortable</code> nÃ©cessite aussi un code collant
+au C pour agir sur le mÃ©canisme de tri par dÃ©faut du <code class="classname">TreeViewColumn</code>
+ainsi qu'il est expliquÃ© dans la <a href="sec-TreeModelInterface.html#sec-SortingTreeModelRows" title="14.2.9.Â Ordonner les lignes d'un TreeModel">SectionÂ 14.2.9, Â«Â Ordonner les lignes d'un TreeModelÂ Â»</a>.
+Cependant un modÃ¨le personnalisÃ© doit rÃ©aliser ses propres tris et une application
+doit gÃ©rer l'utilisation des critÃ©res de tri en prenant en compte les clics sur
+les en-tÃªtes des <code class="classname">TreeViewColumn</code> et en appelant les mÃ©thodes
+de tri du modÃ¨le d'arbre personnalisÃ©. Le modÃ¨le effectue la mise Ã  jour du
+<code class="classname">TreeView</code> en Ã©mettant le signal "rows-reordered" grace Ã 
+la mÃ©thode <code class="methodname">rows_reordered</code>() du <code class="classname">TreeModel</code>.
+Ainsi le <code class="classname">GenericTreeModel</code> ne nÃ©cessite probablement pas
+d'implÃ©menter l'interface <code class="classname">TreeSortable</code>.
 </p>
 <p>Pareillement, le <code class="classname">GenericTreeModel</code> n'a pas besoin d'
-implémenter les interfaces <code class="classname">TreeDragSource</code> et 
-<code class="classname">TreeDragDest</code> puisque le modèle d'arbre personnalisé 
-peut effectuer ses propres interfaces de glisser-déposer et l'application 
-peut gérer les signaux <code class="classname">TreeView</code> appropriés et faire 
-appel aux méthodes du modèle d'arbre personnalisé tant que nécessaire.
+implÃ©menter les interfaces <code class="classname">TreeDragSource</code> et
+<code class="classname">TreeDragDest</code> puisque le modÃ¨le d'arbre personnalisÃ©
+peut effectuer ses propres interfaces de glisser-dÃ©poser et l'application
+peut gÃ©rer les signaux <code class="classname">TreeView</code> appropriÃ©s et faire
+appel aux mÃ©thodes du modÃ¨le d'arbre personnalisÃ© tant que nÃ©cessaire.
 </p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-ApplyingGenericTreeModel"></a>14.11.6. Utilisation du GenericTreeModel</h3></div></div></div>
-<p>Je crois que le <code class="classname">GenericTreeModel</code> ne devrait être 
-utilisé qu'en dernier ressort. Les objets standard du <code class="classname">TreeView</code> 
-comprennent des mécanismes puissants qui devraient être suffisants pour la 
-plupart des applications. Sans doute, il existe des applications qui peuvent 
-avoir besoin du <code class="classname">GenericTreeModel</code> mais il faudrait d'abord 
-essayer d'utiliser ce qui suit : 
+<a name="sec-ApplyingGenericTreeModel"></a>14.11.6.Â Utilisation du GenericTreeModel</h3></div></div></div>
+<p>Je crois que le <code class="classname">GenericTreeModel</code> ne devrait Ãªtre
+utilisÃ© qu'en dernier ressort. Les objets standard du <code class="classname">TreeView</code>
+comprennent des mÃ©canismes puissants qui devraient Ãªtre suffisants pour la
+plupart des applications. Sans doute, il existe des applications qui peuvent
+avoir besoin du <code class="classname">GenericTreeModel</code> mais il faudrait d'abord
+essayer d'utiliser ce qui suitÂ :
 </p>
 <table border="0" width="100%" bgcolor="#FFECCE">
 <col align="left" valign="top" width="0*">
@@ -579,50 +580,50 @@ essayer d'utiliser ce qui suit :
 <tr>
 <td>
 <span class="term">Cell Data Functions</span></td>
-<td><p>Comme il est montré dans la <a href="sec-CellRenderers.html#sec-CellDataFunction" title="14.4.5. Fonction d'affichage des données cellulaires">Section 14.4.5, « Fonction d'affichage des données cellulaires »</a>, les 
-fonctions de données des cellules peuvent être utilisées pour modifier et 
-même produire les données pour un affichage d'une colonne du 
-<code class="classname">TreeView</code>. On peut créer autant d'affichages de colonnes 
-avec des données générées que l'on souhaite. Cela donne beaucoup de contrôle 
-de la présentation de données d'une source de données sous-jacente.
+<td><p>Comme il est montrÃ© dans la <a href="sec-CellRenderers.html#sec-CellDataFunction" title="14.4.5.Â Fonction d'affichage des donnÃ©es cellulaires">SectionÂ 14.4.5, Â«Â Fonction d'affichage des donnÃ©es cellulairesÂ Â»</a>, les
+fonctions de donnÃ©es des cellules peuvent Ãªtre utilisÃ©es pour modifier et
+mÃªme produire les donnÃ©es pour un affichage d'une colonne du
+<code class="classname">TreeView</code>. On peut crÃ©er autant d'affichages de colonnes
+avec des donnÃ©es gÃ©nÃ©rÃ©es que l'on souhaite. Cela donne beaucoup de contrÃ´le
+de la prÃ©sentation de donnÃ©es d'une source de donnÃ©es sous-jacente.
 </p></td>
 </tr>
 <tr>
 <td>
 <span class="term">TreeModelFilter</span></td>
-<td><p>En PyGTK 2.4, le <code class="classname">TreeModelFilter</code>, comme indiqué dans la 
-<a href="sec-TreeModelSortAndTreeModelFilter.html#sec-TreeModelFilter" title="14.10.2. Le TreeModelFilter">Section 14.10.2, « Le TreeModelFilter »</a>, permet un fort contrôle sur 
-l'affichage des colonnes et lignes d'un <code class="classname">TreeModel</code> 
-enfant, y compris afficher seulement les lignes filles d'une ligne. 
-Les colonnes de données peuvent être produite d'une façon semblable à 
-l'utilisation des fonctions de données en cellule ; ici le modèle est 
-un <code class="classname">TreeModel</code> avec un nombre et un type de colonnes 
-indiqués alors qu'une fonction de données de cellule laisse les colonnes modèles 
-inchangées et modifie juste l'affichage dans un <code class="classname">TreeView</code>.
+<td><p>En PyGTK 2.4, le <code class="classname">TreeModelFilter</code>, comme indiquÃ© dans la
+<a href="sec-TreeModelSortAndTreeModelFilter.html#sec-TreeModelFilter" title="14.10.2.Â Le TreeModelFilter">SectionÂ 14.10.2, Â«Â Le TreeModelFilterÂ Â»</a>, permet un fort contrÃ´le sur
+l'affichage des colonnes et lignes d'un <code class="classname">TreeModel</code>
+enfant, y compris afficher seulement les lignes filles d'une ligne.
+Les colonnes de donnÃ©es peuvent Ãªtre produite d'une faÃ§on semblable Ã 
+l'utilisation des fonctions de donnÃ©es en cellule ; ici le modÃ¨le est
+un <code class="classname">TreeModel</code> avec un nombre et un type de colonnes
+indiquÃ©s alors qu'une fonction de donnÃ©es de cellule laisse les colonnes modÃ¨les
+inchangÃ©es et modifie juste l'affichage dans un <code class="classname">TreeView</code>.
 </p></td>
 </tr>
 </tbody>
 </table>
-<p>Si un <code class="classname">GenericTreeModel</code> doit être utilisé, il faut 
-veiller à : 
+<p>Si un <code class="classname">GenericTreeModel</code> doit Ãªtre utilisÃ©, il faut
+veiller Ã Â :
 </p>
 <div class="itemizedlist"><ul type="disc">
-<li>l'interface complète du <code class="classname">TreeModel</code> doit 
-être créée et être en mesure de fonctionner comme indiqué. I y a des finesses 
-qui peuvent induire des erreurs. Par opposition, le <code class="classname">TreeModel</code> 
-standard a été complètement testé.
+<li>l'interface complÃ¨te du <code class="classname">TreeModel</code> doit
+Ãªtre crÃ©Ã©e et Ãªtre en mesure de fonctionner comme indiquÃ©. I y a des finesses
+qui peuvent induire des erreurs. Par opposition, le <code class="classname">TreeModel</code>
+standard a Ã©tÃ© complÃ¨tement testÃ©.
 </li>
-<li>gérer les références des objets Python utilisés par un 
-<code class="classname">TreeIter</code> peut se révéler difficile, particulièrement 
-pour des programmes longs avec beaucoup d'affichages variés.
+<li>gÃ©rer les rÃ©fÃ©rences des objets Python utilisÃ©s par un
+<code class="classname">TreeIter</code> peut se rÃ©vÃ©ler difficile, particuliÃ¨rement
+pour des programmes longs avec beaucoup d'affichages variÃ©s.
 </li>
-<li>il faut créer un interface pour ajouter, supprimer ou modifier 
-le contenu des lignes. Le lien d'un TreeIter aux objets de Python et aux rangées 
-modèles dans cette interface n'est pas trés élégant.
+<li>il faut crÃ©er un interface pour ajouter, supprimer ou modifier
+le contenu des lignes. Le lien d'un TreeIter aux objets de Python et aux rangÃ©es
+modÃ¨les dans cette interface n'est pas trÃ©s Ã©lÃ©gant.
 </li>
-<li>le développement d'interfaces de glisser-déposer et de tri demande 
-un effort important, l'application doit trés probablement participer à ce que ces 
-interfaces soient entièrement fonctionnelles.
+<li>le dÃ©veloppement d'interfaces de glisser-dÃ©poser et de tri demande
+un effort important, l'application doit trÃ©s probablement participer Ã  ce que ces
+interfaces soient entiÃ¨rement fonctionnelles.
 </li>
 </ul></div>
 </div>
@@ -632,15 +633,15 @@ interfaces soient entièrement fonctionnelles.
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-TreeModelSortAndTreeModelFilter.html">Préc.</a> </td>
+<a accesskey="p" href="sec-TreeModelSortAndTreeModelFilter.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-TreeViewWidget.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-GenericCellRenderer.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-GenericCellRenderer.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">14.10. TreeModelSort et TreeModelFilter </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 14.12. The Generic CellRenderer</td>
+<td width="40%" align="left" valign="top">14.10.Â TreeModelSort et TreeModelFilterÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 14.12.Â The Generic CellRenderer</td>
 </tr>
 </table>
 </div>

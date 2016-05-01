@@ -1,11 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>6.4. Les boutons radio</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,radiobouton,bouton">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -15,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici : 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃšs ici :
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En-t&ecirc;te de navigation">
 <tr>
@@ -67,76 +66,76 @@ Vous êtes à peu près ici :
 
 <pre class=programlisting>
      1   #!/usr/bin/env python
-     2   
+     2
      3   # exemple boutonsradio.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   class BoutonsRadio:
     10       def fct_rappel(self, widget, donnees=None):
     11           print "Le %s a ete %s." % (donnees, ("desactive", "active")[widget.get_active()])
-    12   
+    12
     13       def quitter_pgm(self, widget, evenement, donnees=None):
     14           gtk.main_quit()
     15           return False
-    16   
+    16
     17       def __init__(self):
     18           self.fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    19   
+    19
     20           self.fenetre.connect("delete_event", self.quitter_pgm)
-    21   
+    21
     22           self.fenetre.set_title("Boutons radio")
     23           self.fenetre.set_border_width(0)
-    24   
+    24
     25           boite1 = gtk.VBox(False, 0)
     26           self.fenetre.add(boite1)
     27           boite1.show()
-    28   
+    28
     29           boite2 = gtk.VBox(False, 10)
     30           boite2.set_border_width(10)
     31           boite1.pack_start(boite2, True, True, 0)
     32           boite2.show()
-    33   
+    33
     34           bouton = gtk.RadioButton(None, "bouton radio 1")
     35           bouton.connect("toggled", self.fct_rappel, "bouton radio 1")
     36           boite2.pack_start(bouton, True, True, 0)
     37           bouton.show()
-    38   
+    38
     39           bouton = gtk.RadioButton(bouton, "bouton radio 2")
     40           bouton.connect("toggled", self.fct_rappel, "bouton radio 2")
     41           bouton.set_active(True)
     42           boite2.pack_start(bouton, True, True, 0)
     43           bouton.show()
-    44   
+    44
     45           bouton = gtk.RadioButton(bouton, "bouton radio 3")
     46           bouton.connect("toggled", self.fct_rappel, "bouton radio 3")
     47           boite2.pack_start(bouton, True, True, 0)
     48           bouton.show()
-    49   
+    49
     50           separateur = gtk.HSeparator()
     51           boite1.pack_start(separateur, False, True, 0)
     52           separateur.show()
-    53   
+    53
     54           boite2 = gtk.VBox(False, 10)
     55           boite2.set_border_width(10)
     56           boite1.pack_start(boite2, False, True, 0)
     57           boite2.show()
-    58   
+    58
     59           bouton = gtk.Button("fermer")
-    60           bouton.connect_object("clicked", self.quitter_pgm, 
+    60           bouton.connect_object("clicked", self.quitter_pgm,
     61                                 self.fenetre, None)
     62           boite2.pack_start(bouton, True, True, 0)
     63           bouton.set_flags(gtk.CAN_DEFAULT)
     64           bouton.grab_default()
     65           bouton.show()
     66           self.fenetre.show()
-    67   
+    67
     68   def main():
     69       gtk.main()
-    70       return 0        
-    71   
+    70       return 0
+    71
     72   if __name__ == "__main__":
     73       BoutonsRadio()
     74       main()

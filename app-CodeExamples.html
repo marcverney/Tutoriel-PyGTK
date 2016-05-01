@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Annexe B. Exemples de code</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>AnnexeÂ B.Â Exemples de code</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="prev" href="sec-GtkAdjustment.html" title="A.22. GtkAdjustment">
-<link rel="next" href="pygtk-tut-changelog.html" title="Annexe C. ChangeLog">
+<link rel="prev" href="sec-GtkAdjustment.html" title="A.22.Â GtkAdjustment">
+<link rel="next" href="pygtk-tut-changelog.html" title="AnnexeÂ C.Â ChangeLog">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">Annexe B. Exemples de code</th></tr>
+<tr><th colspan="3" align="center">AnnexeÂ B.Â Exemples de code</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-GtkAdjustment.html">Préc.</a> </td>
-<th width="60%" align="center"> </th>
-<td width="20%" align="right"> <a accesskey="n" href="pygtk-tut-changelog.html">Suiv.</a>
+<a accesskey="p" href="sec-GtkAdjustment.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">Â </th>
+<td width="20%" align="right">Â <a accesskey="n" href="pygtk-tut-changelog.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,19 +36,19 @@
 </div>
 <div class="appendix" lang="fr">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="app-CodeExamples"></a>Annexe B. Exemples de code</h2></div></div></div>
+<a name="app-CodeExamples"></a>AnnexeÂ B.Â Exemples de code</h2></div></div></div>
 <div class="toc">
-<p><b>Table des matières</b></p>
+<p><b>Table des matiÃ¨res</b></p>
 <dl><dt><span class="sect1"><a href="app-CodeExamples.html#sec-scribblesimple.py">B.1. scribblesimple.py</a></span></dt></dl>
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-scribblesimple.py"></a>B.1. scribblesimple.py</h2></div></div></div>
+<a name="sec-scribblesimple.py"></a>B.1.Â scribblesimple.py</h2></div></div></div>
 <pre class="programlisting">
      1   #!/usr/bin/env python
      2   # -*- coding:utf-8 -*-
      3   # exemple scribblesimple.py
-     4   
+     4
      5    # GTK - The GIMP Toolkit
      6    # Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald
      7    # Copyright (C) 2001-2004 John Finlay
@@ -66,45 +67,45 @@
     20    # License along with this library; if not, write to the
     21    # Free Software Foundation, Inc., 59 Temple Place - Suite 330,
     22    # Boston, MA 02111-1307, USA.
-    23   
-    24   
+    23
+    24
     25   import pygtk
     26   pygtk.require('2.0')
     27   import gtk
-    28   
-    29   # Pixmap d'arrière-plan pour la zone de dessin
+    28
+    29   # Pixmap d'arriÃ¨re-plan pour la zone de dessin
     30   pixmap = None
-    31   
-    32   # Création d'un nouveau pixmap d'arrière-plan de la taille voulue
+    31
+    32   # CrÃ©ation d'un nouveau pixmap d'arriÃ¨re-plan de la taille voulue
     33   def configure_event(widget, event):
     34       global pixmap
-    35   
+    35
     36       x, y, largeur, hauteur = widget.get_allocation()
     37       pixmap = gtk.gdk.Pixmap(widget.window, largeur, hauteur)
     38       pixmap.draw_rectangle(widget.get_style().white_gc,
     39                             True, 0, 0, largeur, hauteur)
-    40   
+    40
     41       return True
-    42   
-    43   # Redessine l'écran à partir du pixmap d'arrière-plan
+    42
+    43   # Redessine l'Ã©cran Ã  partir du pixmap d'arriÃ¨re-plan
     44   def expose_event(widget, event):
     45       x , y, largeur, hauteur = event.area
     46       widget.window.draw_drawable(widget.get_style().fg_gc[gtk.STATE_NORMAL],
     47                                   pixmap, x, y, x, y, largeur, hauteur)
     48       return False
-    49   
-    50   # Dessine un rectangle sur l'écran
+    49
+    50   # Dessine un rectangle sur l'Ã©cran
     51   def brosse_dessin(widget, x, y):
     52       rect = (int(x-5), int(y-5), 10, 10)
     53       pixmap.draw_rectangle(widget.get_style().black_gc, True,
     54                             rect[0], rect[1], rect[2], rect[3])
     55       widget.queue_draw_area(rect[0], rect[1], rect[2], rect[3])
-    56   
+    56
     57   def bouton_press_event(widget, event):
     58       if event.button == 1 and pixmap != None:
     59           brosse_dessin(widget, event.x, event.y)
     60       return True
-    61   
+    61
     62   def motion_notify_event(widget, event):
     63       if event.is_hint:
     64           x, y, etat = event.window.get_pointer()
@@ -112,56 +113,56 @@
     66           x = event.x
     67           y = event.y
     68           etat = event.state
-    69       
+    69
     70       if etat &amp; gtk.gdk.BUTTON1_MASK and pixmap != None:
     71           brosse_dessin(widget, x, y)
-    72     
+    72
     73       return True
-    74   
+    74
     75   def main():
     76       fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
     77       fenetre.set_name ("Test Input")
-    78   
+    78
     79       boitev = gtk.VBox(False, 0)
     80       fenetre.add(boitev)
     81       boitev.show()
-    82   
+    82
     83       fenetre.connect("destroy", lambda w: gtk.main_quit())
-    84   
-    85       # Création de la zone de dessin
+    84
+    85       # CrÃ©ation de la zone de dessin
     86       zone_dessin = gtk.DrawingArea()
     87       zone_dessin.set_size_request(200, 200)
     88       boitev.pack_start(zone_dessin, True, True, 0)
-    89   
+    89
     90       zone_dessin.show()
-    91   
-    92       # Signaux utilisés pour gérer le pixmap hors écran
+    91
+    92       # Signaux utilisÃ©s pour gÃ©rer le pixmap hors Ã©cran
     93       zone_dessin.connect("expose_event", expose_event)
     94       zone_dessin.connect("configure_event", configure_event)
-    95   
-    96       # Signaux d'événements
+    95
+    96       # Signaux d'Ã©vÃ©nements
     97       zone_dessin.connect("motion_notify_event", motion_notify_event)
     98       zone_dessin.connect("button_press_event", bouton_press_event)
-    99   
+    99
    100       zone_dessin.set_events(gtk.gdk.EXPOSURE_MASK
    101                               | gtk.gdk.LEAVE_NOTIFY_MASK
    102                               | gtk.gdk.BUTTON_PRESS_MASK
    103                               | gtk.gdk.POINTER_MOTION_MASK
    104                               | gtk.gdk.POINTER_MOTION_HINT_MASK)
-   105   
+   105
    106       # .. Et un bouton quitter
    107       bouton = gtk.Button("Quit")
    108       boitev.pack_start(bouton, False, False, 0)
-   109   
+   109
    110       bouton.connect_object("clicked", lambda w: w.destroy(), fenetre)
    111       bouton.show()
-   112   
+   112
    113       fenetre.show()
-   114   
+   114
    115       gtk.main()
-   116   
+   116
    117       return 0
-   118   
+   118
    119   if __name__ == "__main__":
    120       main()
 </pre>
@@ -172,15 +173,15 @@
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-GtkAdjustment.html">Préc.</a> </td>
-<td width="20%" align="center"> </td>
-<td width="40%" align="right"> <a accesskey="n" href="pygtk-tut-changelog.html">Suiv.</a>
+<a accesskey="p" href="sec-GtkAdjustment.html">PrÃ©c.</a>Â </td>
+<td width="20%" align="center">Â </td>
+<td width="40%" align="right">Â <a accesskey="n" href="pygtk-tut-changelog.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">A.22. GtkAdjustment </td>
+<td width="40%" align="left" valign="top">A.22.Â GtkAdjustmentÂ </td>
 <td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
-<td width="40%" align="right" valign="top"> Annexe C. ChangeLog</td>
+<td width="40%" align="right" valign="top">Â AnnexeÂ C.Â ChangeLog</td>
 </tr>
 </table>
 </div>

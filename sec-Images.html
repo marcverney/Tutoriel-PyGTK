@@ -1,10 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>9.6. Les images</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,image">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -14,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici&nbsp;: 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃšs ici&nbsp;:
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En-t&ecirc;te de navigation">
 <tr>
@@ -36,10 +36,10 @@ Vous êtes à peu près ici&nbsp;:
 <div class="sect1"><div class="titlepage"><div>
 <h2 class="title" style="clear: both"><a name="Images"></a>9.6. Les images</h2></div></div>
 
-<p>Les <tt>gtk.Image</tt> sont des structures de donn&eacute;es qui contiennent des images. 
+<p>Les <tt>gtk.Image</tt> sont des structures de donn&eacute;es qui contiennent des images.
 Ces images peuvent &ecirc;tre utilis&eacute;es &agrave; plusieurs endroits.</p>
-<p>On peut cr&eacute;er des <tt>gtk.Image</tt> &agrave; partir de <tt>pixbufs</tt>, 
-de <tt>pixmaps</tt>, de fichiers contenant des informations soit de type image 
+<p>On peut cr&eacute;er des <tt>gtk.Image</tt> &agrave; partir de <tt>pixbufs</tt>,
+de <tt>pixmaps</tt>, de fichiers contenant des informations soit de type image
 (XPM, PNG, JPEG, TIFF, etc.) soit de type animation.
 <p>On cr&eacute;e un <tt>gtk.Image</tt> avec la fonction&nbsp;:</p>
 
@@ -59,11 +59,11 @@ de <tt>pixmaps</tt>, de fichiers contenant des informations soit de type image
   image.set_from_animation(<b><tt>animation</tt></b>)
 </pre>
 
-<p><i><tt>pixbuf</tt></i> est un <tt>GdkPixbuf</tt>, <i><tt>pixmap</tt></i> et 
-<i><tt>mask</tt></i> sont des <tt>GdkPixmaps</tt>, <i><tt>image</tt></i> est un 
-<tt>GdkImage</tt>, <i><tt>stock_id</tt></i> est le nom d'un <tt>GtkStockItem</tt>, 
-<i><tt>icon_set</tt></i> est un <tt>GtkIconSet</tt>, et <i><tt>animation</tt></i> est 
-une <tt>GdkPixbufAnimation</tt>. Quant &agrave; l'argument <i><tt>size</tt></i> (taille), 
+<p><i><tt>pixbuf</tt></i> est un <tt>GdkPixbuf</tt>, <i><tt>pixmap</tt></i> et
+<i><tt>mask</tt></i> sont des <tt>GdkPixmaps</tt>, <i><tt>image</tt></i> est un
+<tt>GdkImage</tt>, <i><tt>stock_id</tt></i> est le nom d'un <tt>GtkStockItem</tt>,
+<i><tt>icon_set</tt></i> est un <tt>GtkIconSet</tt>, et <i><tt>animation</tt></i> est
+une <tt>GdkPixbufAnimation</tt>. Quant &agrave; l'argument <i><tt>size</tt></i> (taille),
 il peut prendre l'une des valeurs suivantes&nbsp;:</p>
 
 <pre class="programlisting">
@@ -75,16 +75,16 @@ il peut prendre l'une des valeurs suivantes&nbsp;:</p>
  ICON_SIZE_DIALOG		#          &quot;       &nbsp;: boite de dialogue
 </pre>
 
-<p>Le moyen le plus simple de cr&eacute;er une image est d'utiliser la m&eacute;thode 
-<tt>set_from_file</tt>(), laquelle d&eacute;termine automatiquement le type de l'image et 
+<p>Le moyen le plus simple de cr&eacute;er une image est d'utiliser la m&eacute;thode
+<tt>set_from_file</tt>(), laquelle d&eacute;termine automatiquement le type de l'image et
 le charge.</p>
-<p>Le programme <a href="exemples/images.py" target="_top"><b>images.py</b></a> illustre 
+<p>Le programme <a href="exemples/images.py" target="_top"><b>images.py</b></a> illustre
 le chargement de plusieurs types d'images (<a href="exemples/goal.gif" target="_top">
 <tt>goal.gif</tt></a>, <a href="exemples/pomme-rouge.png" target="_top">
 <tt>pomme-rouge.png</tt></a>, <a href="exemples/chaos.jpg" target="_top">
 <tt>chaos.jpg</tt></a>, <a href="exemples/important.tif" target="_top">
 <tt>important.tif</tt></a>, <a href="exemples/ballonfoot.gif" target="_top">
-<tt>ballonfoot.gif</tt></a>) dans des <tt>gtk.Image</tt>, que l'on place ensuite dans 
+<tt>ballonfoot.gif</tt></a>) dans des <tt>gtk.Image</tt>, que l'on place ensuite dans
 des boutons&nbsp;:</p>
 
 <div class="figure"><a name="FigImages"></a>
@@ -96,23 +96,23 @@ des boutons&nbsp;:</p>
 
 <pre class="programlisting">
      1   #!/usr/bin/env python
-     2   
+     2
      3   # exemple images.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   class ImagesExemple:
     10       # Si elle est invoquee (via le "delete_event"), cette fonction ferme l'application
     11       def fermer_application(self, widget, evnmt, data=None):
     12           gtk.main_quit()
     13           return False
-    14   
+    14
     15       # Cette fonction est invoquee quand on clique sur le bouton. Elle affiche un message.
     16       def clic_bouton(self, widget, data=None):
     17           print "Clic sur le bouton %s" % data
-    18   
+    18
     19       def __init__(self):
     20           # creation de la fenetre principale, et connexion du signal
     21           # delete_event a la fermeture de l'application
@@ -120,12 +120,12 @@ des boutons&nbsp;:</p>
     23           fenetre.connect("delete_event", self.fermer_application)
     24           fenetre.set_border_width(10)
     25           fenetre.show()
-    26   
+    26
     27           # Une boite horizontale pour contenir les boutons
     28           boite_h = gtk.HBox()
     29           boite_h.show()
     30           fenetre.add(boite_h)
-    31   
+    31
     32           animpixbuf = gtk.gdk.PixbufAnimation("goal.gif")
     33           image = gtk.Image()
     34           image.set_from_animation(animpixbuf)
@@ -136,7 +136,7 @@ des boutons&nbsp;:</p>
     39           bouton.show()
     40           boite_h.pack_start(bouton)
     41           bouton.connect("clicked", self.clic_bouton, "1")
-    42           
+    42
     43           # creation de plusieurs gtk.Image a partir de donnees de
     44           # fichiers, et chargement dans des boutons
     45           image = gtk.Image()
@@ -148,7 +148,7 @@ des boutons&nbsp;:</p>
     51           bouton.show()
     52           boite_h.pack_start(bouton)
     53           bouton.connect("clicked", self.clic_bouton, "2")
-    54   
+    54
     55           image = gtk.Image()
     56           image.set_from_file("chaos.jpg")
     57           image.show()
@@ -158,7 +158,7 @@ des boutons&nbsp;:</p>
     61           bouton.show()
     62           boite_h.pack_start(bouton)
     63           bouton.connect("clicked", self.clic_bouton, "3")
-    64   
+    64
     65           image = gtk.Image()
     66           image.set_from_file("important.tif")
     67           image.show()
@@ -168,7 +168,7 @@ des boutons&nbsp;:</p>
     71           bouton.show()
     72           boite_h.pack_start(bouton)
     73           bouton.connect("clicked", self.clic_bouton, "4")
-    74   
+    74
     75           image = gtk.Image()
     76           image.set_from_file("ballonfoot.gif")
     77           image.show()
@@ -178,12 +178,12 @@ des boutons&nbsp;:</p>
     81           bouton.show()
     82           boite_h.pack_start(bouton)
     83           bouton.connect("clicked", self.clic_bouton, "5")
-    84   
-    85   
+    84
+    85
     86   def main():
     87       gtk.main()
     88       return 0
-    89   
+    89
     90   if __name__ == "__main__":
     91       ImagesExemple()
     92       main()
@@ -192,79 +192,79 @@ des boutons&nbsp;:</p>
 <div class="sect2"><div class="titlepage"><div><h3 class="title"><a name="Pixmaps">
 </a>9.6.1. Les pixmaps</h3></div></div>
 
-<p>Les pixmaps sont des structures de donn&eacute;es qui contiennent des images. Ces images 
-peuvent &ecirc;tre utilis&eacute;es &agrave; plusieurs endroits, mais le sont le plus 
+<p>Les pixmaps sont des structures de donn&eacute;es qui contiennent des images. Ces images
+peuvent &ecirc;tre utilis&eacute;es &agrave; plusieurs endroits, mais le sont le plus
 souvent sous la forme d'ic&ocirc;nes pour le bureau&nbsp;X ou bien de pointeurs.</p>
-<p>Un pixmap de seulement 2 couleurs est un bitmap. Des routines additionnelles existent 
+<p>Un pixmap de seulement 2 couleurs est un bitmap. Des routines additionnelles existent
 pour manipuler ce cas &agrave; part relativement commun.</p>
-<p>Pour comprendre les pixmaps, il vous faut comprendre le fonctionnement du 
-syst&egrave;me X&nbsp;Window. Sous X, il n'est pas n&eacute;cessaire que les applications 
-tournent sur l'ordinateur qui dialogue avec l'utilisateur. Les diff&eacute;rentes 
-applications, appel&eacute;es &quot;clients&quot;, communiquent toutes avec un programme 
-qui se charge de l'affichage de la partie graphique ainsi que de la gestion du clavier et 
-de la souris. Ce programme, qui dialogue directement avec l'utilisateur, est appel&eacute; 
-un &quot;serveur d'affichage&quot; ou &quot;serveur&nbsp;X&quot;. Du fait que la communication 
-peut avoir lieu dans le cadre d'un r&eacute;seau, il est important que certaines informations 
-soient conserv&eacute;es par le serveur&nbsp;X. Les pixmaps, par exemple, sont stock&eacute;s 
-dans sa m&eacute;moire. Cela signifie que, une fois que des valeurs de pixmaps sont 
-d&eacute;finies, elles n'ont plus besoin d'&ecirc;tre &agrave; nouveau transmises dans 
-le r&eacute;seau ; une simple commande sera envoy&eacute;e pour &quot;afficher le pixmap 
-num&eacute;ro XYZ &agrave; tel endroit&quot;. M&ecirc;me si vous n'utilisez pas X avec GTK 
-en ce moment, l'utilisation de structures comme les pixmaps fera tourner convenablement 
+<p>Pour comprendre les pixmaps, il vous faut comprendre le fonctionnement du
+syst&egrave;me X&nbsp;Window. Sous X, il n'est pas n&eacute;cessaire que les applications
+tournent sur l'ordinateur qui dialogue avec l'utilisateur. Les diff&eacute;rentes
+applications, appel&eacute;es &quot;clients&quot;, communiquent toutes avec un programme
+qui se charge de l'affichage de la partie graphique ainsi que de la gestion du clavier et
+de la souris. Ce programme, qui dialogue directement avec l'utilisateur, est appel&eacute;
+un &quot;serveur d'affichage&quot; ou &quot;serveur&nbsp;X&quot;. Du fait que la communication
+peut avoir lieu dans le cadre d'un r&eacute;seau, il est important que certaines informations
+soient conserv&eacute;es par le serveur&nbsp;X. Les pixmaps, par exemple, sont stock&eacute;s
+dans sa m&eacute;moire. Cela signifie que, une fois que des valeurs de pixmaps sont
+d&eacute;finies, elles n'ont plus besoin d'&ecirc;tre &agrave; nouveau transmises dans
+le r&eacute;seau ; une simple commande sera envoy&eacute;e pour &quot;afficher le pixmap
+num&eacute;ro XYZ &agrave; tel endroit&quot;. M&ecirc;me si vous n'utilisez pas X avec GTK
+en ce moment, l'utilisation de structures comme les pixmaps fera tourner convenablement
 vos programmes sous&nbsp;X.</p>
-<p>Pour utiliser des pixmaps dans PyGTK, il nous faut d'abord construire un 
-<tt>GdkPixmap</tt> en nous servant des fonctions gtk.gdk de PyGTK. Les pixmaps 
-peuvent &ecirc;tre cr&eacute;&eacute;s soit &agrave; partir de donn&eacute;es en 
-m&eacute;moire, soit &agrave; partir de donn&eacute;es lues dans un fichier. Nous 
+<p>Pour utiliser des pixmaps dans PyGTK, il nous faut d'abord construire un
+<tt>GdkPixmap</tt> en nous servant des fonctions gtk.gdk de PyGTK. Les pixmaps
+peuvent &ecirc;tre cr&eacute;&eacute;s soit &agrave; partir de donn&eacute;es en
+m&eacute;moire, soit &agrave; partir de donn&eacute;es lues dans un fichier. Nous
 allons examiner les diff&eacute;rents appels de cr&eacute;ation.</p>
 
 <pre class="programlisting">
   pixmap = gtk.gdk.pixmap_create_from_data(<b><tt>window</tt></b>, <b><tt>data</tt></b>, <b><tt>width</tt></b>, <b><tt>height</tt></b>, <b><tt>fg</tt></b>, <b><tt>bg</tt></b>)
 </pre>
 
-<p>On utilise la routine ci-dessus pour cr&eacute;&eacute;er un <i><tt>pixmap</tt></i> 
-&agrave; partir de donn&eacute;es (<i><tt>data</tt></i>) en m&eacute;moire. Sa profondeur 
-de couleur est donn&eacute;e par <i><tt>depth</tt></i>. Si <i><tt>depth</tt></i> vaut 
-<tt>-1</tt>, la profondeur de couleur sera d&eacute;riv&eacute;e de celle de 
-<i><tt>window</tt></i> (fen&ecirc;tre). Pour repr&eacute;senter les couleurs, chaque pixel 
+<p>On utilise la routine ci-dessus pour cr&eacute;&eacute;er un <i><tt>pixmap</tt></i>
+&agrave; partir de donn&eacute;es (<i><tt>data</tt></i>) en m&eacute;moire. Sa profondeur
+de couleur est donn&eacute;e par <i><tt>depth</tt></i>. Si <i><tt>depth</tt></i> vaut
+<tt>-1</tt>, la profondeur de couleur sera d&eacute;riv&eacute;e de celle de
+<i><tt>window</tt></i> (fen&ecirc;tre). Pour repr&eacute;senter les couleurs, chaque pixel
 utilisera autant de bits de donn&eacute;es que mentionn&eacute; &agrave; l'argument <i>
-<tt>depth</tt></i> (profondeur). <i><tt>width</tt></i> (largeur) et <i><tt>height</tt></i> 
-(hauteur) sont sp&eacute;cifi&eacute;s en pixels. L'argument <i><tt>window</tt></i> doit 
-faire r&eacute;f&eacute;rence &agrave; une <tt>GdkWindow</tt> r&eacute;alis&eacute;e, 
-les ressources d'un pixmap n'ayant de sens que dans le contexte de l'&eacute;cran o&ugrave; 
-il doit &ecirc;tre affich&eacute;. <i><tt>fg</tt></i> et <i><tt>bg</tt></i> sont les couleurs 
-de premier plan (<b>f</b>ore<b>g</b>round) et d'arri&egrave;re plan (<b>b</b>ack<b>g</b>round) 
+<tt>depth</tt></i> (profondeur). <i><tt>width</tt></i> (largeur) et <i><tt>height</tt></i>
+(hauteur) sont sp&eacute;cifi&eacute;s en pixels. L'argument <i><tt>window</tt></i> doit
+faire r&eacute;f&eacute;rence &agrave; une <tt>GdkWindow</tt> r&eacute;alis&eacute;e,
+les ressources d'un pixmap n'ayant de sens que dans le contexte de l'&eacute;cran o&ugrave;
+il doit &ecirc;tre affich&eacute;. <i><tt>fg</tt></i> et <i><tt>bg</tt></i> sont les couleurs
+de premier plan (<b>f</b>ore<b>g</b>round) et d'arri&egrave;re plan (<b>b</b>ack<b>g</b>round)
 du pixmap.</p>
-<p>Les pixmaps peuvent &ecirc;tre cr&eacute;&eacute;s &agrave; partir de fichiers XPM 
+<p>Les pixmaps peuvent &ecirc;tre cr&eacute;&eacute;s &agrave; partir de fichiers XPM
 gr&acirc;ce &agrave; la fonction&nbsp;:</p>
 
 <pre class="programlisting">
   pixmap, masque = gtk.gdk.pixmap_create_from_xpm(<b><tt>window</tt></b>, <b><tt>transparent_color</tt></b>, <b><tt>filename</tt></b>)
 </pre>
 
-<p>Le format XPM est un repr&eacute;sentation lisible d'un pixmap, destin&eacute;e au 
-syst&egrave;me X Window. Il s'agit d'un format tr&eacute;s r&eacute;pandu et de nombreux 
-utilitaires existent pour cr&eacute;er des fichiers images dans ce format. Dans la fonction 
-<tt>pixmap_create_from_xpm</tt>(), le premier argument est un type <tt>GdkWindow</tt> &mdash; 
-la majorit&eacute; des widgets GTK poss&egrave;dent une fen&ecirc;tre <tt>GdkWindow</tt> 
-sous-jacente, r&eacute;cup&eacute;rable par l'attribut <i>window</i> du widget. Le fichier 
-est sp&eacute;cifi&eacute; &agrave; l'argument <i><tt>filename</tt></i> (nom du fichier). 
-Il doit contenir une image au format XPM &agrave; charger dans la structure 
-<i><tt>pixmap</tt></i>. Le <i><tt>masque</tt></i> est un bitmap qui indique les bits de 
-<i><tt>pixmap</tt></i> devant &ecirc;tre opaques ; il est cr&eacute&eacute; par la fonction. 
-Tous les autres pixels sont color&eacute;s en utilisant la couleur scp&eacute;cifi&eacute;e 
-par <i><tt>transparent_color</tt></i> (couleur transparente). Vous trouverez ci-dessous un 
+<p>Le format XPM est un repr&eacute;sentation lisible d'un pixmap, destin&eacute;e au
+syst&egrave;me X Window. Il s'agit d'un format tr&eacute;s r&eacute;pandu et de nombreux
+utilitaires existent pour cr&eacute;er des fichiers images dans ce format. Dans la fonction
+<tt>pixmap_create_from_xpm</tt>(), le premier argument est un type <tt>GdkWindow</tt> &mdash;
+la majorit&eacute; des widgets GTK poss&egrave;dent une fen&ecirc;tre <tt>GdkWindow</tt>
+sous-jacente, r&eacute;cup&eacute;rable par l'attribut <i>window</i> du widget. Le fichier
+est sp&eacute;cifi&eacute; &agrave; l'argument <i><tt>filename</tt></i> (nom du fichier).
+Il doit contenir une image au format XPM &agrave; charger dans la structure
+<i><tt>pixmap</tt></i>. Le <i><tt>masque</tt></i> est un bitmap qui indique les bits de
+<i><tt>pixmap</tt></i> devant &ecirc;tre opaques ; il est cr&eacute&eacute; par la fonction.
+Tous les autres pixels sont color&eacute;s en utilisant la couleur scp&eacute;cifi&eacute;e
+par <i><tt>transparent_color</tt></i> (couleur transparente). Vous trouverez ci-dessous un
 exemple d'utilisation de cette fonction.</p>
-<p>Les pixmaps peuvent &eacute;galement &ecirc;tre cr&eacute&eacute;s &agrave; partir de 
+<p>Les pixmaps peuvent &eacute;galement &ecirc;tre cr&eacute&eacute;s &agrave; partir de
 donn&eacute;es en m&eacute;moire, et ce avec la fonction suivante&nbsp;:</p>
 
 <pre class="programlisting">
   pixmap, masque = gtk.gdk.pixmap_create_from_xpm_d(<b><tt>window</tt></b>, <b><tt>transparent_color</tt></b>, <b><tt>data</tt></b>)
 </pre>
 
-<p>Cette fonction permet d'incorporer de petites images &agrave; un programme sous la forme 
-de donn&eacute;es au format XPM. Un pixmap sera cr&eacute;&eacute; &agrave; partir de ces 
-donn&eacute;es-l&agrave; plut&ocirc;t qu'en lisant celles d'un fichier. Voici un exemple de 
+<p>Cette fonction permet d'incorporer de petites images &agrave; un programme sous la forme
+de donn&eacute;es au format XPM. Un pixmap sera cr&eacute;&eacute; &agrave; partir de ces
+donn&eacute;es-l&agrave; plut&ocirc;t qu'en lisant celles d'un fichier. Voici un exemple de
 ces donn&eacute;es&nbsp;:</p>
 
 <pre class="programlisting">
@@ -292,20 +292,20 @@ ces donn&eacute;es&nbsp;:</p>
   ]
 </pre>
 
-<p>Enfin, la derni&egrave;re possibilit&eacute; permet de cr&eacute;er un pixmap vierge, 
+<p>Enfin, la derni&egrave;re possibilit&eacute; permet de cr&eacute;er un pixmap vierge,
 pr&ecirc;t pour les op&eacute;rations de dessin&nbsp;:</p>
 
 <pre class="programlisting">
   pixmap = gtk.gdk.Pixmap(<b><tt>window</tt></b>, <b><tt>width</tt></b>, <b><tt>height</tt></b>, <b><tt>depth</tt></b>=-1)
 </pre>
 
-<p><i><tt>window</tt></i> est soit une <tt>GdkWindow</tt> soit <tt>None</tt>. Dans le premier 
-cas, <i><tt>depth</tt></i> (profondeur) peut valoir -1 afin d'indiquer que la profondeur 
-doit &ecirc;tre d&eacute;termin&eacute;e par la fen&ecirc;tre. Dans le second cas, 
+<p><i><tt>window</tt></i> est soit une <tt>GdkWindow</tt> soit <tt>None</tt>. Dans le premier
+cas, <i><tt>depth</tt></i> (profondeur) peut valoir -1 afin d'indiquer que la profondeur
+doit &ecirc;tre d&eacute;termin&eacute;e par la fen&ecirc;tre. Dans le second cas,
 <i><tt>depth</tt></i> devra &ecirc;tre sp&eacute;cifi&eacute;.</p>
-<p>Le programme <a href="exemples/pixmap.py" target="_top"><b>pixmap.py</b></a> est un 
-exemple d'utilisation d'un pixmap dans un bouton. La <a href="sec-Images.html#FigPixmap" 
-title="Figure 9.6. Exemple de pixmap dans un bouton">Figure 9.6</a> en montre le 
+<p>Le programme <a href="exemples/pixmap.py" target="_top"><b>pixmap.py</b></a> est un
+exemple d'utilisation d'un pixmap dans un bouton. La <a href="sec-Images.html#FigPixmap"
+title="Figure 9.6. Exemple de pixmap dans un bouton">Figure 9.6</a> en montre le
 r&eacute;sultat&nbsp;:</p>
 
 <div class="figure"><a name="FigPixmap"></a>
@@ -317,13 +317,13 @@ r&eacute;sultat&nbsp;:</p>
 
 <pre class="programlisting">
      1   #!/usr/bin/env python
-     2   
+     2
      3   # exemple pixmap.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   # Donnees XPM d'une icone "Ouvrir Fichier"
     10   donnees_xpm = [
     11   "16 16 3 1",
@@ -347,17 +347,17 @@ r&eacute;sultat&nbsp;:</p>
     29   "                ",
     30   "                "
     31   ]
-    32   
+    32
     33   class ExemplePixmap:
     34       # Si elle est invoquee (via le "delete_event"), cette fonction ferme l'application
     35       def fermer_application(self, widget, evnmt, data=None):
     36           gtk.main_quit()
     37           return False
-    38   
+    38
     39       # Fonction invoquee par un clic sur le bouton. Elle affiche juste un message.
     40       def clic_bouton(self, widget, data=None):
     41           print "Clic sur le bouton"
-    42   
+    42
     43       def __init__(self):
     44           # creation de la fenetre principale, et connexion du signal
     45           # delete_event a la fermeture de l'application
@@ -365,46 +365,46 @@ r&eacute;sultat&nbsp;:</p>
     47           fenetre.connect("delete_event", self.fermer_application)
     48           fenetre.set_border_width(10)
     49           fenetre.show()
-    50   
+    50
     51           # venons-en a la creation du pixmap a partir des donnees XPM
     52           pixmap, masque = gtk.gdk.pixmap_create_from_xpm_d(fenetre.window,
     53                                                             None,
     54                                                             donnees_xpm)
-    55   
+    55
     56           # Creation d'un widget gtk.Image pour contenir le pixmap
     57           image = gtk.Image()
     58           image.set_from_pixmap(pixmap, masque)
     59           image.show()
-    60   
+    60
     61           # Creation d'un bouton pour contenir le gtk.Image
     62           bouton = gtk.Button()
     63           bouton.add(image)
     64           fenetre.add(bouton)
     65           bouton.show()
-    66   
+    66
     67           bouton.connect("clicked", self.clic_bouton)
-    68   
+    68
     69   def main():
     70       gtk.main()
     71       return 0
-    72   
+    72
     73   if __name__ == "__main__":
     74       ExemplePixmap()
     75       main()
 </pre>
 
-<p>Les pixmap ont malgr&eacute; tout cet inconv&eacute;nient que l'objet affich&eacute; 
-est toujours rectangulaire, quelle que soit l'image. On aimerait bien pouvoir cr&eacute;er 
-des bureaux ou des applications avec des ic&ocirc;nes aux formes plus naturelles. Des boutons 
-ronds seraient par exemple bienvenus dans l'interface d'un jeu. C'est ici qu'entrent en jeu 
+<p>Les pixmap ont malgr&eacute; tout cet inconv&eacute;nient que l'objet affich&eacute;
+est toujours rectangulaire, quelle que soit l'image. On aimerait bien pouvoir cr&eacute;er
+des bureaux ou des applications avec des ic&ocirc;nes aux formes plus naturelles. Des boutons
+ronds seraient par exemple bienvenus dans l'interface d'un jeu. C'est ici qu'entrent en jeu
 les fen&ecirc;tres adapt&eacute;es.</p>
-<p>Il s'agit en fait simplement d'un pixmap dont les pixels d'arri&egrave;re-plan sont 
-transparents. Ainsi, lorsque l'image d'arri&egrave;re-plan est multicolore, on ne l'encombre 
-pas avec la bordure rectangulaire inadapt&eacute;e de notre ic&ocirc;ne. Le programme 
-d'exemple <a href="exemples/brouette.py" target="_top"><b>brouette.py</b></a> affiche une 
-image repr&eacute;sentant une brouette pleine sur le bureau. La 
-<a href="sec-Images.html#FigBrouette" 
-title="Figure 9.7. Exemple de fenetre en forme de brouette">Figure 9.7</a> 
+<p>Il s'agit en fait simplement d'un pixmap dont les pixels d'arri&egrave;re-plan sont
+transparents. Ainsi, lorsque l'image d'arri&egrave;re-plan est multicolore, on ne l'encombre
+pas avec la bordure rectangulaire inadapt&eacute;e de notre ic&ocirc;ne. Le programme
+d'exemple <a href="exemples/brouette.py" target="_top"><b>brouette.py</b></a> affiche une
+image repr&eacute;sentant une brouette pleine sur le bureau. La
+<a href="sec-Images.html#FigBrouette"
+title="Figure 9.7. Exemple de fenetre en forme de brouette">Figure 9.7</a>
 montre cette brouette par dessus une fen&ecirc;tre de terminal&nbsp;:</p>
 
 <div class="figure"><a name="FigBrouette"></a>
@@ -418,13 +418,13 @@ montre cette brouette par dessus une fen&ecirc;tre de terminal&nbsp;:</p>
 
 <pre class="programlisting">
      1   #!/usr/bin/env python
-     2   
+     2
      3   # exemple brouette.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   # XPM
     10   BrouettePleine_xpm = [
     11   "48 48 64 1",
@@ -541,13 +541,13 @@ montre cette brouette par dessus une fen&ecirc;tre de terminal&nbsp;:</p>
    122   "                                                ",
    123   "                                                "
    124   ]
-   125   
+   125
    126   class ExempleBrouette:
    127       # Si elle est invoquee (via le "delete_event"), cette fonction ferme l'application
    128       def fermer_application(self, widget, evnmt, data=None):
    129           gtk.main_quit()
    130           return False
-   131   
+   131
    132       def __init__(self):
    133           # Creation de la fenetre principale et connexion du signal "delete_event"
    134           # a la fermeture de l'application. Notez que la fenetre principale n'aura
@@ -557,39 +557,39 @@ montre cette brouette par dessus une fen&ecirc;tre de terminal&nbsp;:</p>
    138           fenetre.set_events(fenetre.get_events() | gtk.gdk.BUTTON_PRESS_MASK)
    139           fenetre.connect("button_press_event", self.fermer_application)
    140           fenetre.show()
-   141   
+   141
    142           # Venons-en a la creation du pixmap et du widget gtk.Image
    143           pixmap, masque = gtk.gdk.pixmap_create_from_xpm_d(
    144               fenetre.window, None, BrouettePleine_xpm)
    145           image = gtk.Image()
    146           image.set_from_pixmap(pixmap, masque)
    147           image.show()
-   148   
+   148
    149           # Pour afficher l'image, on va la placer dans un widget fixe
    150           wfixe = gtk.Fixed()
    151           wfixe.set_size_request(200, 200)
    152           wfixe.put(image, 0, 0)
    153           fenetre.add(wfixe)
    154           wfixe.show()
-   155   
+   155
    156           # Ici nous masquons tout sauf l'image elle-meme
    157           fenetre.shape_combine_mask(masque, 0, 0)
-   158       
+   158
    159           # On affiche la fenetre
    160           fenetre.set_position(gtk.WIN_POS_CENTER_ALWAYS)
    161           fenetre.show()
-   162   
+   162
    163   def main():
    164       gtk.main()
    165       return 0
-   166   
+   166
    167   if __name__ == "__main__":
    168       ExempleBrouette()
    169       main()
 </pre>
 
-<p>Pour rendre la brouette sensible &agrave; la pression d'un bouton de la souris, on a 
-connect&eacute; son signal &quot;button_press_event&quot; &agrave; la m&eacute;thode 
+<p>Pour rendre la brouette sensible &agrave; la pression d'un bouton de la souris, on a
+connect&eacute; son signal &quot;button_press_event&quot; &agrave; la m&eacute;thode
 <tt>fermer_application</tt>() (lignes 138-139), laquelle fait se terminer le programme.</p>
 </div></div>
 

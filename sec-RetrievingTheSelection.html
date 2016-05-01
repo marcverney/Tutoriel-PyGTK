@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>21.2. Récupérer la sélection</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>21.2.Â RÃ©cupÃ©rer la sÃ©lection</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-ManagingSelections.html" title="Chapitre 21. Gérer les sélections">
-<link rel="prev" href="ch-ManagingSelections.html" title="Chapitre 21. Gérer les sélections">
-<link rel="next" href="sec-SupplyingTheSelection.html" title="21.3. Alimenter la sélection">
+<link rel="up" href="ch-ManagingSelections.html" title="ChapitreÂ 21.Â GÃ©rer les sÃ©lections">
+<link rel="prev" href="ch-ManagingSelections.html" title="ChapitreÂ 21.Â GÃ©rer les sÃ©lections">
+<link rel="next" href="sec-SupplyingTheSelection.html" title="21.3.Â Alimenter la sÃ©lection">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">21.2. Récupérer la sélection</th></tr>
+<tr><th colspan="3" align="center">21.2.Â RÃ©cupÃ©rer la sÃ©lection</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="ch-ManagingSelections.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 21. Gérer les sélections</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-SupplyingTheSelection.html">Suiv.</a>
+<a accesskey="p" href="ch-ManagingSelections.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 21.Â GÃ©rer les sÃ©lections</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-SupplyingTheSelection.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,33 +36,33 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-RetrievingTheSelection"></a>21.2. Récupérer la sélection</h2></div></div></div>
-<p>Récupérer la sélection est un processus asynchrone. 
-    Pour démarrer le processus, on appelle :</p>
+<a name="sec-RetrievingTheSelection"></a>21.2.Â RÃ©cupÃ©rer la sÃ©lection</h2></div></div></div>
+<p>RÃ©cupÃ©rer la sÃ©lection est un processus asynchrone.
+    Pour dÃ©marrer le processus, on appelleÂ :</p>
 <pre class="programlisting">
   result = widget.selection_convert(<strong class="parameter"><code>selection</code></strong>, <strong class="parameter"><code>target</code></strong>, <strong class="parameter"><code>time</code></strong>=0)
 </pre>
-<p>Ceci convertit la sélection <em class="parameter"><code>selection</code></em> au format indiqué 
-    par le paramètre cible <em class="parameter"><code>target</code></em>. La <em class="parameter"><code>selection</code></em> 
-    est un atome conforme au type de sélection; les sélections courantes sont les 
-    chaînes de caractères :</p>
+<p>Ceci convertit la sÃ©lection <em class="parameter"><code>selection</code></em> au format indiquÃ©
+    par le paramÃ¨tre cible <em class="parameter"><code>target</code></em>. La <em class="parameter"><code>selection</code></em>
+    est un atome conforme au type de sÃ©lection; les sÃ©lections courantes sont les
+    chaÃ®nes de caractÃ¨resÂ :</p>
 <pre class="programlisting">
   PRIMARY
 
   SECONDARY
 </pre>
-<p>Si c'est possible, le champ temps <em class="parameter"><code>time</code></em> 
-devrait être le moment où se produit l'événement qui a déclenché la sélection. 
-Cela aide à s'assurer que les événements se produisent dans l'ordre dans lequel 
-l'utilisateur les a demandés. Cependant, si ce n'est pas disponible (par exemple, 
-si la conversion a été déclenchée par un signal "clicked"), on peut utiliser 
-la valeur 0 qui indique l'utilisation du moment actuel. Le paramètre 
-<em class="parameter"><code>result</code></em> vaut <code class="literal">TRUE</code> si la conversion 
-réussit, <code class="literal">FALSE</code> dans le cas contraire.</p>
-<p>Quand le propriétaire de la sélection répond à la requête, un signal 
-"selection_received" est envoyé à votre application. Le gestionnaire 
-de ce signal reçoit un objet <code class="classname">gtk.SelectionData</code> 
-qui posséde les attributs suivants :</p>
+<p>Si c'est possible, le champ temps <em class="parameter"><code>time</code></em>
+devrait Ãªtre le moment oÃ¹ se produit l'Ã©vÃ©nement qui a dÃ©clenchÃ© la sÃ©lection.
+Cela aide Ã  s'assurer que les Ã©vÃ©nements se produisent dans l'ordre dans lequel
+l'utilisateur les a demandÃ©s. Cependant, si ce n'est pas disponible (par exemple,
+si la conversion a Ã©tÃ© dÃ©clenchÃ©e par un signal "clicked"), on peut utiliser
+la valeur 0 qui indique l'utilisation du moment actuel. Le paramÃ¨tre
+<em class="parameter"><code>result</code></em> vaut <code class="literal">TRUE</code> si la conversion
+rÃ©ussit, <code class="literal">FALSE</code> dans le cas contraire.</p>
+<p>Quand le propriÃ©taire de la sÃ©lection rÃ©pond Ã  la requÃªte, un signal
+"selection_received" est envoyÃ© Ã  votre application. Le gestionnaire
+de ce signal reÃ§oit un objet <code class="classname">gtk.SelectionData</code>
+qui possÃ©de les attributs suivantsÂ :</p>
 <pre class="programlisting">
   selection
   target
@@ -69,15 +70,15 @@ qui posséde les attributs suivants :</p>
   format
   data
 </pre>
-<p>Les paramètres <em class="parameter"><code>selection</code></em> et <em class="parameter"><code>target</code></em> 
-sont les valeurs que l'on a donné dans la méthode 
+<p>Les paramÃ¨tres <em class="parameter"><code>selection</code></em> et <em class="parameter"><code>target</code></em>
+sont les valeurs que l'on a donnÃ© dans la mÃ©thode
 <code class="methodname">selection_convert</code>().</p>
-<p>Le paramètre <em class="parameter"><code>type</code></em> est un atome qui identifie le 
-type de données renvoyées par le propriétaire de la sélection. Quelques unes 
-des valeurs possibles sont "STRING", une chaîne de caractères en latin-1, 
-"ATOM", une série d'atomes, "INTEGER", un nombre entier, "image/x-xpixmap", 
+<p>Le paramÃ¨tre <em class="parameter"><code>type</code></em> est un atome qui identifie le
+type de donnÃ©es renvoyÃ©es par le propriÃ©taire de la sÃ©lection. Quelques unes
+des valeurs possibles sont "STRING", une chaÃ®ne de caractÃ¨res en latin-1,
+"ATOM", une sÃ©rie d'atomes, "INTEGER", un nombre entier, "image/x-xpixmap",
 etc. la plupart des cibles ne peuvent renvoyer qu'un seul type.</p>
-<p>Voici la liste des atomes standards dans X et GTK+ :</p>
+<p>Voici la liste des atomes standards dans X et GTK+Â :</p>
 <pre class="programlisting">
   PRIMARY
   SECONDARY
@@ -148,76 +149,76 @@ etc. la plupart des cibles ne peuvent renvoyer qu'un seul type.</p>
   WM_TRANSIENT_FOR
   CLIPBOARD
 </pre>
-<p>Le paramètre <em class="parameter"><code>format</code></em> fournit la longueur des unités 
-(par exemple, les caractères) en bits. En général, on ne s'en soucie pas 
-lorsqu'on reçoit les données.</p>
-<p>Le paramètre <em class="parameter"><code>data</code></em> représente les données renvoyées 
-sous la forme d'une chaîne de caractères.</p>
-<p>PyGTK organise toutes les données reçues dans une chaîne de caractères. 
-Ceci rend facile la manipulation des cibles chaînes. Pour récupérer les 
-autres types (par exemple ATOM ou INTEGER), le programme doir extraire 
-l'information de la chaîne renvoyée. PyGTK fournit deux méthodes pour 
-récupérer le texte et une liste de cibles à partir des données de la 
-sélection.</p>
+<p>Le paramÃ¨tre <em class="parameter"><code>format</code></em> fournit la longueur des unitÃ©s
+(par exemple, les caractÃ¨res) en bits. En gÃ©nÃ©ral, on ne s'en soucie pas
+lorsqu'on reÃ§oit les donnÃ©es.</p>
+<p>Le paramÃ¨tre <em class="parameter"><code>data</code></em> reprÃ©sente les donnÃ©es renvoyÃ©es
+sous la forme d'une chaÃ®ne de caractÃ¨res.</p>
+<p>PyGTK organise toutes les donnÃ©es reÃ§ues dans une chaÃ®ne de caractÃ¨res.
+Ceci rend facile la manipulation des cibles chaÃ®nes. Pour rÃ©cupÃ©rer les
+autres types (par exemple ATOM ou INTEGER), le programme doir extraire
+l'information de la chaÃ®ne renvoyÃ©e. PyGTK fournit deux mÃ©thodes pour
+rÃ©cupÃ©rer le texte et une liste de cibles Ã  partir des donnÃ©es de la
+sÃ©lection.</p>
 <pre class="programlisting">
   text = selection_data.get_text()
 
   targets = selection_data.get_targets()
 </pre>
-<p>... où le paramètre <em class="parameter"><code>text</code></em> est une chaîne de caractères 
-qui contient le texte de la sélection et <em class="parameter"><code>targets</code></em> 
-est une liste des cibles reconnues par la sélection.</p>
-<p>Étant donnée une <code class="classname">gtk.SelectionData</code> contenant 
-une liste de cibles, la méthode :</p>
+<p>... oÃ¹ le paramÃ¨tre <em class="parameter"><code>text</code></em> est une chaÃ®ne de caractÃ¨res
+qui contient le texte de la sÃ©lection et <em class="parameter"><code>targets</code></em>
+est une liste des cibles reconnues par la sÃ©lection.</p>
+<p>Ã‰tant donnÃ©e une <code class="classname">gtk.SelectionData</code> contenant
+une liste de cibles, la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   has_text = selection_data.targets_include_text()
 </pre>
-<p>... doit renvoyer <code class="literal">TRUE</code> si une ou plusieurs cibles 
+<p>... doit renvoyer <code class="literal">TRUE</code> si une ou plusieurs cibles
 peuvent fournir un texte.</p>
 <p>Le programme <a href="exemples/getselection.py" target="_top"><span><strong class="command">
-getselection.py</strong></span></a> illustre la récupération de cibles 
-"STRING" ou "TARGETS" à partir de la sélection primaire et écrit les 
-données correspondantes sur la console quand on clique sur le bouton 
-associé. La <a href="sec-RetrievingTheSelection.html#getselectionfig" title="Figure 21.1. Exemple de récupération de sélection">Figure 21.1, « Exemple de récupération de sélection »</a> montre un aperçu du 
-programme  :</p>
+getselection.py</strong></span></a> illustre la rÃ©cupÃ©ration de cibles
+"STRING" ou "TARGETS" Ã  partir de la sÃ©lection primaire et Ã©crit les
+donnÃ©es correspondantes sur la console quand on clique sur le bouton
+associÃ©. La <a href="sec-RetrievingTheSelection.html#getselectionfig" title="FigureÂ 21.1.Â Exemple de rÃ©cupÃ©ration de sÃ©lection">FigureÂ 21.1, Â«Â Exemple de rÃ©cupÃ©ration de sÃ©lectionÂ Â»</a> montre un aperÃ§u du
+programme Â :</p>
 <div class="figure">
-<a name="getselectionfig"></a><p class="title"><b>Figure 21.1. Exemple de récupération de sélection</b></p>
-<div class="mediaobject" align="center"><img src="figures/getselection.png" align="middle" alt="Exemple de récupération de sélection"></div>
+<a name="getselectionfig"></a><p class="title"><b>FigureÂ 21.1.Â Exemple de rÃ©cupÃ©ration de sÃ©lection</b></p>
+<div class="mediaobject" align="center"><img src="figures/getselection.png" align="middle" alt="Exemple de rÃ©cupÃ©ration de sÃ©lection"></div>
 </div>
 <p>Voici le code du programme <a href="exemples/getselection.py" target="_top">
-<span><strong class="command">getselection.py</strong></span></a> :</p>
+<span><strong class="command">getselection.py</strong></span></a>Â :</p>
 <pre class="programlisting">
      1   #!/usr/bin/env python
      2   # -*- coding:utf-8 -*-
      3   # exemple getselection.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   class GetSelectionExample:
-    10       # Gestionnaire de signal invoqué quand l'utilisateur
+    10       # Gestionnaire de signal invoquÃ© quand l'utilisateur
     11       # clique sur le bouton "Contenu de la cible"
     12       def get_stringtarget(self, widget):
-    13           # Et demande la cible "STRING" pour la sélection primaire
+    13           # Et demande la cible "STRING" pour la sÃ©lection primaire
     14           ret = widget.selection_convert("PRIMARY", "STRING")
     15           return
-    16   
-    17       # Gestionnaire de signal invoqué quand l'utilisateur clique sur le bouton "Liste des cibles"
+    16
+    17       # Gestionnaire de signal invoquÃ© quand l'utilisateur clique sur le bouton "Liste des cibles"
     18       def get_targets(self, widget):
-    19           # Et demande la cible "TARGETS" pour la sélection primaire
+    19           # Et demande la cible "TARGETS" pour la sÃ©lection primaire
     20           ret = widget.selection_convert("PRIMARY", "TARGETS")
     21           return
-    22   
-    23       # Gestionnaire de signal appelé quand le propriétaire de la sélection retourne les données
+    22
+    23       # Gestionnaire de signal appelÃ© quand le propriÃ©taire de la sÃ©lection retourne les donnÃ©es
     24       def selection_received(self, widget, selection_data, data):
-    25           # On s'assure que les données sont au bon format
+    25           # On s'assure que les donnÃ©es sont au bon format
     26           if str(selection_data.type) == "STRING":
-    27               # On affiche la chaîne reçue
+    27               # On affiche la chaÃ®ne reÃ§ue
     28               print "STRING TARGET: %s" % selection_data.get_text()
-    29   
+    29
     30           elif str(selection_data.type) == "ATOM":
-    31               # On affiche la liste des cibles que l'on reçoit
+    31               # On affiche la liste des cibles que l'on reÃ§oit
     32               targets = selection_data.get_targets()
     33               for target in targets:
     34                   name = str(target)
@@ -226,23 +227,23 @@ programme  :</p>
     37                   else:
     38                       print "(mauvaise cible)"
     39           else:
-    40               print "La sélection n'est pas un \"STRING\" ou un \"ATOM\" !"
-    41   
+    40               print "La sÃ©lection n'est pas un \"STRING\" ou un \"ATOM\" !"
+    41
     42           return False
-    43     
-    44   
+    43
+    44
     45       def __init__(self):
-    46           # Création de la fenêtre de niveau supérieur
+    46           # CrÃ©ation de la fenÃªtre de niveau supÃ©rieur
     47           window = gtk.Window(gtk.WINDOW_TOPLEVEL)
     48           window.set_title("Get Selection")
     49           window.set_border_width(10)
     50           window.connect("destroy", lambda w: gtk.main_quit())
-    51   
+    51
     52           vbox = gtk.VBox(False, 0)
     53           window.add(vbox)
     54           vbox.show()
-    55   
-    56           # Création du bouton pour obtenir la contenu chaîne de la cible
+    55
+    56           # CrÃ©ation du bouton pour obtenir la contenu chaÃ®ne de la cible
     57           button = gtk.Button("Contenu de la cible")
     58           eventbox = gtk.EventBox()
     59           eventbox.add(button)
@@ -251,8 +252,8 @@ programme  :</p>
     62           vbox.pack_start(eventbox)
     63           eventbox.show()
     64           button.show()
-    65   
-    66           # Création du bouton pour obtenir les formats de cible acceptés
+    65
+    66           # CrÃ©ation du bouton pour obtenir les formats de cible acceptÃ©s
     67           button = gtk.Button("Liste des cibles")
     68           eventbox = gtk.EventBox()
     69           eventbox.add(button)
@@ -261,22 +262,22 @@ programme  :</p>
     72           vbox.pack_start(eventbox)
     73           eventbox.show()
     74           button.show()
-    75   
+    75
     76           window.show()
-    77   
+    77
     78   def main():
     79       gtk.main()
     80       return 0
-    81   
+    81
     82   if __name__ == "__main__":
     83       GetSelectionExample()
     84       main()
 </pre>
-<p>Les lignes 30-38 se chargent d'obtenir les données de sélection 
-des "TARGETS" et impriment la liste des noms de cibles. Les boutons sont inclus 
-dans leur propre boîtes à évènements car une sélection doit être associée 
-à un <code class="classname">gtk.gdkWindow</code> alors que les boutons sont des 
-widgets sans fenêtre dans GTK+2.0.
+<p>Les lignes 30-38 se chargent d'obtenir les donnÃ©es de sÃ©lection
+des "TARGETS" et impriment la liste des noms de cibles. Les boutons sont inclus
+dans leur propre boÃ®tes Ã  Ã©vÃ¨nements car une sÃ©lection doit Ãªtre associÃ©e
+Ã  un <code class="classname">gtk.gdkWindow</code> alors que les boutons sont des
+widgets sans fenÃªtre dans GTK+2.0.
 </p>
 </div>
 <div class="navfooter">
@@ -284,15 +285,15 @@ widgets sans fenêtre dans GTK+2.0.
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="ch-ManagingSelections.html">Préc.</a> </td>
+<a accesskey="p" href="ch-ManagingSelections.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-ManagingSelections.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-SupplyingTheSelection.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-SupplyingTheSelection.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">Chapitre 21. Gérer les sélections </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 21.3. Alimenter la sélection</td>
+<td width="40%" align="left" valign="top">ChapitreÂ 21.Â GÃ©rer les sÃ©lectionsÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 21.3.Â Alimenter la sÃ©lection</td>
 </tr>
 </table>
 </div>

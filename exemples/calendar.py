@@ -1,37 +1,36 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr"> 
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<!-- TITRE PAGE --> 
-  <title>Ooops</title> 
-  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15" /> 
-  <meta http-equiv="Content-language" content="fr" /> 
-  <meta name="robots" content="noindex,follow"/>  
-  <link rel="stylesheet" type="text/css" media="all" href="../theme1/styles.css" /> 
-  <link rel="stylesheet" type="text/css" media="print" href="../theme1/pstyle.css" /> 
-</head> 
+    <meta charset="utf-8">
+  <title>Ooops</title>
+  <meta http-equiv="Content-language" content="fr" />
+  <meta name="robots" content="noindex,follow"/>
+  <link rel="stylesheet" media="all" href="../theme1/styles.css" />
+  <link rel="stylesheet" media="print" href="../theme1/pstyle.css" />
+</head>
 
 <body>
 <div class="conteneur">
-<!-- DEBUT HEADER --> 
+<!-- DEBUT HEADER -->
 <div class="conthead">
-	<div class="header"> 
-		<div id="imgheader">&nbsp; 
-		</div> 
-	</div> 
-</div> 
-<!-- FIN HEADER --> 
-<!-- DEBUT NAVBAR --> 
-<div class="localisation"> 
-Vous êtes ici : 
+	<div class="header">
+		<div id="imgheader">&nbsp;
+		</div>
+	</div>
+</div>
+<!-- FIN HEADER -->
+<!-- DEBUT NAVBAR -->
+<div class="localisation">
+Vous êtes ici :
 <a href="../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
-Erreur de parcours</div> 
-<!-- fin localisation --> 
-<!-- FIN NAVBAR --> 
+Erreur de parcours</div>
+<!-- fin localisation -->
+<!-- FIN NAVBAR -->
 
-<div id="main"> 
+<div id="main">
 <div id="mainfloat">
- 
+
 <div class="article">
 		<div class="contenu_article">
 		<!-- DEBUT contenu article -->
@@ -40,38 +39,38 @@ Erreur de parcours</div>
 		</div><!-- FIN contenu article -->
 </div><!-- FIN ARTICLE -->
 <br class="spacer" />
-		
+
 </div><!-- fin mainfloat -->
 
 <!-- SOMMAIRE DROITE -->
 <div id="sidebar">
 	<div class="side-content">
-	
+
     <h2>Musique</h2>
 		<ul>
 			<li><a href="../index.html">Emji</a></li>
 			<li><a href="../index.html"><img src="../images/emjisidebar.jpg" width="136" height="136" alt="galerie"></a></li>
-		</ul> 
-		        
-	  <h2>LaTeX</h2>      
+		</ul>
+
+	  <h2>LaTeX</h2>
 	  	<ul>
 				<li><a href="../latex/cmsuper.php">Installation des fontes CMsuper</a></li>
 				<li><a href="../latex/introbeamer.php">Beamer : découverte</a></li>
 				<li><a href="../latex/beamergalerie.php">Beamer : les thèmes</a></li>
 				<li><a href="../latex/beamermodif.php">Beamer : modifier un thème</a></li>
 			</ul>
-			
+
     <h2>Logiciels</h2>
 		<ul>
 			<li><a href="../linux/extfirefox.php">Extensions de Firefox</a></li>
 		</ul>
-  
+
    <h2>Python</h2>
 		<ul>
 			<li><a href="../python/pygtktut.php">Tutoriel Pygtk</a></li>
 			<li><a href="../python/pyxmahjongg.php">PyXMahjongg</a></li>
 		</ul>
-   
+
     <h2>Slackware</h2>
 		<ul>
 			<li><a href="../slackware/hp1200.php">Imprimante HP1200</a></li>
@@ -79,28 +78,28 @@ Erreur de parcours</div>
 			<li><a href="../slackware/scanner.php">Scanner Epson V700</a></li>
 			<li><a href="../slackware/sbopkg.php">Sbopkg pour SlackBuild</a></li>
 		</ul>
-		
+
     <h2>Photo</h2>
 		<ul>
 			<li><a href="../piwigo/">Galerie photos</a></li>
 			<li><a href="../piwigo/index.php?/recent_pics"><img src="../images/sidebar.jpg" width="136" height="91" alt="galerie"></a></li>
 		</ul>
-    
+
     <br />
 	</div><!-- fin side content -->
-	
+
 	<div class="side-content">
 	<h2><a href="../index.html">Accueil</a></h2>
 	</div><!-- fin side content -->
-	
+
 	<div class="side-content">
 	<h2><a href="../contact.php">Contact</a></h2>
 	<!--<img src="../images/mail.png" width="153" height="18" alt="email" />-->
 	</div><!-- fin side content -->
-	
+
 
 <!-- phpmyvisites -->
-<div class="side-content">	
+<div class="side-content">
 <a href="http://st.free.fr/" title="phpMyVisites | Open source web analytics"
 onclick="window.open(this.href);return(false);"><script type="text/javascript">
 <!--
@@ -116,7 +115,7 @@ var phpmyvisitesURL = "http://st.free.fr/phpmyvisites.php";
 <img src="http://st.free.fr/phpmyvisites.php" alt="Statistics" style="border:0" />
 </p></noscript></object></a>
 </div><!-- fin side content -->
-<!-- /phpmyvisites --> 
+<!-- /phpmyvisites -->
 
 
 </div> <!-- end sidebar --><!-- FIN SOMMAIRE DROITE -->
@@ -124,10 +123,10 @@ var phpmyvisitesURL = "http://st.free.fr/phpmyvisites.php";
 
 </div><!-- fin main -->
 
-<!-- DEBUT FOOTER --> 
-<hr class="spacer" /> 
-<div class="footer"> 
-	&laquo; ...je marcherais tout doucement vers une fontaine... &raquo;  
+<!-- DEBUT FOOTER -->
+<hr class="spacer" />
+<div class="footer">
+	&laquo; ...je marcherais tout doucement vers une fontaine... &raquo;
 </div> <!-- fin footer -->
 </div> <!-- fin conteneur -->
 <p>&nbsp;</p>
@@ -149,8 +148,7 @@ var phpmyvisitesURL = "http://st.free.fr/phpmyvisites.php";
 <img src="http://st.free.fr/phpmyvisites.php" alt="Statistics" style="border:0" />
 </p></noscript></object></a>
 </div>
-<!-- /phpmyvisites --> 
- 
+<!-- /phpmyvisites -->
+
 </body>
 </html>
-		

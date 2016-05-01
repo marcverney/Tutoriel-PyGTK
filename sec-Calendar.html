@@ -1,10 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>9.12. Le calendrier</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,calendrier">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -14,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici&nbsp;: 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃšs ici&nbsp;:
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En-t&ecirc;te de navigation">
 <tr>
@@ -134,7 +134,7 @@ Vous êtes à peu près ici&nbsp;:
 
 <pre class="programlisting">
      1   #!/usr/bin/env python
-     2   
+     2
      3   # exemple calendrier.py
      4   #
      5   # Copyright (C) 1998 Cesar Miquel, Shawn T. Amundson, Mattias Gronlund
@@ -154,73 +154,73 @@ Vous êtes à peu près ici&nbsp;:
     19   # You should have received a copy of the GNU General Public License
     20   # along with this program; if not, write to the Free Software
     21   # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-    22   
+    22
     23   import pygtk
     24   pygtk.require('2.0')
     25   import gtk, pango
     26   import time
-    27   
+    27
     28   class ExempleCalendrier:
     29       DEF_ESP = 10
     30       DEF_PETIT_ESP = 5
     31       ANNEE_BASE = 1900
-    32   
+    32
     33       calendrier_affich_entete = 0
     34       calendrier_affich_jours = 1
-    35       calendrier_change_mois = 2 
+    35       calendrier_change_mois = 2
     36       calendrier_affich_semaine = 3
-    37   
+    37
     38       def calendrier_date_chaine(self):
     39           annee, mois, jour = self.fenetre.get_date()
     40           date = time.mktime((annee, mois+1, jour, 0, 0, 0, 0, 0, -1))
     41           return time.strftime("%x", time.localtime(date))
-    42   
+    42
     43       def calendrier_chaines_signaux(self, chaine_signal):
     44           penult_sig = self.penult_sig.get()
     45           self.apenult_sig.set_text(penult_sig)
-    46   
+    46
     47           penult_sig = self.dern_sig.get()
     48           self.penult_sig.set_text(penult_sig)
     49           self.dern_sig.set_text(chaine_signal)
-    50   
+    50
     51       def calendrier_change_mois(self, widget):
     52           tampon = "month_changed : %s" % self.calendrier_date_chaine()
     53           self.calendrier_chaines_signaux(tampon)
-    54   
+    54
     55       def calendrier_selec_jour(self, widget):
     56           tampon = "day_selected : %s" % self.calendrier_date_chaine()
     57           self.calendrier_chaines_signaux(tampon)
-    58   
+    58
     59       def calendrier_selec_jour_dbleclic(self, widget):
     60           tampon = "day_selected_double_click : %s"
     61           tampon = tampon % self.calendrier_date_chaine()
     62           self.calendrier_chaines_signaux(tampon)
-    63   
+    63
     64           annee, mois, jour = self.fenetre.get_date()
-    65   
+    65
     66           if self.date_marquee[jour-1] == 0:
     67               self.fenetre.mark_day(jour)
     68               self.date_marquee[jour-1] = 1
     69           else:
     70               self.fenetre.unmark_day(jour)
     71               self.date_marquee[jour-1] = 0
-    72   
+    72
     73       def calendrier_mois_prec(self, widget):
     74           tampon = "prev_month : %s" % self.calendrier_date_chaine()
     75           self.calendrier_chaines_signaux(tampon)
-    76   
+    76
     77       def calendrier_mois_suiv(self, widget):
     78           tampon = "next_month : %s" % self.calendrier_date_chaine()
     79           self.calendrier_chaines_signaux(tampon)
-    80   
+    80
     81       def calendrier_annee_prec(self, widget):
     82           tampon = "prev_year : %s" % self.calendrier_date_chaine()
     83           self.calendrier_chaines_signaux(tampon)
-    84   
+    84
     85       def calendrier_annee_suiv(self, widget):
     86           tampon = "next_year : %s" % self.calendrier_date_chaine()
     87           self.calendrier_chaines_signaux(tampon)
-    88   
+    88
     89       def calendrier_def_drapeaux(self):
     90           options = 0
     91           for i in range(5):
@@ -228,32 +228,32 @@ Vous êtes à peu près ici&nbsp;:
     93                   options = options + (1<<i)
     94           if self.fenetre:
     95               self.fenetre.display_options(options)
-    96   
+    96
     97       def calendrier_drapeau_coche(self, caseacocher):
     98           j = 0
     99           for i in range(5):
    100               if self.cases_drapeaux[i] == caseacocher:
    101                   j = i
-   102   
+   102
    103           self.reglages[j] = not self.reglages[j]
    104           self.calendrier_def_drapeaux()
-   105   
+   105
    106       def calendrier_police_selection_ok(self, bouton):
    107           self.police = self.dialogue_police.get_font_name()
    108           if self.fenetre:
    109               desc_police = pango.FontDescription(self.police)
-   110               if desc_police: 
+   110               if desc_police:
    111                   self.fenetre.modify_font(desc_police)
-   112   
+   112
    113       def calendrier_selec_police(self, bouton):
    114           if not self.dialogue_police:
    115               fenetre = gtk.FontSelectionDialog("Selection d'une police")
    116               self.dialogue_police = fenetre
-   117       
+   117
    118               fenetre.set_position(gtk.WIN_POS_MOUSE)
-   119       
+   119
    120               fenetre.connect("destroy", self.dialogue_police_destroy)
-   121       
+   121
    122               fenetre.ok_button.connect("clicked",
    123                                        self.calendrier_police_selection_ok)
    124               fenetre.cancel_button.connect_object("clicked",
@@ -265,10 +265,10 @@ Vous êtes à peu près ici&nbsp;:
    130           else:
    131               fenetre.destroy()
    132               self.dialogue_police = None
-   133   
+   133
    134       def dialogue_police_destroy(self, donnees=None):
    135           self.dialogue_police = None
-   136   
+   136
    137       def __init__(self):
    138           drapeaux = [
    139               "Afficher en-tete",
@@ -282,17 +282,17 @@ Vous êtes à peu près ici&nbsp;:
    147           self.cases_drapeaux = 5*[None]
    148           self.reglages = 5*[0]
    149           self.date_marquee = 31*[0]
-   150   
+   150
    151           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
    152           fenetre.set_title("Exemple de calendrier")
    153           fenetre.set_border_width(5)
    154           fenetre.connect("destroy", lambda x: gtk.main_quit())
-   155   
+   155
    156           fenetre.set_resizable(False)
-   157   
+   157
    158           boite_v = gtk.VBox(False, self.DEF_ESP)
    159           fenetre.add(boite_v)
-   160   
+   160
    161           # La partie du haut de la fenetre : calendrier, drapeaux et police
    162           boite_h = gtk.HBox(False, self.DEF_ESP)
    163           boite_v.pack_start(boite_h, True, True, self.DEF_ESP)
@@ -300,7 +300,7 @@ Vous êtes à peu près ici&nbsp;:
    165           boite_h.pack_start(boiteboutons_h, False, False, self.DEF_ESP)
    166           boiteboutons_h.set_layout(gtk.BUTTONBOX_SPREAD)
    167           boiteboutons_h.set_spacing(5)
-   168   
+   168
    169           # Le calendrier
    170           cadre = gtk.Frame("Calendrier")
    171           boiteboutons_h.pack_start(cadre, False, True, self.DEF_ESP)
@@ -318,74 +318,74 @@ Vous êtes à peu près ici&nbsp;:
    183           calendrier.connect("next_month", self.calendrier_mois_suiv)
    184           calendrier.connect("prev_year", self.calendrier_annee_prec)
    185           calendrier.connect("next_year", self.calendrier_annee_suiv)
-   186   
+   186
    187           separateur = gtk.VSeparator()
    188           boite_h.pack_start(separateur, False, True, 0)
-   189   
+   189
    190           boite_v2 = gtk.VBox(False, self.DEF_ESP)
    191           boite_h.pack_start(boite_v2, False, False, self.DEF_ESP)
-   192     
+   192
    193           # Construction du cadre de droite contenant les drapeaux
    194           cadre = gtk.Frame("Drapeaux")
    195           boite_v2.pack_start(cadre, True, True, self.DEF_ESP)
    196           boite_v3 = gtk.VBox(True, self.DEF_PETIT_ESP)
    197           cadre.add(boite_v3)
-   198   
+   198
    199           for i in range(len(drapeaux)):
    200               caseacocher = gtk.CheckButton(drapeaux[i])
    201               caseacocher.connect("toggled", self.calendrier_drapeau_coche)
    202               boite_v3.pack_start(caseacocher, True, True, 0)
    203               self.cases_drapeaux[i] = caseacocher
-   204   
+   204
    205           # Construction du bouton "Police..." a droite
    206           bouton = gtk.Button("Police...")
    207           bouton.connect("clicked", self.calendrier_selec_police)
    208           boite_v2.pack_start(bouton, False, False, 0)
-   209   
+   209
    210           # Construction de la partie Evenements-Signaux.
    211           cadre = gtk.Frame("Evenements-signaux")
    212           boite_v.pack_start(cadre, True, True, self.DEF_ESP)
-   213   
+   213
    214           boite_v2 = gtk.VBox(True, self.DEF_PETIT_ESP)
    215           cadre.add(boite_v2)
-   216     
+   216
    217           boite_h = gtk.HBox (False, 3)
    218           boite_v2.pack_start(boite_h, False, True, 0)
    219           etiquette = gtk.Label("Dernier :")
    220           boite_h.pack_start(etiquette, False, True, 0)
    221           self.dern_sig = gtk.Label("")
    222           boite_h.pack_start(self.dern_sig, False, True, 0)
-   223   
+   223
    224           boite_h = gtk.HBox (False, 3)
    225           boite_v2.pack_start(boite_h, False, True, 0)
    226           etiquette = gtk.Label("Penultieme :")
    227           boite_h.pack_start(etiquette, False, True, 0)
    228           self.penult_sig = gtk.Label("")
    229           boite_h.pack_start(self.penult_sig, False, True, 0)
-   230   
+   230
    231           boite_h = gtk.HBox (False, 3)
    232           boite_v2.pack_start(boite_h, False, True, 0)
    233           etiquette = gtk.Label("Antepenultieme :")
    234           boite_h.pack_start(etiquette, False, True, 0)
    235           self.apenult_sig = gtk.Label("")
    236           boite_h.pack_start(self.apenult_sig, False, True, 0)
-   237   
+   237
    238           boiteboutons = gtk.HButtonBox ()
    239           boite_v.pack_start(boiteboutons, False, False, 0)
    240           boiteboutons.set_layout(gtk.BUTTONBOX_END)
-   241   
+   241
    242           bouton = gtk.Button("Fermer")
    243           bouton.connect("clicked", lambda w: gtk.main_quit())
    244           boiteboutons.add(bouton)
    245           bouton.set_flags(gtk.CAN_DEFAULT)
    246           bouton.grab_default()
-   247   
+   247
    248           fenetre.show_all()
-   249   
+   249
    250   def main():
    251       gtk.main()
    252       return 0
-   253   
+   253
    254   if __name__ == "__main__":
    255       ExempleCalendrier()
    256       main()
@@ -402,7 +402,7 @@ Vous êtes à peu près ici&nbsp;:
 <td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"><a accesskey="n" href="sec-ColorSelection.html">Suiv.</a></td>
 </tr><tr>
-<td width="40%" align="left" valign="top">9.11. Les listes dÃ©roulantes</td>
+<td width="40%" align="left" valign="top">9.11. Les listes dÃÂ©roulantes</td>
 <td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
 <td width="40%" align="right" valign="top">9.13. Le s&eacute;lecteur de couleur</td>
 </tr></table>

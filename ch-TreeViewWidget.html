@@ -1,30 +1,31 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Chapitre 14. Le widget TreeView</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>ChapitreÂ 14.Â Le widget TreeView</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,treeview" />
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="prev" href="sec-TextViewExample.html" title="13.7. Un exemple de TextView">
-<link rel="next" href="sec-TreeModelInterface.html" title="14.2. L'interface TreeModel et le stockage des données">
+<link rel="next" href="sec-TreeModelInterface.html" title="14.2.Â L'interface TreeModel et le stockage des donnÃ©es">
 </head>
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici : 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici :
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">Chapitre 14. Le widget TreeView</th></tr>
+<tr><th colspan="3" align="center">ChapitreÂ 14.Â Le widget TreeView</th></tr>
 <tr>
 <td width="20%" align="left"><a accesskey="p" href="sec-TextViewExample.html">Pr&eacute;c.</a> </td>
-<th width="60%" align="center"> </th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-TreeModelInterface.html">Suiv.</a>
+<th width="60%" align="center">Â </th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-TreeModelInterface.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -32,49 +33,49 @@ Vous êtes à peu près ici :
 </div>
 <div class="chapter" lang="fr">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="ch-TreeViewWidget"></a>Chapitre 14. Le widget TreeView</h2></div></div></div>
+<a name="ch-TreeViewWidget"></a>ChapitreÂ 14.Â Le widget TreeView</h2></div></div></div>
 <div class="toc">
-<p><b>Table des matières</b></p>
+<p><b>Table des matiÃ¨res</b></p>
 <dl>
-<dt><span class="sect1"><a href="ch-TreeViewWidget.html#sec-TreeViewOverview">14.1. Présentation</a></span></dt>
-<dt><span class="sect1"><a href="sec-TreeModelInterface.html">14.2. L'interface TreeModel et le stockage des données</a></span></dt>
+<dt><span class="sect1"><a href="ch-TreeViewWidget.html#sec-TreeViewOverview">14.1. PrÃ©sentation</a></span></dt>
+<dt><span class="sect1"><a href="sec-TreeModelInterface.html">14.2. L'interface TreeModel et le stockage des donnÃ©es</a></span></dt>
 <dd><dl>
 <dt><span class="sect2"><a href="sec-TreeModelInterface.html#sec-TreeModelIntroduction">14.2.1. Introduction</a></span></dt>
-<dt><span class="sect2"><a href="sec-TreeModelInterface.html#sec-CreatingTreeStoreAndListStore">14.2.2. Créer des objets TreeStore et ListStore</a></span></dt>
-<dt><span class="sect2"><a href="sec-TreeModelInterface.html#sec-ReferringToTreeModelRows">14.2.3. Les références aux lignes du modèle</a></span></dt>
+<dt><span class="sect2"><a href="sec-TreeModelInterface.html#sec-CreatingTreeStoreAndListStore">14.2.2. CrÃ©er des objets TreeStore et ListStore</a></span></dt>
+<dt><span class="sect2"><a href="sec-TreeModelInterface.html#sec-ReferringToTreeModelRows">14.2.3. Les rÃ©fÃ©rences aux lignes du modÃ¨le</a></span></dt>
 <dt><span class="sect2"><a href="sec-TreeModelInterface.html#sec-AddingStoreRows">14.2.4. Ajouter des lignes</a></span></dt>
 <dt><span class="sect2"><a href="sec-TreeModelInterface.html#sec-RemovingStoreRows">14.2.5. Supprimer des lignes</a></span></dt>
-<dt><span class="sect2"><a href="sec-TreeModelInterface.html#sec-ManagingRowData">14.2.6. Manipuler les données des lignes</a></span></dt>
+<dt><span class="sect2"><a href="sec-TreeModelInterface.html#sec-ManagingRowData">14.2.6. Manipuler les donnÃ©es des lignes</a></span></dt>
 <dt><span class="sect2"><a href="sec-TreeModelInterface.html#sec-PythonProtocolSupport">14.2.7. Support du protocole Python</a></span></dt>
 <dt><span class="sect2"><a href="sec-TreeModelInterface.html#sec-TreeModelSignals">14.2.8. Les signaux du TreeModel</a></span></dt>
 <dt><span class="sect2"><a href="sec-TreeModelInterface.html#sec-SortingTreeModelRows">14.2.9. Ordonner les lignes d'un TreeModel</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="sec-TreeViews.html">14.3. Les TreeView</a></span></dt>
 <dd><dl>
-<dt><span class="sect2"><a href="sec-TreeViews.html#sec-CreatingTreeView">14.3.1. Créer un TreeView</a></span></dt>
-<dt><span class="sect2"><a href="sec-TreeViews.html#sec-TreeViewModelAccess">14.3.2. Récupérer et spécifier le modèle du TreeView</a></span></dt>
-<dt><span class="sect2"><a href="sec-TreeViews.html#sec-TreeViewProperties">14.3.3. Les propriétés du TreeView</a></span></dt>
+<dt><span class="sect2"><a href="sec-TreeViews.html#sec-CreatingTreeView">14.3.1. CrÃ©er un TreeView</a></span></dt>
+<dt><span class="sect2"><a href="sec-TreeViews.html#sec-TreeViewModelAccess">14.3.2. RÃ©cupÃ©rer et spÃ©cifier le modÃ¨le du TreeView</a></span></dt>
+<dt><span class="sect2"><a href="sec-TreeViews.html#sec-TreeViewProperties">14.3.3. Les propriÃ©tÃ©s du TreeView</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="sec-CellRenderers.html">14.4. Les CellRenderer</a></span></dt>
 <dd><dl>
 <dt><span class="sect2"><a href="sec-CellRenderers.html#sec-CellRendererOverview">14.4.1. Vue d'ensemble</a></span></dt>
-<dt><span class="sect2"><a href="sec-CellRenderers.html#sec-CellRendererTypes">14.4.2. Les différents types de CellRenderer</a></span></dt>
-<dt><span class="sect2"><a href="sec-CellRenderers.html#sec-CellRendererProperties">14.4.3. Les propriétés des CellRenderer</a></span></dt>
+<dt><span class="sect2"><a href="sec-CellRenderers.html#sec-CellRendererTypes">14.4.2. Les diffÃ©rents types de CellRenderer</a></span></dt>
+<dt><span class="sect2"><a href="sec-CellRenderers.html#sec-CellRendererProperties">14.4.3. Les propriÃ©tÃ©s des CellRenderer</a></span></dt>
 <dt><span class="sect2"><a href="sec-CellRenderers.html#sec-CellRendererAttributes">14.4.4. Les attributs du CellRenderer</a></span></dt>
-<dt><span class="sect2"><a href="sec-CellRenderers.html#sec-CellDataFunction">14.4.5. Fonction d'affichage des données cellulaires</a></span></dt>
+<dt><span class="sect2"><a href="sec-CellRenderers.html#sec-CellDataFunction">14.4.5. Fonction d'affichage des donnÃ©es cellulaires</a></span></dt>
 <dt><span class="sect2"><a href="sec-CellRenderers.html#sec-CellRendererTextMarkup">14.4.6. CellRendererText Markup</a></span></dt>
-<dt><span class="sect2"><a href="sec-CellRenderers.html#EditableTextCells">14.4.7. Cellules de texte éditables</a></span></dt>
-<dt><span class="sect2"><a href="sec-CellRenderers.html#sec-ActivatableToggleCells">14.4.8. Cellules à bascule activables</a></span></dt>
-<dt><span class="sect2"><a href="sec-CellRenderers.html#sec-EditableActivatableProgram">14.4.9. Programme d'exemple avec cellules éditables et activables</a></span></dt>
+<dt><span class="sect2"><a href="sec-CellRenderers.html#EditableTextCells">14.4.7. Cellules de texte Ã©ditables</a></span></dt>
+<dt><span class="sect2"><a href="sec-CellRenderers.html#sec-ActivatableToggleCells">14.4.8. Cellules Ã  bascule activables</a></span></dt>
+<dt><span class="sect2"><a href="sec-CellRenderers.html#sec-EditableActivatableProgram">14.4.9. Programme d'exemple avec cellules Ã©ditables et activables</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="sec-TreeViewColumns.html">14.5. TreeViewColumn</a></span></dt>
 <dd><dl>
-<dt><span class="sect2"><a href="sec-TreeViewColumns.html#sec-CreatingTreeViewColumns">14.5.1. Créer des TreeViewColumn</a></span></dt>
-<dt><span class="sect2"><a href="sec-TreeViewColumns.html#sec-ManagingCellRenderers">14.5.2. Gérer les CellRenderer</a></span></dt>
+<dt><span class="sect2"><a href="sec-TreeViewColumns.html#sec-CreatingTreeViewColumns">14.5.1. CrÃ©er des TreeViewColumn</a></span></dt>
+<dt><span class="sect2"><a href="sec-TreeViewColumns.html#sec-ManagingCellRenderers">14.5.2. GÃ©rer les CellRenderer</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="sec-ManipulatingTreeViews.html">14.6. Manipuler les TreeView</a></span></dt>
 <dd><dl>
-<dt><span class="sect2"><a href="sec-ManipulatingTreeViews.html#sec-ManagingColumns">14.6.1. Gérer les colonnes</a></span></dt>
+<dt><span class="sect2"><a href="sec-ManipulatingTreeViews.html#sec-ManagingColumns">14.6.1. GÃ©rer les colonnes</a></span></dt>
 <dt><span class="sect2"><a href="sec-ManipulatingTreeViews.html#sec-ExpandCollapseChildRows">14.6.2. Afficher ou masquer les enfants d'une ligne</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="sec-TreeViewSignals.html">14.7. Les signaux des TreeView</a></span></dt>
@@ -82,106 +83,106 @@ Vous êtes à peu près ici :
 <dd><dl>
 <dt><span class="sect2"><a href="sec-TreeSelections.html#sec-GettingTheTreeSelection">14.8.1. Obtenir un TreeSelection</a></span></dt>
 <dt><span class="sect2"><a href="sec-TreeSelections.html#sec-TreeSelectionMode">14.8.2. Modes du TreeSelection</a></span></dt>
-<dt><span class="sect2"><a href="sec-TreeSelections.html#sec-RetrievingTheTreeSelection">14.8.3. Retrouver la sélection</a></span></dt>
+<dt><span class="sect2"><a href="sec-TreeSelections.html#sec-RetrievingTheTreeSelection">14.8.3. Retrouver la sÃ©lection</a></span></dt>
 <dt><span class="sect2"><a href="sec-TreeSelections.html#sec-TreeSelectionFunction">14.8.4. Utiliser une fonction TreeSelection</a></span></dt>
-<dt><span class="sect2"><a href="sec-TreeSelections.html#sec-SelectingAndUnselectingRows">14.8.5. Sélectionner et déselectionner les lignes</a></span></dt>
+<dt><span class="sect2"><a href="sec-TreeSelections.html#sec-SelectingAndUnselectingRows">14.8.5. SÃ©lectionner et dÃ©selectionner les lignes</a></span></dt>
 </dl></dd>
-<dt><span class="sect1"><a href="sec-TreeViewDragAndDrop.html">14.9. Glisser-déposer dans un TreeView</a></span></dt>
+<dt><span class="sect1"><a href="sec-TreeViewDragAndDrop.html">14.9. Glisser-dÃ©poser dans un TreeView</a></span></dt>
 <dd><dl>
-<dt><span class="sect2"><a href="sec-TreeViewDragAndDrop.html#DragDropReordering">14.9.1. Reclasser avec un glisser-déposer</a></span></dt>
-<dt><span class="sect2"><a href="sec-TreeViewDragAndDrop.html#sec-ExternalDragDrop">14.9.2. Glisser-déposer externe</a></span></dt>
-<dt><span class="sect2"><a href="sec-TreeViewDragAndDrop.html#sec-TreeViewDnDExample">14.9.3. Exemple de glisser-déposer dans un TreeView</a></span></dt>
+<dt><span class="sect2"><a href="sec-TreeViewDragAndDrop.html#DragDropReordering">14.9.1. Reclasser avec un glisser-dÃ©poser</a></span></dt>
+<dt><span class="sect2"><a href="sec-TreeViewDragAndDrop.html#sec-ExternalDragDrop">14.9.2. Glisser-dÃ©poser externe</a></span></dt>
+<dt><span class="sect2"><a href="sec-TreeViewDragAndDrop.html#sec-TreeViewDnDExample">14.9.3. Exemple de glisser-dÃ©poser dans un TreeView</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="sec-TreeModelSortAndTreeModelFilter.html">14.10. TreeModelSort et TreeModelFilter</a></span></dt>
 <dd><dl>
 <dt><span class="sect2"><a href="sec-TreeModelSortAndTreeModelFilter.html#sec-TreeModelSort">14.10.1. Le TreeModelSort</a></span></dt>
 <dt><span class="sect2"><a href="sec-TreeModelSortAndTreeModelFilter.html#sec-TreeModelFilter">14.10.2. Le TreeModelFilter</a></span></dt>
 </dl></dd>
-<dt><span class="sect1"><a href="sec-GenericTreeModel.html">14.11. Le TreeModel générique</a></span></dt>
+<dt><span class="sect1"><a href="sec-GenericTreeModel.html">14.11. Le TreeModel gÃ©nÃ©rique</a></span></dt>
 <dd><dl>
-<dt><span class="sect2"><a href="sec-GenericTreeModel.html#sec-GenericTreeModelOverview">14.11.1. Aperçu du GenericTreeModel</a></span></dt>
+<dt><span class="sect2"><a href="sec-GenericTreeModel.html#sec-GenericTreeModelOverview">14.11.1. AperÃ§u du GenericTreeModel</a></span></dt>
 <dt><span class="sect2"><a href="sec-GenericTreeModel.html#sec-GenericTreeModelInterface">14.11.2. Interface du GenericTreeModel</a></span></dt>
 <dt><span class="sect2"><a href="sec-GenericTreeModel.html#sec-AddRemoveGenericTreeModelRows">14.11.3. Ajouter et supprimer des lignes</a></span></dt>
-<dt><span class="sect2"><a href="sec-GenericTreeModel.html#sec-GenericTreeModelMemoryManagement">14.11.4. Gestion de la mémoire</a></span></dt>
+<dt><span class="sect2"><a href="sec-GenericTreeModel.html#sec-GenericTreeModelMemoryManagement">14.11.4. Gestion de la mÃ©moire</a></span></dt>
 <dt><span class="sect2"><a href="sec-GenericTreeModel.html#sec-OtherInterfaces">14.11.5. Autres interfaces</a></span></dt>
 <dt><span class="sect2"><a href="sec-GenericTreeModel.html#sec-ApplyingGenericTreeModel">14.11.6. Utilisation du GenericTreeModel</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="sec-GenericCellRenderer.html">14.12. The Generic CellRenderer</a></span></dt>
 </dl>
 </div>
-<p>Le widget <code class="classname">TreeView</code> affiche des listes et des 
-arborescences sur plusieurs colonnes. Il remplace les anciens widgets 
-<code class="classname">List</code>, <code class="classname">CList</code>, 
-<code class="classname">Tree</code> and <code class="classname">CTree</code> par un ensemble 
-beaucoup plus puissant et flexible d'objets utilisant le principe 
-Modèle-Vue-Contrôleur (MVC). Il propose :</p>
+<p>Le widget <code class="classname">TreeView</code> affiche des listes et des
+arborescences sur plusieurs colonnes. Il remplace les anciens widgets
+<code class="classname">List</code>, <code class="classname">CList</code>,
+<code class="classname">Tree</code> and <code class="classname">CTree</code> par un ensemble
+beaucoup plus puissant et flexible d'objets utilisant le principe
+ModÃ¨le-Vue-ContrÃ´leur (MVC). Il proposeÂ :</p>
 <div class="itemizedlist"><ul type="disc">
-<li>deux modèles prédéfinis : un pour les listes et un pour les arbres</li>
-<li>l'actualisation automatique des différentes vues du même modèle lorsque celui-ci est modifié</li>
-<li>l'affichage sélectif des données du modèle</li>
-<li>l'utilisation des données du modèle pour personnaliser l'affichage du TreeView ligne par ligne</li>
-<li>des objets prédéfinis de rendu des données pour l'affichage de texte, d'images ou de données booléennes</li>
-<li>des modèles empilables afin de permettre des vues classées et filtrées des données du modèle inférieur</li>
-<li>la possibilité de réordonner et de redimensionner les colonnes</li>
-<li>la possibilité d'ordonner automatiquement les lignes du TreeView par un clic dans l'en-tête des colonnes</li>
-<li>le support du glisser-déposer</li>
-<li>le support de modèles personnels entièrement écrits en Python</li>
-<li>le support de cell-renderers personnels entièrement écrits en Python</li>
+<li>deux modÃ¨les prÃ©dÃ©finis : un pour les listes et un pour les arbres</li>
+<li>l'actualisation automatique des diffÃ©rentes vues du mÃªme modÃ¨le lorsque celui-ci est modifiÃ©</li>
+<li>l'affichage sÃ©lectif des donnÃ©es du modÃ¨le</li>
+<li>l'utilisation des donnÃ©es du modÃ¨le pour personnaliser l'affichage du TreeView ligne par ligne</li>
+<li>des objets prÃ©dÃ©finis de rendu des donnÃ©es pour l'affichage de texte, d'images ou de donnÃ©es boolÃ©ennes</li>
+<li>des modÃ¨les empilables afin de permettre des vues classÃ©es et filtrÃ©es des donnÃ©es du modÃ¨le infÃ©rieur</li>
+<li>la possibilitÃ© de rÃ©ordonner et de redimensionner les colonnes</li>
+<li>la possibilitÃ© d'ordonner automatiquement les lignes du TreeView par un clic dans l'en-tÃªte des colonnes</li>
+<li>le support du glisser-dÃ©poser</li>
+<li>le support de modÃ¨les personnels entiÃ¨rement Ã©crits en Python</li>
+<li>le support de cell-renderers personnels entiÃ¨rement Ã©crits en Python</li>
 </ul></div>
-<p>La puissance de ce nouvel ensemble d'objets et d'interfaces a pour contrepartie une complexité indéniablement plus importante, pouvant même paraître insurmontable au début. Dans ce chapitre, les objets et les interfaces du TreeView seront présentés de manière à pouvoir en faire un usage courant. Nous vous laisserons le soin d'explorer par vous-même leurs aspects plus ésotériques.
+<p>La puissance de ce nouvel ensemble d'objets et d'interfaces a pour contrepartie une complexitÃ© indÃ©niablement plus importante, pouvant mÃªme paraÃ®tre insurmontable au dÃ©but. Dans ce chapitre, les objets et les interfaces du TreeView seront prÃ©sentÃ©s de maniÃ¨re Ã  pouvoir en faire un usage courant. Nous vous laisserons le soin d'explorer par vous-mÃªme leurs aspects plus Ã©sotÃ©riques.
 </p>
-<p>Nous commencerons par un un bref aperçu de ces objets et interfaces, avant de nous plonger dans l'interface <code class="classname">TreeModel</code> et dans les classes prédéfinies <code class="classname">ListStore</code> et <code class="classname">TreeStore</code>.</p>
+<p>Nous commencerons par un un bref aperÃ§u de ces objets et interfaces, avant de nous plonger dans l'interface <code class="classname">TreeModel</code> et dans les classes prÃ©dÃ©finies <code class="classname">ListStore</code> et <code class="classname">TreeStore</code>.</p>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-TreeViewOverview"></a>14.1. Présentation</h2></div></div></div>
-<p>Le widget <code class="classname">TreeView</code> est l'objet de l'interface utilisateur qui se charge d'afficher les données stockées dans un objet implémentant l'interface <code class="classname">TreeModel</code>. Deux classes TreeModel de base sont définies dans PyGTK 2.0 :
+<a name="sec-TreeViewOverview"></a>14.1.Â PrÃ©sentation</h2></div></div></div>
+<p>Le widget <code class="classname">TreeView</code> est l'objet de l'interface utilisateur qui se charge d'afficher les donnÃ©es stockÃ©es dans un objet implÃ©mentant l'interface <code class="classname">TreeModel</code>. Deux classes TreeModel de base sont dÃ©finies dans PyGTK 2.0Â :
 </p>
 <div class="itemizedlist"><ul type="disc">
-<li>le <code class="classname">TreeStore</code>, qui permet un stockage hiérarchique des données, organisé en lignes d'arborescence comportant des données dans des colonnes. Chaque ligne d'arborescence peut avoir zéro ou plusieurs lignes filles, et toutes les lignes doivent avoir le même nombre de colonnes.
+<li>le <code class="classname">TreeStore</code>, qui permet un stockage hiÃ©rarchique des donnÃ©es, organisÃ© en lignes d'arborescence comportant des donnÃ©es dans des colonnes. Chaque ligne d'arborescence peut avoir zÃ©ro ou plusieurs lignes filles, et toutes les lignes doivent avoir le mÃªme nombre de colonnes.
 </li>
-<li>le <code class="classname">ListStore</code>, qui permet un stockage tabulaire des données, organisé en lignes et en colonnes de la même manière qu'un tableau dans une base de données relationnelle. Le <code class="classname">ListStore</code> est en réalité une version simplifiée du <code class="classname">TreeStore</code> dont les lignes n'ont pas de lignes filles. Il fut créé afin d'offrir une interface plus simple (et certainement plus efficace) de ce modèle commun de données.
+<li>le <code class="classname">ListStore</code>, qui permet un stockage tabulaire des donnÃ©es, organisÃ© en lignes et en colonnes de la mÃªme maniÃ¨re qu'un tableau dans une base de donnÃ©es relationnelle. Le <code class="classname">ListStore</code> est en rÃ©alitÃ© une version simplifiÃ©e du <code class="classname">TreeStore</code> dont les lignes n'ont pas de lignes filles. Il fut crÃ©Ã© afin d'offrir une interface plus simple (et certainement plus efficace) de ce modÃ¨le commun de donnÃ©es.
 </li>
 </ul></div>
-<p>Les deux autres TreeModel s'ajoutent par dessus (ou s'interposent entre) les modèles de base :</p>
+<p>Les deux autres TreeModel s'ajoutent par dessus (ou s'interposent entre) les modÃ¨les de baseÂ :</p>
 <div class="itemizedlist"><ul type="disc">
-<li>le <code class="classname">TreeModelSort</code> est un modèle dans lequel les données du TreeModel inférieur sont maintenues dans un ordre donné.</li>
-<li>the <code class="classname">TreeModelFilter</code> est un modèle contenant un sous-ensemble des données du modèle inférieur. Notez que ce modèle n'est disponible que dans PyGTK 2.4 et supérieurs.
+<li>le <code class="classname">TreeModelSort</code> est un modÃ¨le dans lequel les donnÃ©es du TreeModel infÃ©rieur sont maintenues dans un ordre donnÃ©.</li>
+<li>the <code class="classname">TreeModelFilter</code> est un modÃ¨le contenant un sous-ensemble des donnÃ©es du modÃ¨le infÃ©rieur. Notez que ce modÃ¨le n'est disponible que dans PyGTK 2.4 et supÃ©rieurs.
 </li>
 </ul></div>
-<p>Un <code class="classname">TreeView</code> affiche toutes les lignes d'un TreeModel mais pas forcément toutes les colonnes. Ces dernières peuvent en outre ne pas être présentées dans le même ordre que dans le <code class="classname">TreeModel</code>.</p>
-<p>Le <code class="classname">TreeView</code> utilise des <code class="classname">TreeViewColumn</code> pour organiser l'affichage des données des colonnes. Chaque <code class="classname">TreeViewColumn</code> affiche une colonne (avec ou sans en-tête) pouvant contenir les données de plusieurs colonnes de <code class="classname">TreeModel</code>. Dans chaque <code class="classname">TreeViewColumn</code> sont placés (comme dans des conteneurs <code class="classname">HBox</code>) des <code class="classname">CellRenderer</code>, qui prennent en charge l'affichage des données correspondantes en provenance d'un emplacement ligne-colonne dans un <code class="classname">TreeModel</code>. Trois classes <code class="classname">CellRenderer</code> sont prédéfinies :
+<p>Un <code class="classname">TreeView</code> affiche toutes les lignes d'un TreeModel mais pas forcÃ©ment toutes les colonnes. Ces derniÃ¨res peuvent en outre ne pas Ãªtre prÃ©sentÃ©es dans le mÃªme ordre que dans le <code class="classname">TreeModel</code>.</p>
+<p>Le <code class="classname">TreeView</code> utilise des <code class="classname">TreeViewColumn</code> pour organiser l'affichage des donnÃ©es des colonnes. Chaque <code class="classname">TreeViewColumn</code> affiche une colonne (avec ou sans en-tÃªte) pouvant contenir les donnÃ©es de plusieurs colonnes de <code class="classname">TreeModel</code>. Dans chaque <code class="classname">TreeViewColumn</code> sont placÃ©s (comme dans des conteneurs <code class="classname">HBox</code>) des <code class="classname">CellRenderer</code>, qui prennent en charge l'affichage des donnÃ©es correspondantes en provenance d'un emplacement ligne-colonne dans un <code class="classname">TreeModel</code>. Trois classes <code class="classname">CellRenderer</code> sont prÃ©dÃ©finiesÂ :
 </p>
 <div class="itemizedlist"><ul type="disc">
 <li>Le <code class="classname">CellRendererPixbuf</code>, qui prend en charge l'affichage d'une image pixbuf dans les cellules d'un <code class="classname">TreeViewColumn</code>.</li>
-<li>Le <code class="classname">CellRendererText</code>, qui prend en charge l'affichage d'une chaine de texte dans les cellules d'un <code class="classname">TreeViewColumn</code>. Si les données des colonnes ne sont pas des chaines de texte, il effectue la conversion. Par exemple, pour afficher une colonne de modèle contenant une donnée à virgule flottante (float), le <code class="classname">CellRendererText</code> la convertira en chaine avant de l'afficher.
+<li>Le <code class="classname">CellRendererText</code>, qui prend en charge l'affichage d'une chaine de texte dans les cellules d'un <code class="classname">TreeViewColumn</code>. Si les donnÃ©es des colonnes ne sont pas des chaines de texte, il effectue la conversion. Par exemple, pour afficher une colonne de modÃ¨le contenant une donnÃ©e Ã  virgule flottante (float), le <code class="classname">CellRendererText</code> la convertira en chaine avant de l'afficher.
 </li>
-<li>Le <code class="classname">CellRendererToggle</code> affiche une valeur booléenne dans les cellules d'un <code class="classname">TreeViewColumn</code> sous la forme d'un bouton à bascule.
+<li>Le <code class="classname">CellRendererToggle</code> affiche une valeur boolÃ©enne dans les cellules d'un <code class="classname">TreeViewColumn</code> sous la forme d'un bouton Ã  bascule.
 </li>
 </ul></div>
-<p>Un <code class="classname">TreeViewColumn</code> peut contenir plusieurs <code class="classname">CellRenderer</code> pour, par exemple, afficher de l'image et du texte dans une même colonne.
+<p>Un <code class="classname">TreeViewColumn</code> peut contenir plusieurs <code class="classname">CellRenderer</code> pour, par exemple, afficher de l'image et du texte dans une mÃªme colonne.
 </p>
-<p>Enfin, les objets <code class="classname">TreeIter</code>, <code class="classname">TreeRowReference</code> et <code class="classname">TreeSelection</code> sont respectivement un pointeur temporaire vers une ligne d'un <code class="classname">TreeModel</code>, un pointeur permanent vers une ligne d'un <code class="classname">TreeModel</code>, et un objet gérant les sélections dans un <code class="classname">TreeView</code>.
+<p>Enfin, les objets <code class="classname">TreeIter</code>, <code class="classname">TreeRowReference</code> et <code class="classname">TreeSelection</code> sont respectivement un pointeur temporaire vers une ligne d'un <code class="classname">TreeModel</code>, un pointeur permanent vers une ligne d'un <code class="classname">TreeModel</code>, et un objet gÃ©rant les sÃ©lections dans un <code class="classname">TreeView</code>.
 </p>
-<p>Pour afficher un <code class="classname">TreeView</code>, on effectuera les opérations suivantes (sans nécessairement respecter l'ordre proposé) :
+<p>Pour afficher un <code class="classname">TreeView</code>, on effectuera les opÃ©rations suivantes (sans nÃ©cessairement respecter l'ordre proposÃ©)Â :
 </p>
 <div class="itemizedlist"><ul type="disc">
-<li>création d'un objet TreeModel, généralement un <code class="classname">ListStore</code> ou un <code class="classname">TreeStore</code>, avec une ou plusieurs colonnes d'un type spécifique de données.
+<li>crÃ©ation d'un objet TreeModel, gÃ©nÃ©ralement un <code class="classname">ListStore</code> ou un <code class="classname">TreeStore</code>, avec une ou plusieurs colonnes d'un type spÃ©cifique de donnÃ©es.
 </li>
-<li>placement éventuel d'une ou plusieurs lignes de données dans le TreeModel.</li>
-<li>création d'un widget <code class="classname">TreeView</code> et association de ce dernier 
+<li>placement Ã©ventuel d'une ou plusieurs lignes de donnÃ©es dans le TreeModel.</li>
+<li>crÃ©ation d'un widget <code class="classname">TreeView</code> et association de ce dernier
 avec le TreeModel.</li>
-<li>création d'un ou plusieurs <code class="classname">TreeViewColumn</code> et insertion de ces derniers dans le <code class="classname">TreeView</code>. Chacun représentera une colonne affichée.
+<li>crÃ©ation d'un ou plusieurs <code class="classname">TreeViewColumn</code> et insertion de ces derniers dans le <code class="classname">TreeView</code>. Chacun reprÃ©sentera une colonne affichÃ©e.
 </li>
-<li>création, pour chaque <code class="classname">TreeViewColumn</code>, d'un ou plusieurs <code class="classname">CellRenderer</code> qui y sont ensuite placés.
+<li>crÃ©ation, pour chaque <code class="classname">TreeViewColumn</code>, d'un ou plusieurs <code class="classname">CellRenderer</code> qui y sont ensuite placÃ©s.
 </li>
-<li>définition des attributs de chaque <code class="classname">CellRenderer</code> de manière à indiquer dans quelle colonne du TreeModel l'on doit récupérer les données de l'attribut. Par exemple, le texte à afficher. Cela permet au <code class="classname">CellRenderer</code> d'afficher différemment chaque colonne d'une ligne.
+<li>dÃ©finition des attributs de chaque <code class="classname">CellRenderer</code> de maniÃ¨re Ã  indiquer dans quelle colonne du TreeModel l'on doit rÃ©cupÃ©rer les donnÃ©es de l'attribut. Par exemple, le texte Ã  afficher. Cela permet au <code class="classname">CellRenderer</code> d'afficher diffÃ©remment chaque colonne d'une ligne.
 </li>
-<li>insertion et affichage du <code class="classname">TreeView</code> dans une fenêtre (gtk.<code class="classname">Window</code>) ou une fenêtre à défilement (gtk.<code class="classname">ScrolledWindow</code>).
+<li>insertion et affichage du <code class="classname">TreeView</code> dans une fenÃªtre (gtk.<code class="classname">Window</code>) ou une fenÃªtre Ã  dÃ©filement (gtk.<code class="classname">ScrolledWindow</code>).
 </li>
-<li>programmation des manipulations de données à effectuer en réponse aux actions de l'utilisateur. Le <code class="classname">TreeView</code> doit suivre automatiquement les modifications.
+<li>programmation des manipulations de donnÃ©es Ã  effectuer en rÃ©ponse aux actions de l'utilisateur. Le <code class="classname">TreeView</code> doit suivre automatiquement les modifications.
 </li>
 </ul></div>
-<p>Le programme d'exemple <a href="exemples/treeviewbasique.py" target="_top"><span><strong class="command">treeviewbasique.py</strong></span></a> illustre la création et l'affichage d'un <code class="classname">TreeView</code> simple.
+<p>Le programme d'exemple <a href="exemples/treeviewbasique.py" target="_top"><span><strong class="command">treeviewbasique.py</strong></span></a> illustre la crÃ©ation et l'affichage d'un <code class="classname">TreeView</code> simple.
 </p>
 <pre class="programlisting">
     1   #!/usr/bin/env python
@@ -258,13 +259,13 @@ avec le TreeModel.</li>
    72       exempletv = ExempleTreeViewBasique()
    73       main()
 </pre>
-<p>Dans de vrais programmes, les données seraient probablement fournies au <code class="classname">TreeStore</code> après l'affichage du <code class="classname">TreeView</code>, par une action de l'utilisateur. Nous étudierons en détail les interfaces du <code class="classname">TreeView</code> dans les prochaines sections. La <a href="ch-TreeViewWidget.html#treeviewbasique" title="Figure 14.1. Programme d'exemple de TreeView simple">Figure 14.1, « Programme d'exemple de TreeView simple »</a>  montre la fenêtre créée par le programme <a href="exemples/treeviewbasique.py" target="_top"><span><strong class="command">treeviewbasique.py</strong></span></a> après que quelques lignes ont été développées.
+<p>Dans de vrais programmes, les donnÃ©es seraient probablement fournies au <code class="classname">TreeStore</code> aprÃ¨s l'affichage du <code class="classname">TreeView</code>, par une action de l'utilisateur. Nous Ã©tudierons en dÃ©tail les interfaces du <code class="classname">TreeView</code> dans les prochaines sections. La <a href="ch-TreeViewWidget.html#treeviewbasique" title="FigureÂ 14.1.Â Programme d'exemple de TreeView simple">FigureÂ 14.1, Â«Â Programme d'exemple de TreeView simpleÂ Â»</a>  montre la fenÃªtre crÃ©Ã©e par le programme <a href="exemples/treeviewbasique.py" target="_top"><span><strong class="command">treeviewbasique.py</strong></span></a> aprÃ¨s que quelques lignes ont Ã©tÃ© dÃ©veloppÃ©es.
 </p>
 <div class="figure">
-<a name="treeviewbasique"></a><p class="title"><b>Figure 14.1. Programme d'exemple de TreeView simple</b></p>
+<a name="treeviewbasique"></a><p class="title"><b>FigureÂ 14.1.Â Programme d'exemple de TreeView simple</b></p>
 <div class="mediaobject" align="center"><img src="figures/treeviewbasique.png" align="middle" alt="Programme d'exemple de TreeView simple"></div>
 </div>
-<p>Examinons à présent l'interface <code class="classname">TreeModel</code> et les modèles qui l'implémentent.
+<p>Examinons Ã  prÃ©sent l'interface <code class="classname">TreeModel</code> et les modÃ¨les qui l'implÃ©mentent.
 </p>
 </div>
 </div>
@@ -273,14 +274,14 @@ avec le TreeModel.</li>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left"> <a accessKey="p" href="sec-TextViewExample.html">Pr&eacute;c.</a></td>
-<td width="20%" align="center"><a accessKey=u href="index.html">Chapitre parent</a> </td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-TreeModelInterface.html">Suiv.</a>
+<td width="20%" align="center"><a accessKey=u href="index.html">Chapitre parent</a>Â </td>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-TreeModelInterface.html">Suiv.</a>
 </td>
 </tr>
 <tr>
 <td width="40%" align="left" valign="top">13.7. Un exemple de TextView </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 14.2. L'interface TreeModel et le stockage des données</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 14.2.Â L'interface TreeModel et le stockage des donnÃ©es</td>
 </tr>
 </table>
 </div>

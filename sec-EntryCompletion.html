@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>16.4. Zone de saisie avec complètement (EntryCompletion)</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>16.4.Â Zone de saisie avec complÃ¨tement (EntryCompletion)</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-NewInPyGTK2.4.html" title="Chapitre 16. Nouveaux Widgets dans PyGTK 2.4">
-<link rel="prev" href="sec-ColorButtonAndFontButton.html" title="16.3. Bouton de couleur (ColorButton) et de police (FontButton)">
-<link rel="next" href="sec-ExpanderWidget.html" title="16.5. Expanseur (Expander)">
+<link rel="up" href="ch-NewInPyGTK2.4.html" title="ChapitreÂ 16.Â Nouveaux Widgets dans PyGTK 2.4">
+<link rel="prev" href="sec-ColorButtonAndFontButton.html" title="16.3.Â Bouton de couleur (ColorButton) et de police (FontButton)">
+<link rel="next" href="sec-ExpanderWidget.html" title="16.5.Â Expanseur (Expander)">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">16.4. Zone de saisie avec complètement (EntryCompletion)</th></tr>
+<tr><th colspan="3" align="center">16.4.Â Zone de saisie avec complÃ¨tement (EntryCompletion)</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-ColorButtonAndFontButton.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 16. Nouveaux Widgets dans PyGTK 2.4</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-ExpanderWidget.html">Suiv.</a>
+<a accesskey="p" href="sec-ColorButtonAndFontButton.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 16.Â Nouveaux Widgets dans PyGTK 2.4</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-ExpanderWidget.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,96 +36,96 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-EntryCompletion"></a>16.4. Zone de saisie avec complètement (EntryCompletion)</h2></div></div></div>
-<p>Une zone de saisie avec complètement (<code class="classname">EntryCompletion</code>) 
-est un objet associé à un champ de saisie (<code class="classname">Entry</code>) 
-pour fournir la fonction de complètement.
-Lorsque l'utilisateur entre des données dans le champ de saisie 
-<code class="classname">Entry</code>, le <code class="classname">EntryCompletion</code> fait 
-apparaître une fenêtre contextuelle montrant un ensemble de chaînes de caractères 
-correspondant au texte du champ de saisie(<code class="classname">Entry</code>) 
+<a name="sec-EntryCompletion"></a>16.4.Â Zone de saisie avec complÃ¨tement (EntryCompletion)</h2></div></div></div>
+<p>Une zone de saisie avec complÃ¨tement (<code class="classname">EntryCompletion</code>)
+est un objet associÃ© Ã  un champ de saisie (<code class="classname">Entry</code>)
+pour fournir la fonction de complÃ¨tement.
+Lorsque l'utilisateur entre des donnÃ©es dans le champ de saisie
+<code class="classname">Entry</code>, le <code class="classname">EntryCompletion</code> fait
+apparaÃ®tre une fenÃªtre contextuelle montrant un ensemble de chaÃ®nes de caractÃ¨res
+correspondant au texte du champ de saisie(<code class="classname">Entry</code>)
 </p>
-<p>Un <code class="classname">EntryCompletion</code> est créé par le constructeur :
+<p>Un <code class="classname">EntryCompletion</code> est crÃ©Ã© par le constructeurÂ :
 </p>
 <pre class="programlisting">
   completion = gtk.EntryCompletion()
 </pre>
-<p>On peut utiliser la méthode <code class="methodname">set_completion</code>() 
-du champ de saisie <code class="classname">Entry</code> pour associer le 
-<code class="classname">EntryCompletion</code> au <code class="classname">Entry</code> :
+<p>On peut utiliser la mÃ©thode <code class="methodname">set_completion</code>()
+du champ de saisie <code class="classname">Entry</code> pour associer le
+<code class="classname">EntryCompletion</code> au <code class="classname">Entry</code>Â :
 </p>
 <pre class="programlisting">
   entry.set_completion(<strong class="parameter"><code>completion</code></strong>)
 </pre>
-<p>Les chaînes de caractères qu'utilise le <code class="classname">EntryCompletion</code> 
-pour la correspondance sont récupérées depuis un <code class="classname">TreeModel</code> 
-(généralement un <code class="classname">ListStore</code>) qui doit être défini par la méthode :
+<p>Les chaÃ®nes de caractÃ¨res qu'utilise le <code class="classname">EntryCompletion</code>
+pour la correspondance sont rÃ©cupÃ©rÃ©es depuis un <code class="classname">TreeModel</code>
+(gÃ©nÃ©ralement un <code class="classname">ListStore</code>) qui doit Ãªtre dÃ©fini par la mÃ©thodeÂ :
 </p>
 <pre class="programlisting">
   completion.set_model(<strong class="parameter"><code>model</code></strong>)
 </pre>
-<p>Le <code class="classname">EntryCompletion</code> implémente l'interface 
-<code class="classname">CellLayout</code>, à la manière du 
-<code class="classname">TreeViewColumn</code>, pour gérer l'affichage des 
-données du <code class="classname">TreeModel</code>. La méthode suivante définit 
-un <code class="classname">EntryCompletion</code> sous la forme la plus 
-courante - une liste de chaînes de caractères :
+<p>Le <code class="classname">EntryCompletion</code> implÃ©mente l'interface
+<code class="classname">CellLayout</code>, Ã  la maniÃ¨re du
+<code class="classname">TreeViewColumn</code>, pour gÃ©rer l'affichage des
+donnÃ©es du <code class="classname">TreeModel</code>. La mÃ©thode suivante dÃ©finit
+un <code class="classname">EntryCompletion</code> sous la forme la plus
+courante - une liste de chaÃ®nes de caractÃ¨resÂ :
 
 </p>
 <pre class="programlisting">
   completion.set_text_column(column)
 </pre>
-<p>Cette méthode est équivalente à  :</p>
+<p>Cette mÃ©thode est Ã©quivalente Ã  Â :</p>
 <pre class="programlisting">
   cell = CellRendererText()
   completion.pack_start(cell)
   completion.add_attribute(cell, 'text', column)
 </pre>
-<p>Pour définir le nombre de caractères qui doivent être entrés avant que 
-le <code class="classname">EntryCompletion</code> recherche une correspondance, 
-on peut utiliser la méthode :
+<p>Pour dÃ©finir le nombre de caractÃ¨res qui doivent Ãªtre entrÃ©s avant que
+le <code class="classname">EntryCompletion</code> recherche une correspondance,
+on peut utiliser la mÃ©thodeÂ :
 </p>
 <pre class="programlisting">
   completion.set_minimum_key_length(<strong class="parameter"><code>length</code></strong>)
 </pre>
 <p>Le programme d'exemple <a href="exemples/entrycompletion.py" target="_top">
-  <span><strong class="command">entrycompletion.py</strong></span></a> illustre 
-l'utilisation du <code class="classname">EntryCompletion</code>. La 
-<a href="sec-EntryCompletion.html#entrycompletionfig" title="Figure 16.10. Saisie avec complètement">Figure 16.10, « Saisie avec complètement »</a> montre le programme en cours 
-d'exécution.
+  <span><strong class="command">entrycompletion.py</strong></span></a> illustre
+l'utilisation du <code class="classname">EntryCompletion</code>. La
+<a href="sec-EntryCompletion.html#entrycompletionfig" title="FigureÂ 16.10.Â Saisie avec complÃ¨tement">FigureÂ 16.10, Â«Â Saisie avec complÃ¨tementÂ Â»</a> montre le programme en cours
+d'exÃ©cution.
 </p>
 <div class="figure">
-<a name="entrycompletionfig"></a><p class="title"><b>Figure 16.10. Saisie avec complètement</b></p>
-<div class="mediaobject" align="center"><img src="figures/entrycompletion.png" align="middle" alt="Exemple de zone de saisie avec complètement."></div>
+<a name="entrycompletionfig"></a><p class="title"><b>FigureÂ 16.10.Â Saisie avec complÃ¨tement</b></p>
+<div class="mediaobject" align="center"><img src="figures/entrycompletion.png" align="middle" alt="Exemple de zone de saisie avec complÃ¨tement."></div>
 </div>
-<p>Le programme d'exemple démarre avec un faible nombre de chaînes de 
-complètement qui peut être augmenté en entrant des données dans le champ 
-de saisie et en appuyant sur la touche <span><strong class="keycap">Entrée</strong></span>. Si la chaîne est 
-unique, elle est ajoutée à la liste des chaînes de complètement. 
+<p>Le programme d'exemple dÃ©marre avec un faible nombre de chaÃ®nes de
+complÃ¨tement qui peut Ãªtre augmentÃ© en entrant des donnÃ©es dans le champ
+de saisie et en appuyant sur la touche <span><strong class="keycap">EntrÃ©e</strong></span>. Si la chaÃ®ne est
+unique, elle est ajoutÃ©e Ã  la liste des chaÃ®nes de complÃ¨tement.
 </p>
-<p>La fonction interne de concordance ne tient pas compte de la casse 
-(minuscule/majuscule). Si on a besoin d'une fonction plus spécifique, il est possible 
-d'utiliser la méthode suivante pour installer sa propre fonction de concordance :
+<p>La fonction interne de concordance ne tient pas compte de la casse
+(minuscule/majuscule). Si on a besoin d'une fonction plus spÃ©cifique, il est possible
+d'utiliser la mÃ©thode suivante pour installer sa propre fonction de concordanceÂ :
 </p>
 <pre class="programlisting">
   completion.set_match_func(<em class="parameter"><code>func</code></em>, <em class="parameter"><code>user_data</code></em>)
 </pre>
-<p>La fonction <em class="parameter"><code>func</code></em> est :</p>
+<p>La fonction <em class="parameter"><code>func</code></em> estÂ :</p>
 <pre class="programlisting">
   def func(completion, key_string, iter, data):
 </pre>
-<p>... où le paramètre <em class="parameter"><code>key_string</code></em> contient le contenu 
-courant du champ <code class="classname">Entry</code>, <em class="parameter"><code>iter</code></em> est 
-un <code class="classname">TreeIter</code> pointant sur une ligne dans le 
-<code class="classname">TreeModel</code> associé et <em class="parameter"><code>data</code></em> contient 
-les données utilisateur <em class="parameter"><code>user_data</code></em>. Le paramètre 
- <em class="parameter"><code>func</code></em> devrait renvoyer <code class="literal">TRUE</code> si la 
- chaîne de complètement de la ligne devrait être affichée.
+<p>... oÃ¹ le paramÃ¨tre <em class="parameter"><code>key_string</code></em> contient le contenu
+courant du champ <code class="classname">Entry</code>, <em class="parameter"><code>iter</code></em> est
+un <code class="classname">TreeIter</code> pointant sur une ligne dans le
+<code class="classname">TreeModel</code> associÃ© et <em class="parameter"><code>data</code></em> contient
+les donnÃ©es utilisateur <em class="parameter"><code>user_data</code></em>. Le paramÃ¨tre
+ <em class="parameter"><code>func</code></em> devrait renvoyer <code class="literal">TRUE</code> si la
+ chaÃ®ne de complÃ¨tement de la ligne devrait Ãªtre affichÃ©e.
 
 </p>
-<p>L'extrait de code suivant utilise une fonction de concordance pour afficher 
-les possibles chaînes de complètement qui commencent par le contenu du champ 
-de saisie et qui possèdent le suffixe indiqué (ici, un nom se terminant par 
+<p>L'extrait de code suivant utilise une fonction de concordance pour afficher
+les possibles chaÃ®nes de complÃ¨tement qui commencent par le contenu du champ
+de saisie et qui possÃ¨dent le suffixe indiquÃ© (ici, un nom se terminant par
 <code class="literal">.png</code> pour un fichier <code class="literal">PNG</code> file.
 </p>
 <pre class="programlisting">
@@ -138,9 +139,9 @@ de saisie et qui possèdent le suffixe indiqué (ici, un nom se terminant par
       return modelstr.startswith(entrystr) and modelstr.endswith(suffix)
   ...
 </pre>
-<p>Par exemple, si l'utilisateur tape 'mou' et que le modèle de complètement 
-contient une chaîne comme 'moulin.png', 'farine.png', 'moule.png' et 'mou.tif', 
-les choix 'moulin.png' et moule.png' seront proposés comme complètement.
+<p>Par exemple, si l'utilisateur tape 'mou' et que le modÃ¨le de complÃ¨tement
+contient une chaÃ®ne comme 'moulin.png', 'farine.png', 'moule.png' et 'mou.tif',
+les choix 'moulin.png' et moule.png' seront proposÃ©s comme complÃ¨tement.
 </p>
 </div>
 <div class="navfooter">
@@ -148,15 +149,15 @@ les choix 'moulin.png' et moule.png' seront proposés comme complètement.
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-ColorButtonAndFontButton.html">Préc.</a> </td>
+<a accesskey="p" href="sec-ColorButtonAndFontButton.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-NewInPyGTK2.4.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-ExpanderWidget.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-ExpanderWidget.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">16.3. Bouton de couleur (ColorButton) et de police (FontButton) </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 16.5. Expanseur (Expander)</td>
+<td width="40%" align="left" valign="top">16.3.Â Bouton de couleur (ColorButton) et de police (FontButton)Â </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 16.5.Â Expanseur (Expander)</td>
 </tr>
 </table>
 </div>

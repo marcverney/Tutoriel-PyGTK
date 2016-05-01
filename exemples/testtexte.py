@@ -116,7 +116,7 @@ class Buffer(gtk.TextBuffer):
         for i in range(Buffer.NBRE_COULEURS):
             balise = self.create_tag()
             self.balises_couleurs.append(balise)
-  
+
         #self.balise_invisible = self.create_tag(None, invisible=True)
         self.balise_non_editable= self.create_tag(editable=False,
                                                 foreground="purple")
@@ -152,7 +152,7 @@ class Buffer(gtk.TextBuffer):
         # on retire la balise "resultat" du buffer entier
         debut, fin = self.get_bounds()
         self.remove_tag(self.balise_resultat, debut, fin)
-  
+
         iter = self.get_iter_at_mark(self.get_insert())
 
         i = 0
@@ -183,7 +183,7 @@ class Buffer(gtk.TextBuffer):
                                      "%d chaines trouvees et marquees en rouge." % i)
 
         dialogue.connect("response", lambda x,y: dialogue.destroy())
-  
+
         dialogue.show()
 
     def recherche_avant(self, chaine, fenetre):
@@ -215,7 +215,7 @@ class Buffer(gtk.TextBuffer):
         elif (not activer and self.marqueur_cycle_couleurs != 0):
             gtk.timeout_remove(self.marqueur_cycle_couleurs)
             self.marqueur_cycle_couleurs = 0
-    
+
         for balise in self.balises_couleurs:
             if activer:
                 couleur = apply(TestTexte.tabledescouleurs.alloc_color,
@@ -224,10 +224,10 @@ class Buffer(gtk.TextBuffer):
             else:
                 balise.set_property("foreground_set", False)
             teinte += 1.0 / Buffer.NBRE_COULEURS
-      
+
     def alterner_couleurs(self):
         teinte = self.teinte_depart
-  
+
         for balise in self.balises_couleurs:
             couleur = apply(TestTexte.tabledescouleurs.alloc_color,
                           teinte_couleur (teinte))
@@ -315,7 +315,7 @@ class Buffer(gtk.TextBuffer):
         for i in range(100):
             iter = self.get_iter_at_offset(0)
             self.insert_pixbuf(iter, pixbuf)
-          
+
             chaine = "%d Salut tout le monde ! bla bla bla bla bla bla bla bla bla bla bla bla\nhop là hop là hop là hop là hop là hop là hop là hop là\n" % i
             self.insert(iter, chaine)
 
@@ -337,11 +337,11 @@ class Buffer(gtk.TextBuffer):
             iter = self.get_iter_at_line_offset(1, 14)
             iter2 = self.get_iter_at_line_offset(1, 24)
             self.apply_tag_by_name("texte_barre", iter, iter2)
-          
+
             iter = self.get_iter_at_line_offset(0, 9)
             iter2 = self.get_iter_at_line_offset(0, 16)
             self.apply_tag_by_name("fond_vert", iter, iter2)
-  
+
             iter = self.get_iter_at_line_offset(4, 2)
             iter2 = self.get_iter_at_line_offset(4, 10)
             self.apply_tag_by_name("fond_vert", iter, iter2)
@@ -352,7 +352,7 @@ class Buffer(gtk.TextBuffer):
 
             iter = self.get_iter_at_mark(marque_temp)
             self.insert(iter, "Texte centré !\n")
-	  
+
             iter2 = self.get_iter_at_mark(marque_temp)
             self.apply_tag_by_name("centre", iter2, iter)
 
@@ -365,7 +365,7 @@ class Buffer(gtk.TextBuffer):
             self.insert_with_tags(iter,
                                     "Paragraphe avec indentation négative. bla bla bla bla bla bla. Portez ce whisky au vieux juge blond qui fume.\n",
                                     self.get_tag_table().lookup("indentation_neg"))
-      
+
         print "%d lignes %d caracteres\n" % (self.get_line_count(),
                                        self.get_char_count())
 
@@ -386,7 +386,7 @@ class Buffer(gtk.TextBuffer):
             resultat = dialogue.run()
             dialogue.destroy()
             return False
-  
+
         iter = self.get_iter_at_offset(0)
         buf = f.read()
         f.close()
@@ -446,7 +446,7 @@ class Buffer(gtk.TextBuffer):
                                              gtk.BUTTONS_OK, erreur);
                 dialogue.run()
                 dialogue.destroy()
-  
+
         return resultat
 
     def enregistrer_sous_ok(self, nomfichier):
@@ -463,7 +463,7 @@ class Buffer(gtk.TextBuffer):
                 dialogue.destroy()
                 if resultat != gtk.RESPONSE_YES:
                     return False
-  
+
         self.nomfichier = nomfichier
 
         if self.buffer_enregistrer():
@@ -556,10 +556,10 @@ class Fenetre(gtk.Window):
         TestTexte.fenetres.empiler(self)
 
         buffer.incr_comptref()
-  
+
         if not TestTexte.tabledescouleurs:
             TestTexte.tabledescouleurs = self.get_colormap()
-  
+
         self.connect("delete_event", self.evnmt_delete)
 
         self.raccourcis_clavier = gtk.AccelGroup()
@@ -575,7 +575,7 @@ class Fenetre(gtk.Window):
 
         boitev.pack_start(self.barremenus.get_widget("<main>"),
                           False, False, 0)
-  
+
         fen_deroulante = gtk.ScrolledWindow()
         fen_deroulante.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
@@ -585,7 +585,7 @@ class Fenetre(gtk.Window):
         # On s'assure que l'on peut bien regler la largeur des bordures
         # Pas de veritable raison pour ceci, si ce n'est de tester.
         self.zonetexte.set_border_width(10)
-  
+
         # Affichage des tabulations dans les fenetres superieure et inferieure
         self.zonetexte.set_border_window_size(gtk.TEXT_WINDOW_TOP, 15)
         self.zonetexte.set_border_window_size(gtk.TEXT_WINDOW_BOTTOM, 15)
@@ -593,14 +593,14 @@ class Fenetre(gtk.Window):
         self.zonetexte.connect("expose_event", self.reaffichage_tabs)
 
         self.bhid = buffer.connect("mark_set", self.rappel_mvt_curseur)
-  
+
         # Affichage des numeros des lignes dans les fenetres laterales; on devrait
         # quand meme fixer leur largeur de maniere un peu plus "scientifique".
         self.zonetexte.set_border_window_size(gtk.TEXT_WINDOW_RIGHT, 30)
         self.zonetexte.set_border_window_size(gtk.TEXT_WINDOW_LEFT, 30)
 
         self.zonetexte.connect("expose_event", self.affichage_num_lignes)
-  
+
         boitev.pack_start(fen_deroulante, True, True, 0)
         fen_deroulante.add(self.zonetexte)
 
@@ -610,7 +610,7 @@ class Fenetre(gtk.Window):
         self.titre_fenetre()
         self.init_menus()
         self.ajouter_widgets_exemples()
-  
+
         self.show_all()
 
     def evnmt_delete(self, fenetre, evenement, donnees=None):
@@ -698,10 +698,10 @@ class Fenetre(gtk.Window):
         debut, fin = buffer.get_bounds()
         marque = buffer.create_mark(None, fin, False)
 
-        buffer.insert(fin, 
+        buffer.insert(fin,
                       "Salut ! Voici plusieurs lignes de texte\n"
-                      "Ligne 1\n"  "Ligne 2\n"  
-                      "Ligne 3\n"  "Ligne 4\n"  
+                      "Ligne 1\n"  "Ligne 2\n"
+                      "Ligne 3\n"  "Ligne 4\n"
                       "Ligne 5\n")
 
         self.zonetexte.scroll_to_mark(marque, 0, True, 0.0, 1.0)
@@ -802,7 +802,7 @@ class Fenetre(gtk.Window):
             reponse != REPONSE_ARRIERE):
             dialogue.destroy()
             return
-  
+
         debut, fin = dialogue.buffer.get_bounds()
         chaine_recherche = debut.get_text(fin)
 
@@ -813,7 +813,7 @@ class Fenetre(gtk.Window):
             buffer.recherche_avant(chaine_recherche, self)
         elif reponse == REPONSE_ARRIERE:
             buffer.recherche_arriere(chaine_recherche, self)
-    
+
         dialogue.destroy()
 
     def rechercher(self, action, widget):
@@ -841,7 +841,7 @@ class Fenetre(gtk.Window):
             info['y_debut'] = -1
             info['bouton'] = -1
             enfant.set_data("info-depl-testtexte", info)
-  
+
         if evenement.type == gtk.gdk.BUTTON_PRESS:
             if info['bouton'] < 0:
                 info['bouton'] = evenement.button
@@ -875,8 +875,8 @@ class Fenetre(gtk.Window):
         return False
 
     def ajouter_enfants_deplace(self, zonetexte, fenetre):
-        etiquette = gtk.Label("Deplacez-moi")  
-  
+        etiquette = gtk.Label("Deplacez-moi")
+
         boite_evnmt = gtk.EventBox()
         boite_evnmt.add_events(gtk.gdk.BUTTON_PRESS_MASK |
                              gtk.gdk.BUTTON_RELEASE_MASK |
@@ -903,7 +903,7 @@ class Fenetre(gtk.Window):
 
     def ajouter_enfants_focus(self, action, widget):
         zonetexte = self.zonetexte
-  
+
         enfant = gtk.EventBox()
         b = gtk.Button("Bouton _A dans fenetre du widget")
         enfant.add(b)
@@ -1008,7 +1008,7 @@ class Fenetre(gtk.Window):
             fenetre_tab = zonetexte.get_window(gtk.TEXT_WINDOW_TOP)
             fenetre_tab.invalidate_rect(None, False)
             #fenetre_tab.invalidate_rect(fenetre_tab.get_geometry()[:4], False)
-      
+
             fenetre_tab = zonetexte.get_window(gtk.TEXT_WINDOW_BOTTOM)
             fenetre_tab.invalidate_rect(None, False)
             #fenetre_tab.invalidate_rect(fenetre_tab.get_geometry()[:4], False)
@@ -1016,7 +1016,7 @@ class Fenetre(gtk.Window):
     def reaffichage_tabs(self, widget, evenement):
         #print self, widget, evenement
         zonetexte = widget
-  
+
         # On controle si l'evenement vient des fenetres avec tabulations
         fenetre_sup = zonetexte.get_window(gtk.TEXT_WINDOW_TOP)
         fenetre_inf = zonetexte.get_window(gtk.TEXT_WINDOW_BOTTOM)
@@ -1062,7 +1062,7 @@ class Fenetre(gtk.Window):
         # On recupere l'iterateur du premier y.
         iter, top = zonetexte.get_line_at_y(premier_y)
 
-        # On recupere la position de chaque iterateur et on l'ajoute 
+        # On recupere la position de chaque iterateur et on l'ajoute
         # a la liste. On s'arrete apres dernier_y.
         nombre = 0
         taille = 0
@@ -1081,7 +1081,7 @@ class Fenetre(gtk.Window):
 
     def affichage_num_lignes(self, widget, evenement, donnees=None):
         zonetexte = widget
-  
+
         # On controle si l'evenement vient de la fenetre des numeros de ligne
         fenetre_gauche = zonetexte.get_window(gtk.TEXT_WINDOW_LEFT)
         fenetre_droite = zonetexte.get_window(gtk.TEXT_WINDOW_RIGHT)
@@ -1094,7 +1094,7 @@ class Fenetre(gtk.Window):
             cible = fenetre_droite
         else:
             return False
-  
+
         premier_y = evenement.area.y
         dernier_y = premier_y + evenement.area.height
 
@@ -1104,10 +1104,10 @@ class Fenetre(gtk.Window):
         numeros = []
         pixels = []
         nombre = self.recup_lignes(premier_y, dernier_y, pixels, numeros)
-  
+
         # Affichage de numeros totalement internationalises !
         positionnement = widget.create_pango_layout("")
-  
+
         for i in range(nombre):
             x, pos = zonetexte.buffer_to_window_coords(type, 0, pixels[i])
             chaine = "%d" % numeros[i]
@@ -1120,7 +1120,7 @@ class Fenetre(gtk.Window):
 
     def ajouter_widgets_exemples(self):
         buffer = self.zonetexte.get_buffer()
-  
+
         ancrage = buffer.get_data("ancrage")
 
         if (ancrage and not ancrage.get_deleted()):
@@ -1140,7 +1140,7 @@ class Pile(list):
 
     def recuperer(self):
         return self[0]
-    
+
 class TestTexte:
     sanstitre_num = 1
     tabledescouleurs = None

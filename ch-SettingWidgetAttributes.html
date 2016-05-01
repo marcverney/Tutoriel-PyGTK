@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Chapitre 18. Définir les attributs des widgets</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>ChapitreÂ 18.Â DÃ©finir les attributs des widgets</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="prev" href="sec-GammaCurve.html" title="17.6. Courbe Gamma">
-<link rel="next" href="sec-WidgetDisplayMethods.html" title="18.2. Méthodes d'affichage des widgets">
+<link rel="prev" href="sec-GammaCurve.html" title="17.6.Â Courbe Gamma">
+<link rel="next" href="sec-WidgetDisplayMethods.html" title="18.2.Â MÃ©thodes d'affichage des widgets">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,widget attributs, attributs des widgets">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">Chapitre 18. Définir les attributs des widgets</th></tr>
+<tr><th colspan="3" align="center">ChapitreÂ 18.Â DÃ©finir les attributs des widgets</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-GammaCurve.html">Préc.</a> </td>
-<th width="60%" align="center"> </th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-WidgetDisplayMethods.html">Suiv.</a>
+<a accesskey="p" href="sec-GammaCurve.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">Â </th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-WidgetDisplayMethods.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,44 +36,44 @@
 </div>
 <div class="chapter" lang="fr">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="ch-SettingWidgetAttributes"></a>Chapitre 18. Définir les attributs des widgets</h2></div></div></div>
+<a name="ch-SettingWidgetAttributes"></a>ChapitreÂ 18.Â DÃ©finir les attributs des widgets</h2></div></div></div>
 <div class="toc">
-<p><b>Table des matières</b></p>
+<p><b>Table des matiÃ¨res</b></p>
 <dl>
-<dt><span class="sect1"><a href="ch-SettingWidgetAttributes.html#sec-WidgetFlagMethods">18.1. Méthodes des drapeaux des widgets</a></span></dt>
-<dt><span class="sect1"><a href="sec-WidgetDisplayMethods.html">18.2. Méthodes d'affichage des widgets</a></span></dt>
-<dt><span class="sect1"><a href="sec-WidgetAccelerators.html">18.3. Accélérateurs pour les widgets</a></span></dt>
-<dt><span class="sect1"><a href="sec-WidgetNameMethods.html">18.4. Méthodes de nom des widgets</a></span></dt>
+<dt><span class="sect1"><a href="ch-SettingWidgetAttributes.html#sec-WidgetFlagMethods">18.1. MÃ©thodes des drapeaux des widgets</a></span></dt>
+<dt><span class="sect1"><a href="sec-WidgetDisplayMethods.html">18.2. MÃ©thodes d'affichage des widgets</a></span></dt>
+<dt><span class="sect1"><a href="sec-WidgetAccelerators.html">18.3. AccÃ©lÃ©rateurs pour les widgets</a></span></dt>
+<dt><span class="sect1"><a href="sec-WidgetNameMethods.html">18.4. MÃ©thodes de nom des widgets</a></span></dt>
 <dt><span class="sect1"><a href="sec-WidgetStyles.html">18.5. Style des widgets</a></span></dt>
 </dl>
 </div>
-<p>Ce chapitre décrit les méthodes utilisées pour agir sur les 
-widgets (et les objets) et modifier leur style, 
+<p>Ce chapitre dÃ©crit les mÃ©thodes utilisÃ©es pour agir sur les
+widgets (et les objets) et modifier leur style,
 espacement, taille, etc.</p>
-<p>La méthode :</p>
+<p>La mÃ©thodeÂ :</p>
 <pre class="programlisting">
   widget.activate()
 </pre>
-<p>... entraîne l"émission du signal "activate" signal par le widget.</p>
-<p>La méthode :</p>
+<p>... entraÃ®ne l"Ã©mission du signal "activate" signal par le widget.</p>
+<p>La mÃ©thodeÂ :</p>
 <pre class="programlisting">
   widget.set_sensitive(<strong class="parameter"><code>sensible</code></strong>)
 </pre>
-<p>... définit la sensibilité d'un widget (par exemple, doit-il 
-réagir à un évènement ?). Si le paramètre <em class="parameter"><code>sensible</code></em> 
-vaut <code class="literal">TRUE</code>, le widget recevra les évènements ; si le paramètre 
-vaut <code class="literal">FALSE</code>, le widget ne recevra pas les évènements. Un widget 
-insensible est normalement affiché en "grisé".</p>
-<p>La méthode :</p>
+<p>... dÃ©finit la sensibilitÃ© d'un widget (par exemple, doit-il
+rÃ©agir Ã  un Ã©vÃ¨nement ?). Si le paramÃ¨tre <em class="parameter"><code>sensible</code></em>
+vaut <code class="literal">TRUE</code>, le widget recevra les Ã©vÃ¨nements ; si le paramÃ¨tre
+vaut <code class="literal">FALSE</code>, le widget ne recevra pas les Ã©vÃ¨nements. Un widget
+insensible est normalement affichÃ© en "grisÃ©".</p>
+<p>La mÃ©thodeÂ :</p>
 <pre class="programlisting">
   widget.set_size_request(<strong class="parameter"><code>largeur</code></strong>, <strong class="parameter"><code>hauteur</code></strong>)
 </pre>
-<p>... définit la taille du widget à la <em class="parameter"><code>hauteur</code></em> 
-  et <em class="parameter"><code>largeur</code></em> donnée</p>
+<p>... dÃ©finit la taille du widget Ã  la <em class="parameter"><code>hauteur</code></em>
+  et <em class="parameter"><code>largeur</code></em> donnÃ©e</p>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-WidgetFlagMethods"></a>18.1. Méthodes des drapeaux des widgets</h2></div></div></div>
-<p>Les méthodes :</p>
+<a name="sec-WidgetFlagMethods"></a>18.1.Â MÃ©thodes des drapeaux des widgets</h2></div></div></div>
+<p>Les mÃ©thodesÂ :</p>
 <pre class="programlisting">
   widget.set_flags(<strong class="parameter"><code>drapeaux</code></strong>)
 
@@ -80,41 +81,41 @@ insensible est normalement affiché en "grisé".</p>
 
   drapeaux = widget.flags()
 </pre>
-<p>... définissent, annulent et récupérent les drapeaux des 
-<code class="classname">gtk.Object</code> et des <code class="classname">gtk.Widget</code>. 
-Le paramètre <em class="parameter"><code>drapeaux</code></em> peur être n'importe lequel parmi 
-les drapeaux standards :
+<p>... dÃ©finissent, annulent et rÃ©cupÃ©rent les drapeaux des
+<code class="classname">gtk.Object</code> et des <code class="classname">gtk.Widget</code>.
+Le paramÃ¨tre <em class="parameter"><code>drapeaux</code></em> peur Ãªtre n'importe lequel parmi
+les drapeaux standardsÂ :
 </p>
 <pre class="programlisting">
   IN_DESTRUCTION    # en cours de destruction
   FLOATING          # flottant orphelin
-  RESERVED_1        # réservé
-  RESERVED_2        # réservé
-  TOPLEVEL          # de niveau supérieur (sans parent)
-  NO_WINDOW         # sans fenêtre propre
-  REALIZED          # réalisé
-  MAPPED            # peut être affiché
+  RESERVED_1        # rÃ©servÃ©
+  RESERVED_2        # rÃ©servÃ©
+  TOPLEVEL          # de niveau supÃ©rieur (sans parent)
+  NO_WINDOW         # sans fenÃªtre propre
+  REALIZED          # rÃ©alisÃ©
+  MAPPED            # peut Ãªtre affichÃ©
   VISIBLE           # visible
   SENSITIVE         # sensible
   PARENT_SENSITIVE  # parent est sensible
   CAN_FOCUS         # peut recevoir le focus
   HAS_FOCUS         # a le focus
-  CAN_DEFAULT       # peut être le choix par défaut
-  HAS_DEFAULT       # est le choix par défaut
-  HAS_GRAB          # a la priorité
+  CAN_DEFAULT       # peut Ãªtre le choix par dÃ©faut
+  HAS_DEFAULT       # est le choix par dÃ©faut
+  HAS_GRAB          # a la prioritÃ©
   RC_STYLE          # style via le RC
   COMPOSITE_CHILD   # enfant composite
-  NO_REPARENT       # non utilisé
+  NO_REPARENT       # non utilisÃ©
   APP_PAINTABLE     # directement dessinable ?
-  RECEIVES_DEFAULT  # reçoit le choix par défaut
-  DOUBLE_BUFFERED   # possède un double buffer
+  RECEIVES_DEFAULT  # reÃ§oit le choix par dÃ©faut
+  DOUBLE_BUFFERED   # possÃ¨de un double buffer
 </pre>
-<p>La méthode :</p>
+<p>La mÃ©thodeÂ :</p>
 <pre class="programlisting">
   widget.grab_focus()
 </pre>
-<p>... permet à un widget d'acquérir le focus si son drapeau 
-<code class="literal">CAN_FOCUS</code> est activé. </p>
+<p>... permet Ã  un widget d'acquÃ©rir le focus si son drapeau
+<code class="literal">CAN_FOCUS</code> est activÃ©. </p>
 </div>
 </div>
 <div class="navfooter">
@@ -122,15 +123,15 @@ les drapeaux standards :
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-GammaCurve.html">Préc.</a> </td>
-<td width="20%" align="center"> </td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-WidgetDisplayMethods.html">Suiv.</a>
+<a accesskey="p" href="sec-GammaCurve.html">PrÃ©c.</a>Â </td>
+<td width="20%" align="center">Â </td>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-WidgetDisplayMethods.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">17.6. Courbe Gamma </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 18.2. Méthodes d'affichage des widgets</td>
+<td width="40%" align="left" valign="top">17.6.Â Courbe GammaÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 18.2.Â MÃ©thodes d'affichage des widgets</td>
 </tr>
 </table>
 </div>

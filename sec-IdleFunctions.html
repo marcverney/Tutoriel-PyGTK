@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>19.3. Les fonctions d'inactivité</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>19.3.Â Les fonctions d'inactivitÃ©</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-TimeoutsIOAndIdleFunctions.html" title="Chapitre 19. Temporisations, Entrées/Sorties et fonctions d'inactivité">
-<link rel="prev" href="sec-MonitoringIO.html" title="19.2. Contrôler les Entrées/Sorties">
-<link rel="next" href="ch-AdvancedEventAndSignalHandling.html" title="Chapitre 20. Gestion avancée des évènements et signaux">
-<meta name="keywords" content="python,pygtk,tutoriel,traduction,fonction d'inactivité">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="up" href="ch-TimeoutsIOAndIdleFunctions.html" title="ChapitreÂ 19.Â Temporisations, EntrÃ©es/Sorties et fonctions d'inactivitÃ©">
+<link rel="prev" href="sec-MonitoringIO.html" title="19.2.Â ContrÃ´ler les EntrÃ©es/Sorties">
+<link rel="next" href="ch-AdvancedEventAndSignalHandling.html" title="ChapitreÂ 20.Â Gestion avancÃ©e des Ã©vÃ¨nements et signaux">
+<meta name="keywords" content="python,pygtk,tutoriel,traduction,fonction d'inactivitÃ©">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">19.3. Les fonctions d'inactivité</th></tr>
+<tr><th colspan="3" align="center">19.3.Â Les fonctions d'inactivitÃ©</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-MonitoringIO.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 19. Temporisations, Entrées/Sorties et fonctions d'inactivité</th>
-<td width="20%" align="right"> <a accesskey="n" href="ch-AdvancedEventAndSignalHandling.html">Suiv.</a>
+<a accesskey="p" href="sec-MonitoringIO.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 19.Â Temporisations, EntrÃ©es/Sorties et fonctions d'inactivitÃ©</th>
+<td width="20%" align="right">Â <a accesskey="n" href="ch-AdvancedEventAndSignalHandling.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,37 +36,37 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-IdleFunctions"></a>19.3. Les fonctions d'inactivité</h2></div></div></div>
-<p>Que faire si on souhaite appeler une fonction quand rien d'autre ne se passe ? 
-Il faut utiliser la fonction :</p>
+<a name="sec-IdleFunctions"></a>19.3.Â Les fonctions d'inactivitÃ©</h2></div></div></div>
+<p>Que faire si on souhaite appeler une fonction quand rien d'autre ne se passe ?
+Il faut utiliser la fonctionÂ :</p>
 <pre class="programlisting">
   source_id = gobject.idle_add(<em class="parameter"><code>rappel</code></em>, ...)
 </pre>
-<p>Tous les arguments suivants le premier (indiqué par ...) sont 
-transmis au <em class="parameter"><code>rappel</code></em> dans le même ordre. La valeur de  
-retour <em class="parameter"><code>source_id</code></em> nous fournit une référence au 
+<p>Tous les arguments suivants le premier (indiquÃ© par ...) sont
+transmis au <em class="parameter"><code>rappel</code></em> dans le mÃªme ordre. La valeur de
+retour <em class="parameter"><code>source_id</code></em> nous fournit une rÃ©fÃ©rence au
 gestionnaire.</p>
-<p>Cette fonction entraîne l'appel de la fonction indiquée 
+<p>Cette fonction entraÃ®ne l'appel de la fonction indiquÃ©e
 <em class="parameter"><code>rappel</code></em> par GTK quand rien d'autre ne se passe.
 </p>
-<p>Le <em class="parameter"><code>rappel</code></em> a la forme :</p>
+<p>Le <em class="parameter"><code>rappel</code></em> a la formeÂ :</p>
 <pre class="programlisting">
   def rappel(...):
 </pre>
-<p>... où les arguments transmis à la fonction <code class="function">rappel</code> 
-sont les mêmes que ceux qui ont été indiqués dans la fonction 
-<code class="function">gobject.idle_add</code>(). Comme pour les autres fonctions 
-de rappel, renvoyer <code class="literal">FALSE</code> empéchera le rappel 
-d'inactivité d'être appelé et renvoyer <code class="literal">TRUE</code> permet 
-à la fonction de rappel d'être rappelée à la prochaine période 
-d'inactivité.</p>
-<p>Une fonction d'inactivité peut être supprimée de la 
-    queue par la fonction :</p>
+<p>... oÃ¹ les arguments transmis Ã  la fonction <code class="function">rappel</code>
+sont les mÃªmes que ceux qui ont Ã©tÃ© indiquÃ©s dans la fonction
+<code class="function">gobject.idle_add</code>(). Comme pour les autres fonctions
+de rappel, renvoyer <code class="literal">FALSE</code> empÃ©chera le rappel
+d'inactivitÃ© d'Ãªtre appelÃ© et renvoyer <code class="literal">TRUE</code> permet
+Ã  la fonction de rappel d'Ãªtre rappelÃ©e Ã  la prochaine pÃ©riode
+d'inactivitÃ©.</p>
+<p>Une fonction d'inactivitÃ© peut Ãªtre supprimÃ©e de la
+    queue par la fonctionÂ :</p>
 <pre class="programlisting">
   gobject.source_remove(<em class="parameter"><code>source_id</code></em>)
 </pre>
-<p>... où le paramètre <em class="parameter"><code>source_id</code></em> est la valeur  
-retournée par la fonction <code class="function">gobject.idle_add</code>().
+<p>... oÃ¹ le paramÃ¨tre <em class="parameter"><code>source_id</code></em> est la valeur
+retournÃ©e par la fonction <code class="function">gobject.idle_add</code>().
 </p>
 </div>
 <div class="navfooter">
@@ -73,15 +74,15 @@ retournée par la fonction <code class="function">gobject.idle_add</code>().
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-MonitoringIO.html">Préc.</a> </td>
+<a accesskey="p" href="sec-MonitoringIO.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-TimeoutsIOAndIdleFunctions.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="ch-AdvancedEventAndSignalHandling.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="ch-AdvancedEventAndSignalHandling.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">19.2. Contrôler les Entrées/Sorties </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> Chapitre 20. Gestion avancée des évènements et signaux</td>
+<td width="40%" align="left" valign="top">19.2.Â ContrÃ´ler les EntrÃ©es/SortiesÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â ChapitreÂ 20.Â Gestion avancÃ©e des Ã©vÃ¨nements et signaux</td>
 </tr>
 </table>
 </div>

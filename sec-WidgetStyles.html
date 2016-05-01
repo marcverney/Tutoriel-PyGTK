@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>18.5. Style des widgets</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>18.5.Â Style des widgets</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-SettingWidgetAttributes.html" title="Chapitre 18. Définir les attributs des widgets">
-<link rel="prev" href="sec-WidgetNameMethods.html" title="18.4. Méthodes de nom des widgets">
-<link rel="next" href="ch-TimeoutsIOAndIdleFunctions.html" title="Chapitre 19. Temporisations, Entrées/Sorties et fonctions d'inactivité">
+<link rel="up" href="ch-SettingWidgetAttributes.html" title="ChapitreÂ 18.Â DÃ©finir les attributs des widgets">
+<link rel="prev" href="sec-WidgetNameMethods.html" title="18.4.Â MÃ©thodes de nom des widgets">
+<link rel="next" href="ch-TimeoutsIOAndIdleFunctions.html" title="ChapitreÂ 19.Â Temporisations, EntrÃ©es/Sorties et fonctions d'inactivitÃ©">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,widget,widget style">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">18.5. Style des widgets</th></tr>
+<tr><th colspan="3" align="center">18.5.Â Style des widgets</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-WidgetNameMethods.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 18. Définir les attributs des widgets</th>
-<td width="20%" align="right"> <a accesskey="n" href="ch-TimeoutsIOAndIdleFunctions.html">Suiv.</a>
+<a accesskey="p" href="sec-WidgetNameMethods.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 18.Â DÃ©finir les attributs des widgets</th>
+<td width="20%" align="right">Â <a accesskey="n" href="ch-TimeoutsIOAndIdleFunctions.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,80 +36,80 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-WidgetStyles"></a>18.5. Style des widgets</h2></div></div></div>
-<p>Les méthodes suivantes définissent et récupèrent le style associé 
-    à un widget:</p>
+<a name="sec-WidgetStyles"></a>18.5.Â Style des widgets</h2></div></div></div>
+<p>Les mÃ©thodes suivantes dÃ©finissent et rÃ©cupÃ¨rent le style associÃ©
+    Ã  un widget:</p>
 <pre class="programlisting">
   widget.set_style(<strong class="parameter"><code>style</code></strong>)
 
   style = widget.get_style()
 </pre>
-<p>La fonction :</p>
+<p>La fonctionÂ :</p>
 <pre class="programlisting">
   style = get_default_style()
 </pre>
-<p>récupère le style par défaut.</p>
-<p>Un style contient les informations graphiques dont a besoin un 
-widget pour s'afficher dans les cinq états possibles :
+<p>rÃ©cupÃ¨re le style par dÃ©faut.</p>
+<p>Un style contient les informations graphiques dont a besoin un
+widget pour s'afficher dans les cinq Ã©tats possiblesÂ :
 </p>
 <pre class="programlisting">
-  STATE_NORMAL        # état pendant les opérations normales.
-  STATE_ACTIVE        # le widget est actif, (ex :un bouton pressé).
+  STATE_NORMAL        # Ã©tat pendant les opÃ©rations normales.
+  STATE_ACTIVE        # le widget est actif, (exÂ :un bouton pressÃ©).
   STATE_PRELIGHT      # le pointeur de la souris est au-dessus du widget.
-  STATE_SELECTED      # le widget est sélectionné.
+  STATE_SELECTED      # le widget est sÃ©lectionnÃ©.
   STATE_INSENSITIVE   # le widget est insensible.
 </pre>
-<p>Un style comprend les attributs suivants :</p>
+<p>Un style comprend les attributs suivantsÂ :</p>
 <pre class="programlisting">
-  fg          # une liste de 5 couleurs de premier plan - une pour chaque état
+  fg          # une liste de 5 couleurs de premier plan - une pour chaque Ã©tat
   bg          # une liste de 5 couleurs de fond
-  light       # une liste de 5 couleurs - créés dans la méthode set_style()
-  dark        # une liste de 5 couleurs - créés dans la méthode set_style()
-  mid         # une liste de 5 couleurs - créés dans la méthode set_style()
+  light       # une liste de 5 couleurs - crÃ©Ã©s dans la mÃ©thode set_style()
+  dark        # une liste de 5 couleurs - crÃ©Ã©s dans la mÃ©thode set_style()
+  mid         # une liste de 5 couleurs - crÃ©Ã©s dans la mÃ©thode set_style()
   text        # une liste de 5 couleurs
   base        # une liste de 5 couleurs
   text_aa     # une liste de 5 couleurs intermediaire entre text/base
-  
+
   black       # la couleur noire
   white       # la couleur blanche
-  font_desc   # la description de police pango par défaut
+  font_desc   # la description de police pango par dÃ©faut
 
   xthickness  #
   ythickness  #
 
-  fg_gc       # une liste de 5 contextes graphiques - créés dans la méthode set_style()
-  bg_gc       # une liste de 5 contextes graphiques - créés dans la méthode set_style()
-  light_gc    # une liste de 5 contextes graphiques - créés dans la méthode set_style()
-  dark_gc     # une liste de 5 contextes graphiques - créés dans la méthode set_style()
-  mid_gc      # une liste de 5 contextes graphiques - créés dans la méthode set_style()
-  text_gc     # une liste de 5 contextes graphiques - créés dans la méthode set_style()
-  base_gc     # une liste de 5 contextes graphiques - créés dans la méthode set_style()
-  black_gc    # une liste de 5 contextes graphiques - créés dans la méthode set_style()
-  white_gc    # une liste de 5 contextes graphiques - créés dans la méthode set_style()
+  fg_gc       # une liste de 5 contextes graphiques - crÃ©Ã©s dans la mÃ©thode set_style()
+  bg_gc       # une liste de 5 contextes graphiques - crÃ©Ã©s dans la mÃ©thode set_style()
+  light_gc    # une liste de 5 contextes graphiques - crÃ©Ã©s dans la mÃ©thode set_style()
+  dark_gc     # une liste de 5 contextes graphiques - crÃ©Ã©s dans la mÃ©thode set_style()
+  mid_gc      # une liste de 5 contextes graphiques - crÃ©Ã©s dans la mÃ©thode set_style()
+  text_gc     # une liste de 5 contextes graphiques - crÃ©Ã©s dans la mÃ©thode set_style()
+  base_gc     # une liste de 5 contextes graphiques - crÃ©Ã©s dans la mÃ©thode set_style()
+  black_gc    # une liste de 5 contextes graphiques - crÃ©Ã©s dans la mÃ©thode set_style()
+  white_gc    # une liste de 5 contextes graphiques - crÃ©Ã©s dans la mÃ©thode set_style()
 
   bg_pixmap   # une liste de 5 GdkPixmaps
 </pre>
-<p>Chaque attribut peut être défini directement, par exemple  
-<em class="parameter"><code>style.black</code></em> et 
-<em class="parameter"><code>style.fg_gc[gtk.STATE_NORMAL]</code></em>. Tous les attributs 
-sont en lecture seule excepté <em class="parameter"><code>style.black</code></em>,
+<p>Chaque attribut peut Ãªtre dÃ©fini directement, par exemple
+<em class="parameter"><code>style.black</code></em> et
+<em class="parameter"><code>style.fg_gc[gtk.STATE_NORMAL]</code></em>. Tous les attributs
+sont en lecture seule exceptÃ© <em class="parameter"><code>style.black</code></em>,
 <em class="parameter"><code>style.white</code></em>, <em class="parameter"><code>style.black_gc</code></em> et
 <em class="parameter"><code>style.white_gc</code></em>.</p>
-<p>Un style existant peut être recopié pour être modifié 
-ensuite par le méthode :
+<p>Un style existant peut Ãªtre recopiÃ© pour Ãªtre modifiÃ©
+ensuite par le mÃ©thodeÂ :
 </p>
 <pre class="programlisting">
   nouveau_style = style.copy()
 </pre>
-<p>... qui copie les attributs de <em class="parameter"><code>style</code></em> à 
-l'exception des listes de contexte graphique et des listes de couleurs 
-light, dark et mid (clair, foncé et médian).</p>
-<p>Le style actuel d'un widget peut être connu par :</p>
+<p>... qui copie les attributs de <em class="parameter"><code>style</code></em> Ã 
+l'exception des listes de contexte graphique et des listes de couleurs
+light, dark et mid (clair, foncÃ© et mÃ©dian).</p>
+<p>Le style actuel d'un widget peut Ãªtre connu parÂ :</p>
 <pre class="programlisting">
   style = widget.get_style()
 </pre>
-<p>Pour modifier le style d'un widget (par exemple sa couleur de 
-premier plan), il faut utiliser la méthode :</p>
+<p>Pour modifier le style d'un widget (par exemple sa couleur de
+premier plan), il faut utiliser la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   widget.modify_fg(etat, couleur)
   widget.modify_bg(etat, couleur)
@@ -117,19 +118,19 @@ premier plan), il faut utiliser la méthode :</p>
   widget.modify_font(font_desc)
   widget.set_style(style)
 </pre>
-<p>En définissant le paramètre <em class="parameter"><code>style</code></em>, on crée le 
-contexte graphique et on alloue les couleurs. La plupart des widgets 
-se redessinent automatiquement lorsque le style a été modifié. Si 
-le paramètre <em class="parameter"><code>style</code></em> vaut <code class="literal">None</code>, 
-le widget reviendra à son apparence par défaut.</p>
-<p>Un widget n'est pas affecté par tous les changements de style. Par exemple, 
-modifier la couleur de fond d'une étiquette (<code class="classname">Label</code>) 
-ne changera pas la couleur de fond affichée car le widget 
-<code class="classname">Label</code> ne possède pas son propre 
-<code class="classname">gtk.gdk.Window</code>. L'arrère-plan de l'étiquette dépend 
-de la couleur de fond de son parent. Utiliser un <code class="classname">EventBox</code> 
-pour contenir l'étiquette (<code class="classname">Label</code>) permet de définir 
-sa couleur de fond. Se reporter à la section 10.1, &#8220;The EventBox&#8221; 
+<p>En dÃ©finissant le paramÃ¨tre <em class="parameter"><code>style</code></em>, on crÃ©e le
+contexte graphique et on alloue les couleurs. La plupart des widgets
+se redessinent automatiquement lorsque le style a Ã©tÃ© modifiÃ©. Si
+le paramÃ¨tre <em class="parameter"><code>style</code></em> vaut <code class="literal">None</code>,
+le widget reviendra Ã  son apparence par dÃ©faut.</p>
+<p>Un widget n'est pas affectÃ© par tous les changements de style. Par exemple,
+modifier la couleur de fond d'une Ã©tiquette (<code class="classname">Label</code>)
+ne changera pas la couleur de fond affichÃ©e car le widget
+<code class="classname">Label</code> ne possÃ¨de pas son propre
+<code class="classname">gtk.gdk.Window</code>. L'arrÃ¨re-plan de l'Ã©tiquette dÃ©pend
+de la couleur de fond de son parent. Utiliser un <code class="classname">EventBox</code>
+pour contenir l'Ã©tiquette (<code class="classname">Label</code>) permet de dÃ©finir
+sa couleur de fond. Se reporter Ã  la section 10.1, &#8220;The EventBox&#8221;
 (non encore traduit) pour voir un exemple.
 
 </p>
@@ -139,15 +140,15 @@ sa couleur de fond. Se reporter à la section 10.1, &#8220;The EventBox&#8221;
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-WidgetNameMethods.html">Préc.</a> </td>
+<a accesskey="p" href="sec-WidgetNameMethods.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-SettingWidgetAttributes.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="ch-TimeoutsIOAndIdleFunctions.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="ch-TimeoutsIOAndIdleFunctions.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">18.4. Méthodes de nom des widgets </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> Chapitre 19. Temporisations, Entrées/Sorties et fonctions d'inactivité</td>
+<td width="40%" align="left" valign="top">18.4.Â MÃ©thodes de nom des widgetsÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â ChapitreÂ 19.Â Temporisations, EntrÃ©es/Sorties et fonctions d'inactivitÃ©</td>
 </tr>
 </table>
 </div>

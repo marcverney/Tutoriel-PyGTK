@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>10.9. Fenêtre avec barres de défilement (Scrolled Window)</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>10.9.Â FenÃªtre avec barres de dÃ©filement (Scrolled Window)</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-ContainerWidgets.html" title="Chapitre 10. Les widgets conteneurs">
-<link rel="prev" href="sec-Viewports.html" title="10.8. Viewports">
-<link rel="next" href="sec-ButtonBoxes.html" title="10.10. Boîtes à boutons (ButtonBox)">
+<link rel="up" href="ch-ContainerWidgets.html" title="ChapitreÂ 10.Â Les widgets conteneurs">
+<link rel="prev" href="sec-Viewports.html" title="10.8.Â Viewports">
+<link rel="next" href="sec-ButtonBoxes.html" title="10.10.Â BoÃ®tes Ã  boutons (ButtonBox)">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">10.9. Fenêtre avec barres de défilement (Scrolled Window)</th></tr>
+<tr><th colspan="3" align="center">10.9.Â FenÃªtre avec barres de dÃ©filement (Scrolled Window)</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-Viewports.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 10. Les widgets conteneurs</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-ButtonBoxes.html">Suiv.</a>
+<a accesskey="p" href="sec-Viewports.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 10.Â Les widgets conteneurs</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-ButtonBoxes.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,44 +36,44 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-ScrolledWindows"></a>10.9. Fenêtre avec barres de défilement (Scrolled Window)</h2></div></div></div>
-<p>Les fenêtres avec barres de défilement servent à créer une zone défilante 
-contenant un autre widget. On peut insérer n'importe quel widget dans ces 
-fenêtres, ils seront accessibles quelle que soit leur taille en utilisant 
-les barres de défilement.</p>
-<p>La fonction suivante sert à créer une fenêtre avec barre de défilement</p>
+<a name="sec-ScrolledWindows"></a>10.9.Â FenÃªtre avec barres de dÃ©filement (Scrolled Window)</h2></div></div></div>
+<p>Les fenÃªtres avec barres de dÃ©filement servent Ã  crÃ©er une zone dÃ©filante
+contenant un autre widget. On peut insÃ©rer n'importe quel widget dans ces
+fenÃªtres, ils seront accessibles quelle que soit leur taille en utilisant
+les barres de dÃ©filement.</p>
+<p>La fonction suivante sert Ã  crÃ©er une fenÃªtre avec barre de dÃ©filement</p>
 <pre class="programlisting">
   scrolled_window = gtk.ScrolledWindow(<strong class="parameter"><code>hadjustment</code></strong>=None, <strong class="parameter"><code>vadjustment</code></strong>=None)
 </pre>
-<p>...où le premier paramètre est l'ajustement horizontal, et le second 
-l'ajustement vertical. Ils valent presque toujours  <code class="literal">None</code> 
-ou ne sont pas indiqués.</p>
+<p>...oÃ¹ le premier paramÃ¨tre est l'ajustement horizontal, et le second
+l'ajustement vertical. Ils valent presque toujours  <code class="literal">None</code>
+ou ne sont pas indiquÃ©s.</p>
 <pre class="programlisting">
   scrolled_window.set_policy(<strong class="parameter"><code>hscrollbar_policy</code></strong>, <strong class="parameter"><code>vscrollbar_policy</code></strong>)
 </pre>
-<p>Cette méthode définit la politique à utiliser par rapport aux 
-barres de défilement. Le premier argument règle la politique pour 
-la barre de défilement horizontale, et le second, la politique pour 
-la barre de défilement verticale.</p>
-<p>Cette politique peut être <code class="literal">POLICY_AUTOMATIC</code> ou 
-<code class="literal">POLICY_ALWAYS</code>. <code class="literal">POLICY_AUTOMATIC</code> 
-décidera automatiquement de votre besoin en barres de défilement, alors 
+<p>Cette mÃ©thode dÃ©finit la politique Ã  utiliser par rapport aux
+barres de dÃ©filement. Le premier argument rÃ¨gle la politique pour
+la barre de dÃ©filement horizontale, et le second, la politique pour
+la barre de dÃ©filement verticale.</p>
+<p>Cette politique peut Ãªtre <code class="literal">POLICY_AUTOMATIC</code> ou
+<code class="literal">POLICY_ALWAYS</code>. <code class="literal">POLICY_AUTOMATIC</code>
+dÃ©cidera automatiquement de votre besoin en barres de dÃ©filement, alors
 que <code class="literal">POLICY_ALWAYS</code> affichera toujours celles-ci.</p>
-<p>On peut ensuite placer un objet dans la fenêtre à défilement 
-grâce à la méthode :</p>
+<p>On peut ensuite placer un objet dans la fenÃªtre Ã  dÃ©filement
+grÃ¢ce Ã  la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   scrolled_window.add_with_viewport(<strong class="parameter"><code>child</code></strong>)
 </pre>
 <p>Le programme <a href="exemples/scrolledwin.py" target="_top"><span><strong class="command">
-scrolledwin.py</strong></span></a> place 100 boutons commutateurs dans 
-une fenêtre à défilement. Je n'ai commenté que les parties qui pouvaient 
-vous paraître nouvelles. La <a href="sec-ScrolledWindows.html#scrolledwin" title="Figure 10.7. Exemple de fenêtre à défilement">Figure 10.7, « Exemple de fenêtre à défilement »</a> montre 
-l'affichage du programme :
+scrolledwin.py</strong></span></a> place 100 boutons commutateurs dans
+une fenÃªtre Ã  dÃ©filement. Je n'ai commentÃ© que les parties qui pouvaient
+vous paraÃ®tre nouvelles. La <a href="sec-ScrolledWindows.html#scrolledwin" title="FigureÂ 10.7.Â Exemple de fenÃªtre Ã  dÃ©filement">FigureÂ 10.7, Â«Â Exemple de fenÃªtre Ã  dÃ©filementÂ Â»</a> montre
+l'affichage du programmeÂ :
 </p>
 <div class="figure">
-<a name="scrolledwin"></a><p class="title"><b>Figure 10.7. Exemple de fenêtre à défilement</b></p>
-<div class="mediaobject" align="center"><img src="figures/scrolledwin.png" align="middle" alt="Exemple de fenêtre à défilement"></div>
-<span>Exemple de fenêtre à défilement</span>
+<a name="scrolledwin"></a><p class="title"><b>FigureÂ 10.7.Â Exemple de fenÃªtre Ã  dÃ©filement</b></p>
+<div class="mediaobject" align="center"><img src="figures/scrolledwin.png" align="middle" alt="Exemple de fenÃªtre Ã  dÃ©filement"></div>
+<span>Exemple de fenÃªtre Ã  dÃ©filement</span>
 </div>
 <p>Voici le code source du programme <a href="exemples/scrolledwin.py" target="_top">
 <span><strong class="command">scrolledwin.py</strong></span></a></p>
@@ -80,100 +81,100 @@ l'affichage du programme :
      1   #!/usr/bin/env python
      2   # -*- coding:utf-8 -*-
      3   # exemple scrolledwin.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   class ExempleScrolledWindow:
     10       def destroy(self, widget):
     11           gtk.main_quit()
-    12   
+    12
     13       def __init__(self):
-    14           # Créer une boîte de dialogue pour y placer 
-    15           # la fenêtre à défilement 
+    14           # CrÃ©er une boÃ®te de dialogue pour y placer
+    15           # la fenÃªtre Ã  dÃ©filement
     16           fenetre = gtk.Dialog()
     17           fenetre.connect("destroy", self.destroy)
-    18           fenetre.set_title("Fenêtre à défilement")
+    18           fenetre.set_title("FenÃªtre Ã  dÃ©filement")
     19           fenetre.set_border_width(0)
     20           fenetre.set_size_request(300, 300)
-    21   
-    22           # Créer une fenêtre à défilement.
+    21
+    22           # CrÃ©er une fenÃªtre Ã  dÃ©filement.
     23           fenetre_defil = gtk.ScrolledWindow()
     24           fenetre_defil.set_border_width(10)
-    25   
+    25
     26           # La gestion des barres est soit POLICY AUTOMATIC, soit  POLICY_ALWAYS.
-    27           # POLICY_AUTOMATIC décide automatiquement s'il faut ou non des barres,
+    27           # POLICY_AUTOMATIC dÃ©cide automatiquement s'il faut ou non des barres,
     28           # POLICY_ALWAYS met toujours des barres
-    29           # Le premier paramètre correspond à la barre horizontale,
-    30           # le second à la barre verticale. 
+    29           # Le premier paramÃ¨tre correspond Ã  la barre horizontale,
+    30           # le second Ã  la barre verticale.
     31           fenetre_defil.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_ALWAYS)
-    32   
-    33           # Créer une boîte de dialogue avec une boîte verticale.
+    32
+    33           # CrÃ©er une boÃ®te de dialogue avec une boÃ®te verticale.
     34           fenetre.vbox.pack_start(fenetre_defil, True, True, 0)
     35           fenetre_defil.show()
-    36       
-    37           # Créer une table de 10x10 cases.
+    36
+    37           # CrÃ©er une table de 10x10 cases.
     38           table = gtk.Table(10, 10, False)
-    39   
-    40           # Définir l'espacement des lignes et colonnes à 10 pixels.
+    39
+    40           # DÃ©finir l'espacement des lignes et colonnes Ã  10 pixels.
     41           table.set_row_spacings(10)
     42           table.set_col_spacings(10)
-    43   
-    44           # Placer la table dans la fenêtre à défilement.
+    43
+    44           # Placer la table dans la fenÃªtre Ã  dÃ©filement.
     45           fenetre_defil.add_with_viewport(table)
     46           table.show()
-    47   
-    48           # Créer une grille de boutons commutateurs dans la table
-    49           # pour la démonstration de la fenêtre à défilement
+    47
+    48           # CrÃ©er une grille de boutons commutateurs dans la table
+    49           # pour la dÃ©monstration de la fenÃªtre Ã  dÃ©filement
     50           for i in range(10):
     51               for j in range(10):
     52                   buffer = "bouton (%d,%d)" % (i, j)
     53                   bouton = gtk.ToggleButton(buffer)
     54                   table.attach(bouton, i, i+1, j, j+1)
     55                   bouton.show()
-    56   
-    57           # Ajouter un bouton « Fermer » en bas de la boîte de dialogue.
+    56
+    57           # Ajouter un bouton Â« Fermer Â» en bas de la boÃ®te de dialogue.
     58           bouton = gtk.Button("Fermer")
     59           bouton.connect_object("clicked", self.destroy, fenetre)
-    60   
-    61           # Définir ce bouton en « bouton par défaut ».
+    60
+    61           # DÃ©finir ce bouton en Â« bouton par dÃ©faut Â».
     62           bouton.set_flags(gtk.CAN_DEFAULT)
     63           fenetre.action_area.pack_start(bouton, True, True, 0)
-    64   
-    65           # Récupérer le bouton par défaut. Presser
-    66           # la touche « Entrée » activera le bouton.
+    64
+    65           # RÃ©cupÃ©rer le bouton par dÃ©faut. Presser
+    66           # la touche Â« EntrÃ©e Â» activera le bouton.
     67           bouton.grab_default()
     68           bouton.show()
     69           fenetre.show()
-    70   
+    70
     71   def main():
     72       gtk.main()
     73       return 0
-    74   
+    74
     75   if __name__ == "__main__":
     76       ExempleScrolledWindow()
     77       main()
 </pre>
-<p>Jouez à modifer la taille de la fenêtre et observez les 
-réactions des barres de défilement. On peut aussi utiliser la fonction 
-<code class="methodname">set_size_request</code>() pour définir la taille par 
-défaut de la fenêtre et des autres widgets.</p>
+<p>Jouez Ã  modifer la taille de la fenÃªtre et observez les
+rÃ©actions des barres de dÃ©filement. On peut aussi utiliser la fonction
+<code class="methodname">set_size_request</code>() pour dÃ©finir la taille par
+dÃ©faut de la fenÃªtre et des autres widgets.</p>
 </div>
 <div class="navfooter">
 <hr>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-Viewports.html">Préc.</a> </td>
+<a accesskey="p" href="sec-Viewports.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-ContainerWidgets.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-ButtonBoxes.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-ButtonBoxes.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">10.8. Viewports </td>
+<td width="40%" align="left" valign="top">10.8.Â ViewportsÂ </td>
 <td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
-<td width="40%" align="right" valign="top"> 10.10. Boîtes à boutons (ButtonBox)</td>
+<td width="40%" align="right" valign="top">Â 10.10.Â BoÃ®tes Ã  boutons (ButtonBox)</td>
 </tr>
 </table>
 </div>

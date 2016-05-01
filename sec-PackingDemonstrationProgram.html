@@ -1,11 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>4.3. D&eacute;monstration de placement avec les boites</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,boite">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -15,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici : 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici :
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En-t&ecirc;te de navigation">
 <tr>
@@ -38,7 +37,7 @@ Vous êtes à peu près ici :
 <div class="titlepage">
 <div>
 <h2 class="title" style="clear: both">
-<a name="sec-PackingDemonstrationProgram"></a>4.3. D&eacute;monstration de placement 
+<a name="sec-PackingDemonstrationProgram"></a>4.3. D&eacute;monstration de placement
 avec les boites</h2>
 </div></div>
 
@@ -46,137 +45,137 @@ avec les boites</h2>
 
 <pre class=programlisting>
      1   #!/usr/bin/env python
-     2   
+     2
      3   # exemple boite.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
      8   import sys, string
-     9   
+     9
     10   # Cette fonction nous aide a creer une nouvelle HBox remplie de boutons+etiquettes.
-    11   # Des arguments pour les variables qui nous interessent lui sont transmis. On n'affiche 
+    11   # Des arguments pour les variables qui nous interessent lui sont transmis. On n'affiche
     12   # pas la boite (avec show()), mais on affiche tout ce qui se trouve a l'interieur.
-    13   
+    13
     14   def creer_boite(homogeneous, spacing, expand, fill, padding):
-    15   
+    15
     16       # On cree une nouvelle boite avec les valeurs
     17       # transmises pour "homogeneous" et "spacing"
     18       boite = gtk.HBox(homogeneous, spacing)
-    19   
+    19
     20       # On cree une serie de boutons, toujours avec les valeurs transmises.
     21       bouton = gtk.Button("boite.pack")
     22       boite.pack_start(bouton, expand, fill, padding)
     23       bouton.show()
-    24   
+    24
     25       bouton = gtk.Button("(bouton,")
     26       boite.pack_start(bouton, expand, fill, padding)
     27       bouton.show()
-    28   
+    28
     29       # On cree un bouton dont l'etiquette dependra de la valeur
     30       # de "expand".
     31       if expand == True:
     32           bouton = gtk.Button("True,")
     33       else:
     34           bouton = gtk.Button("False,")
-    35   
+    35
     36       boite.pack_start(bouton, expand, fill, padding)
     37       bouton.show()
-    38   
+    38
     39       # Meme principe que ci-dessus, mais cette fois avec la
     40       # formulation abregee
     41       bouton = gtk.Button(("False,", "True,")[fill==True])
     42       boite.pack_start(bouton, expand, fill, padding)
     43       bouton.show()
-    44   
+    44
     45       chaine_pad = "%d)" % padding
-    46   
+    46
     47       bouton = gtk.Button(chaine_pad)
     48       boite.pack_start(bouton, expand, fill, padding)
     49       bouton.show()
     50       return boite
-    51   
+    51
     52   class BoitesPLacement:
     53       def evnmt_delete(self, widget, evenement, donnees=None):
     54           gtk.main_quit()
     55           return False
-    56   
+    56
     57       def __init__(self, numero):
-    58   
+    58
     59           # Creation de notre fenetre
     60           self.fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    61   
+    61
     62           # N'oubliez pas de connecter le signal "delete_event"
     63           # a la fenetre principale. Cela donne au programme
     64           # un comportement plus intuitif.
     65           self.fenetre.connect("delete_event", self.evnmt_delete)
     66           self.fenetre.set_border_width(10)
-    67       
+    67
     68           # On cree une boite verticale (VBox) pour y placer nos boites
     69           # horizontales. Ainsi on peut empiler les boites horizontales
     70           # remplies de boutons les unes sur les autre dans la VBox.
     71           boite1 = gtk.VBox(False, 0)
-    72       
+    72
     73           # Sur quel scenario partons-nous ? (cf. images de la section 4.2)
     74           if numero == 1:
     75               # Creation d'une nouvelle etiquette.
     76               etiquette = gtk.Label("HBox(False, 0)")
-    77   	
+    77
     78               # On aligne l'etiquette a gauche. Nous verrons cette methode
     79               # ainsi que d'autres dans la section sur les attributs des widgets.
     80               etiquette.set_alignment(0, 0)
-    81   
+    81
     82               # On place l'etiquette dans la boite verticale (la VBox boite1).
     83               # Souvenez-vous que les widgets ajoutes a une VBox seront places
     84               # les uns sur les autres, dans l'ordre.
     85               boite1.pack_start(etiquette, False, False, 0)
-    86   	
+    86
     87               # On affiche l'etiquette.
     88               etiquette.show()
-    89   	
+    89
     90               # On appelle notre fonction creer_boite en lui transmettant :
     91               # homogeneous=False, spacing=0, expand=False, fill=False, padding=0
     92               boite2 = creer_boite(False, 0, False, False, 0)
     93               boite1.pack_start(boite2, False, False, 0)
     94               boite2.show()
-    95   
+    95
     96               # On appelle notre fonction creer_boite en lui transmettant :
     97               # homogeneous=False, spacing=0, expand=True, fill=False, padding=0
     98               boite2 = creer_boite(False, 0, True, False, 0)
     99               boite1.pack_start(boite2, False, False, 0)
    100               boite2.show()
-   101   	
+   101
    102               # homogeneous=False, spacing=0, expand=True, fill=True, padding=0
    103               boite2 = creer_boite(False, 0, True, True, 0)
    104               boite1.pack_start(boite2, False, False, 0)
    105               boite2.show()
-   106   	
+   106
    107               # Creation d'un separateur. On en apprendra plus sur ce widget
    108               # ulterieurement mais il est assez simple.
    109               separateur = gtk.HSeparator()
-   110   	
+   110
    111               # On place le separateur dans la VBox. Gardez bien a l'esprit que
    112               # tout ces widgets sont places dans une VBox, ils sont donc
    113               # empiles les uns sur les autres.
    114               boite1.pack_start(separateur, False, True, 5)
    115               separateur.show()
-   116   	
+   116
    117               # On cree une autre etiquette, et on l'affiche.
    118               etiquette = gtk.Label("HBox(True, 0)")
    119               etiquette.set_alignment(0, 0)
    120               boite1.pack_start(etiquette, False, False, 0)
    121               etiquette.show()
-   122   	
+   122
    123               # homogeneous=True, spacing=0, expand=True, fill=False, padding=0
    124               boite2 = creer_boite(True, 0, True, False, 0)
    125               boite1.pack_start(boite2, False, False, 0)
    126               boite2.show()
-   127   	
+   127
    128               # homogeneous=True, spacing=0, expand=True, fill=True, padding=0
    129               boite2 = creer_boite(True, 0, True, True, 0)
    130               boite1.pack_start(boite2, False, False, 0)
    131               boite2.show()
-   132   	
+   132
    133               # Un autre separateur.
    134               separateur = gtk.HSeparator()
    135               # Les trois derniers arguments de pack_start() sont :
@@ -190,50 +189,50 @@ avec les boites</h2>
    143               etiquette.set_alignment( 0, 0)
    144               boite1.pack_start(etiquette, False, False, 0)
    145               etiquette.show()
-   146   	
+   146
    147               # homogeneous=False, spacing=10, expand=True, fill=False, padding=0
    148               boite2 = creer_boite(False, 10, True, False, 0)
    149               boite1.pack_start(boite2, False, False, 0)
    150               boite2.show()
-   151   	
+   151
    152               # homogeneous=False, spacing=10, expand=True, fill=True, padding=0
    153               boite2 = creer_boite(False, 10, True, True, 0)
    154               boite1.pack_start(boite2, False, False, 0)
    155               boite2.show()
-   156   	
+   156
    157               separateur = gtk.HSeparator()
    158               # Les trois derniers arguments de pack_start() sont :
    159               # expand, fill, padding.
    160               boite1.pack_start(separateur, False, True, 5)
    161               separateur.show()
-   162   	
+   162
    163               etiquette = gtk.Label("HBox(False, 0)")
    164               etiquette.set_alignment(0, 0)
    165               boite1.pack_start(etiquette, False, False, 0)
    166               etiquette.show()
-   167   	
+   167
    168               # homogeneous=False, spacing=0, expand=True, fill=False, padding=10
    169               boite2 = creer_boite(False, 0, True, False, 10)
    170               boite1.pack_start(boite2, False, False, 0)
    171               boite2.show()
-   172   	
+   172
    173               # homogeneous=False, spacing=0, expand=True, fill=True, padding=10
    174               boite2 = creer_boite(False, 0, True, True, 10)
    175               boite1.pack_start(boite2, False, False, 0)
    176               boite2.show()
-   177   	
+   177
    178               separateur = gtk.HSeparator()
    179               # Les trois derniers arguments de pack_start() sont :
    180               # expand, fill, padding.
    181               boite1.pack_start(separateur, False, True, 5)
    182               separateur.show()
-   183   
+   183
    184           elif numero == 3:
-   185   
+   185
    186               # Ce scenario est la pour montrer qu'avec pack_end() on peut aligner
    187               # les widgets a droite. D'abord, creons une boite, comme avant.
    188               boite2 = creer_boite(False, 0, False, False, 0)
-   189   
+   189
    190               # on cree l'etiquette que l'on alignera a droite.
    191               etiquette = gtk.Label("fin")
    192               # On la place avec pack_end(), elle va se placer a l'extremite
@@ -241,31 +240,31 @@ avec les boites</h2>
    194               boite2.pack_end(etiquette, False, False, 0)
    195               # On affiche l'etiquette.
    196               etiquette.show()
-   197   	
+   197
    198               # On place boite2 dans boite1
    199               boite1.pack_start(boite2, False, False, 0)
    200               boite2.show()
-   201   	
+   201
    202               # Un separateur pour le bas.
    203               separateur = gtk.HSeparator()
-   204               
+   204
    205               # Cette methode fixe les dimensions du separateur (400 pixels de large
    206               # pour 5 pixels de haut). C'est pour que la HBox qu'on vient de creer
    207               # fasse aussi 400 de large, et que l'etiquette "fin" soit bien separee
-   208               # des autres widgets de la HBox. Autrement, tous les widgets de la 
+   208               # des autres widgets de la HBox. Autrement, tous les widgets de la
    209               # HBox seraient places aussi pres l'un de l'autre que possible.
    210               separateur.set_size_request(400, 5)
-   211               # On place le separateur dans la HBox (boite1) creee vers le debut 
+   211               # On place le separateur dans la HBox (boite1) creee vers le debut
    212               # de __init__()
    213               boite1.pack_start(separateur, False, True, 5)
    214               separateur.show()
-   215       
+   215
    216           # On cree une autre HBox. On peut en utiliser autant qu'on veut !
    217           boitequitter = gtk.HBox(False, 0)
-   218       
+   218
    219           # Notre bouton "Quitter".
    220           bouton = gtk.Button("Quitter")
-   221       
+   221
    222           # Lorsqu'on clique sur le bouton, le signal emis doit terminer le programme.
    223           bouton.connect_object("clicked", gtk.main_quit, self.fenetre)
    224           # On place le bouton dans la HBox boitequitter.
@@ -274,25 +273,25 @@ avec les boites</h2>
    227           boitequitter.pack_start(bouton, True, False, 0)
    228           # On place boitequitter dans la VBox (boite1)
    229           boite1.pack_start(boitequitter, False, False, 0)
-   230       
+   230
    231           # On place la VBox boite1 (qui contient maintenant tous nos widgets)
    232           # dans la fenetre principale.
    233           self.fenetre.add(boite1)
-   234       
+   234
    235           # Et on affiche ce qui reste a afficher.
    236           bouton.show()
    237           boitequitter.show()
-   238       
+   238
    239           boite1.show()
    240           # La fenetre en dernier, afin que tout s'affiche d'un coup.
    241           self.fenetre.show()
-   242   
+   242
    243   def main():
    244       # Et bien sur, notre boucle principale.
    245       gtk.main()
    246       # Le controle revient ici lorsque main_quit() est appelee.
-   247       return 0         
-   248   
+   247       return 0
+   248
    249   if __name__ =="__main__":
    250       if len(sys.argv) != 2:
    251           sys.stderr.write("La commande doit etre de la forme \"boite.py num\", avec num = 1 ou 2 ou 3\n")
@@ -302,35 +301,35 @@ avec les boites</h2>
 </pre>
 
 <p>En route pour une br&egrave;ve visite guid&eacute;e du code&nbsp;:</p>
-<p>De la ligne 14 &agrave; la ligne 50, on d&eacute;finit une fonction <tt>creer_boite</tt>() 
-qui nous facilitera  la creation des boites horizontales. &Agrave; chaque appel, elle 
-cr&eacute;era une HBox et la remplira de cinq boutons en respectant les param&egrave;tres 
-sp&eacute;cifi&eacute;s. Sa valeur de retour est une r&eacute;f&eacute;rence &agrave; 
+<p>De la ligne 14 &agrave; la ligne 50, on d&eacute;finit une fonction <tt>creer_boite</tt>()
+qui nous facilitera  la creation des boites horizontales. &Agrave; chaque appel, elle
+cr&eacute;era une HBox et la remplira de cinq boutons en respectant les param&egrave;tres
+sp&eacute;cifi&eacute;s. Sa valeur de retour est une r&eacute;f&eacute;rence &agrave;
 elle-m&ecirc;me.</p>
-<p>Puis on d&eacute;finit le constructeur <tt>__init__</tt>() de la classe 
-<tt>BoitesPLacement</tt> (lignes 52 &agrave; 241), qui cr&eacute;e une fen&ecirc;tre et une 
-boite verticale enfant. Cette derni&egrave;re contiendra d'autre widgets dont la nature et 
+<p>Puis on d&eacute;finit le constructeur <tt>__init__</tt>() de la classe
+<tt>BoitesPLacement</tt> (lignes 52 &agrave; 241), qui cr&eacute;e une fen&ecirc;tre et une
+boite verticale enfant. Cette derni&egrave;re contiendra d'autre widgets dont la nature et
 la disposition d&eacute;pendent de l'argument qu'elle re&ccedil;oit.
-Si elle recoit 1, elle cr&eacute;e une fen&ecirc;tre montrant les cinq arrangements de 
+Si elle recoit 1, elle cr&eacute;e une fen&ecirc;tre montrant les cinq arrangements de
 widgets que l'on peut obtenir en jouant sur les param&egrave;tres <i><tt>homogeneous</i>
-</tt>, <i><tt>expand</i></tt> et <i><tt>fill</i></tt> (lignes 75 &agrave; 138). Si elle 
-recoit 2, elle cr&eacute;e une fen&ecirc;tre qui affiche cette fois-ci les diff&eacute;rentes 
-combinaisons de remplissage offertes par les param&egrave;tres <i><tt>spacing</i></tt> et 
-<i><tt>padding</i></tt> (lignes 140 &agrave; 182). Enfin, en recevant 3, la fen&ecirc;tre 
-cr&eacute;&eacute;e par la fonction montrera l'utilisation des m&eacute;thodes 
-<tt>pack_start</tt>() et <tt>pack_end</tt>(), la premi&egrave;re pour aligner les boutons 
-&agrave; gauche et la seconde pour aligner une &eacute;tiquette &agrave; droite (lignes 
-188 &agrave; 214). Aux lignes 215 &agrave; 235, on cr&eacute;e une boite horizontale 
-contenant un bouton, et on la place dans la boite verticale. Le signal 
-&quot;<tt>clicked</tt>&quot; du bouton est connect&eacute; &agrave; la fonction PyGTK 
+</tt>, <i><tt>expand</i></tt> et <i><tt>fill</i></tt> (lignes 75 &agrave; 138). Si elle
+recoit 2, elle cr&eacute;e une fen&ecirc;tre qui affiche cette fois-ci les diff&eacute;rentes
+combinaisons de remplissage offertes par les param&egrave;tres <i><tt>spacing</i></tt> et
+<i><tt>padding</i></tt> (lignes 140 &agrave; 182). Enfin, en recevant 3, la fen&ecirc;tre
+cr&eacute;&eacute;e par la fonction montrera l'utilisation des m&eacute;thodes
+<tt>pack_start</tt>() et <tt>pack_end</tt>(), la premi&egrave;re pour aligner les boutons
+&agrave; gauche et la seconde pour aligner une &eacute;tiquette &agrave; droite (lignes
+188 &agrave; 214). Aux lignes 215 &agrave; 235, on cr&eacute;e une boite horizontale
+contenant un bouton, et on la place dans la boite verticale. Le signal
+&quot;<tt>clicked</tt>&quot; du bouton est connect&eacute; &agrave; la fonction PyGTK
 <tt>main_quit</tt>() pour terminer le programme.</p>
-<p>Aux lignes 250 &agrave; 252, on v&eacute;rifie la ligne de commande&nbsp;: celle-ci 
-doit comporter un seul argument. Dans le cas contraire, on sort du programme avec la 
-fonction <tt>sys.exit</tt>(). La ligne 253 cr&eacute;e une instance de 
-<tt>BoitesPLacement</tt> et la ligne 254 invoque la fonction <tt>main</tt>() qui va 
+<p>Aux lignes 250 &agrave; 252, on v&eacute;rifie la ligne de commande&nbsp;: celle-ci
+doit comporter un seul argument. Dans le cas contraire, on sort du programme avec la
+fonction <tt>sys.exit</tt>(). La ligne 253 cr&eacute;e une instance de
+<tt>BoitesPLacement</tt> et la ligne 254 invoque la fonction <tt>main</tt>() qui va
 initialiser la boucle du r&eacute;ceptionnaire d'&eacute;v&egrave;nements de GTK.</p>
-<p>Dans ce programme exemple, aucune r&eacute;f&eacute;rence de widget n'est 
-enregistr&eacute;e dans un attribut d'instance (sauf pour la fen&ecirc;tre). En effet, 
+<p>Dans ce programme exemple, aucune r&eacute;f&eacute;rence de widget n'est
+enregistr&eacute;e dans un attribut d'instance (sauf pour la fen&ecirc;tre). En effet,
 nos widgets ne seront plus sollicit&eacute;s apr&egrave;s leur cr&eacute;ation.</p>
 </div>
 <div class="navfooter">

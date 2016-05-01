@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>16.7. Le gestionnaire d'Interface Utilisateur UIManager</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>16.7.Â Le gestionnaire d'Interface Utilisateur UIManager</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-NewInPyGTK2.4.html" title="Chapitre 16. Nouveaux Widgets dans PyGTK 2.4">
-<link rel="prev" href="sec-FileChoosers.html" title="16.6. Sélection de fichier basée sur le sélecteur FileChooser">
-<link rel="next" href="ch-UndocumentedWidgets.html" title="Chapitre 17. Widgets non décrits">
+<link rel="up" href="ch-NewInPyGTK2.4.html" title="ChapitreÂ 16.Â Nouveaux Widgets dans PyGTK 2.4">
+<link rel="prev" href="sec-FileChoosers.html" title="16.6.Â SÃ©lection de fichier basÃ©e sur le sÃ©lecteur FileChooser">
+<link rel="next" href="ch-UndocumentedWidgets.html" title="ChapitreÂ 17.Â Widgets non dÃ©crits">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">16.7. Le gestionnaire d'Interface Utilisateur UIManager</th></tr>
+<tr><th colspan="3" align="center">16.7.Â Le gestionnaire d'Interface Utilisateur UIManager</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-FileChoosers.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 16. Nouveaux Widgets dans PyGTK 2.4</th>
-<td width="20%" align="right"> <a accesskey="n" href="ch-UndocumentedWidgets.html">Suiv.</a>
+<a accesskey="p" href="sec-FileChoosers.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 16.Â Nouveaux Widgets dans PyGTK 2.4</th>
+<td width="20%" align="right">Â <a accesskey="n" href="ch-UndocumentedWidgets.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,68 +36,68 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-UIManager"></a>16.7. Le gestionnaire d'Interface Utilisateur UIManager</h2></div></div></div>
+<a name="sec-UIManager"></a>16.7.Â Le gestionnaire d'Interface Utilisateur UIManager</h2></div></div></div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-UIManagerOverview"></a>16.7.1. Aperçu</h3></div></div></div>
-<p>Le gestionnaire <code class="classname">UIManager</code> fournit des outils  
-pour créer des menus et des barres d'outils à partir d'une description 
-de type XML. Le <code class="classname">UIManager</code> utilise les objets du 
-<code class="classname">ActionGroup</code> pour gérer les objets du 
-<code class="classname">Action</code> fournissant une infrastructure commune 
-aux éléments de menu et de barre d'outils.</p>
-<p>L'utilisation du <code class="classname">UIManager</code> permet de fusionner et 
-scinder dynamiquement des descriptions et actions de UI multiples. 
-Ceci permet de modifier les menus et les barres d'outils selon le mode 
-utilisé dans l'application (par exemple, passer d'une édition de texte à 
-une édition d'image), ou quand de nouvelles extensions sont ajoutées ou 
-enlevées de l'application.</p>
-<p>Un <code class="classname">UIManager</code> peut être utilisé pour créer 
-    les menus et les barres d'outils d' un interface utilisateur de la 
-    façon suivante :</p>
+<a name="sec-UIManagerOverview"></a>16.7.1.Â AperÃ§u</h3></div></div></div>
+<p>Le gestionnaire <code class="classname">UIManager</code> fournit des outils
+pour crÃ©er des menus et des barres d'outils Ã  partir d'une description
+de type XML. Le <code class="classname">UIManager</code> utilise les objets du
+<code class="classname">ActionGroup</code> pour gÃ©rer les objets du
+<code class="classname">Action</code> fournissant une infrastructure commune
+aux Ã©lÃ©ments de menu et de barre d'outils.</p>
+<p>L'utilisation du <code class="classname">UIManager</code> permet de fusionner et
+scinder dynamiquement des descriptions et actions de UI multiples.
+Ceci permet de modifier les menus et les barres d'outils selon le mode
+utilisÃ© dans l'application (par exemple, passer d'une Ã©dition de texte Ã 
+une Ã©dition d'image), ou quand de nouvelles extensions sont ajoutÃ©es ou
+enlevÃ©es de l'application.</p>
+<p>Un <code class="classname">UIManager</code> peut Ãªtre utilisÃ© pour crÃ©er
+    les menus et les barres d'outils d' un interface utilisateur de la
+    faÃ§on suivanteÂ :</p>
 <div class="itemizedlist"><ul type="disc">
-<li>Créer une instance de <code class="classname">UIManager</code>.</li>
-<li>Extraire le <code class="classname">AccelGroup</code> du 
-<code class="classname">UIManager</code> et l'ajouter à la <code class="classname">Fenêtre</code>
-de niveau supérieur.</li>
-<li>Créer des instances de <code class="classname">ActionGroup</code> et 
+<li>CrÃ©er une instance de <code class="classname">UIManager</code>.</li>
+<li>Extraire le <code class="classname">AccelGroup</code> du
+<code class="classname">UIManager</code> et l'ajouter Ã  la <code class="classname">FenÃªtre</code>
+de niveau supÃ©rieur.</li>
+<li>CrÃ©er des instances de <code class="classname">ActionGroup</code> et
         les remplir avec les <code class="classname">Action</code> voulues.
 instances.</li>
-<li>Ajouter les instances de <code class="classname">ActionGroup</code> 
-        au <code class="classname">UIManager</code> dans l'ordre dans lequel on souhaite 
-        présenter les instances des <code class="classname">Action</code>.</li>
-<li>Ajouter les descriptions XML de l'interface UI au 
-        <code class="classname">UIManager</code>. Il faut s'assurer que toutes les 
-        <code class="classname">Actions</code> définies par les descriptions soient 
-        disponibles dans les instances <code class="classname">ActionGroup</code> du 
+<li>Ajouter les instances de <code class="classname">ActionGroup</code>
+        au <code class="classname">UIManager</code> dans l'ordre dans lequel on souhaite
+        prÃ©senter les instances des <code class="classname">Action</code>.</li>
+<li>Ajouter les descriptions XML de l'interface UI au
+        <code class="classname">UIManager</code>. Il faut s'assurer que toutes les
+        <code class="classname">Actions</code> dÃ©finies par les descriptions soient
+        disponibles dans les instances <code class="classname">ActionGroup</code> du
         <code class="classname">UIManager</code>.</li>
-<li>Extraire, par leur nom, les références des widgets de la barre 
-        de menu, du menu et de la barre d'outils pour les utiliser dans la 
+<li>Extraire, par leur nom, les rÃ©fÃ©rences des widgets de la barre
+        de menu, du menu et de la barre d'outils pour les utiliser dans la
         construction de l'interface utilisateur.</li>
-<li>Modifier l'interface de manière dynamique, 
-        en ajoutant ou retirant des descriptions d'Interface Utilisateur et 
-        en ajoutant, réordonnant ou retirant les instances associées des groupes 
+<li>Modifier l'interface de maniÃ¨re dynamique,
+        en ajoutant ou retirant des descriptions d'Interface Utilisateur et
+        en ajoutant, rÃ©ordonnant ou retirant les instances associÃ©es des groupes
         d'actions <code class="classname">ActionGroup</code>.</li>
 </ul></div>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-CreatingUIManager"></a>16.7.2. Créer un UIManager</h3></div></div></div>
-<p>Une instance de <code class="classname">UIManager</code> se crée par le 
-    constructeur :</p>
+<a name="sec-CreatingUIManager"></a>16.7.2.Â CrÃ©er un UIManager</h3></div></div></div>
+<p>Une instance de <code class="classname">UIManager</code> se crÃ©e par le
+    constructeurÂ :</p>
 <pre class="programlisting">
   gestionui = gtk.UIManager()
 </pre>
-<p>Un nouveau <code class="classname">UIManager</code> est créé avec son 
-groupe d'accélérateurs associé <code class="classname">AccelGroup</code>, lequel 
-peut être récupéré avec la méthode  :</p>
+<p>Un nouveau <code class="classname">UIManager</code> est crÃ©Ã© avec son
+groupe d'accÃ©lÃ©rateurs associÃ© <code class="classname">AccelGroup</code>, lequel
+peut Ãªtre rÃ©cupÃ©rÃ© avec la mÃ©thode Â :</p>
 <pre class="programlisting">
   grouperacc = gestionui.get_accel_group()
 </pre>
-<p>Le groupe <code class="classname">AccelGroup</code> doit être ajouté à la 
-fenêtre de niveau supérieur pour que les accélérateurs (raccourcis clavier) 
-de <code class="classname">Action</code> puissent être disponibles pour les utilisateurs. 
-Par exemple :</p>
+<p>Le groupe <code class="classname">AccelGroup</code> doit Ãªtre ajoutÃ© Ã  la
+fenÃªtre de niveau supÃ©rieur pour que les accÃ©lÃ©rateurs (raccourcis clavier)
+de <code class="classname">Action</code> puissent Ãªtre disponibles pour les utilisateurs.
+Par exempleÂ :</p>
 <pre class="programlisting">
   fenetre = gtk.Window()
   ...
@@ -107,180 +108,180 @@ Par exemple :</p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-AddRemoveActionGroups"></a>16.7.3. Ajouter et supprimer des groupe d'actions</h3></div></div></div>
-<p>Comme on l'a vu dans la <a href="ch-NewInPyGTK2.4.html#sec-ActionGroups" title="16.1.2. ActionGroup">Section 16.1.2, « ActionGroup »</a>, 
-un groupe d'actions <code class="classname">ActionGroups</code> peut être rempli avec 
-des <code class="classname">Actions</code> en utilisant les méthodes 
-<code class="methodname">add_actions</code>(), 
-<code class="methodname">add_toggle_actions</code>() et 
-<code class="methodname">add_radio_actions</code>(). Un 
-<code class="classname">ActionGroup</code> peut être utilisé par un 
-<code class="classname">UIManager</code> lorqu'il a été ajouté à sa liste 
-des <code class="classname">ActionGroup</code> par la méthode :</p>
+<a name="sec-AddRemoveActionGroups"></a>16.7.3.Â Ajouter et supprimer des groupe d'actions</h3></div></div></div>
+<p>Comme on l'a vu dans la <a href="ch-NewInPyGTK2.4.html#sec-ActionGroups" title="16.1.2.Â ActionGroup">SectionÂ 16.1.2, Â«Â ActionGroupÂ Â»</a>,
+un groupe d'actions <code class="classname">ActionGroups</code> peut Ãªtre rempli avec
+des <code class="classname">Actions</code> en utilisant les mÃ©thodes
+<code class="methodname">add_actions</code>(),
+<code class="methodname">add_toggle_actions</code>() et
+<code class="methodname">add_radio_actions</code>(). Un
+<code class="classname">ActionGroup</code> peut Ãªtre utilisÃ© par un
+<code class="classname">UIManager</code> lorqu'il a Ã©tÃ© ajoutÃ© Ã  sa liste
+des <code class="classname">ActionGroup</code> par la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   gestionui.insert_action_group(<strong class="parameter"><code>action_group</code></strong>, <strong class="parameter"><code>pos</code></strong>)
 </pre>
-<p>... où <em class="parameter"><code>pos</code></em> est l'indication de la 
-position où le <em class="parameter"><code>action_group</code></em> doit être inséré. 
-Un <code class="classname">UIManager</code> peut comporter plusieurs groupes 
-<code class="classname">ActionGroup</code> avec des noms de 
-<code class="classname">Action</code> en double. L'ordre des objets d'un 
-<code class="classname">ActionGroup</code> est important car la recherche d'une 
-<code class="classname">Action</code> par son nom s'arrête sur la première 
-<code class="classname">Action</code> trouvée. Ceci signifie que les 
-premières actions dans les objets <code class="classname">ActionGroup</code> 
+<p>... oÃ¹ <em class="parameter"><code>pos</code></em> est l'indication de la
+position oÃ¹ le <em class="parameter"><code>action_group</code></em> doit Ãªtre insÃ©rÃ©.
+Un <code class="classname">UIManager</code> peut comporter plusieurs groupes
+<code class="classname">ActionGroup</code> avec des noms de
+<code class="classname">Action</code> en double. L'ordre des objets d'un
+<code class="classname">ActionGroup</code> est important car la recherche d'une
+<code class="classname">Action</code> par son nom s'arrÃªte sur la premiÃ¨re
+<code class="classname">Action</code> trouvÃ©e. Ceci signifie que les
+premiÃ¨res actions dans les objets <code class="classname">ActionGroup</code>
 masquent les suivantes.</p>
-<p>Les actions inscrites dans la description XML d'une Interface Utilisateur 
-doivent être ajoutées dans le <code class="classname">UIManager</code> avant que 
-la description elle-même puisse l'être.</p>
-<p>Un <code class="classname">ActionGroup</code> peut être supprimé d'un 
-<code class="classname">UIManager</code> par la méthode :</p>
+<p>Les actions inscrites dans la description XML d'une Interface Utilisateur
+doivent Ãªtre ajoutÃ©es dans le <code class="classname">UIManager</code> avant que
+la description elle-mÃªme puisse l'Ãªtre.</p>
+<p>Un <code class="classname">ActionGroup</code> peut Ãªtre supprimÃ© d'un
+<code class="classname">UIManager</code> par la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   gestionui.remove_action_group(<strong class="parameter"><code>action_group</code></strong>)
 </pre>
-<p>Une liste des objets <code class="classname">ActionGroup</code> 
-associés au <code class="classname">UIManager</code> peut être récupérée 
-par la méthode :</p>
+<p>Une liste des objets <code class="classname">ActionGroup</code>
+associÃ©s au <code class="classname">UIManager</code> peut Ãªtre rÃ©cupÃ©rÃ©e
+par la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   listegroupesactions = gestionui.get_action_groups()
 </pre>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-UIDescriptions"></a>16.7.4. Descriptions de l'Interface Utilisateur</h3></div></div></div>
-<p>Les descriptions d'Interface Utilisateur acceptées par le 
-<code class="classname">UIManager</code> sont de simples définitions XML 
-qui comportent les éléments suivants :</p>
+<a name="sec-UIDescriptions"></a>16.7.4.Â Descriptions de l'Interface Utilisateur</h3></div></div></div>
+<p>Les descriptions d'Interface Utilisateur acceptÃ©es par le
+<code class="classname">UIManager</code> sont de simples dÃ©finitions XML
+qui comportent les Ã©lÃ©ments suivantsÂ :</p>
 <table border="0" width="100%" bgcolor="#FFECCE">
 <col align="left" valign="top" width="0*">
 <tbody>
 <tr>
 <td>
 <span class="term"><span class="bold"><strong>ui</strong></span></span></td>
-<td>L'élément racine de la decription de l'Interface Utilisateur. Il 
-peut être omis. Il peut contenir les éléments 
-<span class="bold"><strong>menubar</strong></span>, <span class="bold"><strong>popup</strong></span>, 
+<td>L'Ã©lÃ©ment racine de la decription de l'Interface Utilisateur. Il
+peut Ãªtre omis. Il peut contenir les Ã©lÃ©ments
+<span class="bold"><strong>menubar</strong></span>, <span class="bold"><strong>popup</strong></span>,
 <span class="bold"><strong>toolbar</strong></span> et <span class="bold"><strong>accelerator</strong></span>.
 </td>
 </tr>
 <tr>
 <td>
 <span class="term"><span class="bold"><strong>menubar</strong></span></span></td>
-<td>Un élément de premier niveau qui décrit une structure de barre de menu 
-<code class="classname">MenuBar</code> qui peut contenir les éléments 
-<span class="bold"><strong>MenuItem</strong></span>, <span class="bold"><strong>separator</strong></span>, 
-<span class="bold"><strong>placeholder</strong></span> et <span class="bold"><strong>menu</strong></span>. 
-Il possède en option un attribut <span class="emphasis"><em>name</em></span>. Si cet 
-attribut <span class="emphasis"><em>name</em></span> n'est pas précisé, il aura pour valeur "menubar".
+<td>Un Ã©lÃ©ment de premier niveau qui dÃ©crit une structure de barre de menu
+<code class="classname">MenuBar</code> qui peut contenir les Ã©lÃ©ments
+<span class="bold"><strong>MenuItem</strong></span>, <span class="bold"><strong>separator</strong></span>,
+<span class="bold"><strong>placeholder</strong></span> et <span class="bold"><strong>menu</strong></span>.
+Il possÃ¨de en option un attribut <span class="emphasis"><em>name</em></span>. Si cet
+attribut <span class="emphasis"><em>name</em></span> n'est pas prÃ©cisÃ©, il aura pour valeur "menubar".
 </td>
 </tr>
 <tr>
 <td>
 <span class="term"><span class="bold"><strong>popup</strong></span></span></td>
-<td>Un élément de premier niveau qui décrit une structure de menu popup 
-<code class="classname">Menu</code> qui peut contenir les éléments 
+<td>Un Ã©lÃ©ment de premier niveau qui dÃ©crit une structure de menu popup
+<code class="classname">Menu</code> qui peut contenir les Ã©lÃ©ments
 <span class="bold"><strong>menuitem</strong></span>, <span class="bold"><strong>separator</strong></span>,
-<span class="bold"><strong>placeholder</strong></span> et <span class="bold"><strong>menu</strong></span>. 
-Il possède en option un attribut <span class="emphasis"><em>name</em></span>. Si cet 
-attribut <span class="emphasis"><em>name</em></span> n'est pas précisé, il aura pour valeur "popup".
+<span class="bold"><strong>placeholder</strong></span> et <span class="bold"><strong>menu</strong></span>.
+Il possÃ¨de en option un attribut <span class="emphasis"><em>name</em></span>. Si cet
+attribut <span class="emphasis"><em>name</em></span> n'est pas prÃ©cisÃ©, il aura pour valeur "popup".
 </td>
 </tr>
 <tr>
 <td>
 <span class="term"><span class="bold"><strong>toolbar</strong></span></span></td>
-<td>Un élément de premier niveau qui décrit une structure de barre d'outils 
-<code class="classname">Toolbar</code> qui peut contenir les éléments 
-<span class="bold"><strong>toolitem</strong></span>, <span class="bold"><strong>separator</strong></span> 
-et <span class="bold"><strong>placeholder</strong></span>. Il possède en option un attribut 
-<span class="emphasis"><em>name</em></span>. Si cet attribut <span class="emphasis"><em>name</em></span> n'est pas précisé, 
+<td>Un Ã©lÃ©ment de premier niveau qui dÃ©crit une structure de barre d'outils
+<code class="classname">Toolbar</code> qui peut contenir les Ã©lÃ©ments
+<span class="bold"><strong>toolitem</strong></span>, <span class="bold"><strong>separator</strong></span>
+et <span class="bold"><strong>placeholder</strong></span>. Il possÃ¨de en option un attribut
+<span class="emphasis"><em>name</em></span>. Si cet attribut <span class="emphasis"><em>name</em></span> n'est pas prÃ©cisÃ©,
 il aura pour valeur "toolbar".
 </td>
 </tr>
 <tr>
 <td>
 <span class="term"><span class="bold"><strong>placeholder</strong></span></span></td>
-<td>Un élément identifiant une position dans un <span class="bold"><strong>menubar</strong></span>, <span class="bold"><strong>toolbar</strong></span>,
-<span class="bold"><strong>popup</strong></span> ou <span class="bold"><strong>menu</strong></span>. 
-Ce paramètre substituable peut contenir les éléments 
+<td>Un Ã©lÃ©ment identifiant une position dans un <span class="bold"><strong>menubar</strong></span>, <span class="bold"><strong>toolbar</strong></span>,
+<span class="bold"><strong>popup</strong></span> ou <span class="bold"><strong>menu</strong></span>.
+Ce paramÃ¨tre substituable peut contenir les Ã©lÃ©ments
 <span class="bold"><strong>menuitem</strong></span>, <span class="bold"><strong>separator</strong></span>,
-<span class="bold"><strong>placeholder</strong></span> et <span class="bold"><strong>menu</strong></span>. 
-Les éléments substituables <span class="bold"><strong>Placeholder</strong></span> 
-sont utilisés pour fusionner plusieurs descriptions d'Interface Utilisateur pour 
-permettre, par exemple, la construction d'un menu à partir de descriptions 
-d'Interface Utilisateur en utilisant des noms 
-de <span class="bold"><strong>placeholder</strong></span> partagés. 
-Il possède en option un attribut <span class="emphasis"><em>name</em></span>. Si cet attribut 
-<span class="emphasis"><em>name</em></span> n'est pas précisé, il aura pour valeur "placeholder".
+<span class="bold"><strong>placeholder</strong></span> et <span class="bold"><strong>menu</strong></span>.
+Les Ã©lÃ©ments substituables <span class="bold"><strong>Placeholder</strong></span>
+sont utilisÃ©s pour fusionner plusieurs descriptions d'Interface Utilisateur pour
+permettre, par exemple, la construction d'un menu Ã  partir de descriptions
+d'Interface Utilisateur en utilisant des noms
+de <span class="bold"><strong>placeholder</strong></span> partagÃ©s.
+Il possÃ¨de en option un attribut <span class="emphasis"><em>name</em></span>. Si cet attribut
+<span class="emphasis"><em>name</em></span> n'est pas prÃ©cisÃ©, il aura pour valeur "placeholder".
 </td>
 </tr>
 <tr>
 <td>
 <span class="term"><span class="bold"><strong>menu</strong></span></span></td>
-<td>Un élément décrivant une structure de <code class="classname">Menu</code> qui 
-peut contenir les éléments <span class="bold"><strong>menuitem</strong></span>, 
-<span class="bold"><strong>separator</strong></span>, <span class="bold"><strong>placeholder</strong></span> et <span class="bold"><strong>menu</strong></span>. 
-Un élément <span class="bold"><strong>menu</strong></span> possède obligatoirement 
-un attribut <span class="emphasis"><em>action</em></span>  qui désigne un objet 
-<code class="classname">Action</code>, utilisé pour créer le <code class="classname">Menu</code>. 
-Il possède en option les attributs <span class="emphasis"><em>name</em></span> et 
-<span class="emphasis"><em>position</em></span>. Si l'attribut <span class="emphasis"><em>name</em></span> 
-n'est pas précisé, il aura pour valeur le nom de l'élément <span class="emphasis"><em>action</em></span>. 
-L'attribut <span class="emphasis"><em>position</em></span> peut avoir pour valeur  "top" ou 
-"bottom". Si sa valeur n'est pas précisée, ce sera, par défaut, "bottom".
+<td>Un Ã©lÃ©ment dÃ©crivant une structure de <code class="classname">Menu</code> qui
+peut contenir les Ã©lÃ©ments <span class="bold"><strong>menuitem</strong></span>,
+<span class="bold"><strong>separator</strong></span>, <span class="bold"><strong>placeholder</strong></span> et <span class="bold"><strong>menu</strong></span>.
+Un Ã©lÃ©ment <span class="bold"><strong>menu</strong></span> possÃ¨de obligatoirement
+un attribut <span class="emphasis"><em>action</em></span>  qui dÃ©signe un objet
+<code class="classname">Action</code>, utilisÃ© pour crÃ©er le <code class="classname">Menu</code>.
+Il possÃ¨de en option les attributs <span class="emphasis"><em>name</em></span> et
+<span class="emphasis"><em>position</em></span>. Si l'attribut <span class="emphasis"><em>name</em></span>
+n'est pas prÃ©cisÃ©, il aura pour valeur le nom de l'Ã©lÃ©ment <span class="emphasis"><em>action</em></span>.
+L'attribut <span class="emphasis"><em>position</em></span> peut avoir pour valeur  "top" ou
+"bottom". Si sa valeur n'est pas prÃ©cisÃ©e, ce sera, par dÃ©faut, "bottom".
 </td>
 </tr>
 <tr>
 <td>
 <span class="term"><span class="bold"><strong>menuitem</strong></span></span></td>
-<td>Un élément décrivant un <code class="classname">MenuItem</code>. Un élément 
-<span class="bold"><strong>menuitem</strong></span> possède un attribut obligatoire 
-<span class="emphasis"><em>action</em></span> qui désigne un objet <code class="classname">Action</code> 
-utilisé pour créer l'élément de menu  <code class="classname">MenuItem</code>. Il 
-possède également les attributs facultatifs <span class="emphasis"><em>name</em></span> et 
-<span class="emphasis"><em>position</em></span>. Si <span class="emphasis"><em>name</em></span> n'est pas 
-précisé, le nom de <span class="emphasis"><em>action</em></span> sera utilisé. 
-L'attribut <span class="emphasis"><em>position</em></span> peut avoir pour valeur  "top" ou 
-"bottom". Si sa valeur n'est pas précisée, ce sera, par défaut, "bottom".
+<td>Un Ã©lÃ©ment dÃ©crivant un <code class="classname">MenuItem</code>. Un Ã©lÃ©ment
+<span class="bold"><strong>menuitem</strong></span> possÃ¨de un attribut obligatoire
+<span class="emphasis"><em>action</em></span> qui dÃ©signe un objet <code class="classname">Action</code>
+utilisÃ© pour crÃ©er l'Ã©lÃ©ment de menu  <code class="classname">MenuItem</code>. Il
+possÃ¨de Ã©galement les attributs facultatifs <span class="emphasis"><em>name</em></span> et
+<span class="emphasis"><em>position</em></span>. Si <span class="emphasis"><em>name</em></span> n'est pas
+prÃ©cisÃ©, le nom de <span class="emphasis"><em>action</em></span> sera utilisÃ©.
+L'attribut <span class="emphasis"><em>position</em></span> peut avoir pour valeur  "top" ou
+"bottom". Si sa valeur n'est pas prÃ©cisÃ©e, ce sera, par dÃ©faut, "bottom".
 </td>
 </tr>
 <tr>
 <td>
 <span class="term"><span class="bold"><strong>toolitem</strong></span></span></td>
-<td>Décrit un élémént de barre d'outils <code class="classname">ToolItem</code>. Un 
-élément <span class="bold"><strong>toolitem</strong></span> possède un attribut obligatoire 
-<span class="emphasis"><em>action</em></span> qui désigne un objet <code class="classname">Action</code> 
-utilisé pour créer la barre d'outils <code class="classname">Toolbar</code>. Il 
-possède également les attributs facultatifs <span class="emphasis"><em>name</em></span> et 
-<span class="emphasis"><em>position</em></span>. Si <span class="emphasis"><em>name</em></span> n'est pas 
-précisé, le nom de <span class="emphasis"><em>action</em></span> sera utilisé. 
-L'attribut <span class="emphasis"><em>position</em></span> peut avoir pour valeur "top" ou 
-"bottom". Si sa valeur n'est pas précisée, ce sera, par défaut, "bottom".
+<td>DÃ©crit un Ã©lÃ©mÃ©nt de barre d'outils <code class="classname">ToolItem</code>. Un
+Ã©lÃ©ment <span class="bold"><strong>toolitem</strong></span> possÃ¨de un attribut obligatoire
+<span class="emphasis"><em>action</em></span> qui dÃ©signe un objet <code class="classname">Action</code>
+utilisÃ© pour crÃ©er la barre d'outils <code class="classname">Toolbar</code>. Il
+possÃ¨de Ã©galement les attributs facultatifs <span class="emphasis"><em>name</em></span> et
+<span class="emphasis"><em>position</em></span>. Si <span class="emphasis"><em>name</em></span> n'est pas
+prÃ©cisÃ©, le nom de <span class="emphasis"><em>action</em></span> sera utilisÃ©.
+L'attribut <span class="emphasis"><em>position</em></span> peut avoir pour valeur "top" ou
+"bottom". Si sa valeur n'est pas prÃ©cisÃ©e, ce sera, par dÃ©faut, "bottom".
 </td>
 </tr>
 <tr>
 <td>
 <span class="term"><span class="bold"><strong>separator</strong></span></span></td>
-<td>Élément décrivant un séparateur d'éléments de menu 
-<code class="classname">SeparatorMenuItem</code> ou 
+<td>Ã‰lÃ©ment dÃ©crivant un sÃ©parateur d'Ã©lÃ©ments de menu
+<code class="classname">SeparatorMenuItem</code> ou
 <code class="classname">SeparatorToolItem</code> selon les cas.</td>
 </tr>
 <tr>
 <td>
 <span class="term"><span class="bold"><strong>accelerator</strong></span></span></td>
-<td>Élément décrivant un raccourci clavier. Un élément <span class="bold"><strong>
-accelerator</strong></span>possède un attribut obligatoire <span class="emphasis"><em>action</em></span> 
-qui désigne un objet <code class="classname">Action</code> pour définir la combinaison de 
-touches du clavier et qui est activé par l'accélérateur. Il 
-possède également l'attribut facultatif <span class="emphasis"><em>name</em></span> . 
-Si <span class="emphasis"><em>name</em></span> n'est pas 
-précisé, le nom de <span class="emphasis"><em>action</em></span> sera utilisé. 
+<td>Ã‰lÃ©ment dÃ©crivant un raccourci clavier. Un Ã©lÃ©ment <span class="bold"><strong>
+accelerator</strong></span>possÃ¨de un attribut obligatoire <span class="emphasis"><em>action</em></span>
+qui dÃ©signe un objet <code class="classname">Action</code> pour dÃ©finir la combinaison de
+touches du clavier et qui est activÃ© par l'accÃ©lÃ©rateur. Il
+possÃ¨de Ã©galement l'attribut facultatif <span class="emphasis"><em>name</em></span> .
+Si <span class="emphasis"><em>name</em></span> n'est pas
+prÃ©cisÃ©, le nom de <span class="emphasis"><em>action</em></span> sera utilisÃ©.
 </td>
 </tr>
 </tbody>
 </table>
-<p>Par exemple, voici une description d'Interface Utilisateur qui peut 
-être utilisée pour créer une interface semblable à celle de la 
-<a href="ch-NewInPyGTK2.4.html#actiongroupfig" title="Figure 16.4. Exemple avec ActionGroup">Figure 16.4, « Exemple avec ActionGroup »</a> :
+<p>Par exemple, voici une description d'Interface Utilisateur qui peut
+Ãªtre utilisÃ©e pour crÃ©er une interface semblable Ã  celle de la
+<a href="ch-NewInPyGTK2.4.html#actiongroupfig" title="FigureÂ 16.4.Â Exemple avec ActionGroup">FigureÂ 16.4, Â«Â Exemple avec ActionGroupÂ Â»</a>Â :
 </p>
 <pre class="programlisting">
   &lt;ui&gt;
@@ -309,23 +310,23 @@ précisé, le nom de <span class="emphasis"><em>action</em></span> sera utilisé.
       &lt;/placeholder&gt;
     &lt;/toolbar&gt;
   &lt;/ui&gt;
-  
+
 </pre>
-<p>Il faut noter que cette description utilise simplement les noms 
-d'attributs du <span class="bold"><strong>action</strong></span> comme nom de la 
-plupart des éléments plutôt que de préciser leurs attributs 
-<span class="emphasis"><em>name</em></span>. Aussi, je recommenderais de ne pas préciser 
-l'élément <span class="bold"><strong>ui</strong></span> lorsque cela n'est pas 
+<p>Il faut noter que cette description utilise simplement les noms
+d'attributs du <span class="bold"><strong>action</strong></span> comme nom de la
+plupart des Ã©lÃ©ments plutÃ´t que de prÃ©ciser leurs attributs
+<span class="emphasis"><em>name</em></span>. Aussi, je recommenderais de ne pas prÃ©ciser
+l'Ã©lÃ©ment <span class="bold"><strong>ui</strong></span> lorsque cela n'est pas
 indispensable.</p>
-<p>La hiérarchie de widgets créée par une description d'Interface Utilisateur 
-est tout à fait semblable à une hiérarchie d'éléments XML, excepté 
-que les éléments <span class="bold"><strong>placeholder</strong></span> sont 
-fusionnés dans leurs parents.</p>
-<p>On peut avoir accès à un widget appartenant à la hiérarchie de la 
-description de l'Interface Utilisateur en utilisant son chemin ; 
-celui-ci est composé du nom du widget et de ses éléments parents reliés 
-par des barres obliques ("/"). À partir de la description ci-dessus, 
-voici des exemples de chemins de widgets valides :</p>
+<p>La hiÃ©rarchie de widgets crÃ©Ã©e par une description d'Interface Utilisateur
+est tout Ã  fait semblable Ã  une hiÃ©rarchie d'Ã©lÃ©ments XML, exceptÃ©
+que les Ã©lÃ©ments <span class="bold"><strong>placeholder</strong></span> sont
+fusionnÃ©s dans leurs parents.</p>
+<p>On peut avoir accÃ¨s Ã  un widget appartenant Ã  la hiÃ©rarchie de la
+description de l'Interface Utilisateur en utilisant son cheminÂ ;
+celui-ci est composÃ© du nom du widget et de ses Ã©lÃ©ments parents reliÃ©s
+par des barres obliques ("/"). Ã€ partir de la description ci-dessus,
+voici des exemples de chemins de widgets validesÂ :</p>
 <pre class="programlisting">
   /BarreMenu
   /BarreMenu/Fichier/Quitter
@@ -333,84 +334,84 @@ voici des exemples de chemins de widgets valides :</p>
   /BarreOutils/Volume
   /BarreOutils/ElementsMod/MF
 </pre>
-<p>Il faut noter que le nom de l'élément de substitution 
- <span class="bold"><strong>placeholder</strong></span> doit être inclus dans le chemin. 
- Dans la plupart des cas, on ne s'intéresse qu'aux widgets de niveau supérieur 
- (par exemple "/MenuBar" and "/Toolbar") mais on peut avoir besoin d'accèder 
- à un widget de plus bas niveau pour, par exemple, modifier une propriété.
+<p>Il faut noter que le nom de l'Ã©lÃ©ment de substitution
+ <span class="bold"><strong>placeholder</strong></span> doit Ãªtre inclus dans le chemin.
+ Dans la plupart des cas, on ne s'intÃ©resse qu'aux widgets de niveau supÃ©rieur
+ (par exemple "/MenuBar" and "/Toolbar") mais on peut avoir besoin d'accÃ¨der
+ Ã  un widget de plus bas niveau pour, par exemple, modifier une propriÃ©tÃ©.
 </p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-AddRemoveUIDescriptions"></a>16.7.5. Ajouter et supprimer des descriptions d'Interface Utilisateur</h3></div></div></div>
-<p>Une fois le <code class="classname">UIManager</code> configuré avec un 
-<code class="classname">ActionGroup</code>, une description d'Interface Utilisateur 
-peut être ajoutée ou fusionnée avec l'Interface Utilisateur existant par l'une 
-de ces méthodes :</p>
+<a name="sec-AddRemoveUIDescriptions"></a>16.7.5.Â Ajouter et supprimer des descriptions d'Interface Utilisateur</h3></div></div></div>
+<p>Une fois le <code class="classname">UIManager</code> configurÃ© avec un
+<code class="classname">ActionGroup</code>, une description d'Interface Utilisateur
+peut Ãªtre ajoutÃ©e ou fusionnÃ©e avec l'Interface Utilisateur existant par l'une
+de ces mÃ©thodesÂ :</p>
 <pre class="programlisting">
   fusion_id = gestionui.add_ui_from_string(<strong class="parameter"><code>buffer</code></strong>)
 
   fusion_id = gestionui.add_ui_from_file(<strong class="parameter"><code>filename</code></strong>)
 </pre>
-<p>... où le paramètre <em class="parameter"><code>buffer</code></em> est une chaîne 
-de caractères contenant une description d'Interface Utilisateur et 
-<em class="parameter"><code>filename</code></em> se réfère au fichier contenant la description. 
-Les deux méthodes renvoient un identifiant <em class="parameter"><code>fusion_id</code></em> 
-qui est une valeur entière unique. Si la méthode échoue, une exception 
-<code class="literal">GError</code> est levée. L'identifiant <em class="parameter"><code>merge_id</code></em> 
-peut servir à supprimer la description d'Interface Utilisateur en 
-utilisant la méthode :</p>
+<p>... oÃ¹ le paramÃ¨tre <em class="parameter"><code>buffer</code></em> est une chaÃ®ne
+de caractÃ¨res contenant une description d'Interface Utilisateur et
+<em class="parameter"><code>filename</code></em> se rÃ©fÃ¨re au fichier contenant la description.
+Les deux mÃ©thodes renvoient un identifiant <em class="parameter"><code>fusion_id</code></em>
+qui est une valeur entiÃ¨re unique. Si la mÃ©thode Ã©choue, une exception
+<code class="literal">GError</code> est levÃ©e. L'identifiant <em class="parameter"><code>merge_id</code></em>
+peut servir Ã  supprimer la description d'Interface Utilisateur en
+utilisant la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   gestionui.remove_ui(<strong class="parameter"><code>fusion_id</code></strong>)
 </pre>
-<p>Les mêmes méthodes peuvent être utilisées plusieurs fois pour ajouter 
-des descriptions supplémentaires qui peuvent être fusionnées pour obtenir 
-une description combinée d'Interface Utilisateur en XML. Les Interfaces 
-Utilisateurs combinées seront traitées plus en détail dans la 
-<a href="sec-UIManager.html#sec-MergingUIDescriptions" title="16.7.8. Combiner des descriptions d'Interface Utilisateur">Section 16.7.8, « Combiner des descriptions d'Interface Utilisateur »</a>.</p>
-<p>On peut ajouter un seul élément à la description d'Interface 
-Utilisateur existante par la méthode :</p>
+<p>Les mÃªmes mÃ©thodes peuvent Ãªtre utilisÃ©es plusieurs fois pour ajouter
+des descriptions supplÃ©mentaires qui peuvent Ãªtre fusionnÃ©es pour obtenir
+une description combinÃ©e d'Interface Utilisateur en XML. Les Interfaces
+Utilisateurs combinÃ©es seront traitÃ©es plus en dÃ©tail dans la
+<a href="sec-UIManager.html#sec-MergingUIDescriptions" title="16.7.8.Â Combiner des descriptions d'Interface Utilisateur">SectionÂ 16.7.8, Â«Â Combiner des descriptions d'Interface UtilisateurÂ Â»</a>.</p>
+<p>On peut ajouter un seul Ã©lÃ©ment Ã  la description d'Interface
+Utilisateur existante par la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   gestionui.add_ui(<strong class="parameter"><code>fusion_id</code></strong>, <strong class="parameter"><code>path</code></strong>, <strong class="parameter"><code>name</code></strong>, <strong class="parameter"><code>action</code></strong>, <strong class="parameter"><code>type</code></strong>, <strong class="parameter"><code>top</code></strong>)
 </pre>
-<p>... où l'identifiant <em class="parameter"><code>fusion_id</code></em> est un entier unique, 
-<em class="parameter"><code>path</code></em> est le chemin où le nouvel élément doit être ajouté, 
-<em class="parameter"><code>action</code></em> est le nom de l'<code class="classname">Action</code> ou 
-<code class="literal">None</code> pour ajouter un <span class="bold"><strong>separator</strong></span>, 
-<em class="parameter"><code>type</code></em> est le type de l'élément à ajouter et 
-<em class="parameter"><code>top</code></em> une valeur booléenne. Si <em class="parameter"><code>top</code></em> 
-vaut <code class="literal">TRUE</code>, l'élément est inséré avant son frère (élément de même 
-niveau), sinon, il est ajouté à la suite.</p>
-<p>Le paramètre <em class="parameter"><code>merge_id</code></em> sera obtenu par 
-la méthode :
+<p>... oÃ¹ l'identifiant <em class="parameter"><code>fusion_id</code></em> est un entier unique,
+<em class="parameter"><code>path</code></em> est le chemin oÃ¹ le nouvel Ã©lÃ©ment doit Ãªtre ajoutÃ©,
+<em class="parameter"><code>action</code></em> est le nom de l'<code class="classname">Action</code> ou
+<code class="literal">None</code> pour ajouter un <span class="bold"><strong>separator</strong></span>,
+<em class="parameter"><code>type</code></em> est le type de l'Ã©lÃ©ment Ã  ajouter et
+<em class="parameter"><code>top</code></em> une valeur boolÃ©enne. Si <em class="parameter"><code>top</code></em>
+vaut <code class="literal">TRUE</code>, l'Ã©lÃ©ment est insÃ©rÃ© avant son frÃ¨re (Ã©lÃ©ment de mÃªme
+niveau), sinon, il est ajoutÃ© Ã  la suite.</p>
+<p>Le paramÃ¨tre <em class="parameter"><code>merge_id</code></em> sera obtenu par
+la mÃ©thodeÂ :
 </p>
 <pre class="programlisting">
   fusion_id = gestionui.new_merge_id()
 </pre>
-<p>Les valeurs entières retournées par la méthode 
-<code class="methodname">new_merge_id</code>() augmentent arithmétiquement.
+<p>Les valeurs entiÃ¨res retournÃ©es par la mÃ©thode
+<code class="methodname">new_merge_id</code>() augmentent arithmÃ©tiquement.
 </p>
-<p>Le paramètre <em class="parameter"><code>path</code></em>  est une chaîne de 
-caractères composée du nom de l'élément et du  nom de ses ancétres, séparés 
-par un trait oblique ("/"), qui n'inclut pas le noeud racine optionnel 
-"/ui". Par exemple "/BarreMenu/Modulation" représente le chemin de l'élément de 
-<span class="bold"><strong>menu</strong></span> nommé "Modulation" dans la description 
-d'Interface Utilisateur suivante :</p>
+<p>Le paramÃ¨tre <em class="parameter"><code>path</code></em>  est une chaÃ®ne de
+caractÃ¨res composÃ©e du nom de l'Ã©lÃ©ment et du  nom de ses ancÃ©tres, sÃ©parÃ©s
+par un trait oblique ("/"), qui n'inclut pas le noeud racine optionnel
+"/ui". Par exemple "/BarreMenu/Modulation" reprÃ©sente le chemin de l'Ã©lÃ©ment de
+<span class="bold"><strong>menu</strong></span> nommÃ© "Modulation" dans la description
+d'Interface Utilisateur suivanteÂ :</p>
 <pre class="programlisting">
   &lt;menubar name="BarreMenu"&gt;
     &lt;menu action="Modulation"&gt;
     &lt;/menu&gt;
   &lt;/menubar&gt;
 </pre>
-<p>La valeur du paramétre <em class="parameter"><code>type</code></em> doit être parmi  :</p>
+<p>La valeur du paramÃ©tre <em class="parameter"><code>type</code></em> doit Ãªtre parmi Â :</p>
 <table border="0" width="100%" bgcolor="#FFECCE">
 <col align="left" valign="top" width="0*">
 <tbody>
 <tr>
 <td>
 <span class="term"><code class="literal">gtk.UI_MANAGER_AUTO</code></span></td>
-<td>Le type de l'élément d'Interface Utilisateur (menuitem, toolitem ou
-separator) est défini en fonction du contexte.</td>
+<td>Le type de l'Ã©lÃ©ment d'Interface Utilisateur (menuitem, toolitem ou
+separator) est dÃ©fini en fonction du contexte.</td>
 </tr>
 <tr>
 <td>
@@ -430,7 +431,7 @@ separator) est défini en fonction du contexte.</td>
 <tr>
 <td>
 <span class="term"><code class="literal">gtk.UI_MANAGER_PLACEHOLDER</code></span></td>
-<td>Une élément de réservation (placeholder).</td>
+<td>Une Ã©lÃ©ment de rÃ©servation (placeholder).</td>
 </tr>
 <tr>
 <td>
@@ -440,50 +441,50 @@ separator) est défini en fonction du contexte.</td>
 <tr>
 <td>
 <span class="term"><code class="literal">gtk.UI_MANAGER_MENUITEM</code></span></td>
-<td>Un élément de menu).</td>
+<td>Un Ã©lÃ©ment de menu).</td>
 </tr>
 <tr>
 <td>
 <span class="term"><code class="literal">gtk.UI_MANAGER_TOOLITEM</code></span></td>
-<td>Un élément de barre d'outils.</td>
+<td>Un Ã©lÃ©ment de barre d'outils.</td>
 </tr>
 <tr>
 <td>
 <span class="term"><code class="literal">gtk.UI_MANAGER_SEPARATOR</code></span></td>
-<td>Un séparateur.</td>
+<td>Un sÃ©parateur.</td>
 </tr>
 <tr>
 <td>
 <span class="term"><code class="literal">gtk.UI_MANAGER_ACCELERATOR</code></span></td>
-<td>Un raccourci ou accélerateur.</td>
+<td>Un raccourci ou accÃ©lerateur.</td>
 </tr>
 </tbody>
 </table>
-<p>La méthode <code class="methodname">add_ui</code>() échoue sans le signaler  
-si l'élément n'est pas ajouté. La méthode <code class="methodname">add_ui</code>() 
-est de si bas niveau qu'il faut plutôt toujours essayer d'utiliser les méthodes pratiques 
+<p>La mÃ©thode <code class="methodname">add_ui</code>() Ã©choue sans le signaler
+si l'Ã©lÃ©ment n'est pas ajoutÃ©. La mÃ©thode <code class="methodname">add_ui</code>()
+est de si bas niveau qu'il faut plutÃ´t toujours essayer d'utiliser les mÃ©thodes pratiques
 <code class="methodname">add_ui_from_string</code>() et <code class="methodname">add_ui_from_file</code>()
 </p>
-<p>Ajouter un élément ou une description d'Interface Utilisateur entraine 
-l'actualisation de la hiérarchie des widgets dans une fonction en attente. 
-On peut s'assurer que la hiérarchie a bien été actualisée avant d'y accèder 
-en appelant la méthode :</p>
+<p>Ajouter un Ã©lÃ©ment ou une description d'Interface Utilisateur entraine
+l'actualisation de la hiÃ©rarchie des widgets dans une fonction en attente.
+On peut s'assurer que la hiÃ©rarchie a bien Ã©tÃ© actualisÃ©e avant d'y accÃ¨der
+en appelant la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   gestionui.ensure_update()
 </pre>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-AccessingUIWidgets"></a>16.7.6. Accès aux widgets d'un Interface Utilisateur</h3></div></div></div>
-<p>On peut avoir accès à un widget dans la hiérarchie 
-    de l'Interface Utilisateur en utilsant la méthode :</p>
+<a name="sec-AccessingUIWidgets"></a>16.7.6.Â AccÃ¨s aux widgets d'un Interface Utilisateur</h3></div></div></div>
+<p>On peut avoir accÃ¨s Ã  un widget dans la hiÃ©rarchie
+    de l'Interface Utilisateur en utilsant la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   widget = gestionui.get_widget(<strong class="parameter"><code>path</code></strong>)
 </pre>
-<p>... où le paramètre <em class="parameter"><code>path</code></em> est une chaîne de caractères 
-qui contient le nom de l'élément recherché et celui de ses ancétres comme 
-on l'a expliqué dans la <a href="sec-UIManager.html#sec-UIDescriptions" title="16.7.4. Descriptions de l'Interface Utilisateur">Section 16.7.4, « Descriptions de l'Interface Utilisateur »</a>.</p>
-<p>Par exemple, étant donné la description d'Interface Utilisateur suivante :</p>
+<p>... oÃ¹ le paramÃ¨tre <em class="parameter"><code>path</code></em> est une chaÃ®ne de caractÃ¨res
+qui contient le nom de l'Ã©lÃ©ment recherchÃ© et celui de ses ancÃ©tres comme
+on l'a expliquÃ© dans la <a href="sec-UIManager.html#sec-UIDescriptions" title="16.7.4.Â Descriptions de l'Interface Utilisateur">SectionÂ 16.7.4, Â«Â Descriptions de l'Interface UtilisateurÂ Â»</a>.</p>
+<p>Par exemple, Ã©tant donnÃ© la description d'Interface Utilisateur suivanteÂ :</p>
 <pre class="programlisting">
   &lt;menubar name="BarreMenu"&gt;
     &lt;menu action="Fichier"&gt;
@@ -510,10 +511,10 @@ on l'a expliqué dans la <a href="sec-UIManager.html#sec-UIDescriptions" title="1
     &lt;/placeholder&gt;
   &lt;/toolbar&gt;
 </pre>
-<p>... que l'on a ajouté au gestionnaire d'<code class="classname">UIManager</code> 
-<em class="parameter"><code>gestionui</code></em>, on peut accèder à la <code class="classname">BarreMenu</code> 
-et à la <code class="classname">BarreOutils</code> pour les utiliser dans une application 
- <code class="classname">Window</code>  en utilisant le code suivant :</p>
+<p>... que l'on a ajoutÃ© au gestionnaire d'<code class="classname">UIManager</code>
+<em class="parameter"><code>gestionui</code></em>, on peut accÃ¨der Ã  la <code class="classname">BarreMenu</code>
+et Ã  la <code class="classname">BarreOutils</code> pour les utiliser dans une application
+ <code class="classname">Window</code>  en utilisant le code suivantÂ :</p>
 <pre class="programlisting">
   fenetre = gtk.Window()
   vbox = gtk.VBox()
@@ -522,73 +523,73 @@ et à la <code class="classname">BarreOutils</code> pour les utiliser dans une ap
   vbox.pack_start(barremenus, False)
   vbox.pack_start(barreoutils, False)
 </pre>
-<p>De la même manière, les widgets de plus bas niveau dans la hiérarchie 
-sont accessibles en utilisant leur chemin. Par exemple, le bouton 
-<code class="classname">RadioToolButton</code> appelé "BLU" est accessible ainsi :
+<p>De la mÃªme maniÃ¨re, les widgets de plus bas niveau dans la hiÃ©rarchie
+sont accessibles en utilisant leur chemin. Par exemple, le bouton
+<code class="classname">RadioToolButton</code> appelÃ© "BLU" est accessible ainsiÂ :
 </p>
 <pre class="programlisting">
   blu = gestionui.get_widget('/BarreOutils/ElementsMod/BLU')
 </pre>
-<p>Pour faciliter la tâche, on peut accéder à tous les widgets de haut 
-niveau d'un même type avec la méthode :</p>
+<p>Pour faciliter la tÃ¢che, on peut accÃ©der Ã  tous les widgets de haut
+niveau d'un mÃªme type avec la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   toplevels = gestionui.get_toplevels(<em class="parameter"><code>type</code></em>)
 </pre>
-<p>... où le paramètre <em class="parameter"><code>type</code></em> indique le 
-type des widgets à renvoyer en utilisant une combinaison des drapeaux :
- <code class="literal">gtk.UI_MANAGER_MENUBAR</code>, <code class="literal">gtk.UI_MANAGER_TOOLBAR</code> 
- et <code class="literal">gtk.UI_MANAGER_POPUP</code>. On peut utiliser la méthode 
- <code class="methodname">gtk.Widget.get_name</code>() pour déterminer quel est le widget 
+<p>... oÃ¹ le paramÃ¨tre <em class="parameter"><code>type</code></em> indique le
+type des widgets Ã  renvoyer en utilisant une combinaison des drapeauxÂ :
+ <code class="literal">gtk.UI_MANAGER_MENUBAR</code>, <code class="literal">gtk.UI_MANAGER_TOOLBAR</code>
+ et <code class="literal">gtk.UI_MANAGER_POPUP</code>. On peut utiliser la mÃ©thode
+ <code class="methodname">gtk.Widget.get_name</code>() pour dÃ©terminer quel est le widget
  de haut niveau obtenu.</p>
-<p>Pour trouver le <code class="classname">Action</code> utilisé par 
-le widget délégué associé à un élément d'Interface Utilisateur, on 
-utilise la méthode :</p>
+<p>Pour trouver le <code class="classname">Action</code> utilisÃ© par
+le widget dÃ©lÃ©guÃ© associÃ© Ã  un Ã©lÃ©ment d'Interface Utilisateur, on
+utilise la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   action = gestionui_get_action(<em class="parameter"><code>path</code></em>)
 </pre>
-<p>... où le paramètre <em class="parameter"><code>path</code></em> est une chaîne 
-de caractères représentant le chemin d'un élément d'Interface Utilisateur 
-dans le gestionnaire <em class="parameter"><code>gestionui</code></em>. Si l'élément ne 
-possède pas d'<code class="classname">Action</code> associé, la valeur est 
-retournée.</p>
+<p>... oÃ¹ le paramÃ¨tre <em class="parameter"><code>path</code></em> est une chaÃ®ne
+de caractÃ¨res reprÃ©sentant le chemin d'un Ã©lÃ©ment d'Interface Utilisateur
+dans le gestionnaire <em class="parameter"><code>gestionui</code></em>. Si l'Ã©lÃ©ment ne
+possÃ¨de pas d'<code class="classname">Action</code> associÃ©, la valeur est
+retournÃ©e.</p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-SimpleUIManagerExample"></a>16.7.7. Un exemple d'Interface Utilisateur simple</h3></div></div></div>
-<p>Le programme <a href="exemples/uimanager.py" target="_top">uimanager.py</a> 
-    illustre l'utilisation du gestionnaire <code class="classname">UIManager</code>. La  
-<a href="sec-UIManager.html#uimanagerfig" title="Figure 16.13. Exemple simple de UIManager">Figure 16.13, « Exemple simple de UIManager »</a> montre le programme en cours d'exécution.</p>
+<a name="sec-SimpleUIManagerExample"></a>16.7.7.Â Un exemple d'Interface Utilisateur simple</h3></div></div></div>
+<p>Le programme <a href="exemples/uimanager.py" target="_top">uimanager.py</a>
+    illustre l'utilisation du gestionnaire <code class="classname">UIManager</code>. La
+<a href="sec-UIManager.html#uimanagerfig" title="FigureÂ 16.13.Â Exemple simple de UIManager">FigureÂ 16.13, Â«Â Exemple simple de UIManagerÂ Â»</a> montre le programme en cours d'exÃ©cution.</p>
 <div class="figure">
-<a name="uimanagerfig"></a><p class="title"><b>Figure 16.13. Exemple simple de UIManager</b></p>
+<a name="uimanagerfig"></a><p class="title"><b>FigureÂ 16.13.Â Exemple simple de UIManager</b></p>
 <div class="mediaobject" align="center"><img src="figures/uimanager.png" align="middle" alt="Exemple simple de UIManager."></div>
 </div>
-<p>Le programme <a href="exemples/uimanager.py" target="_top">uimanager.py</a> 
-utilise la description XML de la <a href="sec-UIManager.html#sec-AccessingUIWidgets" title="16.7.6. Accès aux widgets d'un Interface Utilisateur">Section 16.7.6, « Accès aux widgets d'un Interface Utilisateur »</a>. 
-Le texte des deux étiquettes est modifié par l'activation de l'action interrupteur 
-<code class="classname">ToggleAction</code> "Volume" et des choix des 
-<code class="classname">RadioAction</code> "MA", "MF" et "BLU". Toutes les actions 
-sont inscrites dans un unique <code class="classname">ActionGroup</code> qui permet 
-à la sensibilité et à la visibilité de tous les widgets délégués d'être commutées
-en utilisant les boutons interrupteurs "Sensible" et "Visible". L'utilisation 
-de l'élément <span class="bold"><strong>placeholder</strong></span> sera décrit en détail 
-dans la <a href="sec-UIManager.html#sec-MergingUIDescriptions" title="16.7.8. Combiner des descriptions d'Interface Utilisateur">Section 16.7.8, « Combiner des descriptions d'Interface Utilisateur »</a>.
+<p>Le programme <a href="exemples/uimanager.py" target="_top">uimanager.py</a>
+utilise la description XML de la <a href="sec-UIManager.html#sec-AccessingUIWidgets" title="16.7.6.Â AccÃ¨s aux widgets d'un Interface Utilisateur">SectionÂ 16.7.6, Â«Â AccÃ¨s aux widgets d'un Interface UtilisateurÂ Â»</a>.
+Le texte des deux Ã©tiquettes est modifiÃ© par l'activation de l'action interrupteur
+<code class="classname">ToggleAction</code> "Volume" et des choix des
+<code class="classname">RadioAction</code> "MA", "MF" et "BLU". Toutes les actions
+sont inscrites dans un unique <code class="classname">ActionGroup</code> qui permet
+Ã  la sensibilitÃ© et Ã  la visibilitÃ© de tous les widgets dÃ©lÃ©guÃ©s d'Ãªtre commutÃ©es
+en utilisant les boutons interrupteurs "Sensible" et "Visible". L'utilisation
+de l'Ã©lÃ©ment <span class="bold"><strong>placeholder</strong></span> sera dÃ©crit en dÃ©tail
+dans la <a href="sec-UIManager.html#sec-MergingUIDescriptions" title="16.7.8.Â Combiner des descriptions d'Interface Utilisateur">SectionÂ 16.7.8, Â«Â Combiner des descriptions d'Interface UtilisateurÂ Â»</a>.
 </p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-MergingUIDescriptions"></a>16.7.8. Combiner des descriptions d'Interface Utilisateur</h3></div></div></div>
-<p>La fusion de plusieurs descriptions d'Interface Utilisateur se réalise 
-en fonctio du nom des éléments XML. Comme on l'a auparavant, on peut avoir accès 
-aux éléments individuels de la hiérarchie par leur nom de chemin qui est 
-représenté par leur nom plus le nom de leurs ancêtres. Par exemple, si on utilise 
-la description d'Interface Utilisateur de la <a href="sec-UIManager.html#sec-UIDescriptions" title="16.7.4. Descriptions de l'Interface Utilisateur">Section 16.7.4, « Descriptions de l'Interface Utilisateur »</a>,  
-l'élément <span class="bold"><strong>toolitem</strong></span> "MA" a pour nom de chemin 
-"/BarreOutils/ElementsMod/MA" alors que le nom de chemin de l'élément 
+<a name="sec-MergingUIDescriptions"></a>16.7.8.Â Combiner des descriptions d'Interface Utilisateur</h3></div></div></div>
+<p>La fusion de plusieurs descriptions d'Interface Utilisateur se rÃ©alise
+en fonctio du nom des Ã©lÃ©ments XML. Comme on l'a auparavant, on peut avoir accÃ¨s
+aux Ã©lÃ©ments individuels de la hiÃ©rarchie par leur nom de chemin qui est
+reprÃ©sentÃ© par leur nom plus le nom de leurs ancÃªtres. Par exemple, si on utilise
+la description d'Interface Utilisateur de la <a href="sec-UIManager.html#sec-UIDescriptions" title="16.7.4.Â Descriptions de l'Interface Utilisateur">SectionÂ 16.7.4, Â«Â Descriptions de l'Interface UtilisateurÂ Â»</a>,
+l'Ã©lÃ©ment <span class="bold"><strong>toolitem</strong></span> "MA" a pour nom de chemin
+"/BarreOutils/ElementsMod/MA" alors que le nom de chemin de l'Ã©lÃ©ment
 <span class="bold"><strong>menuitem</strong></span> est "/BarreMenu/Modulation/MF".
 </p>
-<p>Si une description d'Interface Utilisateur est fusionnée avec la précédente, 
-les éléments sont ajoutés en tant que frères (au même niveau) aux éléments 
-existants. Par exemple, si la description d'Interface Utilisateur :
+<p>Si une description d'Interface Utilisateur est fusionnÃ©e avec la prÃ©cÃ©dente,
+les Ã©lÃ©ments sont ajoutÃ©s en tant que frÃ¨res (au mÃªme niveau) aux Ã©lÃ©ments
+existants. Par exemple, si la description d'Interface UtilisateurÂ :
 </p>
 <pre class="programlisting">
   &lt;menubar name="BarreMenu"&gt;
@@ -616,7 +617,7 @@ existants. Par exemple, si la description d'Interface Utilisateur :
     &lt;/placeholder&gt;
   &lt;/toolbar&gt;
 </pre>
-<p>... est ajoutée à notre exemple précédent :</p>
+<p>... est ajoutÃ©e Ã  notre exemple prÃ©cÃ©dentÂ :</p>
 <pre class="programlisting">
   &lt;menubar name="BarreMenu"&gt;
     &lt;menu action="Fichier"&gt;
@@ -642,9 +643,9 @@ existants. Par exemple, si la description d'Interface Utilisateur :
       &lt;toolitem action="BLU"/&gt;
     &lt;/placeholder&gt;
   &lt;/toolbar&gt;
-  
+
 </pre>
-<p>Le résultat final créé sera :</p>
+<p>Le rÃ©sultat final crÃ©Ã© seraÂ :</p>
 <pre class="programlisting">
   &lt;menubar name="BarreMenu"&gt;
     &lt;menu name="Fichier" action="Fichier"&gt;
@@ -654,7 +655,7 @@ existants. Par exemple, si la description d'Interface Utilisateur :
     &lt;/menu&gt;
     &lt;menu name="Son" action="Son"&gt;
       &lt;menuitem name="Volume" action="Volume"/&gt;
-      &lt;menuitem name="Intensite" action="Intensité"/&gt;
+      &lt;menuitem name="Intensite" action="IntensitÃ©"/&gt;
     &lt;/menu&gt;
     &lt;menu name="Modulation" action="Modulation"&gt;
       &lt;menuitem name="MA" action="MA"/&gt;
@@ -683,70 +684,70 @@ existants. Par exemple, si la description d'Interface Utilisateur :
     &lt;separator/&gt;
   &lt;/toolbar&gt;
 </pre>
-<p>Si on examine le résultat XML, on peut constater que les éléments 
-<span class="bold"><strong>menuitem</strong></span> "Nouveau" et "Enregistrer" ont été 
-incorporés avant l'élément "Quitter". Ceci est dû à la valeur "top" de 
-l'attribut "position" qui signifie que l'élément doit être ajouté en-tête. 
-De la même manière, les éléments <span class="bold"><strong>toolitem</strong></span> 
-"Nouveau" et "Enregistrer" ont été incorporés au début de la barre d'outils 
-"BarreOutils". Il faut remarque que les éléments "Nouveau" et "Enregistrer" ont été 
-inversés par le processus de fusion.
+<p>Si on examine le rÃ©sultat XML, on peut constater que les Ã©lÃ©ments
+<span class="bold"><strong>menuitem</strong></span> "Nouveau" et "Enregistrer" ont Ã©tÃ©
+incorporÃ©s avant l'Ã©lÃ©ment "Quitter". Ceci est dÃ» Ã  la valeur "top" de
+l'attribut "position" qui signifie que l'Ã©lÃ©ment doit Ãªtre ajoutÃ© en-tÃªte.
+De la mÃªme maniÃ¨re, les Ã©lÃ©ments <span class="bold"><strong>toolitem</strong></span>
+"Nouveau" et "Enregistrer" ont Ã©tÃ© incorporÃ©s au dÃ©but de la barre d'outils
+"BarreOutils". Il faut remarque que les Ã©lÃ©ments "Nouveau" et "Enregistrer" ont Ã©tÃ©
+inversÃ©s par le processus de fusion.
 </p>
-<p>L'élément <span class="bold"><strong>toolitem</strong></span> "Intensite" est 
-ajouté aux autres éléments de la barre d'outils "BarreOutils" et apparaît en 
-dernière place dans la description fusionnée même s'il n'est pas le dernier 
-de sa propre description. Dans les deux descriptions, l'élément 
-<span class="bold"><strong>placeholder</strong></span> "ElementsMod" mêle les 
-éléments <span class="bold"><strong>toolitem</strong></span> "CB" et "OndesCourtes" 
-avec les éléments "MA", "MF", et "BLU". Si on n'avait pas utilisé un 
-élément <span class="bold"><strong>placeholder</strong></span> "ElementsMod", 
-les éléments "CB" et "OndesCourtes" se seraient retrouvés après l'élément 
+<p>L'Ã©lÃ©ment <span class="bold"><strong>toolitem</strong></span> "Intensite" est
+ajoutÃ© aux autres Ã©lÃ©ments de la barre d'outils "BarreOutils" et apparaÃ®t en
+derniÃ¨re place dans la description fusionnÃ©e mÃªme s'il n'est pas le dernier
+de sa propre description. Dans les deux descriptions, l'Ã©lÃ©ment
+<span class="bold"><strong>placeholder</strong></span> "ElementsMod" mÃªle les
+Ã©lÃ©ments <span class="bold"><strong>toolitem</strong></span> "CB" et "OndesCourtes"
+avec les Ã©lÃ©ments "MA", "MF", et "BLU". Si on n'avait pas utilisÃ© un
+Ã©lÃ©ment <span class="bold"><strong>placeholder</strong></span> "ElementsMod",
+les Ã©lÃ©ments "CB" et "OndesCourtes" se seraient retrouvÃ©s aprÃ¨s l'Ã©lÃ©ment
 "Intensite".</p>
-<p>On peut obtenir une représentation de l'Interface Utilisateur 
-utilisée par un <code class="classname">UIManager</code> par la méthode :</p>
+<p>On peut obtenir une reprÃ©sentation de l'Interface Utilisateur
+utilisÃ©e par un <code class="classname">UIManager</code> par la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   uidesc = uimanager.get_ui()
 </pre>
-<p>Le programme <a href="exemples/uimanager.py" target="_top">uimerge.py</a> 
-illustre la fusion des description précédentes <code class="classname">UIManager</code>. 
-La <a href="sec-UIManager.html#uimergefig" title="Figure 16.14. Exmple de fusion UIMerge">Figure 16.14, « Exmple de fusion UIMerge »</a> montre les Interfaces Utilisateurs séparés 
-et fusionnés.</p>
+<p>Le programme <a href="exemples/uimanager.py" target="_top">uimerge.py</a>
+illustre la fusion des description prÃ©cÃ©dentes <code class="classname">UIManager</code>.
+La <a href="sec-UIManager.html#uimergefig" title="FigureÂ 16.14.Â Exmple de fusion UIMerge">FigureÂ 16.14, Â«Â Exmple de fusion UIMergeÂ Â»</a> montre les Interfaces Utilisateurs sÃ©parÃ©s
+et fusionnÃ©s.</p>
 <div class="figure">
-<a name="uimergefig"></a><p class="title"><b>Figure 16.14. Exmple de fusion UIMerge</b></p>
+<a name="uimergefig"></a><p class="title"><b>FigureÂ 16.14.Â Exmple de fusion UIMerge</b></p>
 <div class="mediaobject" align="center"><img src="figures/uimerge.png" align="middle" alt="Exemple de fusion UIMerge."></div>
 </div>
-<p>Le programme exemple utilise trois objets 
-<code class="classname">ActionGroup</code> :</p>
+<p>Le programme exemple utilise trois objets
+<code class="classname">ActionGroup</code>Â :</p>
 <div class="itemizedlist"><ul type="disc">
 <li>Des objets <code class="classname">Action</code> pour les menus "Fichier",
 "Son" et "Modulation"</li>
 <li>Des objets <code class="classname">Action</code> pour les menus "Quitter",
 "Son", "MA", "MF", "BLU" et "Modulation"</li>
-<li>Des objets <code class="classname">Action</code> pour les éléments "Intensité",
+<li>Des objets <code class="classname">Action</code> pour les Ã©lÃ©ments "IntensitÃ©",
 "CB" et "Ondes Courtes"</li>
 </ul></div>
-<p>Les widgets de choix <code class="classname">ToggleButton</code> "Sensible" et "Visible" 
-contrôlent la sensibilité et la visibilité du deuxième 
+<p>Les widgets de choix <code class="classname">ToggleButton</code> "Sensible" et "Visible"
+contrÃ´lent la sensibilitÃ© et la visibilitÃ© du deuxiÃ¨me
 <code class="classname">ActionGroup</code> uniquement.
 </p>
 </div>
 <div class="sect2" lang="fr">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="sec-UIManagerSignals"></a>16.7.9. Signaux de l'Interface Utilisateur</h3></div></div></div>
-<p>Le <code class="classname">UIManager</code> possède une paire de signaux intéressants 
-auxquels se connecter. Le signal "actions-changed" est émis lorsqu'un 
-<code class="classname">ActionGroup</code> est ajouté ou retiré du 
-<code class="classname">UIManager</code>. La fonction de rappel est :</p>
+<a name="sec-UIManagerSignals"></a>16.7.9.Â Signaux de l'Interface Utilisateur</h3></div></div></div>
+<p>Le <code class="classname">UIManager</code> possÃ¨de une paire de signaux intÃ©ressants
+auxquels se connecter. Le signal "actions-changed" est Ã©mis lorsqu'un
+<code class="classname">ActionGroup</code> est ajoutÃ© ou retirÃ© du
+<code class="classname">UIManager</code>. La fonction de rappel estÂ :</p>
 <pre class="programlisting">
   def fct_rappel(<em class="parameter"><code>gestionui</code></em>, ...)
 </pre>
-<p>Le signal "add-widget" est émis lorsqu'un widget délégue de 
-<code class="classname">Toolbar</code> ou de <code class="classname">MenuBar</code> 
-est créé. La fonction de rappel est :</p>
+<p>Le signal "add-widget" est Ã©mis lorsqu'un widget dÃ©lÃ©gue de
+<code class="classname">Toolbar</code> ou de <code class="classname">MenuBar</code>
+est crÃ©Ã©. La fonction de rappel estÂ :</p>
 <pre class="programlisting">
   def fct_rappel(<em class="parameter"><code>gestionui</code></em>, <em class="parameter"><code>widget</code></em>, ...)
 </pre>
-<p>... où le paramètre widget représente le nouveau widget créé.
+<p>... oÃ¹ le paramÃ¨tre widget reprÃ©sente le nouveau widget crÃ©Ã©.
 </p>
 </div>
 </div>
@@ -755,15 +756,15 @@ est créé. La fonction de rappel est :</p>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-FileChoosers.html">Préc.</a> </td>
+<a accesskey="p" href="sec-FileChoosers.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-NewInPyGTK2.4.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="ch-UndocumentedWidgets.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="ch-UndocumentedWidgets.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">16.6. Sélection de fichier basée sur le sélecteur FileChooser </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> Chapitre 17. Widgets non décrits</td>
+<td width="40%" align="left" valign="top">16.6.Â SÃ©lection de fichier basÃ©e sur le sÃ©lecteur FileChooserÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â ChapitreÂ 17.Â Widgets non dÃ©crits</td>
 </tr>
 </table>
 </div>

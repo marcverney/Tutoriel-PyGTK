@@ -1,26 +1,25 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
-<title>Chapitre 6. Les boutons</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
-<meta name="keywords" content="python,pygtk,tutoriel,traduction,bouton">
-<link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
-<link rel="up" href="index.html" title="Table des mati&egrave;res">
-<link rel="previous" href="sec-WidgetsWithoutWindows.html" title="5.2. Les widgets sans fen&ecirc;tre">
-<link rel="next" href="sec-ToggleButtons.html" title="6.2. Les boutons &agrave; bascule">
+    <meta charset="utf-8">
+    <title>Chapitre 6. Les boutons</title>
+    <link rel="stylesheet" href="pygtktutfr.css">
+    <meta name="keywords" content="python,pygtk,tutoriel,traduction,bouton">
+    <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
+    <link rel="home" href="index.html" title="Table des mati&egrave;res">
+    <link rel="up" href="index.html" title="Table des mati&egrave;res">
+    <link rel="previous" href="sec-WidgetsWithoutWindows.html" title="5.2. Les widgets sans fen&ecirc;tre">
+    <link rel="next" href="sec-ToggleButtons.html" title="6.2. Les boutons &agrave; bascule">
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici&nbsp;: 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici&nbsp;:
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 
 <table width="100%" summary="En-t&ecirc;te de navigation">
@@ -144,95 +143,95 @@ Vous êtes à peu près ici&nbsp;:
 
 <pre class="programlisting">
      1   #!/usr/bin/env python
-     2   
+     2
      3   # exemple boutons.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
-     9   # On cree une boite verticale, on y place une image 
+     8
+     9   # On cree une boite verticale, on y place une image
     10   # et une etiquette, et on renvoie la boite.
-    11   
+    11
     12   def boite_xpm_etiquette(parent, fichier_xpm, texte_etiquette):
     13       # On cree une boite pour la pixmap et l'etiquette
     14       boite1 = gtk.HBox(False, 0)
     15       boite1.set_border_width(2)
-    16   
+    16
     17       # A present l'image.
     18       image = gtk.Image()
     19       image.set_from_file(fichier_xpm)
-    20   
+    20
     21       # On cree une etiquette pour le bouton.
     22       etiquette = gtk.Label(texte_etiquette)
-    23   
+    23
     24       # On place la pixmap et l'etiquette dans la boite.
     25       boite1.pack_start(image, False, False, 3)
     26       boite1.pack_start(etiquette, False, False, 3)
-    27   
+    27
     28       image.show()
     29       etiquette.show()
     30       return boite1
-    31   
+    31
     32   class Bouton:
     33       # Notre methode de rappel habituelle.
     34       def salut(self, widget, donnees=None):
     35           print "Salut ! - Clic sur le %s." % donnees
-    36   
+    36
     37       def __init__(self):
     38           # Creation d'une nouvelle fenetre.
     39           self.fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    40   
+    40
     41           self.fenetre.set_title("Bouton et image")
-    42   
+    42
     43           # C'est une bonne idee de faire ceci pour chaque fenetre.
     44           self.fenetre.connect("destroy", lambda wid: gtk.main_quit())
     45           self.fenetre.connect("delete_event", lambda a1,a2: gtk.main_quit())
-    46   
+    46
     47           # On fixe la largeur des bordures de la fenetre.
     48           self.fenetre.set_border_width(10)
-    49   
+    49
     50           # Creation d'un nouveau bouton.
     51           bouton = gtk.Button()
-    52   
+    52
     53           # On connecte le signal "clicked" du bouton a la fonction de rappel
     54           bouton.connect("clicked", self.salut, "bouton cool")
-    55   
+    55
     56           # Ceci appelle notre fonction de creation de boites.
     57           boite1= boite_xpm_etiquette(self.fenetre, "info.xpm", "bouton cool")
-    58   
+    58
     59           # On place et on affiche tous nos widgets.
     60           bouton.add(boite1)
-    61   
+    61
     62           boite1.show()
     63           bouton.show()
-    64   
+    64
     65           self.fenetre.add(bouton)
     66           self.fenetre.show()
-    67   
+    67
     68   def main():
     69       gtk.main()
-    70       return 0     
-    71   
+    70       return 0
+    71
     72   if __name__ == "__main__":
     73       Bouton()
     74       main()
 </pre>
 
-<p>De la ligne 12 &agrave; la ligne 32, on d&eacute;finit la fonction <tt>boite_xpm_etiquette</tt>() 
-qui prend en charge la cr&eacute;ation d'une boite horizontale avec une bordure de 2 
+<p>De la ligne 12 &agrave; la ligne 32, on d&eacute;finit la fonction <tt>boite_xpm_etiquette</tt>()
+qui prend en charge la cr&eacute;ation d'une boite horizontale avec une bordure de 2
 (lignes 14-15), puis y place une image (lignes 25) et une &eacute;tiquette (ligne 26).</p>
-<p>Aux lignes 32-66, on d&eacute;finit la classe <tt>Bouton</tt>. La m&eacute;thode 
-constructeur s'&eacute;tale de la ligne 38 &agrave; la ligne 66 ; elle cr&eacute;e une 
-fen&ecirc;tre (ligne 39), lui donne un titre (ligne 41), connecte les signaux 
-&quot;<tt>delete_event</tt>&quot; et &quot;<tt>destroy</tt>&quot; (lignes 44-45). 
-Puis, &agrave; la ligne 51, elle cr&eacute;e le bouton sans &eacute;tiquette, avant 
-de connecter son signal &quot;<tt>clicked</tt>&quot; &agrave; la m&eacute;thode de rappel 
-<tt>salut</tt>() (ligne 54). Enfin, elle appelle la fonction <tt>boite_xpm_etiquette</tt>() 
-&agrave; la ligne 57, afin de cr&eacute;er l'image et l'&eacute;tiquette qu'elle placera 
+<p>Aux lignes 32-66, on d&eacute;finit la classe <tt>Bouton</tt>. La m&eacute;thode
+constructeur s'&eacute;tale de la ligne 38 &agrave; la ligne 66 ; elle cr&eacute;e une
+fen&ecirc;tre (ligne 39), lui donne un titre (ligne 41), connecte les signaux
+&quot;<tt>delete_event</tt>&quot; et &quot;<tt>destroy</tt>&quot; (lignes 44-45).
+Puis, &agrave; la ligne 51, elle cr&eacute;e le bouton sans &eacute;tiquette, avant
+de connecter son signal &quot;<tt>clicked</tt>&quot; &agrave; la m&eacute;thode de rappel
+<tt>salut</tt>() (ligne 54). Enfin, elle appelle la fonction <tt>boite_xpm_etiquette</tt>()
+&agrave; la ligne 57, afin de cr&eacute;er l'image et l'&eacute;tiquette qu'elle placera
 dans le bouton &agrave; la ligne 60.</p>
-<p>La fonction <tt>boite_xpm_etiquette</tt>() pourrait &ecirc;tre utilis&eacute;e pour 
-placer des images pixmap et des &eacute;tiquettes dans n'importe quel widget pouvant 
+<p>La fonction <tt>boite_xpm_etiquette</tt>() pourrait &ecirc;tre utilis&eacute;e pour
+placer des images pixmap et des &eacute;tiquettes dans n'importe quel widget pouvant
 jouer le r&ocirc;le de conteneur.</p>
 <p>Le widget bouton peut &eacute;mettre les signaux suivants&nbsp;:</p>
 

@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Chapitre 12. La zone de dessin (Drawing Area)</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>ChapitreÂ 12.Â La zone de dessin (Drawing Area)</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="prev" href="sec-ItemFactoryExample.html" title="11.4. Item Factory Example">
-<link rel="next" href="sec-DrawingMethods.html" title="12.2. Les méthodes pour dessiner">
+<link rel="prev" href="sec-ItemFactoryExample.html" title="11.4.Â Item Factory Example">
+<link rel="next" href="sec-DrawingMethods.html" title="12.2.Â Les mÃ©thodes pour dessiner">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction, drawing area">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">Chapitre 12. La zone de dessin (Drawing Area)</th></tr>
+<tr><th colspan="3" align="center">ChapitreÂ 12.Â La zone de dessin (Drawing Area)</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-ItemFactoryExample.html">Préc.</a> </td>
-<th width="60%" align="center"> </th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-DrawingMethods.html">Suiv.</a>
+<a accesskey="p" href="sec-ItemFactoryExample.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">Â </th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-DrawingMethods.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,66 +36,66 @@
 </div>
 <div class="chapter" lang="fr">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="ch-DrawingArea"></a>Chapitre 12. La zone de dessin (Drawing Area)</h2></div></div></div>
+<a name="ch-DrawingArea"></a>ChapitreÂ 12.Â La zone de dessin (Drawing Area)</h2></div></div></div>
 <div class="toc">
-<p><b>Table des matières</b></p>
+<p><b>Table des matiÃ¨res</b></p>
 <dl>
 <dt><span class="sect1"><a href="ch-DrawingArea.html#sec-GraphicsContext">12.1. Le contexte graphique</a></span></dt>
-<dt><span class="sect1"><a href="sec-DrawingMethods.html">12.2. Les méthodes pour dessiner</a></span></dt>
+<dt><span class="sect1"><a href="sec-DrawingMethods.html">12.2. Les mÃ©thodes pour dessiner</a></span></dt>
 </dl>
 </div>
-<p>La zone de dessin <code class="classname">DrawingArea</code> adapte une 
-<code class="classname">gtk.gdk.Window</code>, laquelle est une sous-classe de 
-<code class="classname">gtk.gdk.Drawable</code>  (de même que 
-<code class="classname">gtk.gdk.Pixmap</code>). En effet, la 
-<code class="classname">DrawingArea</code> fournit un simple "canevas" (la 
-<code class="classname">gtk.gdk.Window</code> adaptée) sur laquelle on peut 
-dessiner en utilisant les méthodes de la classe <code class="classname">gtk.gdk.Drawable</code>.
+<p>La zone de dessin <code class="classname">DrawingArea</code> adapte une
+<code class="classname">gtk.gdk.Window</code>, laquelle est une sous-classe de
+<code class="classname">gtk.gdk.Drawable</code>  (de mÃªme que
+<code class="classname">gtk.gdk.Pixmap</code>). En effet, la
+<code class="classname">DrawingArea</code> fournit un simple "canevas" (la
+<code class="classname">gtk.gdk.Window</code> adaptÃ©e) sur laquelle on peut
+dessiner en utilisant les mÃ©thodes de la classe <code class="classname">gtk.gdk.Drawable</code>.
 </p>
-<p>On crée une <code class="classname">DrawingArea</code> en utilisant le constructeur :</p>
+<p>On crÃ©e une <code class="classname">DrawingArea</code> en utilisant le constructeurÂ :</p>
 <pre class="programlisting">
   zone_dessin = gtk.DrawingArea()
 </pre>
-<p>Une <code class="classname">DrawingArea</code> est créée au départ avec une 
-taille de (0, 0) donc pour rendre visible la <em class="parameter"><code>zone_dessin</code></em>, 
-il faut préciser sa largeur et sa hauteur avec des valeurs supérieures à zéro 
-en utilisant la méthode suivante : </p>
+<p>Une <code class="classname">DrawingArea</code> est crÃ©Ã©e au dÃ©part avec une
+taille de (0, 0) donc pour rendre visible la <em class="parameter"><code>zone_dessin</code></em>,
+il faut prÃ©ciser sa largeur et sa hauteur avec des valeurs supÃ©rieures Ã  zÃ©ro
+en utilisant la mÃ©thode suivanteÂ : </p>
 <pre class="programlisting">
   zone_dessin.set_size_request(<strong class="parameter"><code>largeur</code></strong>, <strong class="parameter"><code>hauteur</code></strong>)
 </pre>
-<p>Pour dessiner sur une <code class="classname">DrawingArea</code>, il faut 
-récupérer la <code class="classname">gtk.gdk.Window</code> en utilisant l'attribut 
-<em class="parameter"><code>window</code></em> de la zone de dessin de cette 
-manière :
+<p>Pour dessiner sur une <code class="classname">DrawingArea</code>, il faut
+rÃ©cupÃ©rer la <code class="classname">gtk.gdk.Window</code> en utilisant l'attribut
+<em class="parameter"><code>window</code></em> de la zone de dessin de cette
+maniÃ¨reÂ :
 </p>
 <pre class="programlisting">
   dessinable = drawing_area.window
 </pre>
-<p>Ensuite, il est possible de dessiner sur le 
-<em class="parameter"><code>dessinable</code></em> en utilisant la méthode 
-<code class="classname">gtk.gdk.Drawable</code> décrite dans la  
-<a href="sec-DrawingMethods.html" title="12.2. Les méthodes pour dessiner">Section 12.2, « Les méthodes pour dessiner »</a>.</p>
+<p>Ensuite, il est possible de dessiner sur le
+<em class="parameter"><code>dessinable</code></em> en utilisant la mÃ©thode
+<code class="classname">gtk.gdk.Drawable</code> dÃ©crite dans la
+<a href="sec-DrawingMethods.html" title="12.2.Â Les mÃ©thodes pour dessiner">SectionÂ 12.2, Â«Â Les mÃ©thodes pour dessinerÂ Â»</a>.</p>
 <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
 <h3 class="title">Note</h3>
-<p>Pour posséder une <code class="classname">gtk.gdk.Window</code> associée 
-pouvant être utilisée pour le dessin, le widget 
-<code class="classname">DrawingArea</code> doit être "réalisé" 
-(on a utilisé la méthode <code class="methodname">realize</code>()).</p>
+<p>Pour possÃ©der une <code class="classname">gtk.gdk.Window</code> associÃ©e
+pouvant Ãªtre utilisÃ©e pour le dessin, le widget
+<code class="classname">DrawingArea</code> doit Ãªtre "rÃ©alisÃ©"
+(on a utilisÃ© la mÃ©thode <code class="methodname">realize</code>()).</p>
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-GraphicsContext"></a>12.1. Le contexte graphique</h2></div></div></div>
-<p>Il existe un grand nombre de méthodes pour dessiner sur la 
+<a name="sec-GraphicsContext"></a>12.1.Â Le contexte graphique</h2></div></div></div>
+<p>Il existe un grand nombre de mÃ©thodes pour dessiner sur la
 <code class="classname">gtk.gdk.Window</code> d'une <code class="classname">zone de dessin
-</code>. Toutes ces méthodes exigent un contexte graphique 
-(<code class="classname">gtk.gdk.GC</code>) pour encapsuler l'information nécessaire au dessin sous forme d'attributs.
-Un <code class="classname">gtk.gdk.GC</code> dispose des attributs suivants :</p>
+</code>. Toutes ces mÃ©thodes exigent un contexte graphique
+(<code class="classname">gtk.gdk.GC</code>) pour encapsuler l'information nÃ©cessaire au dessin sous forme d'attributs.
+Un <code class="classname">gtk.gdk.GC</code> dispose des attributs suivantsÂ :</p>
 <pre class="programlisting">
 background            # fond
 cap_style             # style de fin de ligne
-clip_mask             # masque de découpe
-clip_x_origin         # origine x de la découpe
-clip_y_origin         # origine y de la découpe
+clip_mask             # masque de dÃ©coupe
+clip_x_origin         # origine x de la dÃ©coupe
+clip_y_origin         # origine y de la dÃ©coupe
 fill                  # remplissage
 font                  # police
 foreground            # couleur de premier plan
@@ -103,44 +104,44 @@ graphics_exposures    # exposition graphique
 join_style            # style de jointure de lignes
 line_style            # style de ligne
 line_width            # largeur de ligne
-stipple               # style de pointillé
-sub_window            # sous-fenêtre
-tile                  # mosaïque
+stipple               # style de pointillÃ©
+sub_window            # sous-fenÃªtre
+tile                  # mosaÃ¯que
 ts_x_origin           # origine x
 ts_y_origin           # origine y
 </pre>
-<p><em class="parameter"><code>background</code></em> définit la <code class="classname">gtk.gdk.Color</code> 
-utilisée comme couleur de fond.</p>
-<p><em class="parameter"><code>foreground</code></em> définit la <code class="classname">gtk.gdk.Color</code> 
-utilisée comme couleur de premier-plan.</p>
-<p>Une <code class="classname">gtk.gdk.Color</code> est une couleur qui peut 
-être allouée ou non allouée. Une couleur non allouée peut être créée avec le 
-constructeur :</p>
+<p><em class="parameter"><code>background</code></em> dÃ©finit la <code class="classname">gtk.gdk.Color</code>
+utilisÃ©e comme couleur de fond.</p>
+<p><em class="parameter"><code>foreground</code></em> dÃ©finit la <code class="classname">gtk.gdk.Color</code>
+utilisÃ©e comme couleur de premier-plan.</p>
+<p>Une <code class="classname">gtk.gdk.Color</code> est une couleur qui peut
+Ãªtre allouÃ©e ou non allouÃ©e. Une couleur non allouÃ©e peut Ãªtre crÃ©Ã©e avec le
+constructeurÂ :</p>
 <pre class="programlisting">
   couleur = gtk.gdk.Color(<strong class="parameter"><code>red</code></strong>=0, <strong class="parameter"><code>green</code></strong>=0, <strong class="parameter"><code>blue</code></strong>=0, <strong class="parameter"><code>pixel</code></strong>=0)
 </pre>
-<p>... où les paramètres <em class="parameter"><code>red</code></em>, <em class="parameter"><code>green</code></em> 
-et <em class="parameter"><code>blue</code></em> sont des entiers compris entre 0 et 65535. 
-Le paramètre <em class="parameter"><code>pixel</code></em> n'est pas souvent défini car 
-il est réécrit lorsque la couleur est allouée.</p>
-<p>Une <code class="classname">gtk.gdk.Color</code> non allouée peut 
-aussi être créée par la fonction :</p>
+<p>... oÃ¹ les paramÃ¨tres <em class="parameter"><code>red</code></em>, <em class="parameter"><code>green</code></em>
+et <em class="parameter"><code>blue</code></em> sont des entiers compris entre 0 et 65535.
+Le paramÃ¨tre <em class="parameter"><code>pixel</code></em> n'est pas souvent dÃ©fini car
+il est rÃ©Ã©crit lorsque la couleur est allouÃ©e.</p>
+<p>Une <code class="classname">gtk.gdk.Color</code> non allouÃ©e peut
+aussi Ãªtre crÃ©Ã©e par la fonctionÂ :</p>
 <pre class="programlisting">
   couleur = gtk.gdk.color_parse(<strong class="parameter"><code>spec</code></strong>)
 </pre>
-<p>... où  <em class="parameter"><code>spec</code></em> est une chaîne de spécification de couleur 
-qui peut être :</p>
+<p>... oÃ¹  <em class="parameter"><code>spec</code></em> est une chaÃ®ne de spÃ©cification de couleur
+qui peut ÃªtreÂ :</p>
 <div class="itemizedlist"><ul type="disc">
 <li>un nom de couleur (par exemple "red", "orange", "navajo white" tels
-qu'ils sont définis dans le fichier X Window <code class="filename">rgb.txt</code>), oo</li>
-<li>une chaîne hexadécimale débutant par '#' et contenant trois groupes 
-des chiffres hexa de même longueur ((1, 2, 3 or 4 chiffres). Par exemple, 
-"#F0A", "#FF00AA", "#FFF000AAA" and "#FFFF0000AAAA" qui représentent tous 
-la même couleur.</li>
+qu'ils sont dÃ©finis dans le fichier X Window <code class="filename">rgb.txt</code>), oo</li>
+<li>une chaÃ®ne hexadÃ©cimale dÃ©butant par '#' et contenant trois groupes
+des chiffres hexa de mÃªme longueur ((1, 2, 3 or 4 chiffres). Par exemple,
+"#F0A", "#FF00AA", "#FFF000AAA" and "#FFFF0000AAAA" qui reprÃ©sentent tous
+la mÃªme couleur.</li>
 </ul></div>
-<p>Pour créer une <code class="classname">gtk.gdk.Color</code> représentant 
-une couleur allouée, on utilise la méthode <code class="methodname">alloc_color</code>() 
-de <code class="classname">gtk.gdk.Colormap</code> qui possède trois variantes :
+<p>Pour crÃ©er une <code class="classname">gtk.gdk.Color</code> reprÃ©sentant
+une couleur allouÃ©e, on utilise la mÃ©thode <code class="methodname">alloc_color</code>()
+de <code class="classname">gtk.gdk.Colormap</code> qui possÃ¨de trois variantesÂ :
 </p>
 <pre class="programlisting">
   couleur = colormap.alloc_color(<strong class="parameter"><code>color</code></strong>, <strong class="parameter"><code>writeable</code></strong>=FALSE, <strong class="parameter"><code>best_match</code></strong>=TRUE)
@@ -149,14 +150,14 @@ de <code class="classname">gtk.gdk.Colormap</code> qui possède trois variantes :
 
   couleur = colormap.alloc_color(<strong class="parameter"><code>red</code></strong>, <strong class="parameter"><code>green</code></strong>, <strong class="parameter"><code>blue</code></strong>, <strong class="parameter"><code>writeable</code></strong>=FALSE, <strong class="parameter"><code>best_match</code></strong>=TRUE)
 </pre>
-<p>Le paramètre <em class="parameter"><code>couleur</code></em>  est un <code class="classname">gtk.gdk.Color</code> 
-non alloué, <em class="parameter"><code>spec</code></em> est une chaîne de spécification de couleur 
-comme on l'a vu précèdemment dans la fonction <code class="function">gtk.gdk.color_parse</code>(). 
-Les paramètres <em class="parameter"><code>red</code></em>, <em class="parameter"><code>green</code></em> et
-<em class="parameter"><code>blue</code></em> sont des valeurs entières de couleur décrites dans la 
- fonction constructeur <code class="function">gtk.gdk.Color</code>(). On peut aussi indiquer 
- si la couleur allouée peut être modifiable (cad, peut être modifiée plus tard mais 
- ne peut pas être partagée) ou si une meilleure approximation avec des couleurs existantes 
+<p>Le paramÃ¨tre <em class="parameter"><code>couleur</code></em>  est un <code class="classname">gtk.gdk.Color</code>
+non allouÃ©, <em class="parameter"><code>spec</code></em> est une chaÃ®ne de spÃ©cification de couleur
+comme on l'a vu prÃ©cÃ¨demment dans la fonction <code class="function">gtk.gdk.color_parse</code>().
+Les paramÃ¨tres <em class="parameter"><code>red</code></em>, <em class="parameter"><code>green</code></em> et
+<em class="parameter"><code>blue</code></em> sont des valeurs entiÃ¨res de couleur dÃ©crites dans la
+ fonction constructeur <code class="function">gtk.gdk.Color</code>(). On peut aussi indiquer
+ si la couleur allouÃ©e peut Ãªtre modifiable (cad, peut Ãªtre modifiÃ©e plus tard mais
+ ne peut pas Ãªtre partagÃ©e) ou si une meilleure approximation avec des couleurs existantes
  peut se faire lorsque la couleur exacte n'est pas disponible.
 </p>
 <p>Par exemple:</p>
@@ -167,14 +168,14 @@ Les paramètres <em class="parameter"><code>red</code></em>, <em class="parameter
 
   red = colormap.alloc_color('#FF0000', True, True)
 </pre>
-<p>On peut connaître la palette de couleurs associée à un widget par la 
-méthode :</p>
+<p>On peut connaÃ®tre la palette de couleurs associÃ©e Ã  un widget par la
+mÃ©thodeÂ :</p>
 <pre class="programlisting">
   palette = widget.get_colormap()
 </pre>
-<p><em class="parameter"><code>cap_style</code></em> précise le style de 
-fin de ligne utilisé pour une ligne qui se termine sans rejoindre une autre. 
-Les différents styles disponibles sont :</p>
+<p><em class="parameter"><code>cap_style</code></em> prÃ©cise le style de
+fin de ligne utilisÃ© pour une ligne qui se termine sans rejoindre une autre.
+Les diffÃ©rents styles disponibles sontÂ :</p>
 <div class="informaltable"><table width="100%" border="1">
 <colgroup>
 <col>
@@ -183,36 +184,36 @@ Les différents styles disponibles sont :</p>
 <tbody>
 <tr>
 <td><code class="literal">CAP_NOT_LAST</code></td>
-<td>dessine la même fin de ligne que <code class="literal">CAP_BUTT</code> pour 
-des lignes de largeur non nulle. Pour des lignes de largeur nulle, le point final 
-de la ligne n'est pas dessiné.</td>
+<td>dessine la mÃªme fin de ligne que <code class="literal">CAP_BUTT</code> pour
+des lignes de largeur non nulle. Pour des lignes de largeur nulle, le point final
+de la ligne n'est pas dessinÃ©.</td>
 </tr>
 <tr>
 <td><code class="literal">CAP_BUTT</code></td>
-<td>la fin de ligne est carrée et étendue jusqu'aux coordonées du 
+<td>la fin de ligne est carrÃ©e et Ã©tendue jusqu'aux coordonÃ©es du
               point final.</td>
 </tr>
 <tr>
 <td><code class="literal">CAP_ROUND</code></td>
-<td>la fin de ligne est arrondie (demi-cercle d'un diamétre égal à 
-              l'épaisseur de la ligne) et centrée sur le point final.</td>
+<td>la fin de ligne est arrondie (demi-cercle d'un diamÃ©tre Ã©gal Ã 
+              l'Ã©paisseur de la ligne) et centrÃ©e sur le point final.</td>
 </tr>
 <tr>
 <td><code class="literal">CAP_PROJECTING</code></td>
-<td>la fin de ligne est carrée et étendue de la moitié de l'épaisseur 
-              de la ligne après le point final.</td>
+<td>la fin de ligne est carrÃ©e et Ã©tendue de la moitiÃ© de l'Ã©paisseur
+              de la ligne aprÃ¨s le point final.</td>
 </tr>
 </tbody>
 </table></div>
-<p><em class="parameter"><code>clip_mask</code></em> définit un 
-<code class="classname">gtk.gdk.Pixmap</code> utilisé pour découper le dessin de la 
+<p><em class="parameter"><code>clip_mask</code></em> dÃ©finit un
+<code class="classname">gtk.gdk.Pixmap</code> utilisÃ© pour dÃ©couper le dessin de la
 zone de dessin <em class="parameter"><code>drawing_area</code></em>.</p>
-<p><em class="parameter"><code>clip_x_origin</code></em> et 
-<em class="parameter"><code>clip_y_origin</code></em> précise pour le découpage, l'origine 
-en x et y par rapport au coin supérieur gauche de la <em class="parameter"><code>zone de dessin</code></em>
+<p><em class="parameter"><code>clip_x_origin</code></em> et
+<em class="parameter"><code>clip_y_origin</code></em> prÃ©cise pour le dÃ©coupage, l'origine
+en x et y par rapport au coin supÃ©rieur gauche de la <em class="parameter"><code>zone de dessin</code></em>
 </p>
-<p><em class="parameter"><code>fill</code></em> précise le style de remplissage 
-utilisé dans le dessin. Les styles disponibles sont :</p>
+<p><em class="parameter"><code>fill</code></em> prÃ©cise le style de remplissage
+utilisÃ© dans le dessin. Les styles disponibles sontÂ :</p>
 <div class="informaltable"><table width="100%" border="1">
 <colgroup>
 <col>
@@ -225,63 +226,63 @@ utilisé dans le dessin. Les styles disponibles sont :</p>
 </tr>
 <tr>
 <td><code class="literal">TILED</code></td>
-<td>dessine avec un dessin en mosaïque.</td>
+<td>dessine avec un dessin en mosaÃ¯que.</td>
 </tr>
 <tr>
 <td><code class="literal">STIPPLED</code></td>
-<td>dessine avec un patron de pointillé. 
-Les pixels définis qui correspondent aux bits dans le patron seront dessinés 
-dans la couleur de premier plan ; les pixels non définis qui correspondent 
-aux bits dans le patron seront laissés intacts.</td>
+<td>dessine avec un patron de pointillÃ©.
+Les pixels dÃ©finis qui correspondent aux bits dans le patron seront dessinÃ©s
+dans la couleur de premier planÂ ; les pixels non dÃ©finis qui correspondent
+aux bits dans le patron seront laissÃ©s intacts.</td>
 </tr>
 <tr>
 <td><code class="literal">OPAQUE_STIPPLED</code></td>
-<td>dessine avec un patron de pointillé. Les pixels correspondants aux bits. 
-Les pixels définis qui correspondent aux bits dans le patron seront dessinés 
-dans la couleur de premier plan ; les pixels non définis qui correspondent 
-aux bits dans le patron seront dessinés dans la couleur d'arrière-plan (de fond).</td>
+<td>dessine avec un patron de pointillÃ©. Les pixels correspondants aux bits.
+Les pixels dÃ©finis qui correspondent aux bits dans le patron seront dessinÃ©s
+dans la couleur de premier planÂ ; les pixels non dÃ©finis qui correspondent
+aux bits dans le patron seront dessinÃ©s dans la couleur d'arriÃ¨re-plan (de fond).</td>
 </tr>
 </tbody>
 </table></div>
-<p><em class="parameter"><code>font</code></em> est un <code class="classname">gtk.gdk.Font</code> 
-qui est la police utilisée par défaut pour le texte du dessin.</p>
+<p><em class="parameter"><code>font</code></em> est un <code class="classname">gtk.gdk.Font</code>
+qui est la police utilisÃ©e par dÃ©faut pour le texte du dessin.</p>
 <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
 <h3 class="title">Note</h3>
-<p>L'utilisation de l'attribut <em class="parameter"><code>font</code></em> est abandonnée.</p>
+<p>L'utilisation de l'attribut <em class="parameter"><code>font</code></em> est abandonnÃ©e.</p>
 </div>
-<p><em class="parameter"><code>function</code></em> précise comment les 
-valeurs de bit pour les pixels source sont combinées avec les valeurs de bit 
-pour les pixels de destination pour produire les bits de pixels résultat. 
-Les seize valeurs suivantes correspondent aux 16 différentes possibilités 
-d'une table de vérité 2x2 mais deux ou trois de ces valeurs seulement 
-sont réellement utiles. Pour les images en couleur, seul COPY, XOR et INVERT 
-sont généralement utiles alors que pour les bitmaps AND et OR sont aussi utilisés. 
-Voici les valeurs possibles de <em class="parameter"><code>function</code></em> :</p>
+<p><em class="parameter"><code>function</code></em> prÃ©cise comment les
+valeurs de bit pour les pixels source sont combinÃ©es avec les valeurs de bit
+pour les pixels de destination pour produire les bits de pixels rÃ©sultat.
+Les seize valeurs suivantes correspondent aux 16 diffÃ©rentes possibilitÃ©s
+d'une table de vÃ©ritÃ© 2x2 mais deux ou trois de ces valeurs seulement
+sont rÃ©ellement utiles. Pour les images en couleur, seul COPY, XOR et INVERT
+sont gÃ©nÃ©ralement utiles alors que pour les bitmaps AND et OR sont aussi utilisÃ©s.
+Voici les valeurs possibles de <em class="parameter"><code>function</code></em>Â :</p>
 <pre class="programlisting">
   COPY           # copie
   INVERT         # inverser
   XOR            # OU exclusif
   CLEAR          # nettoyer
   AND            # ET
-  AND_REVERSE    
-  AND_INVERT     # ET inversé
+  AND_REVERSE
+  AND_INVERT     # ET inversÃ©
   NOOP           # nul
   OR             # OU
-  EQUIV          # équivalent
-  OR_REVERSE     
-  COPY_INVERT    # copie inversée
-  OR_INVERT      # OU inversé
+  EQUIV          # Ã©quivalent
+  OR_REVERSE
+  COPY_INVERT    # copie inversÃ©e
+  OR_INVERT      # OU inversÃ©
   NAND           # non ET
   SET            # afficher ?
 </pre>
-<p><em class="parameter"><code>graphics_exposures</code></em> indique si 
-l'affichage graphique est autorisé (<code class="literal">TRUE</code>) ou 
-interdit (<code class="literal">FALSE</code>). Lorsque <em class="parameter"><code>graphics_exposures</code></em> 
-vaut <code class="literal">TRUE</code>, l'échec de copie d'un pixel dans une action de dessin 
-génère un évènement expose. Si la copie réussit, un évènement 
-noexpose est généré.</p>
-<p><em class="parameter"><code>join_style</code></em> indique le style de 
-croisement entre deux lignes. Les styles diponibles sont :</p>
+<p><em class="parameter"><code>graphics_exposures</code></em> indique si
+l'affichage graphique est autorisÃ© (<code class="literal">TRUE</code>) ou
+interdit (<code class="literal">FALSE</code>). Lorsque <em class="parameter"><code>graphics_exposures</code></em>
+vaut <code class="literal">TRUE</code>, l'Ã©chec de copie d'un pixel dans une action de dessin
+gÃ©nÃ¨re un Ã©vÃ¨nement expose. Si la copie rÃ©ussit, un Ã©vÃ¨nement
+noexpose est gÃ©nÃ©rÃ©.</p>
+<p><em class="parameter"><code>join_style</code></em> indique le style de
+croisement entre deux lignes. Les styles diponibles sontÂ :</p>
 <div class="informaltable"><table width="100%" border="1">
 <colgroup>
 <col>
@@ -290,23 +291,23 @@ croisement entre deux lignes. Les styles diponibles sont :</p>
 <tbody>
 <tr>
 <td><code class="literal">JOIN_MITER</code></td>
-<td>Les cotés de chaque ligne sont prolongés pour se rencontrer en 
+<td>Les cotÃ©s de chaque ligne sont prolongÃ©s pour se rencontrer en
             formant un angle.</td>
 </tr>
 <tr>
 <td><code class="literal">JOIN_ROUND</code></td>
-<td>Les cotés des deux lignes se rejoignent en formant un arrondi.</td>
+<td>Les cotÃ©s des deux lignes se rejoignent en formant un arrondi.</td>
 </tr>
 <tr>
 <td><code class="literal">JOIN_BEVEL</code></td>
-<td>Les cotés des deux lignes sont joints par un segment formant 
-            un angle égal 
+<td>Les cotÃ©s des deux lignes sont joints par un segment formant
+            un angle Ã©gal
 avec chaque ligne.</td>
 </tr>
 </tbody>
 </table></div>
-<p><em class="parameter"><code>line_style</code></em> indique le style de traçage 
-d'une ligne. Les possibilités sont :</p>
+<p><em class="parameter"><code>line_style</code></em> indique le style de traÃ§age
+d'une ligne. Les possibilitÃ©s sontÂ :</p>
 <div class="informaltable"><table width="100%" border="1">
 <colgroup>
 <col>
@@ -315,31 +316,31 @@ d'une ligne. Les possibilités sont :</p>
 <tbody>
 <tr>
 <td><code class="literal">LINE_SOLID</code></td>
-<td>les lignes sont tracées en continu.</td>
+<td>les lignes sont tracÃ©es en continu.</td>
 </tr>
 <tr>
 <td><code class="literal">LINE_ON_OFF_DASH</code></td>
-<td>les segments pairs sont dessinés, pas les segment impairs 
+<td>les segments pairs sont dessinÃ©s, pas les segment impairs
             (ligne discontinue).</td>
 </tr>
 <tr>
 <td><code class="literal">LINE_DOUBLE_DASH</code></td>
-<td>les segments pairs sont dessinés normalement. Les segment impairs 
-sont dessinés dans la couleur de fond si le style de remplissage est 
-<code class="literal">SOLID</code>, dans la couleur de fond avec le masque 
-de pointillé si le style est <code class="literal">STIPPLED</code>.</td>
+<td>les segments pairs sont dessinÃ©s normalement. Les segment impairs
+sont dessinÃ©s dans la couleur de fond si le style de remplissage est
+<code class="literal">SOLID</code>, dans la couleur de fond avec le masque
+de pointillÃ© si le style est <code class="literal">STIPPLED</code>.</td>
 </tr>
 </tbody>
 </table></div>
-<p><em class="parameter"><code>line_width</code></em> indique l'épaisseur de la ligne.</p>
-<p><em class="parameter"><code>stipple</code></em> indique le 
-<code class="classname">gtk.gdk.Pixmap</code> utilisé pour un dessin en pointillé quand le 
-paramètre <em class="parameter"><code>fill</code></em> vaut <code class="literal">STIPPLED</code> ou 
+<p><em class="parameter"><code>line_width</code></em> indique l'Ã©paisseur de la ligne.</p>
+<p><em class="parameter"><code>stipple</code></em> indique le
+<code class="classname">gtk.gdk.Pixmap</code> utilisÃ© pour un dessin en pointillÃ© quand le
+paramÃ¨tre <em class="parameter"><code>fill</code></em> vaut <code class="literal">STIPPLED</code> ou
 <code class="literal">OPAQUE_STIPPLED</code>.</p>
-<p><em class="parameter"><code>sub_window</code></em> indique le mode de dessin dans 
-une <code class="classname">gtk.gdk.Window</code> qui possède des enfants 
-<code class="classname">gtk.gdk.Window</code>. Les valeurs possibles pour 
-<em class="parameter"><code>sub_window</code></em> sont :</p>
+<p><em class="parameter"><code>sub_window</code></em> indique le mode de dessin dans
+une <code class="classname">gtk.gdk.Window</code> qui possÃ¨de des enfants
+<code class="classname">gtk.gdk.Window</code>. Les valeurs possibles pour
+<em class="parameter"><code>sub_window</code></em> sontÂ :</p>
 <div class="informaltable"><table width="100%" border="1">
 <colgroup>
 <col>
@@ -348,25 +349,25 @@ une <code class="classname">gtk.gdk.Window</code> qui possède des enfants
 <tbody>
 <tr>
 <td><code class="literal">CLIP_BY_CHILDREN</code></td>
-<td>dessine seulement dans la fenêtre elle-même, pas dans ses fenêtres enfants.</td>
+<td>dessine seulement dans la fenÃªtre elle-mÃªme, pas dans ses fenÃªtres enfants.</td>
 </tr>
 <tr>
 <td><code class="literal">INCLUDE_INFERIORS</code></td>
-<td>dessine dans la fenêtre et dans ses fenêtres enfants.</td>
+<td>dessine dans la fenÃªtre et dans ses fenÃªtres enfants.</td>
 </tr>
 </tbody>
 </table></div>
-<p><em class="parameter"><code>tile</code></em> indique le 
-<code class="classname">gtk.gdk.Pixmap</code> utilisé pour dessiner en mosaïque 
-lorsque le paramètre <em class="parameter"><code>fill</code></em> vaut 
+<p><em class="parameter"><code>tile</code></em> indique le
+<code class="classname">gtk.gdk.Pixmap</code> utilisÃ© pour dessiner en mosaÃ¯que
+lorsque le paramÃ¨tre <em class="parameter"><code>fill</code></em> vaut
 <code class="literal">TILED</code>.</p>
 <p><em class="parameter"><code>ts_x_origin</code></em> et
-<em class="parameter"><code>ts_y_origin</code></em> indiquent l'origine de la mosaïque 
-ou du pointillé (la position de départ du bitmap).</p>
-<p>Un nouveau contexte graphique est créé par un appel 
-à la méthode <code class="methodname">gtk.gdk.Drawable.new_gc</code>() :</p>
+<em class="parameter"><code>ts_y_origin</code></em> indiquent l'origine de la mosaÃ¯que
+ou du pointillÃ© (la position de dÃ©part du bitmap).</p>
+<p>Un nouveau contexte graphique est crÃ©Ã© par un appel
+Ã  la mÃ©thode <code class="methodname">gtk.gdk.Drawable.new_gc</code>()Â :</p>
 <pre class="programlisting">
-contexte_graph = drawable.new_gc(<strong class="parameter"><code>foreground</code></strong>=None, <strong class="parameter"><code>background</code></strong>=None, <strong class="parameter"><code>font</code></strong>=None, 
+contexte_graph = drawable.new_gc(<strong class="parameter"><code>foreground</code></strong>=None, <strong class="parameter"><code>background</code></strong>=None, <strong class="parameter"><code>font</code></strong>=None,
                      <strong class="parameter"><code>function</code></strong>=-1, <strong class="parameter"><code>fill</code></strong>=-1, <strong class="parameter"><code>tile</code></strong>=None,
                      <strong class="parameter"><code>stipple</code></strong>=None, <strong class="parameter"><code>clip_mask</code></strong>=None, <strong class="parameter"><code>subwindow_mode</code></strong>=-1,
                      <strong class="parameter"><code>ts_x_origin</code></strong>=-1, <strong class="parameter"><code>ts_y_origin</code></strong>=-1, <strong class="parameter"><code>clip_x_origin</code></strong>=-1,
@@ -374,21 +375,21 @@ contexte_graph = drawable.new_gc(<strong class="parameter"><code>foreground</cod
                      <strong class="parameter"><code>line_width</code></strong>=-1, <strong class="parameter"><code>line_style</code></strong>=-1, <strong class="parameter"><code>cap_style</code></strong>=-1
                      <strong class="parameter"><code>join_style</code></strong>=-1)
 </pre>
-<p>Pour pouvoir créer un nouveau contexte graphique avec cette méthode, 
-le drawable doit être :</p>
+<p>Pour pouvoir crÃ©er un nouveau contexte graphique avec cette mÃ©thode,
+le drawable doit ÃªtreÂ :</p>
 <div class="itemizedlist"><ul type="disc">
-<li><p>une <code class="classname">gtk.gdk.Window</code> qui a été réalisée (créée), ou</p></li>
-<li><p>un <code class="classname">gtk.gdk.Pixmap</code> associé à une 
-<code class="classname">gtk.gdk.Window</code> réalisée.</p></li>
+<li><p>une <code class="classname">gtk.gdk.Window</code> qui a Ã©tÃ© rÃ©alisÃ©e (crÃ©Ã©e), ou</p></li>
+<li><p>un <code class="classname">gtk.gdk.Pixmap</code> associÃ© Ã  une
+<code class="classname">gtk.gdk.Window</code> rÃ©alisÃ©e.</p></li>
 </ul></div>
-<p>Les différents attributs du contexte graphique possédent des 
-valeurs par défaut lorsqu'elles ne sont pas précisées dans la méthode 
-<code class="methodname">new_gc</code>(). Lorsque l'on souhaite définir des 
-attributs du contexte graphique par la méthode 
-<code class="methodname">new_gc</code>(), il est plus facile d'utiliser les 
-arguments par mots-clés de Python.</p>
-<p>On peut aussi définir les attributs individuels d'un 
-<code class="classname">gtk.gdk.GC</code> en assignant une valeur aux attributs de l'objet 
+<p>Les diffÃ©rents attributs du contexte graphique possÃ©dent des
+valeurs par dÃ©faut lorsqu'elles ne sont pas prÃ©cisÃ©es dans la mÃ©thode
+<code class="methodname">new_gc</code>(). Lorsque l'on souhaite dÃ©finir des
+attributs du contexte graphique par la mÃ©thode
+<code class="methodname">new_gc</code>(), il est plus facile d'utiliser les
+arguments par mots-clÃ©s de Python.</p>
+<p>On peut aussi dÃ©finir les attributs individuels d'un
+<code class="classname">gtk.gdk.GC</code> en assignant une valeur aux attributs de l'objet
 GC. Par exemple</p>
 <pre class="programlisting">
   gc.cap_style = CAP_BUTT
@@ -396,7 +397,7 @@ GC. Par exemple</p>
   gc.fill = SOLD
   gc.foreground = macouleur
 </pre>
-<p>ou en utilisant les méthodes suivantes :</p>
+<p>ou en utilisant les mÃ©thodes suivantesÂ :</p>
 <pre class="programlisting">
   gc.set_foreground(color)
   gc.set_background(color)
@@ -412,33 +413,33 @@ GC. Par exemple</p>
   gc.set_exposures(exposures)
   gc.set_line_attributes(line_width, line_style, cap_style, join_style)
 </pre>
-<p>Le patron de segments utilisé lorsque le paramètre de style de ligne 
-<em class="parameter"><code>line_style</code></em> est <code class="literal">LINE_ON_OFF_DASH</code> 
-ou <code class="literal">LINE_DOUBLE_DASH</code> peut être défini par la méthode 
-suivante :</p>
+<p>Le patron de segments utilisÃ© lorsque le paramÃ¨tre de style de ligne
+<em class="parameter"><code>line_style</code></em> est <code class="literal">LINE_ON_OFF_DASH</code>
+ou <code class="literal">LINE_DOUBLE_DASH</code> peut Ãªtre dÃ©fini par la mÃ©thode
+suivanteÂ :</p>
 <pre class="programlisting">
   gc.set_dashes(offset, dash_list)
 </pre>
-<p>... où le paramètre <em class="parameter"><code>offset</code></em> est la position de la 
-valeur du segment initial dans la <em class="parameter"><code>dash_list</code></em> et 
-<em class="parameter"><code>dash_list</code></em> est une liste de tuples contenant 
-le nombre de pixels à dessiner ou sauter pour réaliser les segments. 
-Les segments sont dessinés en démarrant avec le nombre de pixels indiqué à la position de   
-décalage (offset) ; ensuite le nombre suivant est le nombre de pixels sautés ; 
-le nombre suivant est le nombre de pixels dessinés, et ainsi de suite, parcourant 
-tous les nombres de la <em class="parameter"><code>dash_list</code></em> en recommençant au début 
-quand on arrive à la fin de la liste. Par exemple, si la <em class="parameter"><code>dash_list</code></em> 
-se compose de (2, 4, 8, 16) avec un décalage (offset) de 1, les segments sont dessinés 
-ainsi : dessin sur 4 pixels, saut de 8 pixels, dessin sur 16 pixels, saut de 2 pixels, 
+<p>... oÃ¹ le paramÃ¨tre <em class="parameter"><code>offset</code></em> est la position de la
+valeur du segment initial dans la <em class="parameter"><code>dash_list</code></em> et
+<em class="parameter"><code>dash_list</code></em> est une liste de tuples contenant
+le nombre de pixels Ã  dessiner ou sauter pour rÃ©aliser les segments.
+Les segments sont dessinÃ©s en dÃ©marrant avec le nombre de pixels indiquÃ© Ã  la position de
+dÃ©calage (offset) ; ensuite le nombre suivant est le nombre de pixels sautÃ©s ;
+le nombre suivant est le nombre de pixels dessinÃ©s, et ainsi de suite, parcourant
+tous les nombres de la <em class="parameter"><code>dash_list</code></em> en recommenÃ§ant au dÃ©but
+quand on arrive Ã  la fin de la liste. Par exemple, si la <em class="parameter"><code>dash_list</code></em>
+se compose de (2, 4, 8, 16) avec un dÃ©calage (offset) de 1, les segments sont dessinÃ©s
+ainsiÂ : dessin sur 4 pixels, saut de 8 pixels, dessin sur 16 pixels, saut de 2 pixels,
 dessin sur 4 pixels etc.
 </p>
-<p>On peut réaliser une copie d'un <code class="classname">gtk.gdk.GC</code> 
-existant par la méthode :</p>
+<p>On peut rÃ©aliser une copie d'un <code class="classname">gtk.gdk.GC</code>
+existant par la mÃ©thodeÂ :</p>
 <pre class="programlisting">
   gc.copy(<strong class="parameter"><code>src_gc</code></strong>)
 </pre>
-<p>Les attributs du paramètre <em class="parameter"><code>gc</code></em> sont identiques 
-à ceux du source <em class="parameter"><code>src_gc</code></em>.</p>
+<p>Les attributs du paramÃ¨tre <em class="parameter"><code>gc</code></em> sont identiques
+Ã  ceux du source <em class="parameter"><code>src_gc</code></em>.</p>
 </div>
 </div>
 <div class="navfooter">
@@ -446,15 +447,15 @@ existant par la méthode :</p>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-ItemFactoryExample.html">Préc.</a> </td>
-<td width="20%" align="center"> </td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-DrawingMethods.html">Suiv.</a>
+<a accesskey="p" href="sec-ItemFactoryExample.html">PrÃ©c.</a>Â </td>
+<td width="20%" align="center">Â </td>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-DrawingMethods.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">11.4. Item Factory Example </td>
+<td width="40%" align="left" valign="top">11.4.Â Item Factory ExampleÂ </td>
 <td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
-<td width="40%" align="right" valign="top"> 12.2. Les méthodes pour dessiner</td>
+<td width="40%" align="right" valign="top">Â 12.2.Â Les mÃ©thodes pour dessiner</td>
 </tr>
 </table>
 </div>

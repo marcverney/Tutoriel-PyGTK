@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>22.2. Propriétés du glisser-déposer</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>22.2.Â PropriÃ©tÃ©s du glisser-dÃ©poser</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-DragAndDrop.html" title="Chapitre 22. Le glisser-déposer (DND)">
-<link rel="prev" href="ch-DragAndDrop.html" title="Chapitre 22. Le glisser-déposer (DND)">
-<link rel="next" href="sec-DNDMethods.html" title="22.3. Méthodes du glisser-déposer">
+<link rel="up" href="ch-DragAndDrop.html" title="ChapitreÂ 22.Â Le glisser-dÃ©poser (DND)">
+<link rel="prev" href="ch-DragAndDrop.html" title="ChapitreÂ 22.Â Le glisser-dÃ©poser (DND)">
+<link rel="next" href="sec-DNDMethods.html" title="22.3.Â MÃ©thodes du glisser-dÃ©poser">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">22.2. Propriétés du glisser-déposer</th></tr>
+<tr><th colspan="3" align="center">22.2.Â PropriÃ©tÃ©s du glisser-dÃ©poser</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="ch-DragAndDrop.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 22. Le glisser-déposer (DND)</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-DNDMethods.html">Suiv.</a>
+<a accesskey="p" href="ch-DragAndDrop.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 22.Â Le glisser-dÃ©poser (DND)</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-DNDMethods.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,44 +36,44 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-DNDProperties"></a>22.2. Propriétés du glisser-déposer</h2></div></div></div>
-<p>Les données du glisser ont les propriétés suivantes :</p>
+<a name="sec-DNDProperties"></a>22.2.Â PropriÃ©tÃ©s du glisser-dÃ©poser</h2></div></div></div>
+<p>Les donnÃ©es du glisser ont les propriÃ©tÃ©s suivantesÂ :</p>
 <div class="itemizedlist"><ul type="disc">
-<li><p>Type d'action de glisser (par ex. <code class="literal">ACTION_COPY</code>, 
+<li><p>Type d'action de glisser (par ex. <code class="literal">ACTION_COPY</code>,
 <code class="literal">ACTION_MOVE</code>).</p></li>
-<li><p>Type de glisser-déposer spécifique d'un client (un nom et une paire de nombres)</p></li>
-<li><p>Type de format des données envoyées et reçues.</p></li>
+<li><p>Type de glisser-dÃ©poser spÃ©cifique d'un client (un nom et une paire de nombres)</p></li>
+<li><p>Type de format des donnÃ©es envoyÃ©es et reÃ§ues.</p></li>
 </ul></div>
-<p>Les actions de glisser sont relativement évidentes, elles indiquent si le widget peut 
-effectuer le glisser avec l'action ou les actions indiquées, par ex. 
-<code class="literal">gtk.gdk.ACTION_COPY</code> et/ou <code class="literal">gtk.gdk.ACTION_MOVE</code>.  
-Un <code class="literal">gtk.gdk.ACTION_COPY</code> serait un glisser-déposer 
-typique sans que les données de la source soient supprimées, alors qu'un 
-<code class="literal">gtk.gdk.ACTION_MOVE</code> serait juste comme un 
-<code class="literal">gtk.gdk.ACTION_COPY</code> mais avec une "suggestion" de supprimer 
-les données de la source après l'appel du gestionnaire de signal de réception. 
-Il existe d'autres actions de glisser, comme <code class="literal">gtk.gdk.ACTION_LINK</code>, 
-qu'il sera possible d'examiner quand on sera plus avancé dans le connaissance du 
-glisser-déposer.
+<p>Les actions de glisser sont relativement Ã©videntes, elles indiquent si le widget peut
+effectuer le glisser avec l'action ou les actions indiquÃ©es, par ex.
+<code class="literal">gtk.gdk.ACTION_COPY</code> et/ou <code class="literal">gtk.gdk.ACTION_MOVE</code>.
+Un <code class="literal">gtk.gdk.ACTION_COPY</code> serait un glisser-dÃ©poser
+typique sans que les donnÃ©es de la source soient supprimÃ©es, alors qu'un
+<code class="literal">gtk.gdk.ACTION_MOVE</code> serait juste comme un
+<code class="literal">gtk.gdk.ACTION_COPY</code> mais avec une "suggestion" de supprimer
+les donnÃ©es de la source aprÃ¨s l'appel du gestionnaire de signal de rÃ©ception.
+Il existe d'autres actions de glisser, comme <code class="literal">gtk.gdk.ACTION_LINK</code>,
+qu'il sera possible d'examiner quand on sera plus avancÃ© dans le connaissance du
+glisser-dÃ©poser.
 </p>
-<p>Le type de glisser-déposer indiqué pour le client est beaucoup 
-plus flexible, parce que c'est l'application qui le définira et le vérifiera 
-spécifiquement. Il sera nécessaire de définir les widgets de destination pour 
-recevoir certains types de glisser-déposer en indiquant un nom et/ou un nombre. 
-Il serait plus sûr d'utiliser un nom puisqu'une autre application peut juste utiliser 
-le même nombre dans un sens entièrement différent.
+<p>Le type de glisser-dÃ©poser indiquÃ© pour le client est beaucoup
+plus flexible, parce que c'est l'application qui le dÃ©finira et le vÃ©rifiera
+spÃ©cifiquement. Il sera nÃ©cessaire de dÃ©finir les widgets de destination pour
+recevoir certains types de glisser-dÃ©poser en indiquant un nom et/ou un nombre.
+Il serait plus sÃ»r d'utiliser un nom puisqu'une autre application peut juste utiliser
+le mÃªme nombre dans un sens entiÃ¨rement diffÃ©rent.
 </p>
-<p>Les types de format de données envoyées et reçues 
-(<span class="emphasis"><em>selection target&nbsp;: cible de sélection</em></span>) entrent en jeu uniquement 
-dans leurs fonctions de gestion des données réclamées et reçues. Le terme 
-<span class="emphasis"><em>selection target (cible de sélection)</em></span> induit en erreur. C'est un terme 
-qui vient de la sélection GTK+ (couper/copier et coller). Ce que recouvre 
-<span class="emphasis"><em>cible de sélection</em></span> est le type de format des données 
-(par ex un <code class="classname">gtk.gdk.Atom</code>,  un entier ou une chaîne 
-de caractères) qui est envoyé ou reçu. La fonction de gestion des données demandées 
-exige de préciser le type (<span class="emphasis"><em>cible de sélection</em></span>) des données 
-qui sont envoyées et le gestionnaire des données reçues doit pouvoir gérer le type 
-<span class="emphasis"><em>cible de sélection</em></span> des données reçues.
+<p>Les types de format de donnÃ©es envoyÃ©es et reÃ§ues
+(<span class="emphasis"><em>selection target&nbsp;: cible de sÃ©lection</em></span>) entrent en jeu uniquement
+dans leurs fonctions de gestion des donnÃ©es rÃ©clamÃ©es et reÃ§ues. Le terme
+<span class="emphasis"><em>selection target (cible de sÃ©lection)</em></span> induit en erreur. C'est un terme
+qui vient de la sÃ©lection GTK+ (couper/copier et coller). Ce que recouvre
+<span class="emphasis"><em>cible de sÃ©lection</em></span> est le type de format des donnÃ©es
+(par ex un <code class="classname">gtk.gdk.Atom</code>,  un entier ou une chaÃ®ne
+de caractÃ¨res) qui est envoyÃ© ou reÃ§u. La fonction de gestion des donnÃ©es demandÃ©es
+exige de prÃ©ciser le type (<span class="emphasis"><em>cible de sÃ©lection</em></span>) des donnÃ©es
+qui sont envoyÃ©es et le gestionnaire des donnÃ©es reÃ§ues doit pouvoir gÃ©rer le type
+<span class="emphasis"><em>cible de sÃ©lection</em></span> des donnÃ©es reÃ§ues.
 
 </p>
 </div>
@@ -81,15 +82,15 @@ qui sont envoyées et le gestionnaire des données reçues doit pouvoir gérer le ty
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="ch-DragAndDrop.html">Préc.</a> </td>
+<a accesskey="p" href="ch-DragAndDrop.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-DragAndDrop.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-DNDMethods.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-DNDMethods.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">Chapitre 22. Le glisser-déposer (DND) </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 22.3. Méthodes du glisser-déposer</td>
+<td width="40%" align="left" valign="top">ChapitreÂ 22.Â Le glisser-dÃ©poser (DND)Â </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 22.3.Â MÃ©thodes du glisser-dÃ©poser</td>
 </tr>
 </table>
 </div>

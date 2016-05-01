@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>23.2. Format du fichier rc GTK</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>23.2.Â Format du fichier rc GTK</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-GtkRcFiles.html" title="Chapitre 23. Les fichiers de style rc GTK">
-<link rel="prev" href="ch-GtkRcFiles.html" title="Chapitre 23. Les fichiers de style rc GTK">
-<link rel="next" href="sec-ExampleRcFile.html" title="23.3. Exemple de fichier rc">
+<link rel="up" href="ch-GtkRcFiles.html" title="ChapitreÂ 23.Â Les fichiers de style rc GTK">
+<link rel="prev" href="ch-GtkRcFiles.html" title="ChapitreÂ 23.Â Les fichiers de style rc GTK">
+<link rel="next" href="sec-ExampleRcFile.html" title="23.3.Â Exemple de fichier rc">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">23.2. Format du fichier rc GTK</th></tr>
+<tr><th colspan="3" align="center">23.2.Â Format du fichier rc GTK</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="ch-GtkRcFiles.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 23. Les fichiers de style rc GTK</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-ExampleRcFile.html">Suiv.</a>
+<a accesskey="p" href="ch-GtkRcFiles.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 23.Â Les fichiers de style rc GTK</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-ExampleRcFile.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,96 +36,96 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-GTKRcFileFormat"></a>23.2. Format du fichier rc GTK</h2></div></div></div>
-<p>Le format du fichier rc GTK+ est illustré dans la 
-<a href="sec-ExampleRcFile.html" title="23.3. Exemple de fichier rc">Section 23.3, « Exemple de fichier rc »</a> ci-dessous. C'est le fichier 
-<code class="filename">testgtkrc</code> de la distribution GTK+, avec quelques 
-commentaires et ajouts. Il est possible d'ajouter cette explication 
-dans son application pour permettre à l'utilisateur de parfaire ses réglages.</p>
-<p>Plusieurs commandes permettent de modifier les 
+<a name="sec-GTKRcFileFormat"></a>23.2.Â Format du fichier rc GTK</h2></div></div></div>
+<p>Le format du fichier rc GTK+ est illustrÃ© dans la
+<a href="sec-ExampleRcFile.html" title="23.3.Â Exemple de fichier rc">SectionÂ 23.3, Â«Â Exemple de fichier rcÂ Â»</a> ci-dessous. C'est le fichier
+<code class="filename">testgtkrc</code> de la distribution GTK+, avec quelques
+commentaires et ajouts. Il est possible d'ajouter cette explication
+dans son application pour permettre Ã  l'utilisateur de parfaire ses rÃ©glages.</p>
+<p>Plusieurs commandes permettent de modifier les
 attributs d'un widget.</p>
 <div class="itemizedlist"><ul type="none">
-<li style="list-style-type: none"><p><em class="parameter"><code>fg</code></em> - Définit la couleur de premier plan d'un widget.</p></li>
-<li style="list-style-type: none"><p><em class="parameter"><code>bg</code></em> - Définit la couleur d'arrière-plan d'un widget.</p></li>
-<li style="list-style-type: none"><p><em class="parameter"><code>bg_pixmap</code></em> - Compose l'arrière-plan d'un widget avec 
-          un pixmap en mosaïque.</p></li>
-<li style="list-style-type: none"><p><em class="parameter"><code>font</code></em> - Définit la police utilisée pour le widget indiqué.</p></li>
+<li style="list-style-type: none"><p><em class="parameter"><code>fg</code></em> - DÃ©finit la couleur de premier plan d'un widget.</p></li>
+<li style="list-style-type: none"><p><em class="parameter"><code>bg</code></em> - DÃ©finit la couleur d'arriÃ¨re-plan d'un widget.</p></li>
+<li style="list-style-type: none"><p><em class="parameter"><code>bg_pixmap</code></em> - Compose l'arriÃ¨re-plan d'un widget avec
+          un pixmap en mosaÃ¯que.</p></li>
+<li style="list-style-type: none"><p><em class="parameter"><code>font</code></em> - DÃ©finit la police utilisÃ©e pour le widget indiquÃ©.</p></li>
 </ul></div>
-<p>De plus, un widget possède plusieurs états, il est possible de définir 
-différentes couleurs, mosaïques de pixmap et polices pour chaque état. 
-Ces états sont les suivants :</p>
+<p>De plus, un widget possÃ¨de plusieurs Ã©tats, il est possible de dÃ©finir
+diffÃ©rentes couleurs, mosaÃ¯ques de pixmap et polices pour chaque Ã©tat.
+Ces Ã©tats sont les suivantsÂ :</p>
 <table border="0" width="100%" bgcolor="#FFECCE">
 <col align="left" valign="top" width="0*">
 <tbody>
 <tr>
 <td>
 <span class="term">NORMAL</span></td>
-<td><p>L'état normal d'un widget, la souris n'est pas au-dessus, 
-il n'est pas enfoncé, etc.</p></td>
+<td><p>L'Ã©tat normal d'un widget, la souris n'est pas au-dessus,
+il n'est pas enfoncÃ©, etc.</p></td>
 </tr>
 <tr>
 <td>
 <span class="term">PRELIGHT</span></td>
-<td><p>Lorsque le widget est survolé par la souris, les couleurs 
-définies pour cet état seront utilisées.</p></td>
+<td><p>Lorsque le widget est survolÃ© par la souris, les couleurs
+dÃ©finies pour cet Ã©tat seront utilisÃ©es.</p></td>
 </tr>
 <tr>
 <td>
 <span class="term">ACTIVE</span></td>
-<td><p>Lorsque le widget est cliqué ou enfoncé, il devient 
-actif et les attributs définis pour cet état seront utilisés.</p></td>
+<td><p>Lorsque le widget est cliquÃ© ou enfoncÃ©, il devient
+actif et les attributs dÃ©finis pour cet Ã©tat seront utilisÃ©s.</p></td>
 </tr>
 <tr>
 <td>
 <span class="term">INSENSITIVE</span></td>
-<td><p>Lorsqu'un widget est marqué "insensible", et ne peut être activé, il 
+<td><p>Lorsqu'un widget est marquÃ© "insensible", et ne peut Ãªtre activÃ©, il
 prendra ces attributs</p></td>
 </tr>
 <tr>
 <td>
 <span class="term">SELECTED</span></td>
-<td><p>Quand un objet est sélectionné, il prend ces attributs.</p></td>
+<td><p>Quand un objet est sÃ©lectionnÃ©, il prend ces attributs.</p></td>
 </tr>
 </tbody>
 </table>
-<p>Quand on utilise les mots-clé "fg" et "bg" pour définir 
-les couleurs des widgets, il faut respecter ce format :</p>
+<p>Quand on utilise les mots-clÃ© "fg" et "bg" pour dÃ©finir
+les couleurs des widgets, il faut respecter ce formatÂ :</p>
 <pre class="programlisting">
   fg[&lt;STATE&gt;] = { Rouge, Vert, Bleu }
 </pre>
-<p>... où <code class="varname">STATE</code> est un des états ci-dessus 
+<p>... oÃ¹ <code class="varname">STATE</code> est un des Ã©tats ci-dessus
 (PRELIGHT, ACTIVE, etc), <code class="varname">Rouge</code>,
-<code class="varname">Vert</code> et <code class="varname">Bleu</code> sont des valeurs 
-dans l'intervalle 0 - 1.0 ; {1.0,1.0,1.0} est le blanc. Elles 
-doivent être au format décimal, sinon leur valeur est mise à 0, 
-ainsi un simple "1" n'est pas correct, ce doit être "1.0". 
-Un simple "0" fonctionne parce que les valeurs non reconnues sont mises à 0.</p>
-<p>Le paramètre <em class="parameter"><code>bg_pixmap</code></em> est très semblable 
-au précédent, mais les couleurs sont remplacées par un nom de fichier.</p>
-<p><em class="parameter"><code>pixmap_path</code></em> est une liste de chemins séparés par 
-un ":". Ces chemins sont ceux où seront recherchés les pixmaps indiqués.</p>
-<p>La commande "font" est simple :</p>
+<code class="varname">Vert</code> et <code class="varname">Bleu</code> sont des valeurs
+dans l'intervalle 0 - 1.0 ; {1.0,1.0,1.0} est le blanc. Elles
+doivent Ãªtre au format dÃ©cimal, sinon leur valeur est mise Ã  0,
+ainsi un simple "1" n'est pas correct, ce doit Ãªtre "1.0".
+Un simple "0" fonctionne parce que les valeurs non reconnues sont mises Ã  0.</p>
+<p>Le paramÃ¨tre <em class="parameter"><code>bg_pixmap</code></em> est trÃ¨s semblable
+au prÃ©cÃ©dent, mais les couleurs sont remplacÃ©es par un nom de fichier.</p>
+<p><em class="parameter"><code>pixmap_path</code></em> est une liste de chemins sÃ©parÃ©s par
+un ":". Ces chemins sont ceux oÃ¹ seront recherchÃ©s les pixmaps indiquÃ©s.</p>
+<p>La commande "font" est simpleÂ :</p>
 <pre class="programlisting">
   font = "&lt;font name&gt;"
 </pre>
-<p>La partie la plus difficile est de trouver le contenu de la chaîne 
-<em class="parameter"><code>font</code></em>. 
-Utiliser le programme <span><strong class="command">xfontsel</strong></span> ou un utilitaire équivalent 
-devrait faciliter la tâche.</p>
-<p>La commande "widget_class" définit le style d'une classe de widgets. 
-Ces classes sont énumérées dans la <a href="ch-WidgetOverview.html#sec-WidgetHierarchy" title="5.1. Hiérarchie des widgets">Section 5.1, « Hiérarchie des widgets »</a> de la vue d'ensemble des widgets.</p>
-<p>La commande "widget" applique un style donné à un ensemble de widgets portant 
-un nom spécifique, quel que soit le style normal de cette classe de widgets. 
-Ces widgets sont enregistrés dans l'application avec la methode 
-<code class="methodname">set_name</code>(). Ceci permet de modifier les 
-attributs d'un widget au coup par coup plutôt que de définir les attibuts 
-d'une toute une classe de widgets. Je vous recommande de documenter 
-chacun de ces widgets spécifiques, permettant ainsi à l'utilisateur 
+<p>La partie la plus difficile est de trouver le contenu de la chaÃ®ne
+<em class="parameter"><code>font</code></em>.
+Utiliser le programme <span><strong class="command">xfontsel</strong></span> ou un utilitaire Ã©quivalent
+devrait faciliter la tÃ¢che.</p>
+<p>La commande "widget_class" dÃ©finit le style d'une classe de widgets.
+Ces classes sont Ã©numÃ©rÃ©es dans la <a href="ch-WidgetOverview.html#sec-WidgetHierarchy" title="5.1.Â HiÃ©rarchie des widgets">SectionÂ 5.1, Â«Â HiÃ©rarchie des widgetsÂ Â»</a> de la vue d'ensemble des widgets.</p>
+<p>La commande "widget" applique un style donnÃ© Ã  un ensemble de widgets portant
+un nom spÃ©cifique, quel que soit le style normal de cette classe de widgets.
+Ces widgets sont enregistrÃ©s dans l'application avec la methode
+<code class="methodname">set_name</code>(). Ceci permet de modifier les
+attributs d'un widget au coup par coup plutÃ´t que de dÃ©finir les attibuts
+d'une toute une classe de widgets. Je vous recommande de documenter
+chacun de ces widgets spÃ©cifiques, permettant ainsi Ã  l'utilisateur
 de les personnaliser.</p>
-<p>Quand on utilise le mot-clé <em class="parameter"><code>parent</code></em> comme 
+<p>Quand on utilise le mot-clÃ© <em class="parameter"><code>parent</code></em> comme
 attribut, le widget utilise les attributs de son parent dans l'application.</p>
-<p>Lorsqu'on définit un style, on peut attribuer 
-les éléments d'un style déjà défini à ce nouveau style.</p>
+<p>Lorsqu'on dÃ©finit un style, on peut attribuer
+les Ã©lÃ©ments d'un style dÃ©jÃ  dÃ©fini Ã  ce nouveau style.</p>
 <pre class="programlisting">
   style "main_button" = "button"
   {
@@ -132,11 +133,11 @@ les éléments d'un style déjà défini à ce nouveau style.</p>
     bg[PRELIGHT] = { 0.75, 0, 0 }
   }
 </pre>
-<p>Cet exemple utilise le style "button" et crée un nouveau style 
-"main_button" simplement en modifiant la police et la couleur 
-d'arrière-plan de l'état préselectionné (PRELIGHT) du style "button".</p>
-<p>Naturellement, beaucoup de ces attributs ne s'appliquent pas à 
-tous les widgets. C'est une simple question de bon sens. 
+<p>Cet exemple utilise le style "button" et crÃ©e un nouveau style
+"main_button" simplement en modifiant la police et la couleur
+d'arriÃ¨re-plan de l'Ã©tat prÃ©selectionnÃ© (PRELIGHT) du style "button".</p>
+<p>Naturellement, beaucoup de ces attributs ne s'appliquent pas Ã 
+tous les widgets. C'est une simple question de bon sens.
 Ce qui peut s'appliquer devrait fonctionner.</p>
 </div>
 <div class="navfooter">
@@ -144,15 +145,15 @@ Ce qui peut s'appliquer devrait fonctionner.</p>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="ch-GtkRcFiles.html">Préc.</a> </td>
+<a accesskey="p" href="ch-GtkRcFiles.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-GtkRcFiles.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-ExampleRcFile.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-ExampleRcFile.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">Chapitre 23. Les fichiers de style rc GTK </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 23.3. Exemple de fichier rc</td>
+<td width="40%" align="left" valign="top">ChapitreÂ 23.Â Les fichiers de style rc GTKÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 23.3.Â Exemple de fichier rc</td>
 </tr>
 </table>
 </div>

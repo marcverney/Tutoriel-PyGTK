@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>2.2. Le principe des signaux et des rappels</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>2.2.Â Le principe des signaux et des rappels</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-GettingStarted.html" title="Chapitre 2. Premiers pas">
-<link rel="prev" href="ch-GettingStarted.html" title="Chapitre 2. Premiers pas">
-<link rel="next" href="sec-Events.html" title="2.3. Évènements">
+<link rel="up" href="ch-GettingStarted.html" title="ChapitreÂ 2.Â Premiers pas">
+<link rel="prev" href="ch-GettingStarted.html" title="ChapitreÂ 2.Â Premiers pas">
+<link rel="next" href="sec-Events.html" title="2.3.Â Ã‰vÃ¨nements">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">2.2. Le principe des signaux et des rappels</th></tr>
+<tr><th colspan="3" align="center">2.2.Â Le principe des signaux et des rappels</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="ch-GettingStarted.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 2. Premiers pas</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-Events.html">Suiv.</a>
+<a accesskey="p" href="ch-GettingStarted.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 2.Â Premiers pas</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-Events.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,83 +36,83 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-TheoryOfSignalsAndCallbacks"></a>2.2. Le principe des signaux et des rappels</h2></div></div></div>
+<a name="sec-TheoryOfSignalsAndCallbacks"></a>2.2.Â Le principe des signaux et des rappels</h2></div></div></div>
 <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
 <h3 class="title">Note</h3>
-<p>Nous n'entrerons pas dans le détail des différences entre les extensions du 
-système de signaux de GLib 2.0 par rapport à celui de GTK 1.2. 
-Les utilisateurs de PyGTK ne devraient pas remarquer de différence.
+<p>Nous n'entrerons pas dans le dÃ©tail des diffÃ©rences entre les extensions du
+systÃ¨me de signaux de GLibÂ 2.0 par rapport Ã  celui de GTKÂ 1.2.
+Les utilisateurs de PyGTK ne devraient pas remarquer de diffÃ©rence.
 </p>
 </div>
-<p>Avant de nous lancer dans une observation détaillée de <a href="exemples/helloworld.py" target="_top"><span><strong class="command">helloworld.py</strong></span></a>, 
-il nous faut expliquer les concepts de signal et de fonction de rappel. 
-GTK est une boite à outils évènementielle, ce qui signifie qu'elle restera 
-inactive dans <code class="function">gtk.main</code>() jusqu'à ce qu'un évènement 
-survienne et que le relais soit passé à la fonction appropriée.</p>
-<p>Ce passage de relais s'effectue par l'intermédiaire d'un « signal » 
-(notez que ces signaux n'ont rien à voir avec les signaux système Unix, 
-et ne sont pas implémentés en les utilisant, quoique la terminologie soit 
-semblable). Lorsqu'un évènement survient, comme un clic de souris, le signal 
-correspondant est « émis » par le widget sur lequel on clique. C'est de cette 
-façon que GTK réalise la plupart de son travail. Il y a des signaux dont tous 
-les widgets héritent, comme "destroy", tandis que d'autres sont spécifiques à 
+<p>Avant de nous lancer dans une observation dÃ©taillÃ©e de <a href="exemples/helloworld.py" target="_top"><span><strong class="command">helloworld.py</strong></span></a>,
+il nous faut expliquer les concepts de signal et de fonction de rappel.
+GTK est une boite Ã  outils Ã©vÃ¨nementielle, ce qui signifie qu'elle restera
+inactive dans <code class="function">gtk.main</code>() jusqu'Ã  ce qu'un Ã©vÃ¨nement
+survienne et que le relais soit passÃ© Ã  la fonction appropriÃ©e.</p>
+<p>Ce passage de relais s'effectue par l'intermÃ©diaire d'un Â« signal Â»
+(notez que ces signaux n'ont rien Ã  voir avec les signaux systÃ¨me Unix,
+et ne sont pas implÃ©mentÃ©s en les utilisant, quoique la terminologie soit
+semblable). Lorsqu'un Ã©vÃ¨nement survient, comme un clic de souris, le signal
+correspondant est Â« Ã©mis Â» par le widget sur lequel on clique. C'est de cette
+faÃ§on que GTK rÃ©alise la plupart de son travail. Il y a des signaux dont tous
+les widgets hÃ©ritent, comme "destroy", tandis que d'autres sont spÃ©cifiques Ã 
 un widget, comme le "toggled" des boutons interrupteurs.</p>
-<p>Pour qu'un bouton effectue une action, on définit un gestionnaire de signal 
-qui sera chargé de capter ces signaux et d'appeler la fonction appropriée. 
-On utilise alors une méthode de <code class="classname">GtkWidget</code> (de la classe 
-<code class="classname">GObject</code>) comme ceci :</p>
+<p>Pour qu'un bouton effectue une action, on dÃ©finit un gestionnaire de signal
+qui sera chargÃ© de capter ces signaux et d'appeler la fonction appropriÃ©e.
+On utilise alors une mÃ©thode de <code class="classname">GtkWidget</code> (de la classe
+<code class="classname">GObject</code>) comme ceciÂ :</p>
 <pre class="programlisting">
   gestionnaire_id = objet.connect(nom, fonction, donnees_fct)
 </pre>
-<p>... où objet est l'instance de <code class="classname">GtkWidget</code> qui doit 
-émettre le signal. Le premier argument, <em class="parameter"><code>nom</code></em>, est  
-une chaine de caractères donnant le nom du signal que l'on veut intercepter. 
-Le deuxième argument, <em class="parameter"><code>fonction</code></em>, est la fonction qui devra 
-être appelée une fois le signal intercepté. Enfin, <em class="parameter"><code>donnees_fct</code></em> 
-représente les données que l'on souhaite passer à cette fonction. La méthode 
-renvoie un identifiant de gestionnaire <span class="returnvalue">gestionnaire_id</span>, 
-que l'on pourra utiliser pour déconnecter ou bloquer le gestionnaire.</p>
-<p>La fonction indiquée en deuxième argument est une «fonction de rappel», 
-et devrait généralement avoir la forme :</p>
+<p>... oÃ¹ objet est l'instance de <code class="classname">GtkWidget</code> qui doit
+Ã©mettre le signal. Le premier argument, <em class="parameter"><code>nom</code></em>, est
+une chaine de caractÃ¨res donnant le nom du signal que l'on veut intercepter.
+Le deuxiÃ¨me argument, <em class="parameter"><code>fonction</code></em>, est la fonction qui devra
+Ãªtre appelÃ©e une fois le signal interceptÃ©. Enfin, <em class="parameter"><code>donnees_fct</code></em>
+reprÃ©sente les donnÃ©es que l'on souhaite passer Ã  cette fonction. La mÃ©thode
+renvoie un identifiant de gestionnaire <span class="returnvalue">gestionnaire_id</span>,
+que l'on pourra utiliser pour dÃ©connecter ou bloquer le gestionnaire.</p>
+<p>La fonction indiquÃ©e en deuxiÃ¨me argument est une Â«fonction de rappelÂ»,
+et devrait gÃ©nÃ©ralement avoir la formeÂ :</p>
 <pre class="programlisting">
   def fct_rappel(widget, donnees_fct):
 </pre>
-<p>... où le premier argument est un pointeur vers le <em class="parameter"><code>widget</code></em> 
-qui a émis le signal, et le second (<em class="parameter"><code>donnees_fct</code></em>) un pointeur 
-vers les données fournies en dernier argument à la méthode 
+<p>... oÃ¹ le premier argument est un pointeur vers le <em class="parameter"><code>widget</code></em>
+qui a Ã©mis le signal, et le second (<em class="parameter"><code>donnees_fct</code></em>) un pointeur
+vers les donnÃ©es fournies en dernier argument Ã  la mÃ©thode
 <code class="methodname">connect</code>() ci-dessus.
 </p>
-<p>Si la fonction de rappel est une méhode d'objet, elle aura 
-généralement la forme suivante :</p>
+<p>Si la fonction de rappel est une mÃ©hode d'objet, elle aura
+gÃ©nÃ©ralement la forme suivanteÂ :</p>
 <pre class="programlisting">
   def meth_rappel(self, widget, donnees_meth):
 </pre>
-<p>... où <em class="parameter"><code>self</code></em> est l'instance d'objet invoquant 
-la méthode. C'est la forme utilisée dans le programme exemple <a href="exemples/helloworld.py" target="_top"><span><strong class="command">helloworld.py</strong></span></a>.</p>
+<p>... oÃ¹ <em class="parameter"><code>self</code></em> est l'instance d'objet invoquant
+la mÃ©thode. C'est la forme utilisÃ©e dans le programme exemple <a href="exemples/helloworld.py" target="_top"><span><strong class="command">helloworld.py</strong></span></a>.</p>
 <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
 <h3 class="title">Note</h3>
-<p>La forme indiquée ci-dessus pour une déclaration de fonction de 
-rappel n'est qu'un modèle général. Certains signaux spécifiques à un widget 
-engendrent des paramètres d'appel différents.</p>
+<p>La forme indiquÃ©e ci-dessus pour une dÃ©claration de fonction de
+rappel n'est qu'un modÃ¨le gÃ©nÃ©ral. Certains signaux spÃ©cifiques Ã  un widget
+engendrent des paramÃ¨tres d'appel diffÃ©rents.</p>
 </div>
 <p>Dans l'exemple <a href="exemples/helloworld.py" target="_top">
-<span><strong class="command">helloworld.py</strong></span></a>, on trouve aussi un appel de la 
-forme :</p>
+<span><strong class="command">helloworld.py</strong></span></a>, on trouve aussi un appel de la
+formeÂ :</p>
 <pre class="programlisting">
   handler_id = object.connect_object(name, func, slot_object)
   gestionnaire_id = objet.connect_object(nom, fonction, objet)
 </pre>
-<p><code class="methodname">connect_object</code>()est semblable à 
-<code class="methodname">connect</code>() à ceci près que la fonction de rappel 
-ne nécessite qu'un seul argument et deux arguments pour la méthode :
+<p><code class="methodname">connect_object</code>()est semblable Ã 
+<code class="methodname">connect</code>() Ã  ceci prÃ¨s que la fonction de rappel
+ne nÃ©cessite qu'un seul argument et deux arguments pour la mÃ©thodeÂ :
 </p>
 <pre class="programlisting">
   def fct_rappel(objet)
   def meth_rappel(self, objet)
 </pre>
-<p>... où <em class="parameter"><code>objet</code></em> est habituellement un widget. 
-<code class="methodname">connect_object</code>() permet aux méthodes de widget PyGTK 
-qui ne prennent qu'un seul argument (<em class="parameter"><code>self</code></em>) d'être utilisées 
+<p>... oÃ¹ <em class="parameter"><code>objet</code></em> est habituellement un widget.
+<code class="methodname">connect_object</code>() permet aux mÃ©thodes de widget PyGTK
+qui ne prennent qu'un seul argument (<em class="parameter"><code>self</code></em>) d'Ãªtre utilisÃ©es
 comme gestionnaires de signaux.
 </p>
 </div>
@@ -120,15 +121,15 @@ comme gestionnaires de signaux.
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="ch-GettingStarted.html">Préc.</a> </td>
+<a accesskey="p" href="ch-GettingStarted.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-GettingStarted.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-Events.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-Events.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">Chapitre 2. Premiers pas </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 2.3. Évènements</td>
+<td width="40%" align="left" valign="top">ChapitreÂ 2.Â Premiers pasÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 2.3.Â Ã‰vÃ¨nements</td>
 </tr>
 </table>
 </div>

@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>16.5. Expanseur (Expander)</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>16.5.Â Expanseur (Expander)</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-NewInPyGTK2.4.html" title="Chapitre 16. Nouveaux Widgets dans PyGTK 2.4">
-<link rel="prev" href="sec-EntryCompletion.html" title="16.4. Zone de saisie avec complètement (EntryCompletion)">
-<link rel="next" href="sec-FileChoosers.html" title="16.6. Sélection de fichier basée sur le sélecteur FileChooser">
+<link rel="up" href="ch-NewInPyGTK2.4.html" title="ChapitreÂ 16.Â Nouveaux Widgets dans PyGTK 2.4">
+<link rel="prev" href="sec-EntryCompletion.html" title="16.4.Â Zone de saisie avec complÃ¨tement (EntryCompletion)">
+<link rel="next" href="sec-FileChoosers.html" title="16.6.Â SÃ©lection de fichier basÃ©e sur le sÃ©lecteur FileChooser">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">16.5. Expanseur (Expander)</th></tr>
+<tr><th colspan="3" align="center">16.5.Â Expanseur (Expander)</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-EntryCompletion.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 16. Nouveaux Widgets dans PyGTK 2.4</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-FileChoosers.html">Suiv.</a>
+<a accesskey="p" href="sec-EntryCompletion.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 16.Â Nouveaux Widgets dans PyGTK 2.4</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-FileChoosers.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,96 +36,96 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-ExpanderWidget"></a>16.5. Expanseur (Expander)</h2></div></div></div>
-<p>L'expanseur (<code class="classname">Expander</code>) est un conteneur  
-assez simple qui peut montrer ou cacher son widget fils en cliquant sur 
-un triangle semblable au triangle du <code class="classname">TreeView</code>. On 
-crée un <code class="classname">Expander</code> par le constructeur :
+<a name="sec-ExpanderWidget"></a>16.5.Â Expanseur (Expander)</h2></div></div></div>
+<p>L'expanseur (<code class="classname">Expander</code>) est un conteneur
+assez simple qui peut montrer ou cacher son widget fils en cliquant sur
+un triangle semblable au triangle du <code class="classname">TreeView</code>. On
+crÃ©e un <code class="classname">Expander</code> par le constructeurÂ :
 </p>
 <pre class="programlisting">
   expander = gtk.Expander(<strong class="parameter"><code>label</code></strong>=None)
 </pre>
-<p>... où le paramètre <em class="parameter"><code>label</code></em> est une chaîne de caractères 
-utilisée comme étiquette de l'expanseur. Si <em class="parameter"><code>label</code></em> vaut 
-<code class="literal">None</code> ou n'est pas défini, aucune étiquette ne sera créée. 
-D'une autre manière, on peut utiliser la fonction :
+<p>... oÃ¹ le paramÃ¨tre <em class="parameter"><code>label</code></em> est une chaÃ®ne de caractÃ¨res
+utilisÃ©e comme Ã©tiquette de l'expanseur. Si <em class="parameter"><code>label</code></em> vaut
+<code class="literal">None</code> ou n'est pas dÃ©fini, aucune Ã©tiquette ne sera crÃ©Ã©e.
+D'une autre maniÃ¨re, on peut utiliser la fonctionÂ :
 </p>
 <pre class="programlisting">
   expander = gtk.expander_new_with_mnemonic(<strong class="parameter"><code>label</code></strong>=None)
 </pre>
-<p>... qui définit le caractère de l'étiquette précédé par un trait de soulignement 
+<p>... qui dÃ©finit le caractÃ¨re de l'Ã©tiquette prÃ©cÃ©dÃ© par un trait de soulignement
 comme un raccourci-clavier.
 </p>
-<p>Le widget <code class="classname">Expander</code> utilise l'API de 
-<code class="classname">Container</code> pour ajouter ou retirer son widget fils :
+<p>Le widget <code class="classname">Expander</code> utilise l'API de
+<code class="classname">Container</code> pour ajouter ou retirer son widget filsÂ :
 </p>
 <pre class="programlisting">
   expander.add(<strong class="parameter"><code>widget</code></strong>)
 
   expander.remove(<strong class="parameter"><code>widget</code></strong>)
 </pre>
-<p>Le widget fils peut être récupéré en utilisant l'attribut 
-"child" de <code class="classname">Bin</code> ou par la méthode 
+<p>Le widget fils peut Ãªtre rÃ©cupÃ©rÃ© en utilisant l'attribut
+"child" de <code class="classname">Bin</code> ou par la mÃ©thode
 <code class="methodname">get_child</code>().
 </p>
-<p>L'option qui contrôle l'interprétation des caractères soulignés de l'étiquette 
-peut être récupérée et modifiée par ces méthodes :
+<p>L'option qui contrÃ´le l'interprÃ©tation des caractÃ¨res soulignÃ©s de l'Ã©tiquette
+peut Ãªtre rÃ©cupÃ©rÃ©e et modifiÃ©e par ces mÃ©thodesÂ :
 </p>
 <pre class="programlisting">
   use_underline = expander.get_use_underline()
 
   expander.set_use_underline(use_underline)
 </pre>
-<p>Si on souhaite utiliser le marquage Pango (voir les détails dans 
+<p>Si on souhaite utiliser le marquage Pango (voir les dÃ©tails dans
 <a href="http://www.pygtk.org/pygtk2reference/pango-markup-language.html" target="_top">
-Référence du marquage Pango</a>) dans le libellé de l'étiquette, il faut utiliser 
-les méthodes suivantes pour récupérer et définir l'état de la propriété 
-"use-markup" :
+RÃ©fÃ©rence du marquage Pango</a>) dans le libellÃ© de l'Ã©tiquette, il faut utiliser
+les mÃ©thodes suivantes pour rÃ©cupÃ©rer et dÃ©finir l'Ã©tat de la propriÃ©tÃ©
+"use-markup"Â :
 </p>
 <pre class="programlisting">
   expander.set_use_markup(<strong class="parameter"><code>use_markup</code></strong>)
 
   use_markup = expander.get_use_markup()
 </pre>
-<p>Enfin, on peut utiliser n'importe quel widget comme label en utilisant la 
-méthode suivante :
+<p>Enfin, on peut utiliser n'importe quel widget comme label en utilisant la
+mÃ©thode suivanteÂ :
 </p>
 <pre class="programlisting">
   expander.set_label_widget(<strong class="parameter"><code>label_widget</code></strong>)
 </pre>
-<p>Ceci permet, par exemple, d'utiliser une boîte <code class="classname">HBox</code> 
-contenant une <code class="classname">Image</code> et un <code class="classname">Label</code> 
-comme étiquette du <code class="classname">Expander</code>.
+<p>Ceci permet, par exemple, d'utiliser une boÃ®te <code class="classname">HBox</code>
+contenant une <code class="classname">Image</code> et un <code class="classname">Label</code>
+comme Ã©tiquette du <code class="classname">Expander</code>.
 </p>
-<p>L'état du <code class="classname">Expander</code> peut être récupéré et défini par 
-ces méthodes :
+<p>L'Ã©tat du <code class="classname">Expander</code> peut Ãªtre rÃ©cupÃ©rÃ© et dÃ©fini par
+ces mÃ©thodesÂ :
 </p>
 <pre class="programlisting">
   expanded = expander.get_expanded()
 
   expander.set_expanded(<strong class="parameter"><code>expanded</code></strong>)
 </pre>
-<p>Si le paramètre <em class="parameter"><code>expanded</code></em> vaut <code class="literal">TRUE</code>, 
-le widget fils est affiché.
+<p>Si le paramÃ¨tre <em class="parameter"><code>expanded</code></em> vaut <code class="literal">TRUE</code>,
+le widget fils est affichÃ©.
 </p>
-<p>Dans la plupart des cas, le <code class="classname">Expander</code> effectue 
-automatiquement ce que l'on veut lorqu'il affiche ou cache le widget fils. 
-Parfois, l'application peut vouloir créer un widget fils au moment de l'expansion. 
-Le signal "notify::expanded" peut être utilisé pour garder trace des changement d'état 
-du triangle d'expansion. Le gestionnaire de signal peut alors créer ou modidier 
+<p>Dans la plupart des cas, le <code class="classname">Expander</code> effectue
+automatiquement ce que l'on veut lorqu'il affiche ou cache le widget fils.
+Parfois, l'application peut vouloir crÃ©er un widget fils au moment de l'expansion.
+Le signal "notify::expanded" peut Ãªtre utilisÃ© pour garder trace des changement d'Ã©tat
+du triangle d'expansion. Le gestionnaire de signal peut alors crÃ©er ou modidier
 le widget fils en fonction des besoins.
 </p>
 <p>Le programme d'exemple <a href="exemples/expander.py" target="_top">
-  <span><strong class="command">expander.py</strong></span>  </a> illustre 
-l'utilisation du <code class="classname">Expander</code>. La 
-<a href="sec-ExpanderWidget.html#expanderfig" title="Figure 16.11. Expander Widget">Figure 16.11, « Expander Widget »</a> montre le programme en cours 
-d'exécution.
+  <span><strong class="command">expander.py</strong></span>  </a> illustre
+l'utilisation du <code class="classname">Expander</code>. La
+<a href="sec-ExpanderWidget.html#expanderfig" title="FigureÂ 16.11.Â Expander Widget">FigureÂ 16.11, Â«Â Expander WidgetÂ Â»</a> montre le programme en cours
+d'exÃ©cution.
 </p>
 <div class="figure">
-<a name="expanderfig"></a><p class="title"><b>Figure 16.11. Expander Widget</b></p>
+<a name="expanderfig"></a><p class="title"><b>FigureÂ 16.11.Â Expander Widget</b></p>
 <div class="mediaobject" align="center"><img src="figures/expander.png" align="middle" alt="Exemple d'expanseur."></div>
 </div>
-<p>Ce programme crée un <code class="classname">Label</code> contenant le temps courant et 
+<p>Ce programme crÃ©e un <code class="classname">Label</code> contenant le temps courant et
 l'affiche quand l'expanseur est ouvert.
 </p>
 </div>
@@ -133,15 +134,15 @@ l'affiche quand l'expanseur est ouvert.
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-EntryCompletion.html">Préc.</a> </td>
+<a accesskey="p" href="sec-EntryCompletion.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-NewInPyGTK2.4.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-FileChoosers.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-FileChoosers.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">16.4. Zone de saisie avec complètement (EntryCompletion) </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 16.6. Sélection de fichier basée sur le sélecteur FileChooser</td>
+<td width="40%" align="left" valign="top">16.4.Â Zone de saisie avec complÃ¨tement (EntryCompletion)Â </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 16.6.Â SÃ©lection de fichier basÃ©e sur le sÃ©lecteur FileChooser</td>
 </tr>
 </table>
 </div>

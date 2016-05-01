@@ -1,10 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>7.2. Utiliser facilement les ajustements</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,adjustment,ajustement">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -14,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici : 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici :
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En-t&ecirc;te de navigation">
 <tr>
@@ -41,9 +41,9 @@ Vous êtes à peu près ici :
 <p>Vous devez &ecirc;tre en train de vous dire que puisque les zones de texte et les vues orientables insistent pour tout d&eacute;finir except&eacute; la valeur de leurs ajustements, et puisque les barres de d&eacute;filement ne touchent qu'&agrave; la valeur de l'ajustement, alors si l'on partage un ajustement entre une barre de d&eacute;filement et une zone de texte, manipuler la barre de d&eacute;filement devrait ajuster comme par magie la zone de texte. Parfaitement ! &Ccedil;a se passe comme &ccedil;a :</p>
 
 <pre class="programlisting">
-  # Elle crée ses propres ajustements
+  # Elle crÃ©e ses propres ajustements
   vue_orientable = gtk.Viewport()
-  # l'ajustement qui vient d'être créé servira aussi pour la barre de défilement
+  # l'ajustement qui vient d'Ãªtre crÃ©Ã© servira aussi pour la barre de dÃ©filement
   barredef_v = gtk.VScrollbar(vue_orientable.get_vadjustment())
 </pre>
 </div>

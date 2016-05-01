@@ -1,10 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-15" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>9.13. Le s&eacute;lecteur de couleur</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,selection,couleur">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -14,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici&nbsp;: 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃšs ici&nbsp;:
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="En-t&ecirc;te de navigation">
 <tr>
@@ -83,99 +83,99 @@ Vous êtes à peu près ici&nbsp;:
 <div class="figure"><a name="FigSelectCouleur"></a>
 <p class="title"><b>Figure 9.13. Exemple de s&eacute;lecteur de couleur</b></p>
 <div class="mediaobject" align="center">
-<img src="figures/selectcouleur.png" align="middle" alt="exemple sélecteur de couleur">
+<img src="figures/selectcouleur.png" align="middle" alt="exemple sÃ©lecteur de couleur">
 </div></div>
 
 <p>Le code source de <a href="exemples/selectcouleur.py" target="_top"><b>selectcouleur.py</b></a> est le suivant&nbsp;:</p>
 
 <pre class="programlisting">
      1   #!/usr/bin/env python
-     2   
+     2
      3   # exemple selectcouleur.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8   
+     8
      9   class ExempleSelecteurCouleur:
     10       # Gestionnaire du signal "color_changed"
     11       def rappel_color_changed(self, widget):
     12           # On recupere la table des couleurs de la zone de dessin
     13           tablecouleurs = self.zonedessin.get_colormap()
-    14   
+    14
     15           # On recupere la couleur courante
     16           couleur = self.dialselectcouleur.colorsel.get_current_color()
-    17   
+    17
     18           # On definit la couleur d'arriere plan de la fenetre
     19           self.zonedessin.modify_bg(gtk.STATE_NORMAL, couleur)
-    20   
+    20
     21       # Gestionnaire d'evenement de la zone de dessin
     22       def evnmt_zone(self, widget, evnmt):
     23           prisencharge = False
-    24   
+    24
     25           # On verifie si on a recu un evenement "button-press"
     26           if evnmt.type == gtk.gdk.BUTTON_PRESS:
     27               prisencharge = True
-    28   
+    28
     29               # Creation de la boite de dialogue du selecteur de couleur
     30               if self.dialselectcouleur == None:
     31                   self.dialselectcouleur = gtk.ColorSelectionDialog(
     32                       "Selection de la couleur d'arriere-plan")
-    33   
+    33
     34               # On recupere le selecteur de couleur
     35               selectcouleur = self.dialselectcouleur.colorsel
-    36   
+    36
     37               selectcouleur.set_previous_color(self.couleur)
     38               selectcouleur.set_current_color(self.couleur)
     39               selectcouleur.set_has_palette(True)
-    40   
+    40
     41               # Connexion au signal "color_changed"
     42               selectcouleur.connect("color_changed", self.rappel_color_changed)
     43               # Affichage de la boite de dialogue
     44               reponse = self.dialselectcouleur.run()
-    45   
+    45
     46               if reponse -- gtk.RESPONSE_OK:
     47                   self.couleur = selectcouleur.get_current_color()
     48               else:
     49                   self.zonedessin.modify_bg(gtk.STATE_NORMAL, self.couleur)
-    50   
+    50
     51               self.dialselectcouleur.hide()
-    52   
+    52
     53           return prisencharge
-    54   
+    54
     55       # Fermeture et sortie du gestionnaire
     56       def destruct_fenetre(self, widget, evnmt):
     57           gtk.main_quit()
     58           return True
-    59   
+    59
     60       def __init__(self):
     61           self.dialselectcouleur = None
     62           # Creation d'une fenetre racine + titre + modes
     63           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
     64           fenetre.set_title("Test de selection de couleur")
     65           fenetre.set_resizable(True)
-    66   
+    66
     67           # Connexion aux evenements "delete" et "destroy" pour pouvoir sortir
     68           fenetre.connect("delete_event", self.destruct_fenetre)
-    69     
+    69
     70           # Creation de la zone de dessin + taille + recup evnmts des boutons
     71           self.zonedessin = gtk.DrawingArea()
-    72   
+    72
     73           self.couleur = self.zonedessin.get_colormap().alloc_color(0, 65535, 0)
-    74   
+    74
     75           self.zonedessin.set_size_request(200, 200)
     76           self.zonedessin.set_events(gtk.gdk.BUTTON_PRESS_MASK)
     77           self.zonedessin.connect("event", self.evnmt_zone)
-    78     
+    78
     79           # Ajout de la zone de dessin a la fenetre, puis affichage des deux
     80           fenetre.add(self.zonedessin)
     81           self.zonedessin.show()
     82           fenetre.show()
-    83     
+    83
     84   def main():
     85       gtk.main()
     86       return 0
-    87   
+    87
     88   if __name__ == "__main__":
     89       ExempleSelecteurCouleur()
     90       main()

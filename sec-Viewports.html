@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>10.8. Viewports</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>10.8.Â Viewports</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-ContainerWidgets.html" title="Chapitre 10. Les widgets conteneurs">
-<link rel="prev" href="sec-PanedWindowWidgets.html" title="10.7. Fenêtre à volets (Paned Window)">
-<link rel="next" href="sec-ScrolledWindows.html" title="10.9. Fenêtre avec barres de défilement (Scrolled Window)">
+<link rel="up" href="ch-ContainerWidgets.html" title="ChapitreÂ 10.Â Les widgets conteneurs">
+<link rel="prev" href="sec-PanedWindowWidgets.html" title="10.7.Â FenÃªtre Ã  volets (Paned Window)">
+<link rel="next" href="sec-ScrolledWindows.html" title="10.9.Â FenÃªtre avec barres de dÃ©filement (Scrolled Window)">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">10.8. Viewports</th></tr>
+<tr><th colspan="3" align="center">10.8.Â Viewports</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-PanedWindowWidgets.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 10. Les widgets conteneurs</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-ScrolledWindows.html">Suiv.</a>
+<a accesskey="p" href="sec-PanedWindowWidgets.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 10.Â Les widgets conteneurs</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-ScrolledWindows.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,28 +36,28 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-Viewports"></a>10.8. Viewports</h2></div></div></div>
-<p>Il y a peu de chances que vous ayez besoin d'utiliser directement le 
-widget <code class="classname">Viewport</code>. Plus problablement, vous utiliserez 
-le widget <code class="classname">ScrolledWindow</code> (voir 
-<a href="sec-ScrolledWindows.html" title="10.9. Fenêtre avec barres de défilement (Scrolled Window)">Section 10.9, « Fenêtre avec barres de défilement (Scrolled Window) »</a>) qui lui, utilise 
+<a name="sec-Viewports"></a>10.8.Â Viewports</h2></div></div></div>
+<p>Il y a peu de chances que vous ayez besoin d'utiliser directement le
+widget <code class="classname">Viewport</code>. Plus problablement, vous utiliserez
+le widget <code class="classname">ScrolledWindow</code> (voir
+<a href="sec-ScrolledWindows.html" title="10.9.Â FenÃªtre avec barres de dÃ©filement (Scrolled Window)">SectionÂ 10.9, Â«Â FenÃªtre avec barres de dÃ©filement (Scrolled Window)Â Â»</a>) qui lui, utilise
 <code class="classname">Viewport</code>.</p>
-<p>Un widget Viewport permet de placer un widget plus grand à l'intérieur 
-de lui-même de sorte qu'il n'est possible de voir qu'une partie de 
-celui-ci à la fois. Il utilise l'objet <code class="classname">Adjustment</code> 
-(voir <a href="ch-Adjustments.html" title="Chapitre 7. Adjustments">Chapitre 7, <i>Adjustments</i></a>) pour définir la partie 
+<p>Un widget Viewport permet de placer un widget plus grand Ã  l'intÃ©rieur
+de lui-mÃªme de sorte qu'il n'est possible de voir qu'une partie de
+celui-ci Ã  la fois. Il utilise l'objet <code class="classname">Adjustment</code>
+(voir <a href="ch-Adjustments.html" title="ChapitreÂ 7.Â Adjustments">ChapitreÂ 7, <i>Adjustments</i></a>) pour dÃ©finir la partie
 actuellement visible.</p>
-<p>On crée un <code class="classname">Viewport</code> par la fonction :</p>
+<p>On crÃ©e un <code class="classname">Viewport</code> par la fonctionÂ :</p>
 <pre class="programlisting">
   viewport = gtk.Viewport(<strong class="parameter"><code>hadjustment</code></strong>=None, <strong class="parameter"><code>vadjustment</code></strong>=None)
 </pre>
-<p>Comme on peut le constater, on peut préciser lors de la 
-création du widget les objets <code class="classname">Adjustment</code> verticaux 
-et horizontaux qu'il devra utiliser. Le widget créera ses propres 
-ajustements si on attribue la valeur <code class="literal">None</code> aux arguments 
+<p>Comme on peut le constater, on peut prÃ©ciser lors de la
+crÃ©ation du widget les objets <code class="classname">Adjustment</code> verticaux
+et horizontaux qu'il devra utiliser. Le widget crÃ©era ses propres
+ajustements si on attribue la valeur <code class="literal">None</code> aux arguments
 ou si on n'utilise pas d'arguments.</p>
-<p>Il est possible de retrouver et de définir les ajustements après 
-la création du widget grâce aux quatre méthodes suivantes :</p>
+<p>Il est possible de retrouver et de dÃ©finir les ajustements aprÃ¨s
+la crÃ©ation du widget grÃ¢ce aux quatre mÃ©thodes suivantesÂ :</p>
 <pre class="programlisting">
   viewport.get_hadjustment()
 
@@ -66,19 +67,19 @@ la création du widget grâce aux quatre méthodes suivantes :</p>
 
   viewport.set_vadjustment(<strong class="parameter"><code>adjustment</code></strong>)
 </pre>
-<p>La seule autre méthode de viewport sert à modifier 
-      son apparence :</p>
+<p>La seule autre mÃ©thode de viewport sert Ã  modifier
+      son apparenceÂ :</p>
 <pre class="programlisting">
   viewport.set_shadow_type(<strong class="parameter"><code>type</code></strong>)
 </pre>
-<p>Voici les valeurs possibles pour le paramètre 
-      <em class="parameter"><code>type</code></em> :</p>
+<p>Voici les valeurs possibles pour le paramÃ¨tre
+      <em class="parameter"><code>type</code></em>Â :</p>
 <pre class="programlisting">
   SHADOW_NONE           # pas d'ombrage
   SHADOW_IN             # ombrage interieur
   SHADOW_OUT            # ombrage exterieur
-  SHADOW_ETCHED_IN      # ombrage gravé en creux
-  SHADOW_ETCHED_OUT     # ombrage gravé en relief
+  SHADOW_ETCHED_IN      # ombrage gravÃ© en creux
+  SHADOW_ETCHED_OUT     # ombrage gravÃ© en relief
 </pre>
 </div>
 <div class="navfooter">
@@ -86,15 +87,15 @@ la création du widget grâce aux quatre méthodes suivantes :</p>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-PanedWindowWidgets.html">Préc.</a> </td>
+<a accesskey="p" href="sec-PanedWindowWidgets.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-ContainerWidgets.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-ScrolledWindows.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-ScrolledWindows.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">10.7. Fenêtre à volets (Paned Window) </td>
+<td width="40%" align="left" valign="top">10.7.Â FenÃªtre Ã  volets (Paned Window)Â </td>
 <td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
-<td width="40%" align="right" valign="top"> 10.9. Fenêtre avec barres de défilement (Scrolled Window)</td>
+<td width="40%" align="right" valign="top">Â 10.9.Â FenÃªtre avec barres de dÃ©filement (Scrolled Window)</td>
 </tr>
 </table>
 </div>

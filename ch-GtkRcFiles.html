@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Chapitre 23. Les fichiers de style rc GTK</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>ChapitreÂ 23.Â Les fichiers de style rc GTK</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="Bluefish 1.0.5">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="up" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="prev" href="sec-DNDMethods.html" title="22.3. Méthodes du glisser-déposer">
-<link rel="next" href="sec-GTKRcFileFormat.html" title="23.2. Format du fichier rc GTK">
+<link rel="prev" href="sec-DNDMethods.html" title="22.3.Â MÃ©thodes du glisser-dÃ©poser">
+<link rel="next" href="sec-GTKRcFileFormat.html" title="23.2.Â Format du fichier rc GTK">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">Chapitre 23. Les fichiers de style rc GTK</th></tr>
+<tr><th colspan="3" align="center">ChapitreÂ 23.Â Les fichiers de style rc GTK</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-DNDMethods.html">Préc.</a> </td>
-<th width="60%" align="center"> </th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-GTKRcFileFormat.html">Suiv.</a>
+<a accesskey="p" href="sec-DNDMethods.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">Â </th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-GTKRcFileFormat.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,67 +36,67 @@
 </div>
 <div class="chapter" lang="fr">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="ch-GtkRcFiles"></a>Chapitre 23. Les fichiers de style rc GTK</h2></div></div></div>
+<a name="ch-GtkRcFiles"></a>ChapitreÂ 23.Â Les fichiers de style rc GTK</h2></div></div></div>
 <div class="toc">
-<p><b>Table des matières</b></p>
+<p><b>Table des matiÃ¨res</b></p>
 <dl>
 <dt><span class="sect1"><a href="ch-GtkRcFiles.html#sec-FunctionsForRcFiles">23.1. Les fonctions pour le fichier rc</a></span></dt>
 <dt><span class="sect1"><a href="sec-GTKRcFileFormat.html">23.2. Format du fichier rc GTK</a></span></dt>
 <dt><span class="sect1"><a href="sec-ExampleRcFile.html">23.3. Exemple de fichier rc</a></span></dt>
 </dl>
 </div>
-<p>GTK+ possède sa propre manière de traiter avec les 
-paramètres par défaut des applications, en utilisant des fichiers rc. Ceux-ci 
-peuvent servir pour définir les couleurs de n'importe quel widget, ils peuvent 
-aussi, pour quelques widgets, servir à définir un arrière-plan avec un pixmap 
-en mosaïque.</p>
+<p>GTK+ possÃ¨de sa propre maniÃ¨re de traiter avec les
+paramÃ¨tres par dÃ©faut des applications, en utilisant des fichiers rc. Ceux-ci
+peuvent servir pour dÃ©finir les couleurs de n'importe quel widget, ils peuvent
+aussi, pour quelques widgets, servir Ã  dÃ©finir un arriÃ¨re-plan avec un pixmap
+en mosaÃ¯que.</p>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-FunctionsForRcFiles"></a>23.1. Les fonctions pour le fichier rc</h2></div></div></div>
-<p>Au début de l'application, il faut inclure un appel à :</p>
+<a name="sec-FunctionsForRcFiles"></a>23.1.Â Les fonctions pour le fichier rc</h2></div></div></div>
+<p>Au dÃ©but de l'application, il faut inclure un appel Ã Â :</p>
 <pre class="programlisting">
   rc_parse(<strong class="parameter"><code>nom_du_fichier</code></strong>)
 </pre>
-<p>Le paramètre <em class="parameter"><code>nom_du_fichier</code></em> correspond au fichier rc. 
-Ceci force GTK+ à analyser ce fichier et à utiliser les styles définis pour 
-les types de widgets qui y sont décrits.</p>
-<p>Si l'on souhaite avoir un ensemble spécifique de widgets possédant 
-un style différents des autres ou réaliser un quelconque groupement 
-particulier de widgets, il faut utiliser :</p>
+<p>Le paramÃ¨tre <em class="parameter"><code>nom_du_fichier</code></em> correspond au fichier rc.
+Ceci force GTK+ Ã  analyser ce fichier et Ã  utiliser les styles dÃ©finis pour
+les types de widgets qui y sont dÃ©crits.</p>
+<p>Si l'on souhaite avoir un ensemble spÃ©cifique de widgets possÃ©dant
+un style diffÃ©rents des autres ou rÃ©aliser un quelconque groupement
+particulier de widgets, il faut utiliserÂ :</p>
 <pre class="programlisting">
   widget.set_name(<strong class="parameter"><code>nom</code></strong>)
 </pre>
-<p>Le <em class="parameter"><code>nom</code></em> choisi sera assigné au nouveau 
-<em class="parameter"><code>widget</code></em> créé. Ceci permet de modifier les attributs de  
+<p>Le <em class="parameter"><code>nom</code></em> choisi sera assignÃ© au nouveau
+<em class="parameter"><code>widget</code></em> crÃ©Ã©. Ceci permet de modifier les attributs de
 ce <em class="parameter"><code>widget</code></em> dans le fichier rc en utilisant son nom.</p>
-<p>Si l'on utilise un appel comme celui-ci :</p>
+<p>Si l'on utilise un appel comme celui-ciÂ :</p>
 <pre class="programlisting">
   button = gtk.Button("Special Button")
 
   button.set_name("special button")
 </pre>
-<p>... alors ce bouton <em class="parameter"><code>button</code></em> reçoit le nom 
-"special button" et on peut y faire référence dans le fichier rc par le nom 
-"special button.GtkButton". [---&nbsp;Vérifiez-le !]
+<p>... alors ce bouton <em class="parameter"><code>button</code></em> reÃ§oit le nom
+"special button" et on peut y faire rÃ©fÃ©rence dans le fichier rc par le nom
+"special button.GtkButton". [---&nbsp;VÃ©rifiez-le !]
 </p>
-<p>La <a href="sec-ExampleRcFile.html" title="23.3. Exemple de fichier rc">Section 23.3, « Exemple de fichier rc »</a> ci-dessous définit 
-les propriétés de la fenêtre principale, tous les enfants de cette 
-fenêtre héritent du style décrit par le style "bouton principal". 
-Voici le code utilisé :</p>
+<p>La <a href="sec-ExampleRcFile.html" title="23.3.Â Exemple de fichier rc">SectionÂ 23.3, Â«Â Exemple de fichier rcÂ Â»</a> ci-dessous dÃ©finit
+les propriÃ©tÃ©s de la fenÃªtre principale, tous les enfants de cette
+fenÃªtre hÃ©ritent du style dÃ©crit par le style "bouton principal".
+Voici le code utilisÃ©Â :</p>
 <pre class="programlisting">
   window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 
   window.set_name("main window")
 </pre>
-<p>... et le style est défini, dans le fichier rc, par :</p>
+<p>... et le style est dÃ©fini, dans le fichier rc, parÂ :</p>
 <pre class="programlisting">
   widget "main window.*GtkButton*" style "main_button"
 </pre>
-<p>... qui applique à tous les widgets <code class="classname">Button</code> 
-(voir le <a href="ch-ButtonWidget.html" title="Chapitre 6. Les boutons">Chapitre 6, <i>Les boutons</i></a>) de la fenêtre 
-principale "main window" le style "main_buttons" tel qu'il est défini 
+<p>... qui applique Ã  tous les widgets <code class="classname">Button</code>
+(voir le <a href="ch-ButtonWidget.html" title="ChapitreÂ 6.Â Les boutons">ChapitreÂ 6, <i>Les boutons</i></a>) de la fenÃªtre
+principale "main window" le style "main_buttons" tel qu'il est dÃ©fini
 dans le fichier rc.</p>
-<p>Ainsi qu'on peut le constater, c'est un système assez souple et 
+<p>Ainsi qu'on peut le constater, c'est un systÃ¨me assez souple et
 puissant. Utilisez votre imagination pour en profiter au maximum.</p>
 </div>
 </div>
@@ -104,15 +105,15 @@ puissant. Utilisez votre imagination pour en profiter au maximum.</p>
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-DNDMethods.html">Préc.</a> </td>
-<td width="20%" align="center"> </td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-GTKRcFileFormat.html">Suiv.</a>
+<a accesskey="p" href="sec-DNDMethods.html">PrÃ©c.</a>Â </td>
+<td width="20%" align="center">Â </td>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-GTKRcFileFormat.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">22.3. Méthodes du glisser-déposer </td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
-<td width="40%" align="right" valign="top"> 23.2. Format du fichier rc GTK</td>
+<td width="40%" align="left" valign="top">22.3.Â MÃ©thodes du glisser-dÃ©poserÂ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matiÃ¨res</a></td>
+<td width="40%" align="right" valign="top">Â 23.2.Â Format du fichier rc GTK</td>
 </tr>
 </table>
 </div>

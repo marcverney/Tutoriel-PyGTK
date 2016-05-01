@@ -1,11 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type">
+    <meta charset="utf-8">
 <title>6.3. Les cases &agrave; cocher</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,bouton,coche">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&egrave;res">
@@ -15,12 +14,12 @@
 </head>
 
 <body>
-<div class="localisation"> 
-Vous êtes à peu près ici : 
+<div class="localisation">
+Vous Ãªtes Ã  peu prÃ¨s ici :
 <a href="../../index.html">Accueil</a>&nbsp;  &raquo;  &nbsp;
 <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
-</div> <!-- fin localisation --> 
+</div> <!-- fin localisation -->
 <div class="navheader">
 
 <table width="100%" summary="En-t&ecirc;te de navigation">
@@ -37,32 +36,32 @@ Vous êtes à peu près ici :
 
 <div class="sect1">
 <div class="titlepage">
-<div><h2 class="title" style="clear: both"><a name="sec-CheckButtons"></a>6.3. Les cases 
+<div><h2 class="title" style="clear: both"><a name="sec-CheckButtons"></a>6.3. Les cases
 &agrave; cocher</h2>
 </div></div>
 
-<p>Les case &agrave; cocher h&eacute;ritent de nombreuses propri&eacute;t&eacute;s et 
-m&eacute;thodes des boutons &agrave; bascules vus pr&eacute;c&eacute;demment. Leur aspect 
-est cependant diff&eacute;rent&nbsp;: il ne s'agit plus de boutons avec du texte &agrave; 
-l'int&eacute;rieur mais de petits carr&eacute;s portant le texte &agrave; leur droite. 
+<p>Les case &agrave; cocher h&eacute;ritent de nombreuses propri&eacute;t&eacute;s et
+m&eacute;thodes des boutons &agrave; bascules vus pr&eacute;c&eacute;demment. Leur aspect
+est cependant diff&eacute;rent&nbsp;: il ne s'agit plus de boutons avec du texte &agrave;
+l'int&eacute;rieur mais de petits carr&eacute;s portant le texte &agrave; leur droite.
 Elles servent souvent pour activer/d&eacute;sactiver des options dans les applications.</p>
-<p>La m&eacute;thode de cr&eacute;ation est semblable &agrave; celle des boutons 
+<p>La m&eacute;thode de cr&eacute;ation est semblable &agrave; celle des boutons
 normaux&nbsp;:</p>
 
 <pre class="programlisting">
   case_a_cocher = gtk.CheckButton(<b>label</b>=None)
 </pre>
 
-<p>Si l'argument <i><tt>label</tt></i> est fourni, la m&eacute;thode cr&eacute;e une case 
-&agrave; cocher avec une &eacute;tiquette &agrave son c&ocirc;t&eacute;. Le texte 
-donn&eacute; sera inspect&eacute; &agrave; la recherche de caract&egrave;res 
+<p>Si l'argument <i><tt>label</tt></i> est fourni, la m&eacute;thode cr&eacute;e une case
+&agrave; cocher avec une &eacute;tiquette &agrave son c&ocirc;t&eacute;. Le texte
+donn&eacute; sera inspect&eacute; &agrave; la recherche de caract&egrave;res
 mn&eacute;moniques (pr&eacute;fix&eacute;s par '<tt>_</tt>').</p>
-<p>Les op&eacute;rations de v&eacute;rification et de d&eacute;finition de l'&eacute;tat 
+<p>Les op&eacute;rations de v&eacute;rification et de d&eacute;finition de l'&eacute;tat
 des cases &agrave; cocher sont identiques &agrave; celles des boutons &agrave; bascule.</p>
-<p>Le programme <a href="exemples/casesacocher.py" target="_top"><b>casesacocher.py</b></a> 
-donne une exemple d'utilisation des cases &agrave; cocher. La 
-<a title="Figure 6.3. Exemple de cases &agrave; cocher" 
-href="sec-CheckButtons.html#CasesCocherfig">figure 6.3</a> montre la fen&ecirc;tre 
+<p>Le programme <a href="exemples/casesacocher.py" target="_top"><b>casesacocher.py</b></a>
+donne une exemple d'utilisation des cases &agrave; cocher. La
+<a title="Figure 6.3. Exemple de cases &agrave; cocher"
+href="sec-CheckButtons.html#CasesCocherfig">figure 6.3</a> montre la fen&ecirc;tre
 obtenue&nbsp;:</p>
 
 <div class="figure"><a name="CasesCocherfig"></a><p class="title">
@@ -74,87 +73,87 @@ obtenue&nbsp;:</p>
 
 <pre class="programlisting">
      1   #!/usr/bin/env python
-     2   
+     2
      3   # exemple casesacocher.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk
-     8    
+     8
      9   class Casesacocher:
     10       # Notre fonction de rappel. Le parametre "donnees"
     11       # transmis a cette methode est affiche sur stdout
     12       def fct_rappel(self, widget, donnees=None):
     13           print "La %s a ete %s." % (donnees, ("desactivee", "activee")[widget.get_active()])
-    14   
+    14
     15       # Cette fonction de rappel quitte le programme
     16       def evnmt_delete(self, widget, evenement, donnees=None):
     17           gtk.main_quit()
     18           return gtk.FALSE
-    19   
+    19
     20       def __init__(self):
     21           # Creation d'une nouvelle fenetre.
     22           self.fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    23   
+    23
     24           # On definit le titre de la fenetre.
     25           self.fenetre.set_title("Cases a cocher")
-    26   
+    26
     27           # On definit un gestionnaire de signal pour "delete_event",
     28           # qui quitte GTK immediatement.
     29           self.fenetre.connect("delete_event", self.evnmt_delete)
-    30   
+    30
     31           # On fixe la largeur des bordures de la fenetre.
     32           self.fenetre.set_border_width(20)
-    33   
+    33
     34           # Creation d'une boite verticale.
     35           boite_v = gtk.VBox(True, 2)
-    36   
+    36
     37           # On place la VBox dans la fenetre principale.
     38           self.fenetre.add(boite_v)
-    39   
+    39
     40           # Creation du premier bouton.
     41           bouton = gtk.CheckButton("case a cocher 1")
-    42   
+    42
     43           # Lorsque l'on change l'etat du bouton, la methode fct_rappel() est
     44           # appelee, avec un pointeur sur "case a cocher 1" comme argument.
     45           bouton.connect("toggled", self.fct_rappel, "case a cocher 1")
-    46   
-    47   
+    46
+    47
     48           # Insertion du bouton 1 dans le quart superieur gauche du tableau.
     49           boite_v.pack_start(bouton, True, True, 2)
-    50   
+    50
     51           bouton.show()
-    52   
+    52
     53           # Creation du deuxieme bouton.
-    54   
+    54
     55           bouton = gtk.CheckButton("case a cocher 2")
-    56   
+    56
     57           # Lorsque l'on change l'etat du bouton, la methode fct_rappel() est
     58           # appelee, avec un pointeur sur "case a cocher 2" comme argument.
     59           bouton.connect("toggled", self.fct_rappel, "case a cocher 2")
     60           # Insertion du bouton 2 dans le quart superieur droit du tableau.
     61           boite_v.pack_start(bouton, True, True, 2)
-    62   
+    62
     63           bouton.show()
-    64   
+    64
     65           # Creation du bouton "Quitter".
     66           bouton = gtk.Button("Quitter")
-    67   
+    67
     68           # Lorsque l'on clique sur le bouton, la fonction mainquit() est
     69           # appelee et le programme se termine.
     70           bouton.connect("clicked", lambda wid: gtk.main_quit())
-    71   
+    71
     72           # Insertion du bouton "Quitter" dans les deux quarts inferieurs du tableau.
     73           boite_v.pack_start(bouton, True, True, 2)
-    74   
+    74
     75           bouton.show()
     76           boite_v.show()
     77           self.fenetre.show()
-    78   
+    78
     79   def main():
     80       gtk.main()
-    81       return 0       
-    82    
+    81       return 0
+    82
     83   if __name__ == "__main__":
     84       Casesacocher()
     85       main()

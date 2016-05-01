@@ -1,20 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>10.7. Fenêtre à volets (Paned Window)</title>
-<link rel="stylesheet" href="pygtktutfr.css" type="text/css">
+    <meta charset="utf-8">
+<title>10.7.Â FenÃªtre Ã  volets (Paned Window)</title>
+<link rel="stylesheet" href="pygtktutfr.css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="up" href="ch-ContainerWidgets.html" title="Chapitre 10. Les widgets conteneurs">
-<link rel="prev" href="sec-AspectFrames.html" title="10.6. Les cadres proportionnels (AspectFrame)">
-<link rel="next" href="sec-Viewports.html" title="10.8. Viewports">
+<link rel="up" href="ch-ContainerWidgets.html" title="ChapitreÂ 10.Â Les widgets conteneurs">
+<link rel="prev" href="sec-AspectFrames.html" title="10.6.Â Les cadres proportionnels (AspectFrame)">
+<link rel="next" href="sec-Viewports.html" title="10.8.Â Viewports">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction">
-<link rel="home" href="index.html" title="Table des matières">
+<link rel="home" href="index.html" title="Table des matiÃ¨res">
 </head>
 <body>
-<div class="localisation"> 
- Vous êtes à peu près ici :  
+<div class="localisation">
+ Vous Ãªtes Ã  peu prÃ¨s ici :
  <a href="../../index.html">Accueil</a>&nbsp; &raquo; &nbsp;
  <a href="../pygtktut.php">tutoriel PyGTK</a>&nbsp; &raquo; &nbsp;
  <a href="index.html">PyGTK : sommaire</a>
@@ -22,12 +23,12 @@
 <!-- fin localisation -->
 <div class="navheader">
 <table width="100%" summary="Navigation header">
-<tr><th colspan="3" align="center">10.7. Fenêtre à volets (Paned Window)</th></tr>
+<tr><th colspan="3" align="center">10.7.Â FenÃªtre Ã  volets (Paned Window)</th></tr>
 <tr>
 <td width="20%" align="left">
-<a accesskey="p" href="sec-AspectFrames.html">Préc.</a> </td>
-<th width="60%" align="center">Chapitre 10. Les widgets conteneurs</th>
-<td width="20%" align="right"> <a accesskey="n" href="sec-Viewports.html">Suiv.</a>
+<a accesskey="p" href="sec-AspectFrames.html">PrÃ©c.</a>Â </td>
+<th width="60%" align="center">ChapitreÂ 10.Â Les widgets conteneurs</th>
+<td width="20%" align="right">Â <a accesskey="n" href="sec-Viewports.html">Suiv.</a>
 </td>
 </tr>
 </table>
@@ -35,93 +36,93 @@
 </div>
 <div class="sect1" lang="fr">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="sec-PanedWindowWidgets"></a>10.7. Fenêtre à volets (Paned Window)</h2></div></div></div>
-<p>Le widget de fenêtre à volets permet de diviser une zone en deux 
-parties, la taille relative de chaque partie est gérée par l'utilisateur. Un 
-sillon, dessiné entre les deux parties, possède une poignée qui permet 
-à l'utilisateur de modifier le partage. La dision peut être 
-horizontale (<code class="classname">HPaned</code>) ou verticale 
+<a name="sec-PanedWindowWidgets"></a>10.7.Â FenÃªtre Ã  volets (Paned Window)</h2></div></div></div>
+<p>Le widget de fenÃªtre Ã  volets permet de diviser une zone en deux
+parties, la taille relative de chaque partie est gÃ©rÃ©e par l'utilisateur. Un
+sillon, dessinÃ© entre les deux parties, possÃ¨de une poignÃ©e qui permet
+Ã  l'utilisateur de modifier le partage. La dision peut Ãªtre
+horizontale (<code class="classname">HPaned</code>) ou verticale
 (<code class="classname">VPaned</code>).
 </p>
-<p>Pour créer une nouvelle fenêtre à volets, on appelle :</p>
+<p>Pour crÃ©er une nouvelle fenÃªtre Ã  volets, on appelleÂ :</p>
 <pre class="programlisting">
   volet_horiz = gtk.HPaned()
 
   volet_vert = gtk.VPaned()
 </pre>
-<p>Après avoir créé la fenêtre à volets, il faut ajouter un widget enfant 
-dans chaque moitié. Pour cela, on utilise les méthodes :</p>
+<p>AprÃ¨s avoir crÃ©Ã© la fenÃªtre Ã  volets, il faut ajouter un widget enfant
+dans chaque moitiÃ©. Pour cela, on utilise les mÃ©thodesÂ :</p>
 <pre class="programlisting">
   volet.add1(<strong class="parameter"><code>enfant</code></strong>)
 
   volet.add2(<strong class="parameter"><code>enfant</code></strong>)
 </pre>
-<p>La méthode <code class="methodname">add1</code>() ajoute le widget 
-<em class="parameter"><code>enfant</code></em> au volet gauche ou supérieur,  
-la méthode <code class="methodname">add2</code>() ajoute le widget 
-<em class="parameter"><code>enfant</code></em> au volet droit ou inférieur de la fenêtre 
-à volets.
+<p>La mÃ©thode <code class="methodname">add1</code>() ajoute le widget
+<em class="parameter"><code>enfant</code></em> au volet gauche ou supÃ©rieur,
+la mÃ©thode <code class="methodname">add2</code>() ajoute le widget
+<em class="parameter"><code>enfant</code></em> au volet droit ou infÃ©rieur de la fenÃªtre
+Ã  volets.
 </p>
 <p>Le programme <a href="exemples/paned.py" target="_top"><span><strong class="command">paned.py</strong></span>
-</a> crée une partie de l'interface utilisateur d'un logiciel de 
-courrier électronique imaginaire. Une fenêtre est divisée en deux 
-parties verticales, la partie supérieure comprend une liste de 
-messages et la partie inférieure le texte du message. La plus grande part 
-du programme est plutôt simple. Deux points sont cependant à noter : 
-on ne peut ajouter de texte à un widget Texte tant qu'il n'est pas réalisé. 
-Ce qui peut être fait en appelant la méthode <code class="methodname">realize</code>(), 
-mais comme démonstration d'une technique alternative, on connecte un 
-gestionnaire au signal "realize" pour ajouter le texte. Il faudrait aussi ajouter 
-l'option <code class="varname">SHRINK</code> à certains des items dans la partie  
-contenant la fenêtre de texte et ses ascenseurs. Ainsi, lorsque la partie basse 
-est réduite, les sections corrigées diminuent au lieu de disparaître par le  
-bas de la fenêtre. La <a href="sec-PanedWindowWidgets.html#panedfig" title="Figure 10.6. Exemple de fenêtre à volets">Figure 10.6, « Exemple de fenêtre à volets »</a> illustre le 
+</a> crÃ©e une partie de l'interface utilisateur d'un logiciel de
+courrier Ã©lectronique imaginaire. Une fenÃªtre est divisÃ©e en deux
+parties verticales, la partie supÃ©rieure comprend une liste de
+messages et la partie infÃ©rieure le texte du message. La plus grande part
+du programme est plutÃ´t simple. Deux points sont cependant Ã  noterÂ :
+on ne peut ajouter de texte Ã  un widget Texte tant qu'il n'est pas rÃ©alisÃ©.
+Ce qui peut Ãªtre fait en appelant la mÃ©thode <code class="methodname">realize</code>(),
+mais comme dÃ©monstration d'une technique alternative, on connecte un
+gestionnaire au signal "realize" pour ajouter le texte. Il faudrait aussi ajouter
+l'option <code class="varname">SHRINK</code> Ã  certains des items dans la partie
+contenant la fenÃªtre de texte et ses ascenseurs. Ainsi, lorsque la partie basse
+est rÃ©duite, les sections corrigÃ©es diminuent au lieu de disparaÃ®tre par le
+bas de la fenÃªtre. La <a href="sec-PanedWindowWidgets.html#panedfig" title="FigureÂ 10.6.Â Exemple de fenÃªtre Ã  volets">FigureÂ 10.6, Â«Â Exemple de fenÃªtre Ã  voletsÂ Â»</a> illustre le
 programme en cours de fonctionnement.
 </p>
 <div class="figure">
-<a name="panedfig"></a><p class="title"><b>Figure 10.6. Exemple de fenêtre à volets</b></p>
-<div class="mediaobject" align="center"><img src="figures/paned.png" align="middle" alt="Exemple de fenêtre à volets"></div>
-<span>Exemple de fenêtre à volets</span>
+<a name="panedfig"></a><p class="title"><b>FigureÂ 10.6.Â Exemple de fenÃªtre Ã  volets</b></p>
+<div class="mediaobject" align="center"><img src="figures/paned.png" align="middle" alt="Exemple de fenÃªtre Ã  volets"></div>
+<span>Exemple de fenÃªtre Ã  volets</span>
 </div>
 <p>Voici le code du programme <a href="exemples/paned.py" target="_top">
-      <span><strong class="command">paned.py</strong></span></a> :</p>
+      <span><strong class="command">paned.py</strong></span></a>Â :</p>
 <pre class="programlisting">
      1   #!/usr/bin/env python
      2   # -*- coding:utf-8 -*-
      3   # example paned.py
-     4   
+     4
      5   import pygtk
      6   pygtk.require('2.0')
      7   import gtk, gobject
-     8   
+     8
      9   class ExempleVolets:
-    10       # Crée la liste des "messages"
+    10       # CrÃ©e la liste des "messages"
     11       def create_list(self):
-    12           # Crée une nouvelle fenêtre à défilement avec ascenseurs si nécessaire
+    12           # CrÃ©e une nouvelle fenÃªtre Ã  dÃ©filement avec ascenseurs si nÃ©cessaire
     13           fenetre_defil = gtk.ScrolledWindow()
     14           fenetre_defil.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-    15   
+    15
     16           modele = gtk.ListStore(gobject.TYPE_STRING)
     17           tree_view = gtk.TreeView(modele)
     18           fenetre_defil.add_with_viewport (tree_view)
     19           tree_view.show()
-    20   
-    21           # Ajoute quelques messages dans la fenêtre
+    20
+    21           # Ajoute quelques messages dans la fenÃªtre
     22           for i in range(10):
     23               msg = "Message #%d" % i
     24               iter = modele.append()
     25               modele.set(iter, 0, msg)
-    26   
+    26
     27           cellule = gtk.CellRendererText()
     28           colonne = gtk.TreeViewColumn("Messages", cellule, text=0)
     29           tree_view.append_column(colonne)
-    30   
+    30
     31           return fenetre_defil
-    32      
-    33       # Ajoute du texte au widget texte - ceci est un rappel qui est invoqué
-    34       # quand la fenêtre est réalisée. On pourrait forcer aussi la fenêtre à être
-    35       # réalisée avec gtk.Widget.realize(), mais elle devrait appartenir 
-    36       # d'abord à une hiérarchie.
+    32
+    33       # Ajoute du texte au widget texte - ceci est un rappel qui est invoquÃ©
+    34       # quand la fenÃªtre est rÃ©alisÃ©e. On pourrait forcer aussi la fenÃªtre Ã  Ãªtre
+    35       # rÃ©alisÃ©e avec gtk.Widget.realize(), mais elle devrait appartenir
+    36       # d'abord Ã  une hiÃ©rarchie.
     37       def insert_text(self, buffer):
     38           iter = buffer.get_iter_at_offset(0)
     39           buffer.insert(iter,
@@ -129,13 +130,13 @@ programme en cours de fonctionnement.
     41                         "To: mom@nasa.gov\n"
     42                         "Subject: Faites le !\n"
     43                         "\n"
-    44                         "Nous sommes arrivés juste ce matin. \n"
-    45                         "Le temps a été superbe, clair mais froid\n"
+    44                         "Nous sommes arrivÃ©s juste ce matin. \n"
+    45                         "Le temps a Ã©tÃ© superbe, clair mais froid\n"
     46                         "et il y a plein de vues amusantes.\n"
-    47                         "Sojourner vous dit bonjour. À bientôt.\n"
+    47                         "Sojourner vous dit bonjour. Ã€ bientÃ´t.\n"
     48                         " -Path\n")
-    49      
-    50       # Crée une zone de texte avec ascenseurs qui affiche un "message"
+    49
+    50       # CrÃ©e une zone de texte avec ascenseurs qui affiche un "message"
     51       def create_text(self):
     52           vuetexte = gtk.TextView()
     53           buffer = vuetexte.get_buffer()
@@ -145,33 +146,33 @@ programme en cours de fonctionnement.
     57           self.insert_text(buffer)
     58           fenetre_defil.show_all()
     59           return fenetre_defil
-    60      
+    60
     61       def __init__(self):
     62           fenetre = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    63           fenetre.set_title("Fenêtre à volets")
+    63           fenetre.set_title("FenÃªtre Ã  volets")
     64           fenetre.connect("destroy", lambda w: gtk.main_quit())
     65           fenetre.set_border_width(10)
     66           fenetre.set_size_request(450, 400)
-    67   
-    68           # Crée une fenêtre à volets verticale et l'ajoute à la fenêtre principale
+    67
+    68           # CrÃ©e une fenÃªtre Ã  volets verticale et l'ajoute Ã  la fenÃªtre principale
     69           vpaned = gtk.VPaned()
     70           fenetre.add(vpaned)
     71           vpaned.show()
-    72   
-    73           # Crée le contenu des deux moitiés de la fenêtre
+    72
+    73           # CrÃ©e le contenu des deux moitiÃ©s de la fenÃªtre
     74           liste = self.create_list()
     75           vpaned.add1(liste)
     76           liste.show()
-    77   
+    77
     78           texte = self.create_text()
     79           vpaned.add2(texte)
     80           texte.show()
     81           fenetre.show()
-    82   
+    82
     83   def main():
     84       gtk.main()
     85       return 0
-    86   
+    86
     87   if __name__ == "__main__":
     88       ExempleVolets()
     89       main()
@@ -182,15 +183,15 @@ programme en cours de fonctionnement.
 <table width="100%" summary="Navigation footer">
 <tr>
 <td width="40%" align="left">
-<a accesskey="p" href="sec-AspectFrames.html">Préc.</a> </td>
+<a accesskey="p" href="sec-AspectFrames.html">PrÃ©c.</a>Â </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-ContainerWidgets.html">Chapitre parent</a></td>
-<td width="40%" align="right"> <a accesskey="n" href="sec-Viewports.html">Suiv.</a>
+<td width="40%" align="right">Â <a accesskey="n" href="sec-Viewports.html">Suiv.</a>
 </td>
 </tr>
 <tr>
-<td width="40%" align="left" valign="top">10.6. Les cadres proportionnels (AspectFrame) </td>
+<td width="40%" align="left" valign="top">10.6.Â Les cadres proportionnels (AspectFrame)Â </td>
 <td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
-<td width="40%" align="right" valign="top"> 10.8. Viewports</td>
+<td width="40%" align="right" valign="top">Â 10.8.Â Viewports</td>
 </tr>
 </table>
 </div>
