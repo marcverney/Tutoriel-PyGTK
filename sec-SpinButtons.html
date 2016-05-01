@@ -3,24 +3,24 @@
 
 <head>
     <meta charset="utf-8">
-<title>9.10. Les boites d'incr&eacute;ment</title>
+<title>9.10. Les boites d'incrément</title>
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,increment">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
 <link rel="previous" href="sec-TextEntries.html" title="9.9. Les champs de saisie">
-<link rel="next" href="sec-ComboWidget.html" title="9.11. Les listes d&eacute;roulantes">
+<link rel="next" href="sec-ComboWidget.html" title="9.11. Les listes déroulantes">
 </head>
 
 <body>
 <div class="navheader">
 
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
-<th colspan="3" align="center">9.10. Les boites d'incr&eacute;ment</th>
+<th colspan="3" align="center">9.10. Les boites d'incrément</th>
 </tr><tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-TextEntries.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-TextEntries.html">Préc.</a></td>
 <th width="60%" align="center">Chapitre 9. Widgets divers</th>
 <td width="20%" align="right"><a accesskey="n" href="sec-ComboWidget.html">Suiv.</a>
 </td></tr></table>
@@ -30,39 +30,39 @@
 
 <div class="sect1"><div class="titlepage">
 <div><h2 class="title" style="clear: both"><a name="BoitesIncrement"></a>9.10. Les boites
-d'incr&eacute;ment</h2></div></div>
-On utilise g&eacute;n&eacute;ralement les boites d'incr&eacute;ment (<tt>gtk.SpinButton</tt>)
-pour permettre &agrave; l'utilisateur de s&eacute;lectionner une valeur num&eacute;rique
-dans un intervalle donn&eacute;. Ce widget consiste en un champ de texte flanqu&eacute;
-de deux boutons fl&eacute;ch&eacute;s haut et bas. En s&eacute;lectionnant l'un ou l'autre
-de ces boutons, on incr&eacute;mente ou d&eacute;cr&eacute;mente la valeur dans les limites
-de l'intervalle. Le champ de texte peut &eacute;galement &ecirc;tre &eacute;dit&eacute;
-directement afin de saisir une valeur sp&eacute;cifique.</p>
-<p>La valeur d'un <tt>gtk.SpinButton</tt> peut &ecirc;tre affich&eacute;e sous sa forme
-enti&egrave;re ou d&eacute;cimale, et il est possible de d&eacute;finir son pas
-d'incr&eacute;mentation/d&eacute;cr&eacute;mentation. On peut &eacute;galement d&eacute;cider
-que plus l'on maintient enfonc&eacute; les boutons, plus cette
-incr&eacute;mentation/d&eacute;cr&eacute;mentation s'acc&eacute;l&egrave;re.</p>
-<p>Les boites d'incr&eacute;ment utilisent des <a href="ch-Adjustments.html"
-title="Chapitre 7. Les ajustements"><tt>ajustements</tt></a> pour stocker les donn&eacute;es
+d'incrément</h2></div></div>
+On utilise généralement les boites d'incrément (<tt>gtk.SpinButton</tt>)
+pour permettre à l'utilisateur de sélectionner une valeur numérique
+dans un intervalle donné. Ce widget consiste en un champ de texte flanqué
+de deux boutons fléchés haut et bas. En sélectionnant l'un ou l'autre
+de ces boutons, on incrémente ou décrémente la valeur dans les limites
+de l'intervalle. Le champ de texte peut également être édité
+directement afin de saisir une valeur spécifique.</p>
+<p>La valeur d'un <tt>gtk.SpinButton</tt> peut être affichée sous sa forme
+entière ou décimale, et il est possible de définir son pas
+d'incrémentation/décrémentation. On peut également décider
+que plus l'on maintient enfoncé les boutons, plus cette
+incrémentation/décrémentation s'accélère.</p>
+<p>Les boites d'incrément utilisent des <a href="ch-Adjustments.html"
+title="Chapitre 7. Les ajustements"><tt>ajustements</tt></a> pour stocker les données
 concernant l'intervalle de valeurs du <tt>gtk.SpinButton</tt>. Cela fait du
-<tt>gtk.SpinButton</tt> un widget tr&egrave;s puissant.</p>
-<p>Pour bien montrer les informations stock&eacute;es par l'<a href="ch-Adjustments.html"
+<tt>gtk.SpinButton</tt> un widget très puissant.</p>
+<p>Pour bien montrer les informations stockées par l'<a href="ch-Adjustments.html"
 title="Chapitre 7. Les ajustements"><tt>ajustement</tt></a>, rappelons-nous sa fonction
-de cr&eacute;ation&nbsp;:</p>
+de création&nbsp;:</p>
 
 <pre class="programlisting">
   ajustement = gtk.Adjustment(<b><tt>value</tt></b>=0, <b><tt>lower</tt></b>=0, <b><tt>upper</tt></b>=0, <b><tt>step_incr</tt></b>=0, <b><tt>page_incr</tt></b>=0, <b><tt>page_size</tt></b>=0)
 </pre>
 
-<p>La boite d'incr&eacute;ment utilise ces attributs de l'ajustement de la mani&egrave;re
+<p>La boite d'incrément utilise ces attributs de l'ajustement de la manière
 suivante&nbsp;:</p>
 
 <div class="informaltable">
 <table width="100%" border="1"><colgroup><col><col></colgroup>
 <tr>
 <td><i><tt>value</tt></i></td>
-<td>valeur initiale de la boite d'incr&eacute;ment</td>
+<td>valeur initiale de la boite d'incrément</td>
 </tr><tr>
 <td><i><tt>lower</tt></i></td>
 <td>limite basse de l'intervalle</td>
@@ -71,40 +71,40 @@ suivante&nbsp;:</p>
 <td>limite haute de l'intervalle</td>
 </tr><tr>
 <td><i><tt>step_increment</tt></i></td>
-<td>pas de l'incr&eacute;mentation/d&eacute;cr&eacute;mentation lorsque on clique sur l'un des deux boutons avec le bouton 1 de la souris</td>
+<td>pas de l'incrémentation/décrémentation lorsque on clique sur l'un des deux boutons avec le bouton 1 de la souris</td>
 </tr><tr>
 <td><i><tt>page_increment</tt></i></td>
-<td>pas de l'incr&eacute;mentation/d&eacute;cr&eacute;mentation lorsque on clique sur l'un des deux boutons avec le bouton 2 de la souris</td>
+<td>pas de l'incrémentation/décrémentation lorsque on clique sur l'un des deux boutons avec le bouton 2 de la souris</td>
 </tr><tr>
 <td><i><tt>page_size</tt></i></td>
-<td>inutilis&eacute;</td>
+<td>inutilisé</td>
 </tr></table></div>
 
-<p>Un clic sur un des deux boutons avec le bouton 3 de la souris peut &eacute;galement
-servir &agrave; aller directement &agrave; la valeur <i><tt>upper</tt></i> ou
-<i><tt>lower</tt></i>. Voyons donc comment cr&eacute;er une boite &agrave;
-incr&eacute;ment&nbsp;:</p>
+<p>Un clic sur un des deux boutons avec le bouton 3 de la souris peut également
+servir à aller directement à la valeur <i><tt>upper</tt></i> ou
+<i><tt>lower</tt></i>. Voyons donc comment créer une boite à
+incrément&nbsp;:</p>
 
 <pre class="programlisting">
   boite_increment = gtk.SpinButton(<b><tt>adjustment</tt></b>=None, <b><tt>climb_rate</tt></b>=0.0, <b><tt>digits</tt></b>=0)
 </pre>
 
 <p>L'argument <i><tt>climb_rate</tt></i> accepte une valeur comprise entre 0.0 et 1.0 et
-indique le degr&eacute; d'acc&eacute;l&eacute;ration de la boite d'incr&eacute;ment.
-L'argument <i><tt>digits</tt></i> sp&eacute;cifie le nombre de d&eacute;cimales de la
-valeur affich&eacute;e.</p>
-<p>On peut reconfigurer une boite &agrave; incr&eacute;ment apr&egrave;s sa cr&eacute;ation
-en appelant la m&eacute;thode suivante&nbsp;:</p>
+indique le degré d'accélération de la boite d'incrément.
+L'argument <i><tt>digits</tt></i> spécifie le nombre de décimales de la
+valeur affichée.</p>
+<p>On peut reconfigurer une boite à incrément après sa création
+en appelant la méthode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   boite_increment.configure(<b><tt>adjustment</tt></b>, <b><tt>climb_rate</tt></b>, <b><tt>digits</tt></b>)
 </pre>
 
-<p>L'argument <i><tt>boite_increment</tt></i> sp&eacute;cifie le <tt>gtk.SpinButton</tt>
-&agrave; reconfigurer. Les autres arguments sont les m&ecirc;mes que ceux d&eacute;crits
+<p>L'argument <i><tt>boite_increment</tt></i> spécifie le <tt>gtk.SpinButton</tt>
+à reconfigurer. Les autres arguments sont les mêmes que ceux décrits
 plus haut.</p>
-<p>L'ajustement (<i><tt>adjustment</tt></i>) peut &ecirc;tre d&eacute;fini et
-r&eacute;cup&eacute;r&eacute; ind&eacute;pendamment &agrave; l'aide des deux m&eacute;thodes
+<p>L'ajustement (<i><tt>adjustment</tt></i>) peut être défini et
+récupéré indépendamment à l'aide des deux méthodes
 suivantes&nbsp;:</p>
 
 <pre class="programlisting">
@@ -113,22 +113,22 @@ suivantes&nbsp;:</p>
   ajustement = spin_button.get_adjustment()
 </pre>
 
-<p>On peut &eacute;galement modifier le nombre de d&eacute;cimales ainsi&nbsp;:</p>
+<p>On peut également modifier le nombre de décimales ainsi&nbsp;:</p>
 
 <pre class="programlisting">
   boite_increment.set_digits(<b><tt>digits</tt></b>)
 </pre>
 
-<p>La valeur affich&eacute;e par une boite d'incr&eacute;ment peut &ecirc;tre
-chang&eacute;e avec cette m&eacute;thode&nbsp;:</p>
+<p>La valeur affichée par une boite d'incrément peut être
+changée avec cette méthode&nbsp;:</p>
 
 <pre class="programlisting">
   boite_increment.set_value(<b><tt>value</tt></b>)
 </pre>
 
-<p>La valeur courante d'une boite d'incr&eacute;ment peut &ecirc;tre
-r&eacute;cup&eacute;r&eacute;e sous sa forme d&eacute;cimale ou enti&egrave;re &agrave;
-l'aide des deux m&eacute;thodes suivantes&nbsp;:</p>
+<p>La valeur courante d'une boite d'incrément peut être
+récupérée sous sa forme décimale ou entière à
+l'aide des deux méthodes suivantes&nbsp;:</p>
 
 <pre class="programlisting">
   valeur_dec = spin_button.get_value()
@@ -136,14 +136,14 @@ l'aide des deux m&eacute;thodes suivantes&nbsp;:</p>
   valeur_ent = spin_button.get_value_as_int()
 </pre>
 
-<p>Si l'on souhaite que la modification de la valeur soit effectu&eacute;e par
-rapport &agrave; la valeur courante, on peut utiliser la m&eacute;thode suivante&nbsp;:</p>
+<p>Si l'on souhaite que la modification de la valeur soit effectuée par
+rapport à la valeur courante, on peut utiliser la méthode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   boite_increment.spin(<b><tt>direction</tt></b>, <b><tt>increment</tt></b>)
 </pre>
 
-<p>Le param&egrave;tre <i><tt>direction</tt></i> peut prendre l'une des valeurs
+<p>Le paramètre <i><tt>direction</tt></i> peut prendre l'une des valeurs
 suivantes&nbsp;:</p>
 
 <pre class="programlisting">
@@ -156,32 +156,32 @@ suivantes&nbsp;:</p>
   SPIN_USER_DEFINED
 </pre>
 
-<p>Cette m&eacute;thode r&eacute;unit plusieurs fonctionnalit&eacute;s que nous allons
-tenter d'expliquer clairement. Un grand nombre de ces r&eacute;glages utilise les valeurs
+<p>Cette méthode réunit plusieurs fonctionnalités que nous allons
+tenter d'expliquer clairement. Un grand nombre de ces réglages utilise les valeurs
 de l'<a href="ch-Adjustments.html" title="Chapitre 7. Les ajustements"><tt>ajustement</tt></a>
- associ&eacute; &agrave; la boite d'incr&eacute;ment.</p>
-<p>SPIN_STEP_FORWARD (en avant d'un pas) et SPIN_STEP_BACKWARD (en arri&egrave;re d'un pas)
-modifient la valeur de la boite d'incr&eacute;ment en lui ajoutant/soustrayant celle
-sp&eacute;cifi&eacute;e par l'argument <i><tt>increment</tt></i>, ou, si ce dernier vaut 0,
+ associé à la boite d'incrément.</p>
+<p>SPIN_STEP_FORWARD (en avant d'un pas) et SPIN_STEP_BACKWARD (en arrière d'un pas)
+modifient la valeur de la boite d'incrément en lui ajoutant/soustrayant celle
+spécifiée par l'argument <i><tt>increment</tt></i>, ou, si ce dernier vaut 0,
 celle du <i><tt>step_increment</tt></i> de l'<a href="ch-Adjustments.html"
 title="Chapitre 7. Les ajustements"><tt>ajustement</tt></a>.</p>
-<p>SPIN_PAGE_FORWARD (en avant d'une page) et SPIN_PAGE_BACKWARD (en arri&egrave;re d'une
-page) modifient simplement la valeur de la boite d'incr&eacute;ment en lui
+<p>SPIN_PAGE_FORWARD (en avant d'une page) et SPIN_PAGE_BACKWARD (en arrière d'une
+page) modifient simplement la valeur de la boite d'incrément en lui
 ajoutant/soustrayant celle de <i><tt>increment</tt></i>.</p>
-<p>SPIN_HOME (d&eacute;but) fixe la valeur de la boite d'incr&eacute;ment &agrave; la borne
+<p>SPIN_HOME (début) fixe la valeur de la boite d'incrément à la borne
 minimum de l'intervalle de l'<a href="ch-Adjustments.html" title="Chapitre 7. Les ajustements">
 <tt>ajustement</tt></a>.</p>
-<p>SPIN_END (fin) fixe la valeur de la boite d'incr&eacute;ment &agrave; la borne maximum de
+<p>SPIN_END (fin) fixe la valeur de la boite d'incrément à la borne maximum de
 l'intervalle de l'<a href="ch-Adjustments.html" title="Chapitre 7. Les ajustements">
 <tt>ajustement</tt></a>.</p>
-<p>SPIN_USER_DEFINED (d&eacute;fini par l'utilisateur) modifie simplement la valeur de la
-boite d'incr&eacute;ment en lui ajoutant la valeur sp&eacute;cifi&eacute;e.</p>
-<p>Abandonnons &agrave; pr&eacute;sent les m&eacute;thodes de d&eacute;finition et
-r&eacute;cup&eacute;ration des attributs d'intervalle, pour nous int&eacute;resser
-&agrave; celles qui affectent l'apparence et le comportement du widget <tt>gtk.SpinButton</tt>
- en lui-m&ecirc;me.</p>
-<p>La premi&egrave;re de ces m&eacute;thodes sert &agrave; faire en sorte que la boite de
-texte du <tt>gtk.SpinButton</tt> ne puisse contenir que des valeurs num&eacute;riques.
+<p>SPIN_USER_DEFINED (défini par l'utilisateur) modifie simplement la valeur de la
+boite d'incrément en lui ajoutant la valeur spécifiée.</p>
+<p>Abandonnons à présent les méthodes de définition et
+récupération des attributs d'intervalle, pour nous intéresser
+à celles qui affectent l'apparence et le comportement du widget <tt>gtk.SpinButton</tt>
+ en lui-même.</p>
+<p>La première de ces méthodes sert à faire en sorte que la boite de
+texte du <tt>gtk.SpinButton</tt> ne puisse contenir que des valeurs numériques.
 L'utilisateur ne pourra alors pas y saisir autre chose&nbsp;:</p>
 
 <pre class="programlisting">
@@ -189,30 +189,30 @@ L'utilisateur ne pourra alors pas y saisir autre chose&nbsp;:</p>
 </pre>
 
 <p>Si <i><tt>numeric</tt></i> vaut TRUE (vrai), le champ de saisie n'acceptera que les
-valeurs num&eacute;riques. Si elles vaut FALSE (faux), aucune contrainte n'est
-pos&eacute;e.</p>
-<p>On peut indiquer si l'on veut que la boite d'incr&eacute;ment effectue une boucle
-apr&egrave;s avoir pass&eacute; la valeur maximum de l'intervalle, et revienne donc &agrave;
-la valeur minimum. On utilisera pour ce faire la m&eacute;thode suivante&nbsp;:</p>
+valeurs numériques. Si elles vaut FALSE (faux), aucune contrainte n'est
+posée.</p>
+<p>On peut indiquer si l'on veut que la boite d'incrément effectue une boucle
+après avoir passé la valeur maximum de l'intervalle, et revienne donc à
+la valeur minimum. On utilisera pour ce faire la méthode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   boite_increment.set_wrap(<b><tt>wrap</tt></b>)
 </pre>
 
-<p>La boite d'incr&eacute;ment tournera en boucle si <i><tt>wrap</tt></i> vaut TRUE.</p>
-<p>On peut faire en sorte que la boite d'incr&eacute;ment arrondisse la valeur au
+<p>La boite d'incrément tournera en boucle si <i><tt>wrap</tt></i> vaut TRUE.</p>
+<p>On peut faire en sorte que la boite d'incrément arrondisse la valeur au
 <i><tt>step_increment</tt></i> le plus proche (le <i><tt>step_increment</tt></i>
-est d&eacute;fini dans l'<a href="ch-Adjustments.html" title="Chapitre 7. Les ajustements">
-<tt>ajustement</tt></a> utilis&eacute; par la boite d'incr&eacute;ment). On fera alors
-appel &agrave; la m&eacute;thode suivante, o&ugrave; <i><tt>snap_to_ticks</tt></i>
+est défini dans l'<a href="ch-Adjustments.html" title="Chapitre 7. Les ajustements">
+<tt>ajustement</tt></a> utilisé par la boite d'incrément). On fera alors
+appel à la méthode suivante, où <i><tt>snap_to_ticks</tt></i>
 (s'accrocher aux marques) devra valoir TRUE&nbsp;:</p>
 
 <pre class="programlisting">
   boite_increment.set_snap_to_ticks(<b><tt>snap_to_ticks</tt></b>)
 </pre>
 
-<p>Le mode d'actualisation d'une boite d'incr&eacute;ment peut &ecirc;tre modifi&eacute;
-avec la m&eacute;thode suivante&nbsp;:</p>
+<p>Le mode d'actualisation d'une boite d'incrément peut être modifié
+avec la méthode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   boite_increment.set_update_policy(<b><tt>policy</tt></b>)
@@ -226,33 +226,33 @@ avec la m&eacute;thode suivante&nbsp;:</p>
   UPDATE_IF_VALID
 </pre>
 
-<p>Ces modes d'actualisation affectent le comportement de la boite d'incr&eacute;ment
+<p>Ces modes d'actualisation affectent le comportement de la boite d'incrément
 lorsqu'elle analyse le texte saisi et qu'elle synchronise sa valeur avec celles de
 l'<a href="ch-Adjustments.html" title="Chapitre 7. Les ajustements"><tt>ajustement</tt></a>.
 </p>
-<p>Avec UPDATE_IF_VALID (actualiser si valide), la valeur de la boite d'incr&eacute;ment
-n'est modifi&eacute;e que si le texte saisi est une valeur num&eacute;rique comprise dans
+<p>Avec UPDATE_IF_VALID (actualiser si valide), la valeur de la boite d'incrément
+n'est modifiée que si le texte saisi est une valeur numérique comprise dans
 l'intervalle de l'<a href="ch-Adjustments.html" title="Chapitre 7. Les ajustements">
 <tt>ajustement</tt></a>. Dans le cas contraire, le champ de saisie reprend sa valeur
 courante.</p>
-<p>Avec UPDATE_ALWAYS (actualiser toujours), toute erreur sera ignor&eacute;e lors de la
-conversion du texte en valeur num&eacute;rique.</p>
+<p>Avec UPDATE_ALWAYS (actualiser toujours), toute erreur sera ignorée lors de la
+conversion du texte en valeur numérique.</p>
 <p>Pour finir, on peut demander explicitement une actualisation de la boite
-d'incr&eacute;ment&nbsp;:</p>
+d'incrément&nbsp;:</p>
 
 <pre class="programlisting">
   boite_increment.update()
 </pre>
 
 <p>Le programme d'exemple <a href="exemples/boitesincrement.py" target="_top">
-<b>boitesincrement.py</b></a> offre une d&eacute;monstration d'utilisation des boites
-d'incr&eacute;ment, incluant la modification de plusieurs caract&eacute;ristiques.
+<b>boitesincrement.py</b></a> offre une démonstration d'utilisation des boites
+d'incrément, incluant la modification de plusieurs caractéristiques.
 La <a href="sec-SpinButtons.html#FigBoiteIncrement" title="Figure 9.11. Exemple de
-boites d'incr&eacute;ment">Figure 9.11</a> montre ce que l'on obtient en lan&ccedil;ant
+boites d'incrément">Figure 9.11</a> montre ce que l'on obtient en lançant
 le programme&nbsp;:</p>
 
 <div class="figure"><a name="FigBoiteIncrement"></a>
-<p class="title"><b>Figure 9.11. Exemple de boites d'incr&eacute;ment</b></p>
+<p class="title"><b>Figure 9.11. Exemple de boites d'incrément</b></p>
 <div class="mediaobject" align="center">
 <img src="figures/boitesincrement.png" align="middle" alt="exemple d'incrément">
 </div></div>
@@ -433,13 +433,13 @@ le programme&nbsp;:</p>
 
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-TextEntries.html">Pr&eacute;c.</a></td>
+<td width="40%" align="left"><a accesskey="p" href="sec-TextEntries.html">Préc.</a></td>
 <td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"><a accesskey="n" href="sec-ComboWidget.html">Suiv.</a></td>
 </tr><tr>
 <td width="40%" align="left" valign="top">9.9. Les champs de saisie</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
-<td width="40%" align="right" valign="top">9.11. Les listes d&eacute;roulantes</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top">9.11. Les listes déroulantes</td>
 </tr></table>
 </div>
 

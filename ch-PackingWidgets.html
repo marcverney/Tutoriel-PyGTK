@@ -7,19 +7,19 @@
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,boite">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
-<link rel="up" href="index.html" title="Table des mati&egrave;res">
-<link rel="previous" href="sec-UpgradedHelloWorld.html" title="3.2. Modification de notre &quot;Hello World&quot;">
-<link rel="next" href="sec-DetailsOfBoxes.html" title="4.2. Les boites en d&eacute;tail">
+<link rel="home" href="index.html" title="Table des matières">
+<link rel="up" href="index.html" title="Table des matières">
+<link rel="previous" href="sec-UpgradedHelloWorld.html" title="3.2. Modification de notre "Hello World"">
+<link rel="next" href="sec-DetailsOfBoxes.html" title="4.2. Les boites en détail">
 </head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
 <th colspan="3" align="center">Chapitre 4. Le placement des widgets</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-UpgradedHelloWorld.html">Pr&eacute;c.</a> </td>
+<td width="20%" align="left"><a accesskey="p" href="sec-UpgradedHelloWorld.html">Préc.</a> </td>
 <th width="60%" align="center"></th>
 <td width="20%" align="right"><a accesskey="n" href="sec-DetailsOfBoxes.html">Suiv.</a></td>
 </tr></table>
@@ -35,36 +35,36 @@
 
 <div class="toc"><p><b>Sommaire</b></p><dl>
 <dt>4.1. <a href="ch-PackingWidgets.html#BoitesPlacement">Le principe des boites de placement</a></dt>
-<dt>4.2. <a href="sec-DetailsOfBoxes.html">Les boites en d&eacute;tail</a></dt>
-<dt>4.3. <a href="sec-PackingDemonstrationProgram.html">D&eacute;monstration de placement avec les boites</a></dt>
+<dt>4.2. <a href="sec-DetailsOfBoxes.html">Les boites en détail</a></dt>
+<dt>4.3. <a href="sec-PackingDemonstrationProgram.html">Démonstration de placement avec les boites</a></dt>
 <dt>4.4. <a href="sec-PackingUsingTables.html">Le placement avec les tableaux</a></dt>
-<dt>4.5. <a href="sec-TablePackingExample.html">D&eacute;monstration de placement avec les tableaux</a></dt>
+<dt>4.5. <a href="sec-TablePackingExample.html">Démonstration de placement avec les tableaux</a></dt>
 </dl></div>
 
-<p>Pour cr&eacute;er une application, on aura la plupart du temps besoin de mettre plusieurs widgets dans la m&ecirc;me fen&ecirc;tre. Notre premier exemple de programme (<a href="exemples/helloworld.py" target="_top"><tt>helloworld.py</tt></a>) n'utilisait qu'un seul widget, nous pouvions donc simplement l'ajouter &agrave; la fen&ecirc;tre avec la m&eacute;thode de GtkContainer <tt>add</tt>(). Mais s'il l'on souhaite mettre plusieurs widgets dans un fen&ecirc;tre, comment contr&ocirc;le-t-on la mani&egrave;re dont ils sont plac&eacute;s&nbsp;? C'est ce que nous allons d&eacute;velopper dans ce chapitre.</p>
+<p>Pour créer une application, on aura la plupart du temps besoin de mettre plusieurs widgets dans la même fenêtre. Notre premier exemple de programme (<a href="exemples/helloworld.py" target="_top"><tt>helloworld.py</tt></a>) n'utilisait qu'un seul widget, nous pouvions donc simplement l'ajouter à la fenêtre avec la méthode de GtkContainer <tt>add</tt>(). Mais s'il l'on souhaite mettre plusieurs widgets dans un fenêtre, comment contrôle-t-on la manière dont ils sont placés&nbsp;? C'est ce que nous allons développer dans ce chapitre.</p>
 
 <div class="sect1">
 <div class="titlepage">
 <div><h2 class="title" style="clear: both"><a name="BoitesPlacement"></a>4.1. Le principe des boites de placement</h2></div>
 </div>
 
-<p>Le placement des widgets passe la plupart du temps par la cr&eacute;ation de boites. Il s'agit de conteneurs invisibles dans lesquels on peut placer nos widgets, et qui existent sous deux formes&nbsp;: la boite horizontale et la boite verticale. Lorsque l'on place des widgets dans une boite horizontale, ceux-ci sont ins&eacute;r&eacute;s horizontalement, de gauche &agrave; droite ou de droite &agrave; gauche en fonction de l'appel utilis&eacute;. Dans une boite verticale, les widgets sont plac&eacute;s de haut en bas ou inversement. Vous pouvez utiliser toutes les combinaisons de boites que vous voulez &agrave; l'int&eacute;rieur ou &agrave; l'ext&eacute;rieur d'autres boites pour obtenir l'effet recherch&eacute;.</p>
-<p>Pour cr&eacute;er une boite horizontale, on fait appel &agrave; <tt>gtk.HBox()</tt>, et pour une boite verticale, &agrave; <tt>gtk.VBox()</tt>. Pour placer des objets dans ces conteneurs, on utilise les m&eacute;thodes <tt>pack_start()</tt> et <tt>pack_end()</tt>. La premi&egrave;re les place de haut en bas dans une VBox et de gauche &agrave; droite dans une HBox. La seconde fait le contraire&nbsp;:  de bas en haut dans une VBox et de droite &agrave; gauche dans une HBox. Ces m&eacute;thodes nous permettent d'aligner nos widgets &agrave; gauche ou &agrave; droite, et d'obtenir exactement l'effet d&eacute;sir&eacute; en les alternant. Nous utiliserons <tt>pack_start()</tt> dans la majeure partie de nos exemples. Les objets plac&eacute;s &agrave; l'int&eacute;rieur des boites peuvent &ecirc;tre des widgets ou de nouveaux conteneurs. En fait, beaucoup de widgets sont d&eacute;j&agrave; eux-m&ecirc;mes des conteneurs, y compris le bouton (mais on n'utilise g&eacute;n&eacute;ralement qu'une &eacute;tiquette &agrave; l'int&eacute;rieur d'un bouton).</p>
+<p>Le placement des widgets passe la plupart du temps par la création de boites. Il s'agit de conteneurs invisibles dans lesquels on peut placer nos widgets, et qui existent sous deux formes&nbsp;: la boite horizontale et la boite verticale. Lorsque l'on place des widgets dans une boite horizontale, ceux-ci sont insérés horizontalement, de gauche à droite ou de droite à gauche en fonction de l'appel utilisé. Dans une boite verticale, les widgets sont placés de haut en bas ou inversement. Vous pouvez utiliser toutes les combinaisons de boites que vous voulez à l'intérieur ou à l'extérieur d'autres boites pour obtenir l'effet recherché.</p>
+<p>Pour créer une boite horizontale, on fait appel à <tt>gtk.HBox()</tt>, et pour une boite verticale, à <tt>gtk.VBox()</tt>. Pour placer des objets dans ces conteneurs, on utilise les méthodes <tt>pack_start()</tt> et <tt>pack_end()</tt>. La première les place de haut en bas dans une VBox et de gauche à droite dans une HBox. La seconde fait le contraire&nbsp;:  de bas en haut dans une VBox et de droite à gauche dans une HBox. Ces méthodes nous permettent d'aligner nos widgets à gauche ou à droite, et d'obtenir exactement l'effet désiré en les alternant. Nous utiliserons <tt>pack_start()</tt> dans la majeure partie de nos exemples. Les objets placés à l'intérieur des boites peuvent être des widgets ou de nouveaux conteneurs. En fait, beaucoup de widgets sont déjà eux-mêmes des conteneurs, y compris le bouton (mais on n'utilise généralement qu'une étiquette à l'intérieur d'un bouton).</p>
 
-<p>Gr&acirc;ce &agrave; ces appels et &agrave; leurs options, GTK sait exactement o&ugrave; et de quelle mani&egrave;re vous voulez placer vos widgets dans le conteneur. De leur d&eacute;finition  d&eacute;pendent de nombreux param&egrave;tres comme, par exemple, le redimensionnement automatique. Ces m&eacute;thodes nous offrent une grande flexibilit&eacute; dans le placement et la cr&eacute;ation de nos widgets.</p></div></div>
+<p>Grâce à ces appels et à leurs options, GTK sait exactement où et de quelle manière vous voulez placer vos widgets dans le conteneur. De leur définition  dépendent de nombreux paramètres comme, par exemple, le redimensionnement automatique. Ces méthodes nous offrent une grande flexibilité dans le placement et la création de nos widgets.</p></div></div>
 
 <div class="navfooter">
 <hr>
 
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-UpgradedHelloWorld.html">Pr&eacute;c.</a> </td>
+<td width="40%" align="left"><a accesskey="p" href="sec-UpgradedHelloWorld.html">Préc.</a> </td>
 <td width="20%" align="center"><a accesskey="u" href="index.html">Chapitre parent</a></td>
 <td width="40%" align="right"> <a accesskey="n" href="sec-DetailsOfBoxes.html">Suiv.</a></td></tr>
 <tr>
-<td width="40%" align="left" valign="top">3.2. Modification de notre &quot;Hello World&quot;</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
-<td width="40%" align="right" valign="top">4.2. Les boites en d&eacute;tail</td>
+<td width="40%" align="left" valign="top">3.2. Modification de notre "Hello World"</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top">4.2. Les boites en détail</td>
 </tr></table>
 </div>
 </body>

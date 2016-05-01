@@ -3,24 +3,24 @@
 
 <head>
     <meta charset="utf-8">
-<title>9.11. Les listes d&eacute;roulantes</title>
+<title>9.11. Les listes déroulantes</title>
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,liste de choix,liste deroulante">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
-<link rel="previous" href="sec-SpinButtons.html" title="9.10. Les boites d'incr&eacute;ment">
+<link rel="previous" href="sec-SpinButtons.html" title="9.10. Les boites d'incrément">
 <link rel="next" href="sec-Calendar.html" title="9.12. Le calendrier">
 </head>
 
 <body>
 <div class="navheader">
 
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
-<th colspan="3" align="center">9.11. Les listes d&eacute;roulantes</th>
+<th colspan="3" align="center">9.11. Les listes déroulantes</th>
 </tr><tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-SpinButtons.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-SpinButtons.html">Préc.</a></td>
 <th width="60%" align="center">Chapitre 9. Widgets divers</th>
 <td width="20%" align="right"><a accesskey="n" href="sec-Calendar.html">Suiv.</a></td></tr></table>
 
@@ -28,10 +28,10 @@
 </div>
 
 <div class="sect1"><div class="titlepage">
-<div><h2 class="title" style="clear: both"><a name="FenetresDeroulantes"></a>9.11. Les listes d&eacute;roulantes</h2></div></div>
-<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>L'utilisation du widget <tt>gtk.Combo</tt> n'est plus recommand&eacute;e depuis PyGTK 2.4.</p></div>
-<p>La liste d&eacute;roulante est un autre widget tr&egrave;s simple, qui n'est en fait qu'une association d'autres widgets. Du point de vue de l'utilisateur, il s'agit d'un champ de saisie, accompagn&eacute; d'un menu d&eacute;roulant qui permet &agrave; l'utilisateur d'effectuer un choix parmi un ensemble d'entr&eacute;es pr&eacute;d&eacute;finies. L'utilisateur peut &eacute;galement taper directement une autre option dans le champ de saisie.</p>
-<p>Les deux parties qui nous int&eacute;ressent r&eacute;ellement dans le widget <tt>gtk.Combo</tt> sont le champ de saisie (appel&eacute; <i>entry</i>) et la liste (<i>list</i>). On peut acc&eacute;der &agrave; eux en utilisant les attributs suivants&nbsp;:</p>
+<div><h2 class="title" style="clear: both"><a name="FenetresDeroulantes"></a>9.11. Les listes déroulantes</h2></div></div>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>L'utilisation du widget <tt>gtk.Combo</tt> n'est plus recommandée depuis PyGTK 2.4.</p></div>
+<p>La liste déroulante est un autre widget très simple, qui n'est en fait qu'une association d'autres widgets. Du point de vue de l'utilisateur, il s'agit d'un champ de saisie, accompagné d'un menu déroulant qui permet à l'utilisateur d'effectuer un choix parmi un ensemble d'entrées prédéfinies. L'utilisateur peut également taper directement une autre option dans le champ de saisie.</p>
+<p>Les deux parties qui nous intéressent réellement dans le widget <tt>gtk.Combo</tt> sont le champ de saisie (appelé <i>entry</i>) et la liste (<i>list</i>). On peut accéder à eux en utilisant les attributs suivants&nbsp;:</p>
 
 <pre class="programlisting">
   listder.entry
@@ -39,34 +39,34 @@
   listeder.list
 </pre>
 
-<p>Pour commencer, on cr&eacute;era une liste d&eacute;roulante ainsi&nbsp;:</p>
+<p>Pour commencer, on créera une liste déroulante ainsi&nbsp;:</p>
 
 <pre class="programlisting">
   listeder = gtk.Combo()
 </pre>
 
-<p>Maintenant, si l'on souhaite d&eacute;finir la chaine de caract&egrave;res du champ de saisie, la manipulation doit se faire directement sur ce dernier&nbsp;:</p>
+<p>Maintenant, si l'on souhaite définir la chaine de caractères du champ de saisie, la manipulation doit se faire directement sur ce dernier&nbsp;:</p>
 
 <pre class="programlisting">
   listeder.entry.set_text(<b><tt>text</tt></b>)
 </pre>
 
-<p>Pour d&eacute;finir les valeurs de la liste, on utilise la m&eacute;thode suivante&nbsp;:</p>
+<p>Pour définir les valeurs de la liste, on utilise la méthode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   listeder.set_popdown_strings(<b><tt>strings</tt></b>)
 </pre>
 
-<p>Mais avant, il faudra cr&eacute;er une liste regroupant les chaines de caract&egrave;res que l'on veut.</p>
-<p>Voici un segment de code typique pour cr&eacute;er un ensemble d'options&nbsp;:</p>
+<p>Mais avant, il faudra créer une liste regroupant les chaines de caractères que l'on veut.</p>
+<p>Voici un segment de code typique pour créer un ensemble d'options&nbsp;:</p>
 
 <pre class="programlisting">
-  listechaines = [ &quot;Chaine 1&quot;, &quot;Chaine 2&quot;, &quot;Chaine 3&quot;, &quot;Chaine 4&quot; ]
+  listechaines = [ "Chaine 1", "Chaine 2", "Chaine 3", "Chaine 4" ]
 
   listeder.set_popdown_strings(listechaines)
 </pre>
 
-<p>Arriv&eacute; ici, on a configur&eacute; une liste d&eacute;roulante fonctionnelle. Quelques aspects de son comportement peuvent encore &ecirc;tre modifi&eacute;s, et ce par l'interm&eacute;diaire des m&eacute;thodes qui suivent&nbsp;:</p>
+<p>Arrivé ici, on a configuré une liste déroulante fonctionnelle. Quelques aspects de son comportement peuvent encore être modifiés, et ce par l'intermédiaire des méthodes qui suivent&nbsp;:</p>
 
 <pre class="programlisting">
   listeder.set_use_arrows(<b><tt>val</tt></b>)
@@ -76,41 +76,41 @@
   listeder.set_case_sensitive(<b><tt>val</tt></b>)
 </pre>
 
-<p>La m&eacute;thode <tt>set_use_arrows</tt>() laissera l'utilisateur modifier la valeur du champ de saisie avec les touches de d&eacute;placement haut et bas du clavier si <i><tt>val</tt></i> vaut TRUE. Cela ne fera pas apparaitre la liste, mais remplacera le texte courant du champ de saisie par l'entr&eacute;e suivante ou pr&eacute;c&eacute;dente dans la liste (en fonction de la touche press&eacute;e). La m&eacute;thode d&eacute;clenche en effet une recherche, dans cette liste, de l'entr&eacute;e qui correspond &agrave; la valeur du champ de saisie, puis s&eacute;lectionne l'entr&eacute;e qui la suit ou la pr&eacute;c&egrave;de. Dans un champ de saisie, les touches de d&eacute;placement du clavier servent habituellement &agrave; changer la zone active (on peut quand m&ecirc;me le faire avec TAB). Notez que lorsque l'&eacute;l&eacute;ment courant est le dernier &eacute;l&eacute;ment de la liste, une pression sur la touche de d&eacute;placement vers le bas changera de zone active (idem pour le premier &eacute;l&eacute;ment avec la touche de d&eacute;placement vers le haut).</p>
-<p>Si la valeur courante du champ de saisie ne figure pas dans la liste, la m&eacute;thode <tt>set_use_arrows</tt>() est d&eacute;sactiv&eacute;e.</p>
-<p>La m&eacute;thode <tt>set_use_arrows_always</tt>() permet &eacute;galement, si <i><tt>val</tt></i> vaut TRUE, l'utilisation des touches de d&eacute;placement pour passer d'une entr&eacute;e de la liste d&eacute;roulante &agrave; une autre. Toutefois, elle d&eacute;sactive compl&egrave;tement les fonctions de changement de zone active des touches de d&eacute;placement. Les valeurs de la liste tournent alors en boucle.</p>
-<p>La m&eacute;thode <tt>set_case_sensitive</tt>() d&eacute;termine si GTK doit prendre en compte la casse des caract&egrave;res lors des recherches d'entr&eacute;es dans la liste. Cela sert lorsque l'on demande au <tt>gtk.Combo</tt> de trouver une valeur dans la liste &agrave; partir du texte entr&eacute; dans le champ de saisie. Cette sorte de compl&eacute;tion peut se r&eacute;aliser en prenant la casse en compte ou pas, en fonction de ce qu'indique la m&eacute;thode. Le <tt>gtk.Combo</tt> peut aussi simplement compl&eacute;ter le texte du champ de saisie si l'utilisateur presse la combinaison de touches MOD-1-<b>Tab</b>. MOD-1 est souvent associ&eacute; &agrave; la touche <b>Alt</b> par l'utilitaire <b>xmodmap</b>. Notez, cependant, que certains gestionnaires de fen&ecirc;tres utilisent eux aussi cette combinaison, et que dans ce cas ils l'emportent sur GTK.</p>
-<p>Maintenant que nous disposons d'une liste d&eacute;roulante taill&eacute;e sur mesure, il ne nous reste plus qu'&agrave; pouvoir en obtenir des donn&eacute;es. C'est relativement simple. La plupart du temps, les seules donn&eacute;es que l'on souhaitera r&eacute;cup&eacute;rer seront celles du champ de saisie, le <i><tt>combo.entry</tt></i>. On pourra vouloir lui connecter le signal &quot;activate&quot; (qui indique que l'utilisateur a press&eacute; la touche <b>Entr&eacute;e</b>), ou bien lire le texte. Dans le premier cas, on utilisera quelque chose comme ceci&nbsp;:</p>
+<p>La méthode <tt>set_use_arrows</tt>() laissera l'utilisateur modifier la valeur du champ de saisie avec les touches de déplacement haut et bas du clavier si <i><tt>val</tt></i> vaut TRUE. Cela ne fera pas apparaitre la liste, mais remplacera le texte courant du champ de saisie par l'entrée suivante ou précédente dans la liste (en fonction de la touche pressée). La méthode déclenche en effet une recherche, dans cette liste, de l'entrée qui correspond à la valeur du champ de saisie, puis sélectionne l'entrée qui la suit ou la précède. Dans un champ de saisie, les touches de déplacement du clavier servent habituellement à changer la zone active (on peut quand même le faire avec TAB). Notez que lorsque l'élément courant est le dernier élément de la liste, une pression sur la touche de déplacement vers le bas changera de zone active (idem pour le premier élément avec la touche de déplacement vers le haut).</p>
+<p>Si la valeur courante du champ de saisie ne figure pas dans la liste, la méthode <tt>set_use_arrows</tt>() est désactivée.</p>
+<p>La méthode <tt>set_use_arrows_always</tt>() permet également, si <i><tt>val</tt></i> vaut TRUE, l'utilisation des touches de déplacement pour passer d'une entrée de la liste déroulante à une autre. Toutefois, elle désactive complètement les fonctions de changement de zone active des touches de déplacement. Les valeurs de la liste tournent alors en boucle.</p>
+<p>La méthode <tt>set_case_sensitive</tt>() détermine si GTK doit prendre en compte la casse des caractères lors des recherches d'entrées dans la liste. Cela sert lorsque l'on demande au <tt>gtk.Combo</tt> de trouver une valeur dans la liste à partir du texte entré dans le champ de saisie. Cette sorte de complétion peut se réaliser en prenant la casse en compte ou pas, en fonction de ce qu'indique la méthode. Le <tt>gtk.Combo</tt> peut aussi simplement compléter le texte du champ de saisie si l'utilisateur presse la combinaison de touches MOD-1-<b>Tab</b>. MOD-1 est souvent associé à la touche <b>Alt</b> par l'utilitaire <b>xmodmap</b>. Notez, cependant, que certains gestionnaires de fenêtres utilisent eux aussi cette combinaison, et que dans ce cas ils l'emportent sur GTK.</p>
+<p>Maintenant que nous disposons d'une liste déroulante taillée sur mesure, il ne nous reste plus qu'à pouvoir en obtenir des données. C'est relativement simple. La plupart du temps, les seules données que l'on souhaitera récupérer seront celles du champ de saisie, le <i><tt>combo.entry</tt></i>. On pourra vouloir lui connecter le signal "activate" (qui indique que l'utilisateur a pressé la touche <b>Entrée</b>), ou bien lire le texte. Dans le premier cas, on utilisera quelque chose comme ceci&nbsp;:</p>
 
 <pre class="programlisting">
-  listeder.entry.connect(&quot;activate&quot;, fct_rappel, donnees)
+  listeder.entry.connect("activate", fct_rappel, donnees)
 </pre>
 
-<p>Quant &agrave; la r&eacute;cup&eacute;ration du texte, elle s'effectue simplement, et &agrave; n'importe quel moment, par un appel &agrave; la m&eacute;thode du champ de saisie suivante&nbsp;:</p>
+<p>Quant à la récupération du texte, elle s'effectue simplement, et à n'importe quel moment, par un appel à la méthode du champ de saisie suivante&nbsp;:</p>
 
 <pre class="programlisting">
   chaine = listeder.entry.get_text()
 </pre>
 
-<p>Voil&agrave;, c'est &agrave; peu pr&egrave;s tout ce qu'il y a &agrave; savoir. Il y a bien cette m&eacute;thode&nbsp;:</p>
+<p>Voilà, c'est à peu près tout ce qu'il y a à savoir. Il y a bien cette méthode&nbsp;:</p>
 
 <pre class="programlisting">
   listeder.disable_activate()
 </pre>
 
-<p>... qui d&eacute;sactive le signal &quot;activate&quot; pour le champ de saisie. Personnellement, je ne vois pas pourquoi l'on voudrait s'en servir, mais bon, elle existe.</p></div>
+<p>... qui désactive le signal "activate" pour le champ de saisie. Personnellement, je ne vois pas pourquoi l'on voudrait s'en servir, mais bon, elle existe.</p></div>
 
 <div class="navfooter">
 <hr>
 
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-SpinButtons.html">Pr&eacute;c.</a></td>
+<td width="40%" align="left"><a accesskey="p" href="sec-SpinButtons.html">Préc.</a></td>
 <td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"><a accesskey="n" href="sec-Calendar.html">Suiv.</a></td>
 </tr><tr>
-<td width="40%" align="left" valign="top">9.10. Les boites d'incr&eacute;ment</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="left" valign="top">9.10. Les boites d'incrément</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
 <td width="40%" align="right" valign="top">9.12. Le calendrier</td>
 </tr></table>
 </div>

@@ -8,18 +8,18 @@
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,textview">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Table des mati&eagrave;res">
-<link rel="up" href="index.html" title="Table des mati&egrave;res">
+<link rel="up" href="index.html" title="Table des matières">
 <link rel="previous" href="sec-DrawingMethods.html" title="12.2. Les méthodes pour dessiner">
 <link rel="next" href="sec-TextViews.html" title="13.2. TextView&nbsp;: la zone de texte">
 </head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
 <th colspan="3" align="center">Chapitre 13. Le widget TextView</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-DrawingMethods.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-DrawingMethods.html">Préc.</a></td>
 <th width="60%" align="center"></th>
 <td width="20%" align="right"><a accesskey="n" href="sec-TextViews.html">Suiv.</a></td>
 </tr></table>
@@ -33,27 +33,27 @@
 <div class="toc">
 <p><b>Sommaire</b></p>
 <dl>
-<dt>13.1. <a href="ch-TextViewWidget.html#sec-TextViewOverview">Pr&eacute;sentation des widgets de texte</a></dt>
+<dt>13.1. <a href="ch-TextViewWidget.html#sec-TextViewOverview">Présentation des widgets de texte</a></dt>
 <dt>13.2. <a href="sec-TextViews.html">TextView&nbsp;: la zone de texte</a></dt>
 <dt>13.3. <a href="sec-TextBuffers.html">TextBuffer&nbsp;: le buffer de texte</a></dt>
 <dd><dl>
-<dt>13.3.1. <a href="sec-TextBuffers.html#RecupInfoBuffer">R&eacute;cup&eacute;rer des informations sur le buffer</a></dt>
-<dt>13.3.2. <a href="sec-TextBuffers.html#CreerTextIter">Cr&eacute;er des TextIter</a></dt>
-<dt>13.3.3. <a href="sec-TextBuffers.html#InserRecupSuppr">Ins&eacute;rer, r&eacute;cup&eacute;rer et supprimer du texte</a></dt>
-<dt>13.3.4. <a href="sec-TextBuffers.html#CreerManipTextMark">Cr&eacute;er et manipuler des TextMark</a></dt>
+<dt>13.3.1. <a href="sec-TextBuffers.html#RecupInfoBuffer">Récupérer des informations sur le buffer</a></dt>
+<dt>13.3.2. <a href="sec-TextBuffers.html#CreerTextIter">Créer des TextIter</a></dt>
+<dt>13.3.3. <a href="sec-TextBuffers.html#InserRecupSuppr">Insérer, récupérer et supprimer du texte</a></dt>
+<dt>13.3.4. <a href="sec-TextBuffers.html#CreerManipTextMark">Créer et manipuler des TextMark</a></dt>
 <dt>13.3.5. <a href="sec-TextBuffers.html#CreerAppliqTextTag">Créer et appliquer des TextTag</a></dt>
-<dt>13.3.6. <a href="sec-TextBuffers.html#InserImagesWidgets">Ins&eacute;rer des images et des widgets</a></dt>
+<dt>13.3.6. <a href="sec-TextBuffers.html#InserImagesWidgets">Insérer des images et des widgets</a></dt>
 </dl></dd>
-<dt>13.4. <a href="sec-TextIters.html">TextIter&nbsp;: les it&eacute;rateurs de texte</a></dt>
+<dt>13.4. <a href="sec-TextIters.html">TextIter&nbsp;: les itérateurs de texte</a></dt>
 <dd><dl>
-<dt>13.4.1. <a href="sec-TextIters.html#RecupAttrTextIter">R&eacute;cup&eacute;rer les attributs d'un TextIter</a></dt>
-<dt>13.4.2. <a href="sec-TextIters.html#RecupAttrTexte">R&eacute;cup&eacute;rer les attributs d'un texte portant un TextIter</a></dt>
+<dt>13.4.1. <a href="sec-TextIters.html#RecupAttrTextIter">Récupérer les attributs d'un TextIter</a></dt>
+<dt>13.4.2. <a href="sec-TextIters.html#RecupAttrTexte">Récupérer les attributs d'un texte portant un TextIter</a></dt>
 <dt>13.4.3. <a href="sec-TextIters.html#CopierTextIter">Copier un TextIter</a></dt>
-<dt>13.4.4. <a href="sec-TextIters.html#RecupTexteobjets">R&eacute;cup&eacute;rer du texte et des objets</a></dt>
-<dt>13.4.5. <a href="sec-TextIters.html#VerifBalises">V&eacute;rifier les balises &agrave; une position de TextIter</a></dt>
-<dt>13.4.6. <a href="sec-TextIters.html#VerifPosition">V&eacute;rifier la position dans le texte</a></dt>
-<dt>13.4.7. <a href="sec-TextIters.html#SeDeplacerTexte">Se d&eacute;placer dans le texte</a></dt>
-<dt>13.4.8. <a href="sec-TextIters.html#SeDeplacerEmplSpec">Se d&eacute;placer &agrave; un emplacement sp&eacute;cifique</a></dt>
+<dt>13.4.4. <a href="sec-TextIters.html#RecupTexteobjets">Récupérer du texte et des objets</a></dt>
+<dt>13.4.5. <a href="sec-TextIters.html#VerifBalises">Vérifier les balises à une position de TextIter</a></dt>
+<dt>13.4.6. <a href="sec-TextIters.html#VerifPosition">Vérifier la position dans le texte</a></dt>
+<dt>13.4.7. <a href="sec-TextIters.html#SeDeplacerTexte">Se déplacer dans le texte</a></dt>
+<dt>13.4.8. <a href="sec-TextIters.html#SeDeplacerEmplSpec">Se déplacer à un emplacement spécifique</a></dt>
 <dt>13.4.9. <a href="sec-TextIters.html#RechercherTexte">Rechercher du texte</a></dt>
 </dl></dd>
 <dt>13.5. <a href="sec-TextMarks.html">TextMark&nbsp;: les marques de texte</a></dt>
@@ -69,17 +69,17 @@
 <div class="sect1" lang="fr">
 <div class="titlepage">
 <div>
-<h2 class="title" style="clear: both"><a name="sec-TextViewOverview"></a>13.1. Pr&eacute;sentation des widgets de texte</h2>
+<h2 class="title" style="clear: both"><a name="sec-TextViewOverview"></a>13.1. Présentation des widgets de texte</h2>
 </div></div>
 
-<p>Le widget <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a> (zone de texte) ainsi que les objets qui lui sont asoci&eacute;s (<a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>, <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a>, <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a>, <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> et <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a>) offrent une structure puissante d'&eacute;dition de texte multiligne.</p>
+<p>Le widget <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a> (zone de texte) ainsi que les objets qui lui sont asociés (<a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>, <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a>, <a title="13.4. TextIter&nbsp;: les itérateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a>, <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> et <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a>) offrent une structure puissante d'édition de texte multiligne.</p>
 <p>Un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>
-(buffer de texte) contient le texte qui est affich&eacute; par un ou plusieurs widgets <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a>. Avec GTK+ 2.0 le texte est encod&eacute; en UTF-8, ce qui signifie qu'un caract&egrave;re peut &ecirc;tre encod&eacute; avec plusieurs octets. Dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> on doit bien faire la distinction entre le d&eacute;compte des caract&egrave;res (appel&eacute; offset) et le d&eacute;compte des octets (appel&eacute; index).
+(buffer de texte) contient le texte qui est affiché par un ou plusieurs widgets <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a>. Avec GTK+ 2.0 le texte est encodé en UTF-8, ce qui signifie qu'un caractère peut être encodé avec plusieurs octets. Dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> on doit bien faire la distinction entre le décompte des caractères (appelé offset) et le décompte des octets (appelé index).
 </p>
-<p>Les <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> (it&eacute;rateurs de texte) permettent une repr&eacute;sentation volatile d'une position dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>, situ&eacute;e entre deux caract&egrave;res. Les <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> ne sont valables que tant que le nombre de caract&egrave;res dans le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> est inchang&eacute;. Chaque fois que l'on ins&egrave;re ou efface des caract&egrave;res dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> tous les <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> sont invalid&eacute;s. Les <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> sont le moyen le plus utilis&eacute; de sp&eacute;cifier des positions dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> afin d'y manipuler du texte.
+<p>Les <a title="13.4. TextIter&nbsp;: les itérateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> (itérateurs de texte) permettent une représentation volatile d'une position dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>, située entre deux caractères. Les <a title="13.4. TextIter&nbsp;: les itérateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> ne sont valables que tant que le nombre de caractères dans le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> est inchangé. Chaque fois que l'on insère ou efface des caractères dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> tous les <a title="13.4. TextIter&nbsp;: les itérateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> sont invalidés. Les <a title="13.4. TextIter&nbsp;: les itérateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> sont le moyen le plus utilisé de spécifier des positions dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> afin d'y manipuler du texte.
 </p>
-<p>Les <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a> (marques de texte) permettent de marquer des positions qui ne seront pas affect&eacute;es par les modifications du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>. Une marque est comme un <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> (elle repr&eacute;sente une position entre deux caract&egrave;res d'un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>) &agrave; la diff&eacute;rence que si l'on efface le texte qui l'entoure elle reste &agrave; l'endroit o&ugrave; &eacute;tait le texte effac&eacute;. Si l'on ins&egrave;re du texte &agrave; la position indiqu&eacute;e par cette marque, celle-ci se retrouvera soit &agrave; gauche, soit &agrave; droite du texte ins&eacute;r&eacute;, en fonction de la gravit&eacute; de la marque &mdash; la marque restera &agrave; droite du texte ins&eacute;r&eacute; dans le cas d'une gravit&eacute; &agrave; droite, et &agrave; gauche dans le cas d'une gravit&eacute; &agrave; gauche. On peut choisir de donner un nom &agrave; une <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a>, ou bien la laisser anonyme. Chaque <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> comporte deux <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a> pr&eacute;d&eacute;finies, nomm&eacute;es <i><tt>insert</tt></i> et <i><tt>selection_bound</tt></i>, faisant r&eacute;f&eacute;rence aux positions respectives du point d'insertion et de la fin de la s&eacute;lection (la s&eacute;lection est comprise entre les marques <i><tt>insert</tt></i> et <i><tt>selection_bound</tt></i>).</p>
-<p>Les objets <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> (balises de texte) sp&eacute;cifient un ensemble d'attributs pouvant &ecirc;tre appliqu&eacute;s &agrave; une portion de texte d'un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>. Chaque <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> a une <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a> (table des balises de texte) qui recense les balises disponibles dans ce buffer. Plusieurs <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> peuvent se partager la m&ecirc;me <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a> pour offrir une meilleure coh&eacute;rence. On utilise souvent les <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> pour modifier l'apparence d'une portion de texte mais elles peuvent tout aussi bien servir &agrave; emp&ecirc;cher l'&eacute;dition de cette m&ecirc;me portion de texte.</p>
+<p>Les <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a> (marques de texte) permettent de marquer des positions qui ne seront pas affectées par les modifications du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>. Une marque est comme un <a title="13.4. TextIter&nbsp;: les itérateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a> (elle représente une position entre deux caractères d'un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>) à la différence que si l'on efface le texte qui l'entoure elle reste à l'endroit où était le texte effacé. Si l'on insère du texte à la position indiquée par cette marque, celle-ci se retrouvera soit à gauche, soit à droite du texte inséré, en fonction de la gravité de la marque &mdash; la marque restera à droite du texte inséré dans le cas d'une gravité à droite, et à gauche dans le cas d'une gravité à gauche. On peut choisir de donner un nom à une <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a>, ou bien la laisser anonyme. Chaque <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> comporte deux <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a> prédéfinies, nommées <i><tt>insert</tt></i> et <i><tt>selection_bound</tt></i>, faisant référence aux positions respectives du point d'insertion et de la fin de la sélection (la sélection est comprise entre les marques <i><tt>insert</tt></i> et <i><tt>selection_bound</tt></i>).</p>
+<p>Les objets <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> (balises de texte) spécifient un ensemble d'attributs pouvant être appliqués à une portion de texte d'un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>. Chaque <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> a une <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a> (table des balises de texte) qui recense les balises disponibles dans ce buffer. Plusieurs <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> peuvent se partager la même <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a> pour offrir une meilleure cohérence. On utilise souvent les <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> pour modifier l'apparence d'une portion de texte mais elles peuvent tout aussi bien servir à empêcher l'édition de cette même portion de texte.</p>
 </div></div>
 
 <div class="navfooter">
@@ -87,12 +87,12 @@
 
 <table width="100%" summary="Bas de page de navigation">
   <tr>
-    <td width="40%" align="left"><a accessKey="p" href="sec-DrawingMethods.html">Pr&eacute;c.</a></td>
+    <td width="40%" align="left"><a accessKey="p" href="sec-DrawingMethods.html">Préc.</a></td>
     <td width="20%" align="center"><a accessKey=u href="index.html">Chapitre parent</a></td>
     <td width="40%" align="right"><a accessKey="n" href="sec-TextViews.html">Suiv.</a></td>
   </tr><tr>
     <td width="40%" align="left" vAlign="top">12.2. Les méthodes pour dessiner</td>
-    <td width="20%" align="center"><a accessKey="h" href="index.html">Table des mati&egrave;res</a></td>
+    <td width="20%" align="center"><a accessKey="h" href="index.html">Table des matières</a></td>
     <td width="40%" align="right" vAlign="top">13.2. TextView&nbsp;: la zone de texte</td>
 </tr></table>
 

@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-<title>4.5. D&eacute;monstration de placement avec les tableaux</title>
+<title>4.5. Démonstration de placement avec les tableaux</title>
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,boite,tableau">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-PackingWidgets.html" title="Chapitre 4. Le placement des widgets">
 <link rel="previous" href="sec-PackingUsingTables.html" title="4.4. Le placement avec les tableaux">
 <link rel="next" href="ch-WidgetOverview.html" title="Chapitre 5. Vue d'ensemble des widgets">
@@ -16,11 +16,11 @@
 <body>
 <div class="navheader">
 
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
-<th colspan="3" align="center">4.5. D&eacute;monstration de placement avec les tableaux</th></tr>
+<th colspan="3" align="center">4.5. Démonstration de placement avec les tableaux</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-PackingUsingTables.html">Pr&eacute;c.</a> </td>
+<td width="20%" align="left"><a accesskey="p" href="sec-PackingUsingTables.html">Préc.</a> </td>
 <th width="60%" align="center">Chapitre 4. Le placement des widgets</th>
 <td width="20%" align="right"> <a accesskey="n" href="ch-WidgetOverview.html">Suiv.</a></td>
 </tr></table>
@@ -30,14 +30,14 @@
 
 <div class="sect1"><div class="titlepage"><div>
 <h2 class="title" style="clear: both"><a name="Demotableaux"></a>4.5.
-D&eacute;monstration de placement avec les tableaux</h2></div></div>
+Démonstration de placement avec les tableaux</h2></div></div>
 
 <p>Le programme exemple <A href="exemples/tableaux.py" target=_top><B>tableaux.py</B></A>
-cr&eacute;e une fen&ecirc;tre avec trois boutons dans un tableau de 2x2. Les deux premiers
-boutons sont plac&eacute;s sur la ligne du haut. Le troisi&egrave;me, le bouton "Quitter",
-est plac&eacute; sur la ligne du bas et occupe les deux colonnes. La
+crée une fenêtre avec trois boutons dans un tableau de 2x2. Les deux premiers
+boutons sont placés sur la ligne du haut. Le troisième, le bouton "Quitter",
+est placé sur la ligne du bas et occupe les deux colonnes. La
 <A title="Figure 4.4. Placement avec un tableau"
-href="sec-TablePackingExample.html#tableauxfig">figure 4.4</A> montre la fen&ecirc;tre
+href="sec-TablePackingExample.html#tableauxfig">figure 4.4</A> montre la fenêtre
 obtenue&nbsp;:</p>
 
 <div class="figure">
@@ -138,27 +138,27 @@ obtenue&nbsp;:</p>
     86       main()
 </pre>
 
-<p>La classe <tt>Tableau</tt> est d&eacute;finie de la ligne 9 &agrave; la ligne 78.</p>
-<p>Aux lignes 12-13, on d&eacute;finit la fonction de rappel <tt>salut</tt>(), appel&eacute;e
+<p>La classe <tt>Tableau</tt> est définie de la ligne 9 à la ligne 78.</p>
+<p>Aux lignes 12-13, on définit la fonction de rappel <tt>salut</tt>(), appelée
 par un clic sur le bouton 1 ou sur le bouton 2. Elle affiche juste un message dans la console
-qui indique quel bouton a &eacute;t&eacute; cliqu&eacute;, et se sert pour cela de la chaine
-de caract&egrave;res qui lui est transmise.</p>
-<p>Aux lignes 16-18, on d&eacute;finit la m&eacute;thode <tt>evnmt_delete</tt>(), qui est
-invoqu&eacute;e lorsque le gestionnaire de fen&ecirc;tres tente de fermer la fen&ecirc;tre
+qui indique quel bouton a été cliqué, et se sert pour cela de la chaine
+de caractères qui lui est transmise.</p>
+<p>Aux lignes 16-18, on définit la méthode <tt>evnmt_delete</tt>(), qui est
+invoquée lorsque le gestionnaire de fenêtres tente de fermer la fenêtre
 principale.</p>
-<p>De la ligne 20 &agrave; la ligne 78, on d&eacute;finit <tt>__init__</tt>(), la
-m&eacute;thode constructeur de la classe <tt>Tableau</tt>. Elle cr&eacute;e une fen&ecirc;tre
+<p>De la ligne 20 à la ligne 78, on définit <tt>__init__</tt>(), la
+méthode constructeur de la classe <tt>Tableau</tt>. Elle crée une fenêtre
 (ligne 22), lui donne un titre (ligne 25), connecte la fonction de rappel
-<tt>evnmt_delete</tt>() au signal &quot;<tt>delete_event</tt>&quot; (ligne 29), et fixe les
-bordures de la fen&ecirc;tre (ligne 32). Un <tt>gtk.Table</tt> est cr&eacute;&eacute;
-&agrave; la ligne 35 et est ajout&eacute; &agrave; la fen&ecirc;tre principale &agrave;
+<tt>evnmt_delete</tt>() au signal "<tt>delete_event</tt>" (ligne 29), et fixe les
+bordures de la fenêtre (ligne 32). Un <tt>gtk.Table</tt> est créé
+à la ligne 35 et est ajouté à la fenêtre principale à
 la ligne 38.</p>
-<p>Puis les deux boutons du haut sont cr&eacute;&eacute;s (lignes 41 et 55), on connecte
-leurs signaux &quot;<tt>clicked</tt>&quot; &agrave; la m&eacute;hode <tt>salut</tt>()
-(lignes 45 et 59) et on les place dans la premi&egrave;re ligne du tableau (lignes 49 et 61).
-Pour finir, on cr&eacute;e le bouton "Quitter" aux lignes 66 &agrave; 73, on connecte son
-signal &quot;<tt>clicked</tt>&quot; &agrave; la fonction <tt>mainquit</tt>(), et on le
-place sur toute l'&eacute;tendue de la seconde ligne du tableau.</p>
+<p>Puis les deux boutons du haut sont créés (lignes 41 et 55), on connecte
+leurs signaux "<tt>clicked</tt>" à la méhode <tt>salut</tt>()
+(lignes 45 et 59) et on les place dans la première ligne du tableau (lignes 49 et 61).
+Pour finir, on crée le bouton "Quitter" aux lignes 66 à 73, on connecte son
+signal "<tt>clicked</tt>" à la fonction <tt>mainquit</tt>(), et on le
+place sur toute l'étendue de la seconde ligne du tableau.</p>
 </div>
 
 <div class="navfooter">
@@ -166,12 +166,12 @@ place sur toute l'&eacute;tendue de la seconde ligne du tableau.</p>
 
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-PackingUsingTables.html">Pr&eacute;c.</a> </td>
+<td width="40%" align="left"><a accesskey="p" href="sec-PackingUsingTables.html">Préc.</a> </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-PackingWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"> <a accesskey="n" href="ch-WidgetOverview.html">Suiv.</a></td></tr>
 <tr>
 <td width="40%" align="left" valign="top">4.4. Le placement avec les tableaux</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
 <td width="40%" align="right" valign="top">Chapitre 5. Vue d'ensemble des widgets</td>
 </tr></table>
 

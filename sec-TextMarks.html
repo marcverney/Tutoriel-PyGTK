@@ -7,19 +7,19 @@
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,textview">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-TextViewWidget.html" title="Chapitre 13. Le widget TextView">
-<link rel="previous" href="sec-TextIters.html" title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte">
+<link rel="previous" href="sec-TextIters.html" title="13.4. TextIter&nbsp;: les itérateurs de texte">
 <link rel="next" href="sec-TextTagsAndTextTagTables.html" title="13.6. TextTag et TextTagTable&nbsp;: les balises de texte">
 </head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
 <th colspan="3" align="center">13.5. TextMark&nbsp;: les marques de texte</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-TextIters.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-TextIters.html">Préc.</a></td>
 <th width="60%" align="center">Chapitre 13. Le widget TextView</th>
 <td width="20%" align="right"><a accesskey="n" href="sec-TextTagsAndTextTagTables.html">Suiv.</a></td>
 </tr></table>
@@ -30,15 +30,15 @@
 <div class=sect1><div class=titlepage>
 <div><H2 class=title style="CLEAR: both"><a name=sec-TextMarks></a>13.5. TextMark&nbsp;: les marques de texte</H2></div></div>
 
-<p>Une <tt>TextMark</tt> indique une position entre deux caract&egrave;res d'un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>, position qui sera pr&eacute;serv&eacute;e en cas de modification du buffer. Pour cr&eacute;er, d&eacute;placer, ou supprimer des <tt>TextMark</tt>, on utilise les m&eacute;thodes de <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> d&eacute;crites dans la section <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>.</p>
-<p>Un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> poss&egrave;de deux <tt>TextMark</tt> inh&eacute;rentes, nomm&eacute;es <i><tt>insert</tt></i> et <i><tt>selection_bound</tt></i>, qui font respectivement r&eacute;f&eacute;rence &agrave; la position du point d'insertion et &agrave; celle de la fin de la s&eacute;lection (elles peuvent d&eacute;signer la m&ecirc;me position).</p>
-<p>On peut r&eacute;cup&eacute;rer le nom d'une <tt>TextMark</tt> avec la m&eacute;thode&nbsp;:</p>
+<p>Une <tt>TextMark</tt> indique une position entre deux caractères d'un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>, position qui sera préservée en cas de modification du buffer. Pour créer, déplacer, ou supprimer des <tt>TextMark</tt>, on utilise les méthodes de <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> décrites dans la section <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>.</p>
+<p>Un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> possède deux <tt>TextMark</tt> inhérentes, nommées <i><tt>insert</tt></i> et <i><tt>selection_bound</tt></i>, qui font respectivement référence à la position du point d'insertion et à celle de la fin de la sélection (elles peuvent désigner la même position).</p>
+<p>On peut récupérer le nom d'une <tt>TextMark</tt> avec la méthode&nbsp;:</p>
 
 <pre class=programlisting>
   nom_marque = marque.get_name()
 </pre>
 
-<p>Par d&eacute;faut, seule la marque <tt>insert</tt> est visible. La visibilit&eacute; d'une marque (une barre verticale) peut &ecirc;tre d&eacute;finie et r&eacute;cup&eacute;r&eacute;e en utilisant respectivement les m&eacute;thodes suivantes&nbsp;:</p>
+<p>Par défaut, seule la marque <tt>insert</tt> est visible. La visibilité d'une marque (une barre verticale) peut être définie et récupérée en utilisant respectivement les méthodes suivantes&nbsp;:</p>
 
 <pre class=programlisting>
   marque.set_visible(<b><tt>choix</tt></b>)
@@ -46,26 +46,26 @@
   visible = marque.get_visible()
 </pre>
 
-<p>o&ugrave; <i><tt>visible</tt></i> vaut TRUE si la marque est visible.</p>
-<p>On r&eacute;cup&egrave;re le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> qui contient une <tt>TextMark</tt> donn&eacute;e avec la m&eacute;thode&nbsp;:</p>
+<p>où <i><tt>visible</tt></i> vaut TRUE si la marque est visible.</p>
+<p>On récupère le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> qui contient une <tt>TextMark</tt> donnée avec la méthode&nbsp;:</p>
 
 <pre class=programlisting>
   buffer = marque.get_buffer()
 </pre>
 
-<p>On peut savoir si une <tt>TextMark</tt> a &eacute;t&eacute; supprim&eacute;e en faisant appel &agrave; la m&eacute;thode&nbsp;:</p>
+<p>On peut savoir si une <tt>TextMark</tt> a été supprimée en faisant appel à la méthode&nbsp;:</p>
 
 <pre class=programlisting>
   marque_suppr = marque.get_deleted()
 </pre>
 
-<p>La gravit&eacute; d'une <tt>TextMark</tt> peut &ecirc;tre r&eacute;cup&eacute;r&eacute;e par la m&eacute;thode&nbsp;:</p>
+<p>La gravité d'une <tt>TextMark</tt> peut être récupérée par la méthode&nbsp;:</p>
 
 <pre class=programlisting>
   gravite = marque.get_left_gravity()
 </pre>
 
-<p>La gravit&eacute; d'une marque indique la situation de celle-ci apr&egrave;s qu'on aura ins&eacute;r&eacute; du texte &agrave; sa position. Si la <i><tt>gravite</i></tt> vaut TRUE, la marque sera &agrave; gauche du texte ins&eacute;r&eacute; ; si elle vaut FALSE, elle sera &agrave; droite.</p>
+<p>La gravité d'une marque indique la situation de celle-ci après qu'on aura inséré du texte à sa position. Si la <i><tt>gravite</i></tt> vaut TRUE, la marque sera à gauche du texte inséré ; si elle vaut FALSE, elle sera à droite.</p>
 </div>
 
 <div class=navfooter>
@@ -74,12 +74,12 @@
 <table width="100%" summary="Navigation footer">
 
   <tr>
-    <td align=left width="40%"><a accessKey=p href="sec-TextIters.html">Pr&eacute;c.</a></td>
+    <td align=left width="40%"><a accessKey=p href="sec-TextIters.html">Préc.</a></td>
     <td align=center width="20%"><a accessKey=u href="ch-TextViewWidget.html">Chapitre Parent</a></td>
     <td align=right width="40%"><a accessKey=n href="sec-TextTagsAndTextTagTables.html">Suiv.</a></td></tr>
   <tr>
-    <td vAlign=top align=left width="40%">13.4. TextIter&nbsp;: les it&eacute;rateurs de texte</td>
-    <td align=center width="20%"><a accessKey=h href="index.html">Table des mati&egrave;res</a></td>
+    <td vAlign=top align=left width="40%">13.4. TextIter&nbsp;: les itérateurs de texte</td>
+    <td align=center width="20%"><a accessKey=h href="index.html">Table des matières</a></td>
     <td vAlign=top align=right width="40%">13.6. TextTag et TextTagTable&nbsp;: les balises de texte</td>
 </tr></table>
 

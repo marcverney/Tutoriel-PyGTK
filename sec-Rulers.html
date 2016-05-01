@@ -3,23 +3,23 @@
 
 <head>
     <meta charset="utf-8">
-<title>9.7. Les r&egrave;gles</title>
+<title>9.7. Les règles</title>
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,regle">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
 <link rel="previous" href="sec-Images.html" title="9.6. Les images">
-<link rel="next" href="sec-Statusbars.html" title="9.8. La barre d'&eacute;tat">
+<link rel="next" href="sec-Statusbars.html" title="9.8. La barre d'état">
 </head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
-<th colspan="3" align="center">9.7. Les r&egrave;gles</th>
+<th colspan="3" align="center">9.7. Les règles</th>
 </tr><tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-Images.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-Images.html">Préc.</a></td>
 <th width="60%" align="center">Chapitre 9. Widgets divers</th>
 <td width="20%" align="right"><a accesskey="n" href="sec-Statusbars.html">Suiv.</a></td>
 </tr></table>
@@ -28,95 +28,95 @@
 </div>
 
 <div class="sect1"><div class="titlepage"><div>
-<h2 class="title" style="clear: both"><a name="Regles"></a>9.7. Les r&egrave;gles</h2></div></div>
+<h2 class="title" style="clear: both"><a name="Regles"></a>9.7. Les règles</h2></div></div>
 
-<p>Le widget <tt>gtk.Ruler</tt> sert &agrave; indiquer la position du pointeur de la souris
-dans une fen&ecirc;tre donn&eacute;e. Une fen&ecirc;tre peut &ecirc;tre dot&eacute;e d'une
-r&egrave;gle horizontale s'&eacute;tendant sur sa largeur et d'une verticale dans sa hauteur.
-La position exacte du pointeur mesur&eacute;e par la r&egrave;gle est
-mat&eacute;rialis&eacute; sur celle-ci par un petit indicateur triangulaire.</p>
-<p>Le widget doit tout d'abord &ecirc;tre cr&eacute;&eacute;. On utilisera &agrave; cet
+<p>Le widget <tt>gtk.Ruler</tt> sert à indiquer la position du pointeur de la souris
+dans une fenêtre donnée. Une fenêtre peut être dotée d'une
+règle horizontale s'étendant sur sa largeur et d'une verticale dans sa hauteur.
+La position exacte du pointeur mesurée par la règle est
+matérialisé sur celle-ci par un petit indicateur triangulaire.</p>
+<p>Le widget doit tout d'abord être créé. On utilisera à cet
 effet les fonctions suivantes&nbsp;:</p>
 
 <pre class="programlisting">
-  regle_h = gtk.HRuler()    # cr&eacute;e une r&egrave;gle horizontale
+  regle_h = gtk.HRuler()    # crée une règle horizontale
 
-  regle_v = gtk.VRuler()    # cr&eacute;e une r&egrave;gle verticale
+  regle_v = gtk.VRuler()    # crée une règle verticale
 </pre>
 
-<p>Une fois qu'une r&egrave;gle est cr&eacute;&eacute;e, on peut d&eacute;finir
-l'unit&eacute; de mesure&nbsp;: <tt>PIXELS</tt> (pixels), <tt>INCHES</tt> (pouces)
-ou <tt>CENTIMETERS</tt> (centim&egrave;tres). La m&eacute;thode &agrave; utiliser est
+<p>Une fois qu'une règle est créée, on peut définir
+l'unité de mesure&nbsp;: <tt>PIXELS</tt> (pixels), <tt>INCHES</tt> (pouces)
+ou <tt>CENTIMETERS</tt> (centimètres). La méthode à utiliser est
 la suivante&nbsp;:</p>
 
 <pre class="programlisting">
   regle.set_metric(<b><tt>metric</tt></b>)
 </pre>
 
-<p>L'unit&eacute; de mesure par d&eacute;faut est <tt>PIXELS</tt>.</p>
+<p>L'unité de mesure par défaut est <tt>PIXELS</tt>.</p>
 
 ><pre class="programlisting">
   regle.set_metric(gtk.PIXELS)
 </pre>
 
-<p>Les gtk.Ruler poss&egrave;dent d'autres caract&eacute;ristiques configurables,
+<p>Les gtk.Ruler possèdent d'autres caractéristiques configurables,
 telles que la graduation de l'intervalle choisi et la position initiale de l'indicateur.
-Ces deux options se d&eacute;finissent avec la m&eacute;thode suivante&nbsp;:</p>
+Ces deux options se définissent avec la méthode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   regle.set_range(<b><tt>lower</tt></b>, <b><tt>upper</tt></b>, <b><tt>position</tt></b>,<b><tt> max_size</tt></b>)
 </pre>
 
 <p>Les arguments <i><tt>lower</tt></i> (minimum) et <i><tt>upper</tt></i> (maximum)
-sp&eacute;cifient l'&eacute;tendue de la r&egrave;gle, et <i><tt>max_size</tt></i>
-(taille maximum) repr&eacute;sente le plus grand nombre qui puisse &ecirc;tre affich&eacute;.
-Quant &agrave; <i><tt>position</tt></i>, il pr&eacute;cise la position initiale de
-l'indicateur triangulaire dans la r&egrave;gle.</p>
-<p>On peut donc faire s'&eacute;tendre une r&egrave;gle verticale sur une fen&ecirc;tre
+spécifient l'étendue de la règle, et <i><tt>max_size</tt></i>
+(taille maximum) représente le plus grand nombre qui puisse être affiché.
+Quant à <i><tt>position</tt></i>, il précise la position initiale de
+l'indicateur triangulaire dans la règle.</p>
+<p>On peut donc faire s'étendre une règle verticale sur une fenêtre
 de 800 pixel de haut ainsi&nbsp;:</p>
 
 <pre class="programlisting">
   regle_v.set_range(0, 800, 0, 800)
 </pre>
 
-<p>Les graduations de la r&egrave;gle iront de 0 &agrave; 800, avec un nombre tous les
-100 pixels. Si l'on voulait que la r&egrave;gle aille de 7 &agrave; 16, on coderait
-plut&ocirc;t&nbsp;:</p>
+<p>Les graduations de la règle iront de 0 à 800, avec un nombre tous les
+100 pixels. Si l'on voulait que la règle aille de 7 à 16, on coderait
+plutôt&nbsp;:</p>
 
 <pre class="programlisting">
   regle_v.set_range(7, 16, 0, 20)
 </pre>
 
-<p>L'indicateur, petite marque triangulaire pr&eacute;sente sur la r&egrave;gle, indique
-la position du pointeur mesur&eacute;e par cette derni&egrave;re. Si l'on utilise
-une r&egrave;gle dans le but de suivre le pointeur de la souris, le signal
-&quot;<tt>motion_notify_event</tt>&quot; (&eacute;v&egrave;nement &quot;notification
-de mouvement&quot;) devrait &ecirc;tre connect&eacute; &agrave; la m&eacute;thode
-&quot;<tt>motion_notify_event</tt>&quot; de la r&egrave;gle. Il nous faut d&eacute;finir
-une fonction de rappel du &quot;<tt>motion_notify_event</tt>&quot; pour la zone de dessin
-et utiliser <tt>connect_object</tt>() pour faire &eacute;mettre &agrave; la r&egrave;gle
+<p>L'indicateur, petite marque triangulaire présente sur la règle, indique
+la position du pointeur mesurée par cette dernière. Si l'on utilise
+une règle dans le but de suivre le pointeur de la souris, le signal
+"<tt>motion_notify_event</tt>" (évènement "notification
+de mouvement") devrait être connecté à la méthode
+"<tt>motion_notify_event</tt>" de la règle. Il nous faut définir
+une fonction de rappel du "<tt>motion_notify_event</tt>" pour la zone de dessin
+et utiliser <tt>connect_object</tt>() pour faire émettre à la règle
 un signal de notification de mouvement&nbsp;:</p>
 
 <pre class="programlisting">
   def notif_mouvement(regle, evnmt):
-      return regle.emit(&quot;motion_notify_event&quot;, evnmt)
+      return regle.emit("motion_notify_event", evnmt)
 
-  zonedess.connect_object(&quot;motion_notify_event&quot;, notif_mouvement, regle)
+  zonedess.connect_object("motion_notify_event", notif_mouvement, regle)
 </pre>
 
 <p>Le programme d'exemple <a href="exemples/regles.py" target="_top"><b>regles.py</b></a>
-cr&eacute;e une zone de dessin encadr&eacute;e par une r&egrave;gle horizontale en haut
-et une verticale &agrave; gauche. La zone de dessin fait 600 pixels de large pour 800
-pixels de haut. La r&egrave;gle horizontale est gradu&eacute;e de 7 &agrave; 13 avec
-une marque tous les 100 pixels, tandis que la r&egrave;gle verticale est gradu&eacute;e
-de 0 &agrave; 400 avec une marque tous les 100 pixels. Le placement de la zone de dessin
-ainsi que des r&egrave;gles est effectu&eacute; au moyen d'un tableau. La
+crée une zone de dessin encadrée par une règle horizontale en haut
+et une verticale à gauche. La zone de dessin fait 600 pixels de large pour 800
+pixels de haut. La règle horizontale est graduée de 7 à 13 avec
+une marque tous les 100 pixels, tandis que la règle verticale est graduée
+de 0 à 400 avec une marque tous les 100 pixels. Le placement de la zone de dessin
+ainsi que des règles est effectué au moyen d'un tableau. La
 <a href="sec-Rulers.html#FigRegles"
-title="Figure 9.8. Exemple de r&egrave;gles">Figure 9.8</a> montre le
-r&eacute;sultat&nbsp;:</p>
+title="Figure 9.8. Exemple de règles">Figure 9.8</a> montre le
+résultat&nbsp;:</p>
 
 <div class="figure"><a name="FigRegles"></a>
-<p class="title"><b>Figure 9.8. Figure 9.8. Exemple de r&egrave;gles</b></p>
+<p class="title"><b>Figure 9.8. Figure 9.8. Exemple de règles</b></p>
 <div class="mediaobject" align="center">
 <img src="figures/regles.png" align="middle" alt="exemple régles">
 </div></div>
@@ -197,9 +197,9 @@ est le suivant&nbsp;:</p>
 </pre>
 
 <p>Les lignes 42 et 52 connectent la fonction de rappel <tt>notif_mouvmt</tt>()
-&agrave; la zone de dessin, la premi&egrave;re ligne passant <i><tt>regle_h</tt></i>
-et la seconde <i><tt>regle_v</tt></i> comme donn&eacute;es utilisateur. La fonction de
-rappel <tt>notif_mouvmt</tt>() sera invoqu&eacute;e deux fois &agrave; chaque mouvement
+à la zone de dessin, la première ligne passant <i><tt>regle_h</tt></i>
+et la seconde <i><tt>regle_v</tt></i> comme données utilisateur. La fonction de
+rappel <tt>notif_mouvmt</tt>() sera invoquée deux fois à chaque mouvement
 de la souris&nbsp;: une fois avec <i><tt>regle_h</tt></i> et une autre avec
 <i><tt>regle_v</tt></i>.</p>
 </div>
@@ -209,13 +209,13 @@ de la souris&nbsp;: une fois avec <i><tt>regle_h</tt></i> et une autre avec
 
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-Images.html">Pr&eacute;c.</a></td>
+<td width="40%" align="left"><a accesskey="p" href="sec-Images.html">Préc.</a></td>
 <td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"><a accesskey="n" href="sec-Statusbars.html">Suiv.</a></td>
 </tr><tr>
 <td width="40%" align="left" valign="top">9.6. Les images</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
-<td width="40%" align="right" valign="top">9.8. La barre d'&eacute;tat</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top">9.8. La barre d'état</td>
 </tr></table></div>
 
 </body>

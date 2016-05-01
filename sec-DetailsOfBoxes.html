@@ -3,23 +3,23 @@
 
 <head>
     <meta charset="utf-8">
-<title>4.2. Les boites en d&eacute;tail</title>
+<title>4.2. Les boites en détail</title>
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,boite">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
 <link rel="home" href="index.html" title="Tutoriel PyGTK 2.0 version 1.3">
 <link rel="up" href="ch-PackingWidgets.html" title="Chapitre 4. Le placement des widgets">
 <link rel="previous" href="ch-PackingWidgets.html" title="Chapitre 4. Le placement des widgets">
-<link rel="next" href="sec-PackingDemonstrationProgram.html" title="4.3. D&eacute;monstration de placement avec les boites">
+<link rel="next" href="sec-PackingDemonstrationProgram.html" title="4.3. Démonstration de placement avec les boites">
 </head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
-<th colspan="3" align="center">4.2. Les boites en d&eacute;tail</th></tr>
+<th colspan="3" align="center">4.2. Les boites en détail</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="ch-PackingWidgets.html">Pr&eacute;c.</a> </td>
+<td width="20%" align="left"><a accesskey="p" href="ch-PackingWidgets.html">Préc.</a> </td>
 <th width="60%" align="center">Chapitre 4. Le placement des widgets</th>
 <td width="20%" align="right"> <a accesskey="n" href="sec-PackingDemonstrationProgram.html">Suiv.</a></td>
 </tr></table>
@@ -29,15 +29,15 @@
 <div class="sect1">
 <div class="titlepage">
 <div><h2 class="title" style="clear: both"><a name="BoitesDetail"></a>
-4.2. Les boites en d&eacute;tail</h2></div>
+4.2. Les boites en détail</h2></div>
 </div>
 
-<p>Du fait m&ecirc;me de cette flexibilit&eacute;, les boites de placement peuvent paraitre
-un peu d&eacute;routantes au d&eacute;but. Il y a beaucoup d'options et il n'est pas
-toujours &eacute;vident de comprendre leurs effets. Mais en somme, on peut dire qu'il y a
-cinq styles diff&eacute;rents. La
+<p>Du fait même de cette flexibilité, les boites de placement peuvent paraitre
+un peu déroutantes au début. Il y a beaucoup d'options et il n'est pas
+toujours évident de comprendre leurs effets. Mais en somme, on peut dire qu'il y a
+cinq styles différents. La
 <a title="Figure 4.1. Cinq styles de placement" href="sec-DetailsOfBoxes.html#boites1fig">
-figure 4.1</a> montre ce qu'on obtient en lan&ccedil;ant le programme
+figure 4.1</a> montre ce qu'on obtient en lançant le programme
 <a href="exemples/boites.py" target="_top"><b>boites.py</b></a> avec l'argument 1&nbsp;:</p>
 
 <div class="figure"><a name="boites1fig"></a>
@@ -45,17 +45,17 @@ figure 4.1</a> montre ce qu'on obtient en lan&ccedil;ant le programme
 <div class="mediaobject" align="center"><img src="figures/boites1.png" align="middle">
 </div></div>
 
-<p>Chaque ligne contient une boite horizontale comportant plusieurs boutons. L'appel de placement que vous pouvez y lire est un abreg&eacute; de celui utilis&eacute; pour placer chacun des boutons de la ligne. Tous les boutons d'un m&ecirc;me HBox sont plac&eacute;s de la m&ecirc;me mani&egrave;re (m&ecirc;mes arguments pour la m&eacute;thode <tt>pack_start</tt>()).</p>
-<p>Voici comment s'utilise la m&eacute;thode <tt>pack_start</tt>().</p>
+<p>Chaque ligne contient une boite horizontale comportant plusieurs boutons. L'appel de placement que vous pouvez y lire est un abregé de celui utilisé pour placer chacun des boutons de la ligne. Tous les boutons d'un même HBox sont placés de la même manière (mêmes arguments pour la méthode <tt>pack_start</tt>()).</p>
+<p>Voici comment s'utilise la méthode <tt>pack_start</tt>().</p>
 
 <pre class="programlisting">
   boite.pack_start(child, expand, fill, padding)
 </pre>
 
 <p><i>boite</i> est la boite dans laquelle vous allez placer l'objet <i>child</i> (enfant). Pour le moment, les objets seront des boutons. Nous allons donc voir comment placer des boutons dans des boites.</p>
-<p>L'argument <i>expand</i> de <tt>pack_start</tt>() et <tt>pack_end</tt>() contr&ocirc;le si les widgets doivent occuper tout l'espace disponible dans la boite (TRUE) &mdash; celle-ci s'&eacute;tirera alors pour remplir la zone qui lui est allou&eacute;e &mdash;,  ou si la boite doit au contraire r&eacute;tr&eacute;cir jusqu'&agrave; la taille minimale n&eacute;cessaire aux widgets (FALSE). R&eacute;gler <i>expand</i> sur FALSE vous permettra d'aligner tous vos widgets &agrave; droite ou &agrave; gauche. Autrement, ils s'&eacute;taleront pour occuper tout l'espace de la boite. Le m&ecirc;me effet pourrait &ecirc;tre obtenu en utilisant uniquement une des deux fonctions <tt>pack_start</tt>() ou <tt>pack_end</tt>().</p>
-<p>Gr&acirc;ce &agrave; l'argument <i>fill</i>, on peut ordonner que l'espace vide autour des widgets leur soit allou&eacute; (TRUE). Sinon, on ne touche &agrave; rien (FALSE), cet espace jouera le r&ocirc;le d'un <i>padding</i> suppl&eacute;mentaire autour des objets. <i>fill</i> n'a d'effet que si <i>expand</i> vaut TRUE.</p>
-<p>Les fonctions ou m&eacute;thodes que nous d&eacute;couvrirons tout au long de ce tutoriel peuvent comporter, gr&acirc;ce &agrave; Python, des mots-cl&eacute;s et des valeurs par d&eacute;faut. Le cas &eacute;ch&eacute;ant, nous les mentionnerons dans la d&eacute;finition de leur fonction, comme &agrave; pr&eacute;sent avec les m&eacute;thodes <tt>pack_start</tt>() et <tt>pack_end</tt>()&nbsp;:</p>
+<p>L'argument <i>expand</i> de <tt>pack_start</tt>() et <tt>pack_end</tt>() contrôle si les widgets doivent occuper tout l'espace disponible dans la boite (TRUE) &mdash; celle-ci s'étirera alors pour remplir la zone qui lui est allouée &mdash;,  ou si la boite doit au contraire rétrécir jusqu'à la taille minimale nécessaire aux widgets (FALSE). Régler <i>expand</i> sur FALSE vous permettra d'aligner tous vos widgets à droite ou à gauche. Autrement, ils s'étaleront pour occuper tout l'espace de la boite. Le même effet pourrait être obtenu en utilisant uniquement une des deux fonctions <tt>pack_start</tt>() ou <tt>pack_end</tt>().</p>
+<p>Grâce à l'argument <i>fill</i>, on peut ordonner que l'espace vide autour des widgets leur soit alloué (TRUE). Sinon, on ne touche à rien (FALSE), cet espace jouera le rôle d'un <i>padding</i> supplémentaire autour des objets. <i>fill</i> n'a d'effet que si <i>expand</i> vaut TRUE.</p>
+<p>Les fonctions ou méthodes que nous découvrirons tout au long de ce tutoriel peuvent comporter, grâce à Python, des mots-clés et des valeurs par défaut. Le cas échéant, nous les mentionnerons dans la définition de leur fonction, comme à présent avec les méthodes <tt>pack_start</tt>() et <tt>pack_end</tt>()&nbsp;:</p>
 
 <pre class="programlisting">
   boite.pack_start(<b>child</b>, <b>expand</b>=True, <b>fill</b>=True, <b>padding</b>=0)
@@ -63,8 +63,8 @@ figure 4.1</a> montre ce qu'on obtient en lan&ccedil;ant le programme
   boite.pack_end(<b>child</b>, <b>expand</b>=True, <b>fill</b>=True, <b>padding</b>=0)
 </pre>
 
-<p><i><tt>child</tt></i>, <i><tt>expand</tt></i>, <i><tt>fill</tt></i> et <i><tt>padding</tt></i> sont des mots-cl&eacute;s (ils apparaitront toujours en gras). On peut remarquer les valeurs par d&eacute;faut des arguments <i><tt>expand</tt></i>, <i><tt>fill</tt></i> et <i><tt>padding</tt></i>. L'argument <i><tt>child</tt></i>, quant &agrave; lui, devra obligatoirement &ecirc;tre sp&eacute;cifi&eacute;.</p>
-<p>La cr&eacute;ation d'une boite ressemble &agrave; ceci&nbsp;:</p>
+<p><i><tt>child</tt></i>, <i><tt>expand</tt></i>, <i><tt>fill</tt></i> et <i><tt>padding</tt></i> sont des mots-clés (ils apparaitront toujours en gras). On peut remarquer les valeurs par défaut des arguments <i><tt>expand</tt></i>, <i><tt>fill</tt></i> et <i><tt>padding</tt></i>. L'argument <i><tt>child</tt></i>, quant à lui, devra obligatoirement être spécifié.</p>
+<p>La création d'une boite ressemble à ceci&nbsp;:</p>
 
 <pre class="programlisting">
   boite_h = gtk.HBox(<b>homogeneous</b>=gtk.FALSE, <b>spacing</b>=0)
@@ -72,8 +72,8 @@ figure 4.1</a> montre ce qu'on obtient en lan&ccedil;ant le programme
   boite_v = gtk.VBox(<b>homogeneous</b>=gtk.FALSE, <b>spacing</b>=0)
 </pre>
 
-<p>L'argument <i><tt>homogeneous</tt></i> (homog&egrave;ne) de <tt>gtk.HBox()</tt> et <tt>gtk.VBox()</tt> attribue ou pas la m&ecirc;me taille &agrave; chaque objet dans la boite (la m&ecirc;me largeur dans une HBox, ou la m&ecirc;me hauteur dans une VBox). S'il vaut TRUE, on obtiendra &agrave; peu de choses pr&egrave;s le m&ecirc;me effet qu'en activant l'argument <i><tt>expand</tt></i> pour chaque objet.</p>
-<p>Quelle est la diff&eacute;rence entre <i>spacing</i> (d&eacute;fini lors de la cr&eacute;ation d'une boite) et <i>padding</i> (d&eacute;fini lors du placement d'un objet), qui fixent tous les deux un espacement ? <i>spacing</i> ajoute de l'espace entre les objets, et <i>padding</i> de chaque c&ocirc;t&eacute; d'un objet. La <a title="Figure 4.2. Placement avec <tt>spacing</tt> et <tt>padding</tt>" href="sec-DetailsOfBoxes.html#boites2fig">figure 4.2</a> illustre cette diff&eacute;rence en passant l'argument 2 &agrave; <a href="exemples/boites.py" target="_top"><b>boites.py</b></a>&nbsp;:</p>
+<p>L'argument <i><tt>homogeneous</tt></i> (homogène) de <tt>gtk.HBox()</tt> et <tt>gtk.VBox()</tt> attribue ou pas la même taille à chaque objet dans la boite (la même largeur dans une HBox, ou la même hauteur dans une VBox). S'il vaut TRUE, on obtiendra à peu de choses près le même effet qu'en activant l'argument <i><tt>expand</tt></i> pour chaque objet.</p>
+<p>Quelle est la différence entre <i>spacing</i> (défini lors de la création d'une boite) et <i>padding</i> (défini lors du placement d'un objet), qui fixent tous les deux un espacement ? <i>spacing</i> ajoute de l'espace entre les objets, et <i>padding</i> de chaque côté d'un objet. La <a title="Figure 4.2. Placement avec <tt>spacing</tt> et <tt>padding</tt>" href="sec-DetailsOfBoxes.html#boites2fig">figure 4.2</a> illustre cette différence en passant l'argument 2 à <a href="exemples/boites.py" target="_top"><b>boites.py</b></a>&nbsp;:</p>
 
 <div class="figure">
 <a name="boites2fig"></a>
@@ -81,7 +81,7 @@ figure 4.1</a> montre ce qu'on obtient en lan&ccedil;ant le programme
 <div class="mediaobject" align="center"><img src="figures/boites2.png" align="middle">
 </div></div>
 
-<p>La <a title="Figure 4.3. Placement avec <tt>pack_end</tt>()" href="sec-DetailsOfBoxes.html#boites3fig">figure 4.3</a> montre l'utilisation de la m&eacute;thode <tt>pack_end</tt>() (passez 3 comme argument &agrave; <a href="exemples/boites.py" target="_top"><b>boites.py</b></a>). L'&eacute;tiquette &quot;<tt>fin</tt>&quot; est plac&eacute;e avec cette m&eacute;thode. Elle colle &agrave; l'extr&eacute;mit&eacute; droite de la fen&ecirc;tre, m&ecirc;me en cas de redimensionnement.</p>
+<p>La <a title="Figure 4.3. Placement avec <tt>pack_end</tt>()" href="sec-DetailsOfBoxes.html#boites3fig">figure 4.3</a> montre l'utilisation de la méthode <tt>pack_end</tt>() (passez 3 comme argument à <a href="exemples/boites.py" target="_top"><b>boites.py</b></a>). L'étiquette "<tt>fin</tt>" est placée avec cette méthode. Elle colle à l'extrémité droite de la fenêtre, même en cas de redimensionnement.</p>
 
 <div class="figure"><a name="boites3fig"></a>
 <p class="title"><b>Figure 4.3. Placement avec <tt>pack_end</tt>()</p>
@@ -92,13 +92,13 @@ figure 4.1</a> montre ce qu'on obtient en lan&ccedil;ant le programme
 <hr>
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="ch-PackingWidgets.html">Pr&eacute;c.</a> </td>
+<td width="40%" align="left"><a accesskey="p" href="ch-PackingWidgets.html">Préc.</a> </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-PackingWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"> <a accesskey="n" href="sec-PackingDemonstrationProgram.html">Suiv.</a></td></tr>
 <tr>
 <td width="40%" align="left" valign="top">Chapitre 4. Le placement des widgets</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
-<td width="40%" align="right" valign="top">4.3. D&eacute;monstration de placement avec les boites</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top">4.3. Démonstration de placement avec les boites</td>
 </tr></table>
 
 </div>

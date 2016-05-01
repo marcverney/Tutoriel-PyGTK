@@ -3,23 +3,23 @@
 
 <head>
     <meta charset="utf-8">
-<title>4.3. D&eacute;monstration de placement avec les boites</title>
+<title>4.3. Démonstration de placement avec les boites</title>
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,boite">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-PackingWidgets.html" title="Chapter 4. Le placement des widgets">
-<link rel="previous" href="sec-DetailsOfBoxes.html" title="4.2. Les boites en d&eacute;tail">
+<link rel="previous" href="sec-DetailsOfBoxes.html" title="4.2. Les boites en détail">
 <link rel="next" href="sec-PackingUsingTables.html" title="4.4. Le placement avec les tableaux">
 </head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
-<th colspan="3" align="center">4.3. D&eacute;monstration de placement avec les boites</th></tr>
+<th colspan="3" align="center">4.3. Démonstration de placement avec les boites</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-DetailsOfBoxes.html">Pr&eacute;c.</a> </td>
+<td width="20%" align="left"><a accesskey="p" href="sec-DetailsOfBoxes.html">Préc.</a> </td>
 <th width="60%" align="center">Chapitre 4. Le placement des widgets</th>
 <td width="20%" align="right"> <a accesskey="n" href="sec-PackingUsingTables.html">Suiv.</a></td>
 </tr></table>
@@ -31,11 +31,11 @@
 <div class="titlepage">
 <div>
 <h2 class="title" style="clear: both">
-<a name="sec-PackingDemonstrationProgram"></a>4.3. D&eacute;monstration de placement
+<a name="sec-PackingDemonstrationProgram"></a>4.3. Démonstration de placement
 avec les boites</h2>
 </div></div>
 
-<p>Voici le <a href="exemples/boites.py" target="_top">code</a> qui a g&eacute;n&eacute;r&eacute; les images de la section pr&eacute;c&eacute;dente. Il est assez abondamment comment&eacute;, aussi j'esp&egrave;re que vous n'aurez pas de probl&egrave;me &agrave; le suivre. Lancez-le et modifiez-le &agrave; souhait.</p>
+<p>Voici le <a href="exemples/boites.py" target="_top">code</a> qui a généré les images de la section précédente. Il est assez abondamment commenté, aussi j'espère que vous n'aurez pas de problème à le suivre. Lancez-le et modifiez-le à souhait.</p>
 
 <pre class=programlisting>
      1   #!/usr/bin/env python
@@ -294,49 +294,49 @@ avec les boites</h2>
    254       main()
 </pre>
 
-<p>En route pour une br&egrave;ve visite guid&eacute;e du code&nbsp;:</p>
-<p>De la ligne 14 &agrave; la ligne 50, on d&eacute;finit une fonction <tt>creer_boite</tt>()
+<p>En route pour une brève visite guidée du code&nbsp;:</p>
+<p>De la ligne 14 à la ligne 50, on définit une fonction <tt>creer_boite</tt>()
 qui nous facilitera  la creation des boites horizontales. &Agrave; chaque appel, elle
-cr&eacute;era une HBox et la remplira de cinq boutons en respectant les param&egrave;tres
-sp&eacute;cifi&eacute;s. Sa valeur de retour est une r&eacute;f&eacute;rence &agrave;
-elle-m&ecirc;me.</p>
-<p>Puis on d&eacute;finit le constructeur <tt>__init__</tt>() de la classe
-<tt>BoitesPLacement</tt> (lignes 52 &agrave; 241), qui cr&eacute;e une fen&ecirc;tre et une
-boite verticale enfant. Cette derni&egrave;re contiendra d'autre widgets dont la nature et
-la disposition d&eacute;pendent de l'argument qu'elle re&ccedil;oit.
-Si elle recoit 1, elle cr&eacute;e une fen&ecirc;tre montrant les cinq arrangements de
-widgets que l'on peut obtenir en jouant sur les param&egrave;tres <i><tt>homogeneous</i>
-</tt>, <i><tt>expand</i></tt> et <i><tt>fill</i></tt> (lignes 75 &agrave; 138). Si elle
-recoit 2, elle cr&eacute;e une fen&ecirc;tre qui affiche cette fois-ci les diff&eacute;rentes
-combinaisons de remplissage offertes par les param&egrave;tres <i><tt>spacing</i></tt> et
-<i><tt>padding</i></tt> (lignes 140 &agrave; 182). Enfin, en recevant 3, la fen&ecirc;tre
-cr&eacute;&eacute;e par la fonction montrera l'utilisation des m&eacute;thodes
-<tt>pack_start</tt>() et <tt>pack_end</tt>(), la premi&egrave;re pour aligner les boutons
-&agrave; gauche et la seconde pour aligner une &eacute;tiquette &agrave; droite (lignes
-188 &agrave; 214). Aux lignes 215 &agrave; 235, on cr&eacute;e une boite horizontale
+créera une HBox et la remplira de cinq boutons en respectant les paramètres
+spécifiés. Sa valeur de retour est une référence à
+elle-même.</p>
+<p>Puis on définit le constructeur <tt>__init__</tt>() de la classe
+<tt>BoitesPLacement</tt> (lignes 52 à 241), qui crée une fenêtre et une
+boite verticale enfant. Cette dernière contiendra d'autre widgets dont la nature et
+la disposition dépendent de l'argument qu'elle reçoit.
+Si elle recoit 1, elle crée une fenêtre montrant les cinq arrangements de
+widgets que l'on peut obtenir en jouant sur les paramètres <i><tt>homogeneous</i>
+</tt>, <i><tt>expand</i></tt> et <i><tt>fill</i></tt> (lignes 75 à 138). Si elle
+recoit 2, elle crée une fenêtre qui affiche cette fois-ci les différentes
+combinaisons de remplissage offertes par les paramètres <i><tt>spacing</i></tt> et
+<i><tt>padding</i></tt> (lignes 140 à 182). Enfin, en recevant 3, la fenêtre
+créée par la fonction montrera l'utilisation des méthodes
+<tt>pack_start</tt>() et <tt>pack_end</tt>(), la première pour aligner les boutons
+à gauche et la seconde pour aligner une étiquette à droite (lignes
+188 à 214). Aux lignes 215 à 235, on crée une boite horizontale
 contenant un bouton, et on la place dans la boite verticale. Le signal
-&quot;<tt>clicked</tt>&quot; du bouton est connect&eacute; &agrave; la fonction PyGTK
+"<tt>clicked</tt>" du bouton est connecté à la fonction PyGTK
 <tt>main_quit</tt>() pour terminer le programme.</p>
-<p>Aux lignes 250 &agrave; 252, on v&eacute;rifie la ligne de commande&nbsp;: celle-ci
+<p>Aux lignes 250 à 252, on vérifie la ligne de commande&nbsp;: celle-ci
 doit comporter un seul argument. Dans le cas contraire, on sort du programme avec la
-fonction <tt>sys.exit</tt>(). La ligne 253 cr&eacute;e une instance de
+fonction <tt>sys.exit</tt>(). La ligne 253 crée une instance de
 <tt>BoitesPLacement</tt> et la ligne 254 invoque la fonction <tt>main</tt>() qui va
-initialiser la boucle du r&eacute;ceptionnaire d'&eacute;v&egrave;nements de GTK.</p>
-<p>Dans ce programme exemple, aucune r&eacute;f&eacute;rence de widget n'est
-enregistr&eacute;e dans un attribut d'instance (sauf pour la fen&ecirc;tre). En effet,
-nos widgets ne seront plus sollicit&eacute;s apr&egrave;s leur cr&eacute;ation.</p>
+initialiser la boucle du réceptionnaire d'évènements de GTK.</p>
+<p>Dans ce programme exemple, aucune référence de widget n'est
+enregistrée dans un attribut d'instance (sauf pour la fenêtre). En effet,
+nos widgets ne seront plus sollicités après leur création.</p>
 </div>
 <div class="navfooter">
 <hr>
 
 <table width="100%" summary="Navigation footer">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-DetailsOfBoxes.html">Pr&eacute;c.</a></td>
+<td width="40%" align="left"><a accesskey="p" href="sec-DetailsOfBoxes.html">Préc.</a></td>
 <td width="20%" align="center"><a accesskey="u" href="ch-PackingWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"> <a accesskey="n" href="sec-PackingUsingTables.html">Suiv.</a></td></tr>
 <tr>
-<td width="40%" align="left" valign="top">4.2. Les boites en d&eacute;tail</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="left" valign="top">4.2. Les boites en détail</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
 <td width="40%" align="right" valign="top">4.4. Le placement avec les tableaux</td>
 </tr></table>
 

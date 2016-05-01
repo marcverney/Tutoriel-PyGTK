@@ -7,19 +7,19 @@
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,champ de saisie">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
-<link rel="previous" href="sec-Statusbars.html" title="9.8. La barre d'&eacute;tat">
-<link rel="next" href="sec-SpinButtons.html" title="9.10. Les boite d'incr&eacute;ment">
+<link rel="previous" href="sec-Statusbars.html" title="9.8. La barre d'état">
+<link rel="next" href="sec-SpinButtons.html" title="9.10. Les boite d'incrément">
 </head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
 <th colspan="3" align="center">9.9. Les champs de saisie</th>
 </tr><tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-Statusbars.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-Statusbars.html">Préc.</a></td>
 <th width="60%" align="center">Chapitre 9. Widgets divers</th>
 <td width="20%" align="right"><a accesskey="n" href="sec-SpinButtons.html">Suiv.</a></td></tr>
 </table>
@@ -32,90 +32,90 @@
 </div></div>
 
 <p>Le widget <tt>gtk.Entry</tt> permet la saisie et l'affichage de texte dans une boite,
-sur une seule ligne. Le texte peut &ecirc;tre d&eacute;fini en appelant diff&eacute;rentes
-m&eacute;thodes, lesquelles peuvent soit remplacer int&eacute;gralement le contenu courant
-de la boite, soit y ajouter du texte avant ou apr&egrave;s.</p>
-<p>La fonction de cr&eacute;ation d'un champ de saisie est la suivante&nbsp;:</p>
+sur une seule ligne. Le texte peut être défini en appelant différentes
+méthodes, lesquelles peuvent soit remplacer intégralement le contenu courant
+de la boite, soit y ajouter du texte avant ou après.</p>
+<p>La fonction de création d'un champ de saisie est la suivante&nbsp;:</p>
 
 <pre class="programlisting">
   champsaisie = gtk.Entry(<b><tt>max</tt></b>=0)
 </pre>
 
-<p>Si l'argument <i><tt>max</tt></i> est sp&eacute;cifi&eacute;, il fixe une limite de
-longueur au texte du champ de saisie. S'il vaut 0, aucune limite n'est fix&eacute;e.</p>
-<p>La longueur maximale du champ de saisie peut &ecirc;tre modifi&eacute;e avec la
-m&eacute;thode&nbsp;:</p>
+<p>Si l'argument <i><tt>max</tt></i> est spécifié, il fixe une limite de
+longueur au texte du champ de saisie. S'il vaut 0, aucune limite n'est fixée.</p>
+<p>La longueur maximale du champ de saisie peut être modifiée avec la
+méthode&nbsp;:</p>
 
 <pre class="programlisting">
   champsaisie.set_max_length(<b><tt>max</tt></b>)
 </pre>
 
-<p>La m&eacute;thode qui suit modifie le texte pr&eacute;sent dans le <tt>gtk.Entry</tt>.</p>
+<p>La méthode qui suit modifie le texte présent dans le <tt>gtk.Entry</tt>.</p>
 
 <pre class="programlisting">
   champsaisie.set_text(<b><tt>text</tt></b>)
 </pre>
 
-<p>La m&eacute;thode <tt>set_text</tt>() remplace le contenu courant du champ de saisie
-par <i><tt>text</tt></i>. Notez que la classe <tt>gtk.Entry</tt> impl&eacute;mente
-l'interface <tt>Editable</tt> (oui, <tt>gobject</tt> supporte les interfaces &quot;&agrave;
-la Java&quot;) qui contient davantage de fonctions pour manipuler le contenu du champ de
-saisie. Par exemple, la m&eacute;thode&nbsp;:</p>
+<p>La méthode <tt>set_text</tt>() remplace le contenu courant du champ de saisie
+par <i><tt>text</tt></i>. Notez que la classe <tt>gtk.Entry</tt> implémente
+l'interface <tt>Editable</tt> (oui, <tt>gobject</tt> supporte les interfaces "à
+la Java") qui contient davantage de fonctions pour manipuler le contenu du champ de
+saisie. Par exemple, la méthode&nbsp;:</p>
 
 <pre class="programlisting">
   champsaisie.insert_text(<b><tt>text</tt></b>, <b><tt>position</tt></b>=0)
 </pre>
 
-<p>... ins&egrave;re <i><tt>text</tt></i> dans <i><tt>champsaisie</i></tt>, &agrave;
-la position sp&eacute;cifi&eacute;e.</p>
-<p>On peut r&eacute;cup&eacute;rer le contenu du <tt>gtk.Entry</tt> en appelant
-la m&eacute;thode suivante. Cela nous servira pour notre fonction de rappel, plus bas.</p>
+<p>... insère <i><tt>text</tt></i> dans <i><tt>champsaisie</i></tt>, à
+la position spécifiée.</p>
+<p>On peut récupérer le contenu du <tt>gtk.Entry</tt> en appelant
+la méthode suivante. Cela nous servira pour notre fonction de rappel, plus bas.</p>
 
 <pre class="programlisting">
   texte = champsaisie.get_text()
 </pre>
 
-<p>Si l'on ne souhaite pas que le contenu du <tt>gtk.Entry</tt> puisse &ecirc;tre
-modifi&eacute; en tapant directement du texte dedans, on peut changer son
-&eacute;ditabilit&eacute;.</p>
+<p>Si l'on ne souhaite pas que le contenu du <tt>gtk.Entry</tt> puisse être
+modifié en tapant directement du texte dedans, on peut changer son
+éditabilité.</p>
 
 <pre class="programlisting">
   champsaisie.set_editable(<b><tt>is_editable</tt></b>)
 </pre>
 
-<p>La m&eacute;thode ci-dessus permet de basculer le mode d'&eacute;ditabilit&eacute;
-du champ de saisie en donnant &agrave; l'argument <i><tt>is_editable</tt></i>
-(litt&eacute;ralement&nbsp;: &quot;est &eacute;ditable&quot;) la valeur TRUE (vrai) ou
+<p>La méthode ci-dessus permet de basculer le mode d'éditabilité
+du champ de saisie en donnant à l'argument <i><tt>is_editable</tt></i>
+(littéralement&nbsp;: "est éditable") la valeur TRUE (vrai) ou
 FALSE (faux).</p>
-<p>Si l'on utilise le <tt>gtk.Entry</tt> dans un contexte o&ugrave; le texte saisi ne
-doit pas &ecirc;tre visible, par exemple pour un mot de passe, on peut faire appel &agrave;
-la m&eacute;thode suivante (qui attend &eacute;galement un drapeau bool&eacute;en)&nbsp;:</p>
+<p>Si l'on utilise le <tt>gtk.Entry</tt> dans un contexte où le texte saisi ne
+doit pas être visible, par exemple pour un mot de passe, on peut faire appel à
+la méthode suivante (qui attend également un drapeau booléen)&nbsp;:</p>
 
 <pre class="programlisting">
   champsaisie.set_visibility(<b><tt>visible</tt></b>)
 </pre>
 
-<p>La m&eacute;thode qui suit permet de d&eacute;finir une partie du texte comme
-s&eacute;lectionn&eacute;e, de <i><tt>start</tt></i> (d&eacute;but) &agrave;
-<i><tt>end</tt></i> (fin). Cette option est principalement utilis&eacute;e dans
-les cas o&ugrave; l'on fixe un texte par d&eacute;faut pour le champ de saisie et que
+<p>La méthode qui suit permet de définir une partie du texte comme
+sélectionnée, de <i><tt>start</tt></i> (début) à
+<i><tt>end</tt></i> (fin). Cette option est principalement utilisée dans
+les cas où l'on fixe un texte par défaut pour le champ de saisie et que
 l'on souhaite que l'utilisateur puisse le supprimer facilement.</p>
 
 <pre class="programlisting">
   champsaisie.select_region(<b><tt>start</tt></b>, <b><tt>end</tt></b>)
 </pre>
 
-<p>Si l'on veut &ecirc;tre pr&eacute;venu lorsque l'utilisateur a saisi du texte, on peut
-se connecter aux signaux &quot;<tt>activate</tt>&quot; ou &quot;<tt>changed</tt>&quot;.
-<tt>activate</tt> (activ&eacute;) est &eacute;mis lorsque l'utilisateur appuie sur la
-touche <tt>Entr&eacute;e</tt> dans le widget <tt>gtk.Entry</tt>, et <tt>changed</tt>
-(chang&eacute;) lorsque un changement est apport&eacute; au texte (par exemple pour
-chaque caract&egrave;re ajout&eacute; ou supprim&eacute;).</p>
+<p>Si l'on veut être prévenu lorsque l'utilisateur a saisi du texte, on peut
+se connecter aux signaux "<tt>activate</tt>" ou "<tt>changed</tt>".
+<tt>activate</tt> (activé) est émis lorsque l'utilisateur appuie sur la
+touche <tt>Entrée</tt> dans le widget <tt>gtk.Entry</tt>, et <tt>changed</tt>
+(changé) lorsque un changement est apporté au texte (par exemple pour
+chaque caractère ajouté ou supprimé).</p>
 <p>Le programme d'exemple <a href="exemples/champsaisie.py" target="_top">
 <b>champsaisie.py</b></a> illustre l'utilisation d'un widget <tt>gtk.Entry</tt>.
 La <a href="sec-TextEntries.html#FigChampSaisie"
 title="Figure 9.10. Exemple de champ de saisie">Figure 9.10</a> montre ce que l'on
-obtient en ex&eacute;cutant le programme&nbsp;:</p>
+obtient en exécutant le programme&nbsp;:</p>
 
 <div class="figure"><a name="FigChampSaisie"></a>
 <p class="title"><b>Figure 9.10. Exemple de champ de saisie</b></p>
@@ -205,13 +205,13 @@ obtient en ex&eacute;cutant le programme&nbsp;:</p>
 
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-Statusbars.html">Pr&eacute;c</a></td>
+<td width="40%" align="left"><a accesskey="p" href="sec-Statusbars.html">Préc</a></td>
 <td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"><a accesskey="n" href="sec-SpinButtons.html">Suiv.</a></td>
 </tr><tr>
-<td width="40%" align="left" valign="top">9.8. La barre d'&eacute;tat</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
-<td width="40%" align="right" valign="top">9.10. Les boites d'incr&eacute;ment</td>
+<td width="40%" align="left" valign="top">9.8. La barre d'état</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top">9.10. Les boites d'incrément</td>
 </tr></table></div>
 
 </body>

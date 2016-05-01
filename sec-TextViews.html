@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,textview">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-TextViewWidget.html" title="Chapitre 13. Le widget TextView">
 <link rel="previous" href="ch-TextViewWidget.html" title="Chapitre 13. Le widget TextView">
 <link rel="next" href="sec-TextBuffers.html" title="13.3. TextBuffer&nbsp;: le buffer de texte">
@@ -15,11 +15,11 @@
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
 <th colspan="3" align="center">13.2. TextView&nbsp;: la zone de texte</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="ch-TextViewWidget.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="ch-TextViewWidget.html">Préc.</a></td>
 <th width="60%" align="center">Chapitre 13. Le widget TextView</th>
 <td width="20%" align="right"><a accesskey="n" href="sec-TextBuffers.html">Suiv.</a></td>
 </tr></table>
@@ -33,83 +33,83 @@
 <h2 class=title style="clear: both"><a name=sec-TextViews></a>13.2. TextView&nbsp;: la zone de texte</h2>
 </div></div>
 
-<p>Il n'y a qu'une fonction pour cr&eacute;er un nouveau widget <tt>TextView</tt>.</p>
+<p>Il n'y a qu'une fonction pour créer un nouveau widget <tt>TextView</tt>.</p>
 
 <pre class=programlisting>
   textview = gtk.TextView(<b><tt>buffer</tt></b>=None)
 </pre>
 
-<p>Le fait de cr&eacute;er une <tt>TextView</tt> entra&icirc;ne aussi la cr&eacute;ation d'un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> et d'une <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a> par d&eacute;faut qui lui seront associ&eacute;s. Si vous souhaitez utiliser un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> existant pour votre <tt>TextView</tt>, sp&eacute;cifiez-le dans la m&eacute;thode ci-dessus. Pour changer le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> utilis&eacute; par une <tt>TextView</tt>, utilisez la m&eacute;thode suivante&nbsp;:</p>
+<p>Le fait de créer une <tt>TextView</tt> entraîne aussi la création d'un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> et d'une <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a> par défaut qui lui seront associés. Si vous souhaitez utiliser un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> existant pour votre <tt>TextView</tt>, spécifiez-le dans la méthode ci-dessus. Pour changer le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> utilisé par une <tt>TextView</tt>, utilisez la méthode suivante&nbsp;:</p>
 
 <pre class=programlisting>
   textview.set_buffer(<b><tt>buffer</tt></b>)
 </pre>
 
-<p>Utilisez la m&eacute;thode suivante pour obtenir une r&eacute;f&eacute;rence au <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> d'une <tt>TextView</tt>&nbsp;:</p>
+<p>Utilisez la méthode suivante pour obtenir une référence au <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> d'une <tt>TextView</tt>&nbsp;:</p>
 
 <pre class=programlisting>
   buffer = textview.get_buffer()
 </pre>
 
-<p>Le widget <tt>TextView</tt> n'a pas de barres de d&eacute;filement pour ajuster la
-vue quand le texte d&eacute;passe de la fen&ecirc;tre. Pour lui en donner, vous devez
+<p>Le widget <tt>TextView</tt> n'a pas de barres de défilement pour ajuster la
+vue quand le texte dépasse de la fenêtre. Pour lui en donner, vous devez
 placer votre <tt>TextView</tt> dans une
-<!--<a title="10.9 La fen&ecirc;tre d&eacute;roulante" href="sec-ScrolledWindows.html">-->
+<!--<a title="10.9 La fenêtre déroulante" href="sec-ScrolledWindows.html">-->
 <tt>ScrolledWindow</tt> (pas encore traduit) <!--</a>-->.</p>
-<p>Vous pouvez utiliser une <tt>TextView</tt> pour permettre &agrave; l'utilisateur d'&eacute;diter un texte ou bien pour afficher plusieurs lignes d'un texte en lecture seule. Pour passer d'un mode &agrave; l'autre, faites appel &agrave; la m&eacute;thode suivante&nbsp;:</p>
+<p>Vous pouvez utiliser une <tt>TextView</tt> pour permettre à l'utilisateur d'éditer un texte ou bien pour afficher plusieurs lignes d'un texte en lecture seule. Pour passer d'un mode à l'autre, faites appel à la méthode suivante&nbsp;:</p>
 
 <pre class=programlisting>
   textview.set_editable(<b><tt>choix</tt></b>)
 </pre>
 
-<p>L'argument <i><tt>choix</tt></i> prend la valeur TRUE ou FALSE pour pr&eacute;ciser si l'utilisateur est autoris&eacute; &agrave; &eacute;diter le contenu du widget <tt>TextView</tt> ou non. Le mode d'&eacute;dition de la <tt>TextView</tt> peut &ecirc;tre modifi&eacute; pour des portions de texte du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> par l'interm&eacute;diaire des <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a>.</p>
-<p>On retrouve le mode d'&eacute;dition courant avec la m&eacute;thode suivante&nbsp;:</p>
+<p>L'argument <i><tt>choix</tt></i> prend la valeur TRUE ou FALSE pour préciser si l'utilisateur est autorisé à éditer le contenu du widget <tt>TextView</tt> ou non. Le mode d'édition de la <tt>TextView</tt> peut être modifié pour des portions de texte du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> par l'intermédiaire des <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a>.</p>
+<p>On retrouve le mode d'édition courant avec la méthode suivante&nbsp;:</p>
 
 <pre class=programlisting>
   edition = textview.get_editable()
 </pre>
 
-<p>Lorsque la <tt>TextView</tt> n'est pas &eacute;ditable, vous devriez probablement masquer le curseur en utilisant cette m&eacute;thode&nbsp;:</p>
+<p>Lorsque la <tt>TextView</tt> n'est pas éditable, vous devriez probablement masquer le curseur en utilisant cette méthode&nbsp;:</p>
 
 <pre class=programlisting>
   textview.set_cursor_visible(<b><tt>choix</tt></b>)
 </pre>
 
-<p>L'argument <i><tt>choix</tt></i> prend la valeur TRUE ou FALSE pour pr&eacute;ciser si le curseur doit &ecirc;tre visible.</p>
-<p>Le widget <tt>TextView</tt> peut ajuster la largeur du texte &agrave; la fen&ecirc;tre d'affichage gr&acirc;ce au retour &agrave; la ligne automatique. Cette option n'est pas activ&eacute;e par d&eacute;faut mais peut l'&ecirc;tre &agrave; tout moment gr&acirc;ce &agrave; la m&eacute;thode qui suit&nbsp;:</p>
+<p>L'argument <i><tt>choix</tt></i> prend la valeur TRUE ou FALSE pour préciser si le curseur doit être visible.</p>
+<p>Le widget <tt>TextView</tt> peut ajuster la largeur du texte à la fenêtre d'affichage grâce au retour à la ligne automatique. Cette option n'est pas activée par défaut mais peut l'être à tout moment grâce à la méthode qui suit&nbsp;:</p>
 
 <pre class=programlisting>
   textview.set_wrap_mode(<b><tt>choix</tt></b>)
 </pre>
 
-<p>Cette m&eacute;thode vous permet d'indiquer si la coupure du retour &agrave; la ligne automatique doit s'effectuer apr&egrave;s le dernier caract&egrave;re de la ligne, ou bien si ce dernier doit pr&eacute;server l'int&eacute;grit&eacute; des mots. L'argument <i><tt>choix</tt></i> est &agrave; choisir parmi&nbsp;:</p>
+<p>Cette méthode vous permet d'indiquer si la coupure du retour à la ligne automatique doit s'effectuer après le dernier caractère de la ligne, ou bien si ce dernier doit préserver l'intégrité des mots. L'argument <i><tt>choix</tt></i> est à choisir parmi&nbsp;:</p>
 
 <pre class=programlisting>
-  gtk.WRAP_NONE    # pas de retour &agrave; la ligne automatique
-  gtk.WRAP_CHAR    # couper apr&egrave;s le dernier caract&egrave;re de la ligne
-  gtk.WRAP_WORD    # couper apr&egrave;s le dernier mot de la ligne
+  gtk.WRAP_NONE    # pas de retour à la ligne automatique
+  gtk.WRAP_CHAR    # couper après le dernier caractère de la ligne
+  gtk.WRAP_WORD    # couper après le dernier mot de la ligne
 </pre>
 
-<p>L'alignement par d&eacute;faut du texte peut &ecirc;tre d&eacute;fini et r&eacute;cup&eacute;r&eacute; avec les m&eacute;thodes&nbsp;:</p>
+<p>L'alignement par défaut du texte peut être défini et récupéré avec les méthodes&nbsp;:</p>
 
 <pre class=programlisting>
   textview.set_justification(<b><tt>alignement</tt></b>)
   alignement = textview.get_justification()
 </pre>
 
-<p>o&ugrave; <i><tt>alignement</tt></i> peut &ecirc;tre&nbsp;:</p>
+<p>où <i><tt>alignement</tt></i> peut être&nbsp;:</p>
 
 <pre class=programlisting>
-  gtk.JUSTIFY_LEFT      # align&eacute; &agrave; gauche
-  gtk.JUSTIFY_RIGHT     # align&eacute; &agrave; droite
-  gtk.JUSTIFY_CENTER    # centr&eacute;
+  gtk.JUSTIFY_LEFT      # aligné à gauche
+  gtk.JUSTIFY_RIGHT     # aligné à droite
+  gtk.JUSTIFY_CENTER    # centré
 </pre>
 
 <div class=note style="MARGIN-LEFT: 0.5in; MARGIN-RIGHT: 0.5in">
 <h3 class=title>Remarque</h3>
-<p>Le texte sera align&eacute; &agrave; gauche (JUSTIFY_LEFT) si le retour &agrave; la ligne automatique est d&eacute;sactiv&eacute; (WRAP_NONE). L'alignement par d&eacute;faut peut  toutefois &ecirc;tre modifi&eacute; avec des <a title="13.6.1 Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> dans le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> correspondant.</p>
+<p>Le texte sera aligné à gauche (JUSTIFY_LEFT) si le retour à la ligne automatique est désactivé (WRAP_NONE). L'alignement par défaut peut  toutefois être modifié avec des <a title="13.6.1 Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> dans le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> correspondant.</p>
 </div>
-<p>Parmi les autres attributs de texte, la marge gauche, la marge droite, les tabulations et l'indentation des paragraphes peuvent &ecirc;tre d&eacute;finis et r&eacute;cup&eacute;r&eacute;s avec les m&eacute;thodes suivantes&nbsp;:</p>
+<p>Parmi les autres attributs de texte, la marge gauche, la marge droite, les tabulations et l'indentation des paragraphes peuvent être définis et récupérés avec les méthodes suivantes&nbsp;:</p>
 
 <pre class=programlisting>
   textview.set_left_margin(<b><tt>marge_gauche</tt></b>)
@@ -134,7 +134,7 @@ placer votre <tt>TextView</tt> dans une
   tabulations = textview.get_tabs()
 </pre>
 
-<p><i><tt>marge_gauche</tt></i>, <i><tt>marge_droite</tt></i>, <i><tt>indentation</tt></i>, <i><tt>pixels_au_dessus_de_la_ligne</tt></i>, <i><tt>pixels_au_dessous_de_la_ligne</tt></i> et <i><tt>pixels_retour_a_la_ligne</tt></i> doivent &ecirc;tre indiqu&eacute;s en pixels. Ces valeurs par d&eacute;faut peuvent &ecirc;tre modifi&eacute;es en employant des <a title="Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> dans le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> correspondant. <i><tt>tabs</tt></i> doit &ecirc;tre un <tt>pango.TabArray</tt>.</p>
+<p><i><tt>marge_gauche</tt></i>, <i><tt>marge_droite</tt></i>, <i><tt>indentation</tt></i>, <i><tt>pixels_au_dessus_de_la_ligne</tt></i>, <i><tt>pixels_au_dessous_de_la_ligne</tt></i> et <i><tt>pixels_retour_a_la_ligne</tt></i> doivent être indiqués en pixels. Ces valeurs par défaut peuvent être modifiées en employant des <a title="Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> dans le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a> correspondant. <i><tt>tabs</tt></i> doit être un <tt>pango.TabArray</tt>.</p>
 <p>Le programme d'exemple <a href="exemples/textview-basic.py" target=_top><b>textview-basic.py</b></a> illustre l'utilisation basique du widget <tt>TextView</tt>&nbsp;:</p>
 
 <div class="figure"><a name="textviewbasiquefig"></a>
@@ -313,17 +313,17 @@ placer votre <tt>TextView</tt> dans une
    165       main()
 </pre>
 
-<p>Aux lignes 10 &agrave; 34, on d&eacute;finit les fonctions de rappel des cases &agrave;
-cocher et des boutons radio, que l'on utlisera pour changer les attributs par d&eacute;faut
-de la <tt>TextView</tt>. Aux lignes 55 &agrave; 63, on cr&eacute;e une
-<!--<a title="10.9. La fen&ecirc;tre d&eacute;roulante" href="sec-ScrolledWindows.html">-->
+<p>Aux lignes 10 à 34, on définit les fonctions de rappel des cases à
+cocher et des boutons radio, que l'on utlisera pour changer les attributs par défaut
+de la <tt>TextView</tt>. Aux lignes 55 à 63, on crée une
+<!--<a title="10.9. La fenêtre déroulante" href="sec-ScrolledWindows.html">-->
 <tt>ScrolledWindow</tt><!--</a> -->pour contenir la <tt>TextView</tt>. La
-<!--<a title="10.9. La fen&ecirc;tre d&eacute;roulante" href="sec-ScrolledWindows.html">-->
-<tt>ScrolledWindow</tt><!--</a>--> est plac&eacute;e dans une <tt>VBox</tt> avec les cases &agrave;
-cocher et les boutons radio cr&eacute;&eacute;s aux lignes 72 &agrave; 140. Le
+<!--<a title="10.9. La fenêtre déroulante" href="sec-ScrolledWindows.html">-->
+<tt>ScrolledWindow</tt><!--</a>--> est placée dans une <tt>VBox</tt> avec les cases à
+cocher et les boutons radio créés aux lignes 72 à 140. Le
 <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html">
-<tt>TextBuffer</tt></a> associ&eacute; &agrave; la <tt>TextView</tt> est charg&eacute;
-avec le contenu du fichier source aux lignes 64 &agrave; 70.</p>
+<tt>TextBuffer</tt></a> associé à la <tt>TextView</tt> est chargé
+avec le contenu du fichier source aux lignes 64 à 70.</p>
 </div>
 <div class="navfooter">
 <hr>
@@ -331,12 +331,12 @@ avec le contenu du fichier source aux lignes 64 &agrave; 70.</p>
 <table width="100%" summary="Navigation footer">
 
   <tr>
-    <td width="40%" align="left"><a accessKey="p" href="ch-TextViewWidget.html">Pr&eacute;c.</a></td>
+    <td width="40%" align="left"><a accessKey="p" href="ch-TextViewWidget.html">Préc.</a></td>
     <td width="20%" align="center"><a accessKey="u" href="ch-TextViewWidget.html">Chapitre parent</a></td>
     <td width="40%" align="right"><a accessKey="n" href="sec-TextBuffers.html">Suiv.</a></td></tr>
   <tr>
-    <td width="40%" align="left" vAlign="top">13.1. Pr&eacute;sentation des widgets de texte</td>
-    <td width="20%" align="center"><a accessKey="h" href="index.html">Table des mati&egrave;res</a></td>
+    <td width="40%" align="left" vAlign="top">13.1. Présentation des widgets de texte</td>
+    <td width="20%" align="center"><a accessKey="h" href="index.html">Table des matières</a></td>
     <td width="40%" align="right" vAlign="top">13.3. TextBuffer&nbsp;: le buffer de texte</td></tr>
 
 </table>

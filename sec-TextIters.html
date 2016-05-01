@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-<title>13.4. TextIter&nbsp;: les it&eacute;rateurs de texte</title>
+<title>13.4. TextIter&nbsp;: les itérateurs de texte</title>
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,textview">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-TextViewWidget.html" title="Chapitre 13. Le widget TextView">
 <link rel="previous" href="sec-TextBuffers.html" title="13.3. TextBuffer&nbsp;: le buffer de texte">
 <link rel="next" href="sec-TextMarks.html" title="13.5. TextMark&nbsp;: les marques de texte">
@@ -15,11 +15,11 @@
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
-<th colspan="3" align="center">13.4. TextIter&nbsp;: les it&eacute;rateurs de texte</th></tr>
+<th colspan="3" align="center">13.4. TextIter&nbsp;: les itérateurs de texte</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-TextBuffers.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-TextBuffers.html">Préc.</a></td>
 <th width="60%" align="center">Chapitre 13. Le widget TextView</th>
 <td width="20%" align="right"><a accesskey="n" href="sec-TextMarks.html">Suiv.</a></td>
 </tr></table>
@@ -30,83 +30,83 @@
 <div class="sect1" lang="fr">
 <div class="titlepage">
 <div>
-<h2 class="title" style="clear: both"><a name="TextIter"></A>13.4. TextIter&nbsp;: les it&eacute;rateurs de texte</h2></div></div>
-<p>Les <tt>TextIter</tt> repr&eacute;sentent une position entre deux caract&egrave;res d'un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>. Ils sont g&eacute;n&eacute;ralement cr&eacute;&eacute;s par une m&eacute;thode de <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> et sont invalid&eacute;s lorsque le nombre de caract&egrave;res de ce dernier est modifi&eacute; (except&eacute; le <tt>TextIter</tt> utilis&eacute; pour l'insertion ou la suppression). Ins&eacute;rer ou supprimer des images pixbuf ou des points d'ancrage consiste aussi en une modification du buffer, et invalide par cons&eacute;quent les <tt>TextIter</tt>.</p>
-<p>L'objet <tt>TextIter</tt> poss&egrave;de un grand nombre de m&eacute;thodes. Celles-ci sont group&eacute;es par fonction similaire dans les sections suivantes.</p>
+<h2 class="title" style="clear: both"><a name="TextIter"></A>13.4. TextIter&nbsp;: les itérateurs de texte</h2></div></div>
+<p>Les <tt>TextIter</tt> représentent une position entre deux caractères d'un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>. Ils sont généralement créés par une méthode de <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> et sont invalidés lorsque le nombre de caractères de ce dernier est modifié (excepté le <tt>TextIter</tt> utilisé pour l'insertion ou la suppression). Insérer ou supprimer des images pixbuf ou des points d'ancrage consiste aussi en une modification du buffer, et invalide par conséquent les <tt>TextIter</tt>.</p>
+<p>L'objet <tt>TextIter</tt> possède un grand nombre de méthodes. Celles-ci sont groupées par fonction similaire dans les sections suivantes.</p>
 
 <div class="sect2" lang="fr"><div class="titlepage">
-<div><h3 class="title"><a name="RecupAttrTextIter"></A>13.4.1. R&eacute;cup&eacute;rer les attributs d'un TextIter</h3></div></div>
+<div><h3 class="title"><a name="RecupAttrTextIter"></A>13.4.1. Récupérer les attributs d'un TextIter</h3></div></div>
 
-<p>On peut r&eacute;cup&eacute;rer le TextBuffer qui contient le <tt>TextIter</tt> <i><tt>iter</tt></i> avec la m&eacute;thode&nbsp;:</p>
+<p>On peut récupérer le TextBuffer qui contient le <tt>TextIter</tt> <i><tt>iter</tt></i> avec la méthode&nbsp;:</p>
 
 <pre class=programlisting>
   buffer = iter.get_buffer()
 </pre>
 
-<p>Les m&eacute;thodes suivantes permettent de recup&eacute;rer la localisation du <tt>TextIter</tt> <i><tt>iter</tt></i> dans le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>&nbsp;:</p>
+<p>Les méthodes suivantes permettent de recupérer la localisation du <tt>TextIter</tt> <i><tt>iter</tt></i> dans le <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>&nbsp;:</p>
 
 <pre class=programlisting>
-  num_car = iter.get_offset()			# renvoie la position de <i><tt>iter</tt></i> en partant du d&eacute;but du buffer
+  num_car = iter.get_offset()			# renvoie la position de <i><tt>iter</tt></i> en partant du début du buffer
 
-  num_ligne = iter.get_line()			# renvoie le num&eacute;ro de la ligne de <i><tt>iter</tt></i>
+  num_ligne = iter.get_line()			# renvoie le numéro de la ligne de <i><tt>iter</tt></i>
 
-  num_car_ligne = iter.get_line_offset()	# renvoie la position de <i><tt>iter</tt></i> en partant du d&eacute;but de la ligne
+  num_car_ligne = iter.get_line_offset()	# renvoie la position de <i><tt>iter</tt></i> en partant du début de la ligne
 
-  nbr_car_ligne = iter.get_chars_in_line()	# renvoie le nombre de caract&egrave;res dans la ligne de <i><tt>iter</tt></i>
+  nbr_car_ligne = iter.get_chars_in_line()	# renvoie le nombre de caractères dans la ligne de <i><tt>iter</tt></i>
 </pre>
 </div>
 
 <div class="sect2" lang="fr"><div class="titlepage">
-<div><h3 class="title"><a name="RecupAttrTexte"></A>13.4.2. R&eacute;cup&eacute;rer les attributs d'un texte portant un TextIter</h3></div></div>
+<div><h3 class="title"><a name="RecupAttrTexte"></A>13.4.2. Récupérer les attributs d'un texte portant un TextIter</h3></div></div>
 
-<p>Le <tt>PangoLanguage</tt> utilis&eacute; &agrave; un emplacement du buffer portant un it&eacute;rateur peut s'obtenir avec la m&eacute;thode suivante&nbsp;:</p>
+<p>Le <tt>PangoLanguage</tt> utilisé à un emplacement du buffer portant un itérateur peut s'obtenir avec la méthode suivante&nbsp;:</p>
 
 <pre class=programlisting>
   langage = iter.get_language()
 </pre>
 
-<p>Plus g&eacute;n&eacute;ralement, on fera appel  &agrave; la m&eacute;thode qui suit pour r&eacute;cup&eacute;rer les attributs d'un texte &agrave; une position portant un <tt>TextIter</tt>&nbsp;:</p>
+<p>Plus généralement, on fera appel  à la méthode qui suit pour récupérer les attributs d'un texte à une position portant un <tt>TextIter</tt>&nbsp;:</p>
 
 <pre class=programlisting>
   resultat = iter.get_attributes(<b><tt>valeurs</tt></b>)
 </pre>
 
-<p>La variable <i><tt>resultat</tt></i> indiquera si les <i><tt>valeurs</tt></i> fournies en argument (qui doivent &ecirc;tre des objets <tt>TextAttributes</tt>) ont &eacute;t&eacute; modifi&eacute;es. On obtient ces <i><tt>valeurs</tt></i> par l'interm&eacute;diraire de la m&eacute;thode de <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></A> suivante&nbsp;:</p>
+<p>La variable <i><tt>resultat</tt></i> indiquera si les <i><tt>valeurs</tt></i> fournies en argument (qui doivent être des objets <tt>TextAttributes</tt>) ont été modifiées. On obtient ces <i><tt>valeurs</tt></i> par l'intermédiraire de la méthode de <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></A> suivante&nbsp;:</p>
 
 <pre class=programlisting>
   valeurs = zonedetexte.get_default_attributes()
 </pre>
 
-<p>o&ugrave; <i><tt>zonedetexte</i></tt> est la <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></A> en question.</p>
-<p>On peut acc&eacute;der aux attributs suivants &agrave; partir d'un objet <tt>TextAttributes</tt> (non implement&eacute; dans PyGTK &lt;= 1.99.15)&nbsp;:</p>
+<p>où <i><tt>zonedetexte</i></tt> est la <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></A> en question.</p>
+<p>On peut accéder aux attributs suivants à partir d'un objet <tt>TextAttributes</tt> (non implementé dans PyGTK &lt;= 1.99.15)&nbsp;:</p>
 
 <div class=informaltable>
 
 <table width="100%" border=1>
-<tr><td>bg_color</td><td>couleur de l'arri&egrave;re-plan</td></tr>
+<tr><td>bg_color</td><td>couleur de l'arrière-plan</td></tr>
 <tr><td>fg_color</td><td>couleur du premier plan</td></tr>
-<tr><td>bg_stipple</td><td>bitmap &agrave; utiliser comme masque pour l'arri&egrave;re-plan</td></tr>
-<tr><td>fg_stipple</td><td>bitmap &agrave; utiliser comme masque pour le premier plan</td></tr>
-<tr><td>rise</td><td>d&eacute;calage du texte au-dessus de la ligne de base</td></tr>
+<tr><td>bg_stipple</td><td>bitmap à utiliser comme masque pour l'arrière-plan</td></tr>
+<tr><td>fg_stipple</td><td>bitmap à utiliser comme masque pour le premier plan</td></tr>
+<tr><td>rise</td><td>décalage du texte au-dessus de la ligne de base</td></tr>
 <tr><td>underline</td><td>style de soulignement</td></tr>
-<tr><td>strikethrough</td><td>texte barr&eacute;</td></tr>
-<tr><td>draw_bg</td><td>TRUE si des balises affectent le dessin de l'arri&egrave;re-plan</td></tr>
+<tr><td>strikethrough</td><td>texte barré</td></tr>
+<tr><td>draw_bg</td><td>TRUE si des balises affectent le dessin de l'arrière-plan</td></tr>
 <tr><td>justification</td><td>type d'alignement</td></tr>
 <tr><td>direction</td><td>direction du texte</td></tr>
-<tr><td>font</td><td>PangoFontDescription utilis&eacute;e</td></tr>
-<tr><td>font_scale</td><td>&eacute;chelle de la police utilis&eacute;e</td></tr>
+<tr><td>font</td><td>PangoFontDescription utilisée</td></tr>
+<tr><td>font_scale</td><td>échelle de la police utilisée</td></tr>
 <tr><td>left_margin</td><td>largeur de la marge de gauche</td></tr>
 <tr><td>right_margin</td><td>largeur de la marge de droite</td></tr>
 <tr><td>pixels_above_lines</td><td>Espacement en pixels au-dessus des paragraphes</td></tr>
 <tr><td>pixels_below_lines</td><td>Espacement en pixels au-dessous des paragraphes</td></tr>
-<tr><td>pixels_inside_wrap</td><td>Espacement en pixels entre les lignes coup&eacute;es dans un paragraphe</td></tr>
-<tr><td>tabs</td><td>PangoTabArray utilis&eacute;</td></tr>
-<tr><td>wrap_mode</td><td>mode de retour &agrave; la ligne automatique utilis&eacute;</td></tr>
-<tr><td>language</td><td>PangoLanguage utilis&eacute;</td></tr>
-<tr><td>invisible</td><td>texte invisible (non impl&eacute;ment&eacute; dans GTK+ 2.0)</td></tr>
-<tr><td>bg_full_height</td><td>hauteur de l'arri&egrave;re-plan par rapport &agrave; la ligne</td></tr>
-<tr><td>editable</td><td>possibilit&eacute; d'&eacute;dition du texte</td></tr>
-<tr><td>realized</td><td>texte r&eacute;alis&eacute;</td></tr>
+<tr><td>pixels_inside_wrap</td><td>Espacement en pixels entre les lignes coupées dans un paragraphe</td></tr>
+<tr><td>tabs</td><td>PangoTabArray utilisé</td></tr>
+<tr><td>wrap_mode</td><td>mode de retour à la ligne automatique utilisé</td></tr>
+<tr><td>language</td><td>PangoLanguage utilisé</td></tr>
+<tr><td>invisible</td><td>texte invisible (non implémenté dans GTK+ 2.0)</td></tr>
+<tr><td>bg_full_height</td><td>hauteur de l'arrière-plan par rapport à la ligne</td></tr>
+<tr><td>editable</td><td>possibilité d'édition du texte</td></tr>
+<tr><td>realized</td><td>texte réalisé</td></tr>
 <tr><td>pad1</td><td></td></tr>
 <tr><td>pad2</td><td></td></tr>
 <tr><td>pad3</td><td></td></tr>
@@ -117,7 +117,7 @@
 <div class="sect2" lang="fr"><div class="titlepage">
 <div><h3 class="title"><a name="CopierTextIter"></A>13.4.3. Copier un TextIter</h3></div></div>
 
-<p>Il est possible de dupliquer un <tt>TextIter</tt> gr&acirc;ce &agrave; la m&eacute;thode&nbsp;:</p>
+<p>Il est possible de dupliquer un <tt>TextIter</tt> grâce à la méthode&nbsp;:</p>
 
 <pre class=programlisting>
   copie_iter = iter.copy()
@@ -125,47 +125,47 @@
 </div>
 
 <div class="sect2" lang="fr"><div class="titlepage">
-<div><h3 class="title"><a name="RecupTexteObjets"></A>13.4.4. R&eacute;cup&eacute;rer du texte et des objets</h3></div></div>
+<div><h3 class="title"><a name="RecupTexteObjets"></A>13.4.4. Récupérer du texte et des objets</h3></div></div>
 
-<p>On peut r&eacute;cup&eacute;rer diff&eacute;rentes quantit&eacute;s de texte et d'objets de <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> en utilisant les m&eacute;thodes suivantes&nbsp;:</p>
+<p>On peut récupérer différentes quantités de texte et d'objets de <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> en utilisant les méthodes suivantes&nbsp;:</p>
 
 <pre class=programlisting>
-  caract = iter.get_char()			# renvoie le caract&egrave;re qui suit <i><tt>iter</i></tt> (ou 0 si l'on est &agrave; la fin du buffer)
+  caract = iter.get_char()			# renvoie le caractère qui suit <i><tt>iter</i></tt> (ou 0 si l'on est à la fin du buffer)
 
-  texte = debut.get_slice(<b><tt>fin</tt></b>)			# renvoie le texte compris entre les it&eacute;rateurs <i><tt>debut</i></tt> et <i><tt>fin</i></tt>
+  texte = debut.get_slice(<b><tt>fin</tt></b>)			# renvoie le texte compris entre les itérateurs <i><tt>debut</i></tt> et <i><tt>fin</i></tt>
 
-  texte = debut.get_text(<b><tt>fin</tt></b>)			# renvoie le texte compris entre les it&eacute;rateurs <i><tt>debut</i></tt> et <i><tt>fin</i></tt>
+  texte = debut.get_text(<b><tt>fin</tt></b>)			# renvoie le texte compris entre les itérateurs <i><tt>debut</i></tt> et <i><tt>fin</i></tt>
 
-  pixbuf = iter.get_pixbuf()			# renvoie l'image pixbuf situ&eacute;e &agrave; l'it&eacute;rateur <i><tt>iter</i></tt> (ou <tt>None</tt>)
+  pixbuf = iter.get_pixbuf()			# renvoie l'image pixbuf située à l'itérateur <i><tt>iter</i></tt> (ou <tt>None</tt>)
 
-  ancrage = iter.get_child_anchor()		# renvoie le point d'ancrage situ&eacute; &agrave; l'it&eacute;rateur <i><tt>iter</i></tt>(ou <tt>None</tt>)
+  ancrage = iter.get_child_anchor()		# renvoie le point d'ancrage situé à l'itérateur <i><tt>iter</i></tt>(ou <tt>None</tt>)
 
   liste_marques = iter.get_marks()		# renvoie une liste de marques
 
-  liste_balises = iter.get_toggled_tags()	# renvoie une liste de balises activ&eacute;es ou d&eacute;sactiv&eacute;es
+  liste_balises = iter.get_toggled_tags()	# renvoie une liste de balises activées ou désactivées
 
-  liste_balises = iter.get_tags()		# renvoie une liste de balises par priorit&eacute;s
+  liste_balises = iter.get_tags()		# renvoie une liste de balises par priorités
 </pre>
 
 </div>
 
 <div class="sect2" lang="fr"><div class="titlepage">
-<div><h3 class="title"><a name="VerifBalises"></A>13.4.5. V&eacute;rifier les balises &agrave; une position de TextIter</h3></div></div>
+<div><h3 class="title"><a name="VerifBalises"></A>13.4.5. Vérifier les balises à une position de TextIter</h3></div></div>
 
-<p>Les m&eacute;thodes suivantes permettent de v&eacute;rifier certaines caract&eacute;ristiques des balises se trouvant &agrave; une position de <tt>TextIter</tt>&nbsp;:</p>
+<p>Les méthodes suivantes permettent de vérifier certaines caractéristiques des balises se trouvant à une position de <tt>TextIter</tt>&nbsp;:</p>
 
 <pre class=programlisting>
-  resultat = iter.begins_tag(<b><tt>tag</tt></b>=None)	# renvoie TRUE si <i><tt>tag</tt></i> s'active &agrave; l'emplacement <i><tt>iter</tt></i>
+  resultat = iter.begins_tag(<b><tt>tag</tt></b>=None)	# renvoie TRUE si <i><tt>tag</tt></i> s'active à l'emplacement <i><tt>iter</tt></i>
 
-  resultat = iter.ends_tag(<b><tt>tag</tt></b>=None)	# renvoie TRUE si <i><tt>tag</tt></i> se d&eacute;sactive &agrave; l'emplacement <i><tt>iter</tt></i>
+  resultat = iter.ends_tag(<b><tt>tag</tt></b>=None)	# renvoie TRUE si <i><tt>tag</tt></i> se désactive à l'emplacement <i><tt>iter</tt></i>
 
-  resultat = iter.toggles_tag(<b><tt>tag</tt></b>=None)	# renvoie TRUE si <i><tt>tag</tt></i> s'active ou se d&eacute;sactive &agrave; l'emplacement <i><tt>iter</tt></i>
+  resultat = iter.toggles_tag(<b><tt>tag</tt></b>=None)	# renvoie TRUE si <i><tt>tag</tt></i> s'active ou se désactive à l'emplacement <i><tt>iter</tt></i>
 
-  resultat = iter.has_tag(<b><tt>tag</tt></b>)		# renvoie TRUE si la portion de texte contenant <i><tt>iter</tt></i> est balis&eacute;e par <i><tt>tag</tt></i>
+  resultat = iter.has_tag(<b><tt>tag</tt></b>)		# renvoie TRUE si la portion de texte contenant <i><tt>iter</tt></i> est balisée par <i><tt>tag</tt></i>
 </pre>
 
-<p>Ces m&eacute;thodes renvoient TRUE si la balise <i><tt>tag</tt></i> &agrave; la position <i><tt>iter</tt></i> remplit la condition. Si l'argument <i><tt>tag</tt></i> vaut <tt>None</tt> aux trois premi&egrave;res m&eacute;thodes, le r&eacute;sultat sera TRUE si n'importe quelle balise remplit la condition &agrave; la position <i><tt>iter</tt></i>.</p>
-<p>Les deux m&eacute;thodes qui suivent indiquent si le texte situ&eacute; &agrave; la position sp&eacute;cifi&eacute;e par le <tt>TextIter</tt> est &eacute;ditable ou accepte une insertion de texte&nbsp;:</p>
+<p>Ces méthodes renvoient TRUE si la balise <i><tt>tag</tt></i> à la position <i><tt>iter</tt></i> remplit la condition. Si l'argument <i><tt>tag</tt></i> vaut <tt>None</tt> aux trois premières méthodes, le résultat sera TRUE si n'importe quelle balise remplit la condition à la position <i><tt>iter</tt></i>.</p>
+<p>Les deux méthodes qui suivent indiquent si le texte situé à la position spécifiée par le <tt>TextIter</tt> est éditable ou accepte une insertion de texte&nbsp;:</p>
 
 <pre class=programlisting>
   resultat = iter.editable()
@@ -173,66 +173,66 @@
   resultat = iter.can_insert(<b><tt>defaut_editable</tt></b>)
 </pre>
 
-<p>La m&eacute;thode <tt>editable</tt>() indique si l'it&eacute;rateur <i><tt>iter</tt></i> se situe dans une portion de texte &eacute;ditable. La m&eacute;thode <tt>can_insert</tt>() indique si l'on peut ins&eacute;rer du texte &agrave; l'emplacement sp&eacute;cifi&eacute; par <i><tt>iter</tt></i>, en prenant en compte la possibilit&eacute; d'&eacute;dition par d&eacute;faut de la <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></A>, du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> et des balises applicables. L'argument <i><tt>defaut_editable</tt></i> est g&eacute;n&eacute;ralement d&eacute;termin&eacute; par un appel &agrave; la m&eacute;thode de <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></A>&nbsp;:</p>
+<p>La méthode <tt>editable</tt>() indique si l'itérateur <i><tt>iter</tt></i> se situe dans une portion de texte éditable. La méthode <tt>can_insert</tt>() indique si l'on peut insérer du texte à l'emplacement spécifié par <i><tt>iter</tt></i>, en prenant en compte la possibilité d'édition par défaut de la <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></A>, du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> et des balises applicables. L'argument <i><tt>defaut_editable</tt></i> est généralement déterminé par un appel à la méthode de <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></A>&nbsp;:</p>
 
 <pre class=programlisting>
   defaut_editable = zonedetexte.get_editable()
 </pre>
 
-<p>o&ugrave; <i><tt>zonedetexte</i></tt> est la <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></A>.</p>
-<p>On peut savoir si deux <tt>TextIter</tt> sont &eacute;quivalents gr&acirc;ce &agrave la m&eacute;thode&nbsp;:</p>
+<p>où <i><tt>zonedetexte</i></tt> est la <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></A>.</p>
+<p>On peut savoir si deux <tt>TextIter</tt> sont équivalents grâce &agrave la méthode&nbsp;:</p>
 
 <pre class=programlisting>
   egalite = iter1.equal(<b><tt>iter2</tt></b>)
 </pre>
 
-<p>La m&eacute;thode suivante permet de comparer deux <tt>TextIter</tt>&nbsp;:</p>
+<p>La méthode suivante permet de comparer deux <tt>TextIter</tt>&nbsp;:</p>
 
 <pre class=programlisting>
   resultat = iterA.compare(<b><tt>iterB</tt></b>)
 </pre>
 
-<p><i><tt>resultat</tt></i> aura pour valeur&nbsp;: -1 si <i><tt>iterA</tt></i> est inf&eacute;rieur &agrave; <i><tt>iterB</tt></i> ; 0 si <i><tt>iterA</tt></i> &eacute;gale <i><tt>iterB</tt></i> ; et 1 si <i><tt>iterA</tt></i> est sup&eacute;rieur &agrave; <i><tt>iterB</tt></i>.</p>
-<p>Pour savoir si un <tt>TextIter</tt> se trouve entre deux <tt>TextIter</tt> donn&eacute;s, utilisez la m&eacute;thode&nbsp;:</p>
+<p><i><tt>resultat</tt></i> aura pour valeur&nbsp;: -1 si <i><tt>iterA</tt></i> est inférieur à <i><tt>iterB</tt></i> ; 0 si <i><tt>iterA</tt></i> égale <i><tt>iterB</tt></i> ; et 1 si <i><tt>iterA</tt></i> est supérieur à <i><tt>iterB</tt></i>.</p>
+<p>Pour savoir si un <tt>TextIter</tt> se trouve entre deux <tt>TextIter</tt> donnés, utilisez la méthode&nbsp;:</p>
 
 <pre class=programlisting>
   resultat = iter.in_range(<b><tt>debut</tt></b>, <b><tt>fin</tt></b>)
 </pre>
 
-<p><i><tt>resultat</tt></i> vaudra TRUE si <i><tt>iter</tt></i> est situ&eacute; entre <i><tt>debut</tt></i> et <i><tt>fin</tt></i>. Attention, <i><tt>debut</tt></i> et <i><tt>fin</tt></i> doivent &ecirc;tre donn&eacute;s dans l'ordre croissant ! Ceci peut &ecirc;tre assur&eacute; par la m&eacute;thode&nbsp;:</p>
+<p><i><tt>resultat</tt></i> vaudra TRUE si <i><tt>iter</tt></i> est situé entre <i><tt>debut</tt></i> et <i><tt>fin</tt></i>. Attention, <i><tt>debut</tt></i> et <i><tt>fin</tt></i> doivent être donnés dans l'ordre croissant ! Ceci peut être assuré par la méthode&nbsp;:</p>
 
 <pre class=programlisting>
   iterA.order(<b><tt>iterB</tt></b>)
 </pre>
 
-<p>qui r&eacute;organise les positions des <tt>TextIter</tt> de sorte que <i><tt>iterA</tt></i> soit avant <i><tt>iterB</tt></i>.</p>
+<p>qui réorganise les positions des <tt>TextIter</tt> de sorte que <i><tt>iterA</tt></i> soit avant <i><tt>iterB</tt></i>.</p>
 </div>
 
 <div class="sect2" lang="fr"><div class="titlepage">
-<div><h3 class="title"><a name="VerifPosition"></A>13.4.6. V&eacute;rifier la position dans le texte</h3></div></div>
+<div><h3 class="title"><a name="VerifPosition"></A>13.4.6. Vérifier la position dans le texte</h3></div></div>
 
-<p>On peut d&eacute;terminer la position d'un <tt>TextIter</tt> par rapport au texte d'un  <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> gr&acirc;ce aux m&eacute;thodes suivantes&nbsp;:</p>
+<p>On peut déterminer la position d'un <tt>TextIter</tt> par rapport au texte d'un  <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> grâce aux méthodes suivantes&nbsp;:</p>
 
 <pre class=programlisting>
   resultat = iter.starts_word()			# <i><tt>iter</tt></i> commence un mot
 
   resultat = iter.ends_word()			# <i><tt>iter</tt></i> termine un mot
 
-  resultat = iter.inside_word()			# <i><tt>iter</tt></i> est &agrave; l'int&eacute;rieur d'un mot
+  resultat = iter.inside_word()			# <i><tt>iter</tt></i> est à l'intérieur d'un mot
 
   resultat = iter.starts_sentence()		# <i><tt>iter</tt></i> commence une phrase
 
   resultat = iter.ends_sentence()		# <i><tt>iter</tt></i> termine une phrase
 
-  resultat = iter.inside_sentence()		# <i><tt>iter</tt></i> est &agrave; l'int&eacute;rieur d'une phrase
+  resultat = iter.inside_sentence()		# <i><tt>iter</tt></i> est à l'intérieur d'une phrase
 
   resultat = starts_line()			# <i><tt>iter</tt></i> commence une ligne
 
   resultat = iter.ends_line()			# <i><tt>iter</tt></i> termine une ligne
 </pre>
 
-<p><i><tt>resultat</tt></i> renvoie TRUE si le <tt>TextIter</tt> est &agrave; la position donn&eacute;e. La d&eacute;finition de "mot" et "phrase" d&eacute;pend du langage utilis&eacute; &agrave; la position du <tt>TextIter</tt>. Quant &agrave; la ligne, il s'agit d'un ensemble de phrases s'apparentant &agrave; un paragraphe.</p>
-<p>La m&eacute;thode suivante permet de d&eacute;terminer si un  <tt>TextIter</tt> se situe au d&eacute;but ou &agrave la fin du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>&nbsp;:</p>
+<p><i><tt>resultat</tt></i> renvoie TRUE si le <tt>TextIter</tt> est à la position donnée. La définition de "mot" et "phrase" dépend du langage utilisé à la position du <tt>TextIter</tt>. Quant à la ligne, il s'agit d'un ensemble de phrases s'apparentant à un paragraphe.</p>
+<p>La méthode suivante permet de déterminer si un  <tt>TextIter</tt> se situe au début ou &agrave la fin du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>&nbsp;:</p>
 
 <pre class=programlisting>
   resultat = iter.is_start()
@@ -240,8 +240,8 @@
   resultat = iter.is_end()
 </pre>
 
-<p><i><tt>resultat</tt></i> vaudra TRUE si le <tt>TextIter</tt> est situ&eacute; au d&eacute;but ou &agrave; la fin du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>.</p>
-<p>Du fait qu'un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> peut contenir des groupe de caract&egrave;res s'affichant comme une seule position de curseur (par exemple un retour chariot + saut de ligne, ou une lettre + marque d'accent), il est possible qu'un <tt>TextIter</tt> soit &agrave; un emplacement ne repr&eacute;sentant pas une position de curseur possible. Dans un tel cas, la m&eacute;thode suivante renverrait FALSE&nbsp;:</p>
+<p><i><tt>resultat</tt></i> vaudra TRUE si le <tt>TextIter</tt> est situé au début ou à la fin du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>.</p>
+<p>Du fait qu'un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> peut contenir des groupe de caractères s'affichant comme une seule position de curseur (par exemple un retour chariot + saut de ligne, ou une lettre + marque d'accent), il est possible qu'un <tt>TextIter</tt> soit à un emplacement ne représentant pas une position de curseur possible. Dans un tel cas, la méthode suivante renverrait FALSE&nbsp;:</p>
 
 <pre class=programlisting>
   resultat = iter.is_cursor_position()
@@ -249,36 +249,36 @@
 </div>
 
 <div class="sect2" lang="fr"><div class="titlepage">
-<div><h3 class="title"><a name="SeDeplacerTexte"></A>13.4.7. Se d&eacute;placer dans le texte</h3></div></div>
+<div><h3 class="title"><a name="SeDeplacerTexte"></A>13.4.7. Se déplacer dans le texte</h3></div></div>
 
-<p>On peut d&eacute;placer les <tt>TextIter</tt> dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> par sauts de diff&eacute;rents &eacute;l&eacute;ments de texte. La d&eacute;finition de ces &eacute;l&eacute;ments de texte est fix&eacute;e par le <tt>PangoLanguage</tt> utilis&eacute; &agrave; l'emplacement du <tt>TextIter</tt>. Les m&eacute;thodes basiques sont&nbsp;:</p>
+<p>On peut déplacer les <tt>TextIter</tt> dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> par sauts de différents éléments de texte. La définition de ces éléments de texte est fixée par le <tt>PangoLanguage</tt> utilisé à l'emplacement du <tt>TextIter</tt>. Les méthodes basiques sont&nbsp;:</p>
 
 <pre class=programlisting>
-  resultat = iter.forward_char()			# avancer d'un caract&egrave;re
+  resultat = iter.forward_char()			# avancer d'un caractère
 
-  resultat = iter.backward_char()			# reculer d'un caract&egrave;re
+  resultat = iter.backward_char()			# reculer d'un caractère
 
-  resultat = iter.forward_word_end()			# avancer &agrave; la fin du mot
+  resultat = iter.forward_word_end()			# avancer à la fin du mot
 
-  resultat = iter.backward_word_start()			# reculer au d&eacute;but du mot
+  resultat = iter.backward_word_start()			# reculer au début du mot
 
-  resultat = iter.forward_sentence_end()		# avancer &agrave; la fin de la phrase
+  resultat = iter.forward_sentence_end()		# avancer à la fin de la phrase
 
-  resultat = iter.backward_sentence_start()		# reculer &agrave; au d&eacute;but de la phrase
+  resultat = iter.backward_sentence_start()		# reculer à au début de la phrase
 
-  resultat = iter.forward_line()			# avancer au d&eacute;but de la prochaine ligne
+  resultat = iter.forward_line()			# avancer au début de la prochaine ligne
 
-  resultat = iter.backward_line()			# reculer au d&eacute;but de la ligne pr&eacute;c&eacute;dente
+  resultat = iter.backward_line()			# reculer au début de la ligne précédente
 
-  resultat = iter.forward_to_line_end()			# avancer &agrave; la fin de la ligne
+  resultat = iter.forward_to_line_end()			# avancer à la fin de la ligne
 
-  resultat = iter.forward_cursor_position()		# avancer &agrave; la prochaine position de curseur
+  resultat = iter.forward_cursor_position()		# avancer à la prochaine position de curseur
 
-  resultat = iter.backward_cursor_position()		# reculer &agrave; la position de curseur pr&eacute;c&eacute;dente
+  resultat = iter.backward_cursor_position()		# reculer à la position de curseur précédente
 </pre>
 
-<p><i><tt>resultat</tt></i> vaut TRUE si le <tt>TextIter</tt> a &eacute;t&eacute; d&eacute;plac&eacute; et FALSE s'il se trouve au d&eacute;but ou &agrave; la fin du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>.</p>
-<p>Toutes les m&eacute;thodes ci-dessus (hormis <tt>forward_to_line_end</tt>() ) ont un &eacute;quivalent avec argument. Ce dernier est un nombre (positif ou n&eacute;gatif) indiquant de combien d'unit&eacute;s doit se d&eacute;placer le <tt>TextIter</tt>&nbsp;:</p>
+<p><i><tt>resultat</tt></i> vaut TRUE si le <tt>TextIter</tt> a été déplacé et FALSE s'il se trouve au début ou à la fin du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>.</p>
+<p>Toutes les méthodes ci-dessus (hormis <tt>forward_to_line_end</tt>() ) ont un équivalent avec argument. Ce dernier est un nombre (positif ou négatif) indiquant de combien d'unités doit se déplacer le <tt>TextIter</tt>&nbsp;:</p>
 
 <pre class=programlisting>
   resultat = iter.forward_chars(<b><tt>combien</tt></b>)
@@ -304,21 +304,21 @@
 </div>
 
 <div class="sect2" lang="fr"><div class="titlepage">
-<div><h3 class="title"><a name="SeDeplacerEmplSpec"></A>13.4.8. Se d&eacute;placer &agrave; un emplacement sp&eacute;cifique</h3></div></div>
+<div><h3 class="title"><a name="SeDeplacerEmplSpec"></A>13.4.8. Se déplacer à un emplacement spécifique</h3></div></div>
 
-<p>Un <tt>TextIter</tt> peut &ecirc;tre d&eacute;plac&eacute; &agrave; un emplacement sp&eacute;cifique du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> avec les m&eacute;thodes suivantes&nbsp;:</p>
+<p>Un <tt>TextIter</tt> peut être déplacé à un emplacement spécifique du <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A> avec les méthodes suivantes&nbsp;:</p>
 
 <pre class=programlisting>
-  iter.set_offset(<b><tt>n</tt></b>)		# d&eacute;place <i><tt>iter</tt></i> juste apr&egrave;s le <i><tt>n</tt></i><sup><sup><font SIZE=1>&egrave;me</font></sup></sup> caract&egrave;re du buffer
+  iter.set_offset(<b><tt>n</tt></b>)		# déplace <i><tt>iter</tt></i> juste après le <i><tt>n</tt></i><sup><sup><font SIZE=1>ème</font></sup></sup> caractère du buffer
 
-  iter.set_line(<b><tt>x</tt></b>)		# d&eacute;place <i><tt>iter</tt></i> au d&eacute;but de la <i><tt>x</tt></i><sup><sup><font SIZE=1>&egrave;me</font></sup></sup> ligne
+  iter.set_line(<b><tt>x</tt></b>)		# déplace <i><tt>iter</tt></i> au début de la <i><tt>x</tt></i><sup><sup><font SIZE=1>ème</font></sup></sup> ligne
 
-  iter.set_line_offset(<b><tt>n</tt></b>)	# d&eacute;place <i><tt>iter</tt></i> juste apr&egrave;s le <i><tt>n</tt></i><sup><sup><font SIZE=1>&egrave;me</font></sup></sup> caract&egrave;re de sa ligne
+  iter.set_line_offset(<b><tt>n</tt></b>)	# déplace <i><tt>iter</tt></i> juste après le <i><tt>n</tt></i><sup><sup><font SIZE=1>ème</font></sup></sup> caractère de sa ligne
 
-  iter.forward_to_end()		# d&eacute;place <i><tt>iter</tt></i> &agrave; la derni&egrave;re position du buffer
+  iter.forward_to_end()		# déplace <i><tt>iter</tt></i> à la dernière position du buffer
 </pre>
 
-<p>Un <tt>TextIter</tt> peut &eacute;galement &ecirc;tre d&eacute;plac&eacute; vers un emplacement o&ugrave; une balise s'active ou se d&eacute;sactive, et ce gr&acirc;ce &agrave; la m&eacute;thode suivante&nbsp;:</p>
+<p>Un <tt>TextIter</tt> peut également être déplacé vers un emplacement où une balise s'active ou se désactive, et ce grâce à la méthode suivante&nbsp;:</p>
 
 <pre class=programlisting>
   resultat = iter.forward_to_tag_toggle(<b><tt>balise</tt></b>)
@@ -327,12 +327,12 @@
 </pre>
 
 
-<p><i><tt>resultat</tt></i> vaudra TRUE si le <tt>TextIter</tt> a &eacute;t&eacute; d&eacute;plac&eacute; vers une nouvelle position o&ugrave; <i><tt>balise</tt></i> s'active ou se d&eacute;sactive. Si <i><tt>balise</tt></i> vaut <tt>None</tt>, la m&eacute;thode d&eacute;placera <tt>TextIter</tt> vers la prochaine position o&ugrave; n'importe quelle balise s'active ou se d&eacute;sactive.</p></div>
+<p><i><tt>resultat</tt></i> vaudra TRUE si le <tt>TextIter</tt> a été déplacé vers une nouvelle position où <i><tt>balise</tt></i> s'active ou se désactive. Si <i><tt>balise</tt></i> vaut <tt>None</tt>, la méthode déplacera <tt>TextIter</tt> vers la prochaine position où n'importe quelle balise s'active ou se désactive.</p></div>
 
 <div class="sect2" lang="fr"><div class="titlepage">
 <div><h3 class="title"><a name="RechercherTexte"></A>13.4.9. Rechercher du texte</h3></div></div>
 
-<p>La m&eacute;thode suivante permet de rechercher une cha&icirc;ne de caract&egrave;res dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>&nbsp;:</p>
+<p>La méthode suivante permet de rechercher une chaîne de caractères dans un <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></A>&nbsp;:</p>
 
 <pre class=programlisting>
   debut_resultat, fin_resultat = iter.forward_search(<b><tt>chaine</tt></b>, <b><tt>drapeaux</tt></b>, <b><tt>limit</tt></b>=None)
@@ -340,15 +340,15 @@
   debut_resultat, fin_resultat = iter.backward_search(<b><tt>chaine</tt></b>, <b><tt>drapeaux</tt></b>, <b><tt>limit</tt></b>=None)
 </pre>
 
-<p>La m&eacute;thode renvoie un tuple contenant deux <tt>TextIter</tt>. Ces derniers indiquent respectivement la position du premier caract&egrave;re du r&eacute;sultat et celle du premier caract&egrave;re suivant ce r&eacute;sultat. <i><tt>chaine</tt></i> est la cha&icirc;ne de caract&egrave;res &agrave; localiser. Les <i><tt>drapeaux</tt></i> modifient les param&egrave;tres de la recherche ; il peuvent prendre comme valeurs&nbsp;:</p>
+<p>La méthode renvoie un tuple contenant deux <tt>TextIter</tt>. Ces derniers indiquent respectivement la position du premier caractère du résultat et celle du premier caractère suivant ce résultat. <i><tt>chaine</tt></i> est la chaîne de caractères à localiser. Les <i><tt>drapeaux</tt></i> modifient les paramètres de la recherche ; il peuvent prendre comme valeurs&nbsp;:</p>
 
 <pre class=programlisting>
-  gtk.TEXT_SEARCH_VISIBLE_ONLY		# les caract&egrave;res invisibles seront ignor&eacute;s
+  gtk.TEXT_SEARCH_VISIBLE_ONLY		# les caractères invisibles seront ignorés
 
-  gtk.TEXT_SEARCH_TEXT_ONLY		# les images pixbuf et les points d'ancrages seront ignor&eacute;s
+  gtk.TEXT_SEARCH_TEXT_ONLY		# les images pixbuf et les points d'ancrages seront ignorés
 </pre>
 
-<p><i><tt>limit</tt></i> est un <tt>TextIter</tt> facultatif qui limite la recherche au texte le pr&eacute;c&eacute;dant.</p>
+<p><i><tt>limit</tt></i> est un <tt>TextIter</tt> facultatif qui limite la recherche au texte le précédant.</p>
 </div>
 </div>
 
@@ -357,12 +357,12 @@
 
 <table width="100%" summary="Bas de page de navigation">
   <tr>
-    <td align="left" width="40%"><a accessKey="p" href="sec-TextBuffers.html">Pr&eacute;c.</A></td>
+    <td align="left" width="40%"><a accessKey="p" href="sec-TextBuffers.html">Préc.</A></td>
     <td align="center" width="20%"><a accessKey="u" href="ch-TextViewWidget.html">Chapitre Parent</A></td>
     <td align="right" width="40%"><a accessKey="n" href="sec-TextMarks.html">Suiv.</A></td></tr>
   <tr>
     <td width="40%" align="left" vAlign="top">13.3. TextBuffer&nbsp;: le buffer de texte</td>
-    <td width="20%" align="center"><a accessKey="h" href="index.html">Table des mati&egrave;res</A></td>
+    <td width="20%" align="center"><a accessKey="h" href="index.html">Table des matières</A></td>
     <td width="40%" align="right" vAlign="top">13.5. Text Marks&nbsp;: les marques de texte</td>
 </tr></table>
 

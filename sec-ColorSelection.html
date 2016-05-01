@@ -3,23 +3,23 @@
 
 <head>
     <meta charset="utf-8">
-<title>9.13. Le s&eacute;lecteur de couleur</title>
+<title>9.13. Le sélecteur de couleur</title>
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,selection,couleur">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
 <link rel="previous" href="sec-Calendar.html" title="9.12. Le calendrier">
-<link rel="next" href="sec-FileSelections.html" title="9.14. Le s&eacute;lecteur de fichiers">
+<link rel="next" href="sec-FileSelections.html" title="9.14. Le sélecteur de fichiers">
 </head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
-<th colspan="3" align="center">9.13. Le s&eacute;lecteur de couleur</th>
+<th colspan="3" align="center">9.13. Le sélecteur de couleur</th>
 </tr><tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-Calendar.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-Calendar.html">Préc.</a></td>
 <th width="60%" align="center">Chapitre 9. Widgets divers</th>
 <td width="20%" align="right"><a accesskey="n" href="sec-FileSelections.html">Suiv.</a></td>
 </tr></table>
@@ -28,54 +28,54 @@
 </div>
 
 <div class="sect1"><div class="titlepage"><div>
-<h2 class="title" style="clear: both"><a name="SelecteurCouleur"></a>9.13. Le s&eacute;lecteur de couleur</h2></div></div>
+<h2 class="title" style="clear: both"><a name="SelecteurCouleur"></a>9.13. Le sélecteur de couleur</h2></div></div>
 
-<p>Le s&eacute;lecteur de couleur est, on l'aura devin&eacute;, un widget permettant une s&eacute;lection interactive des couleurs. Ce widget composite permet &agrave; l'utilisateur de choisir une couleur en manipulant des triplets RVB (Rouge, Vert, Bleu) ou TSV (Teinte, Saturation, Valeur). Chacune des valeurs peut &ecirc;tre ajust&eacute;e &agrave; l'aide de gradateurs ou de champs de saisie, ou bien en d&eacute;signant directement la couleur d&eacute;sir&eacute;e dans une roue de teinte-saturation/barre de valeur. Il est &eacute;galement possible de d&eacute;finir l'opacit&eacute; de la couleur.</p>
-<p>Le s&eacute;lecteur de couleur ne dispose actuellement que d'un seul signal, &quot;color_changed&quot;. Il est &eacute;mis &agrave; chaque modification de la couleur courante dans le widget, qu'elle vienne de l'utilisateur ou bien d'une d&eacute;finition explicite par la m&eacute;thode <tt>set_color</tt>().</p>
-<p>Observons &agrave; pr&eacute;sent ce que peut nous offrir ce widget. Il est propos&eacute; sous deux formes diff&eacute;rentes&nbsp;: <tt>gtk.ColorSelection</tt> et <tt>gtk.ColorSelectionDialog</tt>.</p>
+<p>Le sélecteur de couleur est, on l'aura deviné, un widget permettant une sélection interactive des couleurs. Ce widget composite permet à l'utilisateur de choisir une couleur en manipulant des triplets RVB (Rouge, Vert, Bleu) ou TSV (Teinte, Saturation, Valeur). Chacune des valeurs peut être ajustée à l'aide de gradateurs ou de champs de saisie, ou bien en désignant directement la couleur désirée dans une roue de teinte-saturation/barre de valeur. Il est également possible de définir l'opacité de la couleur.</p>
+<p>Le sélecteur de couleur ne dispose actuellement que d'un seul signal, "color_changed". Il est émis à chaque modification de la couleur courante dans le widget, qu'elle vienne de l'utilisateur ou bien d'une définition explicite par la méthode <tt>set_color</tt>().</p>
+<p>Observons à présent ce que peut nous offrir ce widget. Il est proposé sous deux formes différentes&nbsp;: <tt>gtk.ColorSelection</tt> et <tt>gtk.ColorSelectionDialog</tt>.</p>
 
 <pre class="programlisting">
   selectcouleur = gtk.ColorSelection()
 </pre>
 
-<p>Vous n'aurez probablement pas &agrave; utiliser ce constructeur directement. Il cr&eacute;e un <tt>gtk.ColorSelection</tt> orphelin auquel vous devrez affecter un parent vous-m&ecirc;me. Le widget <tt>gtk.ColorSelection</tt> h&eacute;rite du widget <tt>gtk.VBox</tt>.</p>
+<p>Vous n'aurez probablement pas à utiliser ce constructeur directement. Il crée un <tt>gtk.ColorSelection</tt> orphelin auquel vous devrez affecter un parent vous-même. Le widget <tt>gtk.ColorSelection</tt> hérite du widget <tt>gtk.VBox</tt>.</p>
 
 <pre class="programlisting">
   dialselectcouleur = gtk.ColorSelectionDialog(<b><tt>title</tt></b>)
 </pre>
 
-<p>... o&ugrave; <i><tt>title</tt></i> (titre) est une chaine de caract&egrave;res &agrave; utiliser pour la barre de titre de la boite de dialogue.</p>
-<p>Il s'agit l&agrave; du constructeur le plus courant pour les s&eacute;lecteurs de couleur. Il cr&eacute;e un <tt>gtk.ColorSelectionDialog</tt>, qui consiste en un cadre (<tt>gtk.Frame</tt>) contenant un <tt>gtk.ColorSelection</tt>, un s&eacute;parateur horizontal, ainsi qu'une boite horizontale poss&eacute;dant trois boutons&nbsp;: &quot;Ok&quot;, &quot;Cancel&quot; and &quot;Help&quot;. Ces derniers sont accessibles par les attributs <i><tt>ok_button</tt></i>, <i><tt>cancel_button</tt></i> et <i><tt>help_button</tt></i> du <tt>ColorSelectionDialog</tt> (ex&nbsp;: <i><tt>dialselectcouleur.ok_button</tt></i>). Pour acc&eacute;der au s&eacute;lecteur de couleur en lui-m&ecirc;me, on utilisera l'attribut <i><tt>colorsel</tt></i>&nbsp;:</p>
+<p>... où <i><tt>title</tt></i> (titre) est une chaine de caractères à utiliser pour la barre de titre de la boite de dialogue.</p>
+<p>Il s'agit là du constructeur le plus courant pour les sélecteurs de couleur. Il crée un <tt>gtk.ColorSelectionDialog</tt>, qui consiste en un cadre (<tt>gtk.Frame</tt>) contenant un <tt>gtk.ColorSelection</tt>, un séparateur horizontal, ainsi qu'une boite horizontale possédant trois boutons&nbsp;: "Ok", "Cancel" and "Help". Ces derniers sont accessibles par les attributs <i><tt>ok_button</tt></i>, <i><tt>cancel_button</tt></i> et <i><tt>help_button</tt></i> du <tt>ColorSelectionDialog</tt> (ex&nbsp;: <i><tt>dialselectcouleur.ok_button</tt></i>). Pour accéder au sélecteur de couleur en lui-même, on utilisera l'attribut <i><tt>colorsel</tt></i>&nbsp;:</p>
 
 <pre class="programlisting">
   selectcouleur = dialselectcouleur.colorsel
 </pre>
 
-<p>Le widget <tt>gtk.ColorSelection</tt> dispose de plusieurs m&eacute;thodes qui changent ses caract&eacute;ristiques ou permettent d'acc&eacute;der &agrave; la s&eacute;lection de couleur.</p>
+<p>Le widget <tt>gtk.ColorSelection</tt> dispose de plusieurs méthodes qui changent ses caractéristiques ou permettent d'accéder à la sélection de couleur.</p>
 
 <pre class="programlisting">
   selectcouleur.set_has_opacity_control(<b><tt>has_opacity</tt></b>)
 </pre>
 
-<p>Le s&eacute;lecteur de couleur permet de r&eacute;gler l'opacit&eacute; d'une couleur (aussi appel&eacute;e canal alpha). Cette option est d&eacute;sactiv&eacute;e par d&eacute;faut. Pour autoriser les r&eacute;glages d'opacit&eacute;, il faut appeler la m&eacute;thode ci-dessus en donnant la valeur TRUE &agrave; son argument <i><tt>has_opacity</tt></i>. Inversement, l'appeler avec FALSE interdira cette possibilit&eacute;.</p>
+<p>Le sélecteur de couleur permet de régler l'opacité d'une couleur (aussi appelée canal alpha). Cette option est désactivée par défaut. Pour autoriser les réglages d'opacité, il faut appeler la méthode ci-dessus en donnant la valeur TRUE à son argument <i><tt>has_opacity</tt></i>. Inversement, l'appeler avec FALSE interdira cette possibilité.</p>
 
 <pre class="programlisting">
   selectcouleur.set_current_color(<b><tt>color</tt></b>)
   selectcouleur.set_current_alpha(<b><tt>alpha</tt></b>)
 </pre>
 
-<p>On peut d&eacute;finir explicitement la couleur courante en appelant la m&eacute;thode <tt>set_current_color</tt>() avec une <tt>GdkColor</tt>. Le r&eacute;glage d'opacit&eacute; (le canal alpha) s'effectue avec la m&eacute;thode <tt>set_current_alpha</tt>().  La valeur alpha doit &ecirc;tre comprise entre 0 (transparence totale) et 65 636 (opacit&eacute; totale).</p>
+<p>On peut définir explicitement la couleur courante en appelant la méthode <tt>set_current_color</tt>() avec une <tt>GdkColor</tt>. Le réglage d'opacité (le canal alpha) s'effectue avec la méthode <tt>set_current_alpha</tt>().  La valeur alpha doit être comprise entre 0 (transparence totale) et 65 636 (opacité totale).</p>
 
 <pre class="programlisting">
   couleur = selectcouleur.get_current_color()
   alpha = selectcouleur.get_current_alpha()
 </pre>
 
-<p>Pour r&eacute;cup&eacute;rer la couleur courante, g&eacute;n&eacute;ralement lors de la r&eacute;ception d'un signal &quot;color_changed&quot;, on utilise ces m&eacute;thodes.</p>
-<p>Le programme <a href="exemples/selectcouleur.py" target="_top"><b>selectcouleur.py</b></a> donne un exemple d'utilisation du <tt>gtk.ColorSelectionDialog</tt>. Le programme affiche une fen&ecirc;tre contenant une zone de dessin qui, si elle est cliqu&eacute;e, ouvre une boite de dialogue de s&eacute;lection de couleur. Les modifications de couleur effectu&eacute;es dans cette boite de dialogue entrainent le changement de la couleur d'arri&egrave;re-plan de la zone de dessin. La <a href="sec-ColorSelection.html#FigSelectCouleur" title="Figure 9.13. Exemple de s&eacute;lecteur de couleur">Figure 9.13</a> montre ce programme en ex&eacute;cution&nbsp;:</p>
+<p>Pour récupérer la couleur courante, généralement lors de la réception d'un signal "color_changed", on utilise ces méthodes.</p>
+<p>Le programme <a href="exemples/selectcouleur.py" target="_top"><b>selectcouleur.py</b></a> donne un exemple d'utilisation du <tt>gtk.ColorSelectionDialog</tt>. Le programme affiche une fenêtre contenant une zone de dessin qui, si elle est cliquée, ouvre une boite de dialogue de sélection de couleur. Les modifications de couleur effectuées dans cette boite de dialogue entrainent le changement de la couleur d'arrière-plan de la zone de dessin. La <a href="sec-ColorSelection.html#FigSelectCouleur" title="Figure 9.13. Exemple de sélecteur de couleur">Figure 9.13</a> montre ce programme en exécution&nbsp;:</p>
 
 <div class="figure"><a name="FigSelectCouleur"></a>
-<p class="title"><b>Figure 9.13. Exemple de s&eacute;lecteur de couleur</b></p>
+<p class="title"><b>Figure 9.13. Exemple de sélecteur de couleur</b></p>
 <div class="mediaobject" align="center">
 <img src="figures/selectcouleur.png" align="middle" alt="exemple sélecteur de couleur">
 </div></div>
@@ -181,13 +181,13 @@
 
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-Calendar.html">Pr&eacute;c.</a></td>
+<td width="40%" align="left"><a accesskey="p" href="sec-Calendar.html">Préc.</a></td>
 <td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"><a accesskey="n" href="sec-FileSelections.html">Suiv.</a></td>
 </tr><tr>
 <td width="40%" align="left" valign="top">9.12. Le calendrier</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
-<td width="40%" align="right" valign="top">9.14. Le s&eacute;lecteur de fichier</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top">9.14. Le sélecteur de fichier</td>
 </tr></table>
 </div>
 

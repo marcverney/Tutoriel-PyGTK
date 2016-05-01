@@ -7,19 +7,19 @@
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,calendrier">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
-<link rel="previous" href="sec-ComboWidget.html" title="9.11. Les listes d&eacute;roulantes">
-<link rel="next" href="sec-ColorSelection.html" title="9.13. Le s&eacute;lecteur de couleur">
+<link rel="previous" href="sec-ComboWidget.html" title="9.11. Les listes déroulantes">
+<link rel="next" href="sec-ColorSelection.html" title="9.13. Le sélecteur de couleur">
 </head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
 <th colspan="3" align="center">9.12. Le calendrier</th>
 </tr><tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-ComboWidget.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-ComboWidget.html">Préc.</a></td>
 <th width="60%" align="center">Chapitre 9. Widgets divers</th>
 <td width="20%" align="right"><a accesskey="n" href="sec-ColorSelection.html">Suiv.</a></td></tr></table>
 
@@ -28,15 +28,15 @@
 
 <div class="sect1"><div class="titlepage">
 <div><h2 class="title" style="clear: both"><a name="Calendrier"></a>9.12. Le calendrier</h2></div></div>
-<p>Le widget <tt>gtk.Calendar</tt> est un moyen efficace pour afficher et r&eacute;cup&eacute;rer des informations calendaires organis&eacute;es par mois. Il s'agit d'un widget tr&egrave;s simple &agrave; cr&eacute;er et &agrave; utiliser.</p>
-<p>Pour cr&eacute;er un calendrier, il suffit d'utiliser la m&eacute;thode suivante&nbsp;:</p>
+<p>Le widget <tt>gtk.Calendar</tt> est un moyen efficace pour afficher et récupérer des informations calendaires organisées par mois. Il s'agit d'un widget très simple à créer et à utiliser.</p>
+<p>Pour créer un calendrier, il suffit d'utiliser la méthode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   calendrier = gtk.Calendar()
 </pre>
 
-<p>Par d&eacute;faut, le calendrier affiche le mois et l'ann&eacute;e courants.</p>
-<p>On pourra parfois avoir besoin de modifier plusieurs donn&eacute;es de ce widget ; les m&eacute;thodes qui suivent permettront d'apporter un grand nombre de modifications au calendrier, ceci sans que l'utilisateur n'ait &agrave; voir son affichage s'actualiser &agrave; chacune d'elles.</p>
+<p>Par défaut, le calendrier affiche le mois et l'année courants.</p>
+<p>On pourra parfois avoir besoin de modifier plusieurs données de ce widget ; les méthodes qui suivent permettront d'apporter un grand nombre de modifications au calendrier, ceci sans que l'utilisateur n'ait à voir son affichage s'actualiser à chacune d'elles.</p>
 
 <pre class="programlisting">
   calendrier.freeze()
@@ -44,35 +44,35 @@
   calendrier.thaw()
 </pre>
 
-<p>Le fonctionnement est exactement le m&ecirc;me que pour les m&eacute;thodes de gel (freeze) et de d&eacute;gel (thaw) de tout autre widget.</p>
-<p>Le calendrier dispose de quelques options permettant de changer son aspect et son comportement. On y acc&egrave;de par l'interm&eacute;diaire de la m&eacute;thode suivante&nbsp;:</p>
+<p>Le fonctionnement est exactement le même que pour les méthodes de gel (freeze) et de dégel (thaw) de tout autre widget.</p>
+<p>Le calendrier dispose de quelques options permettant de changer son aspect et son comportement. On y accède par l'intermédiaire de la méthode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   calendrier.display_options(<b><tt>flags</tt></b>)
 </pre>
 
-<p>L'argument <i><tt>flags</tt></i> (drapeaux) peut comporter n'importe lesquelles des cinq options suivantes, combin&eacute;es le cas &eacute;ch&eacute;ant avec l'op&eacute;rateur de manipulation de bits OR (|)&nbsp;:</p>
+<p>L'argument <i><tt>flags</tt></i> (drapeaux) peut comporter n'importe lesquelles des cinq options suivantes, combinées le cas échéant avec l'opérateur de manipulation de bits OR (|)&nbsp;:</p>
 
 <div class="informaltable">
 <table width="100%" border="1"><colgroup><col><col></colgroup>
 <tr>
 <td>CALENDAR_SHOW_HEADING</td>
-<td>Cette option sp&eacute;cifie que le mois et l'ann&eacute;e doivent apparaitre dans l'affichage du calendrier.</td>
+<td>Cette option spécifie que le mois et l'année doivent apparaitre dans l'affichage du calendrier.</td>
 </tr><tr>
 <td>CALENDAR_SHOW_DAY_NAMES</td>
-<td>Cette option sp&eacute;cifie que des d&eacute;signations &agrave; trois lettres doivent &ecirc;tre affich&eacute;es pour chaque jour (lun, mar, etc.).</td>
+<td>Cette option spécifie que des désignations à trois lettres doivent être affichées pour chaque jour (lun, mar, etc.).</td>
 </tr><tr>
 <td>CALENDAR_NO_MONTH_CHANGE</td>
-<td>Cette option sp&eacute;cifie que l'utilisateur ne doit pas pouvoir afficher d'autre mois que celui qui est affich&eacute;. Cela peut &ecirc;tre utile lorsque on ne souhaite afficher qu'un seul mois pr&eacute;cis, par exemple dans le cas o&ugrave; l'on affiche 12 calendriers, un pour chaque mois d'une ann&eacute;e donn&eacute;e.</td>
+<td>Cette option spécifie que l'utilisateur ne doit pas pouvoir afficher d'autre mois que celui qui est affiché. Cela peut être utile lorsque on ne souhaite afficher qu'un seul mois précis, par exemple dans le cas où l'on affiche 12 calendriers, un pour chaque mois d'une année donnée.</td>
 </tr><tr>
 <td>CALENDAR_SHOW_WEEK_NUMBERS</td>
-<td>Cette option sp&eacute;cifie que le num&eacute;ro de chaque semaine doit &ecirc;tre affich&eacute; sur la gauche du calendrier (1er Jan = Semaine 1, 31 D&eacute;c = Semaine 52).</td>
+<td>Cette option spécifie que le numéro de chaque semaine doit être affiché sur la gauche du calendrier (1er Jan = Semaine 1, 31 Déc = Semaine 52).</td>
 </tr><tr>
 <td>CALENDAR_WEEK_START_MONDAY</td>
-<td>Cette option sp&eacute;cifie que la semaine du calendrier commence le lundi, et non pas le dimanche (r&eacute;glage par d&eacute;faut). Seul est affect&eacute; l'ordre dans lequel sont affich&eacute;s les jours de gauche &agrave; droite.</td>
+<td>Cette option spécifie que la semaine du calendrier commence le lundi, et non pas le dimanche (réglage par défaut). Seul est affecté l'ordre dans lequel sont affichés les jours de gauche à droite.</td>
 </tr></table></div>
 
-<p>On utilise les m&eacute;thodes suivantes pour d&eacute;finir la date affich&eacute;e&nbsp;:</p>
+<p>On utilise les méthodes suivantes pour définir la date affichée&nbsp;:</p>
 
 <pre class="programlisting">
   resultat = calendrier.select_month(<b><tt>month</tt></b>, <b><tt>year</tt></b>)
@@ -80,44 +80,44 @@
   calendrier.select_day(<b><tt>day</tt></b>)
 </pre>
 
-<p>La m&eacute;thode <tt>select_month</tt>() renvoie une valeur bool&eacute;enne indiquant si la s&eacute;lection s'est d&eacute;roul&eacute;e avec succ&egrave;s.</p>
-<p>Avec la m&eacute;thode <tt>select_day</tt>(), le num&eacute;ro de jour sp&eacute;cifi&eacute; se voit s&eacute;lectionn&eacute; dans le mois courant, dans la mesure du possible. Un num&eacute;ro de jour de 0 aura pour effet d'invalider toute s&eacute;lection courante.</p>
-<p>Outre le fait qu'un jour du mois puisse &ecirc;tre s&eacute;lectionn&eacute;, chacun des autres jours peut &ecirc;tre &quot;marqu&eacute;&quot;, c'est-&agrave;-dire mis en relief dans l'affichage du calendrier. On se servira des m&eacute;thodes suivantes pour manipuler les jours marqu&eacute;s&nbsp;:</p>
+<p>La méthode <tt>select_month</tt>() renvoie une valeur booléenne indiquant si la sélection s'est déroulée avec succès.</p>
+<p>Avec la méthode <tt>select_day</tt>(), le numéro de jour spécifié se voit sélectionné dans le mois courant, dans la mesure du possible. Un numéro de jour de 0 aura pour effet d'invalider toute sélection courante.</p>
+<p>Outre le fait qu'un jour du mois puisse être sélectionné, chacun des autres jours peut être "marqué", c'est-à-dire mis en relief dans l'affichage du calendrier. On se servira des méthodes suivantes pour manipuler les jours marqués&nbsp;:</p>
 
 <pre class="programlisting">
   resultat = calendrier.mark_day(<b><tt>day</tt></b>)       # marquer un jour
 
-  resultat = calendrier.unmark_day(<b><tt>day</tt></b>)     # d&eacute;marquer un jour
+  resultat = calendrier.unmark_day(<b><tt>day</tt></b>)     # démarquer un jour
 
   calendrier.clear_marks()        # enlever toutes les marques
 </pre>
 
-<p><tt>mark_day</tt>() et <tt>unmark_day</tt>() renvoient une valeur bool&eacute;enne indiquant si l'op&eacute;ration s'est d&eacute;roul&eacute;e avec succ&egrave;s. Notez que les marques sont conserv&eacute;es m&ecirc;me lors de changements de mois ou d'ann&eacute;e.</p>
-<p>La derni&egrave;re m&eacute;thode du calendrier permet de r&eacute;cup&eacute;rer la date, le mois et l'ann&eacute;e s&eacute;lectionn&eacute;s.</p>
+<p><tt>mark_day</tt>() et <tt>unmark_day</tt>() renvoient une valeur booléenne indiquant si l'opération s'est déroulée avec succès. Notez que les marques sont conservées même lors de changements de mois ou d'année.</p>
+<p>La dernière méthode du calendrier permet de récupérer la date, le mois et l'année sélectionnés.</p>
 
 <pre class="programlisting">
-  ann&eacute;e, mois, jour = calendrier.get_date()
+  année, mois, jour = calendrier.get_date()
 </pre>
 
-<p>Le widget <tt>gtk.Calendar</tt> peut g&eacute;n&eacute;rer un certain nombre de signaux indiquant un changement ou une s&eacute;lection de date. En voici une liste&nbsp;:</p>
+<p>Le widget <tt>gtk.Calendar</tt> peut générer un certain nombre de signaux indiquant un changement ou une sélection de date. En voici une liste&nbsp;:</p>
 
 <pre class="programlisting">
-  month_changed            # mois chang&eacute;
+  month_changed            # mois changé
 
-  day_selected            # jour selectionn&eacute;
+  day_selected            # jour selectionné
 
-  day_selected_double_click            # jour selectionn&eacute; double-clic
+  day_selected_double_click            # jour selectionné double-clic
 
-  prev_month            # mois pr&eacute;c&eacute;dent
+  prev_month            # mois précédent
 
   next_month            # mois suivant
 
-  prev_year            # ann&eacute;e pr&eacute;c&eacute;dente
+  prev_year            # année précédente
 
-  next_year            # ann&eacute;e suivante
+  next_year            # année suivante
 </pre>
 
-<p>Il ne nous reste plus qu'&agrave; rassembler tout ceci dans le programme exemple <a href="exemples/calendrier.py" target="_top"><b>calendrier.py</b></a>. La <a href="sec-Calendar.html#FigCalendrier" title="Figure 9.12. Exemple de calendrier">Figure 9.12</a> montre le r&eacute;sultat du programme&nbsp;:</p>
+<p>Il ne nous reste plus qu'à rassembler tout ceci dans le programme exemple <a href="exemples/calendrier.py" target="_top"><b>calendrier.py</b></a>. La <a href="sec-Calendar.html#FigCalendrier" title="Figure 9.12. Exemple de calendrier">Figure 9.12</a> montre le résultat du programme&nbsp;:</p>
 
 <div class="figure"><a name="FigCalendrier"></a>
 <p class="title"><b>Figure 9.12. Exemple de calendrier</b></p>
@@ -392,13 +392,13 @@
 <table width="100%" summary="Bas de page de navigation">
 
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-ComboWidget.html">Pr&eacute;c.</a></td>
+<td width="40%" align="left"><a accesskey="p" href="sec-ComboWidget.html">Préc.</a></td>
 <td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"><a accesskey="n" href="sec-ColorSelection.html">Suiv.</a></td>
 </tr><tr>
 <td width="40%" align="left" valign="top">9.11. Les listes dÃ©roulantes</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
-<td width="40%" align="right" valign="top">9.13. Le s&eacute;lecteur de couleur</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top">9.13. Le sélecteur de couleur</td>
 </tr></table>
 </div>
 

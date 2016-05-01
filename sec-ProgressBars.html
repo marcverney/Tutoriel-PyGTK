@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,progression">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
 <link rel="previous" href="sec-TooltipsObject.html" title="9.3. Les infobulles">
 <link rel="next" href="sec-Dialogs.html" title="9.5. Les boites de dialogue">
@@ -15,11 +15,11 @@
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
 <th colspan="3" align="center">9.4. La barre de progression</th>
 </tr><tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-TooltipsObject.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-TooltipsObject.html">Préc.</a></td>
 <th width="60%" align="center">Chapitre 9. Widgets divers</th>
 <td width="20%" align="right"><a accesskey="n" href="sec-Dialogs.html">Suiv.</a></td>
 </tr></table>
@@ -30,18 +30,18 @@
 <div class="sect1"><div class="titlepage"><div><h2 class="title" style="clear: both">
 <a name="BarreProgression"></a>9.4. La barre de progression</h2>
 </div></div>
-<p>On emploie la barre de progression pour montrer l'&eacute;tat d'avancement d'une
-op&eacute;ration. Son utilisation est tr&egrave;s facile, comme vous pourrez le constater
-plus bas avec le code source de notre exemple. Mais commen&ccedil;ons par d&eacute;couvrir
-son appel de cr&eacute;ation&nbsp;:</p>
+<p>On emploie la barre de progression pour montrer l'état d'avancement d'une
+opération. Son utilisation est très facile, comme vous pourrez le constater
+plus bas avec le code source de notre exemple. Mais commençons par découvrir
+son appel de création&nbsp;:</p>
 
 <pre class="programlisting">
   barreprogression = gtk.ProgressBar(<b><tt>adjustment</tt></b>=None)
 </pre>
 
-<p>L'argument <i><tt>adjustment</tt></i> indique un ajustement &agrave; utiliser avec
-la barre de progression. Si aucun n'est sp&eacute;cifi&eacute;, il en sera
-cr&eacute;&eacute; un automatiquement. &Agrave; pr&eacute;sent que notre barre de
+<p>L'argument <i><tt>adjustment</tt></i> indique un ajustement à utiliser avec
+la barre de progression. Si aucun n'est spécifié, il en sera
+créé un automatiquement. &Agrave; présent que notre barre de
 progression existe, nous pouvons l'utiliser.</p>
 
 <pre class="programlisting">
@@ -50,11 +50,11 @@ progression existe, nous pouvons l'utiliser.</p>
 
 <p>L'objet <i><tt>barreprogression</tt></i> est la barre de progression sur laquelle
 l'on souhaite agir, et l'argument <i><tt>fraction</tt></i> la proportion
-&quot;effectu&eacute;e&quot;, c'est-&agrave;-dire le pourcentage de remplissage de la
-barre de progression. Cette indication est donn&eacute;e &agrave; la m&eacute;thode sous
-la forme d'un r&eacute;el compris entre <tt>0</tt> et <tt>1</tt>.</p>
-<p>L'orientation de la barre de progression peut &ecirc;tre d&eacute;finie avec la
-m&eacute;thode&nbsp;:</p>
+"effectuée", c'est-à-dire le pourcentage de remplissage de la
+barre de progression. Cette indication est donnée à la méthode sous
+la forme d'un réel compris entre <tt>0</tt> et <tt>1</tt>.</p>
+<p>L'orientation de la barre de progression peut être définie avec la
+méthode&nbsp;:</p>
 
 <pre class="programlisting">
   barreprogression.set_orientation(<b><tt>orientation</tt></b>)
@@ -64,34 +64,34 @@ m&eacute;thode&nbsp;:</p>
 indiquent le sens de progression de la barre&nbsp;:</p>
 
 <pre class="programlisting">
-  PROGRESS_LEFT_TO_RIGHT	# de gauche &agrave; droite
-  PROGRESS_RIGHT_TO_LEFT	# de droite &agrave; gauche
+  PROGRESS_LEFT_TO_RIGHT	# de gauche à droite
+  PROGRESS_RIGHT_TO_LEFT	# de droite à gauche
   PROGRESS_BOTTOM_TO_TOP	# de bas en haut
   PROGRESS_TOP_TO_BOTTOM	# de haut en bas
 </pre>
 
-<p>On peut configurerla barre de progression pour que, plut&ocirc;t que de donner
-l'&eacute;tat d'avancement de l'op&eacute;ration, elle indique juste un &eacute;tat
-d'activit&eacute;. Cela peut servir dans des situations o&ugrave; l'&eacute;tat
-d'avancement ne peut pas &ecirc;tre repr&eacute;sent&eacute; dans un intervalle de
-valeurs. La fonction suivante indique que l'op&eacute;ration a avanc&eacute; dans une
+<p>On peut configurerla barre de progression pour que, plutôt que de donner
+l'état d'avancement de l'opération, elle indique juste un état
+d'activité. Cela peut servir dans des situations où l'état
+d'avancement ne peut pas être représenté dans un intervalle de
+valeurs. La fonction suivante indique que l'opération a avancé dans une
 certaine mesure.</p>
 
 <pre class="programlisting">
   barreprogression.pulse()
 </pre>
 
-<p>Le pas de d&eacute;placement de l'indicateur d'activit&eacute; se d&eacute;finit avec
-la m&eacute;thode suivante, o&ugrave; <i><tt>fraction</tt></i>  est compris entre
+<p>Le pas de déplacement de l'indicateur d'activité se définit avec
+la méthode suivante, où <i><tt>fraction</tt></i>  est compris entre
 <tt>0.0</tt> et <tt>1.0</tt>.</p>
 
 <pre class="programlisting">
   barreprogression.set_pulse_step(<b><tt>fraction</tt></b>)
 </pre>
 
-<p>Lorsqu'elle n'est pas en mode &quot;activit&eacute;&quot;, la barre de progression
-peut &eacute;galement afficher une chaine de texte configurable dans sa coulisse. On
-utilise alors la m&eacute;thode suivante&nbsp;:</p>
+<p>Lorsqu'elle n'est pas en mode "activité", la barre de progression
+peut également afficher une chaine de texte configurable dans sa coulisse. On
+utilise alors la méthode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   barreprogression.set_text(<b><tt>text</tt></b>)
@@ -101,28 +101,28 @@ utilise alors la m&eacute;thode suivante&nbsp;:</p>
 <p>Notez que <tt>set_text</tt>() ne prend pas en charge le formattage de type
 <tt>printf</tt>() des barre de progression de GTK+ 1.2.</p></div>
 
-<p>Pour d&eacute;sactiver l'affichage de la chaine de caract&egrave;res, on appelle
-<tt>set_text</tt>() &agrave; nouveau, mais sans argument.</p>
-<p>Le texte pr&eacute;sent dans une barre de progression peut se r&eacute;cup&eacute;rer
-&agrave; l'aide de la m&eacute;thode suivante&nbsp;:</p>
+<p>Pour désactiver l'affichage de la chaine de caractères, on appelle
+<tt>set_text</tt>() à nouveau, mais sans argument.</p>
+<p>Le texte présent dans une barre de progression peut se récupérer
+à l'aide de la méthode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   text = barreprogression.get_text()
 </pre>
 
-<p>Les barres de progression sont g&eacute;n&eacute;ralement utilis&eacute;es avec des
+<p>Les barres de progression sont généralement utilisées avec des
 temporisations ou d'autres fonctions de ce genre (cf.
 <a href="ch-TimeoutsIOAndIdleFunctions.html" title="Temporisations, Entrées/Sorties
 et fonctions d'inactivité">Chapitre 19. Temporisations, Entrées/Sorties et fonctions d'inactivité</a>) pour donner une illusion de
-mode multit&acirc;che. Dans tous les cas, les fonctions <tt>set_fraction</tt>() ou
-<tt>pulse</tt>() sont employ&eacute;es de la m&ecirc;me mani&egrave;re.</p>
+mode multitâche. Dans tous les cas, les fonctions <tt>set_fraction</tt>() ou
+<tt>pulse</tt>() sont employées de la même manière.</p>
 <p>Le programme <a href="exemples/barreprogression.py" target="_top">
-<b>barreprogression.py</b></a> offre un exemple de barre de progression actualis&eacute;e
-par l'interm&eacute;diaire de temporisations. Ce code vous montre en outre comment
-r&eacute;initialiser la barre de progression. La
+<b>barreprogression.py</b></a> offre un exemple de barre de progression actualisée
+par l'intermédiaire de temporisations. Ce code vous montre en outre comment
+réinitialiser la barre de progression. La
 <a href="sec-ProgressBars.html#FigBarreProgression"
 title="Figure 9.4. Exemple de barre de progression">Figure 9.4</a> montre la
-fen&ecirc;tre que l'on obtient&nbsp;:</p>
+fenêtre que l'on obtient&nbsp;:</p>
 
 <div class="figure"><a name="FigBarreProgression"></a>
 <p class="title"><b>Figure 9.4. Exemple de barre de progression</b></p>
@@ -281,12 +281,12 @@ align="middle" alt="exemple barre de progression"></div></div>
 
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-TooltipsObject.html">Pr&eacute;c.</a></td>
+<td width="40%" align="left"><a accesskey="p" href="sec-TooltipsObject.html">Préc.</a></td>
 <td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"><a accesskey="n" href="sec-Dialogs.html">Suiv.</a></td>
 </tr><tr>
 <td width="40%" align="left" valign="top">9.3. Les infobulles</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
 <td width="40%" align="right" valign="top">9.5. Les boites de dialogue</td>
 </tr></table></div>
 

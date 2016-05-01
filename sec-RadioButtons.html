@@ -7,19 +7,19 @@
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,radiobouton,bouton">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-ButtonWidget.html" title="Chapitre 6. Les boutons">
-<link rel="previous" href="sec-CheckButtons.html" title="6.3. Les cases &agrave; cocher">
+<link rel="previous" href="sec-CheckButtons.html" title="6.3. Les cases à cocher">
 <link rel="next" href="ch-Adjustments.html" title="Chapitre 7. Les ajustements">
 </head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
 <th colspan="3" align="center">6.4. Les boutons radio</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-CheckButtons.html">Pr&eacute;c.</a> </td>
+<td width="20%" align="left"><a accesskey="p" href="sec-CheckButtons.html">Préc.</a> </td>
 <th width="60%" align="center">Chapitre 6. Les boutons</th>
 <td width="20%" align="right"> <a accesskey="n" href="ch-Adjustments.html">Suiv.</a></td>
 </tr></table>
@@ -32,24 +32,24 @@
 <div><h2 class="title" style="clear: both"><a name="BoutonsRadio"></a>6.4. Les boutons radio</h2></div>
 </div>
 
-<p>Les boutons radio sont similaires aux cases &agrave; cocher, &agrave; ceci pr&egrave;s qu'on les assemble par groupes, dans lesquels un seul bouton peut &ecirc;tre s&eacute;lectionn&eacute;/enfonc&eacute; &agrave; la fois. Ils sont tr&egrave;s pratiques pour les parties de vos applications o&ugrave; l'on doit effectuer une s&eacute;lection parmi une courte liste.</p>
-<p>La cr&eacute;ation d'un nouveau bouton radio s'effectue avec l'appel suivant&nbsp;:</p>
+<p>Les boutons radio sont similaires aux cases à cocher, à ceci près qu'on les assemble par groupes, dans lesquels un seul bouton peut être sélectionné/enfoncé à la fois. Ils sont très pratiques pour les parties de vos applications où l'on doit effectuer une sélection parmi une courte liste.</p>
+<p>La création d'un nouveau bouton radio s'effectue avec l'appel suivant&nbsp;:</p>
 
 <pre class="programlisting">
   bouton_radio = gtk.RadioButton(<b>group</b>=None, <b>label</b>=None)
 </pre>
 
-<p>Vous aurez remarqu&eacute; le nouvel argument <i><tt>group</tt></i> pour cet appel. En effet, pour fonctionner correctement, les boutons radio n&eacute;cessitent un groupe. Lors du premier appel &agrave; <tt>gtk.RadioButton</tt>(), l'argument <i><tt>group</tt></i> doit valoir <tt>None</tt>, ce qui cr&eacute;era un nouveau groupe comptant comme seul membre le nouveau bouton radio.</p>
-<p>Pour ajouter de nouveaux boutons radio &agrave; un groupe, transmettez lors de vos appels &agrave; <tt>gtk.RadioButton</tt>() une r&eacute;f&eacute;rence &agrave; un bouton radio du groupe.</p>
-<p>Si vous avez sp&eacute;cifi&eacute; un texte pour l'argument <i><tt>label</tt></i>, il sera pass&eacute; en revue &agrave; la recherche de caract&egrave;res mn&eacute;moniques (pr&eacute;fix&eacute;s par '<tt>_</tt>').</p>
-<p>Pour d&eacute;finir explicitement le bouton qui doit &ecirc;tre s&eacute;lectionn&eacute; par d&eacute;faut, utilisez&nbsp;:</p>
+<p>Vous aurez remarqué le nouvel argument <i><tt>group</tt></i> pour cet appel. En effet, pour fonctionner correctement, les boutons radio nécessitent un groupe. Lors du premier appel à <tt>gtk.RadioButton</tt>(), l'argument <i><tt>group</tt></i> doit valoir <tt>None</tt>, ce qui créera un nouveau groupe comptant comme seul membre le nouveau bouton radio.</p>
+<p>Pour ajouter de nouveaux boutons radio à un groupe, transmettez lors de vos appels à <tt>gtk.RadioButton</tt>() une référence à un bouton radio du groupe.</p>
+<p>Si vous avez spécifié un texte pour l'argument <i><tt>label</tt></i>, il sera passé en revue à la recherche de caractères mnémoniques (préfixés par '<tt>_</tt>').</p>
+<p>Pour définir explicitement le bouton qui doit être sélectionné par défaut, utilisez&nbsp;:</p>
 
 <pre class="programlisting">
   bouton_radio.set_active(<b>is_active</b>)
 </pre>
 
-<p>Cette m&eacute;thode est d&eacute;crite dans la section sur les boutons &agrave; bascule et fonctionne exactement de la m&ecirc;me mani&egrave;re. Une fois que les boutons radio sont assembl&eacute;s en un groupe, on ne pourra s&eacute;lectionner qu'un seul bouton de ce groupe &agrave; la fois. Si l'utilisateur clique sur un bouton radio, puis sur un autre, alors le premier &eacute;mettra un signal &quot;<tt>toggled</tt>&quot; pour informer qu'il a &eacute;t&eacute; d&eacute;sactiv&eacute;, avant que le second l'imite, pour signaler cette fois qu'il vient d'&ecirc;tre activ&eacute;.</p>
-<p>Le programme exemple <a href="exemples/boutonsradio.py" target="_top"><b>boutonsradio.py</b></a> cr&eacute;e un groupe de trois boutons radio. La <a title="Figure 6.4. Exemple de boutons radio" href="sec-RadioButtons.html#BoutonsRadiofig">figure 6.4</a> montre la fen&ecirc;tre obtenue&nbsp;:</p>
+<p>Cette méthode est décrite dans la section sur les boutons à bascule et fonctionne exactement de la même manière. Une fois que les boutons radio sont assemblés en un groupe, on ne pourra sélectionner qu'un seul bouton de ce groupe à la fois. Si l'utilisateur clique sur un bouton radio, puis sur un autre, alors le premier émettra un signal "<tt>toggled</tt>" pour informer qu'il a été désactivé, avant que le second l'imite, pour signaler cette fois qu'il vient d'être activé.</p>
+<p>Le programme exemple <a href="exemples/boutonsradio.py" target="_top"><b>boutonsradio.py</b></a> crée un groupe de trois boutons radio. La <a title="Figure 6.4. Exemple de boutons radio" href="sec-RadioButtons.html#BoutonsRadiofig">figure 6.4</a> montre la fenêtre obtenue&nbsp;:</p>
 
 <div class="figure"><a name="BoutonsRadiofig"></a>
 <p class="title"><b>Figure 6.4. Exemple de boutons radio</b></p>
@@ -135,19 +135,19 @@
     74       main()
 </pre>
 
-<p>Le code est assez explicite. Aux lignes 63-64, on fait du bouton &quot;<tt>fermer</tt>&quot; le widget par d&eacute;faut, de sorte qu'en appuyant sur la touche &quot;Entr&eacute;e&quot; lorsque la fen&ecirc;tre est active il &eacute;mette le signal &quot;<tt>clicked</tt>&quot;.</p>
+<p>Le code est assez explicite. Aux lignes 63-64, on fait du bouton "<tt>fermer</tt>" le widget par défaut, de sorte qu'en appuyant sur la touche "Entrée" lorsque la fenêtre est active il émette le signal "<tt>clicked</tt>".</p>
 </div>
 
 <div class="navfooter">
 <hr>
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-CheckButtons.html">Pr&eacute;c.</a> </td>
+<td width="40%" align="left"><a accesskey="p" href="sec-CheckButtons.html">Préc.</a> </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-ButtonWidget.html">Chapitre parent</a></td>
 <td width="40%" align="right"> <a accesskey="n" href="ch-Adjustments.html">Suiv.</a></td></tr>
 <tr>
-<td width="40%" align="left" valign="top">6.3. Les cases &agrave; cocher</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="left" valign="top">6.3. Les cases à cocher</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
 <td width="40%" align="right" valign="top"> Chapitre 7. Les ajustements</td>
 </tr></table>
 

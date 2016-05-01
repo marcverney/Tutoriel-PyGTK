@@ -7,19 +7,19 @@
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,boite,tableau">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-PackingWidgets.html" title="Chapitre 4. Le placement des widgets">
-<link rel="previous" href="sec-PackingDemonstrationProgram.html" title="4.3. D&eacute;monstration de placement avec les boites">
-<link rel="next" href="sec-TablePackingExample.html" title="4.5. D&eacute;monstration de placement avec les tableaux">
+<link rel="previous" href="sec-PackingDemonstrationProgram.html" title="4.3. Démonstration de placement avec les boites">
+<link rel="next" href="sec-TablePackingExample.html" title="4.5. Démonstration de placement avec les tableaux">
 </head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
 <th colspan="3" align="center">4.4. Le placement avec les tableaux</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-PackingDemonstrationProgram.html">Pr&eacute;c.</a> </td>
+<td width="20%" align="left"><a accesskey="p" href="sec-PackingDemonstrationProgram.html">Préc.</a> </td>
 <th width="60%" align="center">Chapitre 4. Le placement des widgets</th>
 <td width="20%" align="right"> <a accesskey="n" href="sec-TablePackingExample.html">Suiv.</a></td>
 </tr></table>
@@ -31,17 +31,17 @@
 <div class="titlepage">
 <div><h2 class="title" style="clear: both"><a name="sec-PackingUsingTables"></a>4.4. Le placement avec les tableaux</h2>
 </div></div>
-<p>Int&eacute;ressons-nous &agrave; pr&eacute;sent &agrave; un autre moyen de placer les widgets, qui peut se r&eacute;v&eacute;ler ext&ecirc;mement utiles dans certaines occasions&nbsp;: les tableaux.</p>
-<p>Avec les tableaux, on cr&eacute;e une grille dans laquelle on peut placer des widgets. Ces derniers peuvent occuper autant d'espace que nous le voulons.</p>
+<p>Intéressons-nous à présent à un autre moyen de placer les widgets, qui peut se révéler extêmement utiles dans certaines occasions&nbsp;: les tableaux.</p>
+<p>Avec les tableaux, on crée une grille dans laquelle on peut placer des widgets. Ces derniers peuvent occuper autant d'espace que nous le voulons.</p>
 <p>Examinons tout d'abord la fonction <tt>gtk.Table</tt>()&nbsp;:</p>
 
 <pre class="programlisting">
   tableau = gtk.Table(<b>rows</b>=1, <b>columns</b>=1, <b>homogeneous</b>=FALSE)
 </pre>
 
-<p>Le premier argument est le nombre de lignes (<i>rows</i>) souhait&eacute;es dans le tableau, et le deuxi&egrave;me le nombre de colonnes (<i>columns</i>).</p>
-<p>L'argument <i><tt>homogeneous</tt></i> concerne l'homog&eacute;n&eacute;it&eacute; ou pas des cellules du tableau. S'il vaut TRUE, les cellules feront toutes la m&ecirc;me taille&nbsp;: celle du plus grand widget dans le tableau. S'il vaut FALSE, la largeur d'une cellule sera dict&eacute;e par le  widget le plus large de la colonne, et sa hauteur par le widget le plus haut de la ligne.</p>
-<p>Les lignes et les colonnes sont num&eacute;rot&eacute;es de 0 &agrave; <i>n</i>, <i>n</i> &eacute;tant le nombre sp&eacute;cifi&eacute; lors de l'appel &agrave; <tt>gtk.Table</tt>(). Donc, en donnant <tt>rows=2</tt> et <tt>columns=2</tt>, on obtient un tableau qui peut &ecirc;tre sch&eacute;matis&eacute; ainsi&nbsp;:</p>
+<p>Le premier argument est le nombre de lignes (<i>rows</i>) souhaitées dans le tableau, et le deuxième le nombre de colonnes (<i>columns</i>).</p>
+<p>L'argument <i><tt>homogeneous</tt></i> concerne l'homogénéité ou pas des cellules du tableau. S'il vaut TRUE, les cellules feront toutes la même taille&nbsp;: celle du plus grand widget dans le tableau. S'il vaut FALSE, la largeur d'une cellule sera dictée par le  widget le plus large de la colonne, et sa hauteur par le widget le plus haut de la ligne.</p>
+<p>Les lignes et les colonnes sont numérotées de 0 à <i>n</i>, <i>n</i> étant le nombre spécifié lors de l'appel à <tt>gtk.Table</tt>(). Donc, en donnant <tt>rows=2</tt> et <tt>columns=2</tt>, on obtient un tableau qui peut être schématisé ainsi&nbsp;:</p>
 
 <pre class="programlisting">
    0          1          2
@@ -52,17 +52,17 @@
   2+----------+----------+
 </pre>
 
-<p>Notez que le syst&egrave;me de coordonn&eacute;es commence dans le coin sup&eacute;rieur gauche. Pour placer un widget dans une cellule, on utilisera la m&eacute;thode suivante&nbsp;:</p>
+<p>Notez que le système de coordonnées commence dans le coin supérieur gauche. Pour placer un widget dans une cellule, on utilisera la méthode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   tableau.attach(<B>child</B>, <B>left_attach</B>, <B>right_attach</B>, <B>top_attach</B>, <B>bottom_attach</B>,
                <B>xoptions</B>=EXPAND|FILL, <B>yoptions</B>=EXPAND|FILL, <B>xpadding</B>=0, <B>ypadding</B>=0)
 </pre>
 
-<p>L'instance <i><tt>tableau</tt></i> est le tableau cr&eacute;&eacute; avec <tt>gtk.Table</tt>(). Le premier param&egrave;tre, <i><tt>child</tt></i> (enfant), est le widget que vous souhaitez placer dans le tableau.</p>
-<p>Les arguments <i><tt>left_attach</tt></i> (point d'attache gauche), <i><tt>right_attach</tt></i> (point d'attache droit), <i><tt>top_attach</tt></i> (point d'attache haut) et <i><tt>bottom_attach</tt></i> (point d'attache bas) indiquent o&ugrave; placer le widget et combien de cellules il doit occuper. Si l'on veut mettre un bouton dans la cellule inf&eacute;rieure droite de notre tableau 2x2, et s'il ne doit occuper QUE cette cellule, il faudra donner &agrave; ces arguments les valeur suivantes&nbsp;: <i><tt>left_attach</tt></i> = 1, <i><tt>right_attach</tt></i> = 2, <i><tt>top_attach</tt></i> = 1, <i><tt>bottom_attach</tt></i> = 2.</p>
-<p>Maintenant, si l'on veut qu'un widget occupe toute la premi&egrave;re ligne de notre tableau 2x2, on doit donner <i><tt>left_attach</tt></i> = 0, <i><tt>right_attach</tt></i> = 2, <i><tt>top_attach</tt></i> = 0, <i><tt>bottom_attach</tt></i> = 1.</p>
-<p>Les param&egrave;tres <i><tt>xoptions</tt></i> et <i><tt>yoptions</tt></i> servent &agrave; sp&eacute;cifier une ou plusieurs (avec un OU logique) options de placement.</p>
+<p>L'instance <i><tt>tableau</tt></i> est le tableau créé avec <tt>gtk.Table</tt>(). Le premier paramètre, <i><tt>child</tt></i> (enfant), est le widget que vous souhaitez placer dans le tableau.</p>
+<p>Les arguments <i><tt>left_attach</tt></i> (point d'attache gauche), <i><tt>right_attach</tt></i> (point d'attache droit), <i><tt>top_attach</tt></i> (point d'attache haut) et <i><tt>bottom_attach</tt></i> (point d'attache bas) indiquent où placer le widget et combien de cellules il doit occuper. Si l'on veut mettre un bouton dans la cellule inférieure droite de notre tableau 2x2, et s'il ne doit occuper QUE cette cellule, il faudra donner à ces arguments les valeur suivantes&nbsp;: <i><tt>left_attach</tt></i> = 1, <i><tt>right_attach</tt></i> = 2, <i><tt>top_attach</tt></i> = 1, <i><tt>bottom_attach</tt></i> = 2.</p>
+<p>Maintenant, si l'on veut qu'un widget occupe toute la première ligne de notre tableau 2x2, on doit donner <i><tt>left_attach</tt></i> = 0, <i><tt>right_attach</tt></i> = 2, <i><tt>top_attach</tt></i> = 0, <i><tt>bottom_attach</tt></i> = 1.</p>
+<p>Les paramètres <i><tt>xoptions</tt></i> et <i><tt>yoptions</tt></i> servent à spécifier une ou plusieurs (avec un OU logique) options de placement.</p>
 <p>Ces options sont&nbsp;:</p>
 
 <div class="informaltable">
@@ -70,15 +70,15 @@
 <colgroup><col><col></colgroup>
 <tbody>
 <tr><td>FILL</td>
-<td>Si la cellule est plus large que le widget et que FILL est sp&eacute;cifi&eacute;, le widget s'&eacute;tirera jusqu'&agrave; occuper tout l'espace disponible dans la cellule.</td></tr>
+<td>Si la cellule est plus large que le widget et que FILL est spécifié, le widget s'étirera jusqu'à occuper tout l'espace disponible dans la cellule.</td></tr>
 <tr><td>SHRINK</td>
-<td>Quand le tableau ne dispose pas de suffisamment d'espace pour afficher les widgets (par exemple lors d'un redimensionnement de la fen&ecirc;tre par l'utilisateur), ces derniers sont normalement &eacute;ject&eacute;s vers le bas de la fen&ecirc;tre et disparaissent. Si SHRINK est sp&eacute;cifi&eacute;, les widgets r&eacute;tr&eacute;ciront avec le tableau.</td></tr>
+<td>Quand le tableau ne dispose pas de suffisamment d'espace pour afficher les widgets (par exemple lors d'un redimensionnement de la fenêtre par l'utilisateur), ces derniers sont normalement éjectés vers le bas de la fenêtre et disparaissent. Si SHRINK est spécifié, les widgets rétréciront avec le tableau.</td></tr>
 <tr><td>EXPAND</td>
-<td>Si cette option est sp&eacute;cifi&eacute;e, la cellule s'&eacute;tirera jusqu'&agrave; occuper toute la place restant dans l'espace attribu&eacute; au tableau.</td></tr>
+<td>Si cette option est spécifiée, la cellule s'étirera jusqu'à occuper toute la place restant dans l'espace attribué au tableau.</td></tr>
 </tbody></table></div>
 
-<p>Comme pour les boites de placement, les param&egrave;tres de <i><tt>padding</tt></i> cr&eacute;ent une zone vide, sp&eacute;cifi&eacute;e en pixels, autour du widget.</p>
-<p>Deux autres m&eacute;thodes, <tt>set_row_spacing</tt>() et <tt>set_col_spacing</tt>(), nous permettent de d&eacute;finir des espacements entre des lignes ou des colonnes&nbsp;:</p>
+<p>Comme pour les boites de placement, les paramètres de <i><tt>padding</tt></i> créent une zone vide, spécifiée en pixels, autour du widget.</p>
+<p>Deux autres méthodes, <tt>set_row_spacing</tt>() et <tt>set_col_spacing</tt>(), nous permettent de définir des espacements entre des lignes ou des colonnes&nbsp;:</p>
 
 <pre class="programlisting">
   tableau.set_row_spacing(<b>row</b>, <b>spacing</b>)
@@ -90,8 +90,8 @@
   tableau.set_col_spacing(<b>column</b>, <b>spacing</b>)
 </pre>
 
-<p>Pour les colonnes (<i><tt>column</tt></i>), l'espacement (<i><tt>spacing</tt></i>) sera appliqu&eacute; &agrave; la droite de la colonne sp&eacute;cifi&eacute;e&nbsp;; pour les lignes (<i><tt>rows</tt></i>) ce sera au dessous de la ligne sp&eacute;cifi&eacute;e.</p>
-<p>On peut aussi fixer en une fois un m&ecirc;me espacement pour toutes les lignes et/ou colonnes du tableau&nbsp;:</p>
+<p>Pour les colonnes (<i><tt>column</tt></i>), l'espacement (<i><tt>spacing</tt></i>) sera appliqué à la droite de la colonne spécifiée&nbsp;; pour les lignes (<i><tt>rows</tt></i>) ce sera au dessous de la ligne spécifiée.</p>
+<p>On peut aussi fixer en une fois un même espacement pour toutes les lignes et/ou colonnes du tableau&nbsp;:</p>
 
 <pre class="programlisting">
   tableau.set_row_spacings(<b><tt>spacing</tt></b>)
@@ -103,19 +103,19 @@
   tableau.set_col_spacings(<b><tt>spacing</tt></b>)
 </pre>
 
-<p>Notez qu'avec ces appels la derni&egrave;re ligne et la derni&egrave;re colonne ne re&ccedil;oivent aucun espacement.</p></div>
+<p>Notez qu'avec ces appels la dernière ligne et la dernière colonne ne reçoivent aucun espacement.</p></div>
 
 <div class="navfooter">
 <hr>
 
 <table width="100%" summary="Navigation footer"><tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-PackingDemonstrationProgram.html">Pr&eacute;c.</a> </td>
+<td width="40%" align="left"><a accesskey="p" href="sec-PackingDemonstrationProgram.html">Préc.</a> </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-PackingWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"> <a accesskey="n" href="sec-TablePackingExample.html">Suiv.</a></td></tr>
 <tr>
-<td width="40%" align="left" valign="top">4.3. D&eacute;monstration de placement avec les boites</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
-<td width="40%" align="right" valign="top">4.5. D&eacute;monstration de placement avec les tableaux</td>
+<td width="40%" align="left" valign="top">4.3. Démonstration de placement avec les boites</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top">4.5. Démonstration de placement avec les tableaux</td>
 </tr></table>
 </div>
 

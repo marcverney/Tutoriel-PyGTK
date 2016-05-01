@@ -7,20 +7,20 @@
     <link rel="stylesheet" href="pygtktutfr.css">
     <meta name="keywords" content="python,pygtk,tutoriel,traduction,bouton">
     <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-    <link rel="home" href="index.html" title="Table des mati&egrave;res">
-    <link rel="up" href="index.html" title="Table des mati&egrave;res">
-    <link rel="previous" href="sec-WidgetsWithoutWindows.html" title="5.2. Les widgets sans fen&ecirc;tre">
-    <link rel="next" href="sec-ToggleButtons.html" title="6.2. Les boutons &agrave; bascule">
+    <link rel="home" href="index.html" title="Table des matières">
+    <link rel="up" href="index.html" title="Table des matières">
+    <link rel="previous" href="sec-WidgetsWithoutWindows.html" title="5.2. Les widgets sans fenêtre">
+    <link rel="next" href="sec-ToggleButtons.html" title="6.2. Les boutons à bascule">
 </head>
 
 <body>
 <div class="navheader">
 
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
 <th colspan="3" align="center">Chapitre 6. Les boutons</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-WidgetsWithoutWindows.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-WidgetsWithoutWindows.html">Préc.</a></td>
 <th width="60%" align="center"></th>
 <td width="20%" align="right"><a accesskey="n" href="sec-ToggleButtons.html">Suiv.</a></td>
 </tr></table>
@@ -34,8 +34,8 @@
 </div>
 <div class="toc"><p><b>Sommaire</b></p><dl>
 <dt>6.1. <a href="ch-ButtonWidget.html#BoutonsSimples">Les boutons simples</a></dt>
-<dt>6.2. <a href="sec-ToggleButtons.html">Les boutons &agrave; bascule</a></dt>
-<dt>6.3. <a href="sec-CheckButtons.html">Les cases &agrave; cocher</a></dt>
+<dt>6.2. <a href="sec-ToggleButtons.html">Les boutons à bascule</a></dt>
+<dt>6.3. <a href="sec-CheckButtons.html">Les cases à cocher</a></dt>
 <dt>6.4. <a href="sec-RadioButtons.html">Les boutons radio</a></dt>
 </dl></div>
 
@@ -44,14 +44,14 @@
 <div><h2 class="title" style="clear: both"><a name="BoutonsSimples"></a>6.1. Les boutons simples</h2>
 </div></div>
 
-<p>Nous avons pratiquement d&eacute;j&agrave; fait le tour du widget bouton. Il est en effet tr&egrave;s simple. Lors de la cr&eacute;ation d'un bouton avec la fonction <tt>gtk.Button</tt>(), vous pouvez lui donner une &eacute;tiquette en lui passant une chaine de caract&egrave;res. Mais vous pouvez tout aussi bien cr&eacute;er un bouton vierge en ne passant rien &agrave; la fonction&nbsp;; il vous suffira ensuite, si vous le souhaitez, de placer une &eacute;tiquette ou une image pixmap dans ce nouveau bouton. Pour ce faire, cr&eacute;ez une nouvelle boite et placez-y vos objets avec l'habituelle <tt>pack_start()</tt>. Puis, avec <tt>add</tt>(), placez la boite dans le bouton.</p>
-<p>La fonction de cr&eacute;ation des boutons est la suivante&nbsp;:</p>
+<p>Nous avons pratiquement déjà fait le tour du widget bouton. Il est en effet très simple. Lors de la création d'un bouton avec la fonction <tt>gtk.Button</tt>(), vous pouvez lui donner une étiquette en lui passant une chaine de caractères. Mais vous pouvez tout aussi bien créer un bouton vierge en ne passant rien à la fonction&nbsp;; il vous suffira ensuite, si vous le souhaitez, de placer une étiquette ou une image pixmap dans ce nouveau bouton. Pour ce faire, créez une nouvelle boite et placez-y vos objets avec l'habituelle <tt>pack_start()</tt>. Puis, avec <tt>add</tt>(), placez la boite dans le bouton.</p>
+<p>La fonction de création des boutons est la suivante&nbsp;:</p>
 
 <pre class="programlisting">
   bouton = gtk.Button(<b>label</b>=None, <b>stock</b>=None)
 </pre>
 
-<p>Si l'on donne une chaine de caract&egrave;res &agrave; l'argument <i><tt>label</i></tt>, elle sera affich&eacute;e sur le bouton. L'argument <i><tt>stock</i></tt>, quant &agrave; lui, sert &agrave; afficher sur le bouton une ic&ocirc;ne du stock de GTK ainsi que le texte correspondant. Les &eacute;l&eacute;ments du stock sont&nbsp;:</p>
+<p>Si l'on donne une chaine de caractères à l'argument <i><tt>label</i></tt>, elle sera affichée sur le bouton. L'argument <i><tt>stock</i></tt>, quant à lui, sert à afficher sur le bouton une icône du stock de GTK ainsi que le texte correspondant. Les éléments du stock sont&nbsp;:</p>
 
 <pre class="programlisting">
   STOCK_DIALOG_INFO
@@ -126,10 +126,10 @@
   STOCK_ZOOM_OUT
 </pre>
 
-<p>Le programme <a href="exemples/boutons.py" target="_top"><B>boutons.py</B></a> donne un exemple d'utilisation de <tt>gtk.Button</tt>() pour cr&eacute;er un bouton contenant une image et une &eacute;tiquette. Le code de cr&eacute;ation de la boite est s&eacute;par&eacute; du reste afin que vous puissiez l'utiliser dans vos programmes. Nous verrons d'autres exemples faisant appel &agrave; des images un peu plus loin dans ce tutoriel. La <a title="Figure 6.1. Bouton avec &eacute;tiquette et image pixmap" href="ch-ButtonWidget.html#boutonfig">figure 6.1</a> montre la fen&ecirc;tre et son bouton qui contient une &eacute;tiquette et une image pixmap&nbsp;:</p>
+<p>Le programme <a href="exemples/boutons.py" target="_top"><B>boutons.py</B></a> donne un exemple d'utilisation de <tt>gtk.Button</tt>() pour créer un bouton contenant une image et une étiquette. Le code de création de la boite est séparé du reste afin que vous puissiez l'utiliser dans vos programmes. Nous verrons d'autres exemples faisant appel à des images un peu plus loin dans ce tutoriel. La <a title="Figure 6.1. Bouton avec étiquette et image pixmap" href="ch-ButtonWidget.html#boutonfig">figure 6.1</a> montre la fenêtre et son bouton qui contient une étiquette et une image pixmap&nbsp;:</p>
 
 <div class="figure"><a name="boutonfig"></a>
-<p class="title"><b>Figure 6.1. Bouton avec &eacute;tiquette et image pixmap</b></p>
+<p class="title"><b>Figure 6.1. Bouton avec étiquette et image pixmap</b></p>
 <div class="mediaobject" align="center" align="center"><img src="figures/boutons.png" align="center">
 </div></div>
 
@@ -212,33 +212,33 @@
     74       main()
 </pre>
 
-<p>De la ligne 12 &agrave; la ligne 32, on d&eacute;finit la fonction <tt>boite_xpm_etiquette</tt>()
-qui prend en charge la cr&eacute;ation d'une boite horizontale avec une bordure de 2
-(lignes 14-15), puis y place une image (lignes 25) et une &eacute;tiquette (ligne 26).</p>
-<p>Aux lignes 32-66, on d&eacute;finit la classe <tt>Bouton</tt>. La m&eacute;thode
-constructeur s'&eacute;tale de la ligne 38 &agrave; la ligne 66 ; elle cr&eacute;e une
-fen&ecirc;tre (ligne 39), lui donne un titre (ligne 41), connecte les signaux
-&quot;<tt>delete_event</tt>&quot; et &quot;<tt>destroy</tt>&quot; (lignes 44-45).
-Puis, &agrave; la ligne 51, elle cr&eacute;e le bouton sans &eacute;tiquette, avant
-de connecter son signal &quot;<tt>clicked</tt>&quot; &agrave; la m&eacute;thode de rappel
+<p>De la ligne 12 à la ligne 32, on définit la fonction <tt>boite_xpm_etiquette</tt>()
+qui prend en charge la création d'une boite horizontale avec une bordure de 2
+(lignes 14-15), puis y place une image (lignes 25) et une étiquette (ligne 26).</p>
+<p>Aux lignes 32-66, on définit la classe <tt>Bouton</tt>. La méthode
+constructeur s'étale de la ligne 38 à la ligne 66 ; elle crée une
+fenêtre (ligne 39), lui donne un titre (ligne 41), connecte les signaux
+"<tt>delete_event</tt>" et "<tt>destroy</tt>" (lignes 44-45).
+Puis, à la ligne 51, elle crée le bouton sans étiquette, avant
+de connecter son signal "<tt>clicked</tt>" à la méthode de rappel
 <tt>salut</tt>() (ligne 54). Enfin, elle appelle la fonction <tt>boite_xpm_etiquette</tt>()
-&agrave; la ligne 57, afin de cr&eacute;er l'image et l'&eacute;tiquette qu'elle placera
-dans le bouton &agrave; la ligne 60.</p>
-<p>La fonction <tt>boite_xpm_etiquette</tt>() pourrait &ecirc;tre utilis&eacute;e pour
-placer des images pixmap et des &eacute;tiquettes dans n'importe quel widget pouvant
-jouer le r&ocirc;le de conteneur.</p>
-<p>Le widget bouton peut &eacute;mettre les signaux suivants&nbsp;:</p>
+à la ligne 57, afin de créer l'image et l'étiquette qu'elle placera
+dans le bouton à la ligne 60.</p>
+<p>La fonction <tt>boite_xpm_etiquette</tt>() pourrait être utilisée pour
+placer des images pixmap et des étiquettes dans n'importe quel widget pouvant
+jouer le rôle de conteneur.</p>
+<p>Le widget bouton peut émettre les signaux suivants&nbsp;:</p>
 
 <pre class="programlisting">
-      pressed - &eacute;mis lorsque le bouton de la souris est enfonc&eacute; sur le widget
+      pressed - émis lorsque le bouton de la souris est enfoncé sur le widget
 
-      released - &eacute;mis lorsque le bouton de la souris est rel&acirc;ch&eacute; sur le widget
+      released - émis lorsque le bouton de la souris est relâché sur le widget
 
-      clicked - &eacute;mis lorsque le bouton de la souris est enfonc&eacute; puis rel&acirc;ch&eacute; sur le widget
+      clicked - émis lorsque le bouton de la souris est enfoncé puis relâché sur le widget
 
-      enter - &eacute;mis lorsque le pointeur de la souris arrive sur le widget
+      enter - émis lorsque le pointeur de la souris arrive sur le widget
 
-      leave - &eacute;mis lorsque le pointeur de la souris quitte le widget
+      leave - émis lorsque le pointeur de la souris quitte le widget
 </pre>
 </div>
 </div>
@@ -247,13 +247,13 @@ jouer le r&ocirc;le de conteneur.</p>
 <hr>
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-WidgetsWithoutWindows.html">Pr&eacute;c.</a></td>
+<td width="40%" align="left"><a accesskey="p" href="sec-WidgetsWithoutWindows.html">Préc.</a></td>
 <td width="20%" align="center"><a accesskey="u" href="index.html">Chapitre parent</a></td>
 <td width="40%" align="right"> <a accesskey="n" href="sec-ToggleButtons.html">Suiv.</a></td></tr>
 <tr>
-<td width="40%" align="left" valign="top">5.2. Les widgets sans fen&ecirc;tre</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
-<td width="40%" align="right" valign="top">6.2. Les boutons &agrave; bascule</td>
+<td width="40%" align="left" valign="top">5.2. Les widgets sans fenêtre</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top">6.2. Les boutons à bascule</td>
 </tr></table>
 
 </div>

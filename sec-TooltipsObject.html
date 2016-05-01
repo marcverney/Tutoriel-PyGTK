@@ -7,19 +7,19 @@
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,infobulle">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
-<link rel="previous" href="sec-Arrows.html" title="9.2. Les fl&egrave;ches">
+<link rel="previous" href="sec-Arrows.html" title="9.2. Les flèches">
 <link rel="next" href="sec-ProgressBars.html" title="9.4. La barre de progression">
 </head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
 <th colspan="3" align="center">9.3. Les infobulles</th>
 </tr><tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-Arrows.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-Arrows.html">Préc.</a></td>
 <th width="60%" align="center">Chapitre 9. Widgets divers</th>
 <td width="20%" align="right"><a accesskey="n" href="sec-ProgressBars.html">Suiv.</a></td>
 </tr></table><hr></div>
@@ -29,36 +29,36 @@
 
 <p>Les infobulles sont les petites chaines de texte qui apparaissent lorsque le pointeur
 de la souris est maintenu quelques secondes au-dessus d'un bouton ou de tout autre widget
-(&agrave; l'exception de ceux qui ne re&ccedil;oivent pas d'&eacute;v&egrave;nements &mdash;
-qui ne disposent pas de leur propre fen&ecirc;tre).</p>
-<p>Dans un premier temps, on utilise l'appel qui suit pour cr&eacute;er une infobulle.
-Il suffit de le faire une fois pour un groupe d'infobulles donn&eacute;, car l'objet
-<tt>gtk.Tooltips</tt> renvoy&eacute; peut &ecirc;tre utilis&eacute; pour en cr&eacute;er
+(à l'exception de ceux qui ne reçoivent pas d'évènements &mdash;
+qui ne disposent pas de leur propre fenêtre).</p>
+<p>Dans un premier temps, on utilise l'appel qui suit pour créer une infobulle.
+Il suffit de le faire une fois pour un groupe d'infobulles donné, car l'objet
+<tt>gtk.Tooltips</tt> renvoyé peut être utilisé pour en créer
 de nouvelles.</p>
 
 <pre class="programlisting">
   infobulles = gtk.Tooltips()
 </pre>
 
-<p>Une fois cr&eacute;&eacute;s l'infobulle ainsi que le widget auquel on souhaite la
-rattacher, on utilisera simplement l'appel suivant pour appliquer la premi&egrave;re au
+<p>Une fois créés l'infobulle ainsi que le widget auquel on souhaite la
+rattacher, on utilisera simplement l'appel suivant pour appliquer la première au
 second&nbsp;:</p>
 
 <pre class="programlisting">
   infobulles.set_tip(<b><tt>widget</tt></b>, <b><tt>tip_text</tt></b>, <b><tt>tip_private</tt></b>=None)
 </pre>
 
-<p>L'objet <i><tt>infobulles</tt></i> est l'infobulle que l'on a cr&eacute;&eacute;e
+<p>L'objet <i><tt>infobulles</tt></i> est l'infobulle que l'on a créée
 auparavant. Le premier argument (<i><tt>widget</tt></i>) est le widget pour lequel elle
 doit apparaitre, et le second (<i><tt>tip_text</tt></i>) le texte qu'elle doit afficher.
-Le dernier argument (<i><tt>tip_private</tt></i>) est une chaine de caract&egrave;res
+Le dernier argument (<i><tt>tip_private</tt></i>) est une chaine de caractères
 pouvant servir d'identifiant.</p>
 <p>Le programme exemple <a href="exemples/infobulles.py" target="_top">
 <b>infobulles.py</b></a> modifie le programme <a href="exemples/fleches.py" target="_top">
-<b>fleches.py</b></a> en ajoutant une infobulle &agrave; chaque bouton. La
+<b>fleches.py</b></a> en ajoutant une infobulle à chaque bouton. La
 <a href="sec-TooltipsObject.html#FigInfobulles" title="Figure 9.3.
-Exemple d'infobulle">Figure 9.3</a> montre la fen&ecirc;tre qu'il g&eacute;n&egrave;re
-ainsi que l'infobulle du deuxi&egrave;me bouton&nbsp;:</p>
+Exemple d'infobulle">Figure 9.3</a> montre la fenêtre qu'il génère
+ainsi que l'infobulle du deuxième bouton&nbsp;:</p>
 
 <div class="figure"><a name="FigInfobulles"></a>
 <p class="title"><b>Figure 9.3. Exemple d'infobulle</b></p>
@@ -139,41 +139,41 @@ alt="exemple d'infobulle">
     67       main()
 </pre>
 
-<p>Il existe d'autres m&eacute;thodes utilisables avec les infobulles. En voici une liste,
-accompagn&eacute;e d'une br&egrave;ve description pour chacune&nbsp;:</p>
+<p>Il existe d'autres méthodes utilisables avec les infobulles. En voici une liste,
+accompagnée d'une brève description pour chacune&nbsp;:</p>
 
 <pre class="programlisting">
   infobulles.enable()
 </pre>
 
-<p>Active un groupe d'infobulles d&eacute;sactiv&eacute;.</p>
+<p>Active un groupe d'infobulles désactivé.</p>
 
 <pre class="programlisting">
   infobulles.disable()
 </pre>
 
-<p>D&eacute;sactive une groupe d'infobulles activ&eacute;.</p>
+<p>Désactive une groupe d'infobulles activé.</p>
 
 <pre class="programlisting">
   infobulles.set_delay(<b><tt>delay</tt></b>)
 </pre>
 
 <p>Fixe le nombre de millisecondes que le pointeur de la souris doit rester au-dessus
-du widget avant que l'infobulle apparaisse. La valeur par d&eacute;faut est 500 millisecondes
+du widget avant que l'infobulle apparaisse. La valeur par défaut est 500 millisecondes
 (une demi-seconde).</p>
-<p>Et voil&agrave;. C'est d&eacute;j&agrave; plus qu'il n'en faut&nbsp;:-)</p></div>
+<p>Et voilà. C'est déjà plus qu'il n'en faut&nbsp;:-)</p></div>
 
 <div class="navfooter">
 <hr>
 
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-Arrows.html">Pr&eacute;c.</a></td>
+<td width="40%" align="left"><a accesskey="p" href="sec-Arrows.html">Préc.</a></td>
 <td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"><a accesskey="n" href="sec-ProgressBars.html">Suiv.</a></td>
 </tr><tr>
-<td width="40%" align="left" valign="top">9.2. Les fl&egrave;ches</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
+<td width="40%" align="left" valign="top">9.2. Les flèches</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
 <td width="40%" align="right" valign="top">9.4. La barre de progression</td>
 </tr></table>
 

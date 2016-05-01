@@ -7,18 +7,18 @@
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,menu">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="index.html" title="PyGTK 2.0 Tutorial version 1.3">
 <link rel="previous" href="sec-PlugsAndSockets.html" title="10.13. Les connexions et connecteurs (Plugs et Sockets)">
-<link rel="next" href="sec-ManualMenuExample.html" title="11.2. D&eacute;monstration de cr&eacute;ation manuelle de menus"></head>
+<link rel="next" href="sec-ManualMenuExample.html" title="11.2. Démonstration de création manuelle de menus"></head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En_t&ecirc;te de navigation">
+<table width="100%" summary="En_tête de navigation">
 <tr>
 <th colspan="3" align="center">Chapitre 11. Les menus</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-PlugsAndSockets.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-PlugsAndSockets.html">Préc.</a></td>
 <th width="60%" align="center"></th>
 <td width="20%" align="right"><a accesskey="n" href="sec-ManualMenuExample.html">Suiv.</a></td></tr></table>
 
@@ -32,59 +32,59 @@
 <div class="toc">
 <p><b>Sommaire</b></p>
 <dl>
-<dt>11.1. <a href="ch-MenuWidget.html#menusmanu">Cr&eacute;ation manuelle de menus</a></dt>
-<dt>11.2. <a href="sec-ManualMenuExample.html">D&eacute;monstration de cr&eacute;ation manuelle de menus</a></dt>
-<dt>11.3. <a href="sec-UsingItemFactory.html">Cr&eacute;ation de menus avec l'ItemFactory</a></dt>
-<dt>11.4. <a href="sec-ItemFactoryExample.html">D&eacute;monstration de l'ItemFactory</a></dt></dl>
+<dt>11.1. <a href="ch-MenuWidget.html#menusmanu">Création manuelle de menus</a></dt>
+<dt>11.2. <a href="sec-ManualMenuExample.html">Démonstration de création manuelle de menus</a></dt>
+<dt>11.3. <a href="sec-UsingItemFactory.html">Création de menus avec l'ItemFactory</a></dt>
+<dt>11.4. <a href="sec-ItemFactoryExample.html">Démonstration de l'ItemFactory</a></dt></dl>
 </div>
 
-<p>Il y a deux m&eacute;thodes de cr&eacute;ation des menus&nbsp;: la facile, et la difficile. Toutes deux ont leur utilit&eacute;, bien que dans la plupart des cas l'ItemFactory (la m&eacute;thode facile) suffise. La m&eacute;thode &quot;difficile&quot; consiste &agrave; cr&eacute;er tous les menus en les appelant directement, l&agrave; o&ugrave; la m&eacute;thode facile utilisera les appels de <tt>GtkItemFactory</tt>. M&ecirc;me si c'est effectivement beaucoup plus simple, des avantages et des inconv&eacute;nients existent pour chaque approche.</p>
-<p>Il est vrai que l'<tt>Itemfactory</tt> rend nettement plus simple la cr&eacute;ation et l'ajout ult&eacute;rieur de menus ; mais faire la m&ecirc;me chose manuellement, &agrave; l'aide de quelques fonctions, peut apporter beaucoup en termes d'ergonomie. Avec l'<tt>Itemfactory</tt>, vous ne pourrez pas ajouter d'images aux menus, ni y faire figurer le caract&egrave;re "/".</p>
+<p>Il y a deux méthodes de création des menus&nbsp;: la facile, et la difficile. Toutes deux ont leur utilité, bien que dans la plupart des cas l'ItemFactory (la méthode facile) suffise. La méthode "difficile" consiste à créer tous les menus en les appelant directement, là où la méthode facile utilisera les appels de <tt>GtkItemFactory</tt>. Même si c'est effectivement beaucoup plus simple, des avantages et des inconvénients existent pour chaque approche.</p>
+<p>Il est vrai que l'<tt>Itemfactory</tt> rend nettement plus simple la création et l'ajout ultérieur de menus ; mais faire la même chose manuellement, à l'aide de quelques fonctions, peut apporter beaucoup en termes d'ergonomie. Avec l'<tt>Itemfactory</tt>, vous ne pourrez pas ajouter d'images aux menus, ni y faire figurer le caractère "/".</p>
 
 <div class="sect1">
 <div class="titlepage">
-<div><h2 class="title" style="clear: both"><a name="MenusManu"></a>11.1. Cr&eacute;ation manuelle de menus</h2></div>
+<div><h2 class="title" style="clear: both"><a name="MenusManu"></a>11.1. Création manuelle de menus</h2></div>
 </div>
-<p>Comme le veut la bonne vieille tradition p&eacute;dagogique, nous commen?s par la m&eacute;thode difficile&nbsp;:)</p>
-<p>Trois widgets entrent en jeu dans la cr&eacute;ation d'une barre de menus et de ses sous-menus&nbsp;:</p>
+<p>Comme le veut la bonne vieille tradition pédagogique, nous commen?s par la méthode difficile&nbsp;:)</p>
+<p>Trois widgets entrent en jeu dans la création d'une barre de menus et de ses sous-menus&nbsp;:</p>
 
 <div class="itemizedlist"><ul type="none">
-<li style="list-style-type: none"><p>l'entr&eacute;e de menu, qui repr&eacute;sente ce que l'utilisateur veut faire/choisir (par exemple &quot;Enregistrer&quot;)</p>
-</li><li style="list-style-type: none"><p>le menu, qui contient les entr&eacute;es de menu</p>
+<li style="list-style-type: none"><p>l'entrée de menu, qui représente ce que l'utilisateur veut faire/choisir (par exemple "Enregistrer")</p>
+</li><li style="list-style-type: none"><p>le menu, qui contient les entrées de menu</p>
 </li><li style="list-style-type: none"><p>la barre de menus, qui contient les menus.</p>
 </li></ul></div>
 
-<p>Mais tout n'est pas si simple. En effet, les entr&eacute;es de menu servent &agrave; deux choses diff&eacute;rentes&nbsp;: elles repr&eacute;sentent &agrave; la fois les widgets plac&eacute;s dans le menu et celui plac&eacute; dans la barre de menu (celui qui, une fois selectionn&eacute;, active le menu).</p>
-<p>Observons les fonctions servant &agrave; cr&eacute;er menus et barres de menus&nbsp;:</p>
+<p>Mais tout n'est pas si simple. En effet, les entrées de menu servent à deux choses différentes&nbsp;: elles représentent à la fois les widgets placés dans le menu et celui placé dans la barre de menu (celui qui, une fois selectionné, active le menu).</p>
+<p>Observons les fonctions servant à créer menus et barres de menus&nbsp;:</p>
 
 <pre class="programlisting">
   barre_menus = gtk.MenuBar()
 </pre>
 
-<p>Cette premi&egrave;re fonction, vous l'aurez devin&eacute;, cr&eacute;e une nouvelle barre de menus. On utilisera la m&eacute;thode <tt>add</tt>() de <tt>GtkContainer</tt> pour la placer dans une fen&ecirc;tre, ou bien les diff&eacute;rentes m&eacute;thodes <tt>pack</tt>() de <tt>GtkBox</tt> pour la placer dans une boite (comme pour les boutons).</p>
+<p>Cette première fonction, vous l'aurez deviné, crée une nouvelle barre de menus. On utilisera la méthode <tt>add</tt>() de <tt>GtkContainer</tt> pour la placer dans une fenêtre, ou bien les différentes méthodes <tt>pack</tt>() de <tt>GtkBox</tt> pour la placer dans une boite (comme pour les boutons).</p>
 
 <pre class="programlisting">
   menu = gtk.Menu()
 </pre>
 
-<p>Cette fonction renvoie une r&eacute;f&eacute;rence &agrave; un nouveau menu ; il n'est jamais concr&egrave;tement affich&eacute; (par la m&eacute;thode <tt>show</tt>()), c'est juste un conteneur pour les entr&eacute;es de menu. Tout ceci vous paraitra, je l'esp&egrave;re, beaucoup plus clair apr&egrave;s que vous aurez jet&eacute; un &oelig;il &agrave; l'exemple plus bas.</p>
-<p>La fonction ci-dessous sert &agrave; cr&eacute;er les entr&eacute;es qui seront plac&eacute;es dans le menu (et la barre de menus)&nbsp;:</p>
+<p>Cette fonction renvoie une référence à un nouveau menu ; il n'est jamais concrètement affiché (par la méthode <tt>show</tt>()), c'est juste un conteneur pour les entrées de menu. Tout ceci vous paraitra, je l'espère, beaucoup plus clair après que vous aurez jeté un &oelig;il à l'exemple plus bas.</p>
+<p>La fonction ci-dessous sert à créer les entrées qui seront placées dans le menu (et la barre de menus)&nbsp;:</p>
 
 <pre class="programlisting">
   entree = gtk.MenuItem(<b><tt>label</tt></b>=None)
 </pre>
 
-<p>L'argument <i><tt>label</tt></i> (&eacute;tiquette), si sp&eacute;cifi&eacute;, sera parcouru &agrave; la recherche de caract&egrave;res mn&eacute;moniques. Cet appel cr&eacute;e les entr&eacute;es de menu qui doivent apparaitre dans le menu. Attention &agrave; ne pas confondre le &quot;menu&quot;, cr&eacute;&eacute; avec <tt>gtk.Menu</tt>(), et l'&quot;entr&eacute;e de menu&quot;, cr&eacute;&eacute;e avec la fonction <tt>gtk.MenuItem</tt>(). L'entr&eacute;e sera un v&eacute;ritable bouton, auquel sera associ&eacute; une action, tandis que le menu sera un conteneur renfermant des entr&eacute;es.</p>
-<p>Une fois votre entr&eacute;e cr&eacute;&eacute;e, vous devez la placer dans un menu gr&acirc;ce &agrave; la m&eacute;thode <tt>append</tt>(). Puis, pour pouvoir r&eacute;agir &agrave; une selection de cette entr&eacute;e par l'utilisateur, il faudra capter son signal &quot;<tt>activate</tt>&quot; (activer) de la mani&egrave;re habituelle.</p>
-<p>Imaginons que nous voulions cr&eacute;er un menu "Fichier" standard, avec les entr&eacute;es Ouvrir, Enregistrer, et Quitter. Notre code devrait alors ressembler &agrave; ceci&nbsp;:</p>
+<p>L'argument <i><tt>label</tt></i> (étiquette), si spécifié, sera parcouru à la recherche de caractères mnémoniques. Cet appel crée les entrées de menu qui doivent apparaitre dans le menu. Attention à ne pas confondre le "menu", créé avec <tt>gtk.Menu</tt>(), et l'"entrée de menu", créée avec la fonction <tt>gtk.MenuItem</tt>(). L'entrée sera un véritable bouton, auquel sera associé une action, tandis que le menu sera un conteneur renfermant des entrées.</p>
+<p>Une fois votre entrée créée, vous devez la placer dans un menu grâce à la méthode <tt>append</tt>(). Puis, pour pouvoir réagir à une selection de cette entrée par l'utilisateur, il faudra capter son signal "<tt>activate</tt>" (activer) de la manière habituelle.</p>
+<p>Imaginons que nous voulions créer un menu "Fichier" standard, avec les entrées Ouvrir, Enregistrer, et Quitter. Notre code devrait alors ressembler à ceci&nbsp;:</p>
 
 <pre class="programlisting">
   menu_fichier = gtk.Menu()    # Inutile d'afficher les menus avec show()
 
   # Creation des entrees de menu
-  entree_ouvrir = gtk.MenuItem(&quot;Ouvrir&quot;)
-  entree_enreg = gtk.MenuItem(&quot;Enregistrer&quot;)
-  entree_quitter = gtk.MenuItem(&quot;Quitter&quot;)
+  entree_ouvrir = gtk.MenuItem("Ouvrir")
+  entree_enreg = gtk.MenuItem("Enregistrer")
+  entree_quitter = gtk.MenuItem("Quitter")
 
   # On les place dans le menu
   menu_fichier.append(entree_ouvrir)
@@ -92,11 +92,11 @@
   menu_fichier.append(entree_quitter)
 
   # On connecte les fonctions de rappel au signal "activate"
-  entree_ouvrir.connect_object(&quot;activate&quot;, entrees_reponse, &quot;fichier.ouvrir&quot;)
-  entree_enreg.connect_object(&quot;activate&quot;, entrees_reponse, &quot;fichier.enregistrer&quot;)
+  entree_ouvrir.connect_object("activate", entrees_reponse, "fichier.ouvrir")
+  entree_enreg.connect_object("activate", entrees_reponse, "fichier.enregistrer")
 
-  # On peut connecter la entree Quitter &agrave; notre fonction de sortie
-  entree_quitter.connect_object (&quot;activate&quot;, destroy, &quot;fichier.quitter&quot;)
+  # On peut connecter la entree Quitter à notre fonction de sortie
+  entree_quitter.connect_object ("activate", destroy, "fichier.quitter")
 
   # Il nous faut afficher les entrees
   entree_ouvrir.show()
@@ -104,18 +104,18 @@
   entree_quitter.show()
 </pre>
 
-<p>Nous avons maintenant notre menu. Il nous reste &agrave; cr&eacute;er une barre de menus, puis une entr&eacute;e "Fichier" &agrave; laquelle nous relierons notre menu. Le code pour ce faire est le suivant&nbsp;:</p>
+<p>Nous avons maintenant notre menu. Il nous reste à créer une barre de menus, puis une entrée "Fichier" à laquelle nous relierons notre menu. Le code pour ce faire est le suivant&nbsp;:</p>
 
 <pre class="programlisting">
   barre_menus = gtk.MenuBar()
   fenetre.add(barre_menus)
   barre_menus.show()
 
-  entree_fichier = gtk.MenuItem(&quot;Fichier&quot;)
+  entree_fichier = gtk.MenuItem("Fichier")
   entree_fichier.show()
 </pre>
 
-<p>Maintenant associons le menu avec <i><tt>entree_fichier</tt></i>. On fait appel pour cela &agrave; la m&eacute;thode suivante&nbsp;:</p>
+<p>Maintenant associons le menu avec <i><tt>entree_fichier</tt></i>. On fait appel pour cela à la méthode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   entree.set_submenu(<b><tt>sous_menu</tt></b>)
@@ -127,7 +127,7 @@
   entree.set_submenu(menu_fichier)
 </pre>
 
-<p>Tout ce qui nous reste &agrave; faire est de placer le menu dans la barre de menus, en utilisant la m&eacute;thode&nbsp;:</p>
+<p>Tout ce qui nous reste à faire est de placer le menu dans la barre de menus, en utilisant la méthode&nbsp;:</p>
 
 <pre class="programlisting">
   barre_menus.append(<b><tt>enfant</tt></b>)
@@ -139,46 +139,46 @@
   barre_menus.append(entree_fichier)
 </pre>
 
-<p>Si nous voulions aligner notre menu sur la droite de la barre de menus, comme le sont souvent les menus d'aide, nous pourrions faire appel &agrave; la m&eacute;thode ci-dessous (toujours sur <i><tt>entree_fichier</tt></i> dans notre exemple) avant de l'attacher &agrave; la barre de menus.</p>
+<p>Si nous voulions aligner notre menu sur la droite de la barre de menus, comme le sont souvent les menus d'aide, nous pourrions faire appel à la méthode ci-dessous (toujours sur <i><tt>entree_fichier</tt></i> dans notre exemple) avant de l'attacher à la barre de menus.</p>
 
 <pre class="programlisting">
   entree.set_right_justified(align_droite)
 </pre>
 
-<p>Voici un r&eacute;sum&eacute; des &eacute;tapes n&eacute;cessaires &agrave; la c&eacute;ation d'une barre de menus avec ses menus&nbsp;:</p>
+<p>Voici un résumé des étapes nécessaires à la céation d'une barre de menus avec ses menus&nbsp;:</p>
 
 <div class="itemizedlist"><ul type="none">
-<li style="list-style-type: none"><p>Cr&eacute;ez un nouveau menu avec <tt>gtk.Menu</tt>()</p>
-</li><li style="list-style-type: none"><p>Faire un appel &agrave; <tt>gtk.MenuItem</tt>() pour chaque entr&eacute;e que vous voulez voir figurer dans votre menu. Puis utilisez la m&eacute;thode <tt>append</tt>() pour placer chacune de ces nouvelles entr&eacute;es dans le menu.</p>
-</li><li style="list-style-type: none"><p>Cr&eacute;ez une entr&eacute;e avec <tt>gtk.MenuItem</tt>(). Ce sera la racine du menu, son &eacute;tiquette apparaitra directement dans la barre de menus.</p>
-</li><li style="list-style-type: none"><p>Utilisez la m&eacute;thode <tt>set_submenu</tt>() pour attacher le menu &agrave; l'entr&eacute;e racine (celle cr&eacute;&eacute;e &agrave; l'&eacute;tape pr&eacute;c&eacute;dente).</p>
-</li><li style="list-style-type: none"><p>Cr&eacute;ez une barre de menu avec <tt>gtk.MenuBar</tt>(). Si l'on cr&eacute;e une s&eacute;rie de menus que l'on veut placer sur une seule barre de menus, cette &eacute;tape n'a besoin d'&ecirc;tre effectu&eacute;e qu'une seule fois.</p>
-</li><li style="list-style-type: none"><p>Utilisez la m&eacute;thode <tt>append</tt>() pour placer la racine dans la barre de menus.</p></li>
+<li style="list-style-type: none"><p>Créez un nouveau menu avec <tt>gtk.Menu</tt>()</p>
+</li><li style="list-style-type: none"><p>Faire un appel à <tt>gtk.MenuItem</tt>() pour chaque entrée que vous voulez voir figurer dans votre menu. Puis utilisez la méthode <tt>append</tt>() pour placer chacune de ces nouvelles entrées dans le menu.</p>
+</li><li style="list-style-type: none"><p>Créez une entrée avec <tt>gtk.MenuItem</tt>(). Ce sera la racine du menu, son étiquette apparaitra directement dans la barre de menus.</p>
+</li><li style="list-style-type: none"><p>Utilisez la méthode <tt>set_submenu</tt>() pour attacher le menu à l'entrée racine (celle créée à l'étape précédente).</p>
+</li><li style="list-style-type: none"><p>Créez une barre de menu avec <tt>gtk.MenuBar</tt>(). Si l'on crée une série de menus que l'on veut placer sur une seule barre de menus, cette étape n'a besoin d'être effectuée qu'une seule fois.</p>
+</li><li style="list-style-type: none"><p>Utilisez la méthode <tt>append</tt>() pour placer la racine dans la barre de menus.</p></li>
 </ul></div>
 
-<p>Le proc&eacute;d&eacute; de cr&eacute;ation d'un menu popup est plus ou moins identique. La diff&eacute;rence est que le menu n'est pas affich&eacute; &quot;automatiquement&quot; par une barre de menus, mais explicitement par un appel &agrave; la m&eacute;thode <tt>popup</tt>(), lors d'un &eacute;v&egrave;nement "button-press"par exemple. Proc&eacute;dez comme suit&nbsp;:</p>
+<p>Le procédé de création d'un menu popup est plus ou moins identique. La différence est que le menu n'est pas affiché "automatiquement" par une barre de menus, mais explicitement par un appel à la méthode <tt>popup</tt>(), lors d'un évènement "button-press"par exemple. Procédez comme suit&nbsp;:</p>
 
 <div class="itemizedlist"><ul type="none">
 <li style="list-style-type: none">
-<p>Cr&eacute;ez une fonction de rappel gestionnaire d'&eacute;v&egrave;nement. Elle doit &ecirc;tre de la forme&nbsp;:</p>
+<p>Créez une fonction de rappel gestionnaire d'évènement. Elle doit être de la forme&nbsp;:</p>
 
 <pre class="programlisting">
   def fct_rappel(widget, evenement):
 </pre>
 
 </li><li style="list-style-type: none">
-<p>... et  utilisera l'&eacute;v&egrave;nement pour savoir o&ugrave; afficher le menu.</p>
+<p>... et  utilisera l'évènement pour savoir où afficher le menu.</p>
 </li><li style="list-style-type: none">
-<p>Dans le gestionnaire d'&eacute;v&egrave;nement, si l'&eacute;v&egrave;nement est une pression d'un bouton de la souris, traitez le comme un &eacute;v&egrave;nement bouton (ce qu'il est) et utilisez-le comme montr&eacute; dans l'exemple de code pour transmettre l'information &agrave; la m&eacute;thode <tt>popup</tt>().</p>
+<p>Dans le gestionnaire d'évènement, si l'évènement est une pression d'un bouton de la souris, traitez le comme un évènement bouton (ce qu'il est) et utilisez-le comme montré dans l'exemple de code pour transmettre l'information à la méthode <tt>popup</tt>().</p>
 </li><li style="list-style-type: none">
-<p>Attachez ce gestionnaire d'&eacute;v&egrave;nement &agrave; un widget ainsi&nbsp;:</p>
+<p>Attachez ce gestionnaire d'évènement à un widget ainsi&nbsp;:</p>
 
 <pre class="programlisting">
-  widget.connect_object(&quot;evenement&quot;, fct_rappel, menu)
+  widget.connect_object("evenement", fct_rappel, menu)
 </pre>
 
 </li><li style="list-style-type: none">
-<p>... o&ugrave; <i>widget</i> est le widget auquel vous connectez l'&eacute;v&egrave;nement, <i>fct_rappel</i> la fonction de rappel, et <i>menu</i> le menu cr&eacute;e par <tt>GtkMenu</tt>(). Ce dernier peut aussi &ecirc;tre affich&eacute; par une barre d'&eacute;tat, comme dans notre code.</p></li>
+<p>... où <i>widget</i> est le widget auquel vous connectez l'évènement, <i>fct_rappel</i> la fonction de rappel, et <i>menu</i> le menu crée par <tt>GtkMenu</tt>(). Ce dernier peut aussi être affiché par une barre d'état, comme dans notre code.</p></li>
 </ul>
 </div></div></div>
 
@@ -187,13 +187,13 @@
 
 <table width="100%" summary="Navigation footer">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-PlugsAndSockets.html">Pr&eacute;c.</a></td>
+<td width="40%" align="left"><a accesskey="p" href="sec-PlugsAndSockets.html">Préc.</a></td>
 <td width="20%" align="center"><a accesskey="u" href="index.html">Chapitre parent</a></td>
 <td width="40%" align="right"><a accesskey="n" href="sec-ManualMenuExample.html">Suiv.</a></td></tr>
 <tr>
 <td width="40%" align="left" valign="top">10.13. Les connexions et connecteurs (Plugs et Sockets)</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
-<td width="40%" align="right" valign="top">11.2. D&eacute;monstration de cr&eacute;ation manuelle de menus</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top">11.2. Démonstration de création manuelle de menus</td>
 </tr></table>
 
 </div>

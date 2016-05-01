@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,textview">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-TextViewWidget.html" title="Chapitre 13. Le widget TextView">
 <link rel="previous" href="sec-TextMarks.html" title="13.6. TextTag et TextTagTable&nbsp;: les balises de texte">
 <link rel="next" href="ch-TreeViewWidget.html" title="Chapter 14. Tree View Widget">
@@ -15,11 +15,11 @@
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
 <th colspan="3" align="center">13.7. Un exemple de TextView</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-TextMarks.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-TextMarks.html">Préc.</a></td>
 <th width="60%" align="center">Chapitre 13. Le widget TextView</th>
 <td width="20%" align="right"><a accesskey="n" href="ch-TreeViewWidget.html">Suiv.</a></td>
 </tr></table>
@@ -30,7 +30,7 @@
 <div class="sect1" lang="fr"><div class="titlepage">
 <div><H2 class="title" style="clear: both"><a name=sec-TextViewExample></a>13.7. Un exemple de TextView</H2></div></div>
 
-<p>Le programme <a href="exemples/testtexte.py" target="_top"><b>testtexte.py</b></a> (d&eacute;riv&eacute; du programme <tt>testtext.c</tt> inclu dans la distribution GTK+ 2.0.x) montre un exemple d'utilisation du widget <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a> et des objets qui lui sont associ&eacute;s&nbsp;: <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>, <a title="13.4. TextIter&nbsp;: les it&eacute;rateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a>, <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a>, <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a>, et <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a>. La <a title="Figure 13.2. Exemple de TextView" href="sec-TextViewExample.html#testtextefig">Figure 13.2</a> illustre le r&eacute;sultat&nbsp;:</p>
+<p>Le programme <a href="exemples/testtexte.py" target="_top"><b>testtexte.py</b></a> (dérivé du programme <tt>testtext.c</tt> inclu dans la distribution GTK+ 2.0.x) montre un exemple d'utilisation du widget <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a> et des objets qui lui sont associés&nbsp;: <a title="13.3. TextBuffer&nbsp;: le buffer de texte" href="sec-TextBuffers.html"><tt>TextBuffer</tt></a>, <a title="13.4. TextIter&nbsp;: les itérateurs de texte" href="sec-TextIters.html"><tt>TextIter</tt></a>, <a title="13.5. TextMark&nbsp;: les marques de texte" href="sec-TextMarks.html"><tt>TextMark</tt></a>, <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a>, et <a title="13.6.2. La TextTagTable" href="sec-TextTagsAndTextTagTables.html#TextTagTable"><tt>TextTagTable</tt></a>. La <a title="Figure 13.2. Exemple de TextView" href="sec-TextViewExample.html#testtextefig">Figure 13.2</a> illustre le résultat&nbsp;:</p>
 
 <div class="figure"><a name="testtextefig"></a>
 <p class="title"><b>Figure 13.2. Exemple de TextView</b></p>
@@ -38,25 +38,25 @@
 <img src="figures/testtexte.png" align="middle" alt="exemple TextView">
 </div></div>
 
-<p>En plus de <tt>TestTexte</tt>, la classe principale de l'application, le programme <a href="exemples/testtexte.py" target="_top"><b>testtexte.py</b></a> d&eacute;finit plusieurs autres classes&nbsp;:</p>
+<p>En plus de <tt>TestTexte</tt>, la classe principale de l'application, le programme <a href="exemples/testtexte.py" target="_top"><b>testtexte.py</b></a> définit plusieurs autres classes&nbsp;:</p>
 
 <div class="itemizedlist"><ul type="disc">
 <li>
-<p>La classe <tt>Buffer</tt>, aux lignes 102 &agrave; 499, est une sous-classe d&eacute;riv&eacute;e de <tt>gtk.TextBuffer</tt>. Elle apporte les fonctions d'&eacute;dition du buffer utilis&eacute;es par les objets <tt>Fenetre</tt>.</p>
-<li><p>La classe <tt>Fenetre</tt>, de la ligne 501 &agrave; la ligne 1129, est une sous-classe d&eacute;riv&eacute;e de <tt>gtk.Window</tt>. Elle englobe une <tt>gtk.TextView</tt>, qui utilise un objet <tt>Buffer</tt> au lieu d'un <tt>gtk.TextBuffer</tt>. Elle fournit une fen&ecirc;tre &eacute;quip&eacute;e d'une barre de menus, et y affiche le contenu d'un objet <tt>Buffer</tt>.</p>
-<li><p>La classe <tt>SelectionFichier</tt> des lignes 76 &agrave; 100, est une sous-classe d&eacute;riv&eacute;e de <tt>gtk.FileSelection</tt>, qui permet de s&eacute;lectionner des noms de fichiers pour le contenu du <tt>Buffer</tt>.</p>
-<li><p>Enfin, la classe <tt>Pile</tt> cr&eacute;e des piles assez simples.</p></LI>
+<p>La classe <tt>Buffer</tt>, aux lignes 102 à 499, est une sous-classe dérivée de <tt>gtk.TextBuffer</tt>. Elle apporte les fonctions d'édition du buffer utilisées par les objets <tt>Fenetre</tt>.</p>
+<li><p>La classe <tt>Fenetre</tt>, de la ligne 501 à la ligne 1129, est une sous-classe dérivée de <tt>gtk.Window</tt>. Elle englobe une <tt>gtk.TextView</tt>, qui utilise un objet <tt>Buffer</tt> au lieu d'un <tt>gtk.TextBuffer</tt>. Elle fournit une fenêtre équipée d'une barre de menus, et y affiche le contenu d'un objet <tt>Buffer</tt>.</p>
+<li><p>La classe <tt>SelectionFichier</tt> des lignes 76 à 100, est une sous-classe dérivée de <tt>gtk.FileSelection</tt>, qui permet de sélectionner des noms de fichiers pour le contenu du <tt>Buffer</tt>.</p>
+<li><p>Enfin, la classe <tt>Pile</tt> crée des piles assez simples.</p></LI>
 </ul></div>
 
-<p>L'alternance des couleurs est impl&eacute;ment&eacute;e en utilisant des balises qu'on applique &agrave; une portion de texte d'un buffer. Ces balises sont cr&eacute;&eacute;es aux lignes 112 &agrave; 118 par la m&eacute;thode <tt>__init__</tt>(). Puis, la m&eacute;thode <tt>change_appliquer_couleurs</tt>() se charge de les appliquer &agrave; une portion de texte, et ce tous les deux caract&egrave;res (lignes 766 &agrave; 787). Les lignes 205 &agrave; 242 fournissent les m&eacute;thodes (<i><tt>cycle_couleurs</tt></i>(), <i><tt>couleurs</tt></i>(), et <i><tt>alterner_couleurs</tt></i>()) qui produisent l'alternance une fois celle-ci activ&eacute;e. Cette activation s'effectue &agrave; la ligne 223 en d&eacute;finissant la propri&eacute;t&eacute;<i><tt>foreground_gdk</tt></i> de chaque balise de <i><tt>balises_couleurs</tt></i> (ce qui d&eacute;finit par la m&ecirc;me occasion la propri&eacute;t&eacute; <i><tt>foreground_set</i></tt>). On d&eacute;sactive cette m&ecirc;me alternance de couleurs en donnant la valeur FALSE &agrave; la propri&eacute;t&eacute; <i><tt>foreground_set</tt></i> (ligne 225). On alterne les couleurs p&eacute;riodiquement en modifiant la variable <i><tt>teinte_depart</tt></i> (ligne 240).</p>
-<p>Lorsque la commande Test-&gt;Exemple est selectionn&eacute;e, un nouveau <tt>Buffer</tt> est rempli avec un exemple de texte (il s'agit de la m&eacute;thode <tt>remplir_buffer_exmpl</tt>() des lignes 305 &agrave; 375). Le buffer contient alors du texte de diff&eacute;rentes couleurs, styles et langages, ainsi que des images pixbuf. La m&eacute;thode <tt>init_balises</tt>() des lignes 263 &agrave; 303 d&eacute;finit un ensemble de <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> qui sont utilis&eacute;es par le texte d'exemple. Le signal "<tt>event</tt>" (&eacute;v&egrave;nement) de ces balises est connect&eacute; &agrave; la m&eacute;thode <tt>gest_evnmt_balises</tt> (lignes 243 &agrave; 259) pour illustrer la capture de diff&eacute;rents  &eacute;v&egrave;nements (mouvement, clics).</p>
-<p>On r&egrave;gle le type de retour &agrave; la ligne automatique de
+<p>L'alternance des couleurs est implémentée en utilisant des balises qu'on applique à une portion de texte d'un buffer. Ces balises sont créées aux lignes 112 à 118 par la méthode <tt>__init__</tt>(). Puis, la méthode <tt>change_appliquer_couleurs</tt>() se charge de les appliquer à une portion de texte, et ce tous les deux caractères (lignes 766 à 787). Les lignes 205 à 242 fournissent les méthodes (<i><tt>cycle_couleurs</tt></i>(), <i><tt>couleurs</tt></i>(), et <i><tt>alterner_couleurs</tt></i>()) qui produisent l'alternance une fois celle-ci activée. Cette activation s'effectue à la ligne 223 en définissant la propriété<i><tt>foreground_gdk</tt></i> de chaque balise de <i><tt>balises_couleurs</tt></i> (ce qui définit par la même occasion la propriété <i><tt>foreground_set</i></tt>). On désactive cette même alternance de couleurs en donnant la valeur FALSE à la propriété <i><tt>foreground_set</tt></i> (ligne 225). On alterne les couleurs périodiquement en modifiant la variable <i><tt>teinte_depart</tt></i> (ligne 240).</p>
+<p>Lorsque la commande Test-&gt;Exemple est selectionnée, un nouveau <tt>Buffer</tt> est rempli avec un exemple de texte (il s'agit de la méthode <tt>remplir_buffer_exmpl</tt>() des lignes 305 à 375). Le buffer contient alors du texte de différentes couleurs, styles et langages, ainsi que des images pixbuf. La méthode <tt>init_balises</tt>() des lignes 263 à 303 définit un ensemble de <a title="13.6.1. Les TextTag" href="sec-TextTagsAndTextTagTables.html#TextTag"><tt>TextTag</tt></a> qui sont utilisées par le texte d'exemple. Le signal "<tt>event</tt>" (évènement) de ces balises est connecté à la méthode <tt>gest_evnmt_balises</tt> (lignes 243 à 259) pour illustrer la capture de différents  évènements (mouvement, clics).</p>
+<p>On règle le type de retour à la ligne automatique de
 la <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html">
 <tt>TextView</tt></a> sur WRAP_WORD (ligne 583) et on
-affiche ses fen&ecirc;tres de bordure en fixant leurs dimensions (590-591 et 599-600). Les fen&ecirc;tres de bordure sup&eacute;rieure et inf&eacute;rieure serviront &agrave; afficher les positions des tabulations lorsque les tabulations personnalis&eacute;es sont s&eacute;lectionn&eacute;es, et les fen&ecirc;tres lat&eacute;rales &agrave; afficher les num&eacute;ros des lignes. Les fen&ecirc;tres de bordures sont rafraichies lorsqu'un signal "expose-event" (besoin de r&eacute;affichage) est re&ccedil;u par la <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a> (lignes 593 et 602). La m&eacute;thode <tt>affichage_num_lignes</tt>() (lignes 1082 &agrave; 1119) d&eacute;termine si le signal "expose-event" provient d'une des fen&ecirc;tres de bordure lat&eacute;rales, auquel cas elle calcule la taille de la zone &agrave; r&eacute;afficher. Puis l'emplacement du d&eacute;but de la ligne ainsi que le num&eacute;ro de chaque ligne de cette zone sont calcul&eacute;s par la m&eacute;thode <tt>recup_lignes</tt>() (lignes 1060-1080). Les num&eacute;ros de ligne sont alors affich&eacute;s dans la fenetre de bordure, &agrave; l'emplacement ad&eacute;quat (transform&eacute; par la ligne 1112).</p>
-<p>Les emplacements des tabulations personnalis&eacute;es apparaissent dans les fen&ecirc;tres sup&eacute;rieure et inf&eacute;rieure (lignes 1016 &agrave; 1058), mais seulement lorsque le curseur se situe dans une portion de texte portant l'attribut "tabulations personnalis&eacute;es". Pour v&eacute;rifier cette condition, on traite le signal "mark-set" (marque d&eacute;finie) avec la m&eacute;thode <tt>rappel_mvt_curseur</tt>() (lignes 1002 &agrave; 1014), qui invalide ces deux fen&ecirc;tres si <i><tt>insert</tt></i> est la marque d&eacute;finie.</p>
-<p>Des objets mobiles sont ajout&eacute;s &agrave; une <tt>Fenetre</tt> par la m&eacute;thode <tt>ajouter_enfants</tt>() (lignes 895 &agrave; 902), qui appelle la m&eacute;thode <tt>ajouter_enfants_deplace</tt>() (lignes 877-893). Les enfants sont des <tt>gtk.Label</tt> que l'on peut faire glisser &agrave; l'int&eacute;rieur des diff&eacute;rentes fen&ecirc;tres composant une <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a>.</p>
-<p>De la m&ecirc;me mani&egrave;re, des widgets sont ins&eacute;r&eacute;s dans le buffer ainsi que dans les diff&eacute;rentes fen&ecirc;tres d'un objet <tt>Fenetre</tt> en faisant appel &agrave; la m&eacute;thode <tt>ajouter_enfants_focus</tt> (lignes 904 &agrave; 952).</p>
+affiche ses fenêtres de bordure en fixant leurs dimensions (590-591 et 599-600). Les fenêtres de bordure supérieure et inférieure serviront à afficher les positions des tabulations lorsque les tabulations personnalisées sont sélectionnées, et les fenêtres latérales à afficher les numéros des lignes. Les fenêtres de bordures sont rafraichies lorsqu'un signal "expose-event" (besoin de réaffichage) est reçu par la <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a> (lignes 593 et 602). La méthode <tt>affichage_num_lignes</tt>() (lignes 1082 à 1119) détermine si le signal "expose-event" provient d'une des fenêtres de bordure latérales, auquel cas elle calcule la taille de la zone à réafficher. Puis l'emplacement du début de la ligne ainsi que le numéro de chaque ligne de cette zone sont calculés par la méthode <tt>recup_lignes</tt>() (lignes 1060-1080). Les numéros de ligne sont alors affichés dans la fenetre de bordure, à l'emplacement adéquat (transformé par la ligne 1112).</p>
+<p>Les emplacements des tabulations personnalisées apparaissent dans les fenêtres supérieure et inférieure (lignes 1016 à 1058), mais seulement lorsque le curseur se situe dans une portion de texte portant l'attribut "tabulations personnalisées". Pour vérifier cette condition, on traite le signal "mark-set" (marque définie) avec la méthode <tt>rappel_mvt_curseur</tt>() (lignes 1002 à 1014), qui invalide ces deux fenêtres si <i><tt>insert</tt></i> est la marque définie.</p>
+<p>Des objets mobiles sont ajoutés à une <tt>Fenetre</tt> par la méthode <tt>ajouter_enfants</tt>() (lignes 895 à 902), qui appelle la méthode <tt>ajouter_enfants_deplace</tt>() (lignes 877-893). Les enfants sont des <tt>gtk.Label</tt> que l'on peut faire glisser à l'intérieur des différentes fenêtres composant une <a title="13.2. TextView&nbsp;: la zone de texte" href="sec-TextViews.html"><tt>TextView</tt></a>.</p>
+<p>De la même manière, des widgets sont insérés dans le buffer ainsi que dans les différentes fenêtres d'un objet <tt>Fenetre</tt> en faisant appel à la méthode <tt>ajouter_enfants_focus</tt> (lignes 904 à 952).</p>
 </div>
 
 <div class="navfooter">
@@ -65,12 +65,12 @@ affiche ses fen&ecirc;tres de bordure en fixant leurs dimensions (590-591 et 599
 <table width="100%" summary="Bas de page de navigation">
 
   <tr>
-    <td width="40%" align="left"><a accessKey=p href="sec-TextTagsAndTextTagTables.html">Pr&eacute;c.</a></td>
+    <td width="40%" align="left"><a accessKey=p href="sec-TextTagsAndTextTagTables.html">Préc.</a></td>
     <td width="20%" align="center"><a accessKey=u href="ch-TextViewWidget.html">Chapitre parent</a></td>
     <td width="40%" align="right"><a accessKey=n href="ch-TreeViewWidget.html">Suiv.</a></td></tr>
   <tr>
     <td width="40%" align="left" vAlign="top">13.6. TextTag et TextTagTable&nbsp;: les balises de texte</td>
-    <td width="20%" align="center"><a accessKey=h href="index.html">Table des mati&egrave;res</a></td>
+    <td width="20%" align="center"><a accessKey=h href="index.html">Table des matières</a></td>
     <td width="40%" align="right" vAlign="top">Chapter 14. Tree View Widget</td></tr></table>
 
 </div>

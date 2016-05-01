@@ -3,24 +3,24 @@
 
 <head>
     <meta charset="utf-8">
-<title>6.2. Les boutons &agrave; bascule</title>
+<title>6.2. Les boutons à bascule</title>
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,bouton">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-ButtonWidget.html" title="Chapitre 6. Les boutons">
 <link rel="previous" href="ch-ButtonWidget.html" title="Chapitre 6. Les boutons">
-<link rel="next" href="sec-CheckButtons.html" title="6.3. Les cases &agrave; cocher">
+<link rel="next" href="sec-CheckButtons.html" title="6.3. Les cases à cocher">
 </head>
 
 <body>
 <div class="navheader">
 
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
-<th colspan="3" align="center">6.2. Les boutons &agrave; bascule</th></tr>
+<th colspan="3" align="center">6.2. Les boutons à bascule</th></tr>
 <tr>
-<td width="20%" align="left"><a accesskey="p" href="ch-ButtonWidget.html">Pr&eacute;c.</a> </td>
+<td width="20%" align="left"><a accesskey="p" href="ch-ButtonWidget.html">Préc.</a> </td>
 <th width="60%" align="center">Chapitre 6. Les boutons</th>
 <td width="20%" align="right"> <a accesskey="n" href="sec-CheckButtons.html">Suiv.</a></td>
 </tr></table>
@@ -30,75 +30,75 @@
 
 <div class="sect1">
 <div class="titlepage">
-<div><h2 class="title" style="clear: both"><a name="BoutonsBascule"></a>6.2. Les boutons &agrave; bascule</h2></div></div>
+<div><h2 class="title" style="clear: both"><a name="BoutonsBascule"></a>6.2. Les boutons à bascule</h2></div></div>
 
-<p>Le bouton &agrave; bascule d&eacute;rive du bouton simple et lui est donc tr&egrave;s
-similaire. Il a cependant ceci de diff&eacute;rent qu'il poss&egrave;de deux &eacute;tats
-et qu'un clic le fait basculer de l'un &agrave; l'autre. Lorsqu'il est enfonc&eacute;,
-un clic le fait remonter. Un autre clic et le voil&agrave; de nouveau enfonc&eacute;.</p>
-<p>Les boutons &agrave; bascule sont la base des cases &agrave; cocher et des boutons radio,
-ces derniers h&eacute;ritent donc de beaucoup de leurs appels (nous le signalerons le
-cas &eacute;ch&eacute;ant).</p>
-<p>Cr&eacute;ation d'un bouton &agrave; bascule&nbsp;:</p>
+<p>Le bouton à bascule dérive du bouton simple et lui est donc très
+similaire. Il a cependant ceci de différent qu'il possède deux états
+et qu'un clic le fait basculer de l'un à l'autre. Lorsqu'il est enfoncé,
+un clic le fait remonter. Un autre clic et le voilà de nouveau enfoncé.</p>
+<p>Les boutons à bascule sont la base des cases à cocher et des boutons radio,
+ces derniers héritent donc de beaucoup de leurs appels (nous le signalerons le
+cas échéant).</p>
+<p>Création d'un bouton à bascule&nbsp;:</p>
 
 <pre class="programlisting">
   bouton_bascule = gtk.ToggleButton(<b><tt>label</tt></b>=None)
 </pre>
 
-<p>Comme vous pouvez l'imaginer, le fonctionnement de cet appel est identique &agrave;
-celui des boutons normaux. Si aucune &eacute;tiquette n'est sp&eacute;cifi&eacute;e,
-le bouton sera vierge. Dans le cas contraire, le texte donn&eacute; sera inspect&eacute;
-&agrave; la recherche de caract&egrave;res mn&eacute;moniques (pr&eacute;fix&eacute;s
+<p>Comme vous pouvez l'imaginer, le fonctionnement de cet appel est identique à
+celui des boutons normaux. Si aucune étiquette n'est spécifiée,
+le bouton sera vierge. Dans le cas contraire, le texte donné sera inspecté
+à la recherche de caractères mnémoniques (préfixés
 par '<tt>_</tt>').</p>
-<p>Pour r&eacute;cup&eacute;rer l'&eacute;tat d'un bouton &agrave; bascule, ainsi que
-des boutons radio et des cases &agrave; cocher, on fait appel &agrave; une construction
-semblable &agrave; l'exemple ci-dessous. Elle teste l'&eacute;tat du bouton en invoquant
-la m&eacute;thode <tt>get_active</tt>() de <tt>gtk.ToggleButton</tt>. Parmi les signaux
-&eacute;mis par les boutons &agrave; bascule, celui qui nous int&eacute;resse est
-&quot;<tt>toggled</tt>&quot;. Pour v&eacute;rifier l'&eacute;tat d'un bouton &agrave;
-bascule, on d&eacute;finira alors un gestionnaire de signal qui se chargera de le capter,
-puis qui acc&egrave;dera aux attributs de l'objet afin de d&eacute;terminer son &eacute;tat.
-La fonction de rappel ressemblera &agrave; ceci&nbsp;:</p>
+<p>Pour récupérer l'état d'un bouton à bascule, ainsi que
+des boutons radio et des cases à cocher, on fait appel à une construction
+semblable à l'exemple ci-dessous. Elle teste l'état du bouton en invoquant
+la méthode <tt>get_active</tt>() de <tt>gtk.ToggleButton</tt>. Parmi les signaux
+émis par les boutons à bascule, celui qui nous intéresse est
+"<tt>toggled</tt>". Pour vérifier l'état d'un bouton à
+bascule, on définira alors un gestionnaire de signal qui se chargera de le capter,
+puis qui accèdera aux attributs de l'objet afin de déterminer son état.
+La fonction de rappel ressemblera à ceci&nbsp;:</p>
 
 <pre class="programlisting">
   def fct_rappel_bascule(widget, donnees):
       if widget.get_active():
-          # si le contr&ocirc;le arrive ici, le bouton &agrave; bascule est enfonc&eacute;
+          # si le contrôle arrive ici, le bouton à bascule est enfoncé
       else:
-          # si le contr&ocirc;le arrive ici, le bouton &agrave; bascule est relev&eacute;
+          # si le contrôle arrive ici, le bouton à bascule est relevé
 </pre>
 
-<p>Pour forcer l'&eacute;tat d'un bouton &agrave; bascule (et de ses descendants les cases
-&agrave; cocher et les boutons radio) on utilise la m&eacute;thode&nbsp;:</p>
+<p>Pour forcer l'état d'un bouton à bascule (et de ses descendants les cases
+à cocher et les boutons radio) on utilise la méthode&nbsp;:</p>
 
 <pre class="programlisting">
   bouton_bascule.set_active(<B><tt>is_active</tt></B>)
 </pre>
 
-<p>La m&eacute;thode ci-dessus peut &ecirc;tre utilis&eacute;e pour imposer l'&eacute;tat
-d'un bouton &agrave; bascule, et de ses descendants les cases &agrave; cocher et les boutons
-radio. En donnant les valeurs TRUE ou FALSE &agrave; l'argument <i><tt>is_active</tt></i>,
-on indique que le bouton doit &ecirc;tre respectivement enfonc&eacute; ou relev&eacute;.
-Lors de sa cr&eacute;ation, un bouton &agrave; bascule est en position relev&eacute;e
-(FALSE) par d&eacute;faut.</p>
-<p>Notez que lorsqu'on utilise la m&eacute;thode <tt>set_active</tt>() et que l'&eacute;tat
-est effectivement modifi&eacute;, les signaux &quot;<tt>clicked</tt>&quot; et
-&quot;<tt>toggled</tt>&quot; sont automatiquement &eacute;mis par le bouton.</p>
+<p>La méthode ci-dessus peut être utilisée pour imposer l'état
+d'un bouton à bascule, et de ses descendants les cases à cocher et les boutons
+radio. En donnant les valeurs TRUE ou FALSE à l'argument <i><tt>is_active</tt></i>,
+on indique que le bouton doit être respectivement enfoncé ou relevé.
+Lors de sa création, un bouton à bascule est en position relevée
+(FALSE) par défaut.</p>
+<p>Notez que lorsqu'on utilise la méthode <tt>set_active</tt>() et que l'état
+est effectivement modifié, les signaux "<tt>clicked</tt>" et
+"<tt>toggled</tt>" sont automatiquement émis par le bouton.</p>
 
 <pre class="programlisting">
   bouton_bascule.get_active()
 </pre>
 
-<p>Cette m&eacute;thode renvoie l'&eacute;tat actuel du bouton &agrave; bascule sous la
-forme d'une valeur bool&eacute;enne TRUE/FALSE.</p>
+<p>Cette méthode renvoie l'état actuel du bouton à bascule sous la
+forme d'une valeur booléenne TRUE/FALSE.</p>
 <p>Le programme <a href="exemples/boutonsbascule.py" target="_top"><B>boutonsbascule.py</B></a>
-donne un exemple courant d'utilisation des boutons &agrave; bascule.
-La <a title="Figure 6.2. Exemple de boutons &agrave; bascule"
-href="sec-ToggleButtons.html#basculefig">figure 6.2</a> montre la fen&ecirc;tre
-obtenue, dans laquelle le deuxi&egrave;me bouton est enfonc&eacute;&nbsp;:</p>
+donne un exemple courant d'utilisation des boutons à bascule.
+La <a title="Figure 6.2. Exemple de boutons à bascule"
+href="sec-ToggleButtons.html#basculefig">figure 6.2</a> montre la fenêtre
+obtenue, dans laquelle le deuxième bouton est enfoncé&nbsp;:</p>
 
 <div class="figure"><a name="basculefig"></a><p class="title">
-<b>Figure 6.2. Exemple de boutons &agrave; bascule</b></p>
+<b>Figure 6.2. Exemple de boutons à bascule</b></p>
 <div class="mediaobject" align="center"><img src="figures/boutonsbascule.png" align="center">
 </div></div>
 
@@ -192,24 +192,24 @@ obtenue, dans laquelle le deuxi&egrave;me bouton est enfonc&eacute;&nbsp;:</p>
     85       main()
 </pre>
 
-<p>Les parties int&eacute;ressantes sont les lignes 12-13, qui d&eacute;finissent la
-m&eacute;thode <tt>fct_rappel</tt>() charg&eacute;e d'afficher le nom et l'&eacute;tat
-du bouton &agrave; bascule quand celui-ci voit son &eacute;tat modifi&eacute;, et les
-lignes 45 et 59, qui connectent le signal &quot;<tt>toggled</tt>&quot; des deux boutons
-&agrave; cette m&ecirc;me m&eacute;thode.</p></div>
+<p>Les parties intéressantes sont les lignes 12-13, qui définissent la
+méthode <tt>fct_rappel</tt>() chargée d'afficher le nom et l'état
+du bouton à bascule quand celui-ci voit son état modifié, et les
+lignes 45 et 59, qui connectent le signal "<tt>toggled</tt>" des deux boutons
+à cette même méthode.</p></div>
 
 <div class="navfooter">
 <hr>
 
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="ch-ButtonWidget.html">Pr&eacute;c.</a> </td>
+<td width="40%" align="left"><a accesskey="p" href="ch-ButtonWidget.html">Préc.</a> </td>
 <td width="20%" align="center"><a accesskey="u" href="ch-ButtonWidget.html">Chapitre parent</a></td>
 <td width="40%" align="right"> <a accesskey="n" href="sec-CheckButtons.html">Suiv.</a></td></tr>
 <tr>
 <td width="40%" align="left" valign="top">Chapitre 6. Les boutons</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
-<td width="40%" align="right" valign="top">6.3. Les cases &agrave; cocher</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top">6.3. Les cases à cocher</td>
 </tr></table>
 
 </div>

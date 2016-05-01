@@ -3,23 +3,23 @@
 
 <head>
     <meta charset="utf-8">
-<title>9.14. Le s&eacute;lecteur de fichier</title>
+<title>9.14. Le sélecteur de fichier</title>
 <link rel="stylesheet" href="pygtktutfr.css">
 <meta name="keywords" content="python,pygtk,tutoriel,traduction,selection de fichier">
 <link rel="start" href="index.html" title="Tutoriel PyGTK 2.0">
-<link rel="home" href="index.html" title="Table des mati&egrave;res">
+<link rel="home" href="index.html" title="Table des matières">
 <link rel="up" href="ch-MiscellaneousWidgets.html" title="Chapitre 9. Widgets divers">
-<link rel="previous" href="sec-ColorSelection.html" title="9.13. Le s&eacute;lecteur de couleur">
-<link rel="next" href="sec-FontSelectionDialog.html" title="9.15. Le s&eacute;lecteur de police">
+<link rel="previous" href="sec-ColorSelection.html" title="9.13. Le sélecteur de couleur">
+<link rel="next" href="sec-FontSelectionDialog.html" title="9.15. Le sélecteur de police">
 </head>
 
 <body>
 <div class="navheader">
-<table width="100%" summary="En-t&ecirc;te de navigation">
+<table width="100%" summary="En-tête de navigation">
 <tr>
-<th colspan="3" align="center">9.14. Le s&eacute;lecteur de fichier</th>
+<th colspan="3" align="center">9.14. Le sélecteur de fichier</th>
 </tr><tr>
-<td width="20%" align="left"><a accesskey="p" href="sec-ColorSelection.html">Pr&eacute;c.</a></td>
+<td width="20%" align="left"><a accesskey="p" href="sec-ColorSelection.html">Préc.</a></td>
 <th width="60%" align="center">Chapitre 9. Widgets divers</th>
 <td width="20%" align="right"><a accesskey="n" href="sec-FontSelectionDialog.html">Suiv.</a></td>
 </tr></table>
@@ -28,55 +28,55 @@
 </div>
 
 <div class="sect1"><div class="titlepage">
-<div><h2 class="title" style="clear: both"><a name="SelecteurFichier"></a>9.14. Le s&eacute;lecteur de fichier</h2></div></div>
+<div><h2 class="title" style="clear: both"><a name="SelecteurFichier"></a>9.14. Le sélecteur de fichier</h2></div></div>
 
-<p>Le s&eacute;lecteur de fichier est un moyen simple et rapide d'afficher une boite de dialogue de fichier d&eacute;j&agrave; &eacute;quip&eacute;e des boutons Valider, Annuler, et Aide. Une bonne &eacute;conomie en temps de programmation !</p>
-<p>Pour cr&eacute;er une nouvelle boite de s&eacute;lection de fichier, on utilise&nbsp;:</p>
+<p>Le sélecteur de fichier est un moyen simple et rapide d'afficher une boite de dialogue de fichier déjà équipée des boutons Valider, Annuler, et Aide. Une bonne économie en temps de programmation !</p>
+<p>Pour créer une nouvelle boite de sélection de fichier, on utilise&nbsp;:</p>
 
 <pre class="programlisting">
   selectfichier = gtk.FileSelection(<b><tt>title</tt></b>=None)
 </pre>
 
-<p>Pour d&eacute;finir le nom du fichier, par exemple pour joindre directement un dossier sp&eacute;cifique ou donner un nom de fichier par d&eacute;faut, on utilise la m&eacute;thode&nbsp;:</p>
+<p>Pour définir le nom du fichier, par exemple pour joindre directement un dossier spécifique ou donner un nom de fichier par défaut, on utilise la méthode&nbsp;:</p>
 
 <pre class="programlisting">
   selectfichier.set_filename(<b><tt>filename</tt></b>)
 </pre>
 
-<p>... o&ugrave; <i><tt>filename</tt></i> est le nom du fichier. Pour r&eacute;cup&eacute;rer, sous forme de texte, le nom du fichier que l'utilisateur a saisi ou cliqu&eacute;, on fait appel &agrave; la m&eacute;thode suivante&nbsp;:</p>
+<p>... où <i><tt>filename</tt></i> est le nom du fichier. Pour récupérer, sous forme de texte, le nom du fichier que l'utilisateur a saisi ou cliqué, on fait appel à la méthode suivante&nbsp;:</p>
 
 <pre class="programlisting">
   nomfichier = selectfichier.get_filename()
 </pre>
 
-<p>Il existe aussi des r&eacute;f&eacute;rences aux widgets contenus dans le s&eacute;lecteur de fichier. Ce sont tous des attributs de <i>selectfichier</i>&nbsp;:</p>
+<p>Il existe aussi des références aux widgets contenus dans le sélecteur de fichier. Ce sont tous des attributs de <i>selectfichier</i>&nbsp;:</p>
 
 <pre class="programlisting">
   selectfichier.dir_list                 # (liste des dossiers)
   selectfichier.file_list                # (liste des fichiers)
-  selectfichier.selection_entry          # (champ de saisie &quot;S&eacute;lection&quot;)
-  selectfichier.selection_text           # (texte &quot;S&eacute;lection&quot;)
+  selectfichier.selection_entry          # (champ de saisie "Sélection")
+  selectfichier.selection_text           # (texte "Sélection")
   selectfichier.main_vbox                # (boite verticale principale)
   selectfichier.ok_button                # (bouton Valider)
   selectfichier.cancel_button            # (bouton Annuler)
   selectfichier.help_button              # (bouton Aide)
-  selectfichier.history_pulldown         # (menu historique d&eacute;roulant)
+  selectfichier.history_pulldown         # (menu historique déroulant)
   selectfichier.history_menu	         #
-  selectfichier.fileop_dialog            # (boutons d'op&eacute;ration sur fichier&nbsp;: boite de dialogue)
-  selectfichier.fileop_entry             # (boutons d'op&eacute;ration sur fichier&nbsp;: champ de saisie)
-  selectfichier.fileop_file              # (boutons d'op&eacute;ration sur fichier&nbsp;: fichier)
-  selectfichier.fileop_c_dir             # (boutons d'op&eacute;ration sur fichier&nbsp;: bouton &quot;Cr&eacute;er un dossier&quot;)
-  selectfichier.fileop_del_file          # (boutons d'op&eacute;ration sur fichier&nbsp;: bouton &quot;Supprimer le fichier&quot;)
-  selectfichier.fileop_ren_file          # (boutons d'op&eacute;ration sur fichier&nbsp;: bouton &quot;Renommer le fichier&quot;)
-  selectfichier.button_area              # (zone des boutons d'op&eacute;ration sur fichier)
+  selectfichier.fileop_dialog            # (boutons d'opération sur fichier&nbsp;: boite de dialogue)
+  selectfichier.fileop_entry             # (boutons d'opération sur fichier&nbsp;: champ de saisie)
+  selectfichier.fileop_file              # (boutons d'opération sur fichier&nbsp;: fichier)
+  selectfichier.fileop_c_dir             # (boutons d'opération sur fichier&nbsp;: bouton "Créer un dossier")
+  selectfichier.fileop_del_file          # (boutons d'opération sur fichier&nbsp;: bouton "Supprimer le fichier")
+  selectfichier.fileop_ren_file          # (boutons d'opération sur fichier&nbsp;: bouton "Renommer le fichier")
+  selectfichier.button_area              # (zone des boutons d'opération sur fichier)
   selectfichier.action_area              #
 </pre>
 
-<p>On utilisera le plus souvent les attributs <i><tt>ok_button</tt></i>, <i><tt>cancel_button</tt></i>, et <i><tt>help_button</tt></i> afin de connecter les signaux de leur widget &agrave; des fonctions de rappel.</p>
-<p>Le programme <a href="exemples/selectfichier.py" target="_top"><b>selectfichier.py</b></a> donne un exemple d'utilisation du widget de s&eacute;lection de fichier. Notez que, bien que le bouton Aide apparaisse &agrave; l'&eacute;cran, il n'a aucun effet car aucun signal ne lui est attach&eacute;. La <a href="sec-FileSelections.html#FigSelectFichier" title="Figure 9.14. Exemple de S&eacute;lecteur de fichier">Figure 9.14</a> montre l'affichage obtenu&nbsp;:</p>
+<p>On utilisera le plus souvent les attributs <i><tt>ok_button</tt></i>, <i><tt>cancel_button</tt></i>, et <i><tt>help_button</tt></i> afin de connecter les signaux de leur widget à des fonctions de rappel.</p>
+<p>Le programme <a href="exemples/selectfichier.py" target="_top"><b>selectfichier.py</b></a> donne un exemple d'utilisation du widget de sélection de fichier. Notez que, bien que le bouton Aide apparaisse à l'écran, il n'a aucun effet car aucun signal ne lui est attaché. La <a href="sec-FileSelections.html#FigSelectFichier" title="Figure 9.14. Exemple de Sélecteur de fichier">Figure 9.14</a> montre l'affichage obtenu&nbsp;:</p>
 
 <div class="figure"><a name="FigSelectFichier"></a>
-<p class="title"><b>Figure 9.14. Exemple de s&eacute;lecteur de fichier</b></p>
+<p class="title"><b>Figure 9.14. Exemple de sélecteur de fichier</b></p>
 <div class="mediaobject" align="center">
 <img src="figures/selectfichier.png" align="middle" alt="exemple sélecteur de fichier">
 </div></div>
@@ -133,13 +133,13 @@
 
 <table width="100%" summary="Bas de page de navigation">
 <tr>
-<td width="40%" align="left"><a accesskey="p" href="sec-ColorSelection.html">Pr&eacute;c.</a></td>
+<td width="40%" align="left"><a accesskey="p" href="sec-ColorSelection.html">Préc.</a></td>
 <td width="20%" align="center"><a accesskey="u" href="ch-MiscellaneousWidgets.html">Chapitre parent</a></td>
 <td width="40%" align="right"><a accesskey="n" href="sec-FontSelectionDialog.html">Suiv.</a></td>
 </tr><tr>
-<td width="40%" align="left" valign="top">9.13. Le s&eacute;lecteur de couleur</td>
-<td width="20%" align="center"><a accesskey="h" href="index.html">Table des mati&egrave;res</a></td>
-<td width="40%" align="right" valign="top">9.15. Le s&eacute;lecteur de police</td>
+<td width="40%" align="left" valign="top">9.13. Le sélecteur de couleur</td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Table des matières</a></td>
+<td width="40%" align="right" valign="top">9.15. Le sélecteur de police</td>
 </tr></table></div>
 
 </body>
